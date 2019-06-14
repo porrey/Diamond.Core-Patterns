@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <Product>Diamond Pattern Library - Work-Flow</Product>
+    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+    <Description>This library provides work-flow interfaces and abstract or default implementations for common patterns.</Description>
+    <Version>2.0.9</Version>
+    <FileVersion>2.0.9</FileVersion>
+    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <AssemblyName>Diamond.Patterns.WorkFlow</AssemblyName>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <Authors>Daniel M. Porrey</Authors>
+    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+    <ProjectReference Include="..\Diamond.Patterns.Context\Diamond.Patterns.Context.csproj" />
+  </ItemGroup>
+
+</Project>

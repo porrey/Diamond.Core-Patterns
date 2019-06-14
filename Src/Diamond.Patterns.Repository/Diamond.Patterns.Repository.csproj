@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <Authors>Daniel M Porrey</Authors>
+    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>2.0.9</Version>
+    <FileVersion>2.0.9</FileVersion>
+    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+    <Description>This library provides basic implementations of the repository factory and rewposittory configurations.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

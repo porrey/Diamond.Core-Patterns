@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup Label="Globals">
+		<SccProjectName>SAK</SccProjectName>
+		<SccProvider>SAK</SccProvider>
+		<SccAuxPath>SAK</SccAuxPath>
+		<SccLocalPath>SAK</SccLocalPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Version>2.0.9</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<FileVersion>2.0.9</FileVersion>
+		<AssemblyVersion>2.0.9</AssemblyVersion>
+		<Authors>Daniel M. Porrey</Authors>
+		<Company>Daniel M. Porrey</Company>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Description>This library provides context implementations the work-flows and other context based operations.</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="System.DisposableObject" Version="1.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

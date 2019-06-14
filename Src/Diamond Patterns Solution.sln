@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Decorator", "Diamond.Patterns.Decorator\Diamond.Patterns.Decorator.csproj", "{33C88E6C-2FBA-4999-A989-061804C71BEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnitOfWork", "Diamond.Patterns.UnitOfWork\Diamond.Patterns.UnitOfWork.csproj", "{DFDBC1A2-4689-456A-83F1-60987CA888D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow", "Diamond.Patterns.WorkFlow\Diamond.Patterns.WorkFlow.csproj", "{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Repository.EntityFramework", "Diamond.Patterns.Repository.EntityFramework\Diamond.Patterns.Repository.EntityFramework.csproj", "{5FC593AC-5515-4A22-A64A-9B3720F7A7C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Context", "Diamond.Patterns.Context\Diamond.Patterns.Context.csproj", "{2414DF27-4060-469E-B540-221E823B5BF1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnityConfiguration", "Diamond.Patterns.UnityConfiguration\Diamond.Patterns.UnityConfiguration.csproj", "{BE78642C-3C60-45E5-B38A-67824C15B2CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Abstractions", "Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj", "{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.System", "Diamond.Patterns.System\Diamond.Patterns.System.csproj", "{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.ModelFactory", "Diamond.Patterns.ModelFactory\Diamond.Patterns.ModelFactory.csproj", "{A682598C-77B5-4389-9043-F9CC3D9D9711}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Repository", "Diamond.Patterns.Repository\Diamond.Patterns.Repository.csproj", "{5A0A6322-4551-487C-9E13-31EF89C8A5EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.ObjectFactory.Unity", "Diamond.Patterns.ObjectFactory.Unity\Diamond.Patterns.ObjectFactory.Unity.csproj", "{4D052526-4836-47E5-9096-64D2522D33BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33C88E6C-2FBA-4999-A989-061804C71BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C88E6C-2FBA-4999-A989-061804C71BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33C88E6C-2FBA-4999-A989-061804C71BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33C88E6C-2FBA-4999-A989-061804C71BEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFDBC1A2-4689-456A-83F1-60987CA888D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDBC1A2-4689-456A-83F1-60987CA888D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDBC1A2-4689-456A-83F1-60987CA888D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDBC1A2-4689-456A-83F1-60987CA888D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC593AC-5515-4A22-A64A-9B3720F7A7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC593AC-5515-4A22-A64A-9B3720F7A7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC593AC-5515-4A22-A64A-9B3720F7A7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC593AC-5515-4A22-A64A-9B3720F7A7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2414DF27-4060-469E-B540-221E823B5BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2414DF27-4060-469E-B540-221E823B5BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2414DF27-4060-469E-B540-221E823B5BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2414DF27-4060-469E-B540-221E823B5BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A682598C-77B5-4389-9043-F9CC3D9D9711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A682598C-77B5-4389-9043-F9CC3D9D9711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A682598C-77B5-4389-9043-F9CC3D9D9711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A682598C-77B5-4389-9043-F9CC3D9D9711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0A6322-4551-487C-9E13-31EF89C8A5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0A6322-4551-487C-9E13-31EF89C8A5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0A6322-4551-487C-9E13-31EF89C8A5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0A6322-4551-487C-9E13-31EF89C8A5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D052526-4836-47E5-9096-64D2522D33BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D052526-4836-47E5-9096-64D2522D33BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D052526-4836-47E5-9096-64D2522D33BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D052526-4836-47E5-9096-64D2522D33BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}
+	EndGlobalSection
+EndGlobal

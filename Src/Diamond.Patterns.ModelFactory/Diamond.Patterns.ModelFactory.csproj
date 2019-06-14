@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>2.0.9</Version>
+    <FileVersion>2.0.9</FileVersion>
+    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <Authors>Daniel M. Porrey</Authors>
+    <Product>Diamond Pattern Library - Model Factory</Product>
+    <Description>This library provides a basic implementation of the entity factory.</Description>
+    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

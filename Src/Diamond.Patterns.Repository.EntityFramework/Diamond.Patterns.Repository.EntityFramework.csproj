@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <AssemblyName>Diamond.Patterns.Repository.EntityFramework</AssemblyName>
+    <RootNamespace>Diamond.Patterns.Repository.EntityFramework</RootNamespace>
+    <Product>Diamond Pattern Library - Entity Framework Repository</Product>
+    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+    <Description>This library provides an implementation of the repository that can be used with Entity Framework.</Description>
+    <Version>2.0.9</Version>
+    <FileVersion>2.0.9</FileVersion>
+    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <Authors>Daniel M. Porrey</Authors>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+  </ItemGroup>
+</Project>
