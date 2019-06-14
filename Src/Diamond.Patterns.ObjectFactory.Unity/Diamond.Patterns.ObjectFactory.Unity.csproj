@@ -1,20 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>2.0.9</Version>
-    <FileVersion>2.0.9</FileVersion>
-    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <Version>2.0.12</Version>
+    <FileVersion>2.0.12</FileVersion>
+    <AssemblyVersion>2.0.12</AssemblyVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Company>Daniel M Porrey</Company>
@@ -25,7 +18,8 @@
     <RootNamespace>Diamond.Patterns.ObjectFactory.Unity</RootNamespace>
     <PackageId>Diamond.Patterns.ObjectFactory.Unity</PackageId>
     <Product>Diamond.Patterns.ObjectFactory.Unity</Product>
-  </PropertyGroup>
+		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Unity" Version="5.10.3" />

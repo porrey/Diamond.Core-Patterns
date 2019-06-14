@@ -1,12 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-  </PropertyGroup>
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -15,18 +8,18 @@
     <Product>Diamond Pattern Library - Decorartor</Product>
     <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
     <Description>This library provides a basic implementation of the decorator factory.</Description>
-    <Version>2.0.9</Version>
-    <FileVersion>2.0.9</FileVersion>
-    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <Version>2.0.12</Version>
+    <FileVersion>2.0.12</FileVersion>
+    <AssemblyVersion>2.0.12</AssemblyVersion>
     <Authors>Daniel M. Porrey</Authors>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
+		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="TryDisposable" Version="1.0.0" />
   </ItemGroup>
 

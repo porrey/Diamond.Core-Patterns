@@ -4,22 +4,18 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <AssemblyName>Diamond.Patterns.UnitOfWork</AssemblyName>
-    <RootNamespace>Diamond.Patterns.UnitOfWork</RootNamespace>
-    <Product>Diamond Pattern Library - Unit of Work</Product>
-    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
-    <Description>This library provides a basic implementation of the Unit of Work factory.</Description>
     <Version>2.0.12</Version>
-    <FileVersion>2.0.12</FileVersion>
-    <AssemblyVersion>2.0.12</AssemblyVersion>
-    <Authors>Daniel M. Porrey</Authors>
+    <Authors>Daniel M Porrey</Authors>
+    <Description>This library provides a basic implementation of the command factory.</Description>
+    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <FileVersion>2.0.12</FileVersion>
+    <AssemblyVersion>2.0.12</AssemblyVersion>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
-	</PropertyGroup>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />

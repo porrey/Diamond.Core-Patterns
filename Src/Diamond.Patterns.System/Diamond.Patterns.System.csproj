@@ -1,12 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-  </PropertyGroup>
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -17,16 +10,18 @@
     <Product>Diamond Pattern Library - Core</Product>
     <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
     <Description>This library provides some basic support functionality.</Description>
-    <Version>2.0.9</Version>
-    <FileVersion>2.0.9</FileVersion>
-    <AssemblyVersion>2.0.9</AssemblyVersion>
+    <Version>2.0.12</Version>
+    <FileVersion>2.0.12</FileVersion>
+    <AssemblyVersion>2.0.12</AssemblyVersion>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
+		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+	</PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="System.DisposableObject" Version="1.1.1" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="4.5.0" />
   </ItemGroup>
