@@ -1,25 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Daniel M. Porrey</Authors>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <Version>2.0.12</Version>
-    <FileVersion>2.0.12</FileVersion>
-    <AssemblyVersion>2.0.12</AssemblyVersion>
-    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <Description>This library provides extension methods to load Unity configuration from files other than the application configuration file.</Description>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Authors>Daniel M. Porrey</Authors>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<Version>2.0.18</Version>
+		<FileVersion>2.0.18</FileVersion>
+		<AssemblyVersion>2.0.18</AssemblyVersion>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Description>This library provides extension methods to load Unity configuration from files other than the application configuration file.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Unity" Version="5.10.3" />
-    <PackageReference Include="Unity.Configuration" Version="5.10.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Unity" Version="5.10.3" />
+		<PackageReference Include="Unity.Abstractions" Version="4.1.3" />
+		<PackageReference Include="Unity.Configuration" Version="5.10.0" />
+	</ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.UnitOfWork
@@ -16,16 +17,9 @@ namespace Diamond.Patterns.UnitOfWork
 
 		protected IObjectFactory ObjectFactory { get; set; }
 
-		public Task<IUnitOfWork<TSourceItem>> GetAsync<TSourceItem>()
+		public async Task<IUnitOfWork<TSourceItem>> GetAsync<TSourceItem>()
 		{
-			IUnitOfWork<TSourceItem> returnValue = null;
-
-			// ***
-			// *** Find the repository that supports the given type.
-			// ***
-			returnValue = this.ObjectFactory.GetInstance<IUnitOfWork<TSourceItem>>();
-
-			return Task.FromResult(returnValue);
+			return (await this.ObjectFactory.ResolveByInterfaceAsync<IUnitOfWork<TSourceItem>>()).FirstOrDefault();
 		}
 	}
 }

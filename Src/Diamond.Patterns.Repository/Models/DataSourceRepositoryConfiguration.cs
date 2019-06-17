@@ -1,6 +1,6 @@
 ﻿using Diamond.Patterns.Abstractions;
 
-namespace Lsc.Logistics.Patterns.Repository.SqLite
+namespace Diamond.Patterns.Repository
 {
 	public class DataSourceRepositoryConfiguration : IRepositoryConfiguration
 	{

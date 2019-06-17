@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 
-namespace Lsc.Logistics.Patterns.Commands
+namespace Diamond.Patterns.Command
 {
 	public class CommandFactory : ICommandFactory
 	{
@@ -14,18 +14,7 @@ namespace Lsc.Logistics.Patterns.Commands
 
 		public Task<ICommand> GetAsync(string commandName)
 		{
-			ICommand returnValue = null;
-
-			try
-			{
-				returnValue = this.ObjectFactory.GetInstance<ICommand>(commandName);
-			}
-			catch
-			{
-				returnValue = null;
-			}
-
-			return Task.FromResult(returnValue);
+			return Task.FromResult(this.ObjectFactory.GetInstance<ICommand>(commandName));
 		}
 	}
 }

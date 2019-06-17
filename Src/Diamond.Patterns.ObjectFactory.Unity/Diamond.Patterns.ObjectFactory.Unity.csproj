@@ -1,33 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <Version>2.0.12</Version>
-    <FileVersion>2.0.12</FileVersion>
-    <AssemblyVersion>2.0.12</AssemblyVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Company>Daniel M Porrey</Company>
-    <Authors>Daniel M Porrey</Authors>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <Description>This library provides a basic implementation of ObjectFactory for Unity.</Description>
-    <AssemblyName>Diamond.Patterns.ObjectFactory.Unity</AssemblyName>
-    <RootNamespace>Diamond.Patterns.ObjectFactory.Unity</RootNamespace>
-    <PackageId>Diamond.Patterns.ObjectFactory.Unity</PackageId>
-    <Product>Diamond.Patterns.ObjectFactory.Unity</Product>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Version>2.0.18</Version>
+		<FileVersion>2.0.18</FileVersion>
+		<AssemblyVersion>2.0.18</AssemblyVersion>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Company>Daniel M Porrey</Company>
+		<Authors>Daniel M Porrey</Authors>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<Description>This library provides a basic implementation of ObjectFactory for Unity.</Description>
+		<AssemblyName>Diamond.Patterns.ObjectFactory.Unity</AssemblyName>
+		<RootNamespace>Diamond.Patterns.ObjectFactory.Unity</RootNamespace>
+		<PackageId>Diamond.Patterns.ObjectFactory.Unity</PackageId>
+		<Product>Diamond.Patterns.ObjectFactory.Unity</Product>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Unity" Version="5.10.3" />
-    <PackageReference Include="Unity.Configuration" Version="5.10.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Unity" Version="5.10.3" />
+		<PackageReference Include="Unity.Abstractions" Version="4.1.3" />
+		<PackageReference Include="Unity.Configuration" Version="5.10.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
 
 </Project>

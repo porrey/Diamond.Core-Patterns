@@ -1,10 +1,10 @@
 ﻿using Diamond.Patterns.Abstractions;
 
-namespace Lsc.Logistics.Patterns.Repository.SqLite
+namespace Diamond.Patterns.Repository
 {
 	public class ConfigFileRepositoryConfiguration : IRepositoryConfiguration
 	{
 		public string Name { get; set; }
-		public string ConnectionString => this.Name;
+		public string ConnectionString => $"name={this.Name}";
 	}
 }

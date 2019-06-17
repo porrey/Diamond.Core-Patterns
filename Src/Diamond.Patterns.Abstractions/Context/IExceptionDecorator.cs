@@ -2,7 +2,7 @@
 
 namespace Diamond.Patterns.Abstractions
 {
-	public interface IExceptionContext
+	public interface IExceptionContext : IContext
 	{
 		void SetException(Exception ex);
 		void SetException(string message);

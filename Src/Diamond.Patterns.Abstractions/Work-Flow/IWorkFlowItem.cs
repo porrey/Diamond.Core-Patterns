@@ -2,7 +2,11 @@
 
 namespace Diamond.Patterns.Abstractions
 {
-	public interface IWorkFlowItem<TContext> where TContext : IContext
+	public interface IWorkFlowItem
+	{
+	}
+
+	public interface IWorkFlowItem<TContext> : IWorkFlowItem where TContext : IContext
 	{
 		int Ordinal { get; set; }
 		string Name { get; }

@@ -13,12 +13,20 @@ namespace Diamond.Patterns.Repository.EntityFramework
 	/// </summary>
 	/// <typeparam name="TInterface">The interface type that the entity implements.</typeparam>
 	/// <typeparam name="TEntity">The entity object type.</typeparam>
-	public abstract class EntityFrameworkRepository<TInterface, TEntity> : IRepository<TInterface>
+	public abstract class EntityFrameworkRepository<TInterface, TEntity> : IWritableRepository<TInterface>
 		where TEntity : class, TInterface, new()
 		where TInterface : IEntity
 	{
+		public EntityFrameworkRepository(IRepositoryConfiguration repositoryConfiguration, IEntityFactory<TInterface> modelFactory)
+		{
+			this.RepositoryConfiguration = repositoryConfiguration;
+			this.ModelFactory = modelFactory;
+		}
+
+		protected IRepositoryConfiguration RepositoryConfiguration { get; set; }
 		protected abstract DbSet<TEntity> MyDbSet(DbContext model);
 		protected abstract DbContext GetNewDbContext { get; }
+		public IEntityFactory<TInterface> ModelFactory { get; set; }
 
 		public virtual async Task<IEnumerable<TInterface>> GetAllAsync()
 		{

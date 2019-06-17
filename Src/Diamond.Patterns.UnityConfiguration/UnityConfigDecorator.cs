@@ -65,7 +65,7 @@ namespace Diamond.Patterns.UnityConfiguration
 		/// <param name="path">The folder path where the Unity configuration files are located.</param>
 		/// <param name="searchPattern">Specifies a pattern to use to match file names. The default is *.config.</param>
 		/// <param name="searchOption">Specifies the search option to use. the default is SearchOption.TopDirectoryOnly.</param>
-		public static async Task LoadUnityConfigFromFolderAsync(this IUnityContainer unity, string path, string searchPattern = "*.config", SearchOption searchOption = SearchOption.TopDirectoryOnly)
+		public static async Task<IEnumerable<string>> LoadUnityConfigFromFolderAsync(this IUnityContainer unity, string path, string searchPattern = "*.config", SearchOption searchOption = SearchOption.TopDirectoryOnly)
 		{
 			string[] files = Directory.GetFiles(path, searchPattern, searchOption);
 
@@ -76,6 +76,8 @@ namespace Diamond.Patterns.UnityConfiguration
 				// ***
 				await unity.LoadUnityConfigFromFileAsync(file, null);
 			}
+
+			return files;
 		}
 	}
 }

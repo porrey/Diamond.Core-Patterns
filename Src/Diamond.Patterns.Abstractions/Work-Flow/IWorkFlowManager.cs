@@ -2,7 +2,11 @@
 
 namespace Diamond.Patterns.Abstractions
 {
-	public interface IWorkFlowManager<TContext>  where TContext : IContext
+	public interface IWorkFlowManager
+	{
+	}
+
+	public interface IWorkFlowManager<TContext> : IWorkFlowManager where TContext : IContext
 	{
 		IWorkFlowItem<TContext>[] Steps { get; }
 		string Group { get; }

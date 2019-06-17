@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Daniel M. Porrey</Authors>
+    <Company>Daniel M. Porrey</Company>
+    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>2.0.18</Version>
+    <Description>This library provides a default Specification factory.</Description>
+    <FileVersion>2.0.18</FileVersion>
+    <AssemblyVersion>2.0.18</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

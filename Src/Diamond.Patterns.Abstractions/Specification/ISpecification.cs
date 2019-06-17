@@ -2,7 +2,11 @@
 
 namespace Diamond.Patterns.Abstractions
 {
-	public interface ISpecification<TResult>
+	public interface ISpecification
+	{
+	}
+
+	public interface ISpecification<TResult> : ISpecification
 	{
 		Task<TResult> ExecuteQueryAsync();
 	}
