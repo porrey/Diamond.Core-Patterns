@@ -8,9 +8,9 @@
 		<Product>Diamond Pattern Library - Work-Flow</Product>
 		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
 		<Description>This library provides work-flow interfaces and abstract or default implementations for common patterns.</Description>
-		<Version>2.0.18</Version>
-		<FileVersion>2.0.18</FileVersion>
-		<AssemblyVersion>2.0.18</AssemblyVersion>
+		<Version>2.0.21</Version>
+		<FileVersion>2.0.21</FileVersion>
+		<AssemblyVersion>2.0.21</AssemblyVersion>
 		<AssemblyName>Diamond.Patterns.WorkFlow</AssemblyName>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<Authors>Daniel M. Porrey</Authors>

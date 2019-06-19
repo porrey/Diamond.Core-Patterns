@@ -17,9 +17,9 @@ namespace Diamond.Patterns.UnitOfWork
 
 		protected IObjectFactory ObjectFactory { get; set; }
 
-		public async Task<IUnitOfWork<TSourceItem>> GetAsync<TSourceItem>()
+		public async Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>()
 		{
-			return (await this.ObjectFactory.ResolveByInterfaceAsync<IUnitOfWork<TSourceItem>>()).FirstOrDefault();
+			return (await this.ObjectFactory.ResolveByInterfaceAsync<IUnitOfWork<TResult, TSourceItem>>()).FirstOrDefault();
 		}
 	}
 }

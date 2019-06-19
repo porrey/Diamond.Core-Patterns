@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>2.0.18</Version>
-		<FileVersion>2.0.18</FileVersion>
-		<AssemblyVersion>2.0.18</AssemblyVersion>
+		<Version>2.0.21</Version>
+		<FileVersion>2.0.21</FileVersion>
+		<AssemblyVersion>2.0.21</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<Product>Diamond Pattern Library - Model Factory</Product>
 		<Description>This library provides a basic implementation of the entity factory.</Description>
