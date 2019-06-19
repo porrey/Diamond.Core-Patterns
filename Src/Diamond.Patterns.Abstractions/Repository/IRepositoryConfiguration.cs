@@ -2,6 +2,7 @@
 {
 	public interface IRepositoryConfiguration
 	{
+		string Description { get; }
 		string ConnectionString { get; }
 	}
 }
