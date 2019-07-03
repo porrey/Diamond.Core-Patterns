@@ -2,10 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>2.0.21</Version>
+		<Version>2.1.1</Version>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<FileVersion>2.0.21</FileVersion>
-		<AssemblyVersion>2.0.21</AssemblyVersion>
+		<FileVersion>2.1.1</FileVersion>
+		<AssemblyVersion>2.1.1</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<Company>Daniel M. Porrey</Company>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>

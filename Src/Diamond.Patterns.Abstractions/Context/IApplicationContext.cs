@@ -2,7 +2,7 @@
 {
 	public interface IApplicationContext : IContext
 	{
-		string[] Arguments { get; set; }
-		IObjectFactory ObjectFactory { get; set; }
+		string[] Arguments { get; }
+		IObjectFactory ObjectFactory { get; }
 	}
 }

@@ -10,4 +10,9 @@ namespace Diamond.Patterns.Abstractions
 	{
 		Task<TResult> ExecuteQueryAsync();
 	}
+
+	public interface ISpecification<TParameter, TResult> : ISpecification
+	{
+		Task<TResult> ExecuteQueryAsync(TParameter filter);
+	}
 }

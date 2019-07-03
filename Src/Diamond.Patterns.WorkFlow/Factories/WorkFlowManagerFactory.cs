@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
-using Diamond.Patterns.Context;
 
 namespace Diamond.Patterns.WorkFlow
 {

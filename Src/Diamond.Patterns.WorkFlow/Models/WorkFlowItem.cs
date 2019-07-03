@@ -21,6 +21,14 @@ namespace Diamond.Patterns.WorkFlow
 		/// </summary>
 		public virtual int Ordinal { get; set; }
 
+		public virtual bool AlwaysExecute { get; set; } = false;
+		public double Weight { get; set; } = 1;
+
+		public virtual bool ShouldExecute(IContextDecorator<TContext> context)
+		{
+			return true;
+		}
+
 		public virtual async Task<bool> ExecuteStepAsync(IContextDecorator<TContext> context)
 		{
 			bool returnValue = false;
@@ -46,6 +54,16 @@ namespace Diamond.Patterns.WorkFlow
 		public override string ToString()
 		{
 			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";
+		}
+
+		protected Task StepFailedAsync(IContextDecorator<TContext> context, string message)
+		{
+			if (context.Item is IExceptionContext exContext)
+			{
+				exContext.SetException(message);
+			}
+
+			return Task.FromResult(0);
 		}
 	}
 }

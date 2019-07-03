@@ -17,5 +17,10 @@ namespace Diamond.Patterns.Specification
 		{
 			return (await this.ObjectFactory.ResolveByInterfaceAsync<ISpecification<TResult>>()).FirstOrDefault();
 		}
+
+		public async Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>()
+		{
+			return (await this.ObjectFactory.ResolveByInterfaceAsync<ISpecification<TParameter, TResult>>()).FirstOrDefault();
+		}
 	}
 }

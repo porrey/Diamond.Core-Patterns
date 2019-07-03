@@ -8,6 +8,6 @@ namespace Diamond.Patterns.Abstractions
 
 	public interface IUnitOfWork<TResult, TSourceItem> : IUnitOfWork
 	{
-		Task<TResult> Commit(TSourceItem item);
+		Task<TResult> CommitAsync(TSourceItem item);
 	}
 }

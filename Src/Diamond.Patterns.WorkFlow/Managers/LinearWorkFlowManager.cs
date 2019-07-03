@@ -59,7 +59,7 @@ namespace Diamond.Patterns.WorkFlow
 			{
 				if (!await step.ExecuteStepAsync(context))
 				{
-					if (context is IExceptionContext exceptionContext &&  exceptionContext.Exception != null)
+					if (context.Item is IExceptionContext exceptionContext &&  exceptionContext.Exception != null)
 					{
 						throw exceptionContext.Exception;
 					}

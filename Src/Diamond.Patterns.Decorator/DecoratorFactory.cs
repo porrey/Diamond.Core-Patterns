@@ -62,5 +62,38 @@ namespace Diamond.Patterns.Decorator
 
 			return Task.FromResult(returnValue);
 		}
+
+		public Task<IDecorator<TItem, TResult>> GetAsync<TItem, TResult>(string name)
+		{
+			IDecorator<TItem, TResult> returnValue = null;
+
+			// ***
+			// *** Get the decorator type being requested.
+			// ***
+			Type targetType = typeof(IDecorator<TItem, TResult>);
+
+			// ***
+			// *** Get all decorators from the container of
+			// *** type IDecorator<TItem>.
+			// ***
+			var decorator = this.ObjectFactory.GetInstance<IDecorator>(name);
+
+			// ***
+			// *** Within the list, find the target decorator.
+			// ***
+			if (decorator != null)
+			{
+				if (targetType.IsInstanceOfType(decorator))
+				{
+					returnValue = (IDecorator<TItem, TResult>)decorator;
+				}
+				else
+				{
+					throw new Exception(String.Format("A decorator of type '{0}' has not been configured.", targetType.Name));
+				}
+			}
+
+			return Task.FromResult(returnValue);
+		}
 	}
 }

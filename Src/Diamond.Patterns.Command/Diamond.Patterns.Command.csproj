@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>2.0.21</Version>
+		<Version>2.1.1</Version>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides a basic implementation of the command factory.</Description>
 		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
@@ -12,8 +12,8 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>2.0.21</FileVersion>
-		<AssemblyVersion>2.0.21</AssemblyVersion>
+		<FileVersion>2.1.1</FileVersion>
+		<AssemblyVersion>2.1.1</AssemblyVersion>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 

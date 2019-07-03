@@ -77,7 +77,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 
 		public void RegisterSingletonInstance<T>(string name, T instance)
 		{
-			this.Unity.RegisterInstance(typeof(T), name, instance, new ContainerControlledLifetimeManager());
+			_ = this.Unity.RegisterInstance(typeof(T), name, instance, new ContainerControlledLifetimeManager());
 		}
 	}
 }
