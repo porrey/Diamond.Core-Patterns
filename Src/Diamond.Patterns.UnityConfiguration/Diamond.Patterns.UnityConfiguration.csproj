@@ -7,9 +7,9 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-		<Version>2.1.1</Version>
-		<FileVersion>2.1.1</FileVersion>
-		<AssemblyVersion>2.1.1</AssemblyVersion>
+		<Version>2.3.0</Version>
+		<FileVersion>2.3.0</FileVersion>
+		<AssemblyVersion>2.3.0</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

@@ -27,7 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.ObjectFact
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Command", "Diamond.Patterns.Command\Diamond.Patterns.Command.csproj", "{58855DF2-743B-4226-9DE3-2B680029DF01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Specification", "Diamond.Patterns.Specification\Diamond.Patterns.Specification.csproj", "{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Specification", "Diamond.Patterns.Specification\Diamond.Patterns.Specification.csproj", "{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.DatabaseStrategy.SQLite", "Diamond.Patterns.DatabaseStrategy.Sqlite\Diamond.Patterns.DatabaseStrategy.SQLite.csproj", "{9DB3A74C-9496-4B63-B78E-699C6FD51428}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.DatabaseStrategy.MsSql", "Diamond.Patterns.DatabaseStrategy.MsSql\Diamond.Patterns.DatabaseStrategy.MsSql.csproj", "{0A7CAE1E-E8EE-4605-9C63-9361ACCAE4CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,14 @@ Global
 		{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DB3A74C-9496-4B63-B78E-699C6FD51428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DB3A74C-9496-4B63-B78E-699C6FD51428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DB3A74C-9496-4B63-B78E-699C6FD51428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DB3A74C-9496-4B63-B78E-699C6FD51428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7CAE1E-E8EE-4605-9C63-9361ACCAE4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7CAE1E-E8EE-4605-9C63-9361ACCAE4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7CAE1E-E8EE-4605-9C63-9361ACCAE4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7CAE1E-E8EE-4605-9C63-9361ACCAE4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

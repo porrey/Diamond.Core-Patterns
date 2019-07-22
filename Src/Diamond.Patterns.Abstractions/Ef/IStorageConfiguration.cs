@@ -1,6 +1,6 @@
 ﻿namespace Diamond.Patterns.Abstractions
 {
-	public interface IRepositoryConfiguration
+	public interface IStorageConfiguration
 	{
 		string Description { get; }
 		string ConnectionString { get; }

@@ -4,19 +4,21 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Authors>Daniel M. Porrey</Authors>
-    <Company>Daniel M. Porrey</Company>
-    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
     <Version>2.3.0</Version>
-    <Description>This library provides a default Specification factory.</Description>
+    <Description>Provides code first database stratgeies for MS SQL Server.</Description>
     <FileVersion>2.3.0</FileVersion>
     <AssemblyVersion>2.3.0</AssemblyVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />

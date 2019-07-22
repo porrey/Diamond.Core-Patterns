@@ -79,5 +79,28 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 		{
 			_ = this.Unity.RegisterInstance(typeof(T), name, instance, new ContainerControlledLifetimeManager());
 		}
+
+		public async Task<bool> InitializeIfRequired(object item)
+		{
+			bool returnValue = false;
+
+			if (item != null && item is IRequiresInitialization initializeObject)
+			{
+				if (initializeObject.CanInitialize && !initializeObject.IsInitialized)
+				{
+					returnValue = await initializeObject.Initialize();
+				}
+				else
+				{
+					returnValue = true;
+				}
+			}
+			else
+			{
+				returnValue = true;
+			}
+
+			return returnValue;
+		}
 	}
 }

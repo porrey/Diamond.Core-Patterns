@@ -14,5 +14,6 @@ namespace Diamond.Patterns.Abstractions
 		IEnumerable<object> GetAllInstances(Type objectType);
 		Task<IList<T>> ResolveByInterfaceAsync<T>();
 		void RegisterSingletonInstance<T>(string name, T instance);
+		Task<bool> InitializeIfRequired(object item);
 	}
 }

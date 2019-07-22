@@ -98,7 +98,14 @@ namespace Diamond.Patterns.Repository
 				// ***
 				returnValue = repository as IQueryableRepository<TInterface>;
 
-				if (returnValue == null)
+				if (returnValue != null)
+				{
+					if (!await this.ObjectFactory.InitializeIfRequired(repository))
+					{
+						throw new RepositoryNotInitializedException(typeof(TInterface));
+					}
+				}
+				else
 				{
 					throw new RepositoryNotWritableException(repository.GetType());
 				}

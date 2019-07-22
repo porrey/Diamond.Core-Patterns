@@ -1,8 +1,8 @@
 ﻿using Diamond.Patterns.Abstractions;
 
-namespace Diamond.Patterns.Repository
+namespace Diamond.Patterns.DatabaseStrategy.SQLite
 {
-	public class ConfigFileRepositoryConfiguration : IRepositoryConfiguration
+	public class ConfigFileRepositoryConfiguration : IStorageConfiguration
 	{
 		public string Name { get; set; }
 		public string Description { get; set; }

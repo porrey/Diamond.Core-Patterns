@@ -17,13 +17,13 @@ namespace Diamond.Patterns.Repository.EntityFramework
 		where TEntity : class, TInterface, new()
 		where TInterface : IEntity
 	{
-		public EntityFrameworkRepository(IRepositoryConfiguration repositoryConfiguration, IEntityFactory<TInterface> modelFactory)
+		public EntityFrameworkRepository(IStorageConfiguration repositoryConfiguration, IEntityFactory<TInterface> modelFactory)
 		{
 			this.RepositoryConfiguration = repositoryConfiguration;
 			this.ModelFactory = modelFactory;
 		}
 
-		protected IRepositoryConfiguration RepositoryConfiguration { get; set; }
+		protected IStorageConfiguration RepositoryConfiguration { get; set; }
 		protected abstract DbSet<TEntity> MyDbSet(DbContext model);
 		protected abstract DbContext GetNewDbContext { get; }
 		public IEntityFactory<TInterface> ModelFactory { get; set; }
