@@ -2,7 +2,7 @@
 
 namespace Diamond.Patterns.DatabaseStrategy.MsSql
 {
-	public class DataSourceRepositoryConfiguration : IStorageConfiguration
+	public class DataSourceStorageConfiguration : IStorageConfiguration
 	{
 		public string DataSource { get; set; }
 		public string Description { get; set; }

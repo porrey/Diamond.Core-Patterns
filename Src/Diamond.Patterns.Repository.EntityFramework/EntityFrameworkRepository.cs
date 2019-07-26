@@ -17,13 +17,13 @@ namespace Diamond.Patterns.Repository.EntityFramework
 		where TEntity : class, TInterface, new()
 		where TInterface : IEntity
 	{
-		public EntityFrameworkRepository(IStorageConfiguration repositoryConfiguration, IEntityFactory<TInterface> modelFactory)
+		public EntityFrameworkRepository(IStorageConfiguration storageConfiguration, IEntityFactory<TInterface> modelFactory)
 		{
-			this.RepositoryConfiguration = repositoryConfiguration;
+			this.StorageConfiguration = storageConfiguration;
 			this.ModelFactory = modelFactory;
 		}
 
-		protected IStorageConfiguration RepositoryConfiguration { get; set; }
+		protected IStorageConfiguration StorageConfiguration { get; set; }
 		protected abstract DbSet<TEntity> MyDbSet(DbContext model);
 		protected abstract DbContext GetNewDbContext { get; }
 		public IEntityFactory<TInterface> ModelFactory { get; set; }
@@ -53,69 +53,98 @@ namespace Diamond.Patterns.Repository.EntityFramework
 			return await this.OnGetQueryableAsync(context, predicate);
 		}
 
-		public virtual async Task<TInterface> CreateEmptyAsync()
-		{
-			return await this.OnCreateEmptyAsync();
-		}
-
 		public virtual async Task<bool> UpdateAsync(TInterface item)
 		{
-			return await this.OnUpdateAsync(item);
+			return await this.OnUpdateAsync(null, item);
 		}
 
 		public virtual async Task<bool> AddAsync(TInterface item)
 		{
-			return await this.OnAddAsync(item);
+			return await this.OnAddAsync(null, item);
 		}
 
 		public virtual async Task<bool> DeleteAsync(TInterface item)
 		{
-			return await this.OnDeleteAsync(item);
+			return await this.OnDeleteAsync(null, item);
+		}
+
+		public virtual async Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface item)
+		{
+			return await this.OnUpdateAsync(repositoryContext, item);
+		}
+
+		public virtual async Task<bool> AddAsync(IRepositoryContext repositoryContext, TInterface item)
+		{
+			return await this.OnAddAsync(repositoryContext, item);
+		}
+
+		public virtual async Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface item)
+		{
+			return await this.OnDeleteAsync(repositoryContext, item);
 		}
 
 		#region Protected Members
-		protected virtual async Task<bool> OnUpdateAsync(TInterface item)
+		protected virtual async Task<bool> OnUpdateAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
 			bool returnValue = false;
 
-			using (DbContext db = this.GetNewDbContext)
+			if (repositoryContext == null)
 			{
-				db.Entry((TEntity)item).State = EntityState.Modified;
-				int result = await db.SaveChangesAsync();
-				returnValue = (result == 1);
+				using (DbContext db = this.GetNewDbContext)
+				{
+					db.Entry((TEntity)item).State = EntityState.Modified;
+					int result = await db.SaveChangesAsync();
+					returnValue = (result == 1);
+				}
+			}
+			else
+			{
+				((DbContext)repositoryContext).Entry((TEntity)item).State = EntityState.Modified;
+				returnValue = true;
 			}
 
 			return returnValue;
 		}
 
-		protected virtual Task<TInterface> OnCreateEmptyAsync()
-		{
-			return Task.FromResult((TInterface)new TEntity());
-		}
-
-		protected virtual async Task<bool> OnAddAsync(TInterface item)
+		protected virtual async Task<bool> OnAddAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
 			bool returnValue = false;
 
-			using (DbContext db = this.GetNewDbContext)
+			if (repositoryContext == null)
 			{
-				this.MyDbSet(db).Add((TEntity)item);
-				int result = await db.SaveChangesAsync();
-				returnValue = (result == 1);
+				using (DbContext db = this.GetNewDbContext)
+				{
+					this.MyDbSet(db).Add((TEntity)item);
+					int result = await db.SaveChangesAsync();
+					returnValue = (result == 1);
+				}
+			}
+			else
+			{
+				this.MyDbSet((DbContext)repositoryContext).Add((TEntity)item);
+				returnValue = true;
 			}
 
 			return returnValue;
 		}
 
-		protected virtual async Task<bool> OnDeleteAsync(TInterface item)
+		protected virtual async Task<bool> OnDeleteAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
 			bool returnValue = false;
 
-			using (DbContext db = this.GetNewDbContext)
+			if (repositoryContext == null)
 			{
-				db.Entry((TEntity)item).State = EntityState.Deleted;
-				int result = await db.SaveChangesAsync();
-				returnValue = (result == 1);
+				using (DbContext db = this.GetNewDbContext)
+				{
+					db.Entry((TEntity)item).State = EntityState.Deleted;
+					int result = await db.SaveChangesAsync();
+					returnValue = (result == 1);
+				}
+			}
+			else
+			{
+				((DbContext)repositoryContext).Entry((TEntity)item).State = EntityState.Deleted;
+				returnValue = true;
 			}
 
 			return returnValue;

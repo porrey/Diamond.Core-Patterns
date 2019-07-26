@@ -10,10 +10,10 @@
     <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
-    <Version>2.3.0</Version>
+    <Version>2.4.0</Version>
     <Description>Provides code first database stratgeies for MS SQL Server.</Description>
-    <FileVersion>2.3.0</FileVersion>
-    <AssemblyVersion>2.3.0</AssemblyVersion>
+    <FileVersion>2.4.0</FileVersion>
+    <AssemblyVersion>2.4.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

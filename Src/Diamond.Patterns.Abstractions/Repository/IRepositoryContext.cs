@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
@@ -8,5 +9,8 @@ namespace Diamond.Patterns.Abstractions
 	/// </summary>
 	public interface IRepositoryContext : IDisposable
 	{
+		Task<IRepositoryTransactionContext> BeginTransactionAsync();
+		Task<bool> UseTransactionAsync(IRepositoryTransactionContext transactionContext);
+		Task<int> SaveAsync();
 	}
 }

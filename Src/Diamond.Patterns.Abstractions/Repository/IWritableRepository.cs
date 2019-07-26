@@ -8,5 +8,8 @@ namespace Diamond.Patterns.Abstractions
 		Task<bool> AddAsync(TInterface entity);
 		Task<bool> DeleteAsync(TInterface entity);
 		Task<bool> UpdateAsync(TInterface entity);
+		Task<bool> AddAsync(IRepositoryContext repositoryContext, TInterface entity);
+		Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface entity);
+		Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface entity);
 	}
 }
