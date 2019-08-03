@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
-using Ninject.Infrastructure.Disposal;
 
 namespace Diamond.Patterns.Repository.EntityFramework
 {
@@ -26,7 +26,7 @@ namespace Diamond.Patterns.Repository.EntityFramework
 			return Task.FromResult(0);
 		}
 
-		public override void Dispose(bool disposing)
+		protected override void OnDisposeManagedObjects()
 		{
 			if (this.Context != null)
 			{

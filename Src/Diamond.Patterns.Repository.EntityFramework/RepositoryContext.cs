@@ -1,9 +1,8 @@
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
-using Diamond.Patterns.Repository.EntityFramework;
 
-namespace Lsc.Logistics.TechBytes.AsyncAwait.SampleData
+namespace Diamond.Patterns.Repository.EntityFramework
 {
 	public abstract class RepositoryContext<TContext> : DbContext, IRepositoryContext
 	{
