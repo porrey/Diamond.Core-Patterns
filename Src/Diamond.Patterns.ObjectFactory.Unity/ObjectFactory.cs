@@ -14,7 +14,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			this.Unity = unity;
 		}
 
-		protected IUnityContainer Unity { get; set; }
+		internal IUnityContainer Unity { get; set; }
 
 		public IEnumerable<object> GetAllInstances(Type objectType)
 		{

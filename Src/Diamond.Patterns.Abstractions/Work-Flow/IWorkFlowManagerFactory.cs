@@ -4,6 +4,8 @@ namespace Diamond.Patterns.Abstractions
 {
 	public interface IWorkFlowManagerFactory
 	{
-		Task<IWorkFlowManager<TContext>> GetAsync<TContext>(string groupName) where TContext : IContext;
+		Task<IWorkFlowManager<TContextDecorator, TContext>> GetAsync<TContextDecorator, TContext>(string groupName)
+			where TContext : IContext
+			where TContextDecorator : IContextDecorator<TContext>;
 	}
 }

@@ -6,6 +6,6 @@ namespace Diamond.Patterns.Abstractions
 	{
 		TContext Item { get; set; }
 		Task ResetAsync();
-		IStateDictionary Properties { get; }
+		IStateDictionary Properties { get; set; }
 	}
 }

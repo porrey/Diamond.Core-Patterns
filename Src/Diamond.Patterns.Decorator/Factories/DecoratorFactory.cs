@@ -31,24 +31,17 @@ namespace Diamond.Patterns.Decorator
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			IEnumerable<IDecorator> decorators = this.ObjectFactory.GetAllInstances<IDecorator>();
+			IEnumerable<IDecorator> items = this.ObjectFactory.GetAllInstances<IDecorator>();
 
 			// ***
 			// *** Within the list, find the target decorator.
 			// ***
-			foreach (IDecorator decorator in decorators)
+			foreach (IDecorator item in items)
 			{
-				if (targetType.IsInstanceOfType(decorator))
+				if (targetType.IsInstanceOfType(item))
 				{
-					returnValue = (IDecorator<TItem, TResult>)decorator;
+					returnValue = (IDecorator<TItem, TResult>)item;
 					break;
-				}
-				else
-				{
-					// ***
-					// *** Call dispose on the unused instance.
-					// ***
-					TryDisposable<IDecorator<TItem, TResult>>.Dispose(decorator);
 				}
 			}
 
@@ -57,7 +50,7 @@ namespace Diamond.Patterns.Decorator
 			// ***
 			if (returnValue == null)
 			{
-				throw new Exception(String.Format("A decorator of type '{0}' has not been configured.", targetType.Name));
+				throw new DecoratorNotFoundException<TItem, TResult>();
 			}
 
 			return Task.FromResult(returnValue);
@@ -76,7 +69,7 @@ namespace Diamond.Patterns.Decorator
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			var decorator = this.ObjectFactory.GetInstance<IDecorator>(name);
+			IDecorator decorator = this.ObjectFactory.GetInstance<IDecorator>(name);
 
 			// ***
 			// *** Within the list, find the target decorator.
@@ -89,7 +82,7 @@ namespace Diamond.Patterns.Decorator
 				}
 				else
 				{
-					throw new Exception(String.Format("A decorator of type '{0}' has not been configured.", targetType.Name));
+					throw new DecoratorNotFoundException<TItem, TResult>(name);
 				}
 			}
 

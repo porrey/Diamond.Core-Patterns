@@ -9,11 +9,11 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>2.3.0</Version>
-		<FileVersion>2.3.0</FileVersion>
-		<AssemblyVersion>2.3.0</AssemblyVersion>
+		<Version>2.6.0</Version>
+		<FileVersion>2.6.0</FileVersion>
+		<AssemblyVersion>2.6.0</AssemblyVersion>
 		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
-		<Description>This library provides basic implementations of the repository factory and rewposittory configurations.</Description>
+		<Description>This library provides basic implementations of the repository factory and repository configurations.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 

@@ -4,10 +4,6 @@ namespace Diamond.Patterns.Abstractions
 {
 	public interface IWorkFlowItem
 	{
-	}
-
-	public interface IWorkFlowItem<TContext> : IWorkFlowItem where TContext : IContext
-	{
 		/// <summary>
 		/// Specifies the order in which the specified step is executed in a given
 		/// work flow.
@@ -37,11 +33,6 @@ namespace Diamond.Patterns.Abstractions
 		double Weight { get; }
 
 		/// <summary>
-		/// Performs the work for the specified step.
-		/// </summary>
-		Task<bool> ExecuteStepAsync(IContextDecorator<TContext> context);
-
-		/// <summary>
 		/// Indicates that regardless of the result of previous steps, this step
 		/// should always execute. This is used in linear work flow managers that
 		/// stop executing when one of the steps fail. A step marked with this
@@ -49,6 +40,16 @@ namespace Diamond.Patterns.Abstractions
 		///  property may be ignored by certain work flow managers.
 		/// </summary>
 		bool AlwaysExecute { get; }
+	}
+
+	public interface IWorkFlowItem<TContextDecorator, TContext> : IWorkFlowItem
+		where TContext : IContext
+		where TContextDecorator : IContextDecorator<TContext>
+	{
+		/// <summary>
+		/// Performs the work for the specified step.
+		/// </summary>
+		Task<bool> ExecuteStepAsync(TContextDecorator context);
 
 		/// <summary>
 		/// Indicates whether or not a step should be executed during a work flow.
@@ -58,6 +59,6 @@ namespace Diamond.Patterns.Abstractions
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		bool ShouldExecute(IContextDecorator<TContext> context);
+		bool ShouldExecute(TContextDecorator context);
 	}
 }

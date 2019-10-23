@@ -5,9 +5,9 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>2.3.0</Version>
-		<FileVersion>2.3.0</FileVersion>
-		<AssemblyVersion>2.3.0</AssemblyVersion>
+		<Version>2.6.0</Version>
+		<FileVersion>2.6.0</FileVersion>
+		<AssemblyVersion>2.6.0</AssemblyVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Company>Daniel M Porrey</Company>

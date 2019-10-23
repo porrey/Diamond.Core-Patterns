@@ -2,15 +2,18 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
+using Diamond.Patterns.Context;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class WorkFlowManager<TContext> : IWorkFlowManager<TContext> where TContext : IContext
+	public class LinearWorkFlowManager<TContextDecorator, TContext> : IWorkFlowManager<TContextDecorator, TContext>
+		where TContext : IContext
+		where TContextDecorator : IContextDecorator<TContext>
 	{
-		public WorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
+		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
 		{
 			this.Group = group;
-			this.Steps = workFlowItemFactory.GetItemsAsync<TContext>(group).Result.ToArray();
+			this.Steps = workFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(group).Result.ToArray();
 
 			if (this.Steps.Count() == 0)
 			{
@@ -18,8 +21,8 @@ namespace Diamond.Patterns.WorkFlow
 			}
 		}
 
-		private IWorkFlowItem<TContext>[] _steps = null;
-		public IWorkFlowItem<TContext>[] Steps
+		private IWorkFlowItem<TContextDecorator, TContext>[] _steps = null;
+		public IWorkFlowItem<TContextDecorator, TContext>[] Steps
 		{
 			get
 			{
@@ -34,7 +37,8 @@ namespace Diamond.Patterns.WorkFlow
 
 				if (!isContiguous)
 				{
-					throw new ArgumentOutOfRangeException($"The state items for group {this.Group} are not numbered consecutively.");
+					string itemOrdinals = String.Join(",", value.Select(t => t.Ordinal));
+					throw new ArgumentOutOfRangeException($"The {value.Count()} [{itemOrdinals}] state items for group {this.Group} are not numbered consecutively.");
 				}
 				else
 				{
@@ -48,29 +52,38 @@ namespace Diamond.Patterns.WorkFlow
 
 		public string Group { get; set; }
 
-		public async Task<bool> ExecuteWorkflowAsync(IContextDecorator<TContext> context)
+		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
 		{
 			bool returnValue = true;
 
 			// ***
 			// *** Loop through each work-flow step executing them one at a time.
 			// ***
-			foreach (IWorkFlowItem<TContext> step in this.Steps)
+			foreach (IWorkFlowItem<TContextDecorator, TContext> step in this.Steps)
 			{
 				if (!await step.ExecuteStepAsync(context))
 				{
-					if (context.Item is IExceptionContext exceptionContext &&  exceptionContext.Exception != null)
+					if (context.HasException())
 					{
-						throw exceptionContext.Exception;
+						throw new WorkFlowFailureException(context.GetException(), step.Ordinal);
 					}
 					else
 					{
-						throw new Exception($"The step '{step.Name}' failed for an unknown reason.");
+						throw new UnknownFailureException(step.Name);
 					}
 				}
 			}
 
 			return returnValue;
+		}
+	}
+
+	public class LinearWorkFlowManager<TContext> : LinearWorkFlowManager<ContextDecorator<TContext>, TContext>
+		where TContext : IContext
+	{
+		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
+			: base(workFlowItemFactory, group)
+		{
 		}
 	}
 }

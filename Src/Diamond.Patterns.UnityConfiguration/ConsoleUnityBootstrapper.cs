@@ -6,13 +6,20 @@ using Unity.Lifetime;
 
 namespace Diamond.Patterns.UnityConfiguration
 {
-	public class ConsoleUnityBootstrapper : DisposableObject, IApplicationContext, IExceptionContext
+	public class ConsoleUnityBootstrapper : DisposableObject, IApplicationContext
 	{
+		public static class WellKnown
+		{
+			public static class Container
+			{
+				public const string ObjectFactory = "ObjectFactory";
+			}
+		}
+
 		protected virtual IUnityContainer Container { get; set; }
 		public virtual string[] Arguments { get; set; }
-		public virtual IObjectFactory ObjectFactory => this.Container.Resolve<IObjectFactory>("ObjectFactory");
+		public virtual IObjectFactory ObjectFactory => this.Container.Resolve<IObjectFactory>(WellKnown.Container.ObjectFactory);
 		public virtual string Name { get; }
-		public Exception Exception { get; protected set; }
 
 		public ConsoleUnityBootstrapper()
 		{
@@ -76,21 +83,6 @@ namespace Diamond.Patterns.UnityConfiguration
 				this.Container.Dispose();
 				this.Container = null;
 			}
-		}
-
-		public void SetException(Exception ex)
-		{
-			this.Exception = ex;
-		}
-
-		public void SetException(string message)
-		{
-			this.Exception = new Exception(message);
-		}
-
-		public void SetException(string format, params object[] args)
-		{
-			this.Exception = new Exception(String.Format(format, args));
 		}
 	}
 }

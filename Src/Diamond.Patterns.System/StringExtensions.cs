@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Diamond.Patterns.Core
+namespace Diamond.Patterns.System
 {
 	public static class StringExtensions
 	{

@@ -4,7 +4,8 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.DatabaseStrategy.SQLite
 {
-	public class SQLiteCreateDatabaseIfNotExistsStrategy<TContext> : IDatabaseStrategy<TContext> where TContext : DbContext
+	public class SQLiteCreateDatabaseIfNotExistsStrategy<TContext> : IDatabaseStrategy<TContext>
+		where TContext : DbContext
 	{
 		public object GetInitializer(object modelBuilder, EventHandler<TContext> onSeed)
 		{

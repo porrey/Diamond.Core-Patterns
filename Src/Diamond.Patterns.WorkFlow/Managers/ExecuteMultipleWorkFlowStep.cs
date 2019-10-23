@@ -27,7 +27,7 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 	//	{
 	//		bool returnValue = true;
 
-	//		if (context.Properties.ContainsKey(WellKnown.Context.IStateDictionaryArray))
+	//		if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.IStateDictionaryArray))
 	//		{
 	//			// ***
 	//			// *** The context should have any array of IStateDictionary
@@ -36,7 +36,7 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 	//			// *** added to the context before the work flow starts
 	//			// *** and removed from the context after the work flow completes.
 	//			// ***
-	//			IStateDictionary[] instances = context.Properties.Get<IStateDictionary[]>(WellKnown.Context.IStateDictionaryArray);
+	//			IStateDictionary[] instances = context.Properties.Get<IStateDictionary[]>(DiamondWorkFlow.WellKnown.Context.IStateDictionaryArray);
 
 	//			// ***
 	//			// *** Track the number of work flow failures.
@@ -63,7 +63,7 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 	//				Trace.TraceInformation($"Running the '{this.WorkflowTitle}' work flow {instances.Count()} times."));
 
 	//				bool executionResult = await workFlowManager.ExecuteWorkflowAsync(context);
-	//				bool workFlowFailed = context.Properties.Get<bool>(WellKnown.Context.WorkFlowFailed);
+	//				bool workFlowFailed = context.Properties.Get<bool>(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed);
 
 	//				if (executionResult && !workFlowFailed)
 	//				{
@@ -111,7 +111,7 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 	//		}
 	//		else
 	//		{
-	//			await this.StepFailedAsync(context, new MissingContextPropertyException(WellKnown.Context.IStateDictionaryArray));
+	//			await this.StepFailedAsync(context, new MissingContextPropertyException(DiamondWorkFlow.WellKnown.Context.IStateDictionaryArray));
 	//		}
 
 	//		return returnValue;

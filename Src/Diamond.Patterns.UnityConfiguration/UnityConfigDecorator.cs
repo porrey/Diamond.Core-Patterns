@@ -8,6 +8,8 @@ using Unity;
 
 namespace Diamond.Patterns.UnityConfiguration
 {
+	public delegate void OnFileLoadingDelegate(string file);
+
 	public static class UnityConfigDecorator
 	{
 		/// <summary>
@@ -47,10 +49,15 @@ namespace Diamond.Patterns.UnityConfiguration
 		/// </summary>
 		/// <param name="unity">The Unity container instance to load the configuration into.</param>
 		/// <param name="files">A list of file paths where the files to be loaded are located.</param>
-		public static async Task LoadUnityConfigFromFilesAsync(this IUnityContainer unity, IEnumerable<string> files)
+		public static async Task LoadUnityConfigFromFilesAsync(this IUnityContainer unity, IEnumerable<string> files, OnFileLoadingDelegate callback = null)
 		{
 			foreach (string file in files)
 			{
+				if (callback != null)
+				{
+					callback.Invoke(file);
+				}
+
 				// ***
 				// *** Load the default unity container.
 				// ***
@@ -65,12 +72,17 @@ namespace Diamond.Patterns.UnityConfiguration
 		/// <param name="path">The folder path where the Unity configuration files are located.</param>
 		/// <param name="searchPattern">Specifies a pattern to use to match file names. The default is *.config.</param>
 		/// <param name="searchOption">Specifies the search option to use. the default is SearchOption.TopDirectoryOnly.</param>
-		public static async Task<IEnumerable<string>> LoadUnityConfigFromFolderAsync(this IUnityContainer unity, string path, string searchPattern = "*.config", SearchOption searchOption = SearchOption.TopDirectoryOnly)
+		public static async Task<IEnumerable<string>> LoadUnityConfigFromFolderAsync(this IUnityContainer unity, string path, string searchPattern = "*.config", SearchOption searchOption = SearchOption.TopDirectoryOnly, OnFileLoadingDelegate callback = null)
 		{
 			string[] files = Directory.GetFiles(path, searchPattern, searchOption);
 
 			foreach (string file in files)
 			{
+				if (callback != null)
+				{
+					callback.Invoke(file);
+				}
+
 				// ***
 				// *** Load the default unity container.
 				// ***

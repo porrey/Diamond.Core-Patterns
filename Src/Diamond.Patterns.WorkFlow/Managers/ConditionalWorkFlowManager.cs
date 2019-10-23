@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
+using Diamond.Patterns.Context;
 using Diamond.Patterns.WorkFlow;
 
 namespace Lsc.Logistics.DynaMail.WorkFlow.Core
@@ -13,15 +14,17 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 	///  and the work flow moves on to the next step.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class ConditionalWorkFlowManager<T> : IWorkFlowManager<T> where T : IContext
+	public class ConditionalWorkFlowManager<TContextDecorator, TContext> : IWorkFlowManager<TContextDecorator, TContext>
+		where TContext : IContext
+		where TContextDecorator : IContextDecorator<TContext>
 	{
-		public ConditionalWorkFlowManager(IWorkFlowItem<T>[] steps)
+		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps)
 		{
 			this.Group = null;
 			this.Steps = steps;
 		}
 
-		public ConditionalWorkFlowManager(IWorkFlowItem<T>[] steps, string group)
+		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, string group)
 		{
 			this.Group = group;
 			this.Steps = steps;
@@ -35,8 +38,8 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 
 		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
 
-		private IWorkFlowItem<T>[] _steps = null;
-		public IWorkFlowItem<T>[] Steps
+		private IWorkFlowItem<TContextDecorator, TContext>[] _steps = null;
+		public IWorkFlowItem<TContextDecorator, TContext>[] Steps
 		{
 			get
 			{
@@ -72,7 +75,7 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 
 		public string Group { get; set; }
 
-		public async Task<bool> ExecuteWorkflowAsync(IContextDecorator<T> context)
+		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
 		{
 			bool returnValue = true;
 
@@ -89,8 +92,8 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 			// ***
 			// *** Initialize this flag to True.
 			// ***
-			context.Properties.Set(WellKnown.Context.LastStepSuccess, true);
-			context.Properties.Set(WellKnown.Context.WorkFlowFailed, false);
+			context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, true);
+			context.Properties.Set(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed, false);
 
 			// ***
 			// *** Loop through each work-flow step executing them one at a time.
@@ -130,14 +133,14 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 						// ***
 						if (result)
 						{
-							context.Properties.Set(WellKnown.Context.LastStepSuccess, true);
+							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, true);
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
 							Trace.TraceInformation($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
 						}
 						else
 						{
-							context.Properties.Set(WellKnown.Context.WorkFlowFailed, true);
-							context.Properties.Set(WellKnown.Context.LastStepSuccess, false);
+							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed, true);
+							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, false);
 							Trace.TraceError($"The work-flow step '{this.Steps[i].Name}' failed.");
 						}
 
@@ -161,7 +164,7 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 		{
 			if (this.Steps == null || this.Steps.Count() == 0)
 			{
-				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync<T>(this.Group)).ToArray();
+				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(this.Group)).ToArray();
 
 				if (this.Steps.Count() == 0)
 				{
@@ -170,7 +173,7 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 			}
 		}
 
-		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem<T> step, IContextDecorator<T> context)
+		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem<TContextDecorator, TContext> step, TContextDecorator context)
 		{
 			bool returnValue = false;
 
@@ -182,23 +185,19 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 				}
 				else
 				{
-					if (context.Item is IExceptionContext exceptionContext && exceptionContext.Exception != null)
+					if (context.HasException())
 					{
-						throw exceptionContext.Exception;
+						throw new WorkFlowFailureException(context.GetException(), step.Ordinal);
 					}
 					else
 					{
-						throw new Exception($"The step '{step.Name}' failed for an unknown reason.");
+						throw new UnknownFailureException(step.Name);
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				if (context.Item is IExceptionContext exceptionContext)
-				{
-					exceptionContext.SetException(ex);
-				}
-
+				context.SetException(ex);
 				returnValue = false;
 			}
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
@@ -18,15 +19,31 @@ namespace Diamond.Patterns.WorkFlow
 
 		protected IObjectFactory ObjectFactory { get; set; }
 
-		public Task<IWorkFlowManager<TContext>> GetAsync<TContext>(string groupName) where TContext : IContext
+		public Task<IWorkFlowManager<TContextDecorator, TContext>> GetAsync<TContextDecorator, TContext>(string groupName)
+			where TContextDecorator : IContextDecorator<TContext>
+			where TContext : IContext
 		{
-			IWorkFlowManager<TContext> returnValue = null;
+			IWorkFlowManager<TContextDecorator, TContext> returnValue = null;
+
+			// ***
+			// *** Get the type being requested.
+			// ***
+			Type targetType = typeof(IWorkFlowManager<TContextDecorator, TContext>);
 
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IEnumerable<IWorkFlowManager<TContext>> items = this.ObjectFactory.GetAllInstances<IWorkFlowManager<TContext>>();
-			returnValue = items.Where(t => t.Group == groupName).SingleOrDefault();
+			IEnumerable<IWorkFlowManager> items = this.ObjectFactory.GetAllInstances<IWorkFlowManager>();
+			IWorkFlowManager item = items.Where(t => t.Group == groupName).SingleOrDefault();
+
+			if (item != null)
+			{
+				returnValue = (IWorkFlowManager<TContextDecorator, TContext>)item;
+			}
+			else
+			{
+				throw new WorkFlowManagerNotFoundException<TContextDecorator, TContext>(groupName);
+			}
 
 			return Task.FromResult(returnValue);
 		}

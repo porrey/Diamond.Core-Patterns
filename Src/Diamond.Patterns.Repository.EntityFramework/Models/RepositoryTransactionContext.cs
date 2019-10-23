@@ -14,13 +14,13 @@ namespace Diamond.Patterns.Repository.EntityFramework
 
 		internal DbContextTransaction Context { get; set; }
 
-		public Task CommitTransactionAsync()
+		public virtual Task CommitTransactionAsync()
 		{
 			this.Context.Commit();
 			return Task.FromResult(0);
 		}
 
-		public Task RollbackTransactionAsync()
+		public virtual Task RollbackTransactionAsync()
 		{
 			this.Context.Rollback();
 			return Task.FromResult(0);

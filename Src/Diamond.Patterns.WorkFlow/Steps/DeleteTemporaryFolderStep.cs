@@ -6,15 +6,17 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class DeleteTemporaryFolderStep<TContext> : WorkFlowItem<TContext> where TContext : IContext
+	public class DeleteTemporaryFolderStep<TContextDecorator, TContext> : WorkFlowItem<TContextDecorator, TContext>
+		where TContext : IContext
+		where TContextDecorator : IContextDecorator<TContext>
 	{
 		public override string Name => "Delete Temporary Folder";
 
-		protected override Task<bool> OnExecuteStepAsync(IContextDecorator<TContext> context)
+		protected override Task<bool> OnExecuteStepAsync(TContextDecorator context)
 		{
-			if (context.Properties.ContainsKey(WellKnown.Context.TemporaryFolder))
+			if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.TemporaryFolder))
 			{
-				ITemporaryFolder temporaryFolder = context.Properties.Get<ITemporaryFolder>(WellKnown.Context.TemporaryFolder);
+				ITemporaryFolder temporaryFolder = context.Properties.Get<ITemporaryFolder>(DiamondWorkFlow.WellKnown.Context.TemporaryFolder);
 
 				// ***
 				// *** Cache the name since the object is being disposed.
@@ -23,7 +25,7 @@ namespace Diamond.Patterns.WorkFlow
 				Trace.TraceInformation($"Deleting temporary folder '{tempPath}'.");
 
 				TryDisposable<ITemporaryFolder>.Dispose(temporaryFolder);
-				context.Properties.Remove(WellKnown.Context.TemporaryFolder);
+				context.Properties.Remove(DiamondWorkFlow.WellKnown.Context.TemporaryFolder);
 
 				if (Directory.Exists(tempPath))
 				{

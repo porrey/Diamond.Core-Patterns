@@ -4,12 +4,14 @@ namespace Diamond.Patterns.Abstractions
 {
 	public interface IWorkFlowManager
 	{
+		string Group { get; }
 	}
 
-	public interface IWorkFlowManager<TContext> : IWorkFlowManager where TContext : IContext
+	public interface IWorkFlowManager<TContextDecorator, TContext> : IWorkFlowManager
+		where TContext : IContext
+		where TContextDecorator : IContextDecorator<TContext>
 	{
-		IWorkFlowItem<TContext>[] Steps { get; }
-		string Group { get; }
-		Task<bool> ExecuteWorkflowAsync(IContextDecorator<TContext> context);
+		IWorkFlowItem<TContextDecorator, TContext>[] Steps { get; }
+		Task<bool> ExecuteWorkflowAsync(TContextDecorator context);
 	}
 }

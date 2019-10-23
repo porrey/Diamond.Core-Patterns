@@ -15,24 +15,42 @@ namespace Diamond.Patterns.WorkFlow
 
 		protected IObjectFactory ObjectFactory { get; set; }
 
-		public Task<IEnumerable<IWorkFlowItem<TContext>>> GetItemsAsync<TContext>(string group) where TContext : IContext
+		public Task<IEnumerable<IWorkFlowItem<TContextDecorator, TContext>>> GetItemsAsync<TContextDecorator, TContext>(string groupName)
+			where TContext : IContext
+			where TContextDecorator : IContextDecorator<TContext>
 		{
-			IEnumerable<IWorkFlowItem<TContext>> returnValue = null;
+			IList<IWorkFlowItem<TContextDecorator, TContext>> returnValue = new List<IWorkFlowItem<TContextDecorator, TContext>>();
 
 			// ***
-			// *** Get the decorator type being requested.
+			// *** Get the type being requested.
 			// ***
-			Type targetType = typeof(TContext);
+			Type targetType = typeof(IWorkFlowItem<TContextDecorator, TContext>);
 
 			// ***
-			// *** Get all decorators from the container of
-			// *** type IDecorator<TItem>.
+			// *** Find the repository that supports the given type.
 			// ***
-			IEnumerable<IWorkFlowItem<TContext>> items = this.ObjectFactory.GetAllInstances<IWorkFlowItem<TContext>>();
+			IEnumerable<IWorkFlowItem> items = this.ObjectFactory.GetAllInstances<IWorkFlowItem>();
+			IEnumerable<IWorkFlowItem> groupItems = items.Where(t => t.Group == groupName);
 
-			returnValue = items.Where(t => t.Group == group).ToArray();
+			if (groupItems.Count() > 0)
+			{
+				foreach (IWorkFlowItem groupItem in groupItems)
+				{
+					if (targetType.IsInstanceOfType(groupItem))
+					{
+						returnValue.Add((IWorkFlowItem<TContextDecorator, TContext>)groupItem);
+					}
+				}
+			}
+			else
+			{
+				// ***
+				// *** No items
+				// ***
+				throw new Exception($"Work flow items for group '{groupName}' have not been configured.");
+			}
 
-			return Task.FromResult(returnValue);
+			return Task.FromResult<IEnumerable<IWorkFlowItem<TContextDecorator, TContext>>>(returnValue);
 		}
 	}
 }

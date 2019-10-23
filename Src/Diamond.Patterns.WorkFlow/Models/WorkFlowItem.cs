@@ -1,9 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
+using Diamond.Patterns.Context;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public abstract class WorkFlowItem<TContext> : IWorkFlowItem<TContext> where TContext : IContext
+	public abstract class WorkFlowItem<TContextDecorator, TContext> : IWorkFlowItem<TContextDecorator, TContext>
+		where TContext : IContext
+		where TContextDecorator : IContextDecorator<TContext>
 	{
 		/// <summary>
 		/// Gets/sets the name of this work-flow item for logging purposes.
@@ -24,12 +27,12 @@ namespace Diamond.Patterns.WorkFlow
 		public virtual bool AlwaysExecute { get; set; } = false;
 		public double Weight { get; set; } = 1;
 
-		public virtual bool ShouldExecute(IContextDecorator<TContext> context)
+		public virtual bool ShouldExecute(TContextDecorator context)
 		{
 			return true;
 		}
 
-		public virtual async Task<bool> ExecuteStepAsync(IContextDecorator<TContext> context)
+		public virtual async Task<bool> ExecuteStepAsync(TContextDecorator context)
 		{
 			bool returnValue = false;
 
@@ -41,12 +44,12 @@ namespace Diamond.Patterns.WorkFlow
 			return returnValue;
 		}
 
-		protected virtual Task<bool> OnPrepareForExecutionAsync(IContextDecorator<TContext> context)
+		protected virtual Task<bool> OnPrepareForExecutionAsync(TContextDecorator context)
 		{
 			return Task.FromResult(true);
 		}
 
-		protected virtual Task<bool> OnExecuteStepAsync(IContextDecorator<TContext> context)
+		protected virtual Task<bool> OnExecuteStepAsync(TContextDecorator context)
 		{
 			return Task.FromResult(true);
 		}
@@ -56,13 +59,9 @@ namespace Diamond.Patterns.WorkFlow
 			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";
 		}
 
-		protected Task StepFailedAsync(IContextDecorator<TContext> context, string message)
+		protected Task StepFailedAsync(TContextDecorator context, string message)
 		{
-			if (context.Item is IExceptionContext exContext)
-			{
-				exContext.SetException(message);
-			}
-
+			context.SetException(message);
 			return Task.FromResult(0);
 		}
 	}

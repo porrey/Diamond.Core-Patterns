@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
-	public interface IRepositoryTransactionContext
+	public interface IRepositoryTransactionContext : IDisposable
 	{
 		Task CommitTransactionAsync();
 		Task RollbackTransactionAsync();

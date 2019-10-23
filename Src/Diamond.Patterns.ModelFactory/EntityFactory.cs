@@ -3,7 +3,7 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.ModelFactory
 {
-	internal class EntityFactory<TInterface, TEntity> : IEntityFactory<TInterface>
+	public class EntityFactory<TInterface, TEntity> : IEntityFactory<TInterface>
 		where TEntity : TInterface, new()
 		where TInterface : IEntity
 	{

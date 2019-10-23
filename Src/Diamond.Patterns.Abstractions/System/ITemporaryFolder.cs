@@ -1,11 +1,13 @@
-﻿namespace Diamond.Patterns.Abstractions
+﻿using System;
+
+namespace Diamond.Patterns.Abstractions
 {
 	/// <summary>
 	/// Provides a wrapper for creating and managing temporary folders. Concrete
 	/// classes should implement IDisposable (not required) to remove temporary
 	/// files and folders when the instance is no longer in use.
 	/// </summary>
-	public interface ITemporaryFolder
+	public interface ITemporaryFolder : IDisposable
 	{
 		/// <summary>
 		/// Gets/sets a string format with two variables, {0} and {1}, where

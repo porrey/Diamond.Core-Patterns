@@ -4,7 +4,8 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.DatabaseStrategy.MsSql
 {
-	public class MsSqlDropCreateDatabaseIfModelChangesStrategy<TContext> : IDatabaseStrategy<TContext> where TContext : DbContext
+	public class MsSqlDropCreateDatabaseIfModelChangesStrategy<TContext> : IDatabaseStrategy<TContext>
+		where TContext : DbContext
 	{
 		public object GetInitializer(object modelBuilder, EventHandler<TContext> onSeed)
 		{

@@ -2,15 +2,17 @@
 using System.IO;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
-using Diamond.Patterns.Core;
+using Diamond.Patterns.System;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class CreateTemporaryFolderStep<TContext> : WorkFlowItem<TContext> where TContext : IContext
+	public class CreateTemporaryFolderStep<TContextDecorator, TContext> : WorkFlowItem<TContextDecorator, TContext>
+		where TContext : IContext
+		where TContextDecorator : IContextDecorator<TContext>
 	{
 		public override string Name => "Create Temporary Folder";
 
-		protected override Task<bool> OnExecuteStepAsync(IContextDecorator<TContext> context)
+		protected override Task<bool> OnExecuteStepAsync(TContextDecorator context)
 		{
 			bool returnValue = false;
 
@@ -19,7 +21,7 @@ namespace Diamond.Patterns.WorkFlow
 
 			if (Directory.Exists(temporaryFolder.FullPath))
 			{
-				context.Properties.Set(WellKnown.Context.TemporaryFolder, temporaryFolder);
+				context.Properties.Set(DiamondWorkFlow.WellKnown.Context.TemporaryFolder, temporaryFolder);
 				returnValue = true;
 			}
 			else
