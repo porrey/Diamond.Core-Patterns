@@ -6,6 +6,6 @@ namespace Diamond.Patterns.Abstractions
 	{
 		bool CanInitialize { get; }
 		bool IsInitialized { get; set; }
-		Task<bool> Initialize();
+		Task<bool> InitializeAsync();
 	}
 }

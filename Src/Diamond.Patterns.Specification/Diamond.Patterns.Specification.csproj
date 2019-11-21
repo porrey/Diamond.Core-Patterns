@@ -12,10 +12,10 @@
     <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>2.6.0</Version>
+    <Version>2.7.0</Version>
     <Description>This library provides a default Specification factory.</Description>
-    <FileVersion>2.6.0</FileVersion>
-    <AssemblyVersion>2.6.0</AssemblyVersion>
+    <FileVersion>2.7.0</FileVersion>
+    <AssemblyVersion>2.7.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

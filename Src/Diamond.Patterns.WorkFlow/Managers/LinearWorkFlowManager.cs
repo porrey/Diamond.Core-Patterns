@@ -17,7 +17,7 @@ namespace Diamond.Patterns.WorkFlow
 
 			if (this.Steps.Count() == 0)
 			{
-				throw new ArgumentOutOfRangeException($"No state items with group '{group}' were found.");
+				throw new ArgumentOutOfRangeException($"No work flow items with group '{group}' were found.");
 			}
 		}
 

@@ -4,9 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 using Diamond.Patterns.Context;
-using Diamond.Patterns.WorkFlow;
 
-namespace Lsc.Logistics.DynaMail.WorkFlow.Core
+namespace Diamond.Patterns.WorkFlow
 {
 	/// <summary>
 	///  This work-flow manager executes ALL steps in a work flow. If the
@@ -202,6 +201,15 @@ namespace Lsc.Logistics.DynaMail.WorkFlow.Core
 			}
 
 			return returnValue;
+		}
+	}
+
+	public class ConditionalWorkFlowManager<TContext> : ConditionalWorkFlowManager<ContextDecorator<TContext>, TContext>
+		where TContext : IContext
+	{
+		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
+			: base(workFlowItemFactory, group)
+		{
 		}
 	}
 }

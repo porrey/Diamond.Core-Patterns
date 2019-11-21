@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 using Diamond.Patterns.WorkFlow;
 
-namespace Lsc.Logistics.DynaMail.WorkFlow.Core
+namespace Diamond.Patterns.WorkFlow
 {
 	//public class ExecuteMultipleWorkFlowStep<T> : WorkFlowItem<T> where T : IContext
 	//{

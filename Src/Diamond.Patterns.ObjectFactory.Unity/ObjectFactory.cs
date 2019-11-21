@@ -26,24 +26,44 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			return this.Unity.ResolveAll<TService>();
 		}
 
-		public object GetInstance(Type objectType)
+		public object GetInstance(Type objectType, bool skipInitialization = false)
 		{
-			return this.Unity.Resolve(objectType);
+			object returnValue = default;
+
+			returnValue = this.Unity.Resolve(objectType);
+			if (!skipInitialization) { this.InitializeIfRequiredAsync(returnValue).Wait(); }
+
+			return returnValue;
 		}
 
-		public object GetInstance(Type objectType, string name)
+		public object GetInstance(Type objectType, string name, bool skipInitialization = false)
 		{
-			return this.Unity.Resolve(objectType, name);
+			object returnValue = default;
+
+			returnValue = this.Unity.Resolve(objectType, name);
+			this.InitializeIfRequiredAsync(returnValue).Wait();
+
+			return returnValue;
 		}
 
-		public TService GetInstance<TService>()
+		public TService GetInstance<TService>(bool skipInitialization = false)
 		{
-			return this.Unity.Resolve<TService>();
+			TService returnValue = default;
+
+			returnValue = this.Unity.Resolve<TService>();
+			if (!skipInitialization) { this.InitializeIfRequiredAsync(returnValue).Wait(); }
+
+			return returnValue;
 		}
 
-		public TService GetInstance<TService>(string name)
+		public TService GetInstance<TService>(string name, bool skipInitialization = false)
 		{
-			return this.Unity.Resolve<TService>(name);
+			TService returnValue = default;
+
+			returnValue = this.Unity.Resolve<TService>(name);
+			if (!skipInitialization) { this.InitializeIfRequiredAsync(returnValue).Wait(); }
+
+			return returnValue;
 		}
 
 		public Task<IList<T>> ResolveByInterfaceAsync<T>()
@@ -80,7 +100,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			_ = this.Unity.RegisterInstance(typeof(T), name, instance, new ContainerControlledLifetimeManager());
 		}
 
-		public async Task<bool> InitializeIfRequired(object item)
+		public async Task<bool> InitializeIfRequiredAsync(object item)
 		{
 			bool returnValue = false;
 
@@ -88,7 +108,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			{
 				if (initializeObject.CanInitialize && !initializeObject.IsInitialized)
 				{
-					returnValue = await initializeObject.Initialize();
+					returnValue = await initializeObject.InitializeAsync();
 				}
 				else
 				{

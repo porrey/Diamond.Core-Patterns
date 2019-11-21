@@ -6,14 +6,14 @@ namespace Diamond.Patterns.Abstractions
 {
 	public interface IObjectFactory
 	{
-		TService GetInstance<TService>();
-		TService GetInstance<TService>(string name);
-		object GetInstance(Type objectType);
-		object GetInstance(Type objectType, string name);
+		TService GetInstance<TService>(bool skipInitialization = false);
+		TService GetInstance<TService>(string name, bool skipInitialization = false);
+		object GetInstance(Type objectType, bool skipInitialization = false);
+		object GetInstance(Type objectType, string name, bool skipInitialization = false);
 		IEnumerable<TService> GetAllInstances<TService>();
 		IEnumerable<object> GetAllInstances(Type objectType);
 		Task<IList<T>> ResolveByInterfaceAsync<T>();
 		void RegisterSingletonInstance<T>(string name, T instance);
-		Task<bool> InitializeIfRequired(object item);
+		Task<bool> InitializeIfRequiredAsync(object item);
 	}
 }
