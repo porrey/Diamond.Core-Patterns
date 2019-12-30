@@ -5,7 +5,7 @@
 		<Authors>Daniel M. Porrey</Authors>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<Version>2.7.0</Version>
 		<FileVersion>2.7.0</FileVersion>
@@ -14,6 +14,9 @@
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Description>This library provides extension methods to load Unity configuration from files other than the application configuration file.</Description>
+		<PackageIconUrl></PackageIconUrl>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
@@ -27,6 +30,13 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\Images\Diamond.Patterns.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

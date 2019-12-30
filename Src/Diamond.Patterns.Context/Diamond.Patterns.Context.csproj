@@ -9,12 +9,15 @@
 		<Authors>Daniel M. Porrey</Authors>
 		<Company>Daniel M. Porrey</Company>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Description>This library provides context implementations the work-flows and other context based operations.</Description>
+		<PackageIconUrl></PackageIconUrl>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
@@ -24,6 +27,13 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\Images\Diamond.Patterns.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

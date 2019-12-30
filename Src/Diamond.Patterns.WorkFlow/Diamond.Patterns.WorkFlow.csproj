@@ -6,7 +6,7 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<Product>Diamond Pattern Library - Work-Flow</Product>
-		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<Description>This library provides work-flow interfaces and abstract or default implementations for common patterns.</Description>
 		<Version>2.7.1</Version>
 		<FileVersion>2.7.1</FileVersion>
@@ -17,6 +17,9 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<PackageIconUrl></PackageIconUrl>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
@@ -28,6 +31,13 @@
 		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
 		<ProjectReference Include="..\Diamond.Patterns.Context\Diamond.Patterns.Context.csproj" />
 		<ProjectReference Include="..\Diamond.Patterns.System\Diamond.Patterns.System.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\Images\Diamond.Patterns.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

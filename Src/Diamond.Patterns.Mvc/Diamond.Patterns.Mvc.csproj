@@ -1,32 +1,38 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>2.7.0</Version>
-    <AssemblyVersion>2.7.0</AssemblyVersion>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
-    <Authors>Daniel M. Porrey</Authors>
-    <Company>Daniel M. Porrey</Company>
-    <Description>This library provides an implementation of the state dictionary and provides seveal default type converters.</Description>
+    <Version>2.8.0</Version>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <FileVersion>2.7.0</FileVersion>
+    <Description>Provides pattern execution for MVC projects.</Description>
+    <Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+    <Authors>Daniel M Porrey</Authors>
+    <Company>Daniel M Porrey</Company>
     <PackageIcon>Diamond.Patterns.png</PackageIcon>
+    <PackageIconUrl />
+    <AssemblyVersion>2.8.0</AssemblyVersion>
+    <FileVersion>2.8.0</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\porrey\Source\GitGub\Diamond.Patterns\Src\Diamond.Patterns.Mvc\Diamond.Patterns.Mvc.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="TryDisposable" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+    <ProjectReference Include="..\Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

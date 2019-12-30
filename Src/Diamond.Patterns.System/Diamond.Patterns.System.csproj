@@ -8,7 +8,7 @@
 		<Authors>Daniel M. Porrey</Authors>
 		<Company>Daniel M. Porrey</Company>
 		<Product>Diamond Pattern Library - Core</Product>
-		<Copyright>Copyright © Daniel Porrey 2017-2019</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<Description>This library provides some basic support functionality.</Description>
 		<Version>2.7.0</Version>
 		<FileVersion>2.7.0</FileVersion>
@@ -17,6 +17,9 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<PackageIconUrl></PackageIconUrl>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
@@ -28,6 +31,13 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\Images\Diamond.Patterns.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>

@@ -18,6 +18,10 @@
 		<RootNamespace>Diamond.Patterns.ObjectFactory.Unity</RootNamespace>
 		<PackageId>Diamond.Patterns.ObjectFactory.Unity</PackageId>
 		<Product>Diamond.Patterns.ObjectFactory.Unity</Product>
+		<PackageIconUrl></PackageIconUrl>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
@@ -29,6 +33,13 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\Images\Diamond.Patterns.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
