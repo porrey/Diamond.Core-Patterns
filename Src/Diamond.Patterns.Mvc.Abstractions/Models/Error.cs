@@ -16,7 +16,8 @@
 		public string Message { get; set; }
 
 		/// <summary>
-		///
+		/// The error that is the cause of the current error, or a null reference
+		/// if no inner error is specified.
 		/// </summary>
 		public Error InnerError { get; set; }
 	}

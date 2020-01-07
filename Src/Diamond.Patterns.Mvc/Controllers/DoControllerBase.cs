@@ -5,24 +5,49 @@ using Diamond.Patterns.Mvc.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-#pragma warning disable CS1591
-
 namespace Diamond.Patterns.Mvc
 {
+	/// <summary>
+	/// Provides the base class for a "Do" controller where the action
+	/// of the controller method is delegated to a Decorator that is
+	/// registered in the container using the name of the controller method.
+	/// </summary>
 	public abstract class DoControllerBase : ControllerBase
 	{
+		/// <summary>
+		/// Initializes an instance of <see cref="DoControllerBase"/> with
+		/// an instance of the <see cref="IDecoratorFactory"/>.
+		/// </summary>
+		/// <param name="decoratorFactory"></param>
 		public DoControllerBase(IDecoratorFactory decoratorFactory)
 		{
 			this.DecoratorFactory = decoratorFactory;
 		}
 
+		/// <summary>
+		/// Gets/sets an instance of <see cref="IDecoratorFactory"/>.
+		/// </summary>
 		protected IDecoratorFactory DecoratorFactory { get; set; }
 
+		/// <summary>
+		/// Executes the controller method without any parameters.
+		/// </summary>
+		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
+		/// <param name="decoratorName">The name of the decorator retrieved from the container.</param>
+		/// <returns>An ActionResult encapsulating the expected return type.</returns>
 		protected Task<ActionResult<TResult>> Do<TResult>(string decoratorName)
 		{
 			return this.Do<object, TResult>(decoratorName, null);
 		}
 
+		/// <summary>
+		/// Executes the controller method without the given parameter.
+		/// </summary>
+		/// <typeparam name="TItem"></typeparam>
+		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
+		/// <param name="decoratorName">The name of the decorator retrieved from the container.</param>
+		/// <param name="request">The input parameter for the action.</param>
+		/// <returns>An ActionResult encapsulating the expected return type.</returns>
 		protected async Task<ActionResult<TResult>> Do<TItem, TResult>(string decoratorName, TItem request)
 		{
 			ActionResult<TResult> returnValue = default;

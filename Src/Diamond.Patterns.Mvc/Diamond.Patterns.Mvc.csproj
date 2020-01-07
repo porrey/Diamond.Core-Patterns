@@ -1,45 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>2.8.0</Version>
-    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <Description>Provides pattern execution for MVC projects.</Description>
-    <Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
-    <Authors>Daniel M Porrey</Authors>
-    <Company>Daniel M Porrey</Company>
-    <PackageIcon>Diamond.Patterns.png</PackageIcon>
-    <PackageIconUrl />
-    <AssemblyVersion>2.8.0</AssemblyVersion>
-    <FileVersion>2.8.0</FileVersion>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Version>2.8.0</Version>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Description>Provides pattern execution for MVC projects.</Description>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Authors>Daniel M Porrey</Authors>
+		<Company>Daniel M Porrey</Company>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<AssemblyVersion>2.8.0</AssemblyVersion>
+		<FileVersion>2.8.0</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
-  </PropertyGroup>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\porrey\Source\GitGub\Diamond.Patterns\Src\Diamond.Patterns.Mvc\Diamond.Patterns.Mvc.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>bin\Debug\Diamond.Patterns.Mvc.xml</DocumentationFile>
+		<OutputPath>bin\Debug</OutputPath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="TryDisposable" Version="1.0.0" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>bin\Release</OutputPath>
+		<DocumentationFile>bin\Release\Diamond.Patterns.Mvc.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-    <ProjectReference Include="..\Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="TryDisposable" Version="1.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\..\Images\Diamond.Patterns.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\Images\Diamond.Patterns.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

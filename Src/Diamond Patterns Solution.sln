@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.StateDicti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc", "Diamond.Patterns.Mvc\Diamond.Patterns.Mvc.csproj", "{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Mvc.Abstractions", "Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.csproj", "{66172244-7A55-4C25-9FE8-933FED883FEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc.Abstractions", "Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.csproj", "{66172244-7A55-4C25-9FE8-933FED883FEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Mvc.Unity", "Diamond.Patterns.Mvc.Unity\Diamond.Patterns.Mvc.Unity.csproj", "{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{66172244-7A55-4C25-9FE8-933FED883FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66172244-7A55-4C25-9FE8-933FED883FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66172244-7A55-4C25-9FE8-933FED883FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

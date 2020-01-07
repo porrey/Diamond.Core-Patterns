@@ -14,7 +14,6 @@
 		<RepositoryType>git</RepositoryType>
 		<FileVersion>2.7.0</FileVersion>
 		<AssemblyVersion>2.7.0</AssemblyVersion>
-		<PackageIconUrl></PackageIconUrl>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>

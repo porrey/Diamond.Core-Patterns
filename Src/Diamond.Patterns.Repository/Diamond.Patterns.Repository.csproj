@@ -14,7 +14,6 @@
 		<AssemblyVersion>2.7.0</AssemblyVersion>
 		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<Description>This library provides basic implementations of the repository factory and repository configurations.</Description>
-		<PackageIconUrl></PackageIconUrl>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>

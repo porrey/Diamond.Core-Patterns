@@ -18,7 +18,6 @@
 		<RootNamespace>Diamond.Patterns.ObjectFactory.Unity</RootNamespace>
 		<PackageId>Diamond.Patterns.ObjectFactory.Unity</PackageId>
 		<Product>Diamond.Patterns.ObjectFactory.Unity</Product>
-		<PackageIconUrl></PackageIconUrl>
 		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>

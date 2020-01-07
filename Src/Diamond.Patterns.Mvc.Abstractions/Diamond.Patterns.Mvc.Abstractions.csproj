@@ -10,7 +10,6 @@
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
-		<PackageIconUrl />
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>en-US</NeutralLanguage>
@@ -18,7 +17,13 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DocumentationFile>C:\Users\porrey\source\GitGub\Diamond.Patterns\Src\Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.xml</DocumentationFile>
+		<DocumentationFile>bin\Release\Diamond.Patterns.Mvc.Abstractions.xml</DocumentationFile>
+		<OutputPath>bin\Release</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <OutputPath>bin\Debug</OutputPath>
+	  <DocumentationFile>bin\Debug\Diamond.Patterns.Mvc.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

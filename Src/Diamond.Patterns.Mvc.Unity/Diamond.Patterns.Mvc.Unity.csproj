@@ -4,26 +4,25 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Version>2.8.0</Version>
+		<Authors>Daniel M Porrey</Authors>
+		<Description>Provides unity implementations for Diamond.Patterns.Mvc.</Description>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
-		<Version>2.7.0</Version>
-		<Description>Provides code first database strategies for MS SQL Server.</Description>
-		<FileVersion>2.7.0</FileVersion>
-		<AssemblyVersion>2.7.0</AssemblyVersion>
-		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="EntityFramework" Version="6.2.0" />
-	</ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="Unity.Abstractions" Version="5.11.3" />
 	</ItemGroup>
 
 	<ItemGroup>

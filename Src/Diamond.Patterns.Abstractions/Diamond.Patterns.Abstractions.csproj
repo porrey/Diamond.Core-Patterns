@@ -14,10 +14,19 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<Description>This library provides interfaces for all of the Diamond pattern objects.</Description>
-		<PackageIconUrl></PackageIconUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DocumentationFile>bin\Release\Diamond.Patterns.Abstractions.xml</DocumentationFile>
+	  <OutputPath>bin\Release</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <OutputPath>bin\Debug</OutputPath>
+	  <DocumentationFile>bin\Debug\Diamond.Patterns.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
