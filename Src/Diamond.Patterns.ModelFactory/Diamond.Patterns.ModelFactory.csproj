@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>2.7.0</Version>
-		<FileVersion>2.7.0</FileVersion>
-		<AssemblyVersion>2.7.0</AssemblyVersion>
+		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<Version>2.9.0</Version>
+		<FileVersion>2.9.0</FileVersion>
+		<AssemblyVersion>2.9.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<Product>Diamond Pattern Library - Model Factory</Product>
 		<Description>This library provides a basic implementation of the entity factory.</Description>

@@ -1,42 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.7.0</Version>
-    <FileVersion>2.7.0</FileVersion>
-    <AssemblyVersion>2.7.0</AssemblyVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <Description>Provides code first database strategies for SQLite.</Description>
-    <AssemblyName>Diamond.Patterns.DatabaseStrategy.SQLite</AssemblyName>
-    <PackageIcon>Diamond.Patterns.png</PackageIcon>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<Version>2.9.0</Version>
+		<FileVersion>2.9.0</FileVersion>
+		<AssemblyVersion>2.9.0</AssemblyVersion>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Description>Provides code first database strategies for SQLite.</Description>
+		<AssemblyName>Diamond.Patterns.DatabaseStrategy.SQLite</AssemblyName>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
-  </PropertyGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="SQLite.CodeFirst" Version="1.5.2.28" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.111" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.111" />
-    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.111" />
-    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.111" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+	  <WarningsAsErrors>NU1605</WarningsAsErrors>
+	  <NoWarn>1701;1702;NU1701</NoWarn>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="EntityFramework" Version="6.2.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+		<PackageReference Include="EntityFramework" Version="6.4.0" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+		<PackageReference Include="SQLite.CodeFirst" Version="1.5.3.29" />
+		<PackageReference Include="System.Data.SQLite" Version="1.0.112" />
+		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.112" />
+		<PackageReference Include="System.Data.SQLite.EF6" Version="1.0.112" />
+		<PackageReference Include="System.Data.SQLite.Linq" Version="1.0.112" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\..\Images\Diamond.Patterns.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\Images\Diamond.Patterns.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

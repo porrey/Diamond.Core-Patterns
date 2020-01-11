@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseUrl></PackageLicenseUrl>
@@ -10,9 +10,9 @@
 		<Product>Diamond Pattern Library - Core</Product>
 		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<Description>This library provides some basic support functionality.</Description>
-		<Version>2.7.0</Version>
-		<FileVersion>2.7.0</FileVersion>
-		<AssemblyVersion>2.7.0</AssemblyVersion>
+		<Version>2.9.0</Version>
+		<FileVersion>2.9.0</FileVersion>
+		<AssemblyVersion>2.9.0</AssemblyVersion>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
@@ -23,9 +23,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-		<PackageReference Include="System.DisposableObject" Version="1.1.1" />
-		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="4.6.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.DisposableObject" Version="1.2.1" />
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="4.7.0" />
 	</ItemGroup>
 
 	<ItemGroup>

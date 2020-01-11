@@ -23,16 +23,37 @@ namespace Diamond.Patterns.WorkFlow
 			this.Steps = steps;
 		}
 
+		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, ILoggerSubscriber loggerSubscriber)
+		{
+			this.Group = null;
+			this.Steps = steps;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
 		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, string group)
 		{
 			this.Group = group;
 			this.Steps = steps;
 		}
 
+		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, string group, ILoggerSubscriber loggerSubscriber)
+		{
+			this.Group = group;
+			this.Steps = steps;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
 		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
 		{
 			this.Group = group;
 			this.WorkFlowItemFactory = workFlowItemFactory;
+		}
+
+		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
+		{
+			this.Group = group;
+			this.WorkFlowItemFactory = workFlowItemFactory;
+			this.LoggerSubscriber = loggerSubscriber;
 		}
 
 		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
@@ -74,6 +95,12 @@ namespace Diamond.Patterns.WorkFlow
 
 		public string Group { get; set; }
 
+		/// <summary>
+		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
+		/// will listen for logs events originating from this instance.
+		/// </summary>
+		public ILoggerSubscriber LoggerSubscriber { get; set; }
+
 		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
 		{
 			bool returnValue = true;
@@ -104,7 +131,7 @@ namespace Diamond.Patterns.WorkFlow
 					// ***
 					// *** Publish a progress update.
 					// ***
-					Trace.TraceInformation($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.LoggerSubscriber.Verbose($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 
 					// ***
 					// *** Start the stop watch.
@@ -134,13 +161,13 @@ namespace Diamond.Patterns.WorkFlow
 						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, true);
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							Trace.TraceInformation($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
+							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
 						}
 						else
 						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed, true);
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, false);
-							Trace.TraceError($"The work-flow step '{this.Steps[i].Name}' failed.");
+							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' failed.");
 						}
 
 						// ***
@@ -151,7 +178,7 @@ namespace Diamond.Patterns.WorkFlow
 				}
 				else
 				{
-					Trace.TraceError($"Skipping work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.LoggerSubscriber.Verbose($"Skipping work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 				}
 			}
 
@@ -186,11 +213,11 @@ namespace Diamond.Patterns.WorkFlow
 				{
 					if (context.HasException())
 					{
-						throw new WorkFlowFailureException(context.GetException(), step.Ordinal);
+						context.SetException(new WorkFlowFailureException(context.GetException(), step.Name, step.Ordinal));
 					}
 					else
 					{
-						throw new UnknownFailureException(step.Name);
+						context.SetException(new UnknownFailureException(step.Name, step.Ordinal));
 					}
 				}
 			}
@@ -209,6 +236,11 @@ namespace Diamond.Patterns.WorkFlow
 	{
 		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
 			: base(workFlowItemFactory, group)
+		{
+		}
+
+		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
+			: base(workFlowItemFactory, group, loggerSubscriber)
 		{
 		}
 	}

@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>2.7.0</Version>
-		<AssemblyVersion>2.7.0</AssemblyVersion>
+		<Version>2.9.0</Version>
+		<AssemblyVersion>2.9.0</AssemblyVersion>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<Authors>Daniel M. Porrey</Authors>
@@ -14,7 +14,7 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>2.7.0</FileVersion>
+		<FileVersion>2.9.0</FileVersion>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>

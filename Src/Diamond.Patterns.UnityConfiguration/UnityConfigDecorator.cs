@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Practices.Unity.Configuration;
 using Unity;
 
+#pragma warning disable DF0001
+
 namespace Diamond.Patterns.UnityConfiguration
 {
 	public delegate void OnFileLoadingDelegate(string file);

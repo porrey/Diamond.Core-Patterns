@@ -1,33 +1,39 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>2.9.0</Version>
-		<Authors>Daniel M Porrey</Authors>
-		<Description>This library provides a basic implementation of the command factory.</Description>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<Product>Diamond Pattern Library - Logger Subscriber/Serilog</Product>
 		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Description>This library implements a logger subscribr for Serilog.</Description>
+		<Version>2.9.0</Version>
+		<FileVersion>2.9.0</FileVersion>
+		<AssemblyVersion>2.9.0</AssemblyVersion>
+		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>2.9.0</FileVersion>
-		<AssemblyVersion>2.9.0</AssemblyVersion>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="2.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+  </ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\Images\Diamond.Patterns.png">
-	    <Pack>True</Pack>
-	    <PackagePath></PackagePath>
-	  </None>
+		<None Include="..\..\Images\Diamond.Patterns.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
 	</ItemGroup>
 
 </Project>

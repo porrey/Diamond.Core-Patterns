@@ -5,8 +5,8 @@
 	/// </summary>
 	public class UnknownFailureException : WorkFlowException
 	{
-		public UnknownFailureException(string stepName)
-			: base($"The step '{stepName}' failed for an unknown reason.")
+		public UnknownFailureException(string stepName, int stepNumber)
+			: base($"The step '{stepName}' [{stepNumber}] failed for an unknown reason.")
 		{
 		}
 	}

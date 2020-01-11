@@ -14,6 +14,12 @@ namespace Diamond.Patterns.Repository.EntityFramework
 			this.DatabaseStrategy = databaseStrategy;
 		}
 
+		public RepositoryContext(IStorageConfiguration storageConfiguration)
+			: base(storageConfiguration.ConnectionString)
+		{
+			this.DatabaseStrategy = null;
+		}
+
 		protected virtual IDatabaseStrategy<TContext> DatabaseStrategy { get; set; }
 
 		public virtual Task<IRepositoryTransactionContext> BeginTransactionAsync(ContextIsolationLevel isolationLevel)

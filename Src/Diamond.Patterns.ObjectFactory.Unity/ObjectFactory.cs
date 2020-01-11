@@ -5,6 +5,8 @@ using Diamond.Patterns.Abstractions;
 using Unity;
 using Unity.Lifetime;
 
+#pragma warning disable DF0000
+
 namespace Diamond.Patterns.ObjectFactory.Unity
 {
 	public class ObjectFactory : IObjectFactory
