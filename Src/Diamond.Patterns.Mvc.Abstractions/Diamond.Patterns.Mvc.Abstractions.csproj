@@ -4,18 +4,18 @@
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>2.9.0</Version>
+		<Version>2.9.1</Version>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>Provides concrete implementations for Diamond.Patterns.Mvc.</Description>
-		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
-		<FileVersion>2.9.0</FileVersion>
-		<AssemblyVersion>2.9.0</AssemblyVersion>
+		<FileVersion>2.9.1</FileVersion>
+		<AssemblyVersion>2.9.1</AssemblyVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

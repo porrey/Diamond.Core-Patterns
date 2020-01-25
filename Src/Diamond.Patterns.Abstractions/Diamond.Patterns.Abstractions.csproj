@@ -2,18 +2,18 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.9.0</Version>
-		<FileVersion>2.9.0</FileVersion>
-		<AssemblyVersion>2.9.0</AssemblyVersion>
+		<Version>2.9.1</Version>
+		<FileVersion>2.9.1</FileVersion>
+		<AssemblyVersion>2.9.1</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
-		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-		<Description>This library provides interfaces for all of the Diamond pattern objects.</Description>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<Description>This library provides interfaces for all of the Diamond Pattern objects.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>

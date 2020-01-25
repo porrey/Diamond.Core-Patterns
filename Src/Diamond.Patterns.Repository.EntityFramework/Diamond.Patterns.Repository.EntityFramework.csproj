@@ -8,13 +8,13 @@
 		<AssemblyName>Diamond.Patterns.Repository.EntityFramework</AssemblyName>
 		<RootNamespace>Diamond.Patterns.Repository.EntityFramework</RootNamespace>
 		<Product>Diamond Pattern Library - Entity Framework Repository</Product>
-		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<Description>This library provides an implementation of the repository that can be used with Entity Framework.</Description>
-		<Version>2.9.0</Version>
-		<FileVersion>2.9.0</FileVersion>
-		<AssemblyVersion>2.9.0</AssemblyVersion>
+		<Version>2.9.1</Version>
+		<FileVersion>2.9.1</FileVersion>
+		<AssemblyVersion>2.9.1</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
-		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -30,7 +30,7 @@
 	<ItemGroup>
 		<PackageReference Include="EntityFramework" Version="6.2.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
 		<PackageReference Include="EntityFramework" Version="6.4.0" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
-		<PackageReference Include="System.DisposableObject" Version="1.2.1" />
+		<PackageReference Include="System.DisposableObject" Version="1.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -4,18 +4,18 @@
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>2.9.0</Version>
+		<Version>2.9.1</Version>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Description>Provides pattern execution for MVC projects.</Description>
-		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Description>Provides the Do pattern execution for MVC projects.</Description>
+		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<Authors>Daniel M Porrey</Authors>
 		<Company>Daniel M Porrey</Company>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
-		<AssemblyVersion>2.9.0</AssemblyVersion>
-		<FileVersion>2.9.0</FileVersion>
+		<AssemblyVersion>2.9.1</AssemblyVersion>
+		<FileVersion>2.9.1</FileVersion>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
@@ -32,7 +32,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-		<PackageReference Include="TryDisposable" Version="1.0.0" />
+		<PackageReference Include="TryDisposable" Version="1.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>

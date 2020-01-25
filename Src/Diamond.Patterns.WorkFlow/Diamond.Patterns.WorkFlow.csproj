@@ -6,13 +6,13 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<Product>Diamond Pattern Library - Work-Flow</Product>
-		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<Description>This library provides work-flow interfaces and abstract or default implementations for common patterns.</Description>
-		<Version>2.9.0</Version>
-		<FileVersion>2.9.0</FileVersion>
-		<AssemblyVersion>2.9.0</AssemblyVersion>
+		<Version>2.9.1</Version>
+		<FileVersion>2.9.1</FileVersion>
+		<AssemblyVersion>2.9.1</AssemblyVersion>
 		<AssemblyName>Diamond.Patterns.WorkFlow</AssemblyName>
-		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="TryDisposable" Version="1.0.0" />
+	  <PackageReference Include="TryDisposable" Version="1.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>

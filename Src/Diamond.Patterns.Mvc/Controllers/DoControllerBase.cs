@@ -1,4 +1,20 @@
-﻿using System;
+﻿// ***
+// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** 
+// *** This program is free software: you can redistribute it and/or modify
+// *** it under the terms of the GNU Lesser General Public License as published
+// *** by the Free Software Foundation, either version 3 of the License, or
+// *** (at your option) any later version.
+// *** 
+// *** This program is distributed in the hope that it will be useful,
+// *** but WITHOUT ANY WARRANTY; without even the implied warranty of
+// *** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// *** GNU Lesser General Public License for more details.
+// *** 
+// *** You should have received a copy of the GNU Lesser General Public License
+// *** along with this program. If not, see http://www.gnu.org/licenses/.
+// *** 
+using System;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 using Diamond.Patterns.Mvc.Abstractions;
@@ -83,7 +99,19 @@ namespace Diamond.Patterns.Mvc
 					this.LoggerSubscriber.Verbose($"Retrieving controller method decorator '{decoratorName}'.");
 					decorator = await this.DecoratorFactory.GetAsync<TItem, IControllerActionResult<TResult>>(decoratorName);
 					this.LoggerSubscriber.Verbose($"Controller method decorator '{decoratorName}' was successfully retrieved.");
+				}
+				catch
+				{
+					// ***
+					// *** An implementation of this method was not found.
+					// ***
+					this.LoggerSubscriber.Warning($"Controller method decorator '{decoratorName}' was not found in the container.");
+					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented);
+					decorator = null;
+				}
 
+				if (decorator != null)
+				{
 					using (ITryDisposable<IDecorator<TItem, IControllerActionResult<TResult>>> disposable = new TryDisposable<IDecorator<TItem, IControllerActionResult<TResult>>>(decorator))
 					{
 						// ***
@@ -108,14 +136,6 @@ namespace Diamond.Patterns.Mvc
 							returnValue = this.NotFound(new FailedRequest("Not Found", result.ErrorMessage));
 						}
 					}
-				}
-				catch
-				{
-					// ***
-					// *** An implementation of this method was not found.
-					// ***
-					this.LoggerSubscriber.Warning($"Controller method decorator '{decoratorName}' was not found in the container.");
-					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented);
 				}
 			}
 			catch (Exception ex)

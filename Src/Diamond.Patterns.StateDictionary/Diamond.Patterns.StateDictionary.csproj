@@ -4,24 +4,24 @@
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>2.9.0</Version>
-		<AssemblyVersion>2.9.0</AssemblyVersion>
-		<PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Version>2.9.1</Version>
+		<AssemblyVersion>2.9.1</AssemblyVersion>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<Authors>Daniel M. Porrey</Authors>
 		<Company>Daniel M. Porrey</Company>
 		<Description>This library provides an implementation of the state dictionary and provides seveal default type converters.</Description>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>2.9.0</FileVersion>
+		<FileVersion>2.9.1</FileVersion>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="TryDisposable" Version="1.0.0" />
+		<PackageReference Include="TryDisposable" Version="1.3.0" />
 	</ItemGroup>
 
 	<ItemGroup>
