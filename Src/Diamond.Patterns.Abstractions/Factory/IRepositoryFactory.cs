@@ -24,5 +24,10 @@ namespace Diamond.Patterns.Abstractions
 		Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity;
 		Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity;
 		Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity;
+
+		Task<IRepository<TInterface>> GetAsync<TInterface>(string name = null) where TInterface : IEntity;
+		Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name = null) where TInterface : IEntity;
+		Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name = null) where TInterface : IEntity;
+		Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name = null) where TInterface : IEntity;
 	}
 }
