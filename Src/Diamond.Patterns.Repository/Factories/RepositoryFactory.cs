@@ -1,4 +1,20 @@
-﻿using System.Threading.Tasks;
+// ***
+// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// ***
+// *** This program is free software: you can redistribute it and/or modify
+// *** it under the terms of the GNU Lesser General Public License as published
+// *** by the Free Software Foundation, either version 3 of the License, or
+// *** (at your option) any later version.
+// ***
+// *** This program is distributed in the hope that it will be useful,
+// *** but WITHOUT ANY WARRANTY; without even the implied warranty of
+// *** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// *** GNU Lesser General Public License for more details.
+// ***
+// *** You should have received a copy of the GNU Lesser General Public License
+// *** along with this program. If not, see http://www.gnu.org/licenses/.
+// ***
+using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.Repository
@@ -14,24 +30,41 @@ namespace Diamond.Patterns.Repository
 
 		public Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity
 		{
+			return this.GetAsync<TInterface>(null);
+		}
+
+		public Task<IRepository<TInterface>> GetAsync<TInterface>(string name) where TInterface : IEntity
+		{
 			IRepository<TInterface> returnValue = null;
 
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			returnValue = this.ObjectFactory.GetInstance<IRepository<TInterface>>();
+			if (name == null)
+			{
+				returnValue = this.ObjectFactory.GetInstance<IRepository<TInterface>>();
+			}
+			else
+			{
+				returnValue = this.ObjectFactory.GetInstance<IRepository<TInterface>>(name);
+			}
 
 			return Task.FromResult(returnValue);
 		}
 
-		public async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity
+		public Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity
+		{
+			return this.GetReadOnlyAsync<TInterface>(null);
+		}
+
+		public async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name) where TInterface : IEntity
 		{
 			IReadOnlyRepository<TInterface> returnValue = null;
 
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IRepository repository = await this.GetAsync<TInterface>();
+			IRepository repository = await this.GetAsync<TInterface>(name);
 
 			if (repository is IReadOnlyRepository<TInterface>)
 			{
@@ -53,14 +86,19 @@ namespace Diamond.Patterns.Repository
 			return returnValue;
 		}
 
-		public async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity
+		public Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity
+		{
+			return this.GetWritableAsync<TInterface>(null);
+		}
+
+		public async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name) where TInterface : IEntity
 		{
 			IWritableRepository<TInterface> returnValue = null;
 
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IRepository repository = await this.GetAsync<TInterface>();
+			IRepository repository = await this.GetAsync<TInterface>(name);
 
 			if (repository is IWritableRepository<TInterface>)
 			{
@@ -82,14 +120,19 @@ namespace Diamond.Patterns.Repository
 			return returnValue;
 		}
 
-		public async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity
+		public Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity
+		{
+			return this.GetQueryableAsync<TInterface>(null);
+		}
+
+		public async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name) where TInterface : IEntity
 		{
 			IQueryableRepository<TInterface> returnValue = null;
 
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IRepository repository = await this.GetAsync<TInterface>();
+			IRepository repository = await this.GetAsync<TInterface>(name);
 
 			if (repository is IQueryableRepository<TInterface>)
 			{
