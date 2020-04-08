@@ -1,4 +1,20 @@
-﻿using System;
+﻿// ***
+// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** 
+// *** This program is free software: you can redistribute it and/or modify
+// *** it under the terms of the GNU Lesser General Public License as published
+// *** by the Free Software Foundation, either version 3 of the License, or
+// *** (at your option) any later version.
+// *** 
+// *** This program is distributed in the hope that it will be useful,
+// *** but WITHOUT ANY WARRANTY; without even the implied warranty of
+// *** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// *** GNU Lesser General Public License for more details.
+// *** 
+// *** You should have received a copy of the GNU Lesser General Public License
+// *** along with this program. If not, see http://www.gnu.org/licenses/.
+// *** 
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,16 +39,37 @@ namespace Diamond.Patterns.WorkFlow
 			this.Steps = steps;
 		}
 
+		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, ILoggerSubscriber loggerSubscriber)
+		{
+			this.Group = null;
+			this.Steps = steps;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
 		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, string group)
 		{
 			this.Group = group;
 			this.Steps = steps;
 		}
 
+		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, string group, ILoggerSubscriber loggerSubscriber)
+		{
+			this.Group = group;
+			this.Steps = steps;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
 		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
 		{
 			this.Group = group;
 			this.WorkFlowItemFactory = workFlowItemFactory;
+		}
+
+		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
+		{
+			this.Group = group;
+			this.WorkFlowItemFactory = workFlowItemFactory;
+			this.LoggerSubscriber = loggerSubscriber;
 		}
 
 		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
@@ -74,6 +111,12 @@ namespace Diamond.Patterns.WorkFlow
 
 		public string Group { get; set; }
 
+		/// <summary>
+		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
+		/// will listen for logs events originating from this instance.
+		/// </summary>
+		public ILoggerSubscriber LoggerSubscriber { get; set; }
+
 		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
 		{
 			bool returnValue = true;
@@ -104,7 +147,7 @@ namespace Diamond.Patterns.WorkFlow
 					// ***
 					// *** Publish a progress update.
 					// ***
-					Trace.TraceInformation($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.LoggerSubscriber.Verbose($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 
 					// ***
 					// *** Start the stop watch.
@@ -134,13 +177,13 @@ namespace Diamond.Patterns.WorkFlow
 						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, true);
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							Trace.TraceInformation($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
+							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
 						}
 						else
 						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed, true);
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, false);
-							Trace.TraceError($"The work-flow step '{this.Steps[i].Name}' failed.");
+							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' failed.");
 						}
 
 						// ***
@@ -151,7 +194,7 @@ namespace Diamond.Patterns.WorkFlow
 				}
 				else
 				{
-					Trace.TraceError($"Skipping work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.LoggerSubscriber.Verbose($"Skipping work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 				}
 			}
 
@@ -186,11 +229,11 @@ namespace Diamond.Patterns.WorkFlow
 				{
 					if (context.HasException())
 					{
-						throw new WorkFlowFailureException(context.GetException(), step.Ordinal);
+						context.SetException(new WorkFlowFailureException(context.GetException(), step.Name, step.Ordinal));
 					}
 					else
 					{
-						throw new UnknownFailureException(step.Name);
+						context.SetException(new UnknownFailureException(step.Name, step.Ordinal));
 					}
 				}
 			}
@@ -209,6 +252,11 @@ namespace Diamond.Patterns.WorkFlow
 	{
 		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
 			: base(workFlowItemFactory, group)
+		{
+		}
+
+		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
+			: base(workFlowItemFactory, group, loggerSubscriber)
 		{
 		}
 	}

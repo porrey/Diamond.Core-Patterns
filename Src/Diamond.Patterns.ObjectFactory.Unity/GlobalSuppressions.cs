@@ -1,9 +1,0 @@
-﻿
-// This file is used by Code Analysis to maintain SuppressMessage
-// attributes that are applied to this project.
-// Project-level suppressions either have no target or are given
-// a specific target and scoped to a namespace, type, member, etc.
-
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Wrong Usage", "DF0000:Marks undisposed anonymous objects from object creations.", Justification = "<Pending>", Scope = "member", Target = "~M:Diamond.Patterns.ObjectFactory.Unity.ObjectFactory.RegisterSingletonInstance``1(System.String,``0)")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Wrong Usage", "DF0023:Marks undisposed objects assinged to a property, originated from a method invocation.", Justification = "<Pending>", Scope = "member", Target = "~M:Diamond.Patterns.ObjectFactory.Unity.ObjectFactory.RegisterSingletonInstance``1(System.String,``0)")]
-

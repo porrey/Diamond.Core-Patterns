@@ -33,7 +33,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.DatabaseSt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.DatabaseStrategy.MsSql", "Diamond.Patterns.DatabaseStrategy.MsSql\Diamond.Patterns.DatabaseStrategy.MsSql.csproj", "{0A7CAE1E-E8EE-4605-9C63-9361ACCAE4CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.StateDictionary", "Diamond.Patterns.StateDictionary\Diamond.Patterns.StateDictionary.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.StateDictionary", "Diamond.Patterns.StateDictionary\Diamond.Patterns.StateDictionary.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc", "Diamond.Patterns.Mvc\Diamond.Patterns.Mvc.csproj", "{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc.Abstractions", "Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.csproj", "{66172244-7A55-4C25-9FE8-933FED883FEA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc.Unity", "Diamond.Patterns.Mvc.Unity\Diamond.Patterns.Mvc.Unity.csproj", "{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.LoggerSubscriber.Serilog", "Diamond.Patterns.LoggerSubscriber.Serilog\Diamond.Patterns.LoggerSubscriber.Serilog.csproj", "{F97C75C2-A913-460F-B61E-34C7FA33A63B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +113,22 @@ Global
 		{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66172244-7A55-4C25-9FE8-933FED883FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66172244-7A55-4C25-9FE8-933FED883FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66172244-7A55-4C25-9FE8-933FED883FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66172244-7A55-4C25-9FE8-933FED883FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F97C75C2-A913-460F-B61E-34C7FA33A63B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F97C75C2-A913-460F-B61E-34C7FA33A63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F97C75C2-A913-460F-B61E-34C7FA33A63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F97C75C2-A913-460F-B61E-34C7FA33A63B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
