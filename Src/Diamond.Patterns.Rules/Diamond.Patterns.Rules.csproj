@@ -1,26 +1,49 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>2.10.0</Version>
-    <FileVersion>2.10.0</FileVersion>
-    <AssemblyVersion>2.10.0</AssemblyVersion>
-    <Authors>Daniel M. Porrey, Harshit Gindra</Authors>
-    <Product>Diamond Pattern Library - Model Rule Factory</Product>
-    <Description>This library provides a basic implementation of the model rule factory.</Description>
-    <Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
-    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <RootNamespace>Diamond.Patterns.ModelRuleFactory</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<Version>2.11.0</Version>
+		<FileVersion>2.11.0</FileVersion>
+		<AssemblyVersion>2.11.0</AssemblyVersion>
+		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
+		<Product>Diamond Pattern Library -Rules Pattern</Product>
+		<Description>This library provides a basic implementation of the Rules pattern.</Description>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIconUrl></PackageIconUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<RootNamespace>Diamond.Patterns.ModelRuleFactory</RootNamespace>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<NeutralLanguage>English (United States)</NeutralLanguage>
+		<Company>Daniel M. Porrey</Company>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\Images\Diamond.Patterns.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
 
 </Project>

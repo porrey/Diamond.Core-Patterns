@@ -2,10 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.10.0</Version>
-		<FileVersion>2.10.0</FileVersion>
-		<AssemblyVersion>2.10.0</AssemblyVersion>
-		<Authors>Daniel M Porrey</Authors>
+		<Version>2.11.0</Version>
+		<FileVersion>2.11.0</FileVersion>
+		<AssemblyVersion>2.11.0</AssemblyVersion>
+		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
@@ -13,20 +13,27 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-		<Description>This library provides interfaces for all of the Diamond Pattern objects.</Description>
+		<Description>This library provides interfaces for the Diamond Pattern objects.</Description>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
+		<Company>Daniel M Porrey</Company>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <DocumentationFile>bin\Release\Diamond.Patterns.Abstractions.xml</DocumentationFile>
-	  <OutputPath>bin\Release</OutputPath>
+		<DocumentationFile>bin\Release\Diamond.Patterns.Abstractions.xml</DocumentationFile>
+		<OutputPath>bin\Release</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <OutputPath>bin\Debug</OutputPath>
-	  <DocumentationFile>bin\Debug\Diamond.Patterns.Abstractions.xml</DocumentationFile>
+		<OutputPath>bin\Debug</OutputPath>
+		<DocumentationFile>bin\Debug\Diamond.Patterns.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,6 +44,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Rule\" />
+		<Folder Include="Rules\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub"
+											Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 </Project>

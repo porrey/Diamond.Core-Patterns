@@ -124,7 +124,7 @@ namespace Diamond.Patterns.StateDictionary
 
 				if (obj != null)
 				{
-					ITryDisposable<object> disposable = TryDisposable<object>.Create(obj);
+					ITryDisposable<object> disposable = TryDisposableFactory.Create(obj);
 					disposable.Dispose();
 				}
 

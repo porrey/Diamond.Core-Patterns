@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.9.1</Version>
-		<FileVersion>2.9.1</FileVersion>
-		<AssemblyVersion>2.9.1</AssemblyVersion>
+		<Version>2.11.0</Version>
+		<FileVersion>2.11.0</FileVersion>
+		<AssemblyVersion>2.11.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<Product>Diamond Pattern Library - Model Factory</Product>
 		<Description>This library provides a basic implementation of the entity factory.</Description>
@@ -18,6 +18,12 @@
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,6 +36,13 @@
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	</ItemGroup>
 
 </Project>
