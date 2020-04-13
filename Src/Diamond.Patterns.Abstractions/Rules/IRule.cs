@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey, Harshit Gindra. All rights reserved.
+// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -18,17 +18,23 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
-    public interface IRule<TEntity>
+    /// <summary>
+    /// Interface defining a generic rule.
+    /// </summary>
+    /// <typeparam name="TItem"></typeparam>
+    public interface IRule<TItem>
     {
         /// <summary>
-        /// Validate entity based on the defined rule asynchronously
-        /// </summary>
-        /// <param name="entity">TEntity to be validated</param>
-        /// <returns>bool and consolidated error message</returns>
-        Task<(bool, string)> ValidateAsync(TEntity entity);
-        /// <summary>
-        /// Group name to distinguish between different rules
+        /// Group name to distinguish between different rule sets.
         /// </summary>
         string Group { get; set; }
+
+        /// <summary>
+        /// Validate entity based on the defined rule asynchronously.
+        /// </summary>
+        /// <param name="item">The item to be validated.</param>
+        /// <returns>A boolean value indicating whether or not the rule has been
+        /// validated. If false, an error message is returned.</returns>
+        Task<(bool, string)> ValidateAsync(TItem item);
     }
 }

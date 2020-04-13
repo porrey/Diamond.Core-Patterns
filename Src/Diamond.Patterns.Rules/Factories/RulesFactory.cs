@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey, Harshit Gindra. All rights reserved.
+// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -23,33 +23,41 @@ namespace Diamond.Patterns.Rules
 {
     /// <summary>
     /// Defines a generic repository factory that can be used to retrieve
-    /// an object that implements IModelRule<TItem, TResult> from the container.
+    /// an object that implements <see cref="IRule<TItem, TResult>" from the container.
     /// </summary>
     public class RulesFactory : IRulesFactory
     {
+        /// <summary>
+        /// Creates an instance of <see cref="IRule<TItem, TResult>" with the
+        /// specififed instance of <see cref="IObjectFactory">."</see>
+        /// </summary>
+        /// <param name="objectFactory"></param>
         public RulesFactory(IObjectFactory objectFactory)
         {
             this.ObjectFactory = objectFactory;
         }
 
+        /// <summary>
+        /// Gets/sets the internal instance of <see cref="IObjectFactory">.
+        /// </summary>
         protected IObjectFactory ObjectFactory { get; set; }
 
         /// <summary>
-        /// Get all model rule instances registered based on TInterface
+        /// Get all model rule instances registered based on TInterface.
         /// </summary>
-        /// <typeparam name="TItem"></typeparam>
-        /// <returns>list of IModelRule instances</returns>
+        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
+        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
         public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>()
         {
             // ***
             // *** Get all model rules  from the container of
-            // *** type IModelRule<TItem>.
+            // *** type IRule<TItem>.
             // ***
             IEnumerable<IRule<TItem>> instances = this.ObjectFactory.GetAllInstances<IRule<TItem>>();
 
             // ***
             // *** Make sure that there are rules registered
-            // *** for the specified TItem and group
+            // *** for the specified TItem and group.
             // ***
             if (instances == null || !instances.Any())
             {
@@ -58,27 +66,28 @@ namespace Diamond.Patterns.Rules
 
             return Task.FromResult(instances);
         }
+        
         /// <summary>
-        /// Get all model rule instances registered based on TInterface and group name
+        /// Get all model rule instances registered based on TInterface and group name.
         /// </summary>
-        /// <typeparam name="TItem"></typeparam>
-        /// <returns>list of IModelRule instances</returns>
+        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
+        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
         public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>(string group)
         {
             // ***
             // *** Get all model rules  from the container of
-            // *** type IModelRule<TItem> and group
+            // *** type IModelRule<TItem> and group.
             // ***
             IEnumerable<IRule<TItem>> instances = this.ObjectFactory.GetAllInstances<IRule<TItem>>()
                 .Where(t => t.Group == group);
 
             // ***
             // *** Make sure that there are rules registered
-            // *** for the specified TItem and group
+            // *** for the specified TItem and group.
             // ***
             if (instances == null || !instances.Any())
             {
-                throw new RulesNotFoundException<TItem>();
+                throw new RulesNotFoundException<TItem>(group);
             }
             
             return Task.FromResult(instances);
