@@ -7,7 +7,7 @@
 		<AssemblyVersion>2.11.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<Product>Diamond Pattern Library - Model Factory</Product>
-		<Description>This library provides a basic implementation of the entity factory.</Description>
+		<Description>This library provides a basic implementation of the entity model factory.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>

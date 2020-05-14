@@ -33,6 +33,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 		/// <param name="filePath">The full path to the Unity configuration file.</param>
 		/// <param name="containerName">The optional Container name to load. The default loads the unnamed Container.</param>
 		/// <returns></returns>
+		[Obsolete("Use methods from the Diamond.Patterns.UnityConfiguration namespace.")]
 		public static Task LoadUnityConfigFromFileAsync(this IObjectFactory objectFactory, string filePath, string containerName = "")
 		{
 			ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap { ExeConfigFilename = filePath };
@@ -63,6 +64,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 		/// </summary>
 		/// <param name="objectFactory">The Unity container instance to load the configuration into.</param>
 		/// <param name="files">A list of file paths where the files to be loaded are located.</param>
+		[Obsolete("Use methods from the Diamond.Patterns.UnityConfiguration namespace.")]
 		public static async Task LoadUnityConfigFromFilesAsync(this IObjectFactory objectFactory, IEnumerable<string> files)
 		{
 			foreach (string file in files)
@@ -81,6 +83,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 		/// <param name="path">The folder path where the Unity configuration files are located.</param>
 		/// <param name="searchPattern">Specifies a pattern to use to match file names. The default is *.config.</param>
 		/// <param name="searchOption">Specifies the search option to use. the default is SearchOption.TopDirectoryOnly.</param>
+		[Obsolete("Use methods from the Diamond.Patterns.UnityConfiguration namespace.")]
 		public static async Task<IEnumerable<string>> LoadUnityConfigFromFolderAsync(this IObjectFactory objectFactory, string path, string searchPattern = "*.config", SearchOption searchOption = SearchOption.TopDirectoryOnly)
 		{
 			string[] files = Directory.GetFiles(path, searchPattern, searchOption);
