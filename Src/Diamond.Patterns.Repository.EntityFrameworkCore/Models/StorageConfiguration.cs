@@ -14,26 +14,23 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System;
+using Diamond.Patterns.Abstractions;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Diamond.Patterns.Abstractions
+namespace Diamond.Patterns.Repository.EntityFrameworkCore
 {
-	/// <summary>
-	/// Defines a state converter that can convert a state dictionary time from one type to another.
-	/// </summary>
-	public interface IStateTypeConverter
+	public class StorageConfiguration : IStorageConfiguration
 	{
-		/// <summary>
-		/// Get the target type of the converter.
-		/// </summary>
-		Type TargetType { get; }
+		public StorageConfiguration(string connectionString)
+		{
+			this.ConnectionString = connectionString;
+		}
 
-		/// <summary>
-		/// Converts the item from the source to the target.
-		/// </summary>
-		/// <param name="sourceValue">The value being converted.</param>
-		/// <param name="specificTargetType">The target type of the conversion.</param>
-		/// <returns>Returns the converted item or an error.</returns>
-		(bool, string, object) ConvertSource(object sourceValue, Type specificTargetType);
+		public string Description { get; set; }
+		public string ConnectionString { get; set; }
+
+		protected virtual void OnConfiguring(IDbContextOptionsBuilderInfrastructure optionsBuilder)
+		{
+		}
 	}
 }

@@ -79,7 +79,7 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 			return Task.FromResult(0);
 		}
 
-		public  Task DisableBulkLoadAsync()
+		public virtual Task DisableBulkLoadAsync()
 		{
 			return Task.FromResult(0);
 		}
@@ -87,11 +87,6 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		public virtual Task<int> ExecuteSqlCommandAsync(string sql)
 		{
 			throw new NotSupportedException();
-		}
-
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			base.OnConfiguring(optionsBuilder);
 		}
 	}
 }

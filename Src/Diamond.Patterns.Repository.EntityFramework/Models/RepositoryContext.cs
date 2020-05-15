@@ -97,7 +97,7 @@ namespace Diamond.Patterns.Repository.EntityFramework
 			return Task.FromResult(0);
 		}
 
-		public  Task DisableBulkLoadAsync()
+		public virtual Task DisableBulkLoadAsync()
 		{
 			this.Configuration.AutoDetectChangesEnabled = true;
 			this.Configuration.ValidateOnSaveEnabled = true;

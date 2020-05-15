@@ -18,8 +18,18 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a factory that will retrieve the work flow manager for a given work flow.
+	/// </summary>
 	public interface IWorkFlowManagerFactory
 	{
+		/// <summary>
+		/// Gets the work flow items for a given work flow identified by groupName;
+		/// </summary>
+		/// <typeparam name="TContextDecorator">The type of context decorator used by the work flow item.</typeparam>
+		/// <typeparam name="TContext">The type of context used by  the work flow item.</typeparam>
+		/// <param name="groupName">a name that groups work flow items together.</param>
+		/// <returns>Returns the work flow manager for the specified work flow.</returns>
 		Task<IWorkFlowManager<TContextDecorator, TContext>> GetAsync<TContextDecorator, TContext>(string groupName)
 			where TContext : IContext
 			where TContextDecorator : IContextDecorator<TContext>;

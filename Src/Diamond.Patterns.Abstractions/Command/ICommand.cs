@@ -18,8 +18,15 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a command to be used in the command pattern.
+	/// </summary>
 	public interface ICommand
 	{
+		/// <summary>
+		/// Executes the command.
+		/// </summary>
+		/// <returns>Returns a code indicating the result. The code is specific to the command.</returns>
 		Task<int> ExecuteAsync();
 	}
 }

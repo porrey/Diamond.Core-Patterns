@@ -19,8 +19,18 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a factory to create/retrieve work flow items.
+	/// </summary>
 	public interface IWorkFlowItemFactory
 	{
+		/// <summary>
+		/// gets all work flow items instances with the given key.
+		/// </summary>
+		/// <typeparam name="TContextDecorator">The type of context decorator used by the work flow item.</typeparam>
+		/// <typeparam name="TContext">The type of context used by  the work flow item.</typeparam>
+		/// <param name="key">The key that groups two or more work flow items into a single sequence.</param>
+		/// <returns>A list of work flow items.</returns>
 		Task<IEnumerable<IWorkFlowItem<TContextDecorator, TContext>>> GetItemsAsync<TContextDecorator, TContext>(string key)
 			where TContext : IContext
 			where TContextDecorator : IContextDecorator<TContext>;

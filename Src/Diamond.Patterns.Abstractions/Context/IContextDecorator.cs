@@ -18,10 +18,26 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a decorator for a context that adds a state
+	/// dictionary and a reset method.
+	/// </summary>
+	/// <typeparam name="TContext"></typeparam>
 	public interface IContextDecorator<TContext> where TContext : IContext
 	{
+		/// <summary>
+		/// Gets the underlying context instance.
+		/// </summary>
 		TContext Item { get; set; }
+
+		/// <summary>
+		/// Resets the context.
+		/// </summary>
 		Task ResetAsync();
+
+		/// <summary>
+		/// Gets/sets properties to be contained  within the context.
+		/// </summary>
 		IStateDictionary Properties { get; set; }
 	}
 }

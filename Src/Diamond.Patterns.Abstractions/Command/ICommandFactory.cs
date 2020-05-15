@@ -18,8 +18,17 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a factory to retrieve <see cref="ICommand"/> based
+	/// on a name of the command.
+	/// </summary>
 	public interface ICommandFactory
 	{
+		/// <summary>
+		/// Gets the command specified by parameterSwitch.
+		/// </summary>
+		/// <param name="parameterSwitch">The unique name of the registered command.</param>
+		/// <returns>An instance of <see cref="ICommand"/></returns>
 		Task<ICommand> GetAsync(string parameterSwitch);
 	}
 }

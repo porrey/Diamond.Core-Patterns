@@ -18,8 +18,16 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a factory to create entity models.
+	/// </summary>
+	/// <typeparam name="TInterface">The type of the entity model.</typeparam>
 	public interface IEntityFactory<TInterface> where TInterface : IEntity
 	{
+		/// <summary>
+		/// Creates a new empty instance of an entity model.
+		/// </summary>
+		/// <returns>The newly created entity.</returns>
 		Task<TInterface> CreateAsync();
 	}
 }

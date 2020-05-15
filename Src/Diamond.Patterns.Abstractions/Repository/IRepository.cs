@@ -16,10 +16,16 @@
 // *** 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a generic repository interface.
+	/// </summary>
 	public interface IRepository
 	{
 	}
 
+	/// <summary>
+	/// Defines a generic repository interface that stores an entity of type TInterface.
+	/// </summary>
 	public interface IRepository<TInterface> : IRepository where TInterface : IEntity
 	{
 	}

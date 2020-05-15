@@ -19,9 +19,25 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a repository that supports a queryable interface. The connection remains open until specifically
+	/// closed by the caller.
+	/// </summary>
+	/// <typeparam name="TInterface"></typeparam>
 	public interface IQueryableRepository<TInterface> : IReadOnlyRepository<TInterface> where TInterface : IEntity
 	{
+		/// <summary>
+		/// Gets an active context that can be used for subsequent queries. This context
+		/// can be shared among repositories for the same underlying data store (database).
+		/// </summary>
+		/// <returns></returns>
 		Task<IRepositoryContext> GetContextAsync();
+
+		/// <summary>
+		/// Gets a <see cref="IQueryable"/> of type TInterface using the specified context.
+		/// </summary>
+		/// <param name="context">A context retrieved from a all to GetContextAsync().</param>
+		/// <returns>Returns an <see cref="IQueryable"/> of type TInterface.</returns>
 		Task<IQueryable<TInterface>> GetQueryableAsync(IRepositoryContext context);
 	}
 }

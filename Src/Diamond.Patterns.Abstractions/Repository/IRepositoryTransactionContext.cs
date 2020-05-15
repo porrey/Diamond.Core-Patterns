@@ -19,9 +19,23 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a transaction context for a data store.
+	/// </summary>
 	public interface IRepositoryTransactionContext : IDisposable
 	{
+		/// <summary>
+		/// Commits all changes on the given data store associated
+		/// with this transaction context.
+		/// </summary>
+		/// <returns></returns>
 		Task CommitTransactionAsync();
+
+		/// <summary>
+		/// Rolls back all changes on the given data store associated
+		/// with this transaction context.
+		/// </summary>
+		/// <returns></returns>
 		Task RollbackTransactionAsync();
 	}
 }

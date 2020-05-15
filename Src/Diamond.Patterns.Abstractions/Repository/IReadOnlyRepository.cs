@@ -21,9 +21,24 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a repository that supports read-only queries against a data store. These queries return
+	/// an IEnumberable of TInterface.
+	/// </summary>
+	/// <typeparam name="TInterface"></typeparam>
 	public interface IReadOnlyRepository<TInterface> : IRepository<TInterface> where TInterface : IEntity
 	{
+		/// <summary>
+		/// Returns all items in the data store.
+		/// </summary>
+		/// <returns>Returns an IEnumberable of TInterface</returns>
 		Task<IEnumerable<TInterface>> GetAllAsync();
+
+		/// <summary>
+		/// Returns a filtered list of items from the data store.
+		/// </summary>
+		/// <param name="predicate">Defines the query to be applied before returning the results.</param>
+		/// <returns>Returns an IEnumberable of TInterface</returns>
 		Task<IEnumerable<TInterface>> GetAsync(Expression<Func<TInterface, bool>> predicate);
 	}
 }

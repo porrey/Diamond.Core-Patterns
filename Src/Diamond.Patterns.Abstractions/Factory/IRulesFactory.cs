@@ -19,20 +19,24 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+    /// <summary>
+    /// Defines a factory that can return all rules defined for a specific model
+    /// (by type) and optionally a group name.
+    /// </summary>
     public interface IRulesFactory
     {
         /// <summary>
         /// Get all model rule instances registered based on TInterface
         /// </summary>
         /// <typeparam name="TInterface"></typeparam>
-        /// <returns>list of IModelRule instances</returns>
+        /// <returns>A list of IModelRule instances.</returns>
         Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>();
 
         /// <summary>
-        /// Get all model rule instances registered based on TInterface and group name
+        /// Get all model rule instances registered based on TInterface and group name.
         /// </summary>
-        /// <typeparam name="TInterface"></typeparam>
-        /// <returns>list of IModelRule instances</returns>
+        /// <typeparam name="TInterface">The type that this rule applies.</typeparam>
+        /// <returns>A list of IModelRule instances.</returns>
         Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>(string group);
     }
 }

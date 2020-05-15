@@ -36,22 +36,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		where TInterface : IEntity
 		where TContext : DbContext
 	{
-		public EntityFrameworkRepository(IStorageConfiguration storageConfiguration, IDatabaseStrategy<TContext> databaseStrategy, IEntityFactory<TInterface> modelFactory)
+		public EntityFrameworkRepository(IContextFactory<TContext> contextFactory, IEntityFactory<TInterface> modelFactory)
 		{
-			this.StorageConfiguration = storageConfiguration;
-			this.DatabaseStrategy = databaseStrategy;
+			this.ContextFactory = contextFactory;
 			this.ModelFactory = modelFactory;
 		}
 
-		public EntityFrameworkRepository(IStorageConfiguration storageConfiguration, IEntityFactory<TInterface> modelFactory)
-		{
-			this.StorageConfiguration = storageConfiguration;
-			this.DatabaseStrategy = null;
-			this.ModelFactory = modelFactory;
-		}
-
-		protected virtual IStorageConfiguration StorageConfiguration { get; set; }
-		protected virtual IDatabaseStrategy<TContext> DatabaseStrategy { get; set; }
+		protected IContextFactory<TContext> ContextFactory { get; set; }
 		protected abstract DbSet<TEntity> MyDbSet(TContext model);
 		protected abstract TContext GetNewDbContext { get; }
 		public virtual IEntityFactory<TInterface> ModelFactory { get; set; }

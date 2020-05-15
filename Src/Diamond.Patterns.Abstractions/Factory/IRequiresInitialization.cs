@@ -18,10 +18,30 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines an interfaces to be used to indicate that an object within
+	/// a container requires initialization. This is useful when objects are
+	/// instantiated by a container but need to be initialized. The default
+	/// implementation of <see cref="IObjectFactory"/> checks objects for
+	/// this interface and calls InitializeAsync() when CanInitialize returns
+	/// true and IsInitialized returns false.
+	/// </summary>
 	public interface IRequiresInitialization
 	{
+		/// <summary>
+		/// Gets a value indicating if the instance can be initialized.
+		/// </summary>
 		bool CanInitialize { get; }
+
+		/// <summary>
+		/// Gets a value indicating if the instance has been initialized.
+		/// </summary>
 		bool IsInitialized { get; set; }
+
+		/// <summary>
+		/// Initializes the instance.
+		/// </summary>
+		/// <returns></returns>
 		Task<bool> InitializeAsync();
 	}
 }

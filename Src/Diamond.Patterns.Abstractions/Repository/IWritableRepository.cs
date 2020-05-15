@@ -18,15 +18,66 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a repository that can be used to modify items in a data store.
+	/// </summary>
+	/// <typeparam name="TInterface"></typeparam>
 	public interface IWritableRepository<TInterface> : IQueryableRepository<TInterface>
 		where TInterface : IEntity
 	{
+		/// <summary>
+		/// Gets the model factory used to create new models.
+		/// </summary>
 		IEntityFactory<TInterface> ModelFactory { get; }
+
+		/// <summary>
+		/// Adds a new entity to the data store.
+		/// </summary>
+		/// <param name="entity">An instance of a new entity.</param>
+		/// <returns>Returns true along with an updated entity (if the data store changed
+		/// or added data); false otherwise.</returns>
 		Task<(bool, TInterface)> AddAsync(TInterface entity);
+
+		/// <summary>
+		/// Deletes the specified entity from the data store.
+		/// </summary>
+		/// <param name="entity">An instance of an existing entity.</param>
+		/// <returns></returns>
 		Task<bool> DeleteAsync(TInterface entity);
+
+		/// <summary>
+		/// Updates an existing entity in the data store.
+		/// </summary>
+		/// <param name="entity">An instance of an existing entity.</param>
+		/// <returns></returns>
 		Task<bool> UpdateAsync(TInterface entity);
+
+		/// <summary>
+		/// Adds a new entity to the data store using the specified repository
+		/// context.
+		/// </summary>
+		/// <param name="repositoryContext">An existing repository context to use for the transaction.</param>
+		/// <param name="entity">An instance of a new entity.</param>
+		/// <returns>Returns the updated entity (if the data store changed
+		/// or added data)</returns>
 		Task<TInterface> AddAsync(IRepositoryContext repositoryContext, TInterface entity);
+
+		/// <summary>
+		/// Deletes the specified entity from the data store using the
+		/// specified repository context.
+		/// </summary>
+		/// <param name="repositoryContext"></param>
+		/// <param name="entity">An instance of an existing entity.</param>
+		/// <returns>Returns true if successful; false otherwise.</returns>
 		Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface entity);
+
+		/// <summary>
+		/// Updates an existing entity in the data store using the specified
+		/// repository context.
+		/// </summary>
+		/// <param name="repositoryContext"></param>
+		/// <param name="entity">An instance of an existing entity.</param>
+		/// <returns>Returns true if successful; false otherwise.</returns>
 		Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface entity);
 	}
 }

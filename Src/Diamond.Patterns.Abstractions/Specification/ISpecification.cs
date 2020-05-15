@@ -18,17 +18,40 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a generic specification.
+	/// </summary>
 	public interface ISpecification
 	{
 	}
 
+	/// <summary>
+	/// Defines a specification that does not require inputs and returns a result of type TResult.
+	/// </summary>
+	/// <typeparam name="TResult">The return type of the specification action.</typeparam>
 	public interface ISpecification<TResult> : ISpecification
 	{
+		/// <summary>
+		/// Executes the specification.
+		/// </summary>
+		/// <returns>Returns the result as a instance of type TResult.</returns>
 		Task<TResult> ExecuteQueryAsync();
 	}
 
+	/// <summary>
+	/// Defines a specification that requires input of type TParameter (filter) and returns
+	/// a result of type TResult.
+	/// </summary>
+	/// <typeparam name="TParameter">The type of the filter applied to the execution of the 
+	/// specification execution.</typeparam>
+	/// <typeparam name="TResult">The return type of the specification action.</typeparam>
 	public interface ISpecification<TParameter, TResult> : ISpecification
 	{
+		/// <summary>
+		/// Executes the specification.
+		/// </summary>
+		/// <param name="filter">The filter to apply to the execution of the specification.</param>
+		/// <returns>Returns the result as a instance of type TResult.</returns>
 		Task<TResult> ExecuteQueryAsync(TParameter filter);
 	}
 }

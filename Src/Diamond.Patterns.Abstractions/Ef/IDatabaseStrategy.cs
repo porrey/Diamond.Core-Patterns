@@ -18,8 +18,18 @@ using System;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a strategy to use for database auto-creation.
+	/// </summary>
+	/// <typeparam name="TContext"></typeparam>
 	public interface IDatabaseStrategy<TContext>
 	{
+		/// <summary>
+		/// Gets the database initializer.
+		/// </summary>
+		/// <param name="modelBuilder">The model builder used to map CLR classes to a database schema.</param>
+		/// <param name="onSeed">A method to be called to seed the database after it has been created.</param>
+		/// <returns></returns>
 		object GetInitializer(object modelBuilder, EventHandler<TContext> onSeed);
 	}
 }

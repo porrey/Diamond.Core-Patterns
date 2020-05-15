@@ -16,9 +16,20 @@
 // *** 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Contains information to define a connection for an Entity Framework context.
+	/// </summary>
 	public interface IStorageConfiguration
 	{
+		/// <summary>
+		/// Gets a description used to identify this storage
+		/// configuration instance.
+		/// </summary>
 		string Description { get; }
+
+		/// <summary>
+		/// Gets the connection string used for the Entity Framework context.
+		/// </summary>
 		string ConnectionString { get; }
 	}
 }

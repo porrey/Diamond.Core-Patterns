@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.11.0</Version>
-		<FileVersion>2.11.0</FileVersion>
-		<AssemblyVersion>2.11.0</AssemblyVersion>
+		<Version>2.12.0</Version>
+		<FileVersion>2.12.0</FileVersion>
+		<AssemblyVersion>2.12.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>

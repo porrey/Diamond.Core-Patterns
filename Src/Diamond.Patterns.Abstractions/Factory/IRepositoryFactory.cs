@@ -18,16 +18,69 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a factory to create/retrieve model repositories.
+	/// </summary>
 	public interface IRepositoryFactory
 	{
+		/// <summary>
+		/// Gets a generic <see cref="IRepository"/> for the specified model type.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <returns>An instance of the repository for the model type specified.</returns>
 		Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity;
+
+		/// <summary>
+		/// Gets a read-only IReadOnlyRepository for the specified model type.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <returns></returns>
 		Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity;
+
+		/// <summary>
+		/// Gets a read-only IQueryableRepository for the specified model type.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <returns>An instance of the repository for the model type specified.</returns>
 		Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity;
+
+		/// <summary>
+		/// Gets a read-only IWritableRepository for the specified model type.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <returns>An instance of the repository for the model type specified.</returns>
 		Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity;
 
+		/// <summary>
+		/// Gets a generic <see cref="IRepository"/> for the specified model type and name.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <param name="name"></param>
+		/// <returns>An instance of the repository for the model type specified.</returns>
 		Task<IRepository<TInterface>> GetAsync<TInterface>(string name = null) where TInterface : IEntity;
+
+		/// <summary>
+		/// Gets a read-only IReadOnlyRepository for the specified model type and name.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <param name="name"></param>
+		/// <returns>An instance of the repository for the model type specified.</returns>
 		Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name = null) where TInterface : IEntity;
+
+		/// <summary>
+		/// Gets a read-only IQueryableRepository for the specified model type and name.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <param name="name"></param>
+		/// <returns>An instance of the repository for the model type specified.</returns>
 		Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name = null) where TInterface : IEntity;
+
+		/// <summary>
+		/// Gets a read-only IWritableRepository for the specified model type and name.
+		/// </summary>
+		/// <typeparam name="TInterface">The model type.</typeparam>
+		/// <param name="name"></param>
+		/// <returns>An instance of the repository for the model type specified.</returns>
 		Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name = null) where TInterface : IEntity;
 	}
 }

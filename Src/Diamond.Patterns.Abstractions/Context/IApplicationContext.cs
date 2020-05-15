@@ -16,9 +16,19 @@
 // *** 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a context that uses <see cref="IObjectFactory"/>.
+	/// </summary>
 	public interface IApplicationContext : IContext
 	{
+		/// <summary>
+		/// The arguments supplied to the application.
+		/// </summary>
 		string[] Arguments { get; }
+
+		/// <summary>
+		/// Gets the <see cref="IObjectFactory"/> instance.
+		/// </summary>
 		IObjectFactory ObjectFactory { get; }
 	}
 }

@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a work flow item.
+	/// </summary>
 	public interface IWorkFlowItem
 	{
 		/// <summary>
@@ -58,6 +61,11 @@ namespace Diamond.Patterns.Abstractions
 		bool AlwaysExecute { get; }
 	}
 
+	/// <summary>
+	/// Defines a work flow item.
+	/// </summary>
+	/// <typeparam name="TContextDecorator">The type of context decorator that contains the state dictionary.</typeparam>
+	/// <typeparam name="TContext">The type of context used by the work flow item.</typeparam>
 	public interface IWorkFlowItem<TContextDecorator, TContext> : IWorkFlowItem
 		where TContext : IContext
 		where TContextDecorator : IContextDecorator<TContext>

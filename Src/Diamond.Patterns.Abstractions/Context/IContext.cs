@@ -16,6 +16,9 @@
 // *** 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a generic context.
+	/// </summary>
 	public interface IContext
 	{
 		/// <summary>

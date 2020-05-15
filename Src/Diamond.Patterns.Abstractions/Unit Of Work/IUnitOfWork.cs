@@ -18,13 +18,29 @@ using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Abstractions
 {
+	/// <summary>
+	/// Defines a generic unit of work.
+	/// </summary>
 	public interface IUnitOfWork
 	{
+		/// <summary>
+		/// A unique key to distinguish similar unit of works instances.
+		/// </summary>
 		string Key { get; }
 	}
 
+	/// <summary>
+	/// A unit of work that takes TSourceItem and returns type TResult.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the result returned by the unit of work.</typeparam>
+	/// <typeparam name="TSourceItem">The type of the source item for the unit of work.</typeparam>
 	public interface IUnitOfWork<TResult, TSourceItem> : IUnitOfWork
 	{
+		/// <summary>
+		/// Executes the unit of work.
+		/// </summary>
+		/// <param name="item">The source item used in the transaction.</param>
+		/// <returns>The result of the action as object instance of type TResult.</returns>
 		Task<TResult> CommitAsync(TSourceItem item);
 	}
 }
