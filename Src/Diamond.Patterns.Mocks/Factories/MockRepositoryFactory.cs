@@ -17,7 +17,7 @@ namespace Diamond.Patterns.Mocks
 		{
 			IRepository<TInterface> returnValue = null;
 
-			foreach (var item in this.Items)
+			foreach (IRepository item in this.Items)
 			{
 				if (item is IRepository<TInterface>)
 				{

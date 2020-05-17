@@ -10,9 +10,9 @@
 		<Product>Diamond Pattern Library - Entity Framework Repository</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<Description>This library provides an implementation of the repository that can be used with Entity Framework.</Description>
-		<Version>2.12.0</Version>
-		<FileVersion>2.12.0</FileVersion>
-		<AssemblyVersion>2.12.0</AssemblyVersion>
+		<Version>2.13.0</Version>
+		<FileVersion>2.13.0</FileVersion>
+		<AssemblyVersion>2.13.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
@@ -35,12 +35,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="EntityFramework" Version="6.2.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
-		<PackageReference Include="EntityFramework" Version="6.4.0" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+		<PackageReference Include="EntityFramework" Version="6.4.4" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.DisposableObject" Version="1.3.1" />
+		<PackageReference Include="System.DisposableObject" Version="1.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>

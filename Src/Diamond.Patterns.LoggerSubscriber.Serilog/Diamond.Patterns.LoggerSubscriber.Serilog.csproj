@@ -8,9 +8,9 @@
 		<Product>Diamond Pattern Library - Logger Subscriber/Serilog</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
 		<Description>This library implements a logger subscribr for Serilog.</Description>
-		<Version>2.11.0</Version>
-		<FileVersion>2.11.0</FileVersion>
-		<AssemblyVersion>2.11.0</AssemblyVersion>
+		<Version>2.13.0</Version>
+		<FileVersion>2.13.0</FileVersion>
+		<AssemblyVersion>2.13.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>

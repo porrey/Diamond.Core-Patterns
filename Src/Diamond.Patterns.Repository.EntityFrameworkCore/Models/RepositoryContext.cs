@@ -30,6 +30,11 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 		}
 
+		public RepositoryContext(DbContextOptions options)
+			: base(options)
+		{
+		}
+
 		public virtual Task<IRepositoryTransactionContext> BeginTransactionAsync(ContextIsolationLevel isolationLevel)
 		{
 			IsolationLevel localIsolationLevel = RepositoryContext<TContext>.TranslatioIsolationLevel(isolationLevel);

@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.12.0</Version>
-		<FileVersion>2.12.0</FileVersion>
-		<AssemblyVersion>2.12.0</AssemblyVersion>
+		<Version>2.13.0</Version>
+		<FileVersion>2.13.0</FileVersion>
+		<AssemblyVersion>2.13.0</AssemblyVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
@@ -32,16 +32,16 @@
 
 	<ItemGroup>
 		<PackageReference Include="EntityFramework" Version="6.2.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
-		<PackageReference Include="EntityFramework" Version="6.4.0" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+		<PackageReference Include="EntityFramework" Version="6.4.4" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="SQLite.CodeFirst" Version="1.5.3.29" />
-		<PackageReference Include="System.Data.SQLite" Version="1.0.112" />
-		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.1" />
-		<PackageReference Include="System.Data.SQLite.EF6" Version="1.0.112.1" />
-		<PackageReference Include="System.Data.SQLite.Linq" Version="1.0.112.1" />
+		<PackageReference Include="SQLite.CodeFirst" Version="1.6.0.30" />
+		<PackageReference Include="System.Data.SQLite" Version="1.0.112.2" />
+		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.112.2" />
+		<PackageReference Include="System.Data.SQLite.EF6" Version="1.0.112.2" />
+		<PackageReference Include="System.Data.SQLite.Linq" Version="1.0.112.2" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -5,9 +5,9 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>2.12.0</Version>
-		<FileVersion>2.12.0</FileVersion>
-		<AssemblyVersion>2.12.0</AssemblyVersion>
+		<Version>2.13.0</Version>
+		<FileVersion>2.13.0</FileVersion>
+		<AssemblyVersion>2.13.0</AssemblyVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Company>Daniel M Porrey</Company>
@@ -35,7 +35,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Unity" Version="5.11.5" />
+		<PackageReference Include="Unity" Version="5.11.6" />
 		<PackageReference Include="Unity.Abstractions" Version="5.11.5" />
 		<PackageReference Include="Unity.Configuration" Version="5.11.2" />
 	</ItemGroup>
