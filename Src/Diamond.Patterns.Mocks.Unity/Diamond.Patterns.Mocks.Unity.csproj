@@ -17,6 +17,12 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<FileVersion>2.13.0</FileVersion>
 		<AssemblyVersion>2.13.0</AssemblyVersion>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>
