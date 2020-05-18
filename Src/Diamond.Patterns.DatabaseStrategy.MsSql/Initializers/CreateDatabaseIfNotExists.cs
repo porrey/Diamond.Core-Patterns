@@ -19,7 +19,7 @@ using System.Data.Entity;
 
 namespace Diamond.Patterns.DatabaseStrategy.MsSql
 {
-	internal class MsSqlCreateDatabaseIfNotExists<TContext> : CreateDatabaseIfNotExists<TContext> where TContext : DbContext
+	public class MsSqlCreateDatabaseIfNotExists<TContext> : CreateDatabaseIfNotExists<TContext> where TContext : DbContext
 	{
 		protected EventHandler<TContext> SeedCallback = null;
 

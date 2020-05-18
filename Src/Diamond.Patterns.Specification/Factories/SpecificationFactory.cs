@@ -20,7 +20,7 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.Specification
 {
-	internal class SpecificationFactory : ISpecificationFactory
+	public class SpecificationFactory : ISpecificationFactory
 	{
 		public SpecificationFactory(IObjectFactory objectFactory)
 		{

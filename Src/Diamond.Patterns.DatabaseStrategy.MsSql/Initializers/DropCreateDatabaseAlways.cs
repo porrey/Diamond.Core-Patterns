@@ -19,7 +19,7 @@ using System.Data.Entity;
 
 namespace Diamond.Patterns.DatabaseStrategy.MsSql
 {
-	internal class MsSqlDropCreateDatabaseAlways<TContext> : DropCreateDatabaseAlways<TContext> where TContext : DbContext
+	public class MsSqlDropCreateDatabaseAlways<TContext> : DropCreateDatabaseAlways<TContext> where TContext : DbContext
 	{
 		protected EventHandler<TContext> SeedCallback = null;
 

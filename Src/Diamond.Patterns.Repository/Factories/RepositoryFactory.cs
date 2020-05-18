@@ -19,7 +19,7 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.Repository
 {
-	internal class RepositoryFactory : IRepositoryFactory
+	public class RepositoryFactory : IRepositoryFactory
 	{
 		public RepositoryFactory(IObjectFactory objectFactory)
 		{

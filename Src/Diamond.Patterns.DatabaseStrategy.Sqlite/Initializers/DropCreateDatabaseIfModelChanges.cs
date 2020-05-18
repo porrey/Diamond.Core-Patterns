@@ -20,7 +20,7 @@ using SQLite.CodeFirst;
 
 namespace Diamond.Patterns.DatabaseStrategy.SQLite
 {
-	internal class DropCreateDatabaseIfModelChanges<TContext> : SqliteDropCreateDatabaseWhenModelChanges<TContext> where TContext : DbContext
+	public class DropCreateDatabaseIfModelChanges<TContext> : SqliteDropCreateDatabaseWhenModelChanges<TContext> where TContext : DbContext
 	{
 		protected EventHandler<TContext> SeedCallback = null;
 
