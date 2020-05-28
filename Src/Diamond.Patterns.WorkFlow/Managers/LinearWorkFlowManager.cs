@@ -31,12 +31,6 @@ namespace Diamond.Patterns.WorkFlow
 		{
 			this.Group = group;
 			this.WorkFlowItemFactory = workFlowItemFactory;
-			//this.Steps = workFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(group).Result.ToArray();
-
-			//if (this.Steps.Count() == 0)
-			//{
-			//	throw new ArgumentOutOfRangeException($"No work flow items with group '{group}' were found.");
-			//}
 		}
 
 		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
@@ -46,11 +40,22 @@ namespace Diamond.Patterns.WorkFlow
 		}
 
 		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
+
 		private IWorkFlowItem<TContextDecorator, TContext>[] _steps = null;
 		public IWorkFlowItem<TContextDecorator, TContext>[] Steps
 		{
 			get
 			{
+				if (_steps == null)
+				{
+					_steps = this.WorkFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(this.Group).Result.ToArray();
+
+					if (_steps.Count() == 0)
+					{
+						throw new ArgumentOutOfRangeException($"No work flow items with group '{this.Group}' were found.");
+					}
+				}
+
 				return _steps;
 			}
 			set
