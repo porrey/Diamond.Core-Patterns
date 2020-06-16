@@ -15,82 +15,152 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using Diamond.Patterns.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Diamond.Patterns.Rules
 {
-    /// <summary>
-    /// Defines a generic repository factory that can be used to retrieve
-    /// an object that implements <see cref="IRule<TItem, TResult>" from the container.
-    /// </summary>
-    public class RulesFactory : IRulesFactory
-    {
-        /// <summary>
-        /// Creates an instance of <see cref="IRule<TItem, TResult>" with the
-        /// specififed instance of <see cref="IObjectFactory">."</see>
-        /// </summary>
-        /// <param name="objectFactory"></param>
-        public RulesFactory(IObjectFactory objectFactory)
-        {
-            this.ObjectFactory = objectFactory;
-        }
+	/// <summary>
+	/// Defines a generic repository factory that can be used to retrieve
+	/// an object that implements <see cref="IRule<TItem, TResult>" from the container.
+	/// </summary>
+	public class RulesFactory : IRulesFactory
+	{
+		/// <summary>
+		/// Creates an instance of <see cref="IRule<TItem, TResult>" with the
+		/// specififed instance of <see cref="IObjectFactory">."</see>
+		/// </summary>
+		/// <param name="objectFactory"></param>
+		public RulesFactory(IObjectFactory objectFactory)
+		{
+			this.ObjectFactory = objectFactory;
+		}
 
-        /// <summary>
-        /// Gets/sets the internal instance of <see cref="IObjectFactory">.
-        /// </summary>
-        protected IObjectFactory ObjectFactory { get; set; }
+		/// <summary>
+		/// Gets/sets the internal instance of <see cref="IObjectFactory">.
+		/// </summary>
+		protected IObjectFactory ObjectFactory { get; set; }
 
-        /// <summary>
-        /// Get all model rule instances registered based on TInterface.
-        /// </summary>
-        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
-        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
-        public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>()
-        {
-            // ***
-            // *** Get all model rules  from the container of
-            // *** type IRule<TItem>.
-            // ***
-            IEnumerable<IRule<TItem>> instances = this.ObjectFactory.GetAllInstances<IRule<TItem>>();
+		/// <summary>
+		/// Get all model rule instances registered based on TInterface.
+		/// </summary>
+		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
+		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>()
+		{
+			return this.GetAllAsync<TItem>(null);
+		}
 
-            // ***
-            // *** Make sure that there are rules registered
-            // *** for the specified TItem and group.
-            // ***
-            if (instances == null || !instances.Any())
-            {
-                throw new RulesNotFoundException<TItem>();
-            }
+		/// <summary>
+		/// Get all model rule instances registered based on TInterface and group name.
+		/// </summary>
+		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
+		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>(string group)
+		{
+			IList<IRule<TItem>> returnValue = new List<IRule<TItem>>();
 
-            return Task.FromResult(instances);
-        }
-        
-        /// <summary>
-        /// Get all model rule instances registered based on TInterface and group name.
-        /// </summary>
-        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
-        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
-        public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>(string group)
-        {
-            // ***
-            // *** Get all model rules  from the container of
-            // *** type IModelRule<TItem> and group.
-            // ***
-            IEnumerable<IRule<TItem>> instances = this.ObjectFactory.GetAllInstances<IRule<TItem>>()
-                .Where(t => t.Group == group);
+			// ***
+			// *** Get the decorator type being requested.
+			// ***
+			Type targetType = typeof(IRule<TItem>);
 
-            // ***
-            // *** Make sure that there are rules registered
-            // *** for the specified TItem and group.
-            // ***
-            if (instances == null || !instances.Any())
-            {
-                throw new RulesNotFoundException<TItem>(group);
-            }
-            
-            return Task.FromResult(instances);
-        }
-    }
+			// ***
+			// *** Get all decorators from the container of
+			// *** type IDecorator<TItem>.
+			// ***
+			IEnumerable<IRule> items = this.ObjectFactory.GetAllInstances<IRule>();
+
+			if (!String.IsNullOrEmpty(group))
+			{
+				items = items.Where(t => t.Group == group);
+			}
+
+			if (items.Count() > 0)
+			{
+				foreach (IRule item in items)
+				{
+					if (targetType.IsInstanceOfType(item))
+					{
+						returnValue.Add((IRule<TItem>)item);
+					}
+				}
+			}
+			else
+			{
+				if (!String.IsNullOrWhiteSpace(group))
+				{
+					throw new RulesNotFoundException<TItem>(group);
+				}
+				else
+				{
+					throw new RulesNotFoundException<TItem>();
+				}
+			}
+
+			return Task.FromResult<IEnumerable<IRule<TItem>>>(returnValue);
+		}
+
+		/// <summary>
+		/// Get all model rule instances registered based on TInterface and group name.
+		/// </summary>
+		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
+		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>()
+		{
+			return this.GetAllAsync<TItem, TResult>(null);
+		}
+
+		/// <summary>
+		/// Get all model rule instances registered based on TInterface and group name.
+		/// </summary>
+		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
+		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>(string group)
+		{
+			IList<IRule<TItem, TResult>> returnValue = new List<IRule<TItem, TResult>>();
+
+			// ***
+			// *** Get the decorator type being requested.
+			// ***
+			Type targetType = typeof(IRule<TItem, TResult>);
+
+			// ***
+			// *** Get all decorators from the container of
+			// *** type IDecorator<TItem>.
+			// ***
+			IEnumerable<IRule> items = this.ObjectFactory.GetAllInstances<IRule>();
+
+			if (!String.IsNullOrEmpty(group))
+			{
+				items = items.Where(t => t.Group == group);
+			}
+
+			if (items.Count() > 0)
+			{
+				foreach (IRule item in items)
+				{
+					if (targetType.IsInstanceOfType(item))
+					{
+						returnValue.Add((IRule<TItem, TResult>)item);
+					}
+				}
+			}
+			else
+			{
+				if (!String.IsNullOrWhiteSpace(group))
+				{
+					throw new RulesNotFoundException<TItem>(group);
+				}
+				else
+				{
+					throw new RulesNotFoundException<TItem>();
+				}
+			}
+
+			return Task.FromResult<IEnumerable<IRule<TItem, TResult>>>(returnValue);
+		}
+	}
 }

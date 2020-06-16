@@ -26,17 +26,31 @@ namespace Diamond.Patterns.Abstractions
     public interface IRulesFactory
     {
         /// <summary>
-        /// Get all model rule instances registered based on TInterface
+        /// Get all model rule instances registered based on TInterface.
         /// </summary>
-        /// <typeparam name="TInterface"></typeparam>
-        /// <returns>A list of IModelRule instances.</returns>
+        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
+        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
         Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>();
 
         /// <summary>
         /// Get all model rule instances registered based on TInterface and group name.
         /// </summary>
-        /// <typeparam name="TInterface">The type that this rule applies.</typeparam>
-        /// <returns>A list of IModelRule instances.</returns>
+        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
+        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
         Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>(string group);
+
+        /// <summary>
+        /// Get all model rule instances registered based on TInterface and group name.
+        /// </summary>
+        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
+        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+        Task<IEnumerable<IRule<TInterface, TResult>>> GetAllAsync<TInterface, TResult>();
+
+        /// <summary>
+        /// Get all model rule instances registered based on TInterface and group name.
+        /// </summary>
+        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
+        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+        Task<IEnumerable<IRule<TInterface, TResult>>> GetAllAsync<TInterface, TResult>(string group);
     }
 }

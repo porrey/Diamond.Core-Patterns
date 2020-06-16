@@ -21,20 +21,35 @@ namespace Diamond.Patterns.Abstractions
     /// <summary>
     /// Interface defining a generic rule.
     /// </summary>
-    /// <typeparam name="TItem"></typeparam>
-    public interface IRule<TItem>
+    public interface IRule
     {
         /// <summary>
         /// Group name to distinguish between different rule sets.
         /// </summary>
         string Group { get; set; }
+    }
 
+    /// <summary>
+    /// Interface defining a generic rule.
+    /// </summary>
+    /// <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
+    /// <typeparam name="TResult">The object type of the result.</typeparam>
+    public interface IRule<TItem, TResult> : IRule
+    {
         /// <summary>
         /// Validate entity based on the defined rule asynchronously.
         /// </summary>
         /// <param name="item">The item to be validated.</param>
         /// <returns>A boolean value indicating whether or not the rule has been
         /// validated. If false, an error message is returned.</returns>
-        Task<(bool, string)> ValidateAsync(TItem item);
+        Task<TResult> ValidateAsync(TItem item);
+    }
+
+    /// <summary>
+    /// Interface defining a generic rule.
+    /// </summary>
+    /// <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
+    public interface IRule<TItem> : IRule<TItem, (bool, string)>
+    {
     }
 }
