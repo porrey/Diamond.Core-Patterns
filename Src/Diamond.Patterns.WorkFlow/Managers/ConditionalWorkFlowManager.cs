@@ -178,12 +178,14 @@ namespace Diamond.Patterns.WorkFlow
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, true);
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
 							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
+							returnValue = true;
 						}
 						else
 						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed, true);
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, false);
 							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' failed.");
+							returnValue = false;
 						}
 
 						// ***
@@ -198,6 +200,13 @@ namespace Diamond.Patterns.WorkFlow
 				}
 			}
 
+			// ***
+			// *** Check if the context contains a failed flag.
+			// ***
+			if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed))
+			{
+				returnValue = !context.Properties.Get<bool>(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed);
+			}
 
 			return returnValue;
 		}
