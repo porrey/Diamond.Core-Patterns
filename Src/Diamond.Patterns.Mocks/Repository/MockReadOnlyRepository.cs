@@ -23,6 +23,7 @@ namespace Diamond.Patterns.Mocks
 		}
 
 		public IList<TInterface> Items { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; }
 
 		public Task<IEnumerable<TInterface>> GetAllAsync()
 		{

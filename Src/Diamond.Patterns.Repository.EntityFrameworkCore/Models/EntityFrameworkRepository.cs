@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -46,10 +46,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		protected abstract DbSet<TEntity> MyDbSet(TContext model);
 		protected abstract TContext GetNewDbContext { get; }
 		public virtual IEntityFactory<TInterface> ModelFactory { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		public virtual Task<IEnumerable<TInterface>> GetAllAsync()
 		{
 			IEnumerable<TInterface> returnValue = null;
+
+			this.LoggerSubscriber.Verbose($"{nameof(GetAllAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			using (TContext db = this.GetNewDbContext)
 			{
@@ -63,6 +66,8 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			IEnumerable<TInterface> returnValue = null;
 
+			this.LoggerSubscriber.Verbose($"{nameof(GetAsync)} called for type '{typeof(TInterface).Name}'.");
+
 			using (TContext db = this.GetNewDbContext)
 			{
 				returnValue = this.MyDbSet(db).AsNoTracking().Where(predicate).ToArray();
@@ -73,12 +78,15 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 
 		public virtual Task<IRepositoryContext> GetContextAsync()
 		{
+			this.LoggerSubscriber.Verbose($"{nameof(GetContextAsync)} called.");
 			return Task.FromResult((IRepositoryContext)this.GetNewDbContext);
 		}
 
 		public virtual Task<IQueryable<TInterface>> GetQueryableAsync(IRepositoryContext context)
 		{
 			IQueryable<TInterface> returnValue = null;
+
+			this.LoggerSubscriber.Verbose($"{nameof(GetQueryableAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			if (context is TContext db)
 			{
@@ -96,10 +104,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			bool returnValue = false;
 
+			this.LoggerSubscriber.Verbose($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}'.");
+
 			using (TContext db = this.GetNewDbContext)
 			{
 				db.Entry((TEntity)item).State = EntityState.Modified;
 				int result = await db.SaveChangesAsync();
+				this.LoggerSubscriber.Verbose($"{nameof(UpdateAsync)}: Records updated = {result}.");
 				returnValue = (result == 1);
 			}
 
@@ -110,10 +121,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			(bool result, TInterface entity) = (false, default);
 
+			this.LoggerSubscriber.Verbose($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}'.");
+
 			using (TContext db = this.GetNewDbContext)
 			{
 				entity = this.MyDbSet(db).Add((TEntity)item).Entity;
 				result = (await db.SaveChangesAsync() == 1);
+				this.LoggerSubscriber.Verbose($"{nameof(AddAsync)}: Records updated = {result}.");
 			}
 
 			return (result, entity);
@@ -123,10 +137,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			bool returnValue = false;
 
+			this.LoggerSubscriber.Verbose($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}'.");
+
 			using (TContext db = this.GetNewDbContext)
 			{
 				db.Entry((TEntity)item).State = EntityState.Deleted;
 				int result = await db.SaveChangesAsync();
+				this.LoggerSubscriber.Verbose($"{nameof(DeleteAsync)}: Records updated = {result}.");
 				returnValue = (result == 1);
 			}
 
@@ -135,23 +152,22 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 
 		public virtual Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
+			this.LoggerSubscriber.Verbose($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			((TContext)repositoryContext).Entry((TEntity)item).State = EntityState.Modified;
 			return Task.FromResult(true);
 		}
 
 		public virtual Task<TInterface> AddAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
+			this.LoggerSubscriber.Verbose($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			return Task.FromResult<TInterface>(this.MyDbSet((TContext)repositoryContext).Add((TEntity)item).Entity);
 		}
 
 		public virtual Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
-			bool returnValue = false;
-
+			this.LoggerSubscriber.Verbose($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			((TContext)repositoryContext).Entry((TEntity)item).State = EntityState.Deleted;
-			returnValue = true;
-
-			return Task.FromResult(returnValue);
+			return Task.FromResult(true);
 		}
 	}
 }

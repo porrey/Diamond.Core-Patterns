@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.13.0</Version>
-		<FileVersion>2.13.0</FileVersion>
-		<AssemblyVersion>2.13.0</AssemblyVersion>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Version>2.16.0</Version>
+		<FileVersion>2.16.0</FileVersion>
+		<AssemblyVersion>2.16.0</AssemblyVersion>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
@@ -31,8 +31,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EntityFramework" Version="6.2.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
-		<PackageReference Include="EntityFramework" Version="6.4.4" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+		<PackageReference Include="EntityFramework" Version="6.2.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

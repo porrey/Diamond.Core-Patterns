@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -32,6 +32,13 @@ namespace Diamond.Patterns.Decorator
 			this.ObjectFactory = objectFactory;
 		}
 
+		public DecoratorFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
+		{
+			this.ObjectFactory = objectFactory;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 		protected IObjectFactory ObjectFactory { get; set; }
 
 		public Task<IDecorator<TItem, TResult>> GetAsync<TItem, TResult>()
@@ -42,12 +49,13 @@ namespace Diamond.Patterns.Decorator
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(IDecorator<TItem, TResult>);
+			this.LoggerSubscriber.Verbose($"Finding an IDecorator of type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			IEnumerable<IDecorator> items = this.ObjectFactory.GetAllInstances<IDecorator>();
+			IEnumerable <IDecorator> items = this.ObjectFactory.GetAllInstances<IDecorator>();
 
 			// ***
 			// *** Within the list, find the target decorator.
@@ -56,7 +64,9 @@ namespace Diamond.Patterns.Decorator
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
+					this.LoggerSubscriber.Verbose($"IDecorator of type '{targetType.Name}' was found.");
 					returnValue = (IDecorator<TItem, TResult>)item;
+					this.LoggerSubscriber.AddToInstance(returnValue);
 					break;
 				}
 			}
@@ -66,6 +76,7 @@ namespace Diamond.Patterns.Decorator
 			// ***
 			if (returnValue == null)
 			{
+				this.LoggerSubscriber.Error($"IDecorator of type '{targetType.Name}' was NOT found. Throwing exception...");
 				throw new DecoratorNotFoundException<TItem, TResult>();
 			}
 
@@ -80,6 +91,7 @@ namespace Diamond.Patterns.Decorator
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(IDecorator<TItem, TResult>);
+			this.LoggerSubscriber.Verbose($"Finding an IDecorator of type '{targetType.Name}' and container registration name of '{name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
@@ -94,10 +106,13 @@ namespace Diamond.Patterns.Decorator
 			{
 				if (targetType.IsInstanceOfType(decorator))
 				{
+					this.LoggerSubscriber.Verbose($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was found.");
 					returnValue = (IDecorator<TItem, TResult>)decorator;
+					this.LoggerSubscriber.AddToInstance(returnValue);
 				}
 				else
 				{
+					this.LoggerSubscriber.Error($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was NOT found. Throwing exception...");
 					throw new DecoratorNotFoundException<TItem, TResult>(name);
 				}
 			}

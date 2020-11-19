@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -21,7 +21,7 @@ namespace Diamond.Patterns.Abstractions
 	/// <summary>
 	/// Defines a factory to create/retrieve a specification.
 	/// </summary>
-	public interface IUnitOfWorkFactory
+	public interface IUnitOfWorkFactory : ILoggerPublisher
 	{
 		/// <summary>
 		/// Gets a unit of work that takes in TSourceItem and returns TResult.

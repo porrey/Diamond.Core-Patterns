@@ -49,7 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mocks", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mocks.Unity", "Diamond.Patterns.Mocks.Unity\Diamond.Patterns.Mocks.Unity.csproj", "{B920401A-7395-4664-A3BC-257452133DD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Repository.EntityFrameworkCore", "Diamond.Patterns.Repository.EntityFrameworkCore\Diamond.Patterns.Repository.EntityFrameworkCore.csproj", "{6517F332-2D93-455F-87AB-2F1A7B97A786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Repository.EntityFrameworkCore", "Diamond.Patterns.Repository.EntityFrameworkCore\Diamond.Patterns.Repository.EntityFrameworkCore.csproj", "{6517F332-2D93-455F-87AB-2F1A7B97A786}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{C97245E8-38D3-45D0-91D4-1DD50833FF7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -156,6 +158,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FC593AC-5515-4A22-A64A-9B3720F7A7C8} = {C97245E8-38D3-45D0-91D4-1DD50833FF7B}
+		{9DB3A74C-9496-4B63-B78E-699C6FD51428} = {C97245E8-38D3-45D0-91D4-1DD50833FF7B}
+		{0A7CAE1E-E8EE-4605-9C63-9361ACCAE4CC} = {C97245E8-38D3-45D0-91D4-1DD50833FF7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

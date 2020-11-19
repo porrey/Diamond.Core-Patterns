@@ -393,10 +393,30 @@
             (by type) and optionally a group name.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``1" -->
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``1(System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``2" -->
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``2(System.String)" -->
+        <member name="M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``1">
+            <summary>
+            Get all model rule instances registered based on TInterface.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Patterns.Abstractions.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``1(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Patterns.Abstractions.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``2">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Patterns.Abstractions.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Patterns.Abstractions.IRulesFactory.GetAllAsync``2(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Patterns.Abstractions.IRule"/> instances.</returns>
+        </member>
         <member name="T:Diamond.Patterns.Abstractions.ISpecificationFactory">
             <summary>
             Defines a factory to create/retrieve a specification.
@@ -468,6 +488,18 @@
         <member name="P:Diamond.Patterns.Abstractions.ILogger.LoggerSubscriber">
             <summary>
             Gets/sets the logger method for object instance.
+            </summary>
+        </member>
+        <member name="T:Diamond.Patterns.Abstractions.ILoggerPublisher">
+            <summary>
+            Defines an interface for objects to be designated
+            as a logger source.
+            </summary>
+        </member>
+        <member name="P:Diamond.Patterns.Abstractions.ILoggerPublisher.LoggerSubscriber">
+            <summary>
+            Gets/sets the instance of <see cref="T:Diamond.Patterns.Abstractions.ILoggerSubscriber"/> that
+            will listen for logs events originating from this instance.
             </summary>
         </member>
         <member name="T:Diamond.Patterns.Abstractions.ILoggerSubscriber">
@@ -612,6 +644,15 @@
              <param name="format"></param>
              <param name="args"></param>
         </member>
+        <member name="M:Diamond.Patterns.Abstractions.LoggerDecorator.AddToInstance(Diamond.Patterns.Abstractions.ILoggerSubscriber,System.Object)">
+            <summary>
+            Adds an instance of <see cref="T:Diamond.Patterns.Abstractions.ILoggerSubscriber"/> to an object that implements
+            <see cref="T:Diamond.Patterns.Abstractions.ILoggerPublisher"/>.
+            </summary>
+            <param name="loggerSubscriber">The instance of <see cref="T:Diamond.Patterns.Abstractions.ILoggerSubscriber"/> to add.</param>
+            <param name="item">An instance of an object that implements <see cref="T:Diamond.Patterns.Abstractions.ILoggerPublisher"/>.</param>
+            <returns>returns true if the object instance implements <see cref="T:Diamond.Patterns.Abstractions.ILoggerPublisher"/>; false otherwise.</returns>
+        </member>
         <member name="T:Diamond.Patterns.Abstractions.LoggerDelegate">
             <summary>
             A delegate for a callback method that can be used to obtain
@@ -661,6 +702,28 @@
             The entry is verbose information that can be used to understand
             the detailed flow of an application.
             </summary>
+        </member>
+        <member name="T:Diamond.Patterns.Abstractions.NullLoggerSubscriber">
+            <summary>
+            Provides a Null Logger implementation.
+            </summary>
+        </member>
+        <member name="M:Diamond.Patterns.Abstractions.NullLoggerSubscriber.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Diamond.Patterns.Abstractions.NullLoggerSubscriber"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Patterns.Abstractions.NullLoggerSubscriber.Logger">
+            <summary>
+            Gets/sets the <see cref="T:Diamond.Patterns.Abstractions.LoggerDelegate"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Patterns.Abstractions.NullLoggerSubscriber.OnInternalLogger(Diamond.Patterns.Abstractions.LoggingLevel,System.String)">
+            <summary>
+            Handles the event.
+            </summary>
+            <param name="loggingLevel">Specifies the type of information represented by a log entry.</param>
+            <param name="message">Contains the log entry.</param>
         </member>
         <member name="T:Diamond.Patterns.Abstractions.IEntity">
             <summary>
@@ -965,6 +1028,21 @@
             Interface defining a generic rule.
             </summary>
             <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
+        </member>
+        <member name="T:Diamond.Patterns.Abstractions.IRuleResult">
+            <summary>
+            Contains details of the result of applying a rule.
+            </summary>
+        </member>
+        <member name="P:Diamond.Patterns.Abstractions.IRuleResult.Passed">
+            <summary>
+            Indicates if the rule passed or not.
+            </summary>
+        </member>
+        <member name="P:Diamond.Patterns.Abstractions.IRuleResult.ErrorMessage">
+            <summary>
+            The error message in case the rule did not pass.
+            </summary>
         </member>
         <member name="T:Diamond.Patterns.Abstractions.ISpecification">
             <summary>

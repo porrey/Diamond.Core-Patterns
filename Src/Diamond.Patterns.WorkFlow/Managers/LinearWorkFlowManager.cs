@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -86,7 +86,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
 		/// will listen for logs events originating from this instance.
 		/// </summary>
-		public ILoggerSubscriber LoggerSubscriber { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
 		{
@@ -216,6 +216,7 @@ namespace Diamond.Patterns.WorkFlow
 			}
 			catch (Exception ex)
 			{
+				this.LoggerSubscriber.Exception(ex);
 				context.SetException(ex);
 				returnValue = false;
 			}

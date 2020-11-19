@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -49,7 +49,7 @@ namespace Diamond.Patterns.Abstractions
     /// Interface defining a generic rule.
     /// </summary>
     /// <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
-    public interface IRule<TItem> : IRule<TItem, (bool, string)>
+    public interface IRule<TItem> : IRule<TItem, IRuleResult>
     {
     }
 }

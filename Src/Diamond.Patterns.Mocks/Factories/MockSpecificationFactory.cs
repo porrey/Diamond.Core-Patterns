@@ -12,6 +12,7 @@ namespace Diamond.Patterns.Mocks
 			this.Items = items;
 		}
 
+		public ILoggerSubscriber LoggerSubscriber { get; set; }
 		protected IDictionary<string, ISpecification> Items { get; set; }
 
 		public Task<ISpecification<TResult>> GetAsync<TResult>()

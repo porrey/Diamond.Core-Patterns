@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -23,34 +23,30 @@ namespace Diamond.Patterns.Abstractions
     /// Defines a factory that can return all rules defined for a specific model
     /// (by type) and optionally a group name.
     /// </summary>
-    public interface IRulesFactory
+    public interface IRulesFactory : ILoggerPublisher
     {
         /// <summary>
         /// Get all model rule instances registered based on TInterface.
         /// </summary>
-        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
-        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+        /// <returns>A list of <see cref="IRule"/> instances.</returns>
         Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>();
 
         /// <summary>
         /// Get all model rule instances registered based on TInterface and group name.
         /// </summary>
-        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
-        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+        /// <returns>A list of <see cref="IRule"/> instances.</returns>
         Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>(string group);
 
         /// <summary>
         /// Get all model rule instances registered based on TInterface and group name.
         /// </summary>
-        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
-        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+        /// <returns>A list of <see cref="IRule"/> instances.</returns>
         Task<IEnumerable<IRule<TInterface, TResult>>> GetAllAsync<TInterface, TResult>();
 
         /// <summary>
         /// Get all model rule instances registered based on TInterface and group name.
         /// </summary>
-        /// <typeparam name="TItem">The type of the model being validated.</typeparam>
-        /// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+        /// <returns>A list of <see cref="IRule"/> instances.</returns>
         Task<IEnumerable<IRule<TInterface, TResult>>> GetAllAsync<TInterface, TResult>(string group);
     }
 }

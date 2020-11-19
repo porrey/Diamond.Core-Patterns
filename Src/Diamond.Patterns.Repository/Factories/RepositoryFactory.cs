@@ -1,5 +1,5 @@
 // ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // ***
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -26,7 +26,14 @@ namespace Diamond.Patterns.Repository
 			this.ObjectFactory = objectFactory;
 		}
 
+		public RepositoryFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
+		{
+			this.ObjectFactory = objectFactory;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
 		protected IObjectFactory ObjectFactory { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		public Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity
 		{
@@ -42,10 +49,13 @@ namespace Diamond.Patterns.Repository
 			// ***
 			if (name == null)
 			{
+				this.LoggerSubscriber.Verbose($"Retrieving IRepository for type '{typeof(TInterface)}'.");
 				returnValue = this.ObjectFactory.GetInstance<IRepository<TInterface>>();
+				this.LoggerSubscriber.AddToInstance(returnValue);
 			}
 			else
 			{
+				this.LoggerSubscriber.Verbose($"Retrieving IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 				returnValue = this.ObjectFactory.GetInstance<IRepository<TInterface>>(name);
 			}
 
@@ -61,25 +71,26 @@ namespace Diamond.Patterns.Repository
 		{
 			IReadOnlyRepository<TInterface> returnValue = null;
 
+			this.LoggerSubscriber.Verbose($"Retrieving IReadOnlyRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
 			IRepository repository = await this.GetAsync<TInterface>(name);
 
-			if (repository is IReadOnlyRepository<TInterface>)
+			if (repository is IReadOnlyRepository<TInterface> castedRepository)
 			{
+				this.LoggerSubscriber.Verbose($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
+
 				// ***
 				// *** Cast the repository to IRepositry<T> and return it.
 				// ***
-				returnValue = repository as IReadOnlyRepository<TInterface>;
-
-				if (returnValue == null)
-				{
-					throw new RepositoryNotReadableException(repository.GetType());
-				}
+				returnValue = castedRepository;
+				this.LoggerSubscriber.Verbose($"The repository '{repository.GetType().Name}' implements IReadOnlyRepository.");
 			}
 			else
 			{
+				this.LoggerSubscriber.Error($"The repository '{repository.GetType().Name}' does NOT implement IReadOnlyRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
 
@@ -95,25 +106,26 @@ namespace Diamond.Patterns.Repository
 		{
 			IWritableRepository<TInterface> returnValue = null;
 
+			this.LoggerSubscriber.Verbose($"Retrieving IWritableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
 			IRepository repository = await this.GetAsync<TInterface>(name);
 
-			if (repository is IWritableRepository<TInterface>)
+			if (repository is IWritableRepository<TInterface> castedRepository)
 			{
+				this.LoggerSubscriber.Verbose($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
+
 				// ***
 				// *** Cast the repository to IRepositry<T> and return it.
 				// ***
-				returnValue = repository as IWritableRepository<TInterface>;
-
-				if (returnValue == null)
-				{
-					throw new RepositoryNotWritableException(repository.GetType());
-				}
+				returnValue = castedRepository;
+				this.LoggerSubscriber.Verbose($"The repository '{repository.GetType().Name}' implements IWritableRepository.");
 			}
 			else
 			{
+				this.LoggerSubscriber.Error($"The repository '{repository.GetType().Name}' does NOT implement IWritableRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
 
@@ -129,20 +141,24 @@ namespace Diamond.Patterns.Repository
 		{
 			IQueryableRepository<TInterface> returnValue = null;
 
+			this.LoggerSubscriber.Verbose($"Retrieving IQueryableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
 			IRepository repository = await this.GetAsync<TInterface>(name);
 
-			if (repository is IQueryableRepository<TInterface>)
+			if (repository is IQueryableRepository<TInterface> castedRepository)
 			{
 				// ***
 				// *** Cast the repository to IRepositry<T> and return it.
 				// ***
-				returnValue = repository as IQueryableRepository<TInterface>;
+				returnValue = castedRepository;
+				this.LoggerSubscriber.Verbose($"The repository '{repository.GetType().Name}' implements IQueryableRepository.");
 			}
 			else
 			{
+				this.LoggerSubscriber.Error($"The repository '{repository.GetType().Name}' does NOT implement IQueryableRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
 

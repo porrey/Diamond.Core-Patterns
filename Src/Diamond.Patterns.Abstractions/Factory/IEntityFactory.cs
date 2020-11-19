@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -22,7 +22,7 @@ namespace Diamond.Patterns.Abstractions
 	/// Defines a factory to create entity models.
 	/// </summary>
 	/// <typeparam name="TInterface">The type of the entity model.</typeparam>
-	public interface IEntityFactory<TInterface> where TInterface : IEntity
+	public interface IEntityFactory<TInterface> : ILoggerPublisher where TInterface : IEntity
 	{
 		/// <summary>
 		/// Creates a new empty instance of an entity model.

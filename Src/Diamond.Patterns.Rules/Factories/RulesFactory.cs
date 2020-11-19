@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -37,6 +37,14 @@ namespace Diamond.Patterns.Rules
 		{
 			this.ObjectFactory = objectFactory;
 		}
+
+		public RulesFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
+		{
+			this.ObjectFactory = objectFactory;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		/// <summary>
 		/// Gets/sets the internal instance of <see cref="IObjectFactory">.
@@ -84,6 +92,7 @@ namespace Diamond.Patterns.Rules
 				{
 					if (targetType.IsInstanceOfType(item))
 					{
+						this.LoggerSubscriber.AddToInstance(item);
 						returnValue.Add((IRule<TItem>)item);
 					}
 				}
@@ -126,6 +135,7 @@ namespace Diamond.Patterns.Rules
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(IRule<TItem, TResult>);
+			this.LoggerSubscriber.Verbose($"Finding a Rules with group '{group}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
@@ -140,16 +150,21 @@ namespace Diamond.Patterns.Rules
 
 			if (items.Count() > 0)
 			{
+				this.LoggerSubscriber.Verbose($"{items.Count()} Rules with group '{group}' and Target Type '{targetType.Name}' were found.");
+
 				foreach (IRule item in items)
 				{
 					if (targetType.IsInstanceOfType(item))
 					{
+						this.LoggerSubscriber.AddToInstance(item);
 						returnValue.Add((IRule<TItem, TResult>)item);
 					}
 				}
 			}
 			else
 			{
+				this.LoggerSubscriber.Verbose("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...");
+
 				if (!String.IsNullOrWhiteSpace(group))
 				{
 					throw new RulesNotFoundException<TItem>(group);

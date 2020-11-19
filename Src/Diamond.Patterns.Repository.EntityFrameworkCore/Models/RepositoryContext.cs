@@ -1,5 +1,5 @@
 // ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -79,11 +79,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 			return returnValue;
 		}
 
+		[Obsolete]
 		public virtual Task EnableBulkLoadAsync()
 		{
 			return Task.FromResult(0);
 		}
 
+		[Obsolete]
 		public virtual Task DisableBulkLoadAsync()
 		{
 			return Task.FromResult(0);

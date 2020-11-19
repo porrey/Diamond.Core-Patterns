@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -33,6 +33,13 @@ namespace Diamond.Patterns.UnitOfWork
 			this.ObjectFactory = objectFactory;
 		}
 
+		public UnitOfWorkFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
+		{
+			this.ObjectFactory = objectFactory;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 		protected IObjectFactory ObjectFactory { get; set; }
 
 		public Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name)
@@ -43,6 +50,7 @@ namespace Diamond.Patterns.UnitOfWork
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(IUnitOfWork<TResult, TSourceItem>);
+			this.LoggerSubscriber.Verbose($"Finding a Unit of Work with key '{name}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
@@ -50,6 +58,7 @@ namespace Diamond.Patterns.UnitOfWork
 			// ***
 			IEnumerable<IUnitOfWork> items = this.ObjectFactory.GetAllInstances<IUnitOfWork>();
 			IEnumerable<IUnitOfWork> keyItems = items.Where(t => t.Key == name);
+			this.LoggerSubscriber.Verbose($"{keyItems.Count()} match items of the target type were found.");
 
 			// ***
 			// *** Within the list, find the target decorator.
@@ -59,6 +68,8 @@ namespace Diamond.Patterns.UnitOfWork
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (IUnitOfWork<TResult, TSourceItem>)item;
+					this.LoggerSubscriber.AddToInstance(returnValue);
+					this.LoggerSubscriber.Verbose($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was found.");
 					break;
 				}
 			}
@@ -68,6 +79,7 @@ namespace Diamond.Patterns.UnitOfWork
 			// ***
 			if (returnValue == null)
 			{
+				this.LoggerSubscriber.Verbose($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(name);
 			}
 

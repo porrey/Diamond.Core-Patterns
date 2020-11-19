@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
-		<Version>2.13.0</Version>
+		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
+		<Version>2.16.0</Version>
 		<Description>Provides code first database strategies for MS SQL Server.</Description>
-		<FileVersion>2.13.0</FileVersion>
-		<AssemblyVersion>2.13.0</AssemblyVersion>
+		<FileVersion>2.16.0</FileVersion>
+		<AssemblyVersion>2.16.0</AssemblyVersion>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
@@ -24,14 +24,13 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+	<PropertyGroup>
 		<WarningsAsErrors>NU1605</WarningsAsErrors>
 		<NoWarn>1701;1702;NU1701</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EntityFramework" Version="6.2.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
-		<PackageReference Include="EntityFramework" Version="6.4.4" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+		<PackageReference Include="EntityFramework" Version="6.2.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -14,11 +14,13 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
+using System;
 using Diamond.Patterns.Abstractions;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Diamond.Patterns.Repository.EntityFrameworkCore
 {
+	[Obsolete]
 	public class StorageConfiguration : IStorageConfiguration
 	{
 		public StorageConfiguration(string connectionString)

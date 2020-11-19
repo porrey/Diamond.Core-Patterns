@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<AssemblyName>Diamond.Patterns.Repository.EntityFramework</AssemblyName>
 		<RootNamespace>Diamond.Patterns.Repository.EntityFramework</RootNamespace>
 		<Product>Diamond Pattern Library - Entity Framework Repository</Product>
-		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides an implementation of the repository that can be used with Entity Framework.</Description>
-		<Version>2.13.0</Version>
-		<FileVersion>2.13.0</FileVersion>
-		<AssemblyVersion>2.13.0</AssemblyVersion>
+		<Version>2.16.0</Version>
+		<FileVersion>2.16.0</FileVersion>
+		<AssemblyVersion>2.16.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
@@ -29,13 +29,12 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+	<PropertyGroup>
 	  <NoWarn>1701;1702;NU1701</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EntityFramework" Version="6.2.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
-		<PackageReference Include="EntityFramework" Version="6.4.4" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+		<PackageReference Include="EntityFramework" Version="6.2.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

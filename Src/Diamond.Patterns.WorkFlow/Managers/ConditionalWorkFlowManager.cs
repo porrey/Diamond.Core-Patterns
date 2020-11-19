@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -115,7 +115,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
 		/// will listen for logs events originating from this instance.
 		/// </summary>
-		public ILoggerSubscriber LoggerSubscriber { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
 		{
@@ -215,10 +215,13 @@ namespace Diamond.Patterns.WorkFlow
 		{
 			if (this.Steps == null || this.Steps.Count() == 0)
 			{
+				this.LoggerSubscriber.Verbose("Loading Work-Flow steps."); 
 				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(this.Group)).ToArray();
+				this.LoggerSubscriber.Verbose($"{this.Steps.Count()} steps were loaded.");
 
 				if (this.Steps.Count() == 0)
 				{
+					this.LoggerSubscriber.Verbose($"Throwing exception because no steps were found for the Work-Flow with group name '{this.Group}'.");
 					throw new MissingStepsException(this.Group);
 				}
 			}
@@ -230,24 +233,31 @@ namespace Diamond.Patterns.WorkFlow
 
 			try
 			{
+				this.LoggerSubscriber.Verbose($"Executing Work-Flow step '{step.Name}'.");
 				if (await step.ExecuteStepAsync(context))
 				{
+					this.LoggerSubscriber.Verbose($"The Work-Flow step '{step.Name}' completed successfully.");
 					returnValue = true;
 				}
 				else
 				{
+					this.LoggerSubscriber.Error($"The Work-Flow step '{step.Name}' failed.");
+
 					if (context.HasException())
 					{
+						this.LoggerSubscriber.Verbose($"The Work-Flow step '{step.Name}' had an exception set.");
 						context.SetException(new WorkFlowFailureException(context.GetException(), step.Name, step.Ordinal));
 					}
 					else
 					{
+						this.LoggerSubscriber.Warning($"The Work-Flow step '{step.Name}' did NOT have an exception set.");
 						context.SetException(new UnknownFailureException(step.Name, step.Ordinal));
 					}
 				}
 			}
 			catch (Exception ex)
 			{
+				this.LoggerSubscriber.Exception(ex);
 				context.SetException(ex);
 				returnValue = false;
 			}

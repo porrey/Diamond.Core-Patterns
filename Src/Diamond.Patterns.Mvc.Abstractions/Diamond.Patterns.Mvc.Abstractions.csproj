@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>2.13.1</Version>
-		<FileVersion>2.13.1</FileVersion>
-		<AssemblyVersion>2.13.1</AssemblyVersion>
+		<Version>2.16.0</Version>
+		<FileVersion>2.16.0</FileVersion>
+		<AssemblyVersion>2.16.0</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>Provides concrete implementations for Diamond.Patterns.Mvc.</Description>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -24,19 +24,9 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup >
+	<PropertyGroup>
 		<DocumentationFile>Diamond.Patterns.Mvc.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <None Remove="Diamond.Patterns.Mvc.Abstractions.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Diamond.Patterns.Mvc.Abstractions.xml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
@@ -54,6 +44,12 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Diamond.Patterns.Mvc.Abstractions.xml">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

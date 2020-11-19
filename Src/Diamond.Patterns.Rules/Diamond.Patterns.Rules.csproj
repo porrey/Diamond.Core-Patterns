@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.14.0</Version>
-		<FileVersion>2.14.0</FileVersion>
-		<AssemblyVersion>2.14.0</AssemblyVersion>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
+		<Version>2.16.0</Version>
+		<FileVersion>2.16.0</FileVersion>
+		<AssemblyVersion>2.16.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
-		<Product>Diamond Pattern Library -Rules Pattern</Product>
+		<Product>Diamond Pattern Library - Rules Pattern</Product>
 		<Description>This library provides a basic implementation of the Rules pattern.</Description>
 		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -16,7 +16,6 @@
 		<PackageIconUrl></PackageIconUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<RootNamespace>Diamond.Patterns.ModelRuleFactory</RootNamespace>
 		<PackageIcon>Diamond.Patterns.png</PackageIcon>
 		<NeutralLanguage>English (United States)</NeutralLanguage>
 		<Company>Daniel M. Porrey</Company>

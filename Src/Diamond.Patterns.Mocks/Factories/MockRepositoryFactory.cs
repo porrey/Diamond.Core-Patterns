@@ -12,6 +12,7 @@ namespace Diamond.Patterns.Mocks
 		}
 
 		public IEnumerable<IRepository> Items { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; }
 
 		public Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity
 		{

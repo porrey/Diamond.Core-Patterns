@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -16,6 +16,7 @@
 // *** 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 using Unity;
@@ -25,23 +26,41 @@ using Unity.Lifetime;
 
 namespace Diamond.Patterns.ObjectFactory.Unity
 {
-	public class ObjectFactory : IObjectFactory
+	public class ObjectFactory : IObjectFactory, ILoggerPublisher
 	{
 		public ObjectFactory(IUnityContainer unity)
 		{
 			this.Unity = unity;
 		}
 
+		public ObjectFactory(IUnityContainer unity, ILoggerSubscriber loggerSubscriber)
+		{
+			this.Unity = unity;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
 		internal IUnityContainer Unity { get; set; }
+
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		public IEnumerable<object> GetAllInstances(Type objectType)
 		{
-			return this.Unity.ResolveAll(objectType);
+			IEnumerable<object> returnValue = this.Unity.ResolveAll(objectType);
+
+			returnValue.Select(t => this.LoggerSubscriber.AddToInstance(t));
+			returnValue.Select(t => this.InitializeIfRequiredAsync(t));
+
+			return returnValue;
 		}
 
 		public IEnumerable<TService> GetAllInstances<TService>()
 		{
-			return this.Unity.ResolveAll<TService>();
+			IEnumerable<TService> returnValue = this.Unity.ResolveAll<TService>();
+
+			returnValue.Select(t => this.LoggerSubscriber.AddToInstance(t));
+			returnValue.Select(t => this.InitializeIfRequiredAsync(t));
+
+			return returnValue;
 		}
 
 		public object GetInstance(Type objectType, bool skipInitialization = false)
@@ -49,7 +68,13 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			object returnValue = default;
 
 			returnValue = this.Unity.Resolve(objectType);
-			if (!skipInitialization) { this.InitializeIfRequiredAsync(returnValue).Wait(); }
+
+			this.LoggerSubscriber.AddToInstance(returnValue);
+
+			if (!skipInitialization)
+			{
+				this.InitializeIfRequiredAsync(returnValue).Wait();
+			}
 
 			return returnValue;
 		}
@@ -59,7 +84,12 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			object returnValue = default;
 
 			returnValue = this.Unity.Resolve(objectType, name);
-			this.InitializeIfRequiredAsync(returnValue).Wait();
+			this.LoggerSubscriber.AddToInstance(returnValue);
+
+			if (!skipInitialization)
+			{
+				this.InitializeIfRequiredAsync(returnValue).Wait();
+			}
 
 			return returnValue;
 		}
@@ -69,7 +99,12 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			TService returnValue = default;
 
 			returnValue = this.Unity.Resolve<TService>();
-			if (!skipInitialization) { this.InitializeIfRequiredAsync(returnValue).Wait(); }
+			this.LoggerSubscriber.AddToInstance(returnValue);
+
+			if (!skipInitialization)
+			{
+				this.InitializeIfRequiredAsync(returnValue).Wait();
+			}
 
 			return returnValue;
 		}
@@ -79,7 +114,12 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			TService returnValue = default;
 
 			returnValue = this.Unity.Resolve<TService>(name);
-			if (!skipInitialization) { this.InitializeIfRequiredAsync(returnValue).Wait(); }
+			this.LoggerSubscriber.AddToInstance(returnValue);
+
+			if (!skipInitialization)
+			{
+				this.InitializeIfRequiredAsync(returnValue).Wait();
+			}
 
 			return returnValue;
 		}
@@ -89,7 +129,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			// ***
 			// *** Create a list of types T
 			// ***
-			IList<T> items = new List<T>();
+			IList<T> returnValue = new List<T>();
 
 			// ***
 			// *** Check every registration to find objects that
@@ -106,11 +146,14 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 				if (target.IsAssignableFrom(source))
 				{
 					T instance = (T)this.Unity.Resolve(registration.RegisteredType, registration.Name);
-					items.Add(instance);
+					returnValue.Add(instance);
 				}
 			}
 
-			return Task.FromResult(items);
+			returnValue.Select(t => this.LoggerSubscriber.AddToInstance(t));
+			returnValue.Select(t => this.InitializeIfRequiredAsync(t));
+
+			return Task.FromResult(returnValue);
 		}
 
 		public void RegisterSingletonInstance<T>(string name, T instance)
@@ -126,15 +169,18 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 			{
 				if (initializeObject.CanInitialize && !initializeObject.IsInitialized)
 				{
+					this.LoggerSubscriber.Verbose($"Initializing instance of '{item.GetType().Name}'.");
 					returnValue = await initializeObject.InitializeAsync();
 				}
 				else
 				{
+					this.LoggerSubscriber.Verbose($"The instance of '{item.GetType().Name}' is either already initialized or cannot be initialized at this time.");
 					returnValue = true;
 				}
 			}
 			else
 			{
+				this.LoggerSubscriber.Verbose($"The instance of '{item.GetType().Name}' does not implement IRequiresInitialization.");
 				returnValue = true;
 			}
 

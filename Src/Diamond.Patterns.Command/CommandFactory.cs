@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -26,11 +26,24 @@ namespace Diamond.Patterns.Command
 			this.ObjectFactory = objectFactory;
 		}
 
+		public CommandFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
+		{
+			this.ObjectFactory = objectFactory;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
+		public ILoggerSubscriber LoggerSubscriber { get; set; }
 		protected IObjectFactory ObjectFactory { get; set; }
 
 		public Task<ICommand> GetAsync(string commandName)
 		{
-			return Task.FromResult(this.ObjectFactory.GetInstance<ICommand>(commandName));
+			ICommand returnValue = null;
+
+			this.LoggerSubscriber.Verbose($"Retrieving instance of ICommand with command name '{commandName}'.");
+			returnValue = this.ObjectFactory.GetInstance<ICommand>(commandName);
+			this.LoggerSubscriber.AddToInstance(returnValue);
+
+			return Task.FromResult(returnValue);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -15,6 +15,7 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Diamond.Patterns.Abstractions;
 using Diamond.Patterns.Mvc.Abstractions;
@@ -28,7 +29,7 @@ namespace Diamond.Patterns.Mvc
 	/// of the controller method is delegated to a Decorator that is
 	/// registered in the container using the name of the controller method.
 	/// </summary>
-	public abstract class DoControllerBase : ControllerBase, ILogger
+	public abstract class DoControllerBase : ControllerBase, ILogger, ILoggerPublisher
 	{
 		/// <summary>
 		/// Initializes an instance of <see cref="DoControllerBase"/> with
@@ -56,7 +57,7 @@ namespace Diamond.Patterns.Mvc
 		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
 		/// will listen for logs events originating from this instance.
 		/// </summary>
-		public ILoggerSubscriber LoggerSubscriber { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		/// <summary>
 		/// Gets/sets an instance of <see cref="IDecoratorFactory"/>.
@@ -71,6 +72,7 @@ namespace Diamond.Patterns.Mvc
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
 		protected Task<ActionResult<TResult>> Do<TResult>(string decoratorName)
 		{
+			this.LoggerSubscriber.Verbose($"Do method called with decorator name '{decoratorName}'.");
 			return this.Do<object, TResult>(decoratorName, null);
 		}
 
@@ -148,6 +150,15 @@ namespace Diamond.Patterns.Mvc
 			}
 
 			return returnValue;
+		}
+
+		/// <summary>
+		/// Logs a method call.
+		/// </summary>
+		/// <param name="name"></param>
+		protected void LogMethodCall([CallerMemberName] string name = null)
+		{
+			this.LoggerSubscriber.Verbose($"Controller method '{name}' was called.");
 		}
 	}
 }

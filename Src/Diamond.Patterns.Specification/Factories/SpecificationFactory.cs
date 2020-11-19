@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -27,6 +27,13 @@ namespace Diamond.Patterns.Specification
 			this.ObjectFactory = objectFactory;
 		}
 
+		public SpecificationFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
+		{
+			this.ObjectFactory = objectFactory;
+			this.LoggerSubscriber = loggerSubscriber;
+		}
+
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 		protected IObjectFactory ObjectFactory { get; set; }
 
 		public async Task<ISpecification<TResult>> GetAsync<TResult>()
@@ -42,6 +49,7 @@ namespace Diamond.Patterns.Specification
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(ISpecification<TResult>);
+			this.LoggerSubscriber.Verbose($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
@@ -56,10 +64,13 @@ namespace Diamond.Patterns.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
+					this.LoggerSubscriber.Verbose($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TResult>)item;
+					this.LoggerSubscriber.AddToInstance(returnValue);
 				}
 				else
 				{
+					this.LoggerSubscriber.Verbose($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 					throw new SpecificationNotFoundException<TResult>(name);
 				}
 			}
@@ -75,6 +86,7 @@ namespace Diamond.Patterns.Specification
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(ISpecification<TParameter, TResult>);
+			this.LoggerSubscriber.Verbose($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
@@ -89,10 +101,13 @@ namespace Diamond.Patterns.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
+					this.LoggerSubscriber.Verbose($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TParameter, TResult>)item;
+					this.LoggerSubscriber.AddToInstance(returnValue);
 				}
 				else
 				{
+					this.LoggerSubscriber.Verbose($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 					throw new SpecificationNotFoundException<TParameter, TResult>(name);
 				}
 			}

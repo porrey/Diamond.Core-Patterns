@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -25,7 +25,7 @@ namespace Diamond.Patterns.Mvc.Unity
 	public delegate void OnAfterCreateDeleagte(ControllerContext context, object controller);
 	public delegate void OnReleaseControllerDeleagte(ControllerContext context, object controller);
 
-	public class ControllerActivator : IControllerActivator, ILogger
+	public class ControllerActivator : IControllerActivator, ILogger, ILoggerPublisher
 	{
 		public OnBeforeCreateDeleagte OnBeforeCreate { get; set; }
 		public OnAfterCreateDeleagte OnAfterCreate { get; set; }
@@ -48,7 +48,7 @@ namespace Diamond.Patterns.Mvc.Unity
 		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
 		/// will listen for logs events originating from this instance.
 		/// </summary>
-		public ILoggerSubscriber LoggerSubscriber { get; set; }
+		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		public object Create(ControllerContext context)
 		{
@@ -57,6 +57,7 @@ namespace Diamond.Patterns.Mvc.Unity
 			this.LoggerSubscriber.Verbose("Method Create() was called on ControllerActivator.");
 			this.OnBeforeCreate?.Invoke(context);
 			returnValue = this.Container.Resolve(context.ActionDescriptor.ControllerTypeInfo.AsType());
+			this.LoggerSubscriber.AddToInstance(returnValue);
 			this.OnAfterCreate?.Invoke(context, returnValue);
 
 			return returnValue;

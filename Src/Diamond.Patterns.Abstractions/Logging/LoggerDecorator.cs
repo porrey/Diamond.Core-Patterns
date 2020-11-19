@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -201,6 +201,31 @@ namespace Diamond.Patterns.Abstractions
 		public static void Verbose(this ILoggerSubscriber loggerSubscriber, string format, params object[] args)
 		{
 			loggerSubscriber.Log(LoggingLevel.Verbose, format, args);
+		}
+
+		/// <summary>
+		/// Adds an instance of <see cref="ILoggerSubscriber"/> to an object that implements
+		/// <see cref="ILoggerPublisher"/>.
+		/// </summary>
+		/// <param name="loggerSubscriber">The instance of <see cref="ILoggerSubscriber"/> to add.</param>
+		/// <param name="item">An instance of an object that implements <see cref="ILoggerPublisher"/>.</param>
+		/// <returns>returns true if the object instance implements <see cref="ILoggerPublisher"/>; false otherwise.</returns>
+		public static bool AddToInstance(this ILoggerSubscriber loggerSubscriber, object item)
+		{
+			bool returnValue = false;
+
+			if (item is ILoggerPublisher loggerPublisher)
+			{
+				loggerSubscriber.Verbose($"Setting ILoggerSubscriber on the instance of '{item.GetType().Name}'.");
+				loggerPublisher.LoggerSubscriber = loggerSubscriber;
+				returnValue = true;
+			}
+			else
+			{
+				loggerSubscriber.Verbose($"The instance of '{item.GetType().Name}' does not implement ILoggerSubscriber.");
+			}
+
+			return returnValue;
 		}
 	}
 }

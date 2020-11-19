@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-		<Version>2.14.1</Version>
-		<FileVersion>2.14.1</FileVersion>
-		<AssemblyVersion>2.14.1</AssemblyVersion>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
+		<Version>2.16.0</Version>
+		<FileVersion>2.16.0</FileVersion>
+		<AssemblyVersion>2.16.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
-		<Copyright>Copyright © Daniel Porrey 2019-2020</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -32,16 +32,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Diamond.Patterns.Abstractions.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="Diamond.Patterns.Abstractions.xml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="..\..\Images\Diamond.Patterns.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
@@ -49,13 +39,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Rules\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Diamond.Patterns.Abstractions.xml">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿// ***
-// *** Copyright(C) 2019-2020, Daniel M. Porrey. All rights reserved.
+// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // *** 
 // *** This program is free software: you can redistribute it and/or modify
 // *** it under the terms of the GNU Lesser General Public License as published
@@ -33,7 +33,7 @@ namespace Diamond.Patterns.ObjectFactory.Unity
 		/// <param name="filePath">The full path to the Unity configuration file.</param>
 		/// <param name="containerName">The optional Container name to load. The default loads the unnamed Container.</param>
 		/// <returns></returns>
-		[Obsolete("Use methods from the Diamond.Patterns.UnityConfiguration namespace.")]
+		[Obsolete("Use methods from the Diamond.Patterns.UnityConfiguration name space.")]
 		public static Task LoadUnityConfigFromFileAsync(this IObjectFactory objectFactory, string filePath, string containerName = "")
 		{
 			ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap { ExeConfigFilename = filePath };
