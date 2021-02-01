@@ -16,7 +16,7 @@
 // *** 
 using System.Linq;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class BoolConverter : ConverterBase<bool>
 	{

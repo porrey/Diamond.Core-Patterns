@@ -16,17 +16,49 @@
 // *** 
 namespace Diamond.Patterns.WorkFlow
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class DiamondWorkFlow
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public static class WellKnown
 		{
+			/// <summary>
+			/// 
+			/// </summary>
 			public static class Context
 			{
+				/// <summary>
+				/// 
+				/// </summary>
 				public const string LastStepSuccess = "LastStepSuccess";
+
+				/// <summary>
+				/// 
+				/// </summary>
 				public const string WorkFlowError = "WorkFlowError";
+
+				/// <summary>
+				/// 
+				/// </summary>
 				public const string WorkFlowErrorMessage = "WorkFlowErrorMessage";
+
+				/// <summary>
+				/// 
+				/// </summary>
 				public const string WorkFlowFailed = "WorkFlowFailed";
+
+				/// <summary>
+				/// 
+				/// </summary>
 				public const string TemporaryFolder = "TemporaryFolder";
+
+				/// <summary>
+				/// 
+				/// </summary>
 				public const string IStateDictionaryArray = "IStateDictionaryArray";
 			}
 		}

@@ -21,6 +21,11 @@ namespace Diamond.Patterns.WorkFlow
 	/// </summary>
 	public class UnknownFailureException : WorkFlowException
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="stepName"></param>
+		/// <param name="stepNumber"></param>
 		public UnknownFailureException(string stepName, int stepNumber)
 			: base($"The step '{stepName}' [{stepNumber}] failed for an unknown reason.")
 		{

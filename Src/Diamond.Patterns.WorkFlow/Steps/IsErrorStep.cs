@@ -15,18 +15,25 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class IsErrorStep<TContextDecorator, TContext> : WorkFlowItem<TContextDecorator, TContext>
-		where TContext : IContext
-		where TContextDecorator : IContextDecorator<TContext>
+	/// <summary>
+	/// 
+	/// </summary>
+	public class IsErrorStep : WorkFlowItem
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public override string Name => "Work-Flow Is In Error";
-		protected IRepositoryFactory RepositoryFactory { get; set; }
 
-		protected override Task<bool> OnExecuteStepAsync(TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{
 			bool returnValue = false;
 

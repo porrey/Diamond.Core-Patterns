@@ -16,7 +16,7 @@
 // *** 
 using System;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class IntConverter : ConverterBase<int>
 	{

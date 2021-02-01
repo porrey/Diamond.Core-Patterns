@@ -16,7 +16,6 @@
 // *** 
 using System;
 using System.IO;
-using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.System
 {

@@ -18,37 +18,63 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
-using Diamond.Patterns.Context;
+using Diamond.Patterns.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class LinearWorkFlowManager<TContextDecorator, TContext> : IWorkFlowManager<TContextDecorator, TContext>
-		where TContext : IContext
-		where TContextDecorator : IContextDecorator<TContext>
+	/// <summary>
+	/// 
+	/// </summary>
+	public class LinearWorkFlowManager : IWorkFlowManager
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="workFlowItemFactory"></param>
+		/// <param name="group"></param>
 		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
 		{
 			this.Group = group;
 			this.WorkFlowItemFactory = workFlowItemFactory;
 		}
 
-		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
-			 : this(workFlowItemFactory, group)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="workFlowItemFactory"></param>
+		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory)
 		{
-			this.LoggerSubscriber = loggerSubscriber;
+			this.WorkFlowItemFactory = workFlowItemFactory;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		private IWorkFlowItem[] _steps = null;
+
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
 
-		private IWorkFlowItem<TContextDecorator, TContext>[] _steps = null;
-		public IWorkFlowItem<TContextDecorator, TContext>[] Steps
+		/// <summary>
+		/// 
+		/// </summary>
+		[ServiceDependency]
+		public ILogger<LinearWorkFlowManager> Logger { get; set; } = new NullLogger<LinearWorkFlowManager>();
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IWorkFlowItem[] Steps
 		{
 			get
 			{
 				if (_steps == null)
 				{
-					_steps = this.WorkFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(this.Group).Result.ToArray();
+					_steps = this.WorkFlowItemFactory.GetItemsAsync(this.Group).Result.ToArray();
 
 					if (_steps.Count() == 0)
 					{
@@ -80,15 +106,17 @@ namespace Diamond.Patterns.WorkFlow
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public string Group { get; set; }
 
 		/// <summary>
-		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
-		/// will listen for logs events originating from this instance.
+		/// 
 		/// </summary>
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
-
-		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
+		/// <param name="context"></param>
+		/// <returns></returns>
+		public async Task<bool> ExecuteWorkflowAsync(IContext context)
 		{
 			bool returnValue = true;
 
@@ -115,7 +143,7 @@ namespace Diamond.Patterns.WorkFlow
 				// ***
 				for (int i = 0; i <= this.FinalStepOfWorkflow; i++)
 				{
-					this.LoggerSubscriber.Verbose($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.Logger.LogTrace($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 
 					// ***
 					// *** Start the stop watch.
@@ -144,12 +172,12 @@ namespace Diamond.Patterns.WorkFlow
 						if (result)
 						{
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
+							this.Logger.LogTrace($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
 						}
 						else
 						{
 							returnValue = false;
-							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' failed.");
+							this.Logger.LogTrace($"The work-flow step '{this.Steps[i].Name}' failed.");
 						}
 
 						// ***
@@ -176,15 +204,15 @@ namespace Diamond.Patterns.WorkFlow
 				// ***
 				if (this.HasAlwaysExecuteStep)
 				{
-					this.LoggerSubscriber.Verbose($"Starting final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' [{this.AlwaysExecuteStepIndex + 1} of {this.Steps.Count()}].");
+					this.Logger.LogTrace($"Starting final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' [{this.AlwaysExecuteStepIndex + 1} of {this.Steps.Count()}].");
 
 					if (await this.ExecuteStepAsync(this.Steps[this.AlwaysExecuteStepIndex], context))
 					{
-						this.LoggerSubscriber.Verbose($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' completed successfully.");
+						this.Logger.LogTrace($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' completed successfully.");
 					}
 					else
 					{
-						this.LoggerSubscriber.Verbose($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' failed.");
+						this.Logger.LogTrace($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' failed.");
 					}
 				}
 			}
@@ -192,7 +220,13 @@ namespace Diamond.Patterns.WorkFlow
 			return returnValue;
 		}
 
-		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem<TContextDecorator, TContext> step, TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="step"></param>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem step, IContext context)
 		{
 			bool returnValue = false;
 
@@ -216,7 +250,7 @@ namespace Diamond.Patterns.WorkFlow
 			}
 			catch (Exception ex)
 			{
-				this.LoggerSubscriber.Exception(ex);
+				this.Logger.LogError(ex, nameof(ExecuteStepAsync));
 				context.SetException(ex);
 				returnValue = false;
 			}
@@ -224,11 +258,15 @@ namespace Diamond.Patterns.WorkFlow
 			return returnValue;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected async Task LoadAsync()
 		{
 			if (this.Steps == null || this.Steps.Count() == 0)
 			{
-				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(this.Group)).ToArray();
+				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync(this.Group)).ToArray();
 
 				if (this.Steps.Count() == 0)
 				{
@@ -237,6 +275,9 @@ namespace Diamond.Patterns.WorkFlow
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected int AlwaysExecuteStepIndex
 		{
 			get
@@ -252,6 +293,9 @@ namespace Diamond.Patterns.WorkFlow
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected bool HasAlwaysExecuteStep
 		{
 			get
@@ -260,6 +304,9 @@ namespace Diamond.Patterns.WorkFlow
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected int FinalStepOfWorkflow
 		{
 			get
@@ -278,20 +325,6 @@ namespace Diamond.Patterns.WorkFlow
 
 				return returnValue;
 			}
-		}
-	}
-
-	public class LinearWorkFlowManager<TContext> : LinearWorkFlowManager<ContextDecorator<TContext>, TContext>
-		where TContext : IContext
-	{
-		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
-			: base(workFlowItemFactory, group)
-		{
-		}
-
-		public LinearWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
-			 : base(workFlowItemFactory, group, loggerSubscriber)
-		{
 		}
 	}
 }

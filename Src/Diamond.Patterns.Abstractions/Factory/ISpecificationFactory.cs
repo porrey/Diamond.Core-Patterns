@@ -21,7 +21,7 @@ namespace Diamond.Patterns.Abstractions
 	/// <summary>
 	/// Defines a factory to create/retrieve a specification.
 	/// </summary>
-	public interface ISpecificationFactory : ILoggerPublisher
+	public interface ISpecificationFactory
 	{
 		/// <summary>
 		/// Gets a specification with the return type TResult.

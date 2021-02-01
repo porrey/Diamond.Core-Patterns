@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class IDictionaryConverter : ConverterBase<IDictionary<string, string>>
 	{

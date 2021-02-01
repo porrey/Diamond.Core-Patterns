@@ -15,14 +15,16 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
-using Diamond.Patterns.Context;
+using Diamond.Patterns.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public abstract class WorkFlowItem<TContextDecorator, TContext> : IWorkFlowItem<TContextDecorator, TContext>
-		where TContext : IContext
-		where TContextDecorator : IContextDecorator<TContext>
+	/// <summary>
+	/// 
+	/// </summary>
+	public abstract class WorkFlowItem : IWorkFlowItem
 	{
 		/// <summary>
 		/// Gets/sets the name of this work-flow item for logging purposes.
@@ -40,18 +42,42 @@ namespace Diamond.Patterns.WorkFlow
 		/// </summary>
 		public virtual int Ordinal { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual bool AlwaysExecute { get; set; } = false;
-		public double Weight { get; set; } = 1;
-		public ILoggerSubscriber LoggerSubscriber { get; set; }
 
-		public virtual bool ShouldExecute(TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		public double Weight { get; set; } = 1;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		[ServiceDependency]
+		public ILogger<WorkFlowItem> Logger { get; set; } = new NullLogger<WorkFlowItem>();
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		public virtual bool ShouldExecute(IContext context)
 		{
 			return true;
 		}
 
-		public virtual async Task<bool> ExecuteStepAsync(TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		public virtual async Task<bool> ExecuteStepAsync(IContext context)
 		{
 			bool returnValue = false;
+
+			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(ExecuteStepAsync)}");
 
 			if (await this.OnPrepareForExecutionAsync(context))
 			{
@@ -61,23 +87,46 @@ namespace Diamond.Patterns.WorkFlow
 			return returnValue;
 		}
 
-		protected virtual Task<bool> OnPrepareForExecutionAsync(TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context)
 		{
+			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(OnPrepareForExecutionAsync)}");
 			return Task.FromResult(true);
 		}
 
-		protected virtual Task<bool> OnExecuteStepAsync(TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected virtual Task<bool> OnExecuteStepAsync(IContext context)
 		{
+			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(OnExecuteStepAsync)}");
 			return Task.FromResult(true);
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";
 		}
 
-		protected Task StepFailedAsync(TContextDecorator context, string message)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="message"></param>
+		/// <returns></returns>
+		protected Task StepFailedAsync(IContext context, string message)
 		{
+			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(StepFailedAsync)}");
 			context.SetException(message);
 			return Task.FromResult(0);
 		}

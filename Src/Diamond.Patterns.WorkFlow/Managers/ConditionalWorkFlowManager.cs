@@ -18,8 +18,9 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
-using Diamond.Patterns.Context;
+using Diamond.Patterns.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
@@ -28,54 +29,54 @@ namespace Diamond.Patterns.WorkFlow
 	///  current step indicates it should not be executed it is skipped
 	///  and the work flow moves on to the next step.
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
-	public class ConditionalWorkFlowManager<TContextDecorator, TContext> : IWorkFlowManager<TContextDecorator, TContext>
-		where TContext : IContext
-		where TContextDecorator : IContextDecorator<TContext>
+	public class ConditionalWorkFlowManager : IWorkFlowManager
 	{
-		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="steps"></param>
+		public ConditionalWorkFlowManager(IWorkFlowItem[] steps)
 		{
 			this.Group = null;
 			this.Steps = steps;
 		}
 
-		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, ILoggerSubscriber loggerSubscriber)
-		{
-			this.Group = null;
-			this.Steps = steps;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
-
-		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, string group)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="steps"></param>
+		/// <param name="group"></param>
+		public ConditionalWorkFlowManager(IWorkFlowItem[] steps, string group)
 		{
 			this.Group = group;
 			this.Steps = steps;
 		}
 
-		public ConditionalWorkFlowManager(IWorkFlowItem<TContextDecorator, TContext>[] steps, string group, ILoggerSubscriber loggerSubscriber)
-		{
-			this.Group = group;
-			this.Steps = steps;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="workFlowItemFactory"></param>
+		/// <param name="group"></param>
 		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
 		{
 			this.Group = group;
 			this.WorkFlowItemFactory = workFlowItemFactory;
 		}
 
-		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
-		{
-			this.Group = group;
-			this.WorkFlowItemFactory = workFlowItemFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
-
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
 
-		private IWorkFlowItem<TContextDecorator, TContext>[] _steps = null;
-		public IWorkFlowItem<TContextDecorator, TContext>[] Steps
+		/// <summary>
+		/// 
+		/// </summary>
+		private IWorkFlowItem[] _steps = null;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IWorkFlowItem[] Steps
 		{
 			get
 			{
@@ -109,15 +110,23 @@ namespace Diamond.Patterns.WorkFlow
 			}
 		}
 
-		public string Group { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		[ServiceDependency]
+		public ILogger<ConditionalWorkFlowManager> Logger { get; set; } = new NullLogger<ConditionalWorkFlowManager>();
 
 		/// <summary>
-		/// Gets/sets the instance of <see cref="ILoggerSubscriber"/> that
-		/// will listen for logs events originating from this instance.
+		/// 
 		/// </summary>
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
-
-		public async Task<bool> ExecuteWorkflowAsync(TContextDecorator context)
+		public string Group { get; set; }
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		public async Task<bool> ExecuteWorkflowAsync(IContext context)
 		{
 			bool returnValue = true;
 
@@ -147,7 +156,7 @@ namespace Diamond.Patterns.WorkFlow
 					// ***
 					// *** Publish a progress update.
 					// ***
-					this.LoggerSubscriber.Verbose($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.Logger.LogTrace($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 
 					// ***
 					// *** Start the stop watch.
@@ -177,14 +186,14 @@ namespace Diamond.Patterns.WorkFlow
 						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, true);
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
+							this.Logger.LogTrace($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
 							returnValue = true;
 						}
 						else
 						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed, true);
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, false);
-							this.LoggerSubscriber.Verbose($"The work-flow step '{this.Steps[i].Name}' failed.");
+							this.Logger.LogTrace($"The work-flow step '{this.Steps[i].Name}' failed.");
 							returnValue = false;
 						}
 
@@ -196,7 +205,7 @@ namespace Diamond.Patterns.WorkFlow
 				}
 				else
 				{
-					this.LoggerSubscriber.Verbose($"Skipping work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.Logger.LogTrace($"Skipping work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 				}
 			}
 
@@ -211,72 +220,68 @@ namespace Diamond.Patterns.WorkFlow
 			return returnValue;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected async Task LoadAsync()
 		{
 			if (this.Steps == null || this.Steps.Count() == 0)
 			{
-				this.LoggerSubscriber.Verbose("Loading Work-Flow steps."); 
-				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync<TContextDecorator, TContext>(this.Group)).ToArray();
-				this.LoggerSubscriber.Verbose($"{this.Steps.Count()} steps were loaded.");
+				this.Logger.LogTrace("Loading Work-Flow steps.");
+				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync(this.Group)).ToArray();
+				this.Logger.LogTrace($"{this.Steps.Count()} steps were loaded.");
 
 				if (this.Steps.Count() == 0)
 				{
-					this.LoggerSubscriber.Verbose($"Throwing exception because no steps were found for the Work-Flow with group name '{this.Group}'.");
+					this.Logger.LogTrace($"Throwing exception because no steps were found for the Work-Flow with group name '{this.Group}'.");
 					throw new MissingStepsException(this.Group);
 				}
 			}
 		}
 
-		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem<TContextDecorator, TContext> step, TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="step"></param>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem step, IContext context)
 		{
 			bool returnValue = false;
 
 			try
 			{
-				this.LoggerSubscriber.Verbose($"Executing Work-Flow step '{step.Name}'.");
+				this.Logger.LogTrace($"Executing Work-Flow step '{step.Name}'.");
 				if (await step.ExecuteStepAsync(context))
 				{
-					this.LoggerSubscriber.Verbose($"The Work-Flow step '{step.Name}' completed successfully.");
+					this.Logger.LogTrace($"The Work-Flow step '{step.Name}' completed successfully.");
 					returnValue = true;
 				}
 				else
 				{
-					this.LoggerSubscriber.Error($"The Work-Flow step '{step.Name}' failed.");
+					this.Logger.LogError($"The Work-Flow step '{step.Name}' failed.");
 
 					if (context.HasException())
 					{
-						this.LoggerSubscriber.Verbose($"The Work-Flow step '{step.Name}' had an exception set.");
+						this.Logger.LogTrace($"The Work-Flow step '{step.Name}' had an exception set.");
 						context.SetException(new WorkFlowFailureException(context.GetException(), step.Name, step.Ordinal));
 					}
 					else
 					{
-						this.LoggerSubscriber.Warning($"The Work-Flow step '{step.Name}' did NOT have an exception set.");
+						this.Logger.LogWarning($"The Work-Flow step '{step.Name}' did NOT have an exception set.");
 						context.SetException(new UnknownFailureException(step.Name, step.Ordinal));
 					}
 				}
 			}
 			catch (Exception ex)
 			{
-				this.LoggerSubscriber.Exception(ex);
+				this.Logger.LogError(ex, nameof(ExecuteStepAsync));
 				context.SetException(ex);
 				returnValue = false;
 			}
 
 			return returnValue;
-		}
-	}
-
-	public class ConditionalWorkFlowManager<TContext> : ConditionalWorkFlowManager<ContextDecorator<TContext>, TContext>
-		where TContext : IContext
-	{
-		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
-			: base(workFlowItemFactory, group)
-		{
-		}
-
-		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group, ILoggerSubscriber loggerSubscriber)
-			: base(workFlowItemFactory, group, loggerSubscriber)
-		{
 		}
 	}
 }

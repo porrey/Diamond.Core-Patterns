@@ -23,7 +23,13 @@ namespace Diamond.Patterns.WorkFlow
 	/// </summary>
 	public class WorkFlowFailureException : WorkFlowException
 	{
-		public WorkFlowFailureException(Exception innerException,string stepName, int stepNumber)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="innerException"></param>
+		/// <param name="stepName"></param>
+		/// <param name="stepNumber"></param>
+		public WorkFlowFailureException(Exception innerException, string stepName, int stepNumber)
 			: base($"The work flow failure at the step '{stepName}' [{stepNumber}]. See the inner exception for details.", innerException)
 		{
 		}

@@ -17,7 +17,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class NullableIntConverter : ConverterBase<int?>
 	{

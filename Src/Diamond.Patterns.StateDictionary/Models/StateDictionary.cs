@@ -19,7 +19,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using Diamond.Patterns.Abstractions;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class StateDictionary : ConcurrentDictionary<string, object>, IStateDictionary
 	{

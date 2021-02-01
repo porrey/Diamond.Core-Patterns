@@ -15,20 +15,31 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Diamond.Patterns.System;
+using Microsoft.Extensions.Logging;
+
+#pragma warning disable DF0010
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class DeleteTemporaryFolderStep<TContextDecorator, TContext> : WorkFlowItem<TContextDecorator, TContext>
-		where TContext : IContext
-		where TContextDecorator : IContextDecorator<TContext>
+	/// <summary>
+	/// 
+	/// </summary>
+	public class DeleteTemporaryFolderStep : WorkFlowItem
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public override string Name => "Delete Temporary Folder";
 
-		protected override Task<bool> OnExecuteStepAsync(TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{
 			if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.TemporaryFolder))
 			{
@@ -38,18 +49,18 @@ namespace Diamond.Patterns.WorkFlow
 				// *** Cache the name since the object is being disposed.
 				// ***
 				string tempPath = temporaryFolder.FullPath;
-				Trace.TraceInformation($"Deleting temporary folder '{tempPath}'.");
+				this.Logger.LogTrace($"Deleting temporary folder '{tempPath}'.");
 
 				TryDisposable<ITemporaryFolder>.Dispose(temporaryFolder);
 				context.Properties.Remove(DiamondWorkFlow.WellKnown.Context.TemporaryFolder);
 
 				if (Directory.Exists(tempPath))
 				{
-					Trace.TraceWarning("The temporary folder '{0}' could not be deleted.", tempPath);
+					this.Logger.LogWarning("The temporary folder '{0}' could not be deleted.", tempPath);
 				}
 				else
 				{
-					Trace.TraceInformation("The temporary folder '{0}' was deleted successfully.", tempPath);
+					this.Logger.LogTrace("The temporary folder '{0}' was deleted successfully.", tempPath);
 				}
 			}
 

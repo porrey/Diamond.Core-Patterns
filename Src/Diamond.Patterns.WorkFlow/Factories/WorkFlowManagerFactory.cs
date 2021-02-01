@@ -18,7 +18,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Diamond.Patterns.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
@@ -26,50 +29,58 @@ namespace Diamond.Patterns.WorkFlow
 	/// This is a generic repository factory that can return a repository
 	/// for any given entity interface.
 	/// </summary>
-	public class WorkFlowManagerFactory : IWorkFlowManagerFactory
+	public class WorkFlowManagerFactory : IWorkFlowManagerFactory, ILoggerPublisher
 	{
-		public WorkFlowManagerFactory(IObjectFactory objectFactory)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		public WorkFlowManagerFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
 
-		public WorkFlowManagerFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
+		/// <summary>
+		/// 
+		/// </summary>
+		protected IServiceProvider ServiceProvider { get; set; }
 
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
-		protected IObjectFactory ObjectFactory { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		[ServiceDependency]
+		public ILogger<WorkFlowManagerFactory> Logger { get; set; } = new NullLogger<WorkFlowManagerFactory>();
 
-		public Task<IWorkFlowManager<TContextDecorator, TContext>> GetAsync<TContextDecorator, TContext>(string groupName)
-			where TContextDecorator : IContextDecorator<TContext>
-			where TContext : IContext
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="groupName"></param>
+		/// <returns></returns>
+		public Task<IWorkFlowManager> GetAsync(string groupName)
 		{
-			IWorkFlowManager<TContextDecorator, TContext> returnValue = null;
+			IWorkFlowManager returnValue = null;
 
 			// ***
 			// *** Get the type being requested.
 			// ***
-			Type targetType = typeof(IWorkFlowManager<TContextDecorator, TContext>);
-			this.LoggerSubscriber.Verbose($"Location Work-Flow manager with group name '{groupName}'.");
+			Type targetType = typeof(IWorkFlowManager);
+			this.Logger.LogTrace($"Location Work-Flow manager with group name '{groupName}'.");
 
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IEnumerable<IWorkFlowManager> items = this.ObjectFactory.GetAllInstances<IWorkFlowManager>();
+			IEnumerable<IWorkFlowManager> items = ActivatorUtilities.GetServiceOrCreateInstance<IEnumerable<IWorkFlowManager>>(this.ServiceProvider);
 			IWorkFlowManager item = items.Where(t => t.Group == groupName).SingleOrDefault();
 
 			if (item != null)
 			{
-				this.LoggerSubscriber.Verbose($"Work-Flow manager with group '{groupName}' was found.");
-				returnValue = (IWorkFlowManager<TContextDecorator, TContext>)item;
-				this.LoggerSubscriber.AddToInstance(returnValue);
+				this.Logger.LogTrace($"Work-Flow manager with group '{groupName}' was found.");
+				returnValue = (IWorkFlowManager)item;
 			}
 			else
 			{
-				this.LoggerSubscriber.Warning($"Work-Flow manager with group '{groupName}' was NOT found.");
-				throw new WorkFlowManagerNotFoundException<TContextDecorator, TContext>(groupName);
+				this.Logger.LogWarning($"Work-Flow manager with group '{groupName}' was NOT found.");
+				throw new WorkFlowManagerNotFoundException(groupName);
 			}
 
 			return Task.FromResult(returnValue);

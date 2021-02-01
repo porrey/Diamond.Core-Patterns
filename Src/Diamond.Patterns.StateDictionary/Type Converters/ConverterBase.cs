@@ -17,7 +17,7 @@
 using System;
 using Diamond.Patterns.Abstractions;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class ConverterBase<TTargetType> : IStateTypeConverter
 	{

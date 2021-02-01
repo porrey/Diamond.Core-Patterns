@@ -16,7 +16,7 @@
 // *** 
 using Diamond.Patterns.Abstractions;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	/// <summary>
 	/// Generic error for a missing context property.

@@ -18,59 +18,73 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Diamond.Patterns.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class WorkFlowItemFactory : IWorkFlowItemFactory
 	{
-		public WorkFlowItemFactory(IObjectFactory objectFactory)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		public WorkFlowItemFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
 
-		public WorkFlowItemFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
+		/// <summary>
+		/// 
+		/// </summary>
+		protected IServiceProvider ServiceProvider { get; set; }
 
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
-		protected IObjectFactory ObjectFactory { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		[ServiceDependency]
+		public ILogger<WorkFlowItemFactory> Logger { get; set; } = new NullLogger<WorkFlowItemFactory>();
 
-		public Task<IEnumerable<IWorkFlowItem<TContextDecorator, TContext>>> GetItemsAsync<TContextDecorator, TContext>(string groupName)
-			where TContext : IContext
-			where TContextDecorator : IContextDecorator<TContext>
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="groupName"></param>
+		/// <returns></returns>
+		public Task<IEnumerable<IWorkFlowItem>> GetItemsAsync(string groupName)
 		{
-			IList<IWorkFlowItem<TContextDecorator, TContext>> returnValue = new List<IWorkFlowItem<TContextDecorator, TContext>>();
+			IList<IWorkFlowItem> returnValue = new List<IWorkFlowItem>();
 
 			// ***
 			// *** Get the type being requested.
 			// ***
-			Type targetType = typeof(IWorkFlowItem<TContextDecorator, TContext>);
+			Type targetType = typeof(IWorkFlowItem);
 
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IEnumerable<IWorkFlowItem> items = this.ObjectFactory.GetAllInstances<IWorkFlowItem>();
+			IEnumerable<IWorkFlowItem> items = ActivatorUtilities.GetServiceOrCreateInstance<IEnumerable<IWorkFlowItem>>(this.ServiceProvider);
 			IEnumerable<IWorkFlowItem> groupItems = items.Where(t => t.Group == groupName);
-			this.LoggerSubscriber.Verbose($"Found {groupItems.Count()} Work-Flow items for group '{groupName}'.");
+			this.Logger.LogTrace($"Found {groupItems.Count()} Work-Flow items for group '{groupName}'.");
 
 			if (groupItems.Count() > 0)
 			{
-				this.LoggerSubscriber.Verbose($"Loading Work-Flow items for group '{groupName}'.");
+				this.Logger.LogTrace($"Loading Work-Flow items for group '{groupName}'.");
 				
 				foreach (IWorkFlowItem groupItem in groupItems)
 				{
 					if (targetType.IsInstanceOfType(groupItem))
 					{
-						this.LoggerSubscriber.AddToInstance(groupItem);
-						returnValue.Add((IWorkFlowItem<TContextDecorator, TContext>)groupItem);
-						this.LoggerSubscriber.Verbose($"Added Work-Flow item '{groupItem.Name}'.");
+						returnValue.Add((IWorkFlowItem)groupItem);
+						this.Logger.LogTrace($"Added Work-Flow item '{groupItem.Name}'.");
 					}
 					else
 					{
-						this.LoggerSubscriber.Verbose($"Skipping Work-Flow item '{groupItem.Name}' because it does not have the correct Type.");
+						this.Logger.LogTrace($"Skipping Work-Flow item '{groupItem.Name}' because it does not have the correct Type.");
 					}
 				}
 			}
@@ -79,11 +93,11 @@ namespace Diamond.Patterns.WorkFlow
 				// ***
 				// *** No items
 				// ***
-				this.LoggerSubscriber.Error($"Work flow items for group '{groupName}' have not been configured.");
+				this.Logger.LogError($"Work flow items for group '{groupName}' have not been configured.");
 				throw new Exception($"Work flow items for group '{groupName}' have not been configured.");
 			}
 
-			return Task.FromResult<IEnumerable<IWorkFlowItem<TContextDecorator, TContext>>>(returnValue);
+			return Task.FromResult<IEnumerable<IWorkFlowItem>>(returnValue);
 		}
 	}
 }

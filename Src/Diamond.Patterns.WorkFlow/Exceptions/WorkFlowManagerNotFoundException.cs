@@ -18,10 +18,17 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class WorkFlowManagerNotFoundException<TContextDecorator, TContext> : DiamondPatternsException
+	/// <summary>
+	/// 
+	/// </summary>
+	public class WorkFlowManagerNotFoundException : DiamondPatternsException
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="groupName"></param>
 		public WorkFlowManagerNotFoundException(string groupName)
-			: base($"A work flow manager of type 'IWorkFlowManager<{typeof(TContextDecorator).Name}, {typeof(TContext).Name}>' with group name '{groupName}' has not been configured.")
+			: base($"A work flow manager of type 'IWorkFlowManager<{typeof(IContext).Name}>' with group name '{groupName}' has not been configured.")
 		{
 		}
 	}

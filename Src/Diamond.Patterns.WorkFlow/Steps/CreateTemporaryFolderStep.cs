@@ -14,26 +14,36 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
 using Diamond.Patterns.System;
+using Microsoft.Extensions.Logging;
+
+#pragma warning disable DF0010
 
 namespace Diamond.Patterns.WorkFlow
 {
-	public class CreateTemporaryFolderStep<TContextDecorator, TContext> : WorkFlowItem<TContextDecorator, TContext>
-		where TContext : IContext
-		where TContextDecorator : IContextDecorator<TContext>
+	/// <summary>
+	/// 
+	/// </summary>
+	public class CreateTemporaryFolderStep : WorkFlowItem
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public override string Name => "Create Temporary Folder";
 
-		protected override Task<bool> OnExecuteStepAsync(TContextDecorator context)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{
 			bool returnValue = false;
 
 			ITemporaryFolder temporaryFolder = TemporaryFolder.Factory.Create("{0}DynaMailCmd.{1}");
-			Trace.TraceWarning("Created temporary folder '{0}'.", temporaryFolder.FullPath);
+			this.Logger.LogTrace("Created temporary folder '{0}'.", temporaryFolder.FullPath);
 
 			if (Directory.Exists(temporaryFolder.FullPath))
 			{

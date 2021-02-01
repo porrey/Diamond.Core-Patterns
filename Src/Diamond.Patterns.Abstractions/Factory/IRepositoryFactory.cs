@@ -21,7 +21,7 @@ namespace Diamond.Patterns.Abstractions
 	/// <summary>
 	/// Defines a factory to create/retrieve model repositories.
 	/// </summary>
-	public interface IRepositoryFactory : ILoggerPublisher
+	public interface IRepositoryFactory
 	{
 		/// <summary>
 		/// Gets a generic <see cref="IRepository"/> for the specified model type.

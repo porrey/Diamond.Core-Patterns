@@ -17,7 +17,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class DateConverter : ConverterBase<DateTime>
 	{

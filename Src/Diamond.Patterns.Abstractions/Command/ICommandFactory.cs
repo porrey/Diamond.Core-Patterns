@@ -22,7 +22,7 @@ namespace Diamond.Patterns.Abstractions
 	/// Defines a factory to retrieve <see cref="ICommand"/> based
 	/// on a name of the command.
 	/// </summary>
-	public interface ICommandFactory : ILoggerPublisher
+	public interface ICommandFactory
 	{
 		/// <summary>
 		/// Gets the command specified by parameterSwitch.

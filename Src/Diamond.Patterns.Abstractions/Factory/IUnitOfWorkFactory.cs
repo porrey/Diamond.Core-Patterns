@@ -21,7 +21,7 @@ namespace Diamond.Patterns.Abstractions
 	/// <summary>
 	/// Defines a factory to create/retrieve a specification.
 	/// </summary>
-	public interface IUnitOfWorkFactory : ILoggerPublisher
+	public interface IUnitOfWorkFactory
 	{
 		/// <summary>
 		/// Gets a unit of work that takes in TSourceItem and returns TResult.

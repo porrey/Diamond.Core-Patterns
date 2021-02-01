@@ -19,7 +19,7 @@ namespace Diamond.Patterns.Abstractions
 	/// <summary>
 	/// Defines a generic repository interface.
 	/// </summary>
-	public interface IRepository : ILoggerPublisher
+	public interface IRepository
 	{
 	}
 

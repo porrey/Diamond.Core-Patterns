@@ -17,7 +17,7 @@
 using System;
 using System.Linq;
 
-namespace Diamond.Patterns.StateDictionary
+namespace Diamond.Patterns.WorkFlow.State
 {
 	public class EnumConverter : ConverterBase<Enum>
 	{

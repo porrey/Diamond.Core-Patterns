@@ -21,7 +21,7 @@ namespace Diamond.Patterns.Abstractions
 	/// <summary>
 	/// Defines a factory to create/retrieve decorator instances.
 	/// </summary>
-	public interface IDecoratorFactory : ILoggerPublisher
+	public interface IDecoratorFactory
 	{
 		/// <summary>
 		/// Gets the specific decorator by type.

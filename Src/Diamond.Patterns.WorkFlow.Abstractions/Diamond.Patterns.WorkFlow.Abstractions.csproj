@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.WorkFlow.State.Abstractions\Diamond.Patterns.WorkFlow.State.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

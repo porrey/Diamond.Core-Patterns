@@ -21,6 +21,10 @@ namespace Diamond.Patterns.WorkFlow
 	/// </summary>
 	public class MissingStepsException : WorkFlowException
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="group"></param>
 		public MissingStepsException(string group)
 			: base($"No Work-Flow steps with group '{group}' were found.")
 		{
