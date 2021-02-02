@@ -11,7 +11,6 @@
 		<Version>5.0.0</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
-		<AssemblyName>Diamond.Patterns.WorkFlow</AssemblyName>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
@@ -45,7 +44,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
 		<ProjectReference Include="..\Diamond.Patterns.Extensions.DependencyInjection.Abstractions\Diamond.Patterns.Extensions.DependencyInjection.Abstractions.csproj" />
-		<ProjectReference Include="..\Diamond.Patterns.StateDictionary\Diamond.Patterns.WorkFlow.State.csproj" />
+		<ProjectReference Include="..\Diamond.Patterns.WorkFlow.State\Diamond.Patterns.WorkFlow.State.csproj" />
 		<ProjectReference Include="..\Diamond.Patterns.System\Diamond.Patterns.System.csproj" />
 		<ProjectReference Include="..\Diamond.Patterns.WorkFlow.Abstractions\Diamond.Patterns.WorkFlow.Abstractions.csproj" />
 	</ItemGroup>

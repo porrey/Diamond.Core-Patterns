@@ -16,13 +16,14 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Patterns.Abstractions
+namespace Diamond.Patterns.Specification
 {
 	/// <summary>
 	/// Defines a generic specification.
 	/// </summary>
 	public interface ISpecification
 	{
+		string Name { get; set; }
 	}
 
 	/// <summary>

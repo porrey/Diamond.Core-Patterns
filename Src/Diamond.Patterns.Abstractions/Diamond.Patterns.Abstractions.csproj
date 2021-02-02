@@ -43,7 +43,6 @@
 	  <Compile Remove="Factory\IRepositoryFactory.cs" />
 	  <Compile Remove="Factory\IRequiresInitialization.cs" />
 	  <Compile Remove="Factory\IRulesFactory.cs" />
-	  <Compile Remove="Factory\ISpecificationFactory.cs" />
 	  <Compile Remove="Factory\IUnitOfWorkFactory.cs" />
 	  <Compile Remove="Models\IEntity.cs" />
 	  <Compile Remove="MVC\IControllerActionResult.cs" />
@@ -55,7 +54,6 @@
 	  <Compile Remove="Repository\IWritableRepository.cs" />
 	  <Compile Remove="Rules\IRule.cs" />
 	  <Compile Remove="Rules\IRuleResult.cs" />
-	  <Compile Remove="Specification\ISpecification.cs" />
 	  <Compile Remove="Unit Of Work\IUnitOfWork.cs" />
 	</ItemGroup>
 
@@ -75,7 +73,6 @@
 		<None Include="Factory\IRepositoryFactory.cs" />
 		<None Include="Factory\IRequiresInitialization.cs" />
 		<None Include="Factory\IRulesFactory.cs" />
-		<None Include="Factory\ISpecificationFactory.cs" />
 		<None Include="Factory\IUnitOfWorkFactory.cs" />
 		<None Include="Models\IEntity.cs" />
 		<None Include="MVC\IControllerActionResult.cs" />
@@ -87,7 +84,6 @@
 		<None Include="Repository\IWritableRepository.cs" />
 		<None Include="Rules\IRule.cs" />
 		<None Include="Rules\IRuleResult.cs" />
-		<None Include="Specification\ISpecification.cs" />
 		<None Include="Unit Of Work\IUnitOfWork.cs" />
 	</ItemGroup>
 

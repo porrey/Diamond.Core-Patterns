@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnitOfWork
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow", "Diamond.Patterns.WorkFlow\Diamond.Patterns.WorkFlow.csproj", "{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Context", "Diamond.Patterns.Context\Diamond.Patterns.Context.csproj", "{2414DF27-4060-469E-B540-221E823B5BF1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnityConfiguration", "Diamond.Patterns.UnityConfiguration\Diamond.Patterns.UnityConfiguration.csproj", "{BE78642C-3C60-45E5-B38A-67824C15B2CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Abstractions", "Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj", "{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}"
@@ -27,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Command", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Specification", "Diamond.Patterns.Specification\Diamond.Patterns.Specification.csproj", "{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow.State", "Diamond.Patterns.StateDictionary\Diamond.Patterns.WorkFlow.State.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow.State", "Diamond.Patterns.WorkFlow.State\Diamond.Patterns.WorkFlow.State.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc", "Diamond.Patterns.Mvc\Diamond.Patterns.Mvc.csproj", "{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}"
 EndProject
@@ -57,6 +55,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow.S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specification", "Specification", "{A289C427-A10A-4C63-B3BC-2A38147F9943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Specification.Abstractions", "Diamond.Patterns.Specification.Abstractions\Diamond.Patterns.Specification.Abstractions.csproj", "{C72CFD4A-A948-49DD-98FB-DEFB36E33157}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Decorator", "Decorator", "{96401A54-54C5-4347-93A5-BA78E4CCDFED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,10 +79,6 @@ Global
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2414DF27-4060-469E-B540-221E823B5BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2414DF27-4060-469E-B540-221E823B5BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2414DF27-4060-469E-B540-221E823B5BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2414DF27-4060-469E-B540-221E823B5BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -155,20 +155,27 @@ Global
 		{8193E54B-CEBD-4C7A-A0CE-8647C5014387}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8193E54B-CEBD-4C7A-A0CE-8647C5014387}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8193E54B-CEBD-4C7A-A0CE-8647C5014387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C72CFD4A-A948-49DD-98FB-DEFB36E33157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C72CFD4A-A948-49DD-98FB-DEFB36E33157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C72CFD4A-A948-49DD-98FB-DEFB36E33157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C72CFD4A-A948-49DD-98FB-DEFB36E33157}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{33C88E6C-2FBA-4999-A989-061804C71BEC} = {96401A54-54C5-4347-93A5-BA78E4CCDFED}
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
 		{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
+		{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098} = {A289C427-A10A-4C63-B3BC-2A38147F9943}
 		{923C2E38-839B-4400-AAC4-E48DF5AC9E8B} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 		{059C3106-0242-4ECA-BBD0-D8719C2ADEC8} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
 		{E56FDF6F-CD00-47D8-BF99-361D743C1C9F} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{787B266B-3B94-4996-BB63-06FE0EDB4AAE} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
 		{DDBF0AAF-D83C-405F-A9B7-8661689B2491} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 		{8193E54B-CEBD-4C7A-A0CE-8647C5014387} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
+		{C72CFD4A-A948-49DD-98FB-DEFB36E33157} = {A289C427-A10A-4C63-B3BC-2A38147F9943}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

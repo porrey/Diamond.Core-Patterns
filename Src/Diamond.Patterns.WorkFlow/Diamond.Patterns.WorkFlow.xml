@@ -104,19 +104,19 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="T:Diamond.Patterns.WorkFlow.Decorators.ServicesExtensions">
+        <member name="T:Diamond.Patterns.WorkFlow.ServicesExtensions">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Patterns.WorkFlow.Decorators.ServicesExtensions.UseDiamondWorkFlow(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Diamond.Patterns.WorkFlow.ServicesExtensions.UseDiamondWorkFlow(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             
             </summary>
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Patterns.WorkFlow.Decorators.ServicesExtensions.AddWorkFlowManager``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+        <member name="M:Diamond.Patterns.WorkFlow.ServicesExtensions.AddWorkFlowManager``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
             <summary>
             
             </summary>
@@ -125,7 +125,7 @@
             <param name="group"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Patterns.WorkFlow.Decorators.ServicesExtensions.AddWorkFlowItem``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Int32)">
+        <member name="M:Diamond.Patterns.WorkFlow.ServicesExtensions.AddWorkFlowItem``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Int32)">
             <summary>
             
             </summary>

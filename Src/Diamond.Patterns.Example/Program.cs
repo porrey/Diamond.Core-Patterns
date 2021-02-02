@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Diamond.Patterns.WorkFlow;
-using Diamond.Patterns.WorkFlow.Decorators;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

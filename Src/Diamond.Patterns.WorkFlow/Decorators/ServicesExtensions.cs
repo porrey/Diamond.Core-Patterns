@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Patterns.WorkFlow.Decorators
+namespace Diamond.Patterns.WorkFlow
 {
 	/// <summary>
 	/// 

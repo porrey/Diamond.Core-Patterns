@@ -15,31 +15,32 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Diamond.Patterns.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.Specification
 {
-	public class SpecificationFactory : ISpecificationFactory
+	public class SpecificationFactory : ISpecificationFactory, ILoggerPublisher<SpecificationFactory>
 	{
-		public SpecificationFactory(IObjectFactory objectFactory)
+		public SpecificationFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
 
-		public SpecificationFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public ILogger<SpecificationFactory> Logger { get; set; } = new NullLogger<SpecificationFactory>();
 
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
-		protected IObjectFactory ObjectFactory { get; set; }
-
-		public async Task<ISpecification<TResult>> GetAsync<TResult>()
-		{
-			return await this.GetAsync<TResult>(null);
-		}
+		/// <summary>
+		/// 
+		/// </summary>
+		protected IServiceProvider ServiceProvider { get; set; }
 
 		public Task<ISpecification<TResult>> GetAsync<TResult>(string name)
 		{
@@ -49,13 +50,14 @@ namespace Diamond.Patterns.Specification
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(ISpecification<TResult>);
-			this.LoggerSubscriber.Verbose($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogTrace($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			ISpecification item = this.ObjectFactory.GetInstance<ISpecification>(name);
+			IEnumerable<ISpecification> items = this.ServiceProvider.GetService<IEnumerable<ISpecification>>();
+			ISpecification item = items.Where(t => t.Name == name).SingleOrDefault();
 
 			// ***
 			// *** Within the list, find the target decorator.
@@ -64,15 +66,19 @@ namespace Diamond.Patterns.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.LoggerSubscriber.Verbose($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogTrace($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TResult>)item;
-					this.LoggerSubscriber.AddToInstance(returnValue);
 				}
 				else
 				{
-					this.LoggerSubscriber.Verbose($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
+					this.Logger.LogError($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 					throw new SpecificationNotFoundException<TResult>(name);
 				}
+			}
+			else
+			{
+				this.Logger.LogError($"The Specification key '{name}' was NOT found. Throwing exception...");
+				throw new SpecificationNotFoundException<TResult>(name);
 			}
 
 			return Task.FromResult(returnValue);
@@ -86,13 +92,14 @@ namespace Diamond.Patterns.Specification
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(ISpecification<TParameter, TResult>);
-			this.LoggerSubscriber.Verbose($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogTrace($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			ISpecification item = this.ObjectFactory.GetInstance<ISpecification>(name);
+			IEnumerable<ISpecification> items = this.ServiceProvider.GetService<IEnumerable<ISpecification>>();
+			ISpecification item = items.Where(t => t.Name == name).SingleOrDefault();
 
 			// ***
 			// *** Within the list, find the target decorator.
@@ -101,23 +108,22 @@ namespace Diamond.Patterns.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.LoggerSubscriber.Verbose($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogTrace($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TParameter, TResult>)item;
-					this.LoggerSubscriber.AddToInstance(returnValue);
 				}
 				else
 				{
-					this.LoggerSubscriber.Verbose($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
+					this.Logger.LogError($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 					throw new SpecificationNotFoundException<TParameter, TResult>(name);
 				}
 			}
+			else
+			{
+				this.Logger.LogError($"The Specification key '{name}' was NOT found. Throwing exception...");
+				throw new SpecificationNotFoundException<TParameter, TResult>(name);
+			}
 
 			return Task.FromResult(returnValue);
-		}
-
-		public async Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>()
-		{
-			return await this.GetAsync<TParameter, TResult>(null);
 		}
 	}
 }
