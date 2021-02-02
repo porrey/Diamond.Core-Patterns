@@ -28,7 +28,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\Images\Diamond.Patterns.png">
+		<None Include="..\..\..\Images\Diamond.Patterns.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
@@ -43,8 +43,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-	  <ProjectReference Include="..\Diamond.Patterns.Extensions.DependencyInjection.Abstractions\Diamond.Patterns.Extensions.DependencyInjection.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\Dependency-Injection\Diamond.Patterns.Extensions.DependencyInjection.Abstractions\Diamond.Patterns.Extensions.DependencyInjection.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\Shared\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
 	  <ProjectReference Include="..\Diamond.Patterns.Rules.Abstractions\Diamond.Patterns.Rules.Abstractions.csproj" />
 	</ItemGroup>
 

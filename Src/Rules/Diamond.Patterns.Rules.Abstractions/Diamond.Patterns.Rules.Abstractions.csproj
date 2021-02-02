@@ -1,24 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageLicenseUrl></PackageLicenseUrl>
-		<Product>Diamond Pattern Library - Work-Flow</Product>
-		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
-		<Description>This library provides abstractions for the work-flow pattern.</Description>
 		<Version>5.0.0</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
+		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
+		<Product>Diamond Pattern Library - Rules Pattern</Product>
+		<Description>This library provides abstractions for the Rules pattern.</Description>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-		<Authors>Daniel M. Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageIcon>Diamond.Patterns.png</PackageIcon>
-		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl></PackageIconUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<NeutralLanguage>English (United States)</NeutralLanguage>
+		<Company>Daniel M. Porrey</Company>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -27,15 +28,12 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Diamond.Patterns.WorkFlow.State.Abstractions\Diamond.Patterns.WorkFlow.State.Abstractions.csproj" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\..\Images\Diamond.Patterns.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+	  <None Include="..\..\..\Images\Diamond.Patterns.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	</ItemGroup>
 
 </Project>
