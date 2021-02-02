@@ -116,25 +116,6 @@
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Patterns.WorkFlow.ServicesExtensions.AddWorkFlowManager``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TWorkFlowManager"></typeparam>
-            <param name="services"></param>
-            <param name="group"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Patterns.WorkFlow.ServicesExtensions.AddWorkFlowItem``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Int32)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TWorkFlowItem"></typeparam>
-            <param name="services"></param>
-            <param name="group"></param>
-            <param name="ordinal"></param>
-            <returns></returns>
-        </member>
         <member name="T:Diamond.Patterns.WorkFlow.MissingStepsException">
             <summary>
             Generic error for a missing context property.

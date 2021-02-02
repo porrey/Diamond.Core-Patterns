@@ -64,17 +64,17 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		public IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
+		public virtual IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<LinearWorkFlowManager> Logger { get; set; } = new NullLogger<LinearWorkFlowManager>();
+		public virtual ILogger<LinearWorkFlowManager> Logger { get; set; } = new NullLogger<LinearWorkFlowManager>();
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public IWorkFlowItem[] Steps
+		public virtual IWorkFlowItem[] Steps
 		{
 			get
 			{
@@ -115,14 +115,14 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Group { get; set; }
+		public virtual string Group { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public async Task<bool> ExecuteWorkflowAsync(IContext context)
+		public virtual async Task<bool> ExecuteWorkflowAsync(IContext context)
 		{
 			bool returnValue = true;
 
@@ -232,7 +232,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// <param name="step"></param>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem step, IContext context)
+		protected virtual async Task<bool> ExecuteStepAsync(IWorkFlowItem step, IContext context)
 		{
 			bool returnValue = false;
 
@@ -268,7 +268,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected async Task LoadAsync()
+		protected virtual async Task LoadAsync()
 		{
 			if (this.Steps == null || this.Steps.Count() == 0)
 			{
@@ -284,7 +284,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		protected int AlwaysExecuteStepIndex
+		protected virtual int AlwaysExecuteStepIndex
 		{
 			get
 			{
@@ -302,7 +302,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		protected bool HasAlwaysExecuteStep
+		protected virtual bool HasAlwaysExecuteStep
 		{
 			get
 			{
@@ -313,7 +313,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		protected int FinalStepOfWorkflow
+		protected virtual int FinalStepOfWorkflow
 		{
 			get
 			{

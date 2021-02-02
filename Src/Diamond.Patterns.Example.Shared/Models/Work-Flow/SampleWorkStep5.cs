@@ -4,9 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Diamond.Patterns.Example
 {
-	public class SampleWorkFlowItem : WorkFlowItem
+	public class SampleWorkStep5 : WorkFlowItem
 	{
 		public override string Name => $"Sample Step {this.Ordinal}";
+		public override string Group { get => WellKnown.WorkFlow.SampleWorkFlow; set => base.Group = value; }
+		public override int Ordinal { get => 5; set => base.Ordinal = value; }
 
 		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{

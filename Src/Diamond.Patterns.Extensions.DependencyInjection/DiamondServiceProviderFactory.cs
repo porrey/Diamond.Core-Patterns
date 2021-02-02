@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
+#pragma warning disable DF0020
+
 namespace Diamond.Patterns.Extensions.DependencyInjection
 {
 	public class DiamondServiceProviderFactory : IServiceProviderFactory<DiamondServiceProvider>, IDisposable

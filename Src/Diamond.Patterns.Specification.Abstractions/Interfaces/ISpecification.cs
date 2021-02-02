@@ -51,8 +51,8 @@ namespace Diamond.Patterns.Specification
 		/// <summary>
 		/// Executes the specification.
 		/// </summary>
-		/// <param name="filter">The filter to apply to the execution of the specification.</param>
+		/// <param name="inputs">The filter to apply to the execution of the specification.</param>
 		/// <returns>Returns the result as a instance of type TResult.</returns>
-		Task<TResult> ExecuteQueryAsync(TParameter filter);
+		Task<TResult> ExecuteSelectionAsync(TParameter inputs);
 	}
 }

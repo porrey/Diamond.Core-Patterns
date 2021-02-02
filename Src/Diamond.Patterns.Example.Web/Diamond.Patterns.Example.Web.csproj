@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj" />
+    <ProjectReference Include="..\Diamond.Patterns.Extensions.DependencyInjection\Diamond.Patterns.Extensions.DependencyInjection.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -29,39 +29,28 @@ namespace Diamond.Patterns.Example
 		{
 			_logger.LogInformation("Starting application.");
 
-			await RunWorkFlowAsync("Group1");
-			await RunWorkFlowAsync("Group2");
-
-			_exitCode = 0;
-		}
-
-		private async Task<int> RunWorkFlowAsync(string group)
-		{
-			int returnValue = 0;
-
 			try
 			{
-				_logger.LogInformation($"Retrieving work flow manager '{group}'.");
-				IWorkFlowManager wk1 = await _workFlowManagerFactory.GetAsync(group);
+				_logger.LogInformation($"Retrieving work flow manager '{WellKnown.WorkFlow.SampleWorkFlow}'.");
+				IWorkFlowManager wk1 = await _workFlowManagerFactory.GetAsync(WellKnown.WorkFlow.SampleWorkFlow);
 
-				_logger.LogInformation($"Executing work flow manager '{group}'.");
+				_logger.LogInformation($"Executing work flow manager '{WellKnown.WorkFlow.SampleWorkFlow}'.");
 				if (await wk1.ExecuteWorkflowAsync(new GenericContext()))
 				{
-					_logger.LogInformation("Work flow exection was successful.");
+					_logger.LogInformation("Work flow execution was successful.");
+					_exitCode = 0;
 				}
 				else
 				{
-					_logger.LogError("Work flow exection failed.");
-					returnValue = 1;
+					_logger.LogError("Work flow execution failed.");
+					_exitCode = 1;
 				}
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, $"Exception while executing work flow '{group}'.");
-				returnValue = 2;
+				_logger.LogError(ex, $"Exception while executing work flow '{WellKnown.WorkFlow.SampleWorkFlow}'.");
+				_exitCode = 2;
 			}
-
-			return returnValue;
 		}
 
 		public Task StopAsync(CancellationToken cancellationToken)

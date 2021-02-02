@@ -12,5 +12,11 @@ namespace Diamond.Patterns.Extensions.DependencyInjection
 			hostBuilder.ConfigureContainer<DiamondServiceProvider>(builder => servicesAction(builder.Services));
 			return hostBuilder;
 		}
+
+		public static IHostBuilder UseDiamondDependencyPropertyInjection(this IHostBuilder hostBuilder)
+		{
+			hostBuilder.UseServiceProviderFactory(new DiamondServiceProviderFactory());
+			return hostBuilder;
+		}
 	}
 }

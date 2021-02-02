@@ -1,5 +1,4 @@
-﻿using Diamond.Patterns.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Patterns.WorkFlow
@@ -38,65 +37,6 @@ namespace Diamond.Patterns.WorkFlow
 				{
 					Logger = sp.GetRequiredService<ILogger<WorkFlowItemFactory>>()
 				};
-
-				return item;
-			});
-
-			return services;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <typeparam name="TWorkFlowManager"></typeparam>
-		/// <param name="services"></param>
-		/// <param name="group"></param>
-		/// <returns></returns>
-		public static IServiceCollection AddWorkFlowManager<TWorkFlowManager>(this IServiceCollection services, string group)
-			where TWorkFlowManager : IWorkFlowManager, new()
-		{
-			services.AddTransient<IWorkFlowManager>(sp =>
-			{
-				IWorkFlowManager item = new TWorkFlowManager()
-				{
-					Group = group,
-					WorkFlowItemFactory = sp.GetRequiredService<IWorkFlowItemFactory>()
-				};
-
-				if (item is ILoggerPublisher<TWorkFlowManager> publisher)
-				{
-					publisher.Logger = sp.GetRequiredService<ILogger<TWorkFlowManager>>();
-				}
-
-				return item;
-			});
-
-			return services;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <typeparam name="TWorkFlowItem"></typeparam>
-		/// <param name="services"></param>
-		/// <param name="group"></param>
-		/// <param name="ordinal"></param>
-		/// <returns></returns>
-		public static IServiceCollection AddWorkFlowItem<TWorkFlowItem>(this IServiceCollection services, string group, int ordinal)
-			where TWorkFlowItem : IWorkFlowItem, new()
-		{
-			services.AddTransient<IWorkFlowItem>(sp =>
-			{
-				IWorkFlowItem item = new TWorkFlowItem()
-				{
-					Group = group,
-					Ordinal = ordinal
-				};
-
-				if (item is ILoggerPublisher<TWorkFlowItem> publisher)
-				{
-					publisher.Logger = sp.GetRequiredService<ILogger<TWorkFlowItem>>();
-				}
 
 				return item;
 			});
