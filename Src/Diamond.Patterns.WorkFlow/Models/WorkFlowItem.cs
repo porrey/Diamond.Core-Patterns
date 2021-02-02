@@ -24,7 +24,7 @@ namespace Diamond.Patterns.WorkFlow
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class WorkFlowItem : IWorkFlowItem
+	public abstract class WorkFlowItem : IWorkFlowItem, ILoggerPublisher<WorkFlowItem>
 	{
 		/// <summary>
 		/// Gets/sets the name of this work-flow item for logging purposes.
@@ -55,7 +55,6 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		[ServiceDependency]
 		public ILogger<WorkFlowItem> Logger { get; set; } = new NullLogger<WorkFlowItem>();
 
 		/// <summary>

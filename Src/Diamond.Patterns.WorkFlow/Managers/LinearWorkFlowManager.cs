@@ -27,8 +27,15 @@ namespace Diamond.Patterns.WorkFlow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class LinearWorkFlowManager : IWorkFlowManager
+	public class LinearWorkFlowManager : IWorkFlowManager, ILoggerPublisher<LinearWorkFlowManager>
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		public LinearWorkFlowManager()
+		{
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -57,12 +64,11 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
+		public IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		[ServiceDependency]
 		public ILogger<LinearWorkFlowManager> Logger { get; set; } = new NullLogger<LinearWorkFlowManager>();
 
 		/// <summary>

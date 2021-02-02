@@ -116,6 +116,25 @@
             <param name="services"></param>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Patterns.WorkFlow.Decorators.ServicesExtensions.AddWorkFlowManager``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TWorkFlowManager"></typeparam>
+            <param name="services"></param>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Patterns.WorkFlow.Decorators.ServicesExtensions.AddWorkFlowItem``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TWorkFlowItem"></typeparam>
+            <param name="services"></param>
+            <param name="group"></param>
+            <param name="ordinal"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Patterns.WorkFlow.MissingStepsException">
             <summary>
             Generic error for a missing context property.
@@ -277,6 +296,11 @@
              and the work flow moves on to the next step.
             </summary>
         </member>
+        <member name="M:Diamond.Patterns.WorkFlow.ConditionalWorkFlowManager.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Diamond.Patterns.WorkFlow.ConditionalWorkFlowManager.#ctor(Diamond.Patterns.WorkFlow.IWorkFlowItem[])">
             <summary>
             
@@ -344,6 +368,11 @@
             <returns></returns>
         </member>
         <member name="T:Diamond.Patterns.WorkFlow.LinearWorkFlowManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Patterns.WorkFlow.LinearWorkFlowManager.#ctor">
             <summary>
             
             </summary>

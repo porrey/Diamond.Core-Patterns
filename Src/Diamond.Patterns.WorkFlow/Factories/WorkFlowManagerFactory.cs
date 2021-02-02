@@ -29,7 +29,7 @@ namespace Diamond.Patterns.WorkFlow
 	/// This is a generic repository factory that can return a repository
 	/// for any given entity interface.
 	/// </summary>
-	public class WorkFlowManagerFactory : IWorkFlowManagerFactory, ILoggerPublisher
+	public class WorkFlowManagerFactory : IWorkFlowManagerFactory, ILoggerPublisher<WorkFlowManagerFactory>
 	{
 		/// <summary>
 		/// 
@@ -48,7 +48,6 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		[ServiceDependency]
 		public ILogger<WorkFlowManagerFactory> Logger { get; set; } = new NullLogger<WorkFlowManagerFactory>();
 
 		/// <summary>
@@ -69,7 +68,7 @@ namespace Diamond.Patterns.WorkFlow
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IEnumerable<IWorkFlowManager> items = ActivatorUtilities.GetServiceOrCreateInstance<IEnumerable<IWorkFlowManager>>(this.ServiceProvider);
+			IEnumerable<IWorkFlowManager> items = this.ServiceProvider.GetService<IEnumerable<IWorkFlowManager>>();
 			IWorkFlowManager item = items.Where(t => t.Group == groupName).SingleOrDefault();
 
 			if (item != null)

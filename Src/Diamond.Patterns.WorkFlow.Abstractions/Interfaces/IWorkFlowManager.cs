@@ -27,7 +27,12 @@ namespace Diamond.Patterns.WorkFlow
 		/// The group name used to determine the work flow
 		/// items that are part of this work flow.
 		/// </summary>
-		string Group { get; }
+		string Group { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
 
 		/// <summary>
 		/// Gets the work flow items in their execution order.

@@ -45,37 +45,37 @@ namespace Diamond.Patterns.System
 			return returnValue;
 		}
 
-		/// <summary>
-		/// Encrypts a string that can only be decrypted on the same computer.
-		/// </summary>
-		/// <param name="value">The string to be encrypted.</param>
-		/// <returns>A Base64 string containing the original string encrypted.</returns>
-		public static string ProtectString(this string value, byte[] optionalEntropy = null)
-		{
-			string returnValue = String.Empty;
+		///// <summary>
+		///// Encrypts a string that can only be decrypted on the same computer.
+		///// </summary>
+		///// <param name="value">The string to be encrypted.</param>
+		///// <returns>A Base64 string containing the original string encrypted.</returns>
+		//public static string ProtectString(this string value, byte[] optionalEntropy = null)
+		//{
+		//	string returnValue = String.Empty;
 
-			byte[] data = ASCIIEncoding.UTF8.GetBytes(value);
-			byte[] encryptedData = ProtectedData.Protect(data, optionalEntropy, DataProtectionScope.LocalMachine);
-			returnValue = Convert.ToBase64String(encryptedData);
+		//	byte[] data = ASCIIEncoding.UTF8.GetBytes(value);
+		//	byte[] encryptedData = ProtectedData.Protect(data, optionalEntropy, DataProtectionScope.LocalMachine);
+		//	returnValue = Convert.ToBase64String(encryptedData);
 
-			return returnValue;
-		}
+		//	return returnValue;
+		//}
 
-		/// <summary>
-		/// Decrypts a string that was encrypted on the same computer.
-		/// </summary>
-		/// <param name="encryptedValue">A Base64 encrypted string that was the result of a call
-		/// to ProtectString().</param>
-		/// <returns>The original (decrypted) string value.</returns>
-		public static string UnprotectString(this string encryptedValue, byte[] optionalEntropy = null)
-		{
-			string returnValue = String.Empty;
+		///// <summary>
+		///// Decrypts a string that was encrypted on the same computer.
+		///// </summary>
+		///// <param name="encryptedValue">A Base64 encrypted string that was the result of a call
+		///// to ProtectString().</param>
+		///// <returns>The original (decrypted) string value.</returns>
+		//public static string UnprotectString(this string encryptedValue, byte[] optionalEntropy = null)
+		//{
+		//	string returnValue = String.Empty;
 
-			byte[] encryptedData = Convert.FromBase64String(encryptedValue);
-			byte[] data = ProtectedData.Unprotect(encryptedData, optionalEntropy, DataProtectionScope.LocalMachine);
-			returnValue = ASCIIEncoding.UTF8.GetString(data);
+		//	byte[] encryptedData = Convert.FromBase64String(encryptedValue);
+		//	byte[] data = ProtectedData.Unprotect(encryptedData, optionalEntropy, DataProtectionScope.LocalMachine);
+		//	returnValue = ASCIIEncoding.UTF8.GetString(data);
 
-			return returnValue;
-		}
+		//	return returnValue;
+		//}
 	}
 }

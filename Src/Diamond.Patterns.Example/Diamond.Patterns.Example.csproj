@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Diamond.Patterns.Context\Diamond.Patterns.Context.csproj" />
     <ProjectReference Include="..\Diamond.Patterns.Extensions.DependencyInjection\Diamond.Patterns.Extensions.DependencyInjection.csproj" />
     <ProjectReference Include="..\Diamond.Patterns.WorkFlow.Abstractions\Diamond.Patterns.WorkFlow.Abstractions.csproj" />
     <ProjectReference Include="..\Diamond.Patterns.WorkFlow\Diamond.Patterns.WorkFlow.csproj" />

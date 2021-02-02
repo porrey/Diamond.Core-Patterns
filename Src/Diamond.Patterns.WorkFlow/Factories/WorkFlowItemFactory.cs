@@ -28,7 +28,7 @@ namespace Diamond.Patterns.WorkFlow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class WorkFlowItemFactory : IWorkFlowItemFactory
+	public class WorkFlowItemFactory : IWorkFlowItemFactory, ILoggerPublisher<WorkFlowItemFactory>
 	{
 		/// <summary>
 		/// 
@@ -47,7 +47,6 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		[ServiceDependency]
 		public ILogger<WorkFlowItemFactory> Logger { get; set; } = new NullLogger<WorkFlowItemFactory>();
 
 		/// <summary>
@@ -67,7 +66,7 @@ namespace Diamond.Patterns.WorkFlow
 			// ***
 			// *** Find the repository that supports the given type.
 			// ***
-			IEnumerable<IWorkFlowItem> items = ActivatorUtilities.GetServiceOrCreateInstance<IEnumerable<IWorkFlowItem>>(this.ServiceProvider);
+			IEnumerable<IWorkFlowItem> items = this.ServiceProvider.GetService<IEnumerable<IWorkFlowItem>>();
 			IEnumerable<IWorkFlowItem> groupItems = items.Where(t => t.Group == groupName);
 			this.Logger.LogTrace($"Found {groupItems.Count()} Work-Flow items for group '{groupName}'.");
 

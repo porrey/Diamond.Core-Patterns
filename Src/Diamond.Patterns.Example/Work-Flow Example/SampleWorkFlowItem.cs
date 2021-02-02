@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
 using Diamond.Patterns.WorkFlow;
 using Microsoft.Extensions.Logging;
 
@@ -7,12 +6,7 @@ namespace Diamond.Patterns.Example
 {
 	public class SampleWorkFlowItem : WorkFlowItem
 	{
-		public SampleWorkFlowItem(string group, int ordinal, string name)
-		{
-			this.Name = name;
-			this.Ordinal = ordinal;
-			this.Group = group;
-		}
+		public override string Name => $"Sample Step {this.Ordinal}";
 
 		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{

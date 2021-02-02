@@ -29,8 +29,15 @@ namespace Diamond.Patterns.WorkFlow
 	///  current step indicates it should not be executed it is skipped
 	///  and the work flow moves on to the next step.
 	/// </summary>
-	public class ConditionalWorkFlowManager : IWorkFlowManager
+	public class ConditionalWorkFlowManager : IWorkFlowManager, ILoggerPublisher<ConditionalWorkFlowManager>
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		public ConditionalWorkFlowManager()
+		{
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -66,7 +73,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
+		public IWorkFlowItemFactory WorkFlowItemFactory { get; set; }
 
 		/// <summary>
 		/// 
@@ -113,7 +120,6 @@ namespace Diamond.Patterns.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
-		[ServiceDependency]
 		public ILogger<ConditionalWorkFlowManager> Logger { get; set; } = new NullLogger<ConditionalWorkFlowManager>();
 
 		/// <summary>

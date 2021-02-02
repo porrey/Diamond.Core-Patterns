@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Diamond.Patterns.Extensions.DependencyInjection;
 using Diamond.Patterns.WorkFlow;
 using Diamond.Patterns.WorkFlow.Decorators;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Diamond.Patterns.Example
 {
@@ -12,13 +10,12 @@ namespace Diamond.Patterns.Example
 	{
 		public static IHostBuilder CreateConsoleBuilder(string[] args) =>
 							Host.CreateDefaultBuilder(args)
-								.UseDiamondDependencyInjection()
-								.ConfigureServices(services =>
-								{
-									Program.ConfigureServices(services);
-								});
+								.UseConsoleLifetime()
+								.ConfigureServices(services => Program.ConfigureServices(services))
+								//.UseDiamondDependencyPropertyInjection(services => Program.ConfigureServices(services))
+								;
 
-		private static IServiceCollection ConfigureServices(IServiceCollection services)
+		private static void ConfigureServices(IServiceCollection services)
 		{
 			// ***
 			// *** Add the core application service.
@@ -33,25 +30,24 @@ namespace Diamond.Patterns.Example
 			// ***
 			// *** Create a linear work flow called "Group1".
 			// ***
-			services.AddTransient<IWorkFlowManager>(sp => new LinearWorkFlowManager(sp.GetRequiredService<IWorkFlowItemFactory>(), "Group1"));
+			services.AddWorkFlowManager<LinearWorkFlowManager>("Group1")
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 1)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 2)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 3)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 4)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 5)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 6)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 7)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 8)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 9)
+					.AddWorkFlowItem<SampleWorkFlowItem>("Group1", 10);
 
 			// ***
-			// *** Create a linear work flow called "Group2".
+			// *** Create a conditional work flow called "Group2".
 			// ***
-			services.AddTransient<IWorkFlowManager>(sp => new LinearWorkFlowManager(sp.GetRequiredService<IWorkFlowItemFactory>(), "Group2"));
-
-			// ***
-			// *** Add work flow items for "Group1".
-			// ***
-			for (int i = 0; i < 10; i++)
-			{
-				services.AddTransient<IWorkFlowItem>(sp => new SampleWorkFlowItem("Group1", i + 1, $"Step {i + 1}")
-				{
-					Logger = sp.GetRequiredService<ILogger<SampleWorkFlowItem>>()
-				});
-			}
-
-			return services;
+			services.AddWorkFlowManager<ConditionalWorkFlowManager>("Group2")
+					.AddWorkFlowItem<CreateTemporaryFolderStep>("Group2", 1)
+					.AddWorkFlowItem<DeleteTemporaryFolderStep>("Group2", 2);
 		}
 
 		static Task Main(string[] args)

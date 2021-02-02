@@ -21,7 +21,7 @@ namespace Diamond.Patterns.WorkFlow
 	/// <summary>
 	/// Defines a work flow item.
 	/// </summary>
-	public interface IWorkFlowItem 
+	public interface IWorkFlowItem
 	{
 		/// <summary>
 		/// Specifies the order in which the specified step is executed in a given
@@ -33,13 +33,13 @@ namespace Diamond.Patterns.WorkFlow
 		/// A unique name for the specified step usually used for display or logging
 		/// purposes.
 		/// </summary>
-		string Name { get; }
+		string Name { get; set; }
 
 		/// <summary>
 		/// A unique name that groups one or more steps together for a given
 		/// work flow.
 		/// </summary>
-		string Group { get; }
+		string Group { get; set; }
 
 		/// <summary>
 		/// Defines the weight applied to this step when showing progress. The default
@@ -49,7 +49,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// These numbers are totally arbitrary and are evaluated in relation to all
 		/// other weights in the work flow.
 		/// </summary>
-		double Weight { get; }
+		double Weight { get; set; }
 
 		/// <summary>
 		/// Indicates that regardless of the result of previous steps, this step
@@ -58,7 +58,7 @@ namespace Diamond.Patterns.WorkFlow
 		/// attribute usually a "clean-up" step that must execute every time. This
 		///  property may be ignored by certain work flow managers.
 		/// </summary>
-		bool AlwaysExecute { get; }
+		bool AlwaysExecute { get; set; }
 
 		/// <summary>
 		/// Performs the work for the specified step.

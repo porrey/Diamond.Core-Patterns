@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
-using Diamond.Patterns.Context;
 using Diamond.Patterns.WorkFlow;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -31,19 +29,39 @@ namespace Diamond.Patterns.Example
 		{
 			_logger.LogInformation("Starting application.");
 
+			await RunWorkFlowAsync("Group1");
+			await RunWorkFlowAsync("Group2");
+
+			_exitCode = 0;
+		}
+
+		private async Task<int> RunWorkFlowAsync(string group)
+		{
+			int returnValue = 0;
+
 			try
 			{
-				IWorkFlowManager wk1 = await _workFlowManagerFactory.GetAsync("Group1");
+				_logger.LogInformation($"Retrieving work flow manager '{group}'.");
+				IWorkFlowManager wk1 = await _workFlowManagerFactory.GetAsync(group);
 
-				using (GenericContext context = new GenericContext())
+				_logger.LogInformation($"Executing work flow manager '{group}'.");
+				if (await wk1.ExecuteWorkflowAsync(new GenericContext()))
 				{
-					bool result = await wk1.ExecuteWorkflowAsync(context);
+					_logger.LogInformation("Work flow exection was successful.");
+				}
+				else
+				{
+					_logger.LogError("Work flow exection failed.");
+					returnValue = 1;
 				}
 			}
-			catch
+			catch (Exception ex)
 			{
-
+				_logger.LogError(ex, $"Exception while executing work flow '{group}'.");
+				returnValue = 2;
 			}
+
+			return returnValue;
 		}
 
 		public Task StopAsync(CancellationToken cancellationToken)

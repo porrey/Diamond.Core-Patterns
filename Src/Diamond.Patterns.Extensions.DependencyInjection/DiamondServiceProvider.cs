@@ -8,20 +8,34 @@ namespace Diamond.Patterns.Extensions.DependencyInjection
 {
 	public class DiamondServiceProvider : IServiceProvider, IDisposable
 	{
-		protected ServiceProvider ServiceProvider { get; set; }
-
 		public DiamondServiceProvider(IServiceCollection services)
 		{
-			this.ServiceProvider = services.BuildServiceProvider();
+			this.Services = services;
+		}
+
+		public IServiceCollection Services { get; protected set; }
+
+		private IServiceProvider _serviceProvider = null;
+		protected IServiceProvider ServiceProvider
+		{
+			get
+			{
+				if (_serviceProvider == null)
+				{
+					_serviceProvider = this.Services.BuildServiceProvider();
+				}
+
+				return _serviceProvider;
+			}
 		}
 
 		public object GetService(Type serviceType)
 		{
-			object result =  this.ServiceProvider.GetRequiredService(serviceType);
+			object result = this.ServiceProvider.GetRequiredService(serviceType);
 
 			ILoggerFactory lf = this.ServiceProvider.GetRequiredService<ILoggerFactory>();
-			var logger = lf.CreateLogger<DiamondServiceProvider>();
-			logger.LogTrace($"Resolving instance of {serviceType.Name}'.");
+			ILogger<DiamondServiceProvider> logger = lf.CreateLogger<DiamondServiceProvider>();
+			logger.LogDebug($"Resolving instance of {serviceType.Name}'.");
 
 			if (result != null && result is ILoggerPublisher publisher)
 			{
@@ -33,7 +47,7 @@ namespace Diamond.Patterns.Extensions.DependencyInjection
 
 		public void Dispose()
 		{
-			if (this.ServiceProvider is IDisposable dis)
+			if (_serviceProvider != null && _serviceProvider is IDisposable dis)
 			{
 				dis.Dispose();
 			}
