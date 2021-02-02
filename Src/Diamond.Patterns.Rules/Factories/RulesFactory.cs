@@ -14,11 +14,13 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using Diamond.Patterns.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Diamond.Patterns.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Patterns.Rules
 {
@@ -26,30 +28,27 @@ namespace Diamond.Patterns.Rules
 	/// Defines a generic repository factory that can be used to retrieve
 	/// an object that implements <see cref="IRule<TItem, TResult>" from the container.
 	/// </summary>
-	public class RulesFactory : IRulesFactory
+	public class RulesFactory : IRulesFactory, ILoggerPublisher
 	{
 		/// <summary>
 		/// Creates an instance of <see cref="IRule<TItem, TResult>" with the
-		/// specififed instance of <see cref="IObjectFactory">."</see>
+		/// specififed instance of <see cref="IServiceProvider">."</see>
 		/// </summary>
-		/// <param name="objectFactory"></param>
-		public RulesFactory(IObjectFactory objectFactory)
+		/// <param name="serviceProvider"></param>
+		public RulesFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
-
-		public RulesFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
-
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
 
 		/// <summary>
-		/// Gets/sets the internal instance of <see cref="IObjectFactory">.
+		/// Gets/sets the internal instance of <see cref="IServiceProvider">.
 		/// </summary>
-		protected IObjectFactory ObjectFactory { get; set; }
+		protected IServiceProvider ServiceProvider { get; set; }
+
+		/// <summary>
+		/// Gets/sets a reference to the <see cref="ILogger"/> for this object.
+		/// </summary>
+		public ILogger<RulesFactory> Logger { get; set; }
 
 		/// <summary>
 		/// Get all model rule instances registered based on TInterface.
@@ -79,7 +78,7 @@ namespace Diamond.Patterns.Rules
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			IEnumerable<IRule> items = this.ObjectFactory.GetAllInstances<IRule>();
+			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
 			if (!String.IsNullOrEmpty(group))
 			{
@@ -92,7 +91,6 @@ namespace Diamond.Patterns.Rules
 				{
 					if (targetType.IsInstanceOfType(item))
 					{
-						this.LoggerSubscriber.AddToInstance(item);
 						returnValue.Add((IRule<TItem>)item);
 					}
 				}
@@ -135,13 +133,13 @@ namespace Diamond.Patterns.Rules
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(IRule<TItem, TResult>);
-			this.LoggerSubscriber.Verbose($"Finding a Rules with group '{group}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogTrace($"Finding a Rules with group '{group}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			IEnumerable<IRule> items = this.ObjectFactory.GetAllInstances<IRule>();
+			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
 			if (!String.IsNullOrEmpty(group))
 			{
@@ -150,20 +148,19 @@ namespace Diamond.Patterns.Rules
 
 			if (items.Count() > 0)
 			{
-				this.LoggerSubscriber.Verbose($"{items.Count()} Rules with group '{group}' and Target Type '{targetType.Name}' were found.");
+				this.Logger.LogTrace($"{items.Count()} Rules with group '{group}' and Target Type '{targetType.Name}' were found.");
 
 				foreach (IRule item in items)
 				{
 					if (targetType.IsInstanceOfType(item))
 					{
-						this.LoggerSubscriber.AddToInstance(item);
 						returnValue.Add((IRule<TItem, TResult>)item);
 					}
 				}
 			}
 			else
 			{
-				this.LoggerSubscriber.Verbose("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...");
+				this.Logger.LogTrace("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...");
 
 				if (!String.IsNullOrWhiteSpace(group))
 				{

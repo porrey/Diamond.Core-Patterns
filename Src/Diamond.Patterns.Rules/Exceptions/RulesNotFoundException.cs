@@ -18,11 +18,11 @@ using Diamond.Patterns.Abstractions;
 
 namespace Diamond.Patterns.Rules
 {
-    /// <summary>
-    /// Exception thrown when rules have not been configured in the application container.
-    /// </summary>
-    /// <typeparam name="TItem"></typeparam>
-    public class RulesNotFoundException<TItem>: DiamondPatternsException
+	/// <summary>
+	/// Exception thrown when rules have not been configured in the application container.
+	/// </summary>
+	/// <typeparam name="TItem"></typeparam>
+	public class RulesNotFoundException<TItem>: DiamondPatternsException
     {
         /// <summary>
         /// Exception thrown when no rules have been defined.

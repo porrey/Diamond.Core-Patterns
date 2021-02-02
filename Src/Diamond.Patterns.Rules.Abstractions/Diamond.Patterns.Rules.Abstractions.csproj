@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
 		<Version>5.0.0</Version>
@@ -7,7 +8,7 @@
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<Product>Diamond Pattern Library - Rules Pattern</Product>
-		<Description>This library provides a basic implementation of the Rules pattern.</Description>
+		<Description>This library provides abstractions for the Rules pattern.</Description>
 		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
@@ -27,25 +28,12 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\..\Images\Diamond.Patterns.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-	  <ProjectReference Include="..\Diamond.Patterns.Extensions.DependencyInjection.Abstractions\Diamond.Patterns.Extensions.DependencyInjection.Abstractions.csproj" />
-	  <ProjectReference Include="..\Diamond.Patterns.Rules.Abstractions\Diamond.Patterns.Rules.Abstractions.csproj" />
+	  <None Include="..\..\Images\Diamond.Patterns.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
 	</ItemGroup>
 
 </Project>
