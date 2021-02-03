@@ -32,8 +32,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Command\ICommand.cs" />
-	  <Compile Remove="Command\ICommandFactory.cs" />
 	  <Compile Remove="Ef\IContextFactory.cs" />
 	  <Compile Remove="Ef\IDatabaseStrategy.cs" />
 	  <Compile Remove="Factory\IEntityFactory.cs" />
@@ -55,8 +53,6 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-		<None Include="Command\ICommand.cs" />
-		<None Include="Command\ICommandFactory.cs" />
 		<None Include="Ef\IContextFactory.cs" />
 		<None Include="Ef\IDatabaseStrategy.cs" />
 		<None Include="Factory\IEntityFactory.cs" />
@@ -84,5 +80,9 @@
 	  <None Update="Diamond.Patterns.Abstractions.xml">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Command\" />
 	</ItemGroup>
 </Project>

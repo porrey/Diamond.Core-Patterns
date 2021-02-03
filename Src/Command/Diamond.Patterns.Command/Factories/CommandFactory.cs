@@ -14,34 +14,32 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Patterns.Command
 {
 	public class CommandFactory : ICommandFactory
 	{
-		public CommandFactory(IObjectFactory objectFactory)
+		public CommandFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
 
-		public CommandFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
+		public ILogger<CommandFactory> Logger { get; set; }
+		protected IServiceProvider ServiceProvider { get; set; }
 
-		public ILoggerSubscriber LoggerSubscriber { get; set; }
-		protected IObjectFactory ObjectFactory { get; set; }
-
-		public Task<ICommand> GetAsync(string commandName)
+		public Task<ICommand> GetAsync(string commandKey)
 		{
 			ICommand returnValue = null;
 
-			this.LoggerSubscriber.Verbose($"Retrieving instance of ICommand with command name '{commandName}'.");
-			returnValue = this.ObjectFactory.GetInstance<ICommand>(commandName);
-			this.LoggerSubscriber.AddToInstance(returnValue);
+			this.Logger.LogTrace($"Retrieving instance of ICommand with command name '{commandKey}'.");
+			IEnumerable<ICommand> commands = this.ServiceProvider.GetRequiredService<IEnumerable<ICommand>>();
+			returnValue = commands.Where(t => t.Key == commandKey).SingleOrDefault();
 
 			return Task.FromResult(returnValue);
 		}

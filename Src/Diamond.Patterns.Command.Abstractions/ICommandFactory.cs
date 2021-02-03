@@ -16,17 +16,19 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Patterns.Abstractions
+namespace Diamond.Patterns.Command
 {
 	/// <summary>
-	/// Defines a command to be used in the command pattern.
+	/// Defines a factory to retrieve <see cref="ICommand"/> based
+	/// on a name of the command.
 	/// </summary>
-	public interface ICommand
+	public interface ICommandFactory
 	{
 		/// <summary>
-		/// Executes the command.
+		/// Gets the command specified by parameterSwitch.
 		/// </summary>
-		/// <returns>Returns a code indicating the result. The code is specific to the command.</returns>
-		Task<int> ExecuteAsync();
+		/// <param name="parameterSwitch">The unique name of the registered command.</param>
+		/// <returns>An instance of <see cref="ICommand"/></returns>
+		Task<ICommand> GetAsync(string parameterSwitch);
 	}
 }
