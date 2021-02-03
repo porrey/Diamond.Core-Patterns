@@ -81,7 +81,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Decorator.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnitOfWork.Abstractions", "Unit of Work\Diamond.Patterns.UnitOfWork.Abstractions\Diamond.Patterns.UnitOfWork.Abstractions.csproj", "{223F5D47-3029-45A8-BE7D-B80EED89BD69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Command.Abstractions", "Diamond.Patterns.Command.Abstractions\Diamond.Patterns.Command.Abstractions.csproj", "{CF90F441-A92B-4B59-9E33-4AC1E97CBA80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Command.Abstractions", "Command\Diamond.Patterns.Command.Abstractions\Diamond.Patterns.Command.Abstractions.csproj", "{CF90F441-A92B-4B59-9E33-4AC1E97CBA80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
