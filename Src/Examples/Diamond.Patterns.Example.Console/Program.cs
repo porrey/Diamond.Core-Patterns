@@ -20,6 +20,7 @@ namespace Diamond.Patterns.Example
 			services.AddSpecificationExampleDependencies();
 			services.AddRulesExampleDependencies();
 			services.AddDecoratorExampleDependencies();
+			services.AddUnitOfWorkExampleDependencies();
 
 			// ***
 			// *** Add the example application services.
@@ -28,6 +29,7 @@ namespace Diamond.Patterns.Example
 			services.AddHostedService<SpecificationExampleHostedService>();
 			services.AddHostedService<RulesExampleHostedService>();
 			services.AddHostedService<DecoratorExampleHostedService>();
+			services.AddHostedService<UnitOfWorkExampleHostedService>();
 		}
 
 		static Task Main(string[] args)

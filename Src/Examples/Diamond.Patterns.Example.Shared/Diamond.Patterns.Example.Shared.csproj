@@ -15,6 +15,7 @@
     <ProjectReference Include="..\..\Decorator\Diamond.Patterns.Decorator\Diamond.Patterns.Decorator.csproj" />
     <ProjectReference Include="..\..\Rules\Diamond.Patterns.Rules\Diamond.Patterns.Rules.csproj" />
     <ProjectReference Include="..\..\Specification\Diamond.Patterns.Specification\Diamond.Patterns.Specification.csproj" />
+    <ProjectReference Include="..\..\Unit of Work\Diamond.Patterns.UnitOfWork\Diamond.Patterns.UnitOfWork.csproj" />
     <ProjectReference Include="..\..\Work-Flow\Diamond.Patterns.WorkFlow\Diamond.Patterns.WorkFlow.csproj" />
   </ItemGroup>
 

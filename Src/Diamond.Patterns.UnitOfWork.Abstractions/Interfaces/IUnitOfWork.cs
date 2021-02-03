@@ -16,7 +16,7 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Patterns.Abstractions
+namespace Diamond.Patterns.UnitOfWork
 {
 	/// <summary>
 	/// Defines a generic unit of work.

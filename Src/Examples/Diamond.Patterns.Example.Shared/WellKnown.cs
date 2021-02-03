@@ -21,5 +21,10 @@
 		{
 			public const string BookTransaction = "BookTransaction";
 		}
+
+		public static class UnitOfWork
+		{
+			public const string CreateAppointment = "CreateAppointment";
+		}
 	}
 }

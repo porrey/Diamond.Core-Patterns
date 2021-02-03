@@ -16,22 +16,13 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Patterns.Abstractions
+namespace Diamond.Patterns.UnitOfWork
 {
 	/// <summary>
 	/// Defines a factory to create/retrieve a specification.
 	/// </summary>
 	public interface IUnitOfWorkFactory
 	{
-		/// <summary>
-		/// Gets a unit of work that takes in TSourceItem and returns TResult.
-		/// </summary>
-		/// <typeparam name="TResult">The type of the result returned by the unit of work execution.</typeparam>
-		/// <typeparam name="TSourceItem">The type of the input or parameter passed to the execution
-		/// of the unit of work.</typeparam>
-		/// <returns></returns>
-		Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>();
-
 		/// <summary>
 		/// Gets a unit of work that takes in TSourceItem and returns TResult with the given key.
 		/// </summary>

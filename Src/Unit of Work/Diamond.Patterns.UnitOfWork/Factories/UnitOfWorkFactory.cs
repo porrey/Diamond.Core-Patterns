@@ -18,7 +18,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.UnitOfWork
 {
@@ -28,19 +30,13 @@ namespace Diamond.Patterns.UnitOfWork
 	/// </summary>
 	public class UnitOfWorkFactory : IUnitOfWorkFactory
 	{
-		public UnitOfWorkFactory(IObjectFactory objectFactory)
+		public UnitOfWorkFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
 
-		public UnitOfWorkFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
-
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
-		protected IObjectFactory ObjectFactory { get; set; }
+		public ILogger<UnitOfWorkFactory> Logger { get; set; } = new NullLogger<UnitOfWorkFactory>();
+		protected IServiceProvider ServiceProvider { get; set; }
 
 		public Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name)
 		{
@@ -50,15 +46,15 @@ namespace Diamond.Patterns.UnitOfWork
 			// *** Get the decorator type being requested.
 			// ***
 			Type targetType = typeof(IUnitOfWork<TResult, TSourceItem>);
-			this.LoggerSubscriber.Verbose($"Finding a Unit of Work with key '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogTrace($"Finding a Unit of Work with key '{name}' and Target Type '{targetType.Name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			IEnumerable<IUnitOfWork> items = this.ObjectFactory.GetAllInstances<IUnitOfWork>();
+			IEnumerable<IUnitOfWork> items = this.ServiceProvider.GetService<IEnumerable<IUnitOfWork>>();
 			IEnumerable<IUnitOfWork> keyItems = items.Where(t => t.Key == name);
-			this.LoggerSubscriber.Verbose($"{keyItems.Count()} match items of the target type were found.");
+			this.Logger.LogTrace($"{keyItems.Count()} match items of the target type were found.");
 
 			// ***
 			// *** Within the list, find the target decorator.
@@ -68,8 +64,7 @@ namespace Diamond.Patterns.UnitOfWork
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (IUnitOfWork<TResult, TSourceItem>)item;
-					this.LoggerSubscriber.AddToInstance(returnValue);
-					this.LoggerSubscriber.Verbose($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogTrace($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was found.");
 					break;
 				}
 			}
@@ -79,16 +74,11 @@ namespace Diamond.Patterns.UnitOfWork
 			// ***
 			if (returnValue == null)
 			{
-				this.LoggerSubscriber.Verbose($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
+				this.Logger.LogTrace($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(name);
 			}
 
 			return Task.FromResult(returnValue);
-		}
-
-		public async Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>()
-		{
-			return await this.GetAsync<TResult, TSourceItem>(null);
 		}
 	}
 }
