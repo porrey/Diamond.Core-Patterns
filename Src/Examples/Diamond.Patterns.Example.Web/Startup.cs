@@ -13,14 +13,16 @@ namespace Diamond.Patterns.Example
 			// ***
 			// *** Add the Diamond Patterns dependencies needed for the examples.
 			// ***
-			services.AddWorkFlowDependencies();
-			services.AddSpecificationDependencies();
+			services.AddWorkFlowExampleDependencies();
+			services.AddSpecificationExampleDependencies();
+			services.AddRulesExampleDependencies();
 
 			// ***
 			// *** Add the example application services.
 			// ***
 			services.AddHostedService<WorkFlowExampleHostedService>();
 			services.AddHostedService<SpecificationExampleHostedService>();
+			services.AddHostedService<RulesExampleHostedService>();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

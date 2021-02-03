@@ -59,11 +59,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Specificat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Decorator", "Decorator", "{96401A54-54C5-4347-93A5-BA78E4CCDFED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Console", "Example\Diamond.Patterns.Example.Console\Diamond.Patterns.Example.Console.csproj", "{720DF8F4-BBF8-43DB-8536-D52FF900C71B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Console", "Examples\Diamond.Patterns.Example.Console\Diamond.Patterns.Example.Console.csproj", "{720DF8F4-BBF8-43DB-8536-D52FF900C71B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Web", "Example\Diamond.Patterns.Example.Web\Diamond.Patterns.Example.Web.csproj", "{128AD3CF-112F-499D-BF20-27C3B99305D1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Shared", "Example\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj", "{41454296-EBBB-4697-8950-840F4B2FB1FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Web", "Examples\Diamond.Patterns.Example.Web\Diamond.Patterns.Example.Web.csproj", "{128AD3CF-112F-499D-BF20-27C3B99305D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{622BD90A-E4AC-46BB-A254-9866D202C607}"
 EndProject
@@ -76,6 +74,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNet Core", "AspNet Core", "{1C7989E4-B881-476E-ACE9-0421C9726FE1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Command", "Command", "{0A4746BF-500B-4583-A39F-76EA4D0A9B9E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Shared", "Examples\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj", "{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -179,14 +179,14 @@ Global
 		{128AD3CF-112F-499D-BF20-27C3B99305D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{128AD3CF-112F-499D-BF20-27C3B99305D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{128AD3CF-112F-499D-BF20-27C3B99305D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41454296-EBBB-4697-8950-840F4B2FB1FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41454296-EBBB-4697-8950-840F4B2FB1FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41454296-EBBB-4697-8950-840F4B2FB1FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41454296-EBBB-4697-8950-840F4B2FB1FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE13D2E8-6AFB-4866-957E-92271A085D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE13D2E8-6AFB-4866-957E-92271A085D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE13D2E8-6AFB-4866-957E-92271A085D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE13D2E8-6AFB-4866-957E-92271A085D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,8 +214,8 @@ Global
 		{C72CFD4A-A948-49DD-98FB-DEFB36E33157} = {A289C427-A10A-4C63-B3BC-2A38147F9943}
 		{720DF8F4-BBF8-43DB-8536-D52FF900C71B} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{128AD3CF-112F-499D-BF20-27C3B99305D1} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
-		{41454296-EBBB-4697-8950-840F4B2FB1FD} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{DE13D2E8-6AFB-4866-957E-92271A085D76} = {622BD90A-E4AC-46BB-A254-9866D202C607}
+		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

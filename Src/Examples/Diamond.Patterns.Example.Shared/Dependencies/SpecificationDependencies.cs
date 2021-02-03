@@ -5,15 +5,15 @@ namespace Diamond.Patterns.Example
 {
 	public static class SpecificationDependencies
 	{
-		public static IServiceCollection AddSpecificationDependencies(this IServiceCollection services)
+		public static IServiceCollection AddSpecificationExampleDependencies(this IServiceCollection services)
 		{
 			// ***
-			// *** Add the default work-flow factories.
+			// *** Add the default dependencies.
 			// ***
 			services.UseDiamondSpecification();
 
 			// ***
-			// *** Create a linear work flow named WellKnown.Specification.QualifyWidget.
+			// *** Add the specification to qualify the widgets.
 			// ***
 			services.AddTransient<ISpecification, WidgetQualificationSpecification>();
 

@@ -11,9 +11,11 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Diamond.Patterns.Specification\Diamond.Patterns.Specification.csproj" />
-		<ProjectReference Include="..\Diamond.Patterns.WorkFlow\Diamond.Patterns.WorkFlow.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Rules\Diamond.Patterns.Rules\Diamond.Patterns.Rules.csproj" />
+    <ProjectReference Include="..\..\Specification\Diamond.Patterns.Specification\Diamond.Patterns.Specification.csproj" />
+    <ProjectReference Include="..\..\Work-Flow\Diamond.Patterns.WorkFlow\Diamond.Patterns.WorkFlow.csproj" />
+  </ItemGroup>
+
 
 </Project>

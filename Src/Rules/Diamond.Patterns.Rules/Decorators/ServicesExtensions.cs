@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Patterns.Specification
+namespace Diamond.Patterns.Rules
 {
 	/// <summary>
 	/// 
@@ -13,16 +13,16 @@ namespace Diamond.Patterns.Specification
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection UseDiamondSpecification(this IServiceCollection services)
+		public static IServiceCollection UseDiamondRules(this IServiceCollection services)
 		{
 			// ***
 			// *** Add the WorkFlowManagerFactory.
 			// ***
-			services.AddSingleton<ISpecificationFactory>(sp =>
+			services.AddSingleton<IRulesFactory>(sp =>
 			{
-				SpecificationFactory item = new SpecificationFactory(sp)
+				RulesFactory item = new RulesFactory(sp)
 				{
-					Logger = sp.GetRequiredService<ILogger<SpecificationFactory>>()
+					Logger = sp.GetRequiredService<ILogger<RulesFactory>>()
 				};
 
 				return item;

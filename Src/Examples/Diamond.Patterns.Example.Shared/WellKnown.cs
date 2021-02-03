@@ -11,5 +11,10 @@
 		{
 			public const string SampleWorkFlow = "SampleWorkFlow";
 		}
+
+		public static class Rules
+		{
+			public const string Shipment = "Shipment";
+		}
 	}
 }

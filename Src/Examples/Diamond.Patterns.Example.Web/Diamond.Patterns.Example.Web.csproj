@@ -7,9 +7,8 @@
     <AssemblyVersion>5.0.0</AssemblyVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj" />
-    <ProjectReference Include="..\Diamond.Patterns.Extensions.DependencyInjection\Diamond.Patterns.Extensions.DependencyInjection.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj" />
+	</ItemGroup>
 
 </Project>

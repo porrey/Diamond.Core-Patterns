@@ -5,15 +5,15 @@ namespace Diamond.Patterns.Example
 {
 	public static class WorkFlowDependencies
 	{
-		public static IServiceCollection AddWorkFlowDependencies(this IServiceCollection services)
+		public static IServiceCollection AddWorkFlowExampleDependencies(this IServiceCollection services)
 		{
 			// ***
-			// *** Add the default work-flow factories.
+			// *** Add the default dependencies.
 			// ***
 			services.UseDiamondWorkFlow();
 
 			// ***
-			// *** Create a linear work flow.
+			// *** Add the sample workf flow manager and work flow steps.
 			// ***
 			services.AddTransient<IWorkFlowManager, SampleWorkFlowManager>();
 			services.AddTransient<IWorkFlowItem, SampleWorkStep1>();
