@@ -16,5 +16,10 @@
 		{
 			public const string Shipment = "Shipment";
 		}
+
+		public static class Decorator
+		{
+			public const string BookTransaction = "BookTransaction";
+		}
 	}
 }

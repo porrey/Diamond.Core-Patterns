@@ -77,6 +77,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Command", "Command", "{0A47
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Shared", "Examples\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj", "{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Decorator.Abstractions", "Diamond.Patterns.Decorator.Abstractions\Diamond.Patterns.Decorator.Abstractions.csproj", "{F91B68EA-6163-45F5-87A1-79675204C712}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F91B68EA-6163-45F5-87A1-79675204C712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F91B68EA-6163-45F5-87A1-79675204C712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F91B68EA-6163-45F5-87A1-79675204C712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F91B68EA-6163-45F5-87A1-79675204C712}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -216,6 +222,7 @@ Global
 		{128AD3CF-112F-499D-BF20-27C3B99305D1} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{DE13D2E8-6AFB-4866-957E-92271A085D76} = {622BD90A-E4AC-46BB-A254-9866D202C607}
 		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
+		{F91B68EA-6163-45F5-87A1-79675204C712} = {96401A54-54C5-4347-93A5-BA78E4CCDFED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

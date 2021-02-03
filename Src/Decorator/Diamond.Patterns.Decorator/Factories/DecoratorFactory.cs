@@ -16,8 +16,11 @@
 // *** 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Patterns.Decorator
 {
@@ -27,77 +30,31 @@ namespace Diamond.Patterns.Decorator
 	/// </summary>
 	public class DecoratorFactory : IDecoratorFactory
 	{
-		public DecoratorFactory(IObjectFactory objectFactory)
+		public DecoratorFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
 
-		public DecoratorFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
+		public ILogger<DecoratorFactory> Logger { get; set; } = new NullLogger<DecoratorFactory>();
 
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
-		protected IObjectFactory ObjectFactory { get; set; }
+		protected IServiceProvider ServiceProvider { get; set; }
 
-		public Task<IDecorator<TItem, TResult>> GetAsync<TItem, TResult>()
+		public Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name)
 		{
-			IDecorator<TItem, TResult> returnValue = null;
+			IDecorator<TDecoratedItem, TResult> returnValue = null;
 
 			// ***
 			// *** Get the decorator type being requested.
 			// ***
-			Type targetType = typeof(IDecorator<TItem, TResult>);
-			this.LoggerSubscriber.Verbose($"Finding an IDecorator of type '{targetType.Name}'.");
+			Type targetType = typeof(IDecorator<TDecoratedItem, TResult>);
+			this.Logger.LogTrace($"Finding an IDecorator of type '{targetType.Name}' and container registration name of '{name}'.");
 
 			// ***
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			IEnumerable <IDecorator> items = this.ObjectFactory.GetAllInstances<IDecorator>();
-
-			// ***
-			// *** Within the list, find the target decorator.
-			// ***
-			foreach (IDecorator item in items)
-			{
-				if (targetType.IsInstanceOfType(item))
-				{
-					this.LoggerSubscriber.Verbose($"IDecorator of type '{targetType.Name}' was found.");
-					returnValue = (IDecorator<TItem, TResult>)item;
-					this.LoggerSubscriber.AddToInstance(returnValue);
-					break;
-				}
-			}
-
-			// ***
-			// *** Check the result.
-			// ***
-			if (returnValue == null)
-			{
-				this.LoggerSubscriber.Error($"IDecorator of type '{targetType.Name}' was NOT found. Throwing exception...");
-				throw new DecoratorNotFoundException<TItem, TResult>();
-			}
-
-			return Task.FromResult(returnValue);
-		}
-
-		public Task<IDecorator<TItem, TResult>> GetAsync<TItem, TResult>(string name)
-		{
-			IDecorator<TItem, TResult> returnValue = null;
-
-			// ***
-			// *** Get the decorator type being requested.
-			// ***
-			Type targetType = typeof(IDecorator<TItem, TResult>);
-			this.LoggerSubscriber.Verbose($"Finding an IDecorator of type '{targetType.Name}' and container registration name of '{name}'.");
-
-			// ***
-			// *** Get all decorators from the container of
-			// *** type IDecorator<TItem>.
-			// ***
-			IDecorator decorator = this.ObjectFactory.GetInstance<IDecorator>(name);
+			IEnumerable<IDecorator> items = this.ServiceProvider.GetService<IEnumerable<IDecorator>>();
+			IDecorator decorator = items.Where(t => t.Name == name).FirstOrDefault();
 
 			// ***
 			// *** Within the list, find the target decorator.
@@ -106,14 +63,13 @@ namespace Diamond.Patterns.Decorator
 			{
 				if (targetType.IsInstanceOfType(decorator))
 				{
-					this.LoggerSubscriber.Verbose($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was found.");
-					returnValue = (IDecorator<TItem, TResult>)decorator;
-					this.LoggerSubscriber.AddToInstance(returnValue);
+					this.Logger.LogTrace($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was found.");
+					returnValue = (IDecorator<TDecoratedItem, TResult>)decorator;
 				}
 				else
 				{
-					this.LoggerSubscriber.Error($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was NOT found. Throwing exception...");
-					throw new DecoratorNotFoundException<TItem, TResult>(name);
+					this.Logger.LogError($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was NOT found. Throwing exception...");
+					throw new DecoratorNotFoundException<TDecoratedItem, TResult>(name);
 				}
 			}
 

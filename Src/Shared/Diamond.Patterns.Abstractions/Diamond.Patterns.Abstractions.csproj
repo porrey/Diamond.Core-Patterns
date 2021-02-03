@@ -34,15 +34,12 @@
 	<ItemGroup>
 	  <Compile Remove="Command\ICommand.cs" />
 	  <Compile Remove="Command\ICommandFactory.cs" />
-	  <Compile Remove="Decorator\IDecorator.cs" />
 	  <Compile Remove="Ef\IContextFactory.cs" />
 	  <Compile Remove="Ef\IDatabaseStrategy.cs" />
-	  <Compile Remove="Factory\IDecoratorFactory.cs" />
 	  <Compile Remove="Factory\IEntityFactory.cs" />
 	  <Compile Remove="Factory\IObjectFactory.cs" />
 	  <Compile Remove="Factory\IRepositoryFactory.cs" />
 	  <Compile Remove="Factory\IRequiresInitialization.cs" />
-	  <Compile Remove="Factory\IRulesFactory.cs" />
 	  <Compile Remove="Factory\IUnitOfWorkFactory.cs" />
 	  <Compile Remove="Models\IEntity.cs" />
 	  <Compile Remove="MVC\IControllerActionResult.cs" />
@@ -52,8 +49,6 @@
 	  <Compile Remove="Repository\IRepositoryContext.cs" />
 	  <Compile Remove="Repository\IRepositoryTransactionContext.cs" />
 	  <Compile Remove="Repository\IWritableRepository.cs" />
-	  <Compile Remove="Rules\IRule.cs" />
-	  <Compile Remove="Rules\IRuleResult.cs" />
 	  <Compile Remove="Unit Of Work\IUnitOfWork.cs" />
 	</ItemGroup>
 
@@ -64,15 +59,12 @@
 		</None>
 		<None Include="Command\ICommand.cs" />
 		<None Include="Command\ICommandFactory.cs" />
-		<None Include="Decorator\IDecorator.cs" />
 		<None Include="Ef\IContextFactory.cs" />
 		<None Include="Ef\IDatabaseStrategy.cs" />
-		<None Include="Factory\IDecoratorFactory.cs" />
 		<None Include="Factory\IEntityFactory.cs" />
 		<None Include="Factory\IObjectFactory.cs" />
 		<None Include="Factory\IRepositoryFactory.cs" />
 		<None Include="Factory\IRequiresInitialization.cs" />
-		<None Include="Factory\IRulesFactory.cs" />
 		<None Include="Factory\IUnitOfWorkFactory.cs" />
 		<None Include="Models\IEntity.cs" />
 		<None Include="MVC\IControllerActionResult.cs" />
@@ -82,8 +74,6 @@
 		<None Include="Repository\IRepositoryContext.cs" />
 		<None Include="Repository\IRepositoryTransactionContext.cs" />
 		<None Include="Repository\IWritableRepository.cs" />
-		<None Include="Rules\IRule.cs" />
-		<None Include="Rules\IRuleResult.cs" />
 		<None Include="Unit Of Work\IUnitOfWork.cs" />
 	</ItemGroup>
 

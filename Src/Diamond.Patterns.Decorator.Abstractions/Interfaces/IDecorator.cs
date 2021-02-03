@@ -16,28 +16,29 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Patterns.Abstractions
+namespace Diamond.Patterns.Decorator
 {
 	/// <summary>
 	/// Defines a generic decorator.
 	/// </summary>
 	public interface IDecorator
 	{
+		string Name { get; set; }
 	}
 
 	/// <summary>
 	/// Defines a decorator that can has wraps TItem and
 	/// returns TResult.
 	/// </summary>
-	/// <typeparam name="TItem">The instance type being decorated.</typeparam>
+	/// <typeparam name="TDecoratedItem">The instance type being decorated.</typeparam>
 	/// <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
-	public interface IDecorator<TItem, TResult> : IDecorator
+	public interface IDecorator<TDecoratedItem, TResult> : IDecorator
 	{
 		/// <summary>
 		/// Executes the decorator action.
 		/// </summary>
-		/// <param name="item">The instance of the item being decorated.</param>
+		/// <param name="decoratedItem">The instance of the item being decorated.</param>
 		/// <returns>The defined result of the action.</returns>
-		Task<TResult> TakeActionAsync(TItem item);
+		Task<TResult> TakeActionAsync(TDecoratedItem item);
 	}
 }

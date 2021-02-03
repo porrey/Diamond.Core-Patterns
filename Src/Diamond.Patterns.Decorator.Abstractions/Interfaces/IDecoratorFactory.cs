@@ -16,7 +16,7 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Patterns.Abstractions
+namespace Diamond.Patterns.Decorator
 {
 	/// <summary>
 	/// Defines a factory to create/retrieve decorator instances.
@@ -24,20 +24,12 @@ namespace Diamond.Patterns.Abstractions
 	public interface IDecoratorFactory
 	{
 		/// <summary>
-		/// Gets the specific decorator by type.
-		/// </summary>
-		/// <typeparam name="TItem">The type of object being decorated.</typeparam>
-		/// <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
-		/// <returns>The result of the decorator action.</returns>
-		Task<IDecorator<TItem, TResult>> GetAsync<TItem, TResult>();
-
-		/// <summary>
 		/// Gets the specific decorator by type and name.
 		/// </summary>
-		/// <typeparam name="TItem">The type of object being decorated.</typeparam>
+		/// <typeparam name="TDecoratedItem">The type of object being decorated.</typeparam>
 		/// <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
 		/// <param name="name">The unique name of the decorator.</param>
 		/// <returns>The result of the decorator action.</returns>
-		Task<IDecorator<TItem, TResult>> GetAsync<TItem, TResult>(string name);
+		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name);
 	}
 }
