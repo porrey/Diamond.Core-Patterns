@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+		<Version>5.0.0</Version>
+		<FileVersion>5.0.0</FileVersion>
+		<AssemblyVersion>5.0.0</AssemblyVersion>
+		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
+		<Product>Diamond Pattern Library - Rules Pattern</Product>
+		<Description>This library provides a basic implementation of the Rules pattern.</Description>
+		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Core</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Core</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIconUrl></PackageIconUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageIcon>Diamond.Core.png</PackageIcon>
+		<NeutralLanguage>English (United States)</NeutralLanguage>
+		<Company>Daniel M. Porrey</Company>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\Images\Diamond.Core.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Core.Rules.Abstractions\Diamond.Core.Rules.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

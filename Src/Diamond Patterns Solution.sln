@@ -3,45 +3,39 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Decorator", "Decorator\Diamond.Patterns.Decorator\Diamond.Patterns.Decorator.csproj", "{33C88E6C-2FBA-4999-A989-061804C71BEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Decorator", "Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj", "{33C88E6C-2FBA-4999-A989-061804C71BEC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnitOfWork", "Unit of Work\Diamond.Patterns.UnitOfWork\Diamond.Patterns.UnitOfWork.csproj", "{DFDBC1A2-4689-456A-83F1-60987CA888D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.UnitOfWork", "Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj", "{DFDBC1A2-4689-456A-83F1-60987CA888D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow", "Work-Flow\Diamond.Patterns.WorkFlow\Diamond.Patterns.WorkFlow.csproj", "{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow", "Work-Flow\Diamond.Core.WorkFlow\Diamond.Core.WorkFlow.csproj", "{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnityConfiguration", "Old\Diamond.Patterns.UnityConfiguration\Diamond.Patterns.UnityConfiguration.csproj", "{BE78642C-3C60-45E5-B38A-67824C15B2CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Abstractions", "Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj", "{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Abstractions", "Shared\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj", "{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.System", "Shared\Diamond.Core.System\Diamond.Core.System.csproj", "{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.System", "Shared\Diamond.Patterns.System\Diamond.Patterns.System.csproj", "{4D6B08F6-D369-4F58-B9D0-3E11E3108E4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.ModelFactory", "Repository\Diamond.Core.ModelFactory\Diamond.Core.ModelFactory.csproj", "{A682598C-77B5-4389-9043-F9CC3D9D9711}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.ModelFactory", "Repository\Diamond.Patterns.ModelFactory\Diamond.Patterns.ModelFactory.csproj", "{A682598C-77B5-4389-9043-F9CC3D9D9711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository", "Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj", "{5A0A6322-4551-487C-9E13-31EF89C8A5EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Repository", "Repository\Diamond.Patterns.Repository\Diamond.Patterns.Repository.csproj", "{5A0A6322-4551-487C-9E13-31EF89C8A5EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Command", "Command\Diamond.Core.Command\Diamond.Core.Command.csproj", "{58855DF2-743B-4226-9DE3-2B680029DF01}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.ObjectFactory.Unity", "Diamond.Patterns.ObjectFactory.Unity\Diamond.Patterns.ObjectFactory.Unity.csproj", "{4D052526-4836-47E5-9096-64D2522D33BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Specification", "Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj", "{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Command", "Command\Diamond.Patterns.Command\Diamond.Patterns.Command.csproj", "{58855DF2-743B-4226-9DE3-2B680029DF01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow.State", "Work-Flow\Diamond.Core.WorkFlow.State\Diamond.Core.WorkFlow.State.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Specification", "Specification\Diamond.Patterns.Specification\Diamond.Patterns.Specification.csproj", "{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNet.DoAction", "AspNetCore\Diamond.Core.Mvc\Diamond.Core.AspNet.DoAction.csproj", "{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow.State", "Work-Flow\Diamond.Patterns.WorkFlow.State\Diamond.Patterns.WorkFlow.State.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNet.DoAction.Abstractions", "AspNetCore\Diamond.Core.Mvc.Abstractions\Diamond.Core.AspNet.DoAction.Abstractions.csproj", "{66172244-7A55-4C25-9FE8-933FED883FEA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc", "AspNet Core\Diamond.Patterns.Mvc\Diamond.Patterns.Mvc.csproj", "{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Rules", "Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj", "{BA0C8F9C-2243-425C-955F-D66ECCB646C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc.Abstractions", "AspNet Core\Diamond.Patterns.Mvc.Abstractions\Diamond.Patterns.Mvc.Abstractions.csproj", "{66172244-7A55-4C25-9FE8-933FED883FEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository.EntityFrameworkCore", "Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj", "{6517F332-2D93-455F-87AB-2F1A7B97A786}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Mvc.Unity", "AspNet Core\Diamond.Patterns.Mvc.Unity\Diamond.Patterns.Mvc.Unity.csproj", "{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj", "{059C3106-0242-4ECA-BBD0-D8719C2ADEC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Rules", "Rules\Diamond.Patterns.Rules\Diamond.Patterns.Rules.csproj", "{BA0C8F9C-2243-425C-955F-D66ECCB646C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection.Abstractions", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj", "{787B266B-3B94-4996-BB63-06FE0EDB4AAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Repository.EntityFrameworkCore", "Repository\Diamond.Patterns.Repository.EntityFrameworkCore\Diamond.Patterns.Repository.EntityFrameworkCore.csproj", "{6517F332-2D93-455F-87AB-2F1A7B97A786}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Extensions.DependencyInjection", "Dependency-Injection\Diamond.Patterns.Extensions.DependencyInjection\Diamond.Patterns.Extensions.DependencyInjection.csproj", "{059C3106-0242-4ECA-BBD0-D8719C2ADEC8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Extensions.DependencyInjection.Abstractions", "Dependency-Injection\Diamond.Patterns.Extensions.DependencyInjection.Abstractions\Diamond.Patterns.Extensions.DependencyInjection.Abstractions.csproj", "{787B266B-3B94-4996-BB63-06FE0EDB4AAE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow.Abstractions", "Work-Flow\Diamond.Patterns.WorkFlow.Abstractions\Diamond.Patterns.WorkFlow.Abstractions.csproj", "{DDBF0AAF-D83C-405F-A9B7-8661689B2491}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow.Abstractions", "Work-Flow\Diamond.Core.WorkFlow.Abstractions\Diamond.Core.WorkFlow.Abstractions.csproj", "{DDBF0AAF-D83C-405F-A9B7-8661689B2491}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Work-Flow", "Work-Flow", "{D2924B42-A572-4D29-AA82-EB69ADC9BBFF}"
 EndProject
@@ -49,41 +43,41 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency-Injection", "Dep
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B27AF0DE-B54B-4F22-A25D-3E02107FAC58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.WorkFlow.State.Abstractions", "Work-Flow\Diamond.Patterns.WorkFlow.State.Abstractions\Diamond.Patterns.WorkFlow.State.Abstractions.csproj", "{8193E54B-CEBD-4C7A-A0CE-8647C5014387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow.State.Abstractions", "Work-Flow\Diamond.Core.WorkFlow.State.Abstractions\Diamond.Core.WorkFlow.State.Abstractions.csproj", "{8193E54B-CEBD-4C7A-A0CE-8647C5014387}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specification", "Specification", "{A289C427-A10A-4C63-B3BC-2A38147F9943}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Specification.Abstractions", "Specification\Diamond.Patterns.Specification.Abstractions\Diamond.Patterns.Specification.Abstractions.csproj", "{C72CFD4A-A948-49DD-98FB-DEFB36E33157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Specification.Abstractions", "Specification\Diamond.Core.Specification.Abstractions\Diamond.Core.Specification.Abstractions.csproj", "{C72CFD4A-A948-49DD-98FB-DEFB36E33157}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Decorator", "Decorator", "{96401A54-54C5-4347-93A5-BA78E4CCDFED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Console", "Examples\Diamond.Patterns.Example.Console\Diamond.Patterns.Example.Console.csproj", "{720DF8F4-BBF8-43DB-8536-D52FF900C71B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Console", "Examples\Diamond.Core.Example.Console\Diamond.Core.Example.Console.csproj", "{720DF8F4-BBF8-43DB-8536-D52FF900C71B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Web", "Examples\Diamond.Patterns.Example.Web\Diamond.Patterns.Example.Web.csproj", "{128AD3CF-112F-499D-BF20-27C3B99305D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Web", "Examples\Diamond.Core.Example.Web\Diamond.Core.Example.Web.csproj", "{128AD3CF-112F-499D-BF20-27C3B99305D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{622BD90A-E4AC-46BB-A254-9866D202C607}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Rules.Abstractions", "Rules\Diamond.Patterns.Rules.Abstractions\Diamond.Patterns.Rules.Abstractions.csproj", "{DE13D2E8-6AFB-4866-957E-92271A085D76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Rules.Abstractions", "Rules\Diamond.Core.Rules.Abstractions\Diamond.Core.Rules.Abstractions.csproj", "{DE13D2E8-6AFB-4866-957E-92271A085D76}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{4949C8F2-68C0-4881-BB72-6DAFA4E07FED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit of Work", "Unit of Work", "{436A819A-2603-4250-B15C-92AB4A203667}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNet Core", "AspNet Core", "{1C7989E4-B881-476E-ACE9-0421C9726FE1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore", "AspNetCore", "{1C7989E4-B881-476E-ACE9-0421C9726FE1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Command", "Command", "{0A4746BF-500B-4583-A39F-76EA4D0A9B9E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Shared", "Examples\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj", "{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Shared", "Examples\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj", "{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Decorator.Abstractions", "Decorator\Diamond.Patterns.Decorator.Abstractions\Diamond.Patterns.Decorator.Abstractions.csproj", "{F91B68EA-6163-45F5-87A1-79675204C712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Decorator.Abstractions", "Decorator\Diamond.Core.Decorator.Abstractions\Diamond.Core.Decorator.Abstractions.csproj", "{F91B68EA-6163-45F5-87A1-79675204C712}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.UnitOfWork.Abstractions", "Unit of Work\Diamond.Patterns.UnitOfWork.Abstractions\Diamond.Patterns.UnitOfWork.Abstractions.csproj", "{223F5D47-3029-45A8-BE7D-B80EED89BD69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.UnitOfWork.Abstractions", "Unit of Work\Diamond.Core.UnitOfWork.Abstractions\Diamond.Core.UnitOfWork.Abstractions.csproj", "{223F5D47-3029-45A8-BE7D-B80EED89BD69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Command.Abstractions", "Command\Diamond.Patterns.Command.Abstractions\Diamond.Patterns.Command.Abstractions.csproj", "{CF90F441-A92B-4B59-9E33-4AC1E97CBA80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Command.Abstractions", "Command\Diamond.Core.Command.Abstractions\Diamond.Core.Command.Abstractions.csproj", "{CF90F441-A92B-4B59-9E33-4AC1E97CBA80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.Example.Command.Console", "Diamond.Patterns.Example.Command.Console\Diamond.Patterns.Example.Command.Console.csproj", "{8A1BFBF7-2C70-4445-B7BA-852B251684FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Command.Console", "Examples\Diamond.Core.Example.Command.Console\Diamond.Core.Example.Command.Console.csproj", "{8A1BFBF7-2C70-4445-B7BA-852B251684FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,10 +97,6 @@ Global
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE78642C-3C60-45E5-B38A-67824C15B2CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -123,10 +113,6 @@ Global
 		{5A0A6322-4551-487C-9E13-31EF89C8A5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A0A6322-4551-487C-9E13-31EF89C8A5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A0A6322-4551-487C-9E13-31EF89C8A5EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D052526-4836-47E5-9096-64D2522D33BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D052526-4836-47E5-9096-64D2522D33BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D052526-4836-47E5-9096-64D2522D33BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D052526-4836-47E5-9096-64D2522D33BD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{58855DF2-743B-4226-9DE3-2B680029DF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58855DF2-743B-4226-9DE3-2B680029DF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58855DF2-743B-4226-9DE3-2B680029DF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -147,10 +133,6 @@ Global
 		{66172244-7A55-4C25-9FE8-933FED883FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66172244-7A55-4C25-9FE8-933FED883FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66172244-7A55-4C25-9FE8-933FED883FEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BA0C8F9C-2243-425C-955F-D66ECCB646C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BA0C8F9C-2243-425C-955F-D66ECCB646C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA0C8F9C-2243-425C-955F-D66ECCB646C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -228,7 +210,6 @@ Global
 		{923C2E38-839B-4400-AAC4-E48DF5AC9E8B} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 		{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
 		{66172244-7A55-4C25-9FE8-933FED883FEA} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
-		{D9DB7DE9-0069-4F11-838D-98F4A0264EA6} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
 		{BA0C8F9C-2243-425C-955F-D66ECCB646C7} = {622BD90A-E4AC-46BB-A254-9866D202C607}
 		{6517F332-2D93-455F-87AB-2F1A7B97A786} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
 		{059C3106-0242-4ECA-BBD0-D8719C2ADEC8} = {AE576974-2F85-47D3-B00C-5FC577E3F321}

@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<Authors>Daniel M. Porrey</Authors>
+		<Company>Daniel M. Porrey</Company>
+		<Product>Diamond Pattern Library - Core</Product>
+		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
+		<Description>This library provides some basic support functionality.</Description>
+		<Version>5.0.0</Version>
+		<FileVersion>5.0.0</FileVersion>
+		<AssemblyVersion>5.0.0</AssemblyVersion>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Core</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Core</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIcon>Diamond.Core.png</PackageIcon>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<PackageIconUrl></PackageIconUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.DisposableObject" Version="1.4.1" />
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\..\Images\Diamond.Core.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	  <None Include="..\..\..\Images\Diamond.Core.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>
