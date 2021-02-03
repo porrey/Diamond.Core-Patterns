@@ -38,7 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Diamond.Patterns.Decorator.Abstractions\Diamond.Patterns.Decorator.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Patterns.Decorator.Abstractions\Diamond.Patterns.Decorator.Abstractions.csproj" />
 		<ProjectReference Include="..\..\Shared\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
 	</ItemGroup>
 

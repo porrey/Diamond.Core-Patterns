@@ -77,9 +77,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Command", "Command", "{0A47
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Example.Shared", "Examples\Diamond.Patterns.Example.Shared\Diamond.Patterns.Example.Shared.csproj", "{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Decorator.Abstractions", "Diamond.Patterns.Decorator.Abstractions\Diamond.Patterns.Decorator.Abstractions.csproj", "{F91B68EA-6163-45F5-87A1-79675204C712}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Patterns.Decorator.Abstractions", "Decorator\Diamond.Patterns.Decorator.Abstractions\Diamond.Patterns.Decorator.Abstractions.csproj", "{F91B68EA-6163-45F5-87A1-79675204C712}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.UnitOfWork.Abstractions", "Diamond.Patterns.UnitOfWork.Abstractions\Diamond.Patterns.UnitOfWork.Abstractions.csproj", "{223F5D47-3029-45A8-BE7D-B80EED89BD69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Patterns.UnitOfWork.Abstractions", "Unit of Work\Diamond.Patterns.UnitOfWork.Abstractions\Diamond.Patterns.UnitOfWork.Abstractions.csproj", "{223F5D47-3029-45A8-BE7D-B80EED89BD69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
