@@ -6,6 +6,7 @@
     <Version>5.0.0</Version>
     <FileVersion>5.0.0</FileVersion>
     <AssemblyVersion>5.0.0</AssemblyVersion>
+    <AssemblyName>ConsoleExample</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
