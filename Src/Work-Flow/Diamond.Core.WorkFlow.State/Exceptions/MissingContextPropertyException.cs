@@ -21,7 +21,7 @@ namespace Diamond.Core.WorkFlow.State
 	/// <summary>
 	/// Generic error for a missing context property.
 	/// </summary>
-	public class MissingContextPropertyException : DiamondPatternsException
+	public class MissingContextPropertyException : DiamondCoreException
 	{
 		public MissingContextPropertyException(string key)
 			: base($"The context dictionary does not have a property named '{key}'.")

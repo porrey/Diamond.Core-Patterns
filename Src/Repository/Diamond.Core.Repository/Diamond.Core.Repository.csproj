@@ -13,10 +13,10 @@
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
-		<Description>This library provides basic implementations of the repository factory and repository configurations.</Description>
-		<PackageIcon>Diamond.Patterns.png</PackageIcon>
+		<Description>This library provides basic implementations of the repository pattern.</Description>
+		<PackageIcon>Diamond.Core.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Patterns/master/Images/Diamond.Patterns.png</PackageIconUrl>
+		<PackageIconUrl></PackageIconUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -26,21 +26,25 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Diamond.Patterns.Abstractions\Diamond.Patterns.Abstractions.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="..\..\Images\Diamond.Patterns.png">
+	  <None Include="..\..\..\Images\Diamond.Core.png">
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
 	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
 	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\Shared\Diamond.Core.System\Diamond.Core.System.csproj" />
 	</ItemGroup>
 
 </Project>

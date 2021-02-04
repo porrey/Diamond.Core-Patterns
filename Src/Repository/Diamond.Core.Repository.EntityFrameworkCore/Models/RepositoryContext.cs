@@ -17,10 +17,9 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Diamond.Patterns.Repository.EntityFrameworkCore
+namespace Diamond.Core.Repository.EntityFrameworkCore
 {
 	public abstract class RepositoryContext<TContext> : DbContext, IRepositoryContext
 		where TContext : DbContext
@@ -77,18 +76,6 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 			}
 
 			return returnValue;
-		}
-
-		[Obsolete]
-		public virtual Task EnableBulkLoadAsync()
-		{
-			return Task.FromResult(0);
-		}
-
-		[Obsolete]
-		public virtual Task DisableBulkLoadAsync()
-		{
-			return Task.FromResult(0);
 		}
 
 		public virtual Task<int> ExecuteSqlCommandAsync(string sql)

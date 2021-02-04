@@ -19,10 +19,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Patterns.Repository.EntityFrameworkCore
+namespace Diamond.Core.Repository.EntityFrameworkCore
 {
 	/// <summary>
 	/// This repository implements a base repository for an Entity (TEntity) that
@@ -46,13 +47,14 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		protected abstract DbSet<TEntity> MyDbSet(TContext model);
 		protected abstract TContext GetNewDbContext { get; }
 		public virtual IEntityFactory<TInterface> ModelFactory { get; set; }
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
+		public ILogger<EntityFrameworkRepository<TInterface, TEntity, TContext>> Logger { get; set; } = new NullLogger<EntityFrameworkRepository<TInterface, TEntity, TContext>>();
+		public string Name { get; set; }
 
 		public virtual Task<IEnumerable<TInterface>> GetAllAsync()
 		{
 			IEnumerable<TInterface> returnValue = null;
 
-			this.LoggerSubscriber.Verbose($"{nameof(GetAllAsync)} called for type '{typeof(TInterface).Name}'.");
+			this.Logger.LogTrace($"{nameof(GetAllAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			using (TContext db = this.GetNewDbContext)
 			{
@@ -66,7 +68,7 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			IEnumerable<TInterface> returnValue = null;
 
-			this.LoggerSubscriber.Verbose($"{nameof(GetAsync)} called for type '{typeof(TInterface).Name}'.");
+			this.Logger.LogTrace($"{nameof(GetAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			using (TContext db = this.GetNewDbContext)
 			{
@@ -78,7 +80,7 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 
 		public virtual Task<IRepositoryContext> GetContextAsync()
 		{
-			this.LoggerSubscriber.Verbose($"{nameof(GetContextAsync)} called.");
+			this.Logger.LogTrace($"{nameof(GetContextAsync)} called.");
 			return Task.FromResult((IRepositoryContext)this.GetNewDbContext);
 		}
 
@@ -86,7 +88,7 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			IQueryable<TInterface> returnValue = null;
 
-			this.LoggerSubscriber.Verbose($"{nameof(GetQueryableAsync)} called for type '{typeof(TInterface).Name}'.");
+			this.Logger.LogTrace($"{nameof(GetQueryableAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			if (context is TContext db)
 			{
@@ -104,13 +106,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			bool returnValue = false;
 
-			this.LoggerSubscriber.Verbose($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}'.");
+			this.Logger.LogTrace($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			using (TContext db = this.GetNewDbContext)
 			{
 				db.Entry((TEntity)item).State = EntityState.Modified;
 				int result = await db.SaveChangesAsync();
-				this.LoggerSubscriber.Verbose($"{nameof(UpdateAsync)}: Records updated = {result}.");
+				this.Logger.LogTrace($"{nameof(UpdateAsync)}: Records updated = {result}.");
 				returnValue = (result == 1);
 			}
 
@@ -121,13 +123,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			(bool result, TInterface entity) = (false, default);
 
-			this.LoggerSubscriber.Verbose($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}'.");
+			this.Logger.LogTrace($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			using (TContext db = this.GetNewDbContext)
 			{
 				entity = this.MyDbSet(db).Add((TEntity)item).Entity;
 				result = (await db.SaveChangesAsync() == 1);
-				this.LoggerSubscriber.Verbose($"{nameof(AddAsync)}: Records updated = {result}.");
+				this.Logger.LogTrace($"{nameof(AddAsync)}: Records updated = {result}.");
 			}
 
 			return (result, entity);
@@ -137,13 +139,13 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 		{
 			bool returnValue = false;
 
-			this.LoggerSubscriber.Verbose($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}'.");
+			this.Logger.LogTrace($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}'.");
 
 			using (TContext db = this.GetNewDbContext)
 			{
 				db.Entry((TEntity)item).State = EntityState.Deleted;
 				int result = await db.SaveChangesAsync();
-				this.LoggerSubscriber.Verbose($"{nameof(DeleteAsync)}: Records updated = {result}.");
+				this.Logger.LogTrace($"{nameof(DeleteAsync)}: Records updated = {result}.");
 				returnValue = (result == 1);
 			}
 
@@ -152,20 +154,20 @@ namespace Diamond.Patterns.Repository.EntityFrameworkCore
 
 		public virtual Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
-			this.LoggerSubscriber.Verbose($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}' with context.");
+			this.Logger.LogTrace($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			((TContext)repositoryContext).Entry((TEntity)item).State = EntityState.Modified;
 			return Task.FromResult(true);
 		}
 
 		public virtual Task<TInterface> AddAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
-			this.LoggerSubscriber.Verbose($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}' with context.");
+			this.Logger.LogTrace($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			return Task.FromResult<TInterface>(this.MyDbSet((TContext)repositoryContext).Add((TEntity)item).Entity);
 		}
 
 		public virtual Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface item)
 		{
-			this.LoggerSubscriber.Verbose($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}' with context.");
+			this.Logger.LogTrace($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			((TContext)repositoryContext).Entry((TEntity)item).State = EntityState.Deleted;
 			return Task.FromResult(true);
 		}

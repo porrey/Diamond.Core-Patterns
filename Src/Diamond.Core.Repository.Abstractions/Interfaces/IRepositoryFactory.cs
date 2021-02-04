@@ -16,7 +16,7 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// Defines a factory to create/retrieve model repositories.

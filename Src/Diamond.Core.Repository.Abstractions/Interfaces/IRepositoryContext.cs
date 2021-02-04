@@ -17,7 +17,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// Defines the  isolation level to be used in transactions.
@@ -51,20 +51,6 @@ namespace Diamond.Core.Abstractions
 	/// </summary>
 	public interface IRepositoryContext : IDisposable
 	{
-		/// <summary>
-		/// Indicates to the data store that it should prepare for a large volume of
-		/// new records to be added. This may not be supported on all data stores.
-		/// </summary>
-		/// <returns></returns>
-		Task EnableBulkLoadAsync();
-
-		/// <summary>
-		/// Indicates to the data store that the bulk operation has completed or has
-		/// been canceled. This may not be supported on all data stores.
-		/// </summary>
-		/// <returns></returns>
-		Task DisableBulkLoadAsync();
-
 		/// <summary>
 		/// Executes a SQL command against the data store. This may not be supported
 		/// on all data stores.

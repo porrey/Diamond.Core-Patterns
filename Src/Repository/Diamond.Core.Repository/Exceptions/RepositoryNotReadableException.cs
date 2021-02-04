@@ -16,7 +16,7 @@
 // *** 
 using System;
 
-namespace Diamond.Patterns.Repository
+namespace Diamond.Core.Repository
 {
 	public class RepositoryNotReadableException : RepositoryException
 	{

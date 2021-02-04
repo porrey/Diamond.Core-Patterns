@@ -14,28 +14,20 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
 	/// <summary>
-	/// Defines a transaction context for a data store.
+	/// Defines a factory to create entity models.
 	/// </summary>
-	public interface IRepositoryTransactionContext : IDisposable
+	/// <typeparam name="TInterface">The type of the entity model.</typeparam>
+	public interface IEntityFactory<TInterface>
 	{
 		/// <summary>
-		/// Commits all changes on the given data store associated
-		/// with this transaction context.
+		/// Creates a new empty instance of an entity model.
 		/// </summary>
-		/// <returns></returns>
-		Task CommitTransactionAsync();
-
-		/// <summary>
-		/// Rolls back all changes on the given data store associated
-		/// with this transaction context.
-		/// </summary>
-		/// <returns></returns>
-		Task RollbackTransactionAsync();
+		/// <returns>The newly created entity.</returns>
+		Task<TInterface> CreateAsync();
 	}
 }

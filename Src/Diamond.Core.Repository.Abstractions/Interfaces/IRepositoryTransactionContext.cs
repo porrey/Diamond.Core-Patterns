@@ -15,33 +15,27 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Command
+namespace Diamond.Core.Repository
 {
-	public class CommandFactory : ICommandFactory
+	/// <summary>
+	/// Defines a transaction context for a data store.
+	/// </summary>
+	public interface IRepositoryTransactionContext : IDisposable
 	{
-		public CommandFactory(IServiceProvider serviceProvider)
-		{
-			this.ServiceProvider = serviceProvider;
-		}
+		/// <summary>
+		/// Commits all changes on the given data store associated
+		/// with this transaction context.
+		/// </summary>
+		/// <returns></returns>
+		Task CommitTransactionAsync();
 
-		public ILogger<CommandFactory> Logger { get; set; }
-		protected IServiceProvider ServiceProvider { get; set; }
-
-		public Task<ICommand> GetAsync(string commandKey)
-		{
-			ICommand returnValue = null;
-
-			this.Logger.LogTrace($"Retrieving instance of ICommand with command name '{commandKey}'.");
-			IEnumerable<ICommand> commands = this.ServiceProvider.GetRequiredService<IEnumerable<ICommand>>();
-			returnValue = commands.Where(t => t.Key == commandKey).SingleOrDefault();
-
-			return Task.FromResult(returnValue);
-		}
+		/// <summary>
+		/// Rolls back all changes on the given data store associated
+		/// with this transaction context.
+		/// </summary>
+		/// <returns></returns>
+		Task RollbackTransactionAsync();
 	}
 }

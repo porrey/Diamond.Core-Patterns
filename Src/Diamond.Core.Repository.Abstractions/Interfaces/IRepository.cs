@@ -14,22 +14,20 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System;
-
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
 	/// <summary>
-	/// Defines a strategy to use for database auto-creation.
+	/// Defines a generic repository interface.
 	/// </summary>
-	/// <typeparam name="TContext"></typeparam>
-	public interface IDatabaseStrategy<TContext>
+	public interface IRepository
 	{
-		/// <summary>
-		/// Gets the database initializer.
-		/// </summary>
-		/// <param name="modelBuilder">The model builder used to map CLR classes to a database schema.</param>
-		/// <param name="onSeed">A method to be called to seed the database after it has been created.</param>
-		/// <returns></returns>
-		object GetInitializer(object modelBuilder, EventHandler<TContext> onSeed);
+		public string Name { get; set; }
+	}
+
+	/// <summary>
+	/// Defines a generic repository interface that stores an entity of type TInterface.
+	/// </summary>
+	public interface IRepository<TInterface> : IRepository where TInterface : IEntity
+	{
 	}
 }

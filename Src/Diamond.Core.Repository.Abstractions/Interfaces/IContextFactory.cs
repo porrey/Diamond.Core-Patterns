@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// Defines a factory that can create new instances of the specified

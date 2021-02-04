@@ -15,19 +15,24 @@
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
-	/// <summary>
-	/// Defines a factory to create entity models.
-	/// </summary>
-	/// <typeparam name="TInterface">The type of the entity model.</typeparam>
-	public interface IEntityFactory<TInterface>
+	public class EntityFactory<TInterface, TEntity> : IEntityFactory<TInterface>
+		where TEntity : TInterface, new()
+		where TInterface : IEntity
 	{
-		/// <summary>
-		/// Creates a new empty instance of an entity model.
-		/// </summary>
-		/// <returns>The newly created entity.</returns>
-		Task<TInterface> CreateAsync();
+		public ILogger<EntityFactory<TInterface, TEntity>> Logger { get; set; } = new NullLogger<EntityFactory<TInterface, TEntity>>();
+
+		public Task<TInterface> CreateAsync()
+		{
+			TEntity returnValue = new TEntity();
+
+			this.Logger.LogTrace($"Model factory is creating instance of model type '{typeof(TEntity).Name}'.");
+
+			return Task.FromResult<TInterface>(returnValue);
+		}
 	}
 }

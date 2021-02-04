@@ -18,7 +18,7 @@ using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.UnitOfWork
 {
-	public class UnitOfWorkNotFoundException<TResult, TSourceItem> : DiamondPatternsException
+	public class UnitOfWorkNotFoundException<TResult, TSourceItem> : DiamondCoreException
 	{
 		public UnitOfWorkNotFoundException(string name)
 			: base($"A Unit Of Work of type 'IUnitOfWork<{typeof(TResult).Name}, {typeof(TSourceItem).Name}>' with name '{name}' has not been configured.")

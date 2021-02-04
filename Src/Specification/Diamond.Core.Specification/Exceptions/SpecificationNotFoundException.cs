@@ -18,7 +18,7 @@ using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.Specification
 {
-	public class SpecificationNotFoundException<TResult> : DiamondPatternsException
+	public class SpecificationNotFoundException<TResult> : DiamondCoreException
 	{
 		public SpecificationNotFoundException(string name)
 			: base($"A Specification of type 'ISpeciification<{typeof(TResult).Name}>' with name '{name}' has not been configured.")
@@ -26,7 +26,7 @@ namespace Diamond.Core.Specification
 		}
 	}
 
-	public class SpecificationNotFoundException<TParameter, TResult> : DiamondPatternsException
+	public class SpecificationNotFoundException<TParameter, TResult> : DiamondCoreException
 	{
 		public SpecificationNotFoundException(string name)
 			: base($"A Specification of type 'ISpeciification<{typeof(TParameter).Name}, {typeof(TResult).Name}>' with name '{name}' has not been configured.")

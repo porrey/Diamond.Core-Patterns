@@ -18,7 +18,7 @@ using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.Decorator
 {
-	public class DecoratorNotFoundException<TItem, TResult> : DiamondPatternsException
+	public class DecoratorNotFoundException<TItem, TResult> : DiamondCoreException
 	{
 		public DecoratorNotFoundException()
 			: base($"A decorator of type 'IDecorator<{typeof(TItem).Name}, {typeof(TResult).Name}>' has not been configured.")

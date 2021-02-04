@@ -14,21 +14,29 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System.Threading.Tasks;
+using System;
 
-namespace Diamond.Core.Command
+namespace Diamond.Core.Repository
 {
 	/// <summary>
-	/// Defines a factory to retrieve <see cref="ICommand"/> based
-	/// on a name of the command.
+	/// Base entity class allowing generic classes for any
+	/// interface defined as an "Entity".
 	/// </summary>
-	public interface ICommandFactory
+	public interface IEntity : ICloneable
+	{
+	}
+
+	/// <summary>
+	/// Base entity class with a "ID" defined as type T. Each
+	/// entity (or model) will defined it's own ID type based
+	/// on the Mail.dat specification.
+	/// </summary>
+	/// <typeparam name="T">The type of ID for this entity.</typeparam>
+	public interface IEntity<T> : IEntity
 	{
 		/// <summary>
-		/// Gets the command specified by parameterSwitch.
+		/// Get/sets or unique ID for this item.
 		/// </summary>
-		/// <param name="parameterSwitch">The unique name of the registered command.</param>
-		/// <returns>An instance of <see cref="ICommand"/></returns>
-		Task<ICommand> GetAsync(string parameterSwitch);
+		T Id { get; set; }
 	}
 }

@@ -22,7 +22,7 @@ namespace Diamond.Core.Rules
 	/// Exception thrown when rules have not been configured in the application container.
 	/// </summary>
 	/// <typeparam name="TItem"></typeparam>
-	public class RulesNotFoundException<TItem>: DiamondPatternsException
+	public class RulesNotFoundException<TItem>: DiamondCoreException
     {
         /// <summary>
         /// Exception thrown when no rules have been defined.

@@ -16,7 +16,7 @@
 // *** 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// Defines a repository that can be used to modify items in a data store.

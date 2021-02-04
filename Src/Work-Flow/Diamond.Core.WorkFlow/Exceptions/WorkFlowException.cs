@@ -23,7 +23,7 @@ namespace Diamond.Core.WorkFlow
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class WorkFlowException : DiamondPatternsException
+	public abstract class WorkFlowException : DiamondCoreException
 	{
 		/// <summary>
 		/// 

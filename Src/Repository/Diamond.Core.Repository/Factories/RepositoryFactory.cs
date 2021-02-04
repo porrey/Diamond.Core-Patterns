@@ -14,26 +14,25 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // ***
+using System;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Diamond.Patterns.Repository
+namespace Diamond.Core.Repository
 {
 	public class RepositoryFactory : IRepositoryFactory
 	{
-		public RepositoryFactory(IObjectFactory objectFactory)
+		public RepositoryFactory(IServiceProvider serviceProvider)
 		{
-			this.ObjectFactory = objectFactory;
+			this.ServiceProvider = serviceProvider;
 		}
 
-		public RepositoryFactory(IObjectFactory objectFactory, ILoggerSubscriber loggerSubscriber)
-		{
-			this.ObjectFactory = objectFactory;
-			this.LoggerSubscriber = loggerSubscriber;
-		}
-
-		protected IObjectFactory ObjectFactory { get; set; }
-		public ILoggerSubscriber LoggerSubscriber { get; set; } = new NullLoggerSubscriber();
+		protected IServiceProvider ServiceProvider { get; set; }
+		public ILogger<RepositoryFactory> Logger { get; set; } = new NullLogger<RepositoryFactory>();
 
 		public Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity
 		{
@@ -49,14 +48,19 @@ namespace Diamond.Patterns.Repository
 			// ***
 			if (name == null)
 			{
-				this.LoggerSubscriber.Verbose($"Retrieving IRepository for type '{typeof(TInterface)}'.");
-				returnValue = this.ObjectFactory.GetInstance<IRepository<TInterface>>();
-				this.LoggerSubscriber.AddToInstance(returnValue);
+				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}'.");
+				returnValue = this.ServiceProvider.GetRequiredService<IRepository<TInterface>>();
 			}
 			else
 			{
-				this.LoggerSubscriber.Verbose($"Retrieving IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
-				returnValue = this.ObjectFactory.GetInstance<IRepository<TInterface>>(name);
+				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+				IEnumerable<IRepository<TInterface>> repositories = this.ServiceProvider.GetRequiredService<IEnumerable<IRepository<TInterface>>>();
+				returnValue = repositories.Where(t => t.Name == name).SingleOrDefault();
+
+				if (returnValue == null)
+				{
+					this.Logger.LogWarning($"A IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+				}
 			}
 
 			return Task.FromResult(returnValue);
@@ -71,7 +75,7 @@ namespace Diamond.Patterns.Repository
 		{
 			IReadOnlyRepository<TInterface> returnValue = null;
 
-			this.LoggerSubscriber.Verbose($"Retrieving IReadOnlyRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+			this.Logger.LogTrace($"Retrieving IReadOnlyRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 
 			// ***
 			// *** Find the repository that supports the given type.
@@ -80,17 +84,17 @@ namespace Diamond.Patterns.Repository
 
 			if (repository is IReadOnlyRepository<TInterface> castedRepository)
 			{
-				this.LoggerSubscriber.Verbose($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
+				this.Logger.LogTrace($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
 
 				// ***
 				// *** Cast the repository to IRepositry<T> and return it.
 				// ***
 				returnValue = castedRepository;
-				this.LoggerSubscriber.Verbose($"The repository '{repository.GetType().Name}' implements IReadOnlyRepository.");
+				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IReadOnlyRepository.");
 			}
 			else
 			{
-				this.LoggerSubscriber.Error($"The repository '{repository.GetType().Name}' does NOT implement IReadOnlyRepository. Throwing exception...");
+				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IReadOnlyRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
 
@@ -106,7 +110,7 @@ namespace Diamond.Patterns.Repository
 		{
 			IWritableRepository<TInterface> returnValue = null;
 
-			this.LoggerSubscriber.Verbose($"Retrieving IWritableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+			this.Logger.LogTrace($"Retrieving IWritableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 
 			// ***
 			// *** Find the repository that supports the given type.
@@ -115,17 +119,17 @@ namespace Diamond.Patterns.Repository
 
 			if (repository is IWritableRepository<TInterface> castedRepository)
 			{
-				this.LoggerSubscriber.Verbose($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
+				this.Logger.LogTrace($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
 
 				// ***
 				// *** Cast the repository to IRepositry<T> and return it.
 				// ***
 				returnValue = castedRepository;
-				this.LoggerSubscriber.Verbose($"The repository '{repository.GetType().Name}' implements IWritableRepository.");
+				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IWritableRepository.");
 			}
 			else
 			{
-				this.LoggerSubscriber.Error($"The repository '{repository.GetType().Name}' does NOT implement IWritableRepository. Throwing exception...");
+				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IWritableRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
 
@@ -141,7 +145,7 @@ namespace Diamond.Patterns.Repository
 		{
 			IQueryableRepository<TInterface> returnValue = null;
 
-			this.LoggerSubscriber.Verbose($"Retrieving IQueryableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+			this.Logger.LogTrace($"Retrieving IQueryableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 
 			// ***
 			// *** Find the repository that supports the given type.
@@ -154,11 +158,11 @@ namespace Diamond.Patterns.Repository
 				// *** Cast the repository to IRepositry<T> and return it.
 				// ***
 				returnValue = castedRepository;
-				this.LoggerSubscriber.Verbose($"The repository '{repository.GetType().Name}' implements IQueryableRepository.");
+				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IQueryableRepository.");
 			}
 			else
 			{
-				this.LoggerSubscriber.Error($"The repository '{repository.GetType().Name}' does NOT implement IQueryableRepository. Throwing exception...");
+				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IQueryableRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
 

@@ -21,7 +21,7 @@ namespace Diamond.Core.WorkFlow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class NoExitCodeException : DiamondPatternsException
+	public class NoExitCodeException : DiamondCoreException
 	{
 		/// <summary>
 		/// 

@@ -21,7 +21,7 @@ namespace Diamond.Core.WorkFlow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class WorkFlowManagerNotFoundException : DiamondPatternsException
+	public class WorkFlowManagerNotFoundException : DiamondCoreException
 	{
 		/// <summary>
 		/// 

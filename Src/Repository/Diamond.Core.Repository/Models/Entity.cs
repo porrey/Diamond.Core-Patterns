@@ -14,24 +14,17 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System.Threading.Tasks;
 
-namespace Diamond.Core.Command
+using Diamond.Core.System;
+
+namespace Diamond.Core.Repository
 {
-	/// <summary>
-	/// Defines a command to be used in the command pattern.
-	/// </summary>
-	public interface ICommand
+	public abstract class Entity : Cloneable, IEntity
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		string Key { get; set; }
+	}
 
-		/// <summary>
-		/// Executes the command.
-		/// </summary>
-		/// <returns>Returns a code indicating the result. The code is specific to the command.</returns>
-		Task<int> ExecuteAsync();
+	public class Entity<T> : Entity, IEntity<T>
+	{
+		public virtual T Id { get; set; }
 	}
 }

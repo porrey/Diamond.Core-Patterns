@@ -14,11 +14,10 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using Diamond.Patterns.Abstractions;
 
-namespace Diamond.Patterns.Repository.EntityFrameworkCore
+namespace Diamond.Core.Repository.EntityFrameworkCore
 {
-	public class InvalidContextException : DiamondPatternsException
+	public sealed class InvalidContextException : DiamondRepositoryException
 	{
 		public InvalidContextException()
 			: base($"The IDatabaseContext instance provided is invalid.")

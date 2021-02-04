@@ -14,30 +14,31 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Abstractions
+namespace Diamond.Core.Repository
 {
 	/// <summary>
-	/// Defines a repository that supports a queryable interface. The connection remains open until specifically
-	/// closed by the caller.
+	/// Defines a repository that supports read-only queries against a data store. These queries return
+	/// an IEnumberable of TInterface.
 	/// </summary>
 	/// <typeparam name="TInterface"></typeparam>
-	public interface IQueryableRepository<TInterface> : IReadOnlyRepository<TInterface> where TInterface : IEntity
+	public interface IReadOnlyRepository<TInterface> : IRepository<TInterface> where TInterface : IEntity
 	{
 		/// <summary>
-		/// Gets an active context that can be used for subsequent queries. This context
-		/// can be shared among repositories for the same underlying data store (database).
+		/// Returns all items in the data store.
 		/// </summary>
-		/// <returns></returns>
-		Task<IRepositoryContext> GetContextAsync();
+		/// <returns>Returns an IEnumberable of TInterface</returns>
+		Task<IEnumerable<TInterface>> GetAllAsync();
 
 		/// <summary>
-		/// Gets a <see cref="IQueryable"/> of type TInterface using the specified context.
+		/// Returns a filtered list of items from the data store.
 		/// </summary>
-		/// <param name="context">A context retrieved from a all to GetContextAsync().</param>
-		/// <returns>Returns an <see cref="IQueryable"/> of type TInterface.</returns>
-		Task<IQueryable<TInterface>> GetQueryableAsync(IRepositoryContext context);
+		/// <param name="predicate">Defines the query to be applied before returning the results.</param>
+		/// <returns>Returns an IEnumberable of TInterface</returns>
+		Task<IEnumerable<TInterface>> GetAsync(Expression<Func<TInterface, bool>> predicate);
 	}
 }

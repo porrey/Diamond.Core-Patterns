@@ -16,10 +16,9 @@
 // *** 
 using System;
 using System.Threading.Tasks;
-using Diamond.Patterns.Abstractions;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Diamond.Patterns.Repository.EntityFrameworkCore
+namespace Diamond.Core.Repository.EntityFrameworkCore
 {
 	public class RepositoryTransactionContext : DisposableObject, IRepositoryTransactionContext
 	{

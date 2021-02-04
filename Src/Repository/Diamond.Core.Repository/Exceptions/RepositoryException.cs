@@ -17,7 +17,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Diamond.Patterns.Repository
+namespace Diamond.Core.Repository
 {
 	public abstract class RepositoryException : Exception
 	{
