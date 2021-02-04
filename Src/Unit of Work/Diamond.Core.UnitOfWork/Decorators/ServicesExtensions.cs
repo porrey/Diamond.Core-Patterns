@@ -13,7 +13,7 @@ namespace Diamond.Core.UnitOfWork
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection UseDiamondUnitOfWork(this IServiceCollection services)
+		public static IServiceCollection UseDiamondUnitOfWorkPattern(this IServiceCollection services)
 		{
 			// ***
 			// *** Add the WorkFlowManagerFactory.

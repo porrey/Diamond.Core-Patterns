@@ -10,7 +10,7 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Add the default dependencies.
 			// ***
-			services.UseDiamondUnitOfWork();
+			services.UseDiamondUnitOfWorkPattern();
 
 			// ***
 			// *** Add the rules to validate the shipment model. 

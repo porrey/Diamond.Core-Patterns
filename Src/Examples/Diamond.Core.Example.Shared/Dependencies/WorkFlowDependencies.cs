@@ -10,10 +10,10 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Add the default dependencies.
 			// ***
-			services.UseDiamondWorkFlow();
+			services.UseDiamondWorkFlowPattern();
 
 			// ***
-			// *** Add the sample workf flow manager and work flow steps.
+			// *** Add the sample work flow manager and work flow steps.
 			// ***
 			services.AddTransient<IWorkFlowManager, SampleWorkFlowManager>();
 			services.AddTransient<IWorkFlowItem, SampleWorkStep1>();

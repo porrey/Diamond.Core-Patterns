@@ -13,7 +13,7 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection UseDiamondSpecification(this IServiceCollection services)
+		public static IServiceCollection UseDiamondSpecificationPattern(this IServiceCollection services)
 		{
 			// ***
 			// *** Add the WorkFlowManagerFactory.

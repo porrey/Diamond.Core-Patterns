@@ -5,8 +5,10 @@ using System.Linq;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using System.CommandLine;
+using System.Collections.Generic;
 
-namespace Diamond.Core.Command
+namespace Diamond.Core.ConsoleCommands
 {
 	/// <summary>
 	/// 
@@ -23,6 +25,7 @@ namespace Diamond.Core.Command
 		/// <param name="configureHost"></param>
 		/// <returns></returns>
 		public static CommandLineBuilder UseDiamondCommandPattern(this CommandLineBuilder builder,
+			RootCommand rootCommand,
 			Func<string[], IHostBuilder> hostBuilderFactory,
 			Action<IHostBuilder> configureHost = null) =>
 				builder.UseMiddleware(async (invocation, next) =>
@@ -50,6 +53,19 @@ namespace Diamond.Core.Command
 
 						using IHost host = hostBuilder.Build();
 						invocation.BindingContext.AddService(typeof(IHost), _ => host);
+
+						// ***
+						// *** Add the commands from the services.
+						// ***
+						IEnumerable<ICommand> commands = host.Services.GetRequiredService<IEnumerable<ICommand>>();
+
+						foreach (ICommand command in commands)
+						{
+							if (command is Command cmd)
+							{
+								rootCommand.AddCommand(cmd);
+							}
+						}
 
 						string[] argsRemaining = invocation.ParseResult.UnparsedTokens.ToArray();
 

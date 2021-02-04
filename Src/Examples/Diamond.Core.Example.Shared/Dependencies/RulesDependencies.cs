@@ -10,7 +10,7 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Add the default dependencies.
 			// ***
-			services.UseDiamondRules();
+			services.UseDiamondRulesPattern();
 
 			// ***
 			// *** Add the rules to validate the shipment model. 

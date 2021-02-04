@@ -1,4 +1,4 @@
-﻿namespace Diamond.Core.Example.Command.Console
+﻿namespace Diamond.Core.Example.ConsoleCommand
 {
 	public class Employee
 	{

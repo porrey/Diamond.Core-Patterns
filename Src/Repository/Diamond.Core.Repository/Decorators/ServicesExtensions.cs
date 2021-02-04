@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Decorator
+namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// 
@@ -13,16 +13,16 @@ namespace Diamond.Core.Decorator
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection UseDiamondDecoratorPattern(this IServiceCollection services)
+		public static IServiceCollection UseDiamondRepositoryPattern(this IServiceCollection services)
 		{
 			// ***
 			// *** Add the WorkFlowManagerFactory.
 			// ***
-			services.AddSingleton<IDecoratorFactory>(sp =>
+			services.AddSingleton<IRepositoryFactory>(sp =>
 			{
-				DecoratorFactory item = new DecoratorFactory(sp)
+				RepositoryFactory item = new RepositoryFactory(sp)
 				{
-					Logger = sp.GetRequiredService<ILogger<DecoratorFactory>>()
+					Logger = sp.GetRequiredService<ILogger<RepositoryFactory>>()
 				};
 
 				return item;

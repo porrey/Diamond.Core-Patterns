@@ -10,7 +10,7 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Add the default dependencies.
 			// ***
-			services.UseDiamondSpecification();
+			services.UseDiamondSpecificationPattern();
 
 			// ***
 			// *** Add the specification to qualify the widgets.

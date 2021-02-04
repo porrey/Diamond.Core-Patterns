@@ -21,6 +21,7 @@ namespace Diamond.Core.Example
 			services.AddRulesExampleDependencies();
 			services.AddDecoratorExampleDependencies();
 			services.AddUnitOfWorkExampleDependencies();
+			services.AddRepositoryExampleDependencies();
 
 			// ***
 			// *** Add the example application services.
@@ -30,6 +31,7 @@ namespace Diamond.Core.Example
 			services.AddHostedService<RulesExampleHostedService>();
 			services.AddHostedService<DecoratorExampleHostedService>();
 			services.AddHostedService<UnitOfWorkExampleHostedService>();
+			services.AddHostedService<RepositoryExampleHostedService>();
 		}
 
 		static Task Main(string[] args)

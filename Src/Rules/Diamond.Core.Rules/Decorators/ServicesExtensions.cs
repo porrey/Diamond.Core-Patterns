@@ -13,7 +13,7 @@ namespace Diamond.Core.Rules
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection UseDiamondRules(this IServiceCollection services)
+		public static IServiceCollection UseDiamondRulesPattern(this IServiceCollection services)
 		{
 			// ***
 			// *** Add the WorkFlowManagerFactory.

@@ -109,7 +109,7 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.WorkFlow.ServicesExtensions.UseDiamondWorkFlow(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Diamond.Core.WorkFlow.ServicesExtensions.UseDiamondWorkFlowPattern(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             
             </summary>

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Command\Diamond.Core.Command\Diamond.Core.Command.csproj" />
+    <ProjectReference Include="..\..\Command\Diamond.Core.ConsoleCommands\Diamond.Core.ConsoleCommands.csproj" />
   </ItemGroup>
 
 </Project>
