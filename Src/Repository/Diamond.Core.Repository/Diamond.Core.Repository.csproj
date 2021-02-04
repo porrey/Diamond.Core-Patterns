@@ -42,7 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
+	  <ProjectReference Include="..\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
 	  <ProjectReference Include="..\..\Shared\Diamond.Core.System\Diamond.Core.System.csproj" />
 	</ItemGroup>

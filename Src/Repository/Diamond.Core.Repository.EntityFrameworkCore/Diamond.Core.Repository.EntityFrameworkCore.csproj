@@ -50,7 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
+	  <ProjectReference Include="..\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>

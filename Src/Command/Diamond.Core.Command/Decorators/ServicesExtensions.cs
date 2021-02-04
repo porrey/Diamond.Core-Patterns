@@ -1,7 +1,10 @@
 ﻿using System;
 using System.CommandLine.Builder;
 using System.CommandLine.Invocation;
+using System.Linq;
 using Microsoft.Extensions.Hosting;
+using System.CommandLine.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Command
 {
@@ -10,6 +13,8 @@ namespace Diamond.Core.Command
 	/// </summary>
 	public static class ServicesExtensions
 	{
+		private const string ConfigurationDirectiveName = "config";
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -17,24 +22,46 @@ namespace Diamond.Core.Command
 		/// <param name="hostBuilderFactory"></param>
 		/// <param name="configureHost"></param>
 		/// <returns></returns>
-		public static CommandLineBuilder UseDiamondCommandPattern(this CommandLineBuilder builder, string[] args, Func<string[], IHostBuilder> hostBuilderFactory, Action<CommandLineBuilder> commandLineBuilderFactory) =>
-			builder.UseMiddleware((invocation, next) =>
-			{
+		public static CommandLineBuilder UseDiamondCommandPattern(this CommandLineBuilder builder,
+			Func<string[], IHostBuilder> hostBuilderFactory,
+			Action<IHostBuilder> configureHost = null) =>
+				builder.UseMiddleware(async (invocation, next) =>
 				{
-					if (hostBuilderFactory == null)
 					{
-						throw new ArgumentNullException(nameof(hostBuilderFactory));
-					}
+						if (hostBuilderFactory == null)
+						{
+							throw new ArgumentNullException(nameof(hostBuilderFactory));
+						}
 
-					IHostBuilder hostBuilder = hostBuilderFactory.Invoke(args);
-					IHost host = hostBuilder.Build();
+						IHostBuilder hostBuilder = hostBuilderFactory.Invoke(new string[] { });
+						hostBuilder.Properties[typeof(InvocationContext)] = invocation;
 
-					//var invocation = hostBuilder.Properties[typeof(InvocationContext)];
+						hostBuilder.ConfigureServices(services =>
+						{
+							services.AddSingleton(invocation);
+							services.AddSingleton(invocation.BindingContext);
+							services.AddSingleton(invocation.Console);
+							services.AddTransient(_ => invocation.InvocationResult);
+							services.AddTransient(_ => invocation.ParseResult);
+						});
 
-					CommandLineBuilder commandLineBuilder = new CommandLineBuilder(null);
-					commandLineBuilderFactory.Invoke(commandLineBuilder);
+						hostBuilder.UseInvocationLifetime(invocation);
+						configureHost?.Invoke(hostBuilder);
 
-					next.Invoke();
-				};
-			};
+						using IHost host = hostBuilder.Build();
+						invocation.BindingContext.AddService(typeof(IHost), _ => host);
+
+						string[] argsRemaining = invocation.ParseResult.UnparsedTokens.ToArray();
+
+						hostBuilder.ConfigureHostConfiguration(config =>
+						{
+							config.AddCommandLineDirectives(invocation.ParseResult, ConfigurationDirectiveName);
+						});
+
+						await host.StartAsync();
+						await next(invocation);
+						await host.StopAsync();
+					};
+				});
+	}
 }

@@ -1,61 +1,56 @@
 ﻿using System.CommandLine;
 using System.CommandLine.Builder;
+using System.CommandLine.Hosting;
+using System.CommandLine.Invocation;
+using System.CommandLine.Parsing;
 using System.Threading.Tasks;
 using Diamond.Core.Command;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example.Command.Console
 {
 	class Program
 	{
-		//public static IHostBuilder CreateConsoleBuilder(string[] args) =>
-		//		Host.CreateDefaultBuilder(args)
-		//			.UseConsoleLifetime()
-		//			.ConfigureServices(services => Program.ConfigureServices(services));
+		static async Task Main(string[] args) => await BuildCommandLine()
+			.UseDiamondCommandPattern((e) => Host.CreateDefaultBuilder(e),
+				host =>
+				{
+					host.ConfigureServices(services =>
+					{
+						ConfigureMyServices(services);
+					});
+				})
+			.UseDefaults()
+			.Build()
+			.InvokeAsync(args);
 
-		static Task Main(string[] args)
+		private static CommandLineBuilder BuildCommandLine()
 		{
-			// ***
-			// *** Run as console application
-			// ***
-			CommandLineBuilder builder = new CommandLineBuilder();
-			builder.UseDiamondCommandPattern(args, _ => Host.CreateDefaultBuilder()
-															.ConfigureServices(services => Program.ConfigureServices(services)),
-														(commandLineBuilder) =>
-														{
-															RootCommand rootCommand = new RootCommand("Sample Command Application");
+			RootCommand rootCommand = new RootCommand("Sample Command Application");
+			System.CommandLine.Command command = new System.CommandLine.Command("test", "Test Command");
 
-															System.CommandLine.Command command = new System.CommandLine.Command("test", "Test Command");
-															command.AddArgument(new Argument<string>("--name", "Full name of employee"));
-															rootCommand.AddCommand(command);
+			Option<int> option = new Option<int>("--id", "Employee ID")
+			{
+				IsRequired = true
+			};
 
-															commandLineBuilder.AddCommand(rootCommand);
-														});
+			command.AddOption(option);
 
-			var parser = builder.Build();
+			command.Handler = CommandHandler.Create<IHost, Employee>((h, e) =>
+			{
 
-			return Task.FromResult(0);
+			});
+
+			rootCommand.AddCommand(command);
+
+			return new CommandLineBuilder(rootCommand);
 		}
 
-		//static async Task Main(string[] args) => await BuildCommandLine()
-		//	.UseHost
-		//	(
-		//		_ => Host.CreateDefaultBuilder()
-		//				 .ConfigureServices(services => Program.ConfigureServices(services))
-		//	)
-		//	.UseDefaults()
-		//	.Build()
-		//	.InvokeAsync(args);
-
-		private static void ConfigureServices(IServiceCollection services)
+		private static IServiceCollection ConfigureMyServices(IServiceCollection services)
 		{
-
-		}
-
-		private static void Run(IHost host)
-		{
-
+			return services;
 		}
 	}
 }
