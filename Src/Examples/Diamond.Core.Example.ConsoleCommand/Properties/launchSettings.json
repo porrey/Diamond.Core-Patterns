@@ -2,7 +2,7 @@
   "profiles": {
     "Diamond.Core.Example.Command.Console": {
       "commandName": "Project",
-      "commandLineArgs": "test --id 123456"
+      "commandLineArgs": "hello --yourname Daniel"
     }
   }
 }

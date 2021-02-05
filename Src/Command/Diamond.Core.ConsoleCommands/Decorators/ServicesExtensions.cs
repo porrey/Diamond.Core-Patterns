@@ -1,83 +1,94 @@
 ﻿using System;
-using System.CommandLine.Builder;
-using System.CommandLine.Invocation;
-using System.Linq;
-using Microsoft.Extensions.Hosting;
-using System.CommandLine.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using System.CommandLine;
 using System.Collections.Generic;
+using System.CommandLine;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Diamond.Core.ConsoleCommands
 {
+	public class RootCommandService : RootCommand, IHostedService
+	{
+		public RootCommandService(string description, string[] args)
+			: base(description)
+		{
+			this.Args = args;
+		}
+
+		protected string[] Args { get; set; }
+
+		public async Task StartAsync(CancellationToken cancellationToken)
+		{
+			int result = await this.InvokeAsync(this.Args);
+		}
+
+		public Task StopAsync(CancellationToken cancellationToken)
+		{
+			return Task.CompletedTask;
+		}
+	}
+
+	public static class ConsoleHost
+	{
+		public static RootCommandService CreateRootCommand(string name, string[] args)
+		{
+			return new RootCommandService(name, args);
+		}
+	}
+
 	/// <summary>
 	/// 
 	/// </summary>
 	public static class ServicesExtensions
 	{
-		private const string ConfigurationDirectiveName = "config";
+		public static IHostBuilder UseDiamondCoreHost(this RootCommandService rootCommand, string[] args, Action<IServiceCollection> configureServices)
+		{
+			// ***
+			// ***
+			// ***
+			IHostBuilder builder = Host.CreateDefaultBuilder(args);
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="builder"></param>
-		/// <param name="hostBuilderFactory"></param>
-		/// <param name="configureHost"></param>
-		/// <returns></returns>
-		public static CommandLineBuilder UseDiamondCommandPattern(this CommandLineBuilder builder,
-			RootCommand rootCommand,
-			Func<string[], IHostBuilder> hostBuilderFactory,
-			Action<IHostBuilder> configureHost = null) =>
-				builder.UseMiddleware(async (invocation, next) =>
+			// ***
+			// ***
+			// ***
+			IHostBuilder services = builder.ConfigureServices(services =>
+			{
+				// ***
+				// ***
+				// ***
+				configureServices(services);
+
+				// ***
+				// ***
+				// ***
+				ServiceProvider sp = services.BuildServiceProvider();
+
+				// ***
+				// *** Get any commands configured.
+				// ***
+				IEnumerable<ICommand> commands = sp.GetRequiredService<IEnumerable<ICommand>>();
+
+				if (commands.Any())
 				{
+					foreach (ICommand command in commands)
 					{
-						if (hostBuilderFactory == null)
+						if (command is Command cmd)
 						{
-							throw new ArgumentNullException(nameof(hostBuilderFactory));
+							rootCommand.AddCommand(cmd);
 						}
+					}
+				}
 
-						IHostBuilder hostBuilder = hostBuilderFactory.Invoke(new string[] { });
-						hostBuilder.Properties[typeof(InvocationContext)] = invocation;
+				// ***
+				// ***
+				// ***
+				services.AddHostedService(_ => rootCommand);
+			});
 
-						hostBuilder.ConfigureServices(services =>
-						{
-							services.AddSingleton(invocation);
-							services.AddSingleton(invocation.BindingContext);
-							services.AddSingleton(invocation.Console);
-							services.AddTransient(_ => invocation.InvocationResult);
-							services.AddTransient(_ => invocation.ParseResult);
-						});
 
-						hostBuilder.UseInvocationLifetime(invocation);
-						configureHost?.Invoke(hostBuilder);
-
-						using IHost host = hostBuilder.Build();
-						invocation.BindingContext.AddService(typeof(IHost), _ => host);
-
-						// ***
-						// *** Add the commands from the services.
-						// ***
-						IEnumerable<ICommand> commands = host.Services.GetRequiredService<IEnumerable<ICommand>>();
-
-						foreach (ICommand command in commands)
-						{
-							if (command is Command cmd)
-							{
-								rootCommand.AddCommand(cmd);
-							}
-						}
-
-						string[] argsRemaining = invocation.ParseResult.UnparsedTokens.ToArray();
-
-						hostBuilder.ConfigureHostConfiguration(config =>
-						{
-							config.AddCommandLineDirectives(invocation.ParseResult, ConfigurationDirectiveName);
-						});
-
-						await host.StartAsync();
-						await next(invocation);
-						await host.StopAsync();
-					};
-				});
+			return builder;
+		}
 	}
 }

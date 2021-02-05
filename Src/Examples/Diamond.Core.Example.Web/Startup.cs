@@ -11,7 +11,7 @@ namespace Diamond.Core.Example
 		public void ConfigureServices(IServiceCollection services)
 		{
 			// ***
-			// *** Add the Diamond Patterns dependencies needed for the examples.
+			// *** Add the Diamond Core dependencies needed for the examples.
 			// ***
 			services.AddWorkFlowExampleDependencies();
 			services.AddSpecificationExampleDependencies();

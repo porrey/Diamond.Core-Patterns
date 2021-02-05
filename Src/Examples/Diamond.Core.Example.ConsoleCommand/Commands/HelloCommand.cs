@@ -2,16 +2,18 @@
 using System.CommandLine.Invocation;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example.ConsoleCommand
 {
 	public class HelloCommand : Command
 	{
-		public HelloCommand(ILogger<HelloCommand> logger) : base("hello", "Responds with a hello greeting.")
+		public HelloCommand(ILogger<HelloCommand> logger)
+			: base("hello", "Responds with a hello greeting.")
 		{
 			this.Logger = logger;
 
-			Option<int> option = new Option<int>("--name", "Full name of person to greet.")
+			Option<string> option = new Option<string>("--yourname", "Full name of person to greet.")
 			{
 				IsRequired = true
 			};
@@ -24,11 +26,11 @@ namespace Diamond.Core.Example.ConsoleCommand
 			});
 		}
 
-		protected ILogger<HelloCommand> Logger { get; set; }
+		protected ILogger<HelloCommand> Logger { get; set; } = new NullLogger<HelloCommand>();
 
 		protected Task<int> OnHandleCommand(HelloProperties properties)
 		{
-			this.Logger.LogInformation($"Hello '{properties.Name}.");
+			this.Logger.LogInformation($"Hello '{properties.YourName}'.");
 			return Task.FromResult(0);
 		}
 	}

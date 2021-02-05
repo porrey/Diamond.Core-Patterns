@@ -2,6 +2,6 @@
 {
 	public class HelloProperties
 	{
-		public string Name { get; set; }
+		public string YourName { get; set; }
 	}
 }

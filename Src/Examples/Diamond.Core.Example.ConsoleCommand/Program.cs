@@ -1,6 +1,4 @@
 ﻿using System.CommandLine;
-using System.CommandLine.Builder;
-using System.CommandLine.Parsing;
 using System.Threading.Tasks;
 using Diamond.Core.ConsoleCommands;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,22 +8,18 @@ namespace Diamond.Core.Example.ConsoleCommand
 {
 	class Program
 	{
-		static async Task Main(string[] args) => await BuildCommandLine()
-			.UseDiamondCommandPattern(RootCommand, (e) => Host.CreateDefaultBuilder(e),
-				host =>
-				{
-					host.ConfigureServices(services =>
-					{
-						ConfigureMyServices(services);
-					});
-				})
-			.UseDefaults()
-			.Build()
-			.InvokeAsync(args);
+		static async Task Main(string[] args) => await ConsoleHost.CreateRootCommand("Sample Application", args)
+				.UseDiamondCoreHost(args, services => ConfigureMyServices(services))
+				.UseConsoleLifetime()
+				.Build()
+				.RunAsync();
 
-		private static RootCommand RootCommand = new RootCommand("Sample Command Application");
-
-		private static CommandLineBuilder BuildCommandLine()=> new CommandLineBuilder(RootCommand);
+		//static async Task<int> Main(string[] args)
+		//{
+		//	var cmd = ConsoleHost.CreateRootCommand("Sample Application", args);
+		//	cmd.AddCommand(new HelloCommand());
+		//	return await cmd.InvokeAsync(args);
+		//}
 
 		private static IServiceCollection ConfigureMyServices(IServiceCollection services)
 		{
