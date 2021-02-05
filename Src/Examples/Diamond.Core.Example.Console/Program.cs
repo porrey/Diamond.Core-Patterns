@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,12 +8,11 @@ namespace Diamond.Core.Example
 	{
 		static Task Main(string[] args) =>
 			(Host.CreateDefaultBuilder(args)
-				.UseConsoleLifetime()
-				.ConfigureServices(services => Program.ConfigureServices(services)))
+				.ConfigureServices(services => Program.ConfigureMyServices(services)))
 				.Build()
 				.RunAsync();
 
-		private static void ConfigureServices(IServiceCollection services)
+		private static void ConfigureMyServices(IServiceCollection services)
 		{
 			// ***
 			// *** Add the Diamond Core dependencies needed for the examples.

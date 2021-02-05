@@ -13,7 +13,7 @@ namespace Diamond.Core.Example.ConsoleCommand
 		{
 			this.Logger = logger;
 
-			Option<string> option = new Option<string>("--yourname", "Full name of person to greet.")
+			Option<string> option = new Option<string>($"--{nameof(HelloProperties.YourName).ToLower()}", "Full name of person to greet.")
 			{
 				IsRequired = true
 			};
