@@ -20,69 +20,21 @@ using System.Threading.Tasks;
 namespace Diamond.Core.Repository
 {
 	/// <summary>
-	/// Defines the  isolation level to be used in transactions.
-	/// </summary>
-	public enum ContextIsolationLevel
-	{
-		/// <summary>
-		/// Protects against Lost Updates, Dirty Reads, non-repeatable Reads, and Phantoms
-		/// </summary>
-		RepeatableRead,
-		/// <summary>
-		/// Protects against Lost Updates, Dirty Reads, and non-repeatable Reads. Read stability
-		/// does not protect against Phantoms.
-		/// </summary>
-		ReadStability,
-		/// <summary>
-		/// Protects against non-repeatable Reads and Phantoms. Cursor Stability does not protect
-		/// against Lost Updates and Dirty Reads.
-		/// </summary>
-		CursorStability,
-		/// <summary>
-		/// Protects against Lost Updates. Uncommitted Read does not protect against Phantoms,
-		/// Dirty Reads, and Non-repeatable Reads.
-		/// </summary>
-		UncommitedRead,
-	}
-
-	/// <summary>
 	/// This interface is used as a handle for any type of context
 	/// without the need to expose the type.
 	/// </summary>
 	public interface IRepositoryContext : IDisposable
 	{
 		/// <summary>
-		/// Executes a SQL command against the data store. This may not be supported
-		/// on all data stores.
-		/// </summary>
-		/// <param name="sql"></param>
-		/// <returns></returns>
-		Task<int> ExecuteSqlCommandAsync(string sql);
-
-		/// <summary>
-		/// Starts a transaction on the data store. This may not be supported on all data stores.
-		/// </summary>
-		/// <returns>Returns a transaction context that can  be used to manage the transaction.</returns>
-		Task<IRepositoryTransactionContext> BeginTransactionAsync();
-
-		/// <summary>
-		/// Starts a transaction on the data store. This may not be supported on all data stores.
-		/// </summary>
-		/// <param name="isolationLevel">Indicates the isolation level to use for the new transaction.</param>
-		/// <returns>Returns a transaction context that can  be used to manage the transaction.</returns>
-		Task<IRepositoryTransactionContext> BeginTransactionAsync(ContextIsolationLevel isolationLevel);
-
-		/// <summary>
-		/// Uses an existing transaction on the data store. This may not be supported on all data stores.
-		/// </summary>
-		/// <param name="transactionContext">The current  transaction context to be used.</param>
-		/// <returns>returns true if successful; false otherwise.</returns>
-		Task<bool> UseTransactionAsync(IRepositoryTransactionContext transactionContext);
-
-		/// <summary>
 		/// Saves all changes in  the current instance.
 		/// </summary>
 		/// <returns>Returns the number of items affected by the save operation.</returns>
 		Task<int> SaveAsync();
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		Task<bool> EnsureCreated();
 	}
 }

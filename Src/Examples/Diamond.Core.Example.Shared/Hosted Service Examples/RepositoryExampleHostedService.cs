@@ -30,12 +30,17 @@ namespace Diamond.Core.Example
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
 			_logger.LogInformation("Starting application.");
-			await Task.Delay(1);
 
 			// ***
 			// *** Get a writable repository for the IInvoce entity.
 			// ***
 			IWritableRepository<IInvoice> repository = await this._RepositoryFactory.GetWritableAsync<IInvoice>();
+
+			// ***
+			// *** Ensure the database is created.
+			// ***
+			IRepositoryContext db = await repository.GetContextAsync();
+			await db.EnsureCreated();
 
 			// ***
 			// *** Create 100 new items.
@@ -79,7 +84,7 @@ namespace Diamond.Core.Example
 
 			foreach (IInvoice item in items)
 			{
-				_logger.LogInformation($"Invoice Number: {item.Number}, Amount: {item.Total:$#,##0.00}");
+				_logger.LogInformation($"[ID = {item.Id}]Invoice Number: {item.Number}, Amount: {item.Total:$#,##0.00}");
 			}
 		}
 

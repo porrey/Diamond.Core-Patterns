@@ -77,14 +77,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Consol
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.ConsoleCommands", "Command\Diamond.Core.ConsoleCommands\Diamond.Core.ConsoleCommands.csproj", "{B91F9752-9C0E-421A-853C-14547DED6DF1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository.EntityFrameworkCore.Sqlite", "Repository\Diamond.Core.Repository.EntityFrameworkCore.Sqlite\Diamond.Core.Repository.EntityFrameworkCore.Sqlite.csproj", "{E4DD59AB-C513-4F3B-B6ED-9BB537D3CF56}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository.EntityFrameworkCore.SqlServer", "Repository\Diamond.Core.Repository.EntityFrameworkCore.SqlServer\Diamond.Core.Repository.EntityFrameworkCore.SqlServer.csproj", "{4CBF1E2F-D8C1-4A8F-B89F-FCFAF31DD72E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository.EntityFrameworkCore.Abstractions", "Repository\Diamond.Core.Repository.EntityFrameworkCore.Abstractions\Diamond.Core.Repository.EntityFrameworkCore.Abstractions.csproj", "{50F41CAE-C195-49A2-BED7-6DF0BE156F92}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository.EntityFrameworkCore.InMemory", "Repository\Diamond.Core.Repository.EntityFrameworkCore.InMemory\Diamond.Core.Repository.EntityFrameworkCore.InMemory.csproj", "{D3AA48C0-3925-4CFB-9DD9-94568783CEEA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,22 +187,6 @@ Global
 		{B91F9752-9C0E-421A-853C-14547DED6DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B91F9752-9C0E-421A-853C-14547DED6DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B91F9752-9C0E-421A-853C-14547DED6DF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4DD59AB-C513-4F3B-B6ED-9BB537D3CF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4DD59AB-C513-4F3B-B6ED-9BB537D3CF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4DD59AB-C513-4F3B-B6ED-9BB537D3CF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4DD59AB-C513-4F3B-B6ED-9BB537D3CF56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CBF1E2F-D8C1-4A8F-B89F-FCFAF31DD72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CBF1E2F-D8C1-4A8F-B89F-FCFAF31DD72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CBF1E2F-D8C1-4A8F-B89F-FCFAF31DD72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CBF1E2F-D8C1-4A8F-B89F-FCFAF31DD72E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50F41CAE-C195-49A2-BED7-6DF0BE156F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50F41CAE-C195-49A2-BED7-6DF0BE156F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50F41CAE-C195-49A2-BED7-6DF0BE156F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50F41CAE-C195-49A2-BED7-6DF0BE156F92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3AA48C0-3925-4CFB-9DD9-94568783CEEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3AA48C0-3925-4CFB-9DD9-94568783CEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3AA48C0-3925-4CFB-9DD9-94568783CEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3AA48C0-3925-4CFB-9DD9-94568783CEEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -242,10 +218,6 @@ Global
 		{54CA146E-D84A-4809-99CB-B669B634907F} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
 		{AF6D337A-FB8F-47BF-B98D-981D56FE3235} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{B91F9752-9C0E-421A-853C-14547DED6DF1} = {0A4746BF-500B-4583-A39F-76EA4D0A9B9E}
-		{E4DD59AB-C513-4F3B-B6ED-9BB537D3CF56} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
-		{4CBF1E2F-D8C1-4A8F-B89F-FCFAF31DD72E} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
-		{50F41CAE-C195-49A2-BED7-6DF0BE156F92} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
-		{D3AA48C0-3925-4CFB-9DD9-94568783CEEA} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

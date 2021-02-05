@@ -14,8 +14,6 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
-using System;
-using System.Data;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,53 +32,14 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		{
 		}
 
-		public virtual Task<IRepositoryTransactionContext> BeginTransactionAsync(ContextIsolationLevel isolationLevel)
-		{
-			IsolationLevel localIsolationLevel = RepositoryContext<TContext>.TranslatioIsolationLevel(isolationLevel);
-			return Task.FromResult<IRepositoryTransactionContext>(new RepositoryTransactionContext(this.Database.BeginTransaction()));
-		}
-
-		public virtual Task<IRepositoryTransactionContext> BeginTransactionAsync()
-		{
-			return Task.FromResult<IRepositoryTransactionContext>(new RepositoryTransactionContext(this.Database.BeginTransaction()));
-		}
-
 		public virtual Task<int> SaveAsync()
 		{
 			return this.SaveChangesAsync();
 		}
 
-		public virtual Task<bool> UseTransactionAsync(IRepositoryTransactionContext transactionContext)
+		public virtual Task<bool> EnsureCreated()
 		{
-			throw new NotSupportedException();
-		}
-
-		public static IsolationLevel TranslatioIsolationLevel(ContextIsolationLevel isolationLevel)
-		{
-			IsolationLevel returnValue = IsolationLevel.Chaos;
-
-			switch (isolationLevel)
-			{
-				case ContextIsolationLevel.ReadStability:
-					returnValue = IsolationLevel.ReadCommitted;
-					break;
-				case ContextIsolationLevel.RepeatableRead:
-					returnValue = IsolationLevel.RepeatableRead;
-					break;
-				case ContextIsolationLevel.UncommitedRead:
-					returnValue = IsolationLevel.ReadUncommitted;
-					break;
-				case ContextIsolationLevel.CursorStability:
-					returnValue = IsolationLevel.Snapshot;
-					break;
-			}
-
-			return returnValue;
-		}
-
-		public virtual Task<int> ExecuteSqlCommandAsync(string sql)
-		{
-			throw new NotSupportedException();
+			return this.Database.EnsureCreatedAsync();
 		}
 	}
 }

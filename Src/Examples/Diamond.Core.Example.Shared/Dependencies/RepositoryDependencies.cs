@@ -1,7 +1,6 @@
 ﻿using Diamond.Core.Repository;
-using Diamond.Core.Repository.EntityFrameworkCore.InMemory;
-using Diamond.Core.Repository.EntityFrameworkCore.Sqlite;
-using Diamond.Core.Repository.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Example
@@ -10,24 +9,27 @@ namespace Diamond.Core.Example
 	{
 		public static IServiceCollection AddRepositoryExampleDependencies(this IServiceCollection services)
 		{
+			ServiceProvider sp = services.BuildServiceProvider();
+			IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+
 			// ***
 			// *** Add the default dependencies.
 			// ***
 			services.UseDiamondRepositoryPattern();
 
 			// ***
-			// *** Add items to read and write data to a SQLite database.
+			// *** Add the entity factory and repository to the container.
 			// ***
 			services.AddSingleton<IEntityFactory<IInvoice>, InvoiceEntityFactory>();
 			services.AddTransient<IRepository<IInvoice>, InvoiceRepository>();
 
-			// ***
-			// *** Uncomment only one line below to select the data storage. Note that SQL server will require
-			// *** migrations to be run first.
-			// ***
-			services.AddSingleton<IContextFactory<ErpContext>, InMemoryContextFactory<ErpContext>>();
-			//services.AddSingleton<IContextFactory<ErpContext>, SqliteContextFactory<ErpContext>>();
-			//services.AddSingleton<IContextFactory<ErpContext>, SqlServerContextFactory<ErpContext>>();
+			services.AddDbContext<ErpContext>(options =>
+			{
+				//options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
+				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
+				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
+				options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
+			});
 
 			return services;
 		}

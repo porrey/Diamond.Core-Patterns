@@ -47,7 +47,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
-	  <ProjectReference Include="..\Diamond.Core.Repository.EntityFrameworkCore.Abstractions\Diamond.Core.Repository.EntityFrameworkCore.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>

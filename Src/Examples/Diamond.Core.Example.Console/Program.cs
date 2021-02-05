@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -6,10 +8,12 @@ namespace Diamond.Core.Example
 {
 	class Program
 	{
-		public static IHostBuilder CreateConsoleBuilder(string[] args) =>
-			Host.CreateDefaultBuilder(args)
+		static Task Main(string[] args) =>
+			(Host.CreateDefaultBuilder(args)
 				.UseConsoleLifetime()
-				.ConfigureServices(services => Program.ConfigureServices(services));
+				.ConfigureServices(services => Program.ConfigureServices(services)))
+				.Build()
+				.RunAsync();
 
 		private static void ConfigureServices(IServiceCollection services)
 		{
@@ -32,14 +36,6 @@ namespace Diamond.Core.Example
 			services.AddHostedService<DecoratorExampleHostedService>();
 			services.AddHostedService<UnitOfWorkExampleHostedService>();
 			services.AddHostedService<RepositoryExampleHostedService>();
-		}
-
-		static Task Main(string[] args)
-		{
-			// ***
-			// *** Run as console application
-			// ***
-			return CreateConsoleBuilder(args).Build().RunAsync();
 		}
 	}
 }
