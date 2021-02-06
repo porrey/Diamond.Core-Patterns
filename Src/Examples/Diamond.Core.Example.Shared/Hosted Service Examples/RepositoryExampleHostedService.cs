@@ -12,14 +12,14 @@ namespace Diamond.Core.Example
 {
 	public class RepositoryExampleHostedService : IHostedService
 	{
-		private readonly ILogger<SpecificationExampleHostedService> _logger = null;
+		private readonly ILogger<RepositoryExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
 		private readonly IRepositoryFactory _RepositoryFactory = null;
 
 		private int _exitCode = 0;
 
-		public RepositoryExampleHostedService(ILogger<SpecificationExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IRepositoryFactory RepositoryFactory)
+		public RepositoryExampleHostedService(ILogger<RepositoryExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IRepositoryFactory RepositoryFactory)
 		{
 			_logger = logger;
 			_appLifetime = appLifetime;

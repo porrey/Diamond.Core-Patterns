@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -17,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj" />
+    <ProjectReference Include="..\Diamond.Core.Extensions.InterfaceInjection.Abstractions\Diamond.Core.Extensions.InterfaceInjection.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

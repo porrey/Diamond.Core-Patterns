@@ -12,14 +12,14 @@ namespace Diamond.Core.Example
 {
 	public class RulesExampleHostedService : IHostedService
 	{
-		private readonly ILogger<SpecificationExampleHostedService> _logger = null;
+		private readonly ILogger<RulesExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
 		private readonly IRulesFactory _rulesFactory = null;
 
 		private int _exitCode = 0;
 
-		public RulesExampleHostedService(ILogger<SpecificationExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IRulesFactory rulesFactory)
+		public RulesExampleHostedService(ILogger<RulesExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IRulesFactory rulesFactory)
 		{
 			_logger = logger;
 			_appLifetime = appLifetime;

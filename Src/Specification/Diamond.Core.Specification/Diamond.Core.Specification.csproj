@@ -44,7 +44,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
-	  <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.InterfaceInjection.Abstractions\Diamond.Core.Extensions.InterfaceInjection.Abstractions.csproj" />
 	  <ProjectReference Include="..\Diamond.Core.Specification.Abstractions\Diamond.Core.Specification.Abstractions.csproj" />
 	</ItemGroup>
 

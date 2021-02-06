@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNet.DoActio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Rules", "Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj", "{BA0C8F9C-2243-425C-955F-D66ECCB646C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj", "{059C3106-0242-4ECA-BBD0-D8719C2ADEC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.InterfaceInjection", "Dependency-Injection\Diamond.Core.Extensions.InterfaceInjection\Diamond.Core.Extensions.InterfaceInjection.csproj", "{059C3106-0242-4ECA-BBD0-D8719C2ADEC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection.Abstractions", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj", "{787B266B-3B94-4996-BB63-06FE0EDB4AAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.InterfaceInjection.Abstractions", "Dependency-Injection\Diamond.Core.Extensions.InterfaceInjection.Abstractions\Diamond.Core.Extensions.InterfaceInjection.Abstractions.csproj", "{787B266B-3B94-4996-BB63-06FE0EDB4AAE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow.Abstractions", "Work-Flow\Diamond.Core.WorkFlow.Abstractions\Diamond.Core.WorkFlow.Abstractions.csproj", "{DDBF0AAF-D83C-405F-A9B7-8661689B2491}"
 EndProject
@@ -76,6 +76,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.ConsoleCommand", "Examples\Diamond.Core.Example.ConsoleCommand\Diamond.Core.Example.ConsoleCommand.csproj", "{AF6D337A-FB8F-47BF-B98D-981D56FE3235}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.ConsoleCommands", "Command\Diamond.Core.ConsoleCommands\Diamond.Core.ConsoleCommands.csproj", "{B91F9752-9C0E-421A-853C-14547DED6DF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.Unity", "Examples\Diamond.Core.Example.Unity\Diamond.Core.Example.Unity.csproj", "{4DF7B758-E638-4621-B7F8-EA0300E2FE5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -187,6 +189,10 @@ Global
 		{B91F9752-9C0E-421A-853C-14547DED6DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B91F9752-9C0E-421A-853C-14547DED6DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B91F9752-9C0E-421A-853C-14547DED6DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF7B758-E638-4621-B7F8-EA0300E2FE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF7B758-E638-4621-B7F8-EA0300E2FE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF7B758-E638-4621-B7F8-EA0300E2FE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF7B758-E638-4621-B7F8-EA0300E2FE5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,6 +224,7 @@ Global
 		{54CA146E-D84A-4809-99CB-B669B634907F} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
 		{AF6D337A-FB8F-47BF-B98D-981D56FE3235} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{B91F9752-9C0E-421A-853C-14547DED6DF1} = {0A4746BF-500B-4583-A39F-76EA4D0A9B9E}
+		{4DF7B758-E638-4621-B7F8-EA0300E2FE5B} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

@@ -43,7 +43,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
-		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.InterfaceInjection.Abstractions\Diamond.Core.Extensions.InterfaceInjection.Abstractions.csproj" />
 		<ProjectReference Include="..\Diamond.Core.WorkFlow.State\Diamond.Core.WorkFlow.State.csproj" />
 		<ProjectReference Include="..\..\Shared\Diamond.Core.System\Diamond.Core.System.csproj" />
 		<ProjectReference Include="..\Diamond.Core.WorkFlow.Abstractions\Diamond.Core.WorkFlow.Abstractions.csproj" />

@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Diamond.Core.Example.Shared\Hosted Service Examples\RepositoryExampleHostedService.cs" Link="Models and Other\RepositoryExampleHostedService.cs" />
+    <Compile Include="..\Diamond.Core.Example.Shared\Models\Repository\ErpContext.cs" Link="Models and Other\ErpContext.cs" />
+    <Compile Include="..\Diamond.Core.Example.Shared\Models\Repository\IInvoice.cs" Link="Models and Other\IInvoice.cs" />
+    <Compile Include="..\Diamond.Core.Example.Shared\Models\Repository\Invoice.cs" Link="Models and Other\Invoice.cs" />
+    <Compile Include="..\Diamond.Core.Example.Shared\Models\Repository\InvoiceEntityFactory.cs" Link="Models and Other\InvoiceEntityFactory.cs" />
+    <Compile Include="..\Diamond.Core.Example.Shared\Models\Repository\InvoiceRepository.cs" Link="Models and Other\InvoiceRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.2" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
+	  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
+    <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.11.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models and Other\" />
+  </ItemGroup>
+
+</Project>

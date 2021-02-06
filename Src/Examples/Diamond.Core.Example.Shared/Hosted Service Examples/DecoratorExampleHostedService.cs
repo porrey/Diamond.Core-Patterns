@@ -10,14 +10,14 @@ namespace Diamond.Core.Example
 {
 	public class DecoratorExampleHostedService : IHostedService
 	{
-		private readonly ILogger<SpecificationExampleHostedService> _logger = null;
+		private readonly ILogger<DecoratorExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
 		private readonly IDecoratorFactory _decoratorFactory = null;
 
 		private int _exitCode = 0;
 
-		public DecoratorExampleHostedService(ILogger<SpecificationExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IDecoratorFactory decoratorFactory)
+		public DecoratorExampleHostedService(ILogger<DecoratorExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IDecoratorFactory decoratorFactory)
 		{
 			_logger = logger;
 			_appLifetime = appLifetime;

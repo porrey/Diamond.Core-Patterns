@@ -1,13 +1,23 @@
-﻿using Diamond.Core.Repository;
+﻿using System.Threading.Tasks;
+using Diamond.Core.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Unity.Microsoft.DependencyInjection;
+using UnityBuilder = Unity.Microsoft.DependencyInjection.ServiceProviderExtensions;
 
 namespace Diamond.Core.Example
 {
-	public static class RepositoryDependencies
+	class Program
 	{
-		public static IServiceCollection AddRepositoryExampleDependencies(this IServiceCollection services)
+		static Task Main(string[] args) =>
+			(Host.CreateDefaultBuilder(args)
+				.UseUnityServiceProvider()
+				.ConfigureServices(services => Program.ConfigureMyServices(services)))
+				.RunConsoleAsync();
+
+		private static void ConfigureMyServices(IServiceCollection services)
 		{
 			// ***
 			// *** Add the default dependencies.
@@ -23,7 +33,7 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Get the configuration.
 			// ***
-			IConfiguration configuration = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+			IConfiguration configuration = UnityBuilder.BuildServiceProvider(services).GetRequiredService<IConfiguration>();
 
 			services.AddDbContext<ErpContext>(options =>
 			{
@@ -33,7 +43,7 @@ namespace Diamond.Core.Example
 				//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
 			});
 
-			return services;
+			services.AddHostedService<RepositoryExampleHostedService>();
 		}
 	}
 }

@@ -18,7 +18,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Core.Extensions.DependencyInjection;
+using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 

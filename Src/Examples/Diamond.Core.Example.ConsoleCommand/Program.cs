@@ -10,8 +10,7 @@ namespace Diamond.Core.Example.ConsoleCommand
 	{
 		static async Task Main(string[] args) => await ConsoleHost.CreateRootCommand("Sample Application", args)
 				.UseDiamondCoreHost(args, services => ConfigureMyServices(services))
-				.Build()
-				.RunAsync();
+				.RunConsoleAsync();
 
 		private static IServiceCollection ConfigureMyServices(IServiceCollection services)
 		{

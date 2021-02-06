@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Extensions.DependencyInjection
+namespace Diamond.Core.Extensions.InterfaceInjection
 {
 	public interface ILoggerPublisher
 	{
