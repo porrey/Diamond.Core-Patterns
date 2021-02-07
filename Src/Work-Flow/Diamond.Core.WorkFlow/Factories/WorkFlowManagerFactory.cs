@@ -43,6 +43,17 @@ namespace Diamond.Core.WorkFlow
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <param name="logger"></param>
+		public WorkFlowManagerFactory(IServiceProvider serviceProvider, ILogger<WorkFlowManagerFactory> logger)
+		{
+			this.ServiceProvider = serviceProvider;
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 
 		/// <summary>

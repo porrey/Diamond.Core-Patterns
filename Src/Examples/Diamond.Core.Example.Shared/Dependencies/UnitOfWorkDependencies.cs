@@ -8,14 +8,10 @@ namespace Diamond.Core.Example
 		public static IServiceCollection AddUnitOfWorkExampleDependencies(this IServiceCollection services)
 		{
 			// ***
-			// *** Add the default dependencies.
-			// ***
-			services.UseDiamondUnitOfWorkPattern();
-
-			// ***
 			// *** Add the rules to validate the shipment model. 
 			// ***
-			services.AddTransient<IUnitOfWork, CreateAppointmentUnitOfWork>();
+			services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>()
+					.AddScoped<IUnitOfWork, CreateAppointmentUnitOfWork>();
 
 			return services;
 		}

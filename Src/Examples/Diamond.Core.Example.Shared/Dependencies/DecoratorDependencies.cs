@@ -8,14 +8,10 @@ namespace Diamond.Core.Example
 		public static IServiceCollection AddDecoratorExampleDependencies(this IServiceCollection services)
 		{
 			// ***
-			// *** Add the default dependencies.
-			// ***
-			services.UseDiamondDecoratorPattern();
-
-			// ***
 			// *** Add the rules to validate the shipment model. 
 			// ***
-			services.AddTransient<IDecorator, BookTransactionDecorator>();
+			services.AddScoped<IDecoratorFactory, DecoratorFactory>()
+					.AddScoped<IDecorator, BookTransactionDecorator>();
 
 			return services;
 		}

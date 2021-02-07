@@ -21,7 +21,7 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Add the Diamond Core services.
 			// ***
-			services.AddMyDiamondCore(this.Configuration);
+			services.AddMyDiamondCore();
 
 			// ***
 			// *** Add MVC services.

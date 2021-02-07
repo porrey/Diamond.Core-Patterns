@@ -8,14 +8,10 @@ namespace Diamond.Core.Example
 		public static IServiceCollection AddSpecificationExampleDependencies(this IServiceCollection services)
 		{
 			// ***
-			// *** Add the default dependencies.
-			// ***
-			services.UseDiamondSpecificationPattern();
-
-			// ***
 			// *** Add the specification to qualify the widgets.
 			// ***
-			services.AddTransient<ISpecification, WidgetQualificationSpecification>();
+			services.AddScoped<ISpecificationFactory, SpecificationFactory>()
+					.AddScoped<ISpecification, WidgetQualificationSpecification>();
 
 			return services;
 		}

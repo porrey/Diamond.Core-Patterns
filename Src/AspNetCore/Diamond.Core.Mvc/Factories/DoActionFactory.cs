@@ -53,7 +53,7 @@ namespace Diamond.Core.AspNet.DoAction
 			// *** Get all decorators from the container of
 			// *** type IDecorator<TItem>.
 			// ***
-			IEnumerable<IDoAction> items = this.ServiceProvider.GetService<IEnumerable<IDoAction>>();
+			IEnumerable<IDoAction> items = this.ServiceProvider.GetRequiredService<IEnumerable<IDoAction>>();
 			IDoAction doAction = items.Where(t => t.ActionKey == actionKey).FirstOrDefault();
 
 			// ***
@@ -71,6 +71,11 @@ namespace Diamond.Core.AspNet.DoAction
 					this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
 					throw new DoActionNotFoundException<TInputs, TResult>(actionKey);
 				}
+			}
+			else
+			{
+				this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
+				throw new DoActionNotFoundException<TInputs, TResult>(actionKey);
 			}
 
 			return Task.FromResult(returnValue);

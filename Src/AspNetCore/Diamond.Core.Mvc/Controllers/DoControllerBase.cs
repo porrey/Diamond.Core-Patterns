@@ -90,13 +90,22 @@ namespace Diamond.Core.AspNet.DoAction
 					action = await this.DoActionFactory.GetAsync<TInputs, IControllerActionResult<TResult>>(actionKey);
 					this.Logger.LogTrace($"Controller method action '{actionKey}' was successfully retrieved.");
 				}
-				catch
+				catch (DoActionNotFoundException<TInputs, TResult>)
 				{
 					// ***
 					// *** An implementation of this method was not found.
 					// ***
 					this.Logger.LogWarning($"Controller method action '{actionKey}' was not found in the container.");
 					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented);
+					action = null;
+				}
+				catch (Exception ex)
+				{
+					// ***
+					// *** An implementation of this method was not found.
+					// ***
+					this.Logger.LogError(ex, $"Exception while retrieving do action.");
+					returnValue = this.StatusCode(StatusCodes.Status500InternalServerError);
 					action = null;
 				}
 
@@ -126,15 +135,6 @@ namespace Diamond.Core.AspNet.DoAction
 							returnValue = this.NotFound(new FailedRequest("Not Found", result.ErrorMessage));
 						}
 					}
-				}
-				else
-				{
-					// ***
-					// *** An implementation of this method was not found.
-					// ***
-					this.Logger.LogWarning($"Controller method action '{actionKey}' was not found in the container.");
-					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented);
-					action = null;
 				}
 			}
 			catch (Exception ex)

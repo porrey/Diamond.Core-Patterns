@@ -10,23 +10,15 @@ namespace Diamond.Core.Example
 		public static IServiceCollection AddRepositoryExampleDependencies(this IServiceCollection services)
 		{
 			// ***
-			// *** Add the default dependencies.
-			// ***
-			services.UseDiamondRepositoryPattern();
-
-			// ***
 			// *** Add the entity factory and repository to the container.
 			// ***
-			services.AddSingleton<IEntityFactory<IInvoice>, InvoiceEntityFactory>();
-			services.AddTransient<IRepository<IInvoice>, InvoiceRepository>();
+			services.AddScoped< IRepositoryFactory, RepositoryFactory>()
+					.AddScoped<IEntityFactory<IInvoice>, InvoiceEntityFactory>()
+					.AddScoped<IRepository<IInvoice>, InvoiceRepository>();
 
-			// ***
-			// *** Get the configuration.
-			// ***
-			IConfiguration configuration = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
-
-			services.AddDbContext<ErpContext>(options =>
+			services.AddDbContext<ErpContext>((sp, options) =>
 			{
+				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
 				options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
 				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
 				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);

@@ -35,6 +35,12 @@ namespace Diamond.Core.Decorator
 			this.ServiceProvider = serviceProvider;
 		}
 
+		public DecoratorFactory(IServiceProvider serviceProvider, ILogger<DecoratorFactory> logger)
+		{
+			this.ServiceProvider = serviceProvider;
+			this.Logger = logger;
+		}
+
 		public ILogger<DecoratorFactory> Logger { get; set; } = new NullLogger<DecoratorFactory>();
 
 		protected IServiceProvider ServiceProvider { get; set; }

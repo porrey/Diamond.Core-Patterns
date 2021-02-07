@@ -8,7 +8,7 @@ namespace Diamond.Core.Example
 {
 	public static class DiamondCoreStartup
 	{
-		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services, IConfiguration configuration)
+		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services)
 		{
 			// ***
 			// *** Add the data storage services.
@@ -17,8 +17,9 @@ namespace Diamond.Core.Example
 					.AddScoped<IRepositoryFactory, RepositoryFactory>()
 					.AddScoped<IEntityFactory<IInvoice>, InvoiceEntityFactory>()
 					.AddScoped<IRepository<IInvoice>, InvoiceRepository>()
-					.AddDbContext<ErpContext>(options =>
+					.AddDbContext<ErpContext>((sp, options) =>
 					{
+						IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
 						options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
 						//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
 						//options.UseSqlite(configuration["ErpDatabase:SQLite"]);

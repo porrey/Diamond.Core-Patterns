@@ -25,30 +25,21 @@ namespace Diamond.Core.Example
 
 		public static IServiceCollection AddMySwagger(this IServiceCollection services, IConfiguration configuration)
 		{
-			// ***
-			// *** Add Swagger documentation.
-			// ***
-			try
+			services.AddSwaggerGen(config =>
 			{
-				services.AddSwaggerGen(config =>
+				config.SwaggerDoc(configuration["Swagger:ApiVersion"], new OpenApiInfo
 				{
-					config.SwaggerDoc(configuration["Swagger:ApiVersion"], new OpenApiInfo
-					{
-						Title = configuration["Swagger:ApiName"],
-						Version = configuration["Swagger:DocumentationVersion"],
-						Description = configuration["Swagger:ApiDescription"]
-					});
-
-					SwaggerStartup.LoadXmlCommentFiles(config);
-					config.DescribeAllParametersInCamelCase();
-
-					config.OperationFilter<StandardOperationFilter>();
-					config.OperationFilter<UnsupportedMediaTypeFilter>();
+					Title = configuration["Swagger:ApiName"],
+					Version = configuration["Swagger:DocumentationVersion"],
+					Description = configuration["Swagger:ApiDescription"]
 				});
-			}
-			catch (Exception ex)
-			{
-			}
+
+				SwaggerStartup.LoadXmlCommentFiles(config);
+				config.DescribeAllParametersInCamelCase();
+
+				config.OperationFilter<StandardOperationFilter>();
+				config.OperationFilter<UnsupportedMediaTypeFilter>();
+			});
 
 			return services;
 		}
@@ -68,13 +59,7 @@ namespace Diamond.Core.Example
 
 				foreach (FileInfo file in files)
 				{
-					try
-					{
-						config.IncludeXmlComments(file.FullName);
-					}
-					catch (Exception ex)
-					{
-					}
+					config.IncludeXmlComments(file.FullName);
 				}
 			}
 		}

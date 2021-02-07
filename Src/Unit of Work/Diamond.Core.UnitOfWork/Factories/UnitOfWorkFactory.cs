@@ -35,6 +35,12 @@ namespace Diamond.Core.UnitOfWork
 			this.ServiceProvider = serviceProvider;
 		}
 
+		public UnitOfWorkFactory(IServiceProvider serviceProvider, ILogger<UnitOfWorkFactory> logger)
+		{
+			this.ServiceProvider = serviceProvider;
+			this.Logger = logger;
+		}
+
 		public ILogger<UnitOfWorkFactory> Logger { get; set; } = new NullLogger<UnitOfWorkFactory>();
 		protected IServiceProvider ServiceProvider { get; set; }
 

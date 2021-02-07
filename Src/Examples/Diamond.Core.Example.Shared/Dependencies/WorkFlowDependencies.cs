@@ -15,12 +15,14 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Add the sample work flow manager and work flow steps.
 			// ***
-			services.AddTransient<IWorkFlowManager, SampleWorkFlowManager>();
-			services.AddTransient<IWorkFlowItem, SampleWorkStep1>();
-			services.AddTransient<IWorkFlowItem, SampleWorkStep2>();
-			services.AddTransient<IWorkFlowItem, SampleWorkStep3>();
-			services.AddTransient<IWorkFlowItem, SampleWorkStep4>();
-			services.AddTransient<IWorkFlowItem, SampleWorkStep5>();
+			services.AddScoped<IWorkFlowManagerFactory, WorkFlowManagerFactory>()
+					.AddScoped<IWorkFlowItemFactory, WorkFlowItemFactory>()
+					.AddScoped<IWorkFlowManager, SampleWorkFlowManager>()
+					.AddScoped<IWorkFlowItem, SampleWorkStep1>()
+					.AddScoped<IWorkFlowItem, SampleWorkStep2>()
+					.AddScoped<IWorkFlowItem, SampleWorkStep3>()
+					.AddScoped<IWorkFlowItem, SampleWorkStep4>()
+					.AddScoped<IWorkFlowItem, SampleWorkStep5>();
 
 			return services;
 		}

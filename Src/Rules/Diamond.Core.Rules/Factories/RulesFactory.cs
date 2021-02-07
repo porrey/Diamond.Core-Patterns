@@ -41,6 +41,17 @@ namespace Diamond.Core.Rules
 		}
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <param name="logger"></param>
+		public RulesFactory(IServiceProvider serviceProvider, ILogger<RulesFactory> logger)
+		{
+			this.ServiceProvider = serviceProvider;
+			this.Logger = logger;
+		}
+
+		/// <summary>
 		/// Gets/sets the internal instance of <see cref="IServiceProvider">.
 		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }

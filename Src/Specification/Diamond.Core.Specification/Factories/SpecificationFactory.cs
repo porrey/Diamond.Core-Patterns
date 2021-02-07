@@ -32,6 +32,12 @@ namespace Diamond.Core.Specification
 			this.ServiceProvider = serviceProvider;
 		}
 
+		public SpecificationFactory(IServiceProvider serviceProvider, ILogger<SpecificationFactory> logger)
+		{
+			this.ServiceProvider = serviceProvider;
+			this.Logger = logger;
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>

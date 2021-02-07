@@ -224,6 +224,13 @@
             </summary>
             <param name="serviceProvider"></param>
         </member>
+        <member name="M:Diamond.Core.WorkFlow.WorkFlowItemFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.WorkFlow.WorkFlowItemFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
+        </member>
         <member name="P:Diamond.Core.WorkFlow.WorkFlowItemFactory.ServiceProvider">
             <summary>
             
@@ -252,6 +259,13 @@
             
             </summary>
             <param name="serviceProvider"></param>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.WorkFlowManagerFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.WorkFlow.WorkFlowManagerFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
         </member>
         <member name="P:Diamond.Core.WorkFlow.WorkFlowManagerFactory.ServiceProvider">
             <summary>
