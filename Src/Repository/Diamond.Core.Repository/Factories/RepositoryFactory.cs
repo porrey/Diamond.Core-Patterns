@@ -31,6 +31,12 @@ namespace Diamond.Core.Repository
 			this.ServiceProvider = serviceProvider;
 		}
 
+		public RepositoryFactory(IServiceProvider serviceProvider, ILogger<RepositoryFactory> logger)
+		{
+			this.ServiceProvider = serviceProvider;
+			this.Logger = logger;
+		}
+
 		protected IServiceProvider ServiceProvider { get; set; }
 		public ILogger<RepositoryFactory> Logger { get; set; } = new NullLogger<RepositoryFactory>();
 
@@ -49,7 +55,7 @@ namespace Diamond.Core.Repository
 			if (name == null)
 			{
 				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}'.");
-				returnValue = this.ServiceProvider.GetRequiredService<IRepository<TInterface>>();
+				returnValue = this.ServiceProvider.GetService<IRepository<TInterface>>();
 			}
 			else
 			{

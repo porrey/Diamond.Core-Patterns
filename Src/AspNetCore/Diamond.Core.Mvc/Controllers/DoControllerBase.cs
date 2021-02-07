@@ -29,14 +29,15 @@ namespace Diamond.Core.AspNet.DoAction
 	/// of the controller method is delegated to a DoAction handler that is
 	/// registered in the container using the name of the controller method.
 	/// </summary>
-	public abstract class DoControllerBase : ControllerBase
+	public abstract class DoActionControllerBase
+		: ControllerBase
 	{
 		/// <summary>
-		/// Initializes an instance of <see cref="DoControllerBase"/> with
+		/// Initializes an instance of <see cref="DoActionControllerBase"/> with
 		/// an instance of the <see cref="IDoActionFactory"/>.
 		/// </summary>
 		/// <param name="doActionFactory">An instance of the <see cref="IDoActionFactory"/>.</param>
-		public DoControllerBase(IDoActionFactory doActionFactory)
+		public DoActionControllerBase(IDoActionFactory doActionFactory)
 		{
 			this.DoActionFactory = doActionFactory;
 		}
@@ -45,7 +46,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// Gets/sets the instance of <see cref="ILogger"/> that
 		/// will listen for logs events originating from this instance.
 		/// </summary>
-		public ILogger<DoControllerBase> Logger { get; set; } = new NullLogger<DoControllerBase>();
+		public ILogger<DoActionControllerBase> Logger { get; set; } = new NullLogger<DoActionControllerBase>();
 
 		/// <summary>
 		/// Gets/sets an instance of <see cref="IDoActionFactory"/>.
@@ -125,6 +126,15 @@ namespace Diamond.Core.AspNet.DoAction
 							returnValue = this.NotFound(new FailedRequest("Not Found", result.ErrorMessage));
 						}
 					}
+				}
+				else
+				{
+					// ***
+					// *** An implementation of this method was not found.
+					// ***
+					this.Logger.LogWarning($"Controller method action '{actionKey}' was not found in the container.");
+					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented);
+					action = null;
 				}
 			}
 			catch (Exception ex)
