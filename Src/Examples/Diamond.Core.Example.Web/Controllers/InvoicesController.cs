@@ -15,14 +15,14 @@ namespace Diamond.Core.Example
 	[ApiVersion("1.0")]
 	[Produces("application/json", "application/xml")]
 	[Description("Retrieves invoice information from the ERP system.")]
-	public class InvoiceController : DoActionController
+	public class InvoicesController : DoActionController
 	{
 		/// <summary>
-		/// Creates an instance of <see cref="InvoiceController"/> with a dependency
+		/// Creates an instance of <see cref="InvoicesController"/> with a dependency
 		/// on <see cref="IDoActionFactory"/>.
 		/// </summary>
 		/// <param name="doActionFactory"></param>
-		public InvoiceController(IDoActionFactory doActionFactory)
+		public InvoicesController(IDoActionFactory doActionFactory)
 			: base(doActionFactory)
 		{
 		}
@@ -83,7 +83,7 @@ namespace Diamond.Core.Example
 		/// Update an existing invoice.
 		/// </summary>
 		/// <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
-		/// <param name="item">The details of the new invoice.</param>
+		/// <param name="item">The updated details of the invoice.</param>
 		/// <response code="200">The invoice was successfully created.</response>
 		/// <response code="400">The invoice could not be updated.</response>
 		/// <response code="404">The invoice specified was not found.</response>
@@ -97,6 +97,26 @@ namespace Diamond.Core.Example
 		{
 			this.LogMethodCall();
 			return this.Do<(string, InvoiceUpdate), Invoice>((invoiceNumber, item));
+		}
+
+		/// <summary>
+		/// Mark an existing invoice paid/unpaid.
+		/// </summary>
+		/// <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
+		/// <param name="paid">Determines whether to mark the invoice paid (true) or unpaid (false).</param>
+		/// <response code="200">The invoice was successfully created.</response>
+		/// <response code="400">The invoice could not be updated.</response>
+		/// <response code="404">The invoice specified was not found.</response>
+		/// <returns>The details of the updated invoice.</returns>
+		[HttpPatch("{invoiceNumber}/{paid}")]
+		[ProducesResponseType(typeof(IEnumerable<InvoiceUpdate>), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+		[Consumes("application/json", "application/xml")]
+		public Task<ActionResult<Invoice>> MarkInvoicePaidAsync(string invoiceNumber, bool paid)
+		{
+			this.LogMethodCall();
+			return this.Do<(string, bool), Invoice>((invoiceNumber, paid));
 		}
 
 		/// <summary>

@@ -76,17 +76,17 @@ namespace Diamond.Core.Example
 
 				if (result)
 				{
-					returnValue.ResultDetails = DoActionResult.CreateOk();
+					returnValue.ResultDetails = DoActionResult.Ok();
 					returnValue.Result = this.Mapper.Map<Invoice>(exisingItem);
 				}
 				else
 				{
-					returnValue.ResultDetails = DoActionResult.CreateBadRequest($"The invoice with invoice number '{invoiceNumber}' could not be deleted.");
+					returnValue.ResultDetails = DoActionResult.BadRequest($"The invoice with invoice number '{invoiceNumber}' could not be deleted.");
 				}
 			}
 			else
 			{
-				returnValue.ResultDetails = DoActionResult.CreateNotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.");
+				returnValue.ResultDetails = DoActionResult.NotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.");
 			}
 
 			return returnValue;

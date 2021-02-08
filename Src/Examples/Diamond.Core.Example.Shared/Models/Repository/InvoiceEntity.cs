@@ -23,6 +23,8 @@ namespace Diamond.Core.Example
 		[Required]
 		[MaxLength(100)]
 		public string Description { get; set; }
+
+		public bool Paid { get; set; }
 	}
 }
 

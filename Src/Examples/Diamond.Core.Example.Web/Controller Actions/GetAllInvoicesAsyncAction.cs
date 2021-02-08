@@ -73,12 +73,12 @@ namespace Diamond.Core.Example
 			if (items.Any())
 			{
 				this.Logger.LogTrace($"There were {items.Count()} IInvoice items retrieved.");
-				returnValue.ResultDetails = DoActionResult.CreateOk();
+				returnValue.ResultDetails = DoActionResult.Ok();
 				returnValue.Result = items;
 			}
 			else
 			{
-				returnValue.ResultDetails = DoActionResult.CreateNotFound("There are no invoices in the ERP system.");
+				returnValue.ResultDetails = DoActionResult.NotFound("There are no invoices in the ERP system.");
 			}
 
 			return returnValue;

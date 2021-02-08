@@ -15,11 +15,35 @@ namespace Diamond.Core.AspNet.DoAction
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public static ProblemDetails CreateOk()
+		public static ProblemDetails Ok()
 		{
 			return new ProblemDetails
 			{
 				Status = StatusCodes.Status200OK
+			};
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public static ProblemDetails Created()
+		{
+			return new ProblemDetails
+			{
+				Status = StatusCodes.Status201Created
+			};
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public static ProblemDetails NoContent()
+		{
+			return new ProblemDetails
+			{
+				Status = StatusCodes.Status204NoContent
 			};
 		}
 
@@ -31,7 +55,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails CreateBadRequest(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		public static ProblemDetails BadRequest(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
 			ProblemDetails returnValue = new ProblemDetails
 			{
@@ -61,7 +85,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails CreateNotFound(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		public static ProblemDetails NotFound(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
 			ProblemDetails returnValue = new ProblemDetails
 			{
@@ -91,7 +115,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails CreateNotImplemented(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		public static ProblemDetails NotImplemented(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
 			ProblemDetails returnValue = new ProblemDetails
 			{
@@ -121,7 +145,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails CreateInternalServerError(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		public static ProblemDetails InternalServerError(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
 			ProblemDetails returnValue = new ProblemDetails
 			{

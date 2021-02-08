@@ -78,12 +78,12 @@ namespace Diamond.Core.Example
 
 			if (result)
 			{
-				returnValue.ResultDetails = DoActionResult.CreateOk();
+				returnValue.ResultDetails = DoActionResult.Created();
 				returnValue.Result = this.Mapper.Map<Invoice>(newItem);
 			}
 			else
 			{
-				returnValue.ResultDetails = DoActionResult.CreateBadRequest("Could not create invoice.");
+				returnValue.ResultDetails = DoActionResult.BadRequest("Could not create invoice.");
 			}
 
 			return returnValue;

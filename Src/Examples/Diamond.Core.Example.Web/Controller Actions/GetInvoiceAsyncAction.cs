@@ -70,7 +70,7 @@ namespace Diamond.Core.Example
 
 			if (item != null)
 			{
-				returnValue.ResultDetails = DoActionResult.CreateOk();
+				returnValue.ResultDetails = DoActionResult.Ok();
 				returnValue.Result = this.Mapper.Map<Invoice>(item);
 			}
 			else
@@ -80,7 +80,7 @@ namespace Diamond.Core.Example
 					{ "Number", invoiceNumber }
 				};
 
-				returnValue.ResultDetails = DoActionResult.CreateNotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.", null, null, extensions);
+				returnValue.ResultDetails = DoActionResult.NotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.", null, null, extensions);
 			}
 
 			return returnValue;

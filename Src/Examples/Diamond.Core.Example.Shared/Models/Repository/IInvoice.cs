@@ -7,5 +7,6 @@ namespace Diamond.Core.Example
 		string Description { get; set; }
 		string Number { get; set; }
 		float Total { get; set; }
+		bool Paid { get; set; }
 	}
 }

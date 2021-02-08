@@ -224,19 +224,19 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Example.InvoiceController">
+        <member name="T:Diamond.Core.Example.InvoicesController">
             <summary>
             Retrieves invoice information from the ERP system.
             </summary>y
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceController.#ctor(Diamond.Core.AspNet.DoAction.IDoActionFactory)">
+        <member name="M:Diamond.Core.Example.InvoicesController.#ctor(Diamond.Core.AspNet.DoAction.IDoActionFactory)">
             <summary>
-            Creates an instance of <see cref="T:Diamond.Core.Example.InvoiceController"/> with a dependency
+            Creates an instance of <see cref="T:Diamond.Core.Example.InvoicesController"/> with a dependency
             on <see cref="T:Diamond.Core.AspNet.DoAction.IDoActionFactory"/>.
             </summary>
             <param name="doActionFactory"></param>
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceController.GetInvoiceAsync(System.String)">
+        <member name="M:Diamond.Core.Example.InvoicesController.GetInvoiceAsync(System.String)">
             <summary>
             Gets a specific invoice by invoice number.
             </summary>
@@ -246,7 +246,7 @@
             <response code="400">The request failed due to a client error. In some cases, the response will have more details.</response>
             <response code="404">An invoice with the specified invoice number was not found.</response>
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceController.GetAllInvoicesAsync">
+        <member name="M:Diamond.Core.Example.InvoicesController.GetAllInvoicesAsync">
             <summary>
             Gets the full list of invoices available.
             </summary>
@@ -254,7 +254,7 @@
             <response code="200">A list of all available invoices in the ERP system was successfully retrieved.</response>
             <response code="404">There are currently no invoices available in the system.</response>
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceController.CreateInvoiceAsync(Diamond.Core.Example.Invoice)">
+        <member name="M:Diamond.Core.Example.InvoicesController.CreateInvoiceAsync(Diamond.Core.Example.Invoice)">
             <summary>
             Create a new invoice.
             </summary>
@@ -263,18 +263,29 @@
             <response code="400">The invoice details were invalid or resulted in a duplicate invoice.</response>
             <returns>The newly create invoice.</returns>
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceController.UpdateInvoiceAsync(System.String,Diamond.Core.Example.InvoiceUpdate)">
+        <member name="M:Diamond.Core.Example.InvoicesController.UpdateInvoiceAsync(System.String,Diamond.Core.Example.InvoiceUpdate)">
             <summary>
             Update an existing invoice.
             </summary>
             <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
-            <param name="item">The details of the new invoice.</param>
+            <param name="item">The updated details of the invoice.</param>
             <response code="200">The invoice was successfully created.</response>
             <response code="400">The invoice could not be updated.</response>
             <response code="404">The invoice specified was not found.</response>
             <returns>The updated invoice.</returns>
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceController.DeleteInvoiceAsync(System.String)">
+        <member name="M:Diamond.Core.Example.InvoicesController.MarkInvoicePaidAsync(System.String,System.Boolean)">
+            <summary>
+            Mark an existing invoice paid/unpaid.
+            </summary>
+            <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
+            <param name="paid">Determines whether to mark the invoice paid (true) or unpaid (false).</param>
+            <response code="200">The invoice was successfully created.</response>
+            <response code="400">The invoice could not be updated.</response>
+            <response code="404">The invoice specified was not found.</response>
+            <returns>The details of the updated invoice.</returns>
+        </member>
+        <member name="M:Diamond.Core.Example.InvoicesController.DeleteInvoiceAsync(System.String)">
             <summary>
             Delete an existing invoice.
             </summary>
@@ -283,7 +294,7 @@
             <response code="404">The invoice specified was not found.</response>
             <returns>The details of the invoice that was deleted.</returns>
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceController.OnCreateProblemDetail(Microsoft.AspNetCore.Mvc.ProblemDetails)">
+        <member name="M:Diamond.Core.Example.InvoicesController.OnCreateProblemDetail(Microsoft.AspNetCore.Mvc.ProblemDetails)">
             <summary>
             Use this method to change the details of the problem details
             returned to th client when the return status is anything other
@@ -440,6 +451,11 @@
         <member name="P:Diamond.Core.Example.Invoice.Number">
             <summary>
             The unique invoice number.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.Invoice.Paid">
+            <summary>
+            Determines if the invoice has been paid or not.
             </summary>
         </member>
         <member name="T:Diamond.Core.Example.InvoiceUpdate">

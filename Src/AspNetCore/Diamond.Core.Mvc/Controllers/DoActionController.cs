@@ -108,7 +108,7 @@ namespace Diamond.Core.AspNet.DoAction
 					// *** An implementation of this method was not found.
 					// ***
 					this.Logger.LogWarning($"Controller method action '{actionKey}' was not found in the container.");
-					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented, this.OnCreateProblemDetail(DoActionResult.CreateNotImplemented($"The method has not been implemented. This could be a configuration error or the service is still under development.")));
+					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented, this.OnCreateProblemDetail(DoActionResult.NotImplemented($"The method has not been implemented. This could be a configuration error or the service is still under development.")));
 					action = null;
 				}
 				catch (Exception ex)
@@ -117,7 +117,7 @@ namespace Diamond.Core.AspNet.DoAction
 					// *** An implementation of this method was not found.
 					// ***
 					this.Logger.LogError(ex, $"Exception while retrieving do action.");
-					returnValue = this.StatusCode(StatusCodes.Status500InternalServerError, this.OnCreateProblemDetail(DoActionResult.CreateInternalServerError("An unknown internal server error occurred.")));
+					returnValue = this.StatusCode(StatusCodes.Status500InternalServerError, this.OnCreateProblemDetail(DoActionResult.InternalServerError("An unknown internal server error occurred.")));
 					action = null;
 				}
 
