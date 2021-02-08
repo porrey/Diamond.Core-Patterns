@@ -5,7 +5,7 @@ using Diamond.Core.Repository;
 namespace Diamond.Core.Example
 {
 	[Table("Invoice", Schema = "Financial")]
-	public class Invoice : Entity<int>, IInvoice
+	public class InvoiceEntity : Entity<int>, IInvoice
 	{
 		[Column("InvoiceId", Order = 0)]
 		[Key]
@@ -25,3 +25,4 @@ namespace Diamond.Core.Example
 		public string Description { get; set; }
 	}
 }
+

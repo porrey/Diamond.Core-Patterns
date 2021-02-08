@@ -43,15 +43,27 @@ namespace Diamond.Core.AspNet.DoAction
 		}
 
 		/// <summary>
+		/// Initializes an instance of <see cref="DoActionController"/> with
+		/// an instance of the <see cref="IDoActionFactory"/> and the <see cref="ILogger"/>.
+		/// </summary>
+		/// <param name="doActionFactory"></param>
+		/// <param name="logger"></param>
+		public DoActionController(IDoActionFactory doActionFactory, ILogger<DoActionController> logger)
+		{
+			this.DoActionFactory = doActionFactory;
+			this.Logger = logger;
+		}
+
+		/// <summary>
 		/// Gets/sets the instance of <see cref="ILogger"/> that
 		/// will listen for logs events originating from this instance.
 		/// </summary>
-		public ILogger<DoActionController> Logger { get; set; } = new NullLogger<DoActionController>();
+		public virtual ILogger<DoActionController> Logger { get; set; } = new NullLogger<DoActionController>();
 
 		/// <summary>
 		/// Gets/sets an instance of <see cref="IDoActionFactory"/>.
 		/// </summary>
-		protected IDoActionFactory DoActionFactory { get; set; }
+		protected virtual IDoActionFactory DoActionFactory { get; set; }
 
 		/// <summary>
 		/// Executes the controller method without any parameters.
@@ -59,7 +71,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
 		/// <param name="actionKey">The name of the action retrieved from the container.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string actionKey = null)
+		protected virtual Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string actionKey = null)
 		{
 			this.Logger.LogTrace($"Do method called with action key '{actionKey}'.");
 			return this.Do<object, TResult>(null, actionKey);
@@ -73,7 +85,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="actionKey">The name of the action retrieved from the container.</param>
 		/// <param name="request">The input parameter for the action.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs request, [CallerMemberName] string actionKey = null)
+		protected virtual async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs request, [CallerMemberName] string actionKey = null)
 		{
 			ActionResult<TResult> returnValue = default;
 
@@ -96,7 +108,7 @@ namespace Diamond.Core.AspNet.DoAction
 					// *** An implementation of this method was not found.
 					// ***
 					this.Logger.LogWarning($"Controller method action '{actionKey}' was not found in the container.");
-					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented);
+					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented, this.OnCreateProblemDetail(DoActionResult.CreateNotImplemented($"The method has not been implemented. This could be a configuration error or the service is still under development.")));
 					action = null;
 				}
 				catch (Exception ex)
@@ -105,7 +117,7 @@ namespace Diamond.Core.AspNet.DoAction
 					// *** An implementation of this method was not found.
 					// ***
 					this.Logger.LogError(ex, $"Exception while retrieving do action.");
-					returnValue = this.StatusCode(StatusCodes.Status500InternalServerError);
+					returnValue = this.StatusCode(StatusCodes.Status500InternalServerError, this.OnCreateProblemDetail(DoActionResult.CreateInternalServerError("An unknown internal server error occurred.")));
 					action = null;
 				}
 
@@ -119,20 +131,28 @@ namespace Diamond.Core.AspNet.DoAction
 						this.Logger.LogTrace($"Executing controller method action '{actionKey}.TakeActionAsync()'.");
 						IControllerActionResult<TResult> result = await action.ExecuteActionAsync(request);
 
-						if (result.ResultType == ResultType.Ok)
+						if (result.ResultDetails.Status == StatusCodes.Status200OK)
 						{
 							this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed successfully.");
 							returnValue = this.Ok(result.Result);
 						}
-						else if (result.ResultType == ResultType.BadRequest)
+						else
 						{
-							this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed with 'ResultType.BadRequest'.");
-							returnValue = this.BadRequest(new FailedRequest("Bad Request", result.ErrorMessage));
-						}
-						else if (result.ResultType == ResultType.NotFound)
-						{
-							this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed with 'ResultType.NotFound'.");
-							returnValue = this.NotFound(new FailedRequest("Not Found", result.ErrorMessage));
+							this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {result.ResultDetails.Status}.");
+							this.Logger.LogTrace($"The action returned: '{result.ResultDetails.Detail}'.");
+
+							// ***
+							// *** Check if the instance is null.
+							// ***
+							if (result.ResultDetails.Instance == null)
+							{
+								// ***
+								// *** Add the request path.
+								// ***
+								result.ResultDetails.Instance = HttpContext.Request.Path;
+							}
+
+							returnValue = this.BadRequest(this.OnCreateProblemDetail(result.ResultDetails));
 						}
 					}
 				}
@@ -153,9 +173,24 @@ namespace Diamond.Core.AspNet.DoAction
 		/// Logs a method call.
 		/// </summary>
 		/// <param name="name"></param>
-		protected void LogMethodCall([CallerMemberName] string name = null)
+		protected virtual void LogMethodCall([CallerMemberName] string name = null)
 		{
 			this.Logger.LogTrace($"Controller method '{name}' was called.");
+		}
+
+		/// <summary>
+		/// Provides the overriding class the opportunity to edit or change the problems
+		/// details before they are returned to the client.
+		/// </summary>
+		/// <param name="problemDetails">The instance of <see cref="ProblemDetails"/> that will be returned to the client.</param>
+		/// <returns>An instance of <see cref="ProblemDetails"/>.</returns>
+		protected virtual ProblemDetails OnCreateProblemDetail(ProblemDetails problemDetails)
+		{
+			// ***
+			// *** TO DO: Add code here to override details...
+			// ***
+
+			return problemDetails;
 		}
 	}
 }

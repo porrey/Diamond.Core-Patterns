@@ -14,6 +14,8 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
+using Microsoft.AspNetCore.Mvc;
+
 namespace Diamond.Core.AspNet.DoAction
 {
 	/// <summary>
@@ -23,14 +25,10 @@ namespace Diamond.Core.AspNet.DoAction
 	public class ControllerActionResult<TResult> : IControllerActionResult<TResult>
 	{
 		/// <summary>
-		/// The type of response usually associated to an HTTP status code.
+		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
+		/// if the result is not a 200.
 		/// </summary>
-		public ResultType ResultType { get; set; }
-
-		/// <summary>
-		/// A description of the error if the action failed.
-		/// </summary>
-		public string ErrorMessage { get; set; }
+		public ProblemDetails ResultDetails { get; set; }
 
 		/// <summary>
 		/// The resulting object instance if the action was successful.

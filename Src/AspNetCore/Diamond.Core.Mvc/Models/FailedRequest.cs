@@ -22,14 +22,14 @@ namespace Diamond.Core.AspNet.DoAction
 	public class FailedRequest
 	{
 		/// <summary>
-		/// Creates a default instance of BadRequest.
+		/// Creates a default instance of <see cref="FailedRequest"/>.
 		/// </summary>
 		public FailedRequest()
 		{
 		}
 
 		/// <summary>
-		/// Creates an instance of BadRequest.
+		/// Creates an instance of <see cref="FailedRequest"/>.
 		/// </summary>
 		/// <param name="code">The error code.</param>
 		/// <param name="message">The error message.</param>

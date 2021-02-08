@@ -27,6 +27,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Models\Error.cs" />
+	  <Compile Remove="Models\FailedRequest.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />

@@ -13,28 +13,11 @@
 // *** 
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
-// *** 
+// ***
+using Microsoft.AspNetCore.Mvc;
+
 namespace Diamond.Core.AspNet.DoAction
 {
-	/// <summary>
-	/// Specifies the result type of a controller action.
-	/// </summary>
-	public enum ResultType
-	{
-		/// <summary>
-		/// The action result in success (usually a 200 status).
-		/// </summary>
-		Ok,
-		/// <summary>
-		/// The action result in not found (usually a 404 status).
-		/// </summary>
-		NotFound,
-		/// <summary>
-		/// The action result in bad request (usually a 400 status).
-		/// </summary>
-		BadRequest
-	}
-
 	/// <summary>
 	/// Contains the result of a controller action.
 	/// </summary>
@@ -42,13 +25,11 @@ namespace Diamond.Core.AspNet.DoAction
 	public interface IControllerActionResult<TResult>
 	{
 		/// <summary>
-		/// The type of response usually associated to an HTTP status code.
+		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
+		/// if the result is not a 200.
 		/// </summary>
-		ResultType ResultType { get; set; }
-		/// <summary>
-		/// A description of the error if the action failed.
-		/// </summary>
-		string ErrorMessage { get;  }
+		ProblemDetails ResultDetails { get; set; }
+
 		/// <summary>
 		/// The resulting object instance if the action was successful.
 		/// </summary>

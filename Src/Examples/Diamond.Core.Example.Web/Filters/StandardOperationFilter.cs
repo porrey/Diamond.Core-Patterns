@@ -28,7 +28,7 @@ namespace Diamond.Core.Example
 
 			if (operation.Responses.ContainsKey($"{StatusCodes.Status501NotImplemented}"))
 			{
-				operation.Responses[$"{StatusCodes.Status501NotImplemented}"].Description = "Method is not implemented yet.";
+				operation.Responses[$"{StatusCodes.Status501NotImplemented}"].Description = "Method is not implemented.";
 			}
 		}
 	}

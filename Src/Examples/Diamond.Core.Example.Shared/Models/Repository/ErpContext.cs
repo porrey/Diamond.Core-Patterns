@@ -15,6 +15,16 @@ namespace Diamond.Core.Example
 		{
 		}
 
-		public DbSet<Invoice> Invoices { get; set; }
+		public DbSet<InvoiceEntity> Invoices { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			// ***
+			// *** Invoice number must be unique.
+			// ***
+			modelBuilder.Entity<InvoiceEntity>().HasIndex(p => p.Number).IsUnique();
+
+			base.OnModelCreating(modelBuilder);
+		}
 	}
 }

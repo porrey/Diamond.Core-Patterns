@@ -2,7 +2,7 @@
 
 namespace Diamond.Core.Example
 {
-	public class InvoiceEntityFactory: EntityFactory<IInvoice, Invoice>
+	public class InvoiceEntityFactory: EntityFactory<IInvoice, InvoiceEntity>
 	{
 	}
 }

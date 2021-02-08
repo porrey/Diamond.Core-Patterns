@@ -33,24 +33,13 @@ namespace Diamond.Core.Example
 		public void ConfigureServices(IServiceCollection services)
 		{
 			// ***
-			// *** Add the Diamond Core services.
+			// *** Add the required services
 			// ***
-			services.AddMyDiamondCore();
-
-			// ***
-			// *** Add MVC services.
-			// ***
-			services.AddMyMvc();
-
-			// ***
-			// *** Add the swagger services.
-			// ***
-			services.AddMySwagger(this.Configuration);
-
-			// ***
-			// *** Add versioning services.
-			// ***
-			services.AddMyVersioning();
+			services.AddMyDiamondCore()
+					.AddMyMvc()
+					.AddMySwagger(this.Configuration)
+					.AddMyVersioning()
+					.AddMyAutoMapper();
 		}
 
 		/// <summary>

@@ -36,7 +36,8 @@ namespace Diamond.Core.Example
 					.AddScoped<IDoAction, GetAllInvoicesAsyncAction>()
 					.AddScoped<IDoAction, CreateInvoiceAsyncAction>()
 					.AddScoped<IDoAction, GetInvoiceAsyncAction>()
-					.AddScoped<IDoAction, UpdateInvoiceAsyncAction>();
+					.AddScoped<IDoAction, UpdateInvoiceAsyncAction>()
+					.AddScoped<IDoAction, DeleteInvoiceAsyncAction>();
 
 			// ***
 			// *** Add the hosted service to populate the sample database.

@@ -4,17 +4,28 @@
         <name>WebExample</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Example.Web.Mappings.MappingProfile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.Web.Mappings.MappingProfile.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Diamond.Core.Example.CreateInvoiceAsyncAction">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Example.CreateInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.CreateInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory)">
+        <member name="M:Diamond.Core.Example.CreateInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.CreateInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
             <summary>
             
             </summary>
             <param name="logger"></param>
             <param name="repositoryFactory"></param>
+            <param name="mapper"></param>
         </member>
         <member name="P:Diamond.Core.Example.CreateInvoiceAsyncAction.Logger">
             <summary>
@@ -23,23 +34,68 @@
         </member>
         <member name="P:Diamond.Core.Example.CreateInvoiceAsyncAction.RepositoryFactory">
             <summary>
-            Get the action key for this action. The action should match the name of the method
-            it handles, and the method control should use nameof() when specifying the key (as
-            a best pratice, not required).
+            Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.CreateInvoiceAsyncAction.Mapper">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Diamond.Core.Example.CreateInvoiceAsyncAction.ActionKey">
             <summary>
-            As a best pratice, the name of this class should match the controller
+            As a best practice, the name of this class should match the controller
             method name with the word "Action" appended to the end. The DoActionController
             uses [CallerMemberName] as the action key by default.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Example.CreateInvoiceAsyncAction.ExecuteActionAsync(Diamond.Core.Example.InvoiceItem)">
+        <member name="M:Diamond.Core.Example.CreateInvoiceAsyncAction.ExecuteActionAsync(Diamond.Core.Example.Invoice)">
             <summary>
             
             </summary>
             <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Example.DeleteInvoiceAsyncAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.DeleteInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.DeleteInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="repositoryFactory"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="P:Diamond.Core.Example.DeleteInvoiceAsyncAction.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DeleteInvoiceAsyncAction.RepositoryFactory">
+            <summary>
+            Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DeleteInvoiceAsyncAction.Mapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DeleteInvoiceAsyncAction.ActionKey">
+            <summary>
+            As a best practice, the name of this class should match the controller
+            method name with the word "Action" appended to the end. The DoActionController
+            uses [CallerMemberName] as the action key by default.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.DeleteInvoiceAsyncAction.ExecuteActionAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="invoiceNumber"></param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Example.GetAllInvoicesAsyncAction">
@@ -47,12 +103,13 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Example.GetAllInvoicesAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.GetAllInvoicesAsyncAction},Diamond.Core.Repository.IRepositoryFactory)">
+        <member name="M:Diamond.Core.Example.GetAllInvoicesAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.GetAllInvoicesAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
             <summary>
             
             </summary>
             <param name="logger"></param>
             <param name="repositoryFactory"></param>
+            <param name="mapper"></param>
         </member>
         <member name="P:Diamond.Core.Example.GetAllInvoicesAsyncAction.Logger">
             <summary>
@@ -61,17 +118,19 @@
         </member>
         <member name="P:Diamond.Core.Example.GetAllInvoicesAsyncAction.RepositoryFactory">
             <summary>
-            Get the action key for this action. The action should match the name of the method
-            it handles, and the method control should use nameof() when specifying the key (as
-            a best pratice, not required).
+            Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.GetAllInvoicesAsyncAction.Mapper">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Diamond.Core.Example.GetAllInvoicesAsyncAction.ActionKey">
             <summary>
-            As a best pratice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The controller
-            should use the nameof() method with the controller when specifying the
-            action key.
+            As a best practice, the name of this class should match the controller
+            method name with the word "Action" appended to the end. The DoActionController
+            uses [CallerMemberName] as the action key by default.
             </summary>
         </member>
         <member name="M:Diamond.Core.Example.GetAllInvoicesAsyncAction.ExecuteActionAsync(System.Object)">
@@ -86,12 +145,13 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Example.GetInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.CreateInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory)">
+        <member name="M:Diamond.Core.Example.GetInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.CreateInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
             <summary>
             
             </summary>
             <param name="logger"></param>
             <param name="repositoryFactory"></param>
+            <param name="mapper"></param>
         </member>
         <member name="P:Diamond.Core.Example.GetInvoiceAsyncAction.Logger">
             <summary>
@@ -100,17 +160,19 @@
         </member>
         <member name="P:Diamond.Core.Example.GetInvoiceAsyncAction.RepositoryFactory">
             <summary>
-            Get the action key for this action. The action should match the name of the method
-            it handles, and the method control should use nameof() when specifying the key (as
-            a best pratice, not required).
+            Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.GetInvoiceAsyncAction.Mapper">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Diamond.Core.Example.GetInvoiceAsyncAction.ActionKey">
             <summary>
-            As a best pratice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The controller
-            should use the nameof() method with the controller when specifying the
-            action key.
+            As a best practice, the name of this class should match the controller
+            method name with the word "Action" appended to the end. The DoActionController
+            uses [CallerMemberName] as the action key by default.
             </summary>
         </member>
         <member name="M:Diamond.Core.Example.GetInvoiceAsyncAction.ExecuteActionAsync(System.String)">
@@ -125,12 +187,13 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Example.UpdateInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.UpdateInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory)">
+        <member name="M:Diamond.Core.Example.UpdateInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.UpdateInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
             <summary>
             
             </summary>
             <param name="logger"></param>
             <param name="repositoryFactory"></param>
+            <param name="mapper"></param>
         </member>
         <member name="P:Diamond.Core.Example.UpdateInvoiceAsyncAction.Logger">
             <summary>
@@ -139,109 +202,95 @@
         </member>
         <member name="P:Diamond.Core.Example.UpdateInvoiceAsyncAction.RepositoryFactory">
             <summary>
-            Get the action key for this action. The action should match the name of the method
-            it handles, and the method control should use nameof() when specifying the key (as
-            a best pratice, not required).
+            Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.UpdateInvoiceAsyncAction.Mapper">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:Diamond.Core.Example.UpdateInvoiceAsyncAction.ActionKey">
             <summary>
-            As a best pratice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The controller
-            should use the nameof() method with the controller when specifying the
-            action key.
+            As a best practice, the name of this class should match the controller
+            method name with the word "Action" appended to the end. The DoActionController
+            uses [CallerMemberName] as the action key by default.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Example.UpdateInvoiceAsyncAction.ExecuteActionAsync(Diamond.Core.Example.InvoiceItem)">
+        <member name="M:Diamond.Core.Example.UpdateInvoiceAsyncAction.ExecuteActionAsync(System.ValueTuple{System.String,Diamond.Core.Example.InvoiceUpdate})">
             <summary>
             
             </summary>
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Example.ErpInvoiceController">
+        <member name="T:Diamond.Core.Example.InvoiceController">
             <summary>
-            Retrieves invoice informtion from the ERP system.
-            </summary>
+            Retrieves invoice information from the ERP system.
+            </summary>y
         </member>
-        <member name="M:Diamond.Core.Example.ErpInvoiceController.#ctor(Diamond.Core.AspNet.DoAction.IDoActionFactory)">
+        <member name="M:Diamond.Core.Example.InvoiceController.#ctor(Diamond.Core.AspNet.DoAction.IDoActionFactory)">
             <summary>
-            Creates an instance of <see cref="T:Diamond.Core.Example.ErpInvoiceController"/> with a dependency
+            Creates an instance of <see cref="T:Diamond.Core.Example.InvoiceController"/> with a dependency
             on <see cref="T:Diamond.Core.AspNet.DoAction.IDoActionFactory"/>.
             </summary>
             <param name="doActionFactory"></param>
         </member>
-        <member name="M:Diamond.Core.Example.ErpInvoiceController.GetInvoiceAsync(System.String)">
+        <member name="M:Diamond.Core.Example.InvoiceController.GetInvoiceAsync(System.String)">
             <summary>
             Gets a specific invoice by invoice number.
             </summary>
-            <param name="invoiceNumber">The uniue number for a given invoice.</param>
+            <param name="invoiceNumber">The unique invoice number of the invoice to retrieve.</param>
             <returns>Gets an invoice from the ERP system matching the given invoice number.</returns>
-            <response code="200">The invoice was succssully retrieved from the ERP system with the given invoice number.</response>
+            <response code="200">The invoice was successfully retrieved from the ERP system with the given invoice number.</response>
             <response code="400">The request failed due to a client error. In some cases, the response will have more details.</response>
             <response code="404">An invoice with the specified invoice number was not found.</response>
         </member>
-        <member name="M:Diamond.Core.Example.ErpInvoiceController.GetAllInvoicesAsync">
+        <member name="M:Diamond.Core.Example.InvoiceController.GetAllInvoicesAsync">
             <summary>
             Gets the full list of invoices available.
             </summary>
-            <returns>A list of allavailable invoices in the ERP system.</returns>
-            <response code="200">A list of allavailable invoices in the ERP system was successfully retrieved.</response>
+            <returns>A list of all available invoices in the ERP system.</returns>
+            <response code="200">A list of all available invoices in the ERP system was successfully retrieved.</response>
             <response code="404">There are currently no invoices available in the system.</response>
         </member>
-        <member name="M:Diamond.Core.Example.ErpInvoiceController.CreateInvoiceAsync(Diamond.Core.Example.InvoiceItem)">
+        <member name="M:Diamond.Core.Example.InvoiceController.CreateInvoiceAsync(Diamond.Core.Example.Invoice)">
             <summary>
-            Create a new invoice item.
+            Create a new invoice.
             </summary>
             <param name="item">The details of the new invoice.</param>
-            <response code="200">The invoice item was successfully created.</response>
+            <response code="200">The invoice was successfully created.</response>
             <response code="400">The invoice details were invalid or resulted in a duplicate invoice.</response>
             <returns>The newly create invoice.</returns>
         </member>
-        <member name="M:Diamond.Core.Example.ErpInvoiceController.UpdateInvoiceAsync(Diamond.Core.Example.InvoiceItem)">
+        <member name="M:Diamond.Core.Example.InvoiceController.UpdateInvoiceAsync(System.String,Diamond.Core.Example.InvoiceUpdate)">
             <summary>
-            Update and existing invoice item.
+            Update an existing invoice.
             </summary>
+            <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
             <param name="item">The details of the new invoice.</param>
-            <response code="200">The invoice item was successfully created.</response>
+            <response code="200">The invoice was successfully created.</response>
             <response code="400">The invoice could not be updated.</response>
             <response code="404">The invoice specified was not found.</response>
-            <returns>The updated create invoice.</returns>
+            <returns>The updated invoice.</returns>
         </member>
-        <member name="T:Diamond.Core.Example.InvoiceExtensions">
+        <member name="M:Diamond.Core.Example.InvoiceController.DeleteInvoiceAsync(System.String)">
             <summary>
-            
+            Delete an existing invoice.
             </summary>
+            <param name="invoiceNumber">The unique invoice number of the invoice to delete.</param>
+            <response code="200">The invoice was successfully deleted.</response>
+            <response code="404">The invoice specified was not found.</response>
+            <returns>The details of the invoice that was deleted.</returns>
         </member>
-        <member name="M:Diamond.Core.Example.InvoiceExtensions.FromEntity(Diamond.Core.Example.IInvoice)">
+        <member name="M:Diamond.Core.Example.InvoiceController.OnCreateProblemDetail(Microsoft.AspNetCore.Mvc.ProblemDetails)">
             <summary>
-            
+            Use this method to change the details of the problem details
+            returned to th client when the return status is anything other
+            than 200.
             </summary>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Example.InvoiceExtensions.CopyTo(Diamond.Core.Example.InvoiceItem,Diamond.Core.Example.IInvoice)">
-            <summary>
-            
-            </summary>
-            <param name="item"></param>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Example.InvoiceExtensions.Update(Diamond.Core.Example.IInvoice,Diamond.Core.Example.InvoiceItem)">
-            <summary>
-            
-            </summary>
-            <param name="item"></param>
-            <param name="model"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Example.InvoiceExtensions.ToInvoiceItemList(System.Collections.Generic.IEnumerable{Diamond.Core.Example.IInvoice})">
-            <summary>
-            
-            </summary>
-            <param name="query"></param>
-            <returns></returns>
+            <param name="problemDetails">The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that will be returned to the client.</param>
+            <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/>.</returns>
         </member>
         <member name="T:Diamond.Core.Example.StandardOperationFilter">
             <summary>
@@ -267,31 +316,6 @@
             <param name="operation"></param>
             <param name="context"></param>
         </member>
-        <member name="T:Diamond.Core.Example.InvoiceItem">
-            <summary>
-            The details for a given invoice.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.InvoiceItem.Id">
-            <summary>
-            The unique data storage ID for this invoice.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.InvoiceItem.Number">
-            <summary>
-            The unique invoice number.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.InvoiceItem.Description">
-            <summary>
-            A description of invoice.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.InvoiceItem.Total">
-            <summary>
-            The total dollar amoint of the invoice.
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Example.Program">
             <summary>
             
@@ -302,6 +326,18 @@
             
             </summary>
             <param name="args"></param>
+        </member>
+        <member name="T:Diamond.Core.Example.AutoMapperStartup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.AutoMapperStartup.AddMyAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
         </member>
         <member name="T:Diamond.Core.Example.DiamondCoreStartup">
             <summary>
@@ -395,6 +431,31 @@
             </summary>
             <param name="services"></param>
             <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Example.Invoice">
+            <summary>
+            Contains the details of an invoice.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.Invoice.Number">
+            <summary>
+            The unique invoice number.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Example.InvoiceUpdate">
+            <summary>
+            Contains the details of an invoice that support being updated.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.InvoiceUpdate.Description">
+            <summary>
+            A description of invoice.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.InvoiceUpdate.Total">
+            <summary>
+            The total dollar amount of the invoice.
+            </summary>
         </member>
     </members>
 </doc>

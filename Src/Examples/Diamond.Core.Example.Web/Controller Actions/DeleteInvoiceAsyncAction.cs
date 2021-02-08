@@ -10,7 +10,7 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class UpdateInvoiceAsyncAction : IDoAction<(string InvoiceNumber, InvoiceUpdate Invoice), IControllerActionResult<Invoice>>
+	public class DeleteInvoiceAsyncAction : IDoAction<string, IControllerActionResult<Invoice>>
 	{
 		/// <summary>
 		/// 
@@ -18,7 +18,7 @@ namespace Diamond.Core.Example
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public UpdateInvoiceAsyncAction(ILogger<UpdateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
+		public DeleteInvoiceAsyncAction(ILogger<DeleteInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
 		{
 			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
@@ -28,7 +28,7 @@ namespace Diamond.Core.Example
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<UpdateInvoiceAsyncAction> Logger { get; set; }
+		protected ILogger<DeleteInvoiceAsyncAction> Logger { get; set; }
 
 		/// <summary>
 		/// Holds the reference to <see cref="IRepositoryFactory"/>.
@@ -45,14 +45,14 @@ namespace Diamond.Core.Example
 		/// method name with the word "Action" appended to the end. The DoActionController
 		/// uses [CallerMemberName] as the action key by default.
 		/// </summary>
-		public string ActionKey => typeof(UpdateInvoiceAsyncAction).Name.Replace("Action", "");
+		public string ActionKey => typeof(DeleteInvoiceAsyncAction).Name.Replace("Action", "");
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="item"></param>
+		/// <param name="invoiceNumber"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync((string InvoiceNumber, InvoiceUpdate Invoice) item)
+		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(string invoiceNumber)
 		{
 			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
@@ -65,20 +65,14 @@ namespace Diamond.Core.Example
 			// ***
 			// *** Get the invoice.
 			// ***
-			IInvoice exisingItem = (await repository.GetAsync(t => t.Number == item.InvoiceNumber)).SingleOrDefault();
+			IInvoice exisingItem = (await repository.GetAsync(t => t.Number == invoiceNumber)).SingleOrDefault();
 
 			if (exisingItem != null)
 			{
 				// ***
-				// *** Update the existing item.
-				// ***
-				this.Mapper.Map(item.Invoice, exisingItem);
-				exisingItem.Number = item.InvoiceNumber;
-
-				// ***
 				// *** Update the data.
 				// ***
-				bool result = await repository.UpdateAsync(exisingItem);
+				bool result = await repository.DeleteAsync(exisingItem);
 
 				if (result)
 				{
@@ -87,12 +81,12 @@ namespace Diamond.Core.Example
 				}
 				else
 				{
-					returnValue.ResultDetails = DoActionResult.CreateBadRequest($"The invoice with invoice number '{item.InvoiceNumber}' could not be updated.");
+					returnValue.ResultDetails = DoActionResult.CreateBadRequest($"The invoice with invoice number '{invoiceNumber}' could not be deleted.");
 				}
 			}
 			else
 			{
-				returnValue.ResultDetails = DoActionResult.CreateNotFound($"An invoice with invoice number '{item.InvoiceNumber}' could not be found.");
+				returnValue.ResultDetails = DoActionResult.CreateNotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.");
 			}
 
 			return returnValue;

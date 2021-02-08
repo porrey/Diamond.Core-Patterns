@@ -33,8 +33,8 @@ namespace Diamond.Core.Example
 			_logger.LogInformation("Starting application.");
 
 			// ***
-			// *** Since this hosted service runs as a singletin we need
-			// *** a scope to get access to scped services.
+			// *** Since this hosted service runs as a singleton we need
+			// *** a scope to get access to scoped services.
 			// ***
 			using (var scope = _serviceScopeFactory.CreateScope())
 			{
@@ -44,7 +44,7 @@ namespace Diamond.Core.Example
 				IRepositoryFactory repositoryFactory = scope.ServiceProvider.GetService<IRepositoryFactory>();
 
 				// ***
-				// *** Get a writable repostiroy for IInvoice.
+				// *** Get a writable repository for IInvoice.
 				// ***
 				IWritableRepository<IInvoice> repository = await repositoryFactory.GetWritableAsync<IInvoice>();
 

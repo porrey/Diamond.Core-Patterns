@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
@@ -9,17 +11,19 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetInvoiceAsyncAction : IDoAction<string, IControllerActionResult<InvoiceItem>>
+	public class GetInvoiceAsyncAction : IDoAction<string, IControllerActionResult<Invoice>>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
-		public GetInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory)
+		/// <param name="mapper"></param>
+		public GetInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
 		{
 			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
+			this.Mapper = mapper;
 		}
 
 		/// <summary>
@@ -28,14 +32,17 @@ namespace Diamond.Core.Example
 		protected ILogger<CreateInvoiceAsyncAction> Logger { get; set; }
 
 		/// <summary>
-		/// Get the action key for this action. The action should match the name of the method
-		/// it handles, and the method control should use nameof() when specifying the key (as
-		/// a best pratice, not required).
+		/// Holds the reference to <see cref="IRepositoryFactory"/>.
 		/// </summary>
 		protected IRepositoryFactory RepositoryFactory { get; set; }
 
 		/// <summary>
-		/// As a best pratice, the name of this class should match the controller
+		/// 
+		/// </summary>
+		protected IMapper Mapper { get; set; }
+
+		/// <summary>
+		/// As a best practice, the name of this class should match the controller
 		/// method name with the word "Action" appended to the end. The DoActionController
 		/// uses [CallerMemberName] as the action key by default.
 		/// </summary>
@@ -46,9 +53,9 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="invoiceNumber"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<InvoiceItem>> ExecuteActionAsync(string invoiceNumber)
+		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(string invoiceNumber)
 		{
-			ControllerActionResult<InvoiceItem> returnValue = new ControllerActionResult<InvoiceItem>();
+			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
 			// ***
 			// *** Get a read-only repository for IInvoice.
@@ -63,15 +70,17 @@ namespace Diamond.Core.Example
 
 			if (item != null)
 			{
-				returnValue.ResultType = ResultType.Ok;
-				returnValue.ErrorMessage = null;
-				returnValue.Result = item.FromEntity();
+				returnValue.ResultDetails = DoActionResult.CreateOk();
+				returnValue.Result = this.Mapper.Map<Invoice>(item);
 			}
 			else
 			{
-				returnValue.ResultType = ResultType.NotFound;
-				returnValue.ErrorMessage = $"An invoice with invoice number '{invoiceNumber}' could not be found.";
-				returnValue.Result = null;
+				IDictionary<string, object> extensions = new Dictionary<string, object>
+				{
+					{ "Number", invoiceNumber }
+				};
+
+				returnValue.ResultDetails = DoActionResult.CreateNotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.", null, null, extensions);
 			}
 
 			return returnValue;
