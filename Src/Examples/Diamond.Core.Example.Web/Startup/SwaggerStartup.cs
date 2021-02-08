@@ -8,8 +8,17 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class SwaggerStartup
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="app"></param>
+		/// <param name="configuration"></param>
+		/// <returns></returns>
 		public static IApplicationBuilder UseMySwagger(this IApplicationBuilder app, IConfiguration configuration)
 		{
 			app.UseSwagger();
@@ -23,6 +32,12 @@ namespace Diamond.Core.Example
 			return app;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="services"></param>
+		/// <param name="configuration"></param>
+		/// <returns></returns>
 		public static IServiceCollection AddMySwagger(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddSwaggerGen(config =>

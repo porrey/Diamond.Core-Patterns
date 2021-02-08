@@ -69,13 +69,13 @@ namespace Diamond.Core.AspNet.DoAction
 				else
 				{
 					this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
-					throw new DoActionNotFoundException<TInputs, TResult>(actionKey);
+					throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
 				}
 			}
 			else
 			{
 				this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
-				throw new DoActionNotFoundException<TInputs, TResult>(actionKey);
+				throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
 			}
 
 			return Task.FromResult(returnValue);

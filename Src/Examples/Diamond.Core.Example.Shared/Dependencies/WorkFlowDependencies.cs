@@ -8,11 +8,6 @@ namespace Diamond.Core.Example
 		public static IServiceCollection AddWorkFlowExampleDependencies(this IServiceCollection services)
 		{
 			// ***
-			// *** Add the default dependencies.
-			// ***
-			services.UseDiamondWorkFlowPattern();
-
-			// ***
 			// *** Add the sample work flow manager and work flow steps.
 			// ***
 			services.AddScoped<IWorkFlowManagerFactory, WorkFlowManagerFactory>()

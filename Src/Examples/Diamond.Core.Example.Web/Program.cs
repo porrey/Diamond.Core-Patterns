@@ -3,18 +3,22 @@ using Microsoft.Extensions.Hosting;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class Program
 	{
-		public static IHostBuilder CreateWebBuilder(string[] args) =>
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="args"></param>
+		static void Main(string[] args) =>
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
-				});
-
-		public static void Main(string[] args)
-		{
-			CreateWebBuilder(args).Build().Run();
-		}
+				})
+			.Build()
+			.Run();
 	}
 }

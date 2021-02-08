@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.InterfaceInjection\Diamond.Core.Extensions.InterfaceInjection.csproj" />
     <ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
   </ItemGroup>
 

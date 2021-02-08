@@ -33,62 +33,71 @@ namespace Diamond.Core.Example
 			_logger.LogInformation("Starting application.");
 
 			// ***
-			// *** Get a writable repository for the IInvoce entity.
+			// *** Since this hosted service runs as a singletin we need
+			// *** a scope to get access to scped services.
 			// ***
 			using (var scope = _serviceScopeFactory.CreateScope())
 			{
+				// ***
+				// *** Get the IRepositoryFactory service.
+				// ***
 				IRepositoryFactory repositoryFactory = scope.ServiceProvider.GetService<IRepositoryFactory>();
+
+				// ***
+				// *** Get a writable repostiroy for IInvoice.
+				// ***
 				IWritableRepository<IInvoice> repository = await repositoryFactory.GetWritableAsync<IInvoice>();
 
 				// ***
 				// *** Ensure the database is created.
 				// ***
-				IRepositoryContext db = await repository.GetContextAsync();
-				await db.EnsureCreated();
-
-				// ***
-				// *** Create 100 new items.
-				// ***
-				Random rnd = new Random();
-
-				for (int i = 0; i < 100; i++)
+				using (IRepositoryContext db = await repository.GetContextAsync())
 				{
-					// ***
-					// *** Create a new empty model.
-					// ***
-					IInvoice model = await repository.ModelFactory.CreateAsync();
-
-					// ***
-					// *** Assign properties.
-					// ***
-					model.Total = rnd.Next(10, 10000);
-					model.Number = $"INV{rnd.Next(1, 2000000):0000000}";
-					model.Description = $"Invoice {i}.";
-
-					// ***
-					// *** Add the new item to the database.
-					// ***
-					(bool result, IInvoice invoice) = await repository.AddAsync(model);
-
-					if (result)
+					if (await db.EnsureCreated())
 					{
-						_logger.LogInformation($"Successfully create invoice with ID = {invoice.Id} [{i}].");
-					}
-					else
-					{
-						_logger.LogError($"Failed to create new invoice [{i}].");
-					}
-				}
+						if (!(await repository.GetAllAsync()).Any())
+						{
+							// ***
+							// *** Create 100 new items.
+							// ***
+							Random rnd = new Random();
 
-				// ***
-				// *** Query the database and retrieve all of the invoices.
-				// ***
-				IEnumerable<IInvoice> items = await repository.GetAllAsync();
-				_logger.LogInformation($"There are {items.Count()} invoices in the database.");
+							for (int i = 0; i < 100; i++)
+							{
+								// ***
+								// *** Create a new empty model.
+								// ***
+								IInvoice model = await repository.ModelFactory.CreateAsync();
 
-				foreach (IInvoice item in items)
-				{
-					_logger.LogInformation($"[ID = {item.Id}]Invoice Number: {item.Number}, Amount: {item.Total:$#,##0.00}");
+								// ***
+								// *** Assign properties.
+								// ***
+								model.Total = rnd.Next(10, 10000);
+								model.Number = $"INV{rnd.Next(1, 2000000):0000000}";
+								model.Description = $"Invoice {i}.";
+
+								// ***
+								// *** Add the new item to the database.
+								// ***
+								(bool result, IInvoice invoice) = await repository.AddAsync(model);
+
+								if (result)
+								{
+									_logger.LogInformation($"Successfully create invoice with ID = {invoice.Id} [{i}].");
+								}
+								else
+								{
+									_logger.LogError($"Failed to create new invoice [{i}].");
+								}
+							}
+						}
+					}
+
+					// ***
+					// *** Query the database and retrieve all of the invoices.
+					// ***
+					IEnumerable<IInvoice> items = await repository.GetAllAsync();
+					_logger.LogInformation($"There are {items.Count()} invoices in the database.");
 				}
 			}
 		}

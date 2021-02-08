@@ -14,12 +14,14 @@ namespace Diamond.Core.Example
 		public new int Id { get; set; }
 
 		[Required]
+		[MaxLength(30)]
 		public string Number { get; set; }
 
 		[Required]
 		public float Total { get; set; }
 
 		[Required]
+		[MaxLength(100)]
 		public string Description { get; set; }
 	}
 }

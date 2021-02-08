@@ -4,8 +4,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class VersioningStartup
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="services"></param>
+		/// <returns></returns>
 		public static IServiceCollection AddMyVersioning(this IServiceCollection services)
 		{
 			// ***

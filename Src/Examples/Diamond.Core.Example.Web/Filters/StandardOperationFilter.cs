@@ -4,8 +4,16 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class StandardOperationFilter : IOperationFilter
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <param name="context"></param>
 		public void Apply(OpenApiOperation operation, OperationFilterContext context)
 		{
 			if (operation.Responses.ContainsKey($"{StatusCodes.Status406NotAcceptable}"))

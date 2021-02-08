@@ -14,19 +14,15 @@
 // *** You should have received a copy of the GNU Lesser General Public License
 // *** along with this program. If not, see http://www.gnu.org/licenses/.
 // *** 
+using System;
 using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.AspNet.DoAction
 {
-	public class DoActionNotFoundException<TItem, TResult> : DiamondCoreException
+	public class DoActionNotFoundException : DiamondCoreException
 	{
-		public DoActionNotFoundException()
-			: base($"A do action of type 'IDoAction<{typeof(TItem).Name}, {typeof(TResult).Name}>' has not been configured.")
-		{
-		}
-
-		public DoActionNotFoundException(string actionKey)
-			: base($"A do action of type 'IDoAction<{typeof(TItem).Name}, {typeof(TResult).Name}>' named '{actionKey}' has not been configured.")
+		public DoActionNotFoundException(Type tinputs, Type tresult, string actionKey)
+			: base($"A do action of type 'IDoAction<{tinputs.Name}, {tresult.Name}>' named '{actionKey}' has not been configured.")
 		{
 		}
 	}

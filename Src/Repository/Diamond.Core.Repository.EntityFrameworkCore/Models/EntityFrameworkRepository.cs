@@ -84,11 +84,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			IEnumerable<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"{nameof(GetAllAsync)} called for type '{typeof(TInterface).Name}'.");
-
-			using (TContext db = this.Context)
-			{
-				returnValue = this.MyDbSet(db).AsNoTracking().ToArray();
-			}
+			returnValue = this.MyDbSet(this.Context).AsNoTracking().ToArray();
 
 			return Task.FromResult(returnValue);
 		}
@@ -103,11 +99,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			IEnumerable<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"{nameof(GetAsync)} called for type '{typeof(TInterface).Name}'.");
-
-			using (TContext db = this.Context)
-			{
-				returnValue = this.MyDbSet(db).AsNoTracking().Where(predicate).ToArray();
-			}
+			returnValue = this.MyDbSet(this.Context).AsNoTracking().Where(predicate).ToArray();
 
 			return Task.FromResult(returnValue);
 		}
@@ -135,7 +127,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 
 			if (context is TContext db)
 			{
-				returnValue = this.MyDbSet(db).AsQueryable<TInterface>();
+				returnValue = this.MyDbSet(this.Context).AsQueryable<TInterface>();
 			}
 			else
 			{

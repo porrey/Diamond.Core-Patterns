@@ -29,15 +29,15 @@ namespace Diamond.Core.AspNet.DoAction
 	/// of the controller method is delegated to a DoAction handler that is
 	/// registered in the container using the name of the controller method.
 	/// </summary>
-	public abstract class DoActionControllerBase
+	public abstract class DoActionController
 		: ControllerBase
 	{
 		/// <summary>
-		/// Initializes an instance of <see cref="DoActionControllerBase"/> with
+		/// Initializes an instance of <see cref="DoActionController"/> with
 		/// an instance of the <see cref="IDoActionFactory"/>.
 		/// </summary>
 		/// <param name="doActionFactory">An instance of the <see cref="IDoActionFactory"/>.</param>
-		public DoActionControllerBase(IDoActionFactory doActionFactory)
+		public DoActionController(IDoActionFactory doActionFactory)
 		{
 			this.DoActionFactory = doActionFactory;
 		}
@@ -46,7 +46,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// Gets/sets the instance of <see cref="ILogger"/> that
 		/// will listen for logs events originating from this instance.
 		/// </summary>
-		public ILogger<DoActionControllerBase> Logger { get; set; } = new NullLogger<DoActionControllerBase>();
+		public ILogger<DoActionController> Logger { get; set; } = new NullLogger<DoActionController>();
 
 		/// <summary>
 		/// Gets/sets an instance of <see cref="IDoActionFactory"/>.
@@ -59,10 +59,10 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
 		/// <param name="actionKey">The name of the action retrieved from the container.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected Task<ActionResult<TResult>> Do<TResult>(string actionKey)
+		protected Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string actionKey = null)
 		{
 			this.Logger.LogTrace($"Do method called with action key '{actionKey}'.");
-			return this.Do<object, TResult>(actionKey, null);
+			return this.Do<object, TResult>(null, actionKey);
 		}
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="actionKey">The name of the action retrieved from the container.</param>
 		/// <param name="request">The input parameter for the action.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected async Task<ActionResult<TResult>> Do<TInputs, TResult>(string actionKey, TInputs request)
+		protected async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs request, [CallerMemberName] string actionKey = null)
 		{
 			ActionResult<TResult> returnValue = default;
 
@@ -90,7 +90,7 @@ namespace Diamond.Core.AspNet.DoAction
 					action = await this.DoActionFactory.GetAsync<TInputs, IControllerActionResult<TResult>>(actionKey);
 					this.Logger.LogTrace($"Controller method action '{actionKey}' was successfully retrieved.");
 				}
-				catch (DoActionNotFoundException<TInputs, TResult>)
+				catch (DoActionNotFoundException)
 				{
 					// ***
 					// *** An implementation of this method was not found.

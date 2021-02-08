@@ -6,8 +6,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class DiamondCoreStartup
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="services"></param>
+		/// <returns></returns>
 		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services)
 		{
 			// ***
@@ -24,7 +32,11 @@ namespace Diamond.Core.Example
 						//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
 						//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
 						//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
-					});
+					})
+					.AddScoped<IDoAction, GetAllInvoicesAsyncAction>()
+					.AddScoped<IDoAction, CreateInvoiceAsyncAction>()
+					.AddScoped<IDoAction, GetInvoiceAsyncAction>()
+					.AddScoped<IDoAction, UpdateInvoiceAsyncAction>();
 
 			// ***
 			// *** Add the hosted service to populate the sample database.

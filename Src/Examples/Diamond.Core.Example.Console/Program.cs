@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -9,7 +8,6 @@ namespace Diamond.Core.Example
 	{
 		static Task Main(string[] args) =>
 			(Host.CreateDefaultBuilder(args)
-				.UseDiamondDependencyInterfaceInjection()
 				.ConfigureServices((services) => Program.ConfigureMyServices(services)))
 				.RunConsoleAsync();
 

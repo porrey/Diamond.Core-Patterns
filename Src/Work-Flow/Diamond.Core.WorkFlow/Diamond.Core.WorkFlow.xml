@@ -104,18 +104,6 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="T:Diamond.Core.WorkFlow.ServicesExtensions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.WorkFlow.ServicesExtensions.UseDiamondWorkFlowPattern(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            
-            </summary>
-            <param name="services"></param>
-            <returns></returns>
-        </member>
         <member name="T:Diamond.Core.WorkFlow.MissingStepsException">
             <summary>
             Generic error for a missing context property.

@@ -8,6 +8,20 @@
     <AssemblyName>WebExample</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <DocumentationFile>XmlDocs\WebExample.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="XmlDocs\WebExample.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="XmlDocs\WebExample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />

@@ -19,10 +19,10 @@ namespace Diamond.Core.Example
 			services.AddDbContext<ErpContext>((sp, options) =>
 			{
 				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
-				options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
+				//options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
 				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
 				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
-				//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
+				options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
 			});
 
 			return services;

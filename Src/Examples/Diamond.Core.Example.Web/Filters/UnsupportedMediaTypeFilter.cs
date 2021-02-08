@@ -8,8 +8,16 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class UnsupportedMediaTypeFilter : IOperationFilter
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <param name="context"></param>
 		public void Apply(OpenApiOperation operation, OperationFilterContext context)
 		{
 			// ***

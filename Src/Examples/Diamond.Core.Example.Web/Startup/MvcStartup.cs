@@ -6,8 +6,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class MvcStartup
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="services"></param>
+		/// <returns></returns>
 		public static IServiceCollection AddMyMvc(this IServiceCollection services)
 		{
 			services.AddMvc(config =>

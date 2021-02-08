@@ -7,15 +7,29 @@ using Microsoft.Extensions.Hosting;
 
 namespace Diamond.Core.Example
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class Startup
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public IConfiguration Configuration { get; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="configuration"></param>
 		public Startup(IConfiguration configuration)
 		{
 			this.Configuration = configuration;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="services"></param>
 		public void ConfigureServices(IServiceCollection services)
 		{
 			// ***
@@ -39,6 +53,11 @@ namespace Diamond.Core.Example
 			services.AddMyVersioning();
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="app"></param>
+		/// <param name="env"></param>
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())

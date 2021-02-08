@@ -26,7 +26,7 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <summary>
 		/// Gets/sets the unique name for this action.
 		/// </summary>
-		string ActionKey { get; set; }
+		string ActionKey { get;  }
 	}
 
 	/// <summary>
