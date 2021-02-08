@@ -6,8 +6,15 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example.ConsoleCommand
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class HelloCommand : Command
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
 		public HelloCommand(ILogger<HelloCommand> logger)
 			: base("hello", "Responds with a hello greeting.")
 		{
@@ -26,8 +33,16 @@ namespace Diamond.Core.Example.ConsoleCommand
 			});
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected ILogger<HelloCommand> Logger { get; set; } = new NullLogger<HelloCommand>();
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="properties"></param>
+		/// <returns></returns>
 		protected Task<int> OnHandleCommand(HelloProperties properties)
 		{
 			this.Logger.LogInformation($"Hello '{properties.YourName}'.");

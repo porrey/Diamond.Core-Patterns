@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.CommandLine;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,12 +18,34 @@ namespace Diamond.Core.ConsoleCommands
 		/// <param name="args"></param>
 		/// <param name="configureServices"></param>
 		/// <returns></returns>
-		public static IHostBuilder UseDiamondCoreHost(this RootCommandService rootCommand, string[] args, Action<IServiceCollection> configureServices)
+		public static IHostBuilder UseDiamondCoreHost<TStartup>(this RootCommandService rootCommand, string[] args)
+			where TStartup : IStartup, new()
 		{
 			// ***
-			// ***
+			// *** 
 			// ***
 			IHostBuilder builder = Host.CreateDefaultBuilder(args);
+
+			// ***
+			// ***
+			// ***
+			IStartup startup = new TStartup();
+
+			// ***
+			// ***
+			// ***
+			if (startup is IStartupAppConfiguration startupAppConfiguration)
+			{
+				builder.ConfigureAppConfiguration(builder => startupAppConfiguration.ConfigureAppConfiguration(builder));
+			}
+
+			// ***
+			// ***
+			// ***
+			if (startup is IStartupConfigureLogging startupConfigureLogging)
+			{
+				builder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
+			}
 
 			// ***
 			// ***
@@ -34,7 +55,10 @@ namespace Diamond.Core.ConsoleCommands
 				// ***
 				// ***
 				// ***
-				configureServices(services);
+				if (startup is IStartupConfigureServices startupConfigureServices)
+				{
+					startupConfigureServices.ConfigureServices(services);
+				}
 
 				// ***
 				// ***
@@ -62,7 +86,6 @@ namespace Diamond.Core.ConsoleCommands
 				// ***
 				services.AddHostedService(_ => rootCommand);
 			});
-
 
 			return builder;
 		}
