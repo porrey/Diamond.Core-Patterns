@@ -182,6 +182,48 @@
             <param name="invoiceNumber"></param>
             <returns></returns>
         </member>
+        <member name="T:Diamond.Core.Example.MarkInvoicePaidAsyncAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.MarkInvoicePaidAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.MarkInvoicePaidAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="repositoryFactory"></param>
+            <param name="mapper"></param>
+        </member>
+        <member name="P:Diamond.Core.Example.MarkInvoicePaidAsyncAction.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.MarkInvoicePaidAsyncAction.RepositoryFactory">
+            <summary>
+            Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.MarkInvoicePaidAsyncAction.Mapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.MarkInvoicePaidAsyncAction.ActionKey">
+            <summary>
+            As a best practice, the name of this class should match the controller
+            method name with the word "Action" appended to the end. The DoActionController
+            uses [CallerMemberName] as the action key by default.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.MarkInvoicePaidAsyncAction.ExecuteActionAsync(System.ValueTuple{System.String,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Example.UpdateInvoiceAsyncAction">
             <summary>
             
