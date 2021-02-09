@@ -1,5 +1,5 @@
 ﻿using System.CommandLine;
-using Diamond.Core.ConsoleCommands;
+using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -32,11 +32,10 @@ namespace Diamond.Core.Example.ConsoleCommand
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public IServiceCollection ConfigureServices(IServiceCollection services)
+		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddTransient<ICommand, HelloCommand>();
 			services.AddTransient<ICommand, EchoCommand>();
-			return services;
 		}
 	}
 }

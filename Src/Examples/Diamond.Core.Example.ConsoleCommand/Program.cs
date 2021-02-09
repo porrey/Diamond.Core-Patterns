@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Diamond.Core.ConsoleCommands;
+using Diamond.Core.Extensions.Hosting;
 
 namespace Diamond.Core.Example.ConsoleCommand
 {
