@@ -6,8 +6,7 @@ namespace Diamond.Core.Example
 {
 	class Program
 	{
-		static Task Main(string[] args) =>
-			(Host.CreateDefaultBuilder(args)
+		static Task Main(string[] args) => (Host.CreateDefaultBuilder(args)
 				.ConfigureServices((services) => Program.ConfigureMyServices(services)))
 				.RunConsoleAsync();
 

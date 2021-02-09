@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Unity;
 using Unity.Microsoft.DependencyInjection;
 using UnityBuilder = Unity.Microsoft.DependencyInjection.ServiceProviderExtensions;
 
@@ -11,11 +12,15 @@ namespace Diamond.Core.Example
 {
 	class Program
 	{
-		static Task Main(string[] args) =>
-			(Host.CreateDefaultBuilder(args)
+		static Task Main(string[] args) => (Host.CreateDefaultBuilder(args)
 				.UseUnityServiceProvider()
+				.ConfigureContainer<IUnityContainer>(container => Program.ConfigureMyContainer(container))
 				.ConfigureServices(services => Program.ConfigureMyServices(services)))
 				.RunConsoleAsync();
+
+		private static void ConfigureMyContainer(IUnityContainer container)
+		{
+		}
 
 		private static void ConfigureMyServices(IServiceCollection services)
 		{
