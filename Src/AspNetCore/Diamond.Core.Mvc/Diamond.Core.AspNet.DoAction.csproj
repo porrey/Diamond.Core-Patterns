@@ -26,6 +26,10 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
+	<PropertyGroup>
+	  <DocumentationFile>XmlDocs\Diamond.Core.AspNet.DoAction.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <Compile Remove="Models\Error.cs" />
 	  <Compile Remove="Models\FailedRequest.cs" />

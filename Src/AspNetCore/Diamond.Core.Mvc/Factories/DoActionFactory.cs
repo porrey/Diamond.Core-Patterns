@@ -25,17 +25,34 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Diamond.Core.AspNet.DoAction {
 	/// <summary>
 	/// Defines a generic repository factory that can be used to retrieve
-	/// an object that implements IDecorator<TItem, TResult> from the container.
+	/// an object that implements IDecorator[TItem, TResult] from the container.
 	/// </summary>
 	public class DoActionFactory : IDoActionFactory {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
 		public DoActionFactory(IServiceProvider serviceProvider) {
 			this.ServiceProvider = serviceProvider;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public ILogger<DoActionFactory> Logger { get; set; } = new NullLogger<DoActionFactory>();
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TInputs"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="actionKey"></param>
+		/// <returns></returns>
 		public Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string actionKey) {
 			IDoAction<TInputs, TResult> returnValue = null;
 

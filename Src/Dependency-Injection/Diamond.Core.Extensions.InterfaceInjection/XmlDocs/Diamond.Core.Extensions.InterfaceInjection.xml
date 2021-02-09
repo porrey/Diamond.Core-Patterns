@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.InterfaceInjection</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProvider.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProvider.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProvider.BaseServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProvider.GetService(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProvider.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProviderFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProviderFactory.CreateBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProviderFactory.CreateServiceProvider(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="containerBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProviderFactory.CreateServiceProvider(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="containerBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProviderFactory.Microsoft#Extensions#DependencyInjection#IServiceProviderFactory{Microsoft#Extensions#DependencyInjection#IServiceCollection}#CreateBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.DiamondServiceProviderFactory.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.InterfaceInjection.HostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.InterfaceInjection.HostBuilderExtensions._factory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.InterfaceInjection.HostBuilderExtensions.UseDiamondDependencyInterfaceInjection(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

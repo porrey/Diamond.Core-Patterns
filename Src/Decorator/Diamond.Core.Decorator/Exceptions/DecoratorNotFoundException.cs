@@ -17,11 +17,23 @@
 using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.Decorator {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="TItem"></typeparam>
+	/// <typeparam name="TResult"></typeparam>
 	public class DecoratorNotFoundException<TItem, TResult> : DiamondCoreException {
+		/// <summary>
+		/// 
+		/// </summary>
 		public DecoratorNotFoundException()
 			: base($"A decorator of type 'IDecorator<{typeof(TItem).Name}, {typeof(TResult).Name}>' has not been configured.") {
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="name"></param>
 		public DecoratorNotFoundException(string name)
 			: base($"A decorator of type 'IDecorator<{typeof(TItem).Name}, {typeof(TResult).Name}>' named '{name}' has not been configured.") {
 		}

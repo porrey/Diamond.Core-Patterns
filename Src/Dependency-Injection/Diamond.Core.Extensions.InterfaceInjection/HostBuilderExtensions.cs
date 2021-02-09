@@ -4,9 +4,20 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace Diamond.Core.Extensions.InterfaceInjection {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class HostBuilderExtensions {
+		/// <summary>
+		/// 
+		/// </summary>
 		static readonly DiamondServiceProviderFactory _factory = new DiamondServiceProviderFactory();
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="hostBuilder"></param>
+		/// <returns></returns>
 		public static IHostBuilder UseDiamondDependencyInterfaceInjection(this IHostBuilder hostBuilder) {
 			return hostBuilder.UseServiceProviderFactory<IServiceProvider>(new DiamondServiceProviderFactory())
 					   .ConfigureContainer<IServiceCollection>((context, services) => {

@@ -25,22 +25,44 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Diamond.Core.Decorator {
 	/// <summary>
 	/// Defines a generic repository factory that can be used to retrieve
-	/// an object that implements IDecorator<TItem, TResult> from the container.
+	/// an object that implements IDecorator[TItem, TResult] from the container.
 	/// </summary>
 	public class DecoratorFactory : IDecoratorFactory {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
 		public DecoratorFactory(IServiceProvider serviceProvider) {
 			this.ServiceProvider = serviceProvider;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <param name="logger"></param>
 		public DecoratorFactory(IServiceProvider serviceProvider, ILogger<DecoratorFactory> logger) {
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public ILogger<DecoratorFactory> Logger { get; set; } = new NullLogger<DecoratorFactory>();
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TDecoratedItem"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name) {
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
 

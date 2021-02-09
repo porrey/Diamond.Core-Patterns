@@ -4,11 +4,21 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Extensions.InterfaceInjection {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class DiamondServiceProvider : ServiceCollection, IServiceProvider, IDisposable {
+		/// <summary>
+		/// 
+		/// </summary>
 		public DiamondServiceProvider()
 			: base() {
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="services"></param>
 		public DiamondServiceProvider(IServiceCollection services)
 			: this() {
 			foreach (ServiceDescriptor sd in services) {
@@ -17,6 +27,9 @@ namespace Diamond.Core.Extensions.InterfaceInjection {
 		}
 
 		private IServiceProvider _baseServiceProvider = null;
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IServiceProvider BaseServiceProvider {
 			get {
 				if (_baseServiceProvider == null) {
@@ -27,6 +40,11 @@ namespace Diamond.Core.Extensions.InterfaceInjection {
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceType"></param>
+		/// <returns></returns>
 		public object GetService(Type serviceType) {
 			object result = this.BaseServiceProvider.GetRequiredService(serviceType);
 
@@ -39,6 +57,9 @@ namespace Diamond.Core.Extensions.InterfaceInjection {
 			return result;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public void Dispose() {
 			if (_baseServiceProvider != null && _baseServiceProvider is IDisposable dis) {
 				dis.Dispose();

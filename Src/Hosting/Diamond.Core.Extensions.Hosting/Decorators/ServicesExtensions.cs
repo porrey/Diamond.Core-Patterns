@@ -95,7 +95,7 @@ namespace Diamond.Core.Extensions.Hosting {
 		/// </summary>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
 		/// <param name="cancellationToken"></param>
-		/// <returns>Returns the exit code set in the environemnt.</returns>
+		/// <returns>Returns the exit code set in the environment.</returns>
 		public static async Task<int> RunCommandAsync(this IHostBuilder hostBuilder, CancellationToken cancellationToken = default) {
 			await hostBuilder.UseConsoleLifetime().Build().RunAsync(cancellationToken);
 			return Environment.ExitCode;

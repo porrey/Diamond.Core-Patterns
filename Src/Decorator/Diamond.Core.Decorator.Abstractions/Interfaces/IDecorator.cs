@@ -21,6 +21,9 @@ namespace Diamond.Core.Decorator {
 	/// Defines a generic decorator.
 	/// </summary>
 	public interface IDecorator {
+		/// <summary>
+		/// 
+		/// </summary>
 		string Name { get; set; }
 	}
 

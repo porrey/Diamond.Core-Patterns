@@ -13,9 +13,9 @@ namespace Diamond.Core.ConsoleCommands {
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <typeparam name="TStartup"></typeparam>
 		/// <param name="rootCommand"></param>
 		/// <param name="args"></param>
-		/// <param name="configureServices"></param>
 		/// <returns></returns>
 		public static IHostBuilder UseDiamondCoreHost<TStartup>(this RootCommandService rootCommand, string[] args)
 			where TStartup : IStartup, new() {
