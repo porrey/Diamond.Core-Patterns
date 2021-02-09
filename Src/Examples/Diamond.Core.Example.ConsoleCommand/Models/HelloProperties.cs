@@ -1,10 +1,8 @@
-﻿namespace Diamond.Core.Example.ConsoleCommand
-{
+﻿namespace Diamond.Core.Example.ConsoleCommand {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class HelloProperties
-	{
+	public class HelloProperties {
 		/// <summary>
 		/// 
 		/// </summary>

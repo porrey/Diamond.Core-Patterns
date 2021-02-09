@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Extensions.Hosting
-{
+namespace Diamond.Core.Extensions.Hosting {
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IStartupConfigureLogging : IStartup
-	{
+	public interface IStartupConfigureLogging : IStartup {
 		/// <summary>
 		/// 
 		/// </summary>

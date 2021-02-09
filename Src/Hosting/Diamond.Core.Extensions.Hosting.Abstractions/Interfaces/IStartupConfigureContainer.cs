@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace Diamond.Core.Extensions.Hosting
-{
+namespace Diamond.Core.Extensions.Hosting {
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IStartupConfigureContainer : IStartup
-	{
+	public interface IStartupConfigureContainer : IStartup {
 		/// <summary>
 		/// 
 		/// </summary>

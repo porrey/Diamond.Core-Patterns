@@ -8,10 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example
-{
-	public class SpecificationExampleHostedService : IHostedService
-	{
+namespace Diamond.Core.Example {
+	public class SpecificationExampleHostedService : IHostedService {
 		private readonly ILogger<SpecificationExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
@@ -19,21 +17,19 @@ namespace Diamond.Core.Example
 
 		private int _exitCode = 0;
 
-		public SpecificationExampleHostedService(ILogger<SpecificationExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, ISpecificationFactory specificationFactory)
-		{
+		public SpecificationExampleHostedService(ILogger<SpecificationExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, ISpecificationFactory specificationFactory) {
 			_logger = logger;
 			_appLifetime = appLifetime;
 			_configuration = configuration;
 			_specificationFactory = specificationFactory;
 		}
 
-		public async Task StartAsync(CancellationToken cancellationToken)
-		{
+		public async Task StartAsync(CancellationToken cancellationToken) {
 			_logger.LogInformation("Starting application.");
 
-			// ***
-			// *** Create the widgets to qualify.
-			// ***
+			//
+			// Create the widgets to qualify.
+			//
 			Random rnd = new Random();
 			Widget[] widgets = new Widget[]
 			{
@@ -51,15 +47,15 @@ namespace Diamond.Core.Example
 
 			this.DisplayWidgets(widgets);
 
-			// ***
-			// *** Get the required specification from the services.
-			// ***
+			//
+			// Get the required specification from the services.
+			//
 			_logger.LogTrace("Retrieving specification for widget qualification.");
 			ISpecification<IEnumerable<Widget>, IEnumerable<Widget>> specification = await _specificationFactory.GetAsync<IEnumerable<Widget>, IEnumerable<Widget>>(WellKnown.Specification.QualifyWidget);
 
-			// ***
-			// *** Execute the specification to get the list of qualified widgets.
-			// ***
+			//
+			// Execute the specification to get the list of qualified widgets.
+			//
 			_logger.LogTrace("Executing specification on widgets.");
 			IEnumerable<Widget> qualifiedItems = await specification.ExecuteSelectionAsync(widgets);
 
@@ -69,21 +65,18 @@ namespace Diamond.Core.Example
 			_exitCode = 0;
 		}
 
-		private void DisplayWidgets(IEnumerable<Widget> items)
-		{
-			foreach (var item in items)
-			{
+		private void DisplayWidgets(IEnumerable<Widget> items) {
+			foreach (var item in items) {
 				_logger.LogInformation($"Widget '{item.ItemName}' qualified at {item.Weight} lbs.");
 			}
 		}
 
-		public Task StopAsync(CancellationToken cancellationToken)
-		{
+		public Task StopAsync(CancellationToken cancellationToken) {
 			_logger.LogDebug($"Exiting with return code: {_exitCode}");
 
-			// ***
-			// *** Exit code.
-			// ***
+			//
+			// Exit code.
+			//
 			Environment.ExitCode = _exitCode;
 			return Task.CompletedTask;
 		}

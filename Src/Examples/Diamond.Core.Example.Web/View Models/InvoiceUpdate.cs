@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// Contains the details of an invoice that support being updated.
 	/// </summary>
-	public class InvoiceUpdate
-	{
+	public class InvoiceUpdate {
 		/// <summary>
 		/// A description of invoice.
 		/// </summary>

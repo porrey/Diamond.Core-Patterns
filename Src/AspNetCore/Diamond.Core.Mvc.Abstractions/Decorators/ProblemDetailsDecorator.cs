@@ -4,21 +4,17 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Diamond.Core.AspNet.DoAction
-{
+namespace Diamond.Core.AspNet.DoAction {
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class DoActionResult
-	{
+	public static class DoActionResult {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public static ProblemDetails Ok()
-		{
-			return new ProblemDetails
-			{
+		public static ProblemDetails Ok() {
+			return new ProblemDetails {
 				Status = StatusCodes.Status200OK
 			};
 		}
@@ -27,10 +23,8 @@ namespace Diamond.Core.AspNet.DoAction
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public static ProblemDetails Created()
-		{
-			return new ProblemDetails
-			{
+		public static ProblemDetails Created() {
+			return new ProblemDetails {
 				Status = StatusCodes.Status201Created
 			};
 		}
@@ -39,10 +33,8 @@ namespace Diamond.Core.AspNet.DoAction
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public static ProblemDetails NoContent()
-		{
-			return new ProblemDetails
-			{
+		public static ProblemDetails NoContent() {
+			return new ProblemDetails {
 				Status = StatusCodes.Status204NoContent
 			};
 		}
@@ -55,10 +47,8 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails BadRequest(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
-		{
-			ProblemDetails returnValue = new ProblemDetails
-			{
+		public static ProblemDetails BadRequest(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
+			ProblemDetails returnValue = new ProblemDetails {
 				Status = StatusCodes.Status400BadRequest,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Bad Request",
@@ -66,10 +56,8 @@ namespace Diamond.Core.AspNet.DoAction
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any())
-			{
-				foreach (var item in extensions)
-				{
+			if (extensions != null && extensions.Any()) {
+				foreach (var item in extensions) {
 					returnValue.Extensions.Add(item);
 				}
 			}
@@ -85,10 +73,8 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails NotFound(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
-		{
-			ProblemDetails returnValue = new ProblemDetails
-			{
+		public static ProblemDetails NotFound(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
+			ProblemDetails returnValue = new ProblemDetails {
 				Status = StatusCodes.Status400BadRequest,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Not Found",
@@ -96,10 +82,8 @@ namespace Diamond.Core.AspNet.DoAction
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any())
-			{
-				foreach (var item in extensions)
-				{
+			if (extensions != null && extensions.Any()) {
+				foreach (var item in extensions) {
 					returnValue.Extensions.Add(item);
 				}
 			}
@@ -115,10 +99,8 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails NotImplemented(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
-		{
-			ProblemDetails returnValue = new ProblemDetails
-			{
+		public static ProblemDetails NotImplemented(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
+			ProblemDetails returnValue = new ProblemDetails {
 				Status = StatusCodes.Status501NotImplemented,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.6.2",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Not Implemented",
@@ -126,10 +108,8 @@ namespace Diamond.Core.AspNet.DoAction
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any())
-			{
-				foreach (var item in extensions)
-				{
+			if (extensions != null && extensions.Any()) {
+				foreach (var item in extensions) {
 					returnValue.Extensions.Add(item);
 				}
 			}
@@ -145,10 +125,8 @@ namespace Diamond.Core.AspNet.DoAction
 		/// <param name="title"></param>
 		/// <param name="extensions"></param>
 		/// <returns></returns>
-		public static ProblemDetails InternalServerError(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
-		{
-			ProblemDetails returnValue = new ProblemDetails
-			{
+		public static ProblemDetails InternalServerError(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
+			ProblemDetails returnValue = new ProblemDetails {
 				Status = StatusCodes.Status500InternalServerError,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Internal Server Error",
@@ -156,10 +134,8 @@ namespace Diamond.Core.AspNet.DoAction
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any())
-			{
-				foreach (var item in extensions)
-				{
+			if (extensions != null && extensions.Any()) {
+				foreach (var item in extensions) {
 					returnValue.Extensions.Add(item);
 				}
 			}

@@ -1,10 +1,8 @@
-﻿namespace Diamond.Core.Rules
-{
+﻿namespace Diamond.Core.Rules {
 	/// <summary>
 	/// Contains details of the result of applying a rule.
 	/// </summary>
-	public interface IRuleResult
-	{
+	public interface IRuleResult {
 		/// <summary>
 		/// Indicates if the rule passed or not.
 		/// </summary>

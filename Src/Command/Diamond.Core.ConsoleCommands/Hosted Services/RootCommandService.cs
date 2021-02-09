@@ -4,21 +4,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 
-namespace Diamond.Core.ConsoleCommands
-{
+namespace Diamond.Core.ConsoleCommands {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RootCommandService : RootCommand, IHostedService
-	{
+	public class RootCommandService : RootCommand, IHostedService {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="description"></param>
 		/// <param name="args"></param>
 		public RootCommandService(string description, string[] args)
-			: base(description)
-		{
+			: base(description) {
 			this.Args = args;
 		}
 
@@ -32,8 +29,7 @@ namespace Diamond.Core.ConsoleCommands
 		/// </summary>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public async Task StartAsync(CancellationToken cancellationToken)
-		{
+		public async Task StartAsync(CancellationToken cancellationToken) {
 			int result = await this.InvokeAsync(this.Args);
 			Environment.ExitCode = result;
 		}
@@ -43,8 +39,7 @@ namespace Diamond.Core.ConsoleCommands
 		/// </summary>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public Task StopAsync(CancellationToken cancellationToken)
-		{
+		public Task StopAsync(CancellationToken cancellationToken) {
 			return Task.CompletedTask;
 		}
 	}

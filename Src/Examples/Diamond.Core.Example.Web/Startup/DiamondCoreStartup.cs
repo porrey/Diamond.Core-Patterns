@@ -4,29 +4,25 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class DiamondCoreStartup
-	{
+	public static class DiamondCoreStartup {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services)
-		{
-			// ***
-			// *** Add the data storage services.
-			// ***
+		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services) {
+			//
+			// Add the data storage services.
+			//
 			services.AddScoped<IDoActionFactory, DoActionFactory>()
 					.AddScoped<IRepositoryFactory, RepositoryFactory>()
 					.AddScoped<IEntityFactory<IInvoice>, InvoiceEntityFactory>()
 					.AddScoped<IRepository<IInvoice>, InvoiceRepository>()
-					.AddDbContext<ErpContext>((sp, options) =>
-					{
+					.AddDbContext<ErpContext>((sp, options) => {
 						IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
 						options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
 						//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
@@ -40,9 +36,9 @@ namespace Diamond.Core.Example
 					.AddScoped<IDoAction, DeleteInvoiceAsyncAction>()
 					.AddScoped<IDoAction, MarkInvoicePaidAsyncAction>();
 
-			// ***
-			// *** Add the hosted service to populate the sample database.
-			// ***
+			//
+			// Add the hosted service to populate the sample database.
+			//
 			services.AddHostedService<RepositoryExampleHostedService>();
 
 			return services;

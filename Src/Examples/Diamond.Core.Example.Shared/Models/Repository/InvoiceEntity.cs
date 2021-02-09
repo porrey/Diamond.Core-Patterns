@@ -2,11 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Diamond.Core.Repository;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	[Table("Invoice", Schema = "Financial")]
-	public class InvoiceEntity : Entity<int>, IInvoice
-	{
+	public class InvoiceEntity : Entity<int>, IInvoice {
 		[Column("InvoiceId", Order = 0)]
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]

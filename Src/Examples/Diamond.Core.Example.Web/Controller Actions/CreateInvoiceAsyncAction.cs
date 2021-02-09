@@ -4,21 +4,18 @@ using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class CreateInvoiceAsyncAction : IDoAction<Invoice, IControllerActionResult<Invoice>>
-	{
+	public class CreateInvoiceAsyncAction : IDoAction<Invoice, IControllerActionResult<Invoice>> {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public CreateInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
-		{
+		public CreateInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) {
 			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
@@ -51,38 +48,35 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(Invoice item)
-		{
+		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(Invoice item) {
 			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
-			// ***
-			// *** Get a writable repository for IInvoice.
-			// ***
+			//
+			// Get a writable repository for IInvoice.
+			//
 			this.Logger.LogTrace("Retrieving a writable repository for IInvoice.");
 			IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
 
-			// ***
-			// *** Create a new entity.
-			// ***
+			//
+			// Create a new entity.
+			//
 			IInvoice model = await repository.ModelFactory.CreateAsync();
 
-			// ***
-			// *** Set the properties.
-			// ***
+			//
+			// Set the properties.
+			//
 			this.Mapper.Map(item, model);
 
-			// ***
-			// *** Attempt to create the item.
-			// ***
+			//
+			// Attempt to create the item.
+			//
 			(bool result, IInvoice newItem) = await repository.AddAsync(model);
 
-			if (result)
-			{
+			if (result) {
 				returnValue.ResultDetails = DoActionResult.Created();
 				returnValue.Result = this.Mapper.Map<Invoice>(newItem);
 			}
-			else
-			{
+			else {
 				returnValue.ResultDetails = DoActionResult.BadRequest("Could not create invoice.");
 			}
 

@@ -1,10 +1,8 @@
-﻿namespace Diamond.Core.Example.ConsoleCommand
-{
+﻿namespace Diamond.Core.Example.ConsoleCommand {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class EchoProperties
-	{
+	public class EchoProperties {
 		/// <summary>
 		/// 
 		/// </summary>

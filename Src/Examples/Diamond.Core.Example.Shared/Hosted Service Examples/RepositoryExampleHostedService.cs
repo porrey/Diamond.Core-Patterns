@@ -9,10 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example
-{
-	public class RepositoryExampleHostedService : IHostedService
-	{
+namespace Diamond.Core.Example {
+	public class RepositoryExampleHostedService : IHostedService {
 		private readonly ILogger<RepositoryExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
@@ -20,95 +18,85 @@ namespace Diamond.Core.Example
 
 		private int _exitCode = 0;
 
-		public RepositoryExampleHostedService(ILogger<RepositoryExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IServiceScopeFactory serviceScopeFactory)
-		{
+		public RepositoryExampleHostedService(ILogger<RepositoryExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IServiceScopeFactory serviceScopeFactory) {
 			_logger = logger;
 			_appLifetime = appLifetime;
 			_configuration = configuration;
 			_serviceScopeFactory = serviceScopeFactory;
 		}
 
-		public async Task StartAsync(CancellationToken cancellationToken)
-		{
+		public async Task StartAsync(CancellationToken cancellationToken) {
 			_logger.LogInformation("Starting application.");
 
-			// ***
-			// *** Since this hosted service runs as a singleton we need
-			// *** a scope to get access to scoped services.
-			// ***
-			using (var scope = _serviceScopeFactory.CreateScope())
-			{
-				// ***
-				// *** Get the IRepositoryFactory service.
-				// ***
+			//
+			// Since this hosted service runs as a singleton we need
+			// a scope to get access to scoped services.
+			//
+			using (var scope = _serviceScopeFactory.CreateScope()) {
+				//
+				// Get the IRepositoryFactory service.
+				//
 				IRepositoryFactory repositoryFactory = scope.ServiceProvider.GetService<IRepositoryFactory>();
 
-				// ***
-				// *** Get a writable repository for IInvoice.
-				// ***
+				//
+				// Get a writable repository for IInvoice.
+				//
 				IWritableRepository<IInvoice> repository = await repositoryFactory.GetWritableAsync<IInvoice>();
 
-				// ***
-				// *** Ensure the database is created.
-				// ***
-				using (IRepositoryContext db = await repository.GetContextAsync())
-				{
-					if (await db.EnsureCreated())
-					{
-						if (!(await repository.GetAllAsync()).Any())
-						{
-							// ***
-							// *** Create 100 new items.
-							// ***
+				//
+				// Ensure the database is created.
+				//
+				using (IRepositoryContext db = await repository.GetContextAsync()) {
+					if (await db.EnsureCreated()) {
+						if (!(await repository.GetAllAsync()).Any()) {
+							//
+							// Create 100 new items.
+							//
 							Random rnd = new Random();
 
-							for (int i = 0; i < 100; i++)
-							{
-								// ***
-								// *** Create a new empty model.
-								// ***
+							for (int i = 0; i < 100; i++) {
+								//
+								// Create a new empty model.
+								//
 								IInvoice model = await repository.ModelFactory.CreateAsync();
 
-								// ***
-								// *** Assign properties.
-								// ***
+								//
+								// Assign properties.
+								//
 								model.Total = rnd.Next(10, 10000);
 								model.Number = $"INV{rnd.Next(1, 2000000):0000000}";
 								model.Description = $"Invoice {i}.";
 
-								// ***
-								// *** Add the new item to the database.
-								// ***
+								//
+								// Add the new item to the database.
+								//
 								(bool result, IInvoice invoice) = await repository.AddAsync(model);
 
-								if (result)
-								{
+								if (result) {
 									_logger.LogInformation($"Successfully create invoice with ID = {invoice.Id} [{i}].");
 								}
-								else
-								{
+								else {
 									_logger.LogError($"Failed to create new invoice [{i}].");
 								}
 							}
 						}
 					}
 
-					// ***
-					// *** Query the database and retrieve all of the invoices.
-					// ***
+					//
+					// Query the database and retrieve all of the invoices.
+					//
 					IEnumerable<IInvoice> items = await repository.GetAllAsync();
 					_logger.LogInformation($"There are {items.Count()} invoices in the database.");
 				}
 			}
 		}
 
-		public Task StopAsync(CancellationToken cancellationToken)
-		{
+		public Task StopAsync(CancellationToken cancellationToken) {
 			_logger.LogDebug($"Exiting with return code: {_exitCode}");
 
-			// ***
-			// *** Exit code.
-			// ***
+			//
+			// Exit code.
+			//
 			Environment.ExitCode = _exitCode;
 			return Task.CompletedTask;
 		}

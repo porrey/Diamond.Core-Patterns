@@ -1,19 +1,19 @@
-﻿// ***
-// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
-// *** 
-// *** This program is free software: you can redistribute it and/or modify
-// *** it under the terms of the GNU Lesser General Public License as published
-// *** by the Free Software Foundation, either version 3 of the License, or
-// *** (at your option) any later version.
-// *** 
-// *** This program is distributed in the hope that it will be useful,
-// *** but WITHOUT ANY WARRANTY; without even the implied warranty of
-// *** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// *** GNU Lesser General Public License for more details.
-// *** 
-// *** You should have received a copy of the GNU Lesser General Public License
-// *** along with this program. If not, see http://www.gnu.org/licenses/.
-// *** 
+﻿//
+// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+// 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +23,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.Repository.EntityFrameworkCore
-{
+namespace Diamond.Core.Repository.EntityFrameworkCore {
 	/// <summary>
 	/// This repository implements a base repository for an Entity (TEntity) that
 	/// implements interface TItem.
@@ -35,15 +34,13 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 	public abstract class EntityFrameworkRepository<TInterface, TEntity, TContext> : IWritableRepository<TInterface>
 		where TEntity : class, TInterface, new()
 		where TInterface : IEntity
-		where TContext : DbContext
-	{
+		where TContext : DbContext {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="context"></param>
 		/// <param name="modelFactory"></param>
-		public EntityFrameworkRepository(TContext context, IEntityFactory<TInterface> modelFactory)
-		{
+		public EntityFrameworkRepository(TContext context, IEntityFactory<TInterface> modelFactory) {
 			this.Context = context;
 			this.ModelFactory = modelFactory;
 		}
@@ -79,8 +76,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public virtual Task<IEnumerable<TInterface>> GetAllAsync()
-		{
+		public virtual Task<IEnumerable<TInterface>> GetAllAsync() {
 			IEnumerable<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"{nameof(GetAllAsync)} called for type '{typeof(TInterface).Name}'.");
@@ -94,8 +90,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="predicate"></param>
 		/// <returns></returns>
-		public virtual Task<IEnumerable<TInterface>> GetAsync(Expression<Func<TInterface, bool>> predicate)
-		{
+		public virtual Task<IEnumerable<TInterface>> GetAsync(Expression<Func<TInterface, bool>> predicate) {
 			IEnumerable<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"{nameof(GetAsync)} called for type '{typeof(TInterface).Name}'.");
@@ -108,8 +103,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public virtual Task<IRepositoryContext> GetContextAsync()
-		{
+		public virtual Task<IRepositoryContext> GetContextAsync() {
 			this.Logger.LogTrace($"{nameof(GetContextAsync)} called.");
 			return Task.FromResult((IRepositoryContext)this.Context);
 		}
@@ -119,18 +113,15 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public virtual Task<IQueryable<TInterface>> GetQueryableAsync(IRepositoryContext context)
-		{
+		public virtual Task<IQueryable<TInterface>> GetQueryableAsync(IRepositoryContext context) {
 			IQueryable<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"{nameof(GetQueryableAsync)} called for type '{typeof(TInterface).Name}'.");
 
-			if (context is TContext db)
-			{
+			if (context is TContext db) {
 				returnValue = this.MyDbSet(this.Context).AsQueryable<TInterface>();
 			}
-			else
-			{
+			else {
 				throw new InvalidContextException();
 			}
 
@@ -142,8 +133,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual async Task<bool> UpdateAsync(TInterface item)
-		{
+		public virtual async Task<bool> UpdateAsync(TInterface item) {
 			bool returnValue = false;
 
 			this.Logger.LogTrace($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}'.");
@@ -161,8 +151,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual async Task<(bool, TInterface)> AddAsync(TInterface item)
-		{
+		public virtual async Task<(bool, TInterface)> AddAsync(TInterface item) {
 			(bool result, TInterface entity) = (false, default);
 
 			this.Logger.LogTrace($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}'.");
@@ -179,8 +168,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual async Task<bool> DeleteAsync(TInterface item)
-		{
+		public virtual async Task<bool> DeleteAsync(TInterface item) {
 			bool returnValue = false;
 
 			this.Logger.LogTrace($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}'.");
@@ -199,8 +187,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="repositoryContext"></param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface item)
-		{
+		public virtual Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface item) {
 			this.Logger.LogTrace($"{nameof(UpdateAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			((TContext)repositoryContext).Entry((TEntity)item).State = EntityState.Modified;
 			return Task.FromResult(true);
@@ -212,8 +199,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="repositoryContext"></param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual Task<TInterface> AddAsync(IRepositoryContext repositoryContext, TInterface item)
-		{
+		public virtual Task<TInterface> AddAsync(IRepositoryContext repositoryContext, TInterface item) {
 			this.Logger.LogTrace($"{nameof(AddAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			return Task.FromResult<TInterface>(this.MyDbSet((TContext)repositoryContext).Add((TEntity)item).Entity);
 		}
@@ -224,8 +210,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="repositoryContext"></param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface item)
-		{
+		public virtual Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface item) {
 			this.Logger.LogTrace($"{nameof(DeleteAsync)} called for type '{typeof(TInterface).Name}' with context.");
 			((TContext)repositoryContext).Entry((TEntity)item).State = EntityState.Deleted;
 			return Task.FromResult(true);

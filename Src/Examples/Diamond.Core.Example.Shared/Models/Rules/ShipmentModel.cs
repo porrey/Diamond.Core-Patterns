@@ -1,7 +1,5 @@
-﻿namespace Diamond.Core.Example
-{
-	public class ShipmentModel : IShipmentModel
-	{
+﻿namespace Diamond.Core.Example {
+	public class ShipmentModel : IShipmentModel {
 		public string ProNumber { get; set; }
 		public string PickupAddress { get; set; }
 		public string DeliveryAddress { get; set; }

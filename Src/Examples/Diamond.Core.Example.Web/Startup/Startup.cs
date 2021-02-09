@@ -5,13 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class Startup
-	{
+	public class Startup {
 		/// <summary>
 		/// 
 		/// </summary>
@@ -21,8 +19,7 @@ namespace Diamond.Core.Example
 		/// 
 		/// </summary>
 		/// <param name="configuration"></param>
-		public Startup(IConfiguration configuration)
-		{
+		public Startup(IConfiguration configuration) {
 			this.Configuration = configuration;
 		}
 
@@ -30,11 +27,10 @@ namespace Diamond.Core.Example
 		/// 
 		/// </summary>
 		/// <param name="services"></param>
-		public void ConfigureServices(IServiceCollection services)
-		{
-			// ***
-			// *** Add the required services
-			// ***
+		public void ConfigureServices(IServiceCollection services) {
+			//
+			// Add the required services
+			//
 			services.AddMyDiamondCore()
 					.AddMyMvc()
 					.AddMySwagger(this.Configuration)
@@ -47,14 +43,11 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="app"></param>
 		/// <param name="env"></param>
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-		{
-			if (env.IsDevelopment())
-			{
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+			if (env.IsDevelopment()) {
 				app.UseDeveloperExceptionPage();
 			}
-			else
-			{
+			else {
 				app.UseHsts();
 			}
 
@@ -62,8 +55,7 @@ namespace Diamond.Core.Example
 			app.UseStaticFiles();
 			app.UseRouting();
 
-			app.UseEndpoints(endpoints =>
-			{
+			app.UseEndpoints(endpoints => {
 				endpoints.MapControllers();
 
 				endpoints.MapControllerRoute(

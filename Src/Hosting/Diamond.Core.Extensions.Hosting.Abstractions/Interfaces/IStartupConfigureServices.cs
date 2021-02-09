@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Diamond.Core.Extensions.Hosting
-{
+namespace Diamond.Core.Extensions.Hosting {
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IStartupConfigureServices : IStartup
-	{
+	public interface IStartupConfigureServices : IStartup {
 		/// <summary>
 		/// 
 		/// </summary>

@@ -5,8 +5,7 @@ using Diamond.Core.AspNet.DoAction;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// Retrieves invoice information from the ERP system.
 	/// </summary>y
@@ -15,16 +14,14 @@ namespace Diamond.Core.Example
 	[ApiVersion("1.0")]
 	[Produces("application/json", "application/xml")]
 	[Description("Retrieves invoice information from the ERP system.")]
-	public class InvoicesController : DoActionController
-	{
+	public class InvoicesController : DoActionController {
 		/// <summary>
 		/// Creates an instance of <see cref="InvoicesController"/> with a dependency
 		/// on <see cref="IDoActionFactory"/>.
 		/// </summary>
 		/// <param name="doActionFactory"></param>
 		public InvoicesController(IDoActionFactory doActionFactory)
-			: base(doActionFactory)
-		{
+			: base(doActionFactory) {
 		}
 
 		/// <summary>
@@ -40,8 +37,7 @@ namespace Diamond.Core.Example
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> GetInvoiceAsync(string invoiceNumber)
-		{
+		public Task<ActionResult<Invoice>> GetInvoiceAsync(string invoiceNumber) {
 			this.LogMethodCall();
 			return this.Do<string, Invoice>(invoiceNumber);
 		}
@@ -56,8 +52,7 @@ namespace Diamond.Core.Example
 		[ProducesResponseType(typeof(IEnumerable<Invoice>), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<IEnumerable<Invoice>>> GetAllInvoicesAsync()
-		{
+		public Task<ActionResult<IEnumerable<Invoice>>> GetAllInvoicesAsync() {
 			this.LogMethodCall();
 			return this.Do<IEnumerable<Invoice>>();
 		}
@@ -73,8 +68,7 @@ namespace Diamond.Core.Example
 		[ProducesResponseType(typeof(IEnumerable<Invoice>), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> CreateInvoiceAsync([FromBody] Invoice item)
-		{
+		public Task<ActionResult<Invoice>> CreateInvoiceAsync([FromBody] Invoice item) {
 			this.LogMethodCall();
 			return this.Do<Invoice, Invoice>(item);
 		}
@@ -93,8 +87,7 @@ namespace Diamond.Core.Example
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> UpdateInvoiceAsync(string invoiceNumber, [FromBody] InvoiceUpdate item)
-		{
+		public Task<ActionResult<Invoice>> UpdateInvoiceAsync(string invoiceNumber, [FromBody] InvoiceUpdate item) {
 			this.LogMethodCall();
 			return this.Do<(string, InvoiceUpdate), Invoice>((invoiceNumber, item));
 		}
@@ -113,8 +106,7 @@ namespace Diamond.Core.Example
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> MarkInvoicePaidAsync(string invoiceNumber, bool paid)
-		{
+		public Task<ActionResult<Invoice>> MarkInvoicePaidAsync(string invoiceNumber, bool paid) {
 			this.LogMethodCall();
 			return this.Do<(string, bool), Invoice>((invoiceNumber, paid));
 		}
@@ -130,8 +122,7 @@ namespace Diamond.Core.Example
 		[ProducesResponseType(typeof(IEnumerable<Invoice>), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> DeleteInvoiceAsync(string invoiceNumber)
-		{
+		public Task<ActionResult<Invoice>> DeleteInvoiceAsync(string invoiceNumber) {
 			this.LogMethodCall();
 			return this.Do<string, Invoice>(invoiceNumber);
 		}
@@ -143,8 +134,7 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="problemDetails">The instance of <see cref="ProblemDetails"/> that will be returned to the client.</param>
 		/// <returns>An instance of <see cref="ProblemDetails"/>.</returns>
-		protected override ProblemDetails OnCreateProblemDetail(ProblemDetails problemDetails)
-		{
+		protected override ProblemDetails OnCreateProblemDetail(ProblemDetails problemDetails) {
 			return base.OnCreateProblemDetail(problemDetails);
 		}
 	}

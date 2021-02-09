@@ -4,10 +4,8 @@ using Microsoft.Extensions.Hosting;
 using Unity;
 using Unity.Microsoft.DependencyInjection;
 
-namespace Diamond.Core.Example
-{
-	class Program
-	{
+namespace Diamond.Core.Example {
+	class Program {
 		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
 				.UseUnityServiceProvider()
 				.UseStartup<ConsoleStartup, IUnityContainer>()

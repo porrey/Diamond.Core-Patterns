@@ -5,22 +5,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UnityBuilder = Unity.Microsoft.DependencyInjection.ServiceProviderExtensions;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ConsoleStartup : IStartupConfigureServices, IStartupConfigureContainer
-	{
+	public class ConsoleStartup : IStartupConfigureServices, IStartupConfigureContainer {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <typeparam name="IUnityContainer"></typeparam>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public void ConfigureContainer<IUnityContainer>(IUnityContainer container)
-		{
-			
+		public void ConfigureContainer<IUnityContainer>(IUnityContainer container) {
+
 		}
 
 		/// <summary>
@@ -28,26 +25,24 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public void ConfigureServices(IServiceCollection services)
-		{
-			// ***
-			// *** Add the default dependencies.
-			// ***
+		public void ConfigureServices(IServiceCollection services) {
+			//
+			// Add the default dependencies.
+			//
 			services.UseDiamondRepositoryPattern();
 
-			// ***
-			// *** Add the entity factory and repository to the container.
-			// ***
+			//
+			// Add the entity factory and repository to the container.
+			//
 			services.AddSingleton<IEntityFactory<IInvoice>, InvoiceEntityFactory>();
 			services.AddTransient<IRepository<IInvoice>, InvoiceRepository>();
 
-			// ***
-			// *** Get the configuration.
-			// ***
+			//
+			// Get the configuration.
+			//
 			IConfiguration configuration = UnityBuilder.BuildServiceProvider(services).GetRequiredService<IConfiguration>();
 
-			services.AddDbContext<ErpContext>(options =>
-			{
+			services.AddDbContext<ErpContext>(options => {
 				options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
 				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
 				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);

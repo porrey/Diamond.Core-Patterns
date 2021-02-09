@@ -1,38 +1,34 @@
-﻿// ***
-// *** Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
-// *** 
-// *** This program is free software: you can redistribute it and/or modify
-// *** it under the terms of the GNU Lesser General Public License as published
-// *** by the Free Software Foundation, either version 3 of the License, or
-// *** (at your option) any later version.
-// *** 
-// *** This program is distributed in the hope that it will be useful,
-// *** but WITHOUT ANY WARRANTY; without even the implied warranty of
-// *** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// *** GNU Lesser General Public License for more details.
-// *** 
-// *** You should have received a copy of the GNU Lesser General Public License
-// *** along with this program. If not, see http://www.gnu.org/licenses/.
-// *** 
+﻿//
+// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+// 
 using System;
 
-namespace Diamond.Core.WorkFlow
-{
+namespace Diamond.Core.WorkFlow {
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class ExceptionContextDecorator
-	{
+	public static class ExceptionContextDecorator {
 		/// <summary>
 		/// 
 		/// </summary>
-		public static class WellKnown
-		{
+		public static class WellKnown {
 			/// <summary>
 			/// 
 			/// </summary>
-			public static class Context
-			{
+			public static class Context {
 				/// <summary>
 				/// 
 				/// </summary>
@@ -50,8 +46,7 @@ namespace Diamond.Core.WorkFlow
 		/// </summary>
 		/// <param name="contextDecorator"></param>
 		/// <returns></returns>
-		public static bool HasException(this IContext contextDecorator)
-		{
+		public static bool HasException(this IContext contextDecorator) {
 			return contextDecorator.Properties.ContainsKey(WellKnown.Context.Exception);
 		}
 
@@ -60,8 +55,7 @@ namespace Diamond.Core.WorkFlow
 		/// </summary>
 		/// <param name="contextDecorator"></param>
 		/// <returns></returns>
-		public static bool HasExitCode(this IContext contextDecorator)
-		{
+		public static bool HasExitCode(this IContext contextDecorator) {
 			return contextDecorator.Properties.ContainsKey(WellKnown.Context.ExitCode);
 		}
 
@@ -70,16 +64,13 @@ namespace Diamond.Core.WorkFlow
 		/// </summary>
 		/// <param name="contextDecorator"></param>
 		/// <returns></returns>
-		public static Exception GetException(this IContext contextDecorator)
-		{
+		public static Exception GetException(this IContext contextDecorator) {
 			Exception returnValue = null;
 
-			if (contextDecorator.HasException())
-			{
+			if (contextDecorator.HasException()) {
 				returnValue = contextDecorator.Properties.Get<Exception>(WellKnown.Context.Exception);
 			}
-			else
-			{
+			else {
 				throw new NoExceptionException();
 			}
 
@@ -91,16 +82,13 @@ namespace Diamond.Core.WorkFlow
 		/// </summary>
 		/// <param name="contextDecorator"></param>
 		/// <returns></returns>
-		public static int GetExitCode(this IContext contextDecorator)
-		{
+		public static int GetExitCode(this IContext contextDecorator) {
 			int returnValue = 0;
 
-			if (contextDecorator.HasExitCode())
-			{
+			if (contextDecorator.HasExitCode()) {
 				returnValue = contextDecorator.Properties.Get<int>(WellKnown.Context.ExitCode);
 			}
-			else
-			{
+			else {
 				throw new NoExitCodeException();
 			}
 
@@ -112,8 +100,7 @@ namespace Diamond.Core.WorkFlow
 		/// </summary>
 		/// <param name="contextDecorator"></param>
 		/// <param name="ex"></param>
-		public static void SetException(this IContext contextDecorator, Exception ex)
-		{
+		public static void SetException(this IContext contextDecorator, Exception ex) {
 			contextDecorator.Properties.Set(WellKnown.Context.Exception, ex);
 		}
 
@@ -123,8 +110,7 @@ namespace Diamond.Core.WorkFlow
 		/// <param name="contextDecorator"></param>
 		/// <param name="exitCode"></param>
 		/// <param name="ex"></param>
-		public static void SetException(this IContext contextDecorator, int exitCode, Exception ex)
-		{
+		public static void SetException(this IContext contextDecorator, int exitCode, Exception ex) {
 			contextDecorator.Properties.Set(WellKnown.Context.Exception, ex);
 			contextDecorator.Properties.Set(WellKnown.Context.ExitCode, exitCode);
 		}
@@ -134,8 +120,7 @@ namespace Diamond.Core.WorkFlow
 		/// </summary>
 		/// <param name="contextDecorator"></param>
 		/// <param name="message"></param>
-		public static void SetException(this IContext contextDecorator, string message)
-		{
+		public static void SetException(this IContext contextDecorator, string message) {
 			contextDecorator.SetException(new Exception(message));
 		}
 
@@ -145,8 +130,7 @@ namespace Diamond.Core.WorkFlow
 		/// <param name="contextDecorator"></param>
 		/// <param name="exitCode"></param>
 		/// <param name="message"></param>
-		public static void SetException(this IContext contextDecorator, int exitCode, string message)
-		{
+		public static void SetException(this IContext contextDecorator, int exitCode, string message) {
 			contextDecorator.SetException(new Exception(message));
 			contextDecorator.Properties.Set(WellKnown.Context.ExitCode, exitCode);
 		}
@@ -157,8 +141,7 @@ namespace Diamond.Core.WorkFlow
 		/// <param name="contextDecorator"></param>
 		/// <param name="format"></param>
 		/// <param name="args"></param>
-		public static void SetException(this IContext contextDecorator, string format, params object[] args)
-		{
+		public static void SetException(this IContext contextDecorator, string format, params object[] args) {
 			contextDecorator.SetException(new Exception(String.Format(format, args)));
 		}
 
@@ -169,8 +152,7 @@ namespace Diamond.Core.WorkFlow
 		/// <param name="exitCode"></param>
 		/// <param name="format"></param>
 		/// <param name="args"></param>
-		public static void SetException(this IContext contextDecorator, int exitCode, string format, params object[] args)
-		{
+		public static void SetException(this IContext contextDecorator, int exitCode, string format, params object[] args) {
 			contextDecorator.SetException(new Exception(String.Format(format, args)));
 			contextDecorator.Properties.Set(WellKnown.Context.ExitCode, exitCode);
 		}

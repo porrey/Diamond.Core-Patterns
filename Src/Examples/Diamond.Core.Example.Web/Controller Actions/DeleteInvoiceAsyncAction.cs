@@ -5,21 +5,18 @@ using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DeleteInvoiceAsyncAction : IDoAction<string, IControllerActionResult<Invoice>>
-	{
+	public class DeleteInvoiceAsyncAction : IDoAction<string, IControllerActionResult<Invoice>> {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public DeleteInvoiceAsyncAction(ILogger<DeleteInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
-		{
+		public DeleteInvoiceAsyncAction(ILogger<DeleteInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) {
 			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
@@ -52,40 +49,35 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="invoiceNumber"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(string invoiceNumber)
-		{
+		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(string invoiceNumber) {
 			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
-			// ***
-			// *** Get a writable repository for IInvoice.
-			// ***
+			//
+			// Get a writable repository for IInvoice.
+			//
 			this.Logger.LogTrace("Retrieving a writable repository for IInvoice.");
 			IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
 
-			// ***
-			// *** Get the invoice.
-			// ***
+			//
+			// Get the invoice.
+			//
 			IInvoice exisingItem = (await repository.GetAsync(t => t.Number == invoiceNumber)).SingleOrDefault();
 
-			if (exisingItem != null)
-			{
-				// ***
-				// *** Update the data.
-				// ***
+			if (exisingItem != null) {
+				//
+				// Update the data.
+				//
 				bool result = await repository.DeleteAsync(exisingItem);
 
-				if (result)
-				{
+				if (result) {
 					returnValue.ResultDetails = DoActionResult.Ok();
 					returnValue.Result = this.Mapper.Map<Invoice>(exisingItem);
 				}
-				else
-				{
+				else {
 					returnValue.ResultDetails = DoActionResult.BadRequest($"The invoice with invoice number '{invoiceNumber}' could not be deleted.");
 				}
 			}
-			else
-			{
+			else {
 				returnValue.ResultDetails = DoActionResult.NotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.");
 			}
 

@@ -1,9 +1,7 @@
-﻿namespace Diamond.Core.Extensions.Hosting
-{
+﻿namespace Diamond.Core.Extensions.Hosting {
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IStartup
-	{
+	public interface IStartup {
 	}
 }

@@ -1,15 +1,12 @@
 ﻿using Diamond.Core.WorkFlow;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Diamond.Core.Example
-{
-	public static class WorkFlowDependencies
-	{
-		public static IServiceCollection AddWorkFlowExampleDependencies(this IServiceCollection services)
-		{
-			// ***
-			// *** Add the sample work flow manager and work flow steps.
-			// ***
+namespace Diamond.Core.Example {
+	public static class WorkFlowDependencies {
+		public static IServiceCollection AddWorkFlowExampleDependencies(this IServiceCollection services) {
+			//
+			// Add the sample work flow manager and work flow steps.
+			//
 			services.AddScoped<IWorkFlowManagerFactory, WorkFlowManagerFactory>()
 					.AddScoped<IWorkFlowItemFactory, WorkFlowItemFactory>()
 					.AddScoped<IWorkFlowManager, SampleWorkFlowManager>()

@@ -6,21 +6,18 @@ using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetInvoiceAsyncAction : IDoAction<string, IControllerActionResult<Invoice>>
-	{
+	public class GetInvoiceAsyncAction : IDoAction<string, IControllerActionResult<Invoice>> {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public GetInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
-		{
+		public GetInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) {
 			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
@@ -53,28 +50,25 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="invoiceNumber"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(string invoiceNumber)
-		{
+		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(string invoiceNumber) {
 			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
-			// ***
-			// *** Get a read-only repository for IInvoice.
-			// ***
+			//
+			// Get a read-only repository for IInvoice.
+			//
 			this.Logger.LogTrace("Retrieving a read-only repository for IInvoice.");
 			IReadOnlyRepository<IInvoice> repository = await this.RepositoryFactory.GetReadOnlyAsync<IInvoice>();
 
-			// ***
-			// *** Attempt to create the item.
-			// ***
+			//
+			// Attempt to create the item.
+			//
 			IInvoice item = (await repository.GetAsync(t => t.Number == invoiceNumber)).SingleOrDefault();
 
-			if (item != null)
-			{
+			if (item != null) {
 				returnValue.ResultDetails = DoActionResult.Ok();
 				returnValue.Result = this.Mapper.Map<Invoice>(item);
 			}
-			else
-			{
+			else {
 				IDictionary<string, object> extensions = new Dictionary<string, object>
 				{
 					{ "Number", invoiceNumber }

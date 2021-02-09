@@ -6,21 +6,18 @@ using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetAllInvoicesAsyncAction : IDoAction<object, IControllerActionResult<IEnumerable<Invoice>>>
-	{
+	public class GetAllInvoicesAsyncAction : IDoAction<object, IControllerActionResult<IEnumerable<Invoice>>> {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public GetAllInvoicesAsyncAction(ILogger<GetAllInvoicesAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
-		{
+		public GetAllInvoicesAsyncAction(ILogger<GetAllInvoicesAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) {
 			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
@@ -53,31 +50,28 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<IEnumerable<Invoice>>> ExecuteActionAsync(object item)
-		{
+		public async Task<IControllerActionResult<IEnumerable<Invoice>>> ExecuteActionAsync(object item) {
 			ControllerActionResult<IEnumerable<Invoice>> returnValue = new ControllerActionResult<IEnumerable<Invoice>>();
 
-			// ***
-			// *** Get a read-only repository for IInvoice.
-			// ***
+			//
+			// Get a read-only repository for IInvoice.
+			//
 			this.Logger.LogTrace("Retrieving read-only repository for IInvoice.");
 			IReadOnlyRepository<IInvoice> repository = await this.RepositoryFactory.GetReadOnlyAsync<IInvoice>();
 
-			// ***
-			// *** Query all of the items and create a InvoiceReponse for each.
-			// ***
+			//
+			// Query all of the items and create a InvoiceReponse for each.
+			//
 			this.Logger.LogTrace("Retrieving all IInvoice items from data storage.");
 			IEnumerable<Invoice> items = from tbl in await repository.GetAllAsync()
-											 select this.Mapper.Map<Invoice>(tbl);
+										 select this.Mapper.Map<Invoice>(tbl);
 
-			if (items.Any())
-			{
+			if (items.Any()) {
 				this.Logger.LogTrace($"There were {items.Count()} IInvoice items retrieved.");
 				returnValue.ResultDetails = DoActionResult.Ok();
 				returnValue.Result = items;
 			}
-			else
-			{
+			else {
 				returnValue.ResultDetails = DoActionResult.NotFound("There are no invoices in the ERP system.");
 			}
 

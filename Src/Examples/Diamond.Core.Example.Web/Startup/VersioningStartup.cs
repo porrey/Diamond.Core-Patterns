@@ -2,25 +2,21 @@
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Diamond.Core.Example
-{
+namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class VersioningStartup
-	{
+	public static class VersioningStartup {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection AddMyVersioning(this IServiceCollection services)
-		{
-			// ***
-			// *** Add version support.
-			// ***
-			services.AddApiVersioning(config =>
-			{
+		public static IServiceCollection AddMyVersioning(this IServiceCollection services) {
+			//
+			// Add version support.
+			//
+			services.AddApiVersioning(config => {
 				config.AssumeDefaultVersionWhenUnspecified = true;
 				config.DefaultApiVersion = new ApiVersion(1, 0);
 				config.ApiVersionReader = ApiVersionReader.Combine
