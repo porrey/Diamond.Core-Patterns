@@ -207,5 +207,10 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="P:Diamond.Core.Repository.Entity`1.Id">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

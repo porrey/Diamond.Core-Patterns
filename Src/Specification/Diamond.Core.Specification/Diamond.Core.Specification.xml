@@ -4,6 +4,49 @@
         <name>Diamond.Core.Specification</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Specification.SpecificationNotFoundException`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationNotFoundException`1.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:Diamond.Core.Specification.SpecificationNotFoundException`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TParameter"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationNotFoundException`2.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:Diamond.Core.Specification.SpecificationFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
+        </member>
         <member name="P:Diamond.Core.Specification.SpecificationFactory.Logger">
             <summary>
             
@@ -13,6 +56,23 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationFactory.GetAsync``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationFactory.GetAsync``2(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TParameter"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

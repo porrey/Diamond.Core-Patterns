@@ -22,8 +22,19 @@
             </summary>
             <param name="groupName">A group name that specifies a set of rules.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:Diamond.Core.Rules.RulesFactory" -->
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider)" -->
+        <member name="T:Diamond.Core.Rules.RulesFactory">
+            <summary>
+            Defines a generic repository factory that can be used to retrieve
+            an object that implements <see cref="T:Diamond.Core.Rules.IRule"/> from the container.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Rules.IRule"/> with the
+            specififed instance of <see cref="T:System.IServiceProvider"/>.
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
         <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RulesFactory})">
             <summary>
             
@@ -31,16 +42,46 @@
             <param name="serviceProvider"></param>
             <param name="logger"></param>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:Diamond.Core.Rules.RulesFactory.ServiceProvider" -->
+        <member name="P:Diamond.Core.Rules.RulesFactory.ServiceProvider">
+            <summary>
+            Gets/sets the internal instance of <see cref="T:System.IServiceProvider"/>.
+            </summary>
+        </member>
         <member name="P:Diamond.Core.Rules.RulesFactory.Logger">
             <summary>
             Gets/sets a reference to the <see cref="T:Microsoft.Extensions.Logging.ILogger"/> for this object.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1" -->
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1(System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2" -->
-        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2(System.String)" -->
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1">
+            <summary>
+            Get all model rule instances registered based on TInterface.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <typeparam name="TResult">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <typeparam name="TResult">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
         <member name="T:Diamond.Core.Rules.Rule`1">
             <summary>
             
