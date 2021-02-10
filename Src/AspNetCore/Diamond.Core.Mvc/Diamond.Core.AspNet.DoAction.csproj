@@ -27,7 +27,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-	  <DocumentationFile>XmlDocs\Diamond.Core.AspNet.DoAction.xml</DocumentationFile>
+	  <DocumentationFile>Diamond.Core.AspNet.DoAction.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -29,6 +29,9 @@ namespace Diamond.Core.Repository {
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class Entity<T> : Entity, IEntity<T> {
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual T Id { get; set; }
 	}
 }

@@ -17,7 +17,14 @@
 using System;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class StringConverter : ConverterBase<string> {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, string ConvertedValue) returnValue = (false, null, String.Empty);
 

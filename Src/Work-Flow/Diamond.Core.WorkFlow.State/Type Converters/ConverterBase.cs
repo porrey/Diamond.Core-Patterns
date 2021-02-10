@@ -18,14 +18,37 @@ using System;
 using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="TTargetType"></typeparam>
 	public class ConverterBase<TTargetType> : IStateTypeConverter {
+		/// <summary>
+		/// 
+		/// </summary>
 		public Type TargetType => typeof(TTargetType);
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected string SourceStringValue { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		protected object SourceObjectValue { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public Type SpecificTargetType { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sourceValue"></param>
+		/// <param name="specificTargetType"></param>
+		/// <returns></returns>
 		public virtual (bool, string, object) ConvertSource(object sourceValue, Type specificTargetType) {
 			this.SourceObjectValue = sourceValue;
 			this.SourceStringValue = Convert.ToString(sourceValue);
@@ -33,10 +56,18 @@ namespace Diamond.Core.WorkFlow.State {
 			return this.OnConvertSource();
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected virtual (bool, string, object) OnConvertSource() {
 			throw new NotImplementedException();
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString() {
 			return this.TargetType.Name;
 		}

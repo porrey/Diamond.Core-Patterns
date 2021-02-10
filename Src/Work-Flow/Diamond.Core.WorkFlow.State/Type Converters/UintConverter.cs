@@ -17,7 +17,14 @@
 using System;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class UintConverter : ConverterBase<uint> {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, uint ConvertedValue) returnValue = (false, null, 0);
 

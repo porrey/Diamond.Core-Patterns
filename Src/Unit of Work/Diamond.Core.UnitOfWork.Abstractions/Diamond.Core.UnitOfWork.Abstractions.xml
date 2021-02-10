@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.UnitOfWork.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.UnitOfWork.IUnitOfWork">
+            <summary>
+            Defines a generic unit of work.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.UnitOfWork.IUnitOfWork.Key">
+            <summary>
+            A unique key to distinguish similar unit of works instances.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.UnitOfWork.IUnitOfWork`2">
+            <summary>
+            A unit of work that takes TSourceItem and returns type TResult.
+            </summary>
+            <typeparam name="TResult">The type of the result returned by the unit of work.</typeparam>
+            <typeparam name="TSourceItem">The type of the source item for the unit of work.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.IUnitOfWork`2.CommitAsync(`1)">
+            <summary>
+            Executes the unit of work.
+            </summary>
+            <param name="item">The source item used in the transaction.</param>
+            <returns>The result of the action as object instance of type TResult.</returns>
+        </member>
+        <member name="T:Diamond.Core.UnitOfWork.IUnitOfWorkFactory">
+            <summary>
+            Defines a factory to create/retrieve a specification.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.IUnitOfWorkFactory.GetAsync``2(System.String)">
+            <summary>
+            Gets a unit of work that takes in TSourceItem and returns TResult with the given key.
+            </summary>
+            <typeparam name="TResult">The type of the result returned by the unit of work execution.</typeparam>
+            <typeparam name="TSourceItem">The type of the input or parameter passed to the execution
+            of the unit of work.</typeparam>
+            <param name="key">A unique key to distinguish this unit of work from other similar definitions.</param>
+            <returns>The result of the execution as type TResult.</returns>
+        </member>
+    </members>
+</doc>

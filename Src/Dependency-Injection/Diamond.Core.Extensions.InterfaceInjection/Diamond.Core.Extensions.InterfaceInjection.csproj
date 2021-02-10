@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DocumentationFile>XmlDocs\Diamond.Core.Extensions.InterfaceInjection.xml</DocumentationFile>
+    <DocumentationFile>Diamond.Core.Extensions.InterfaceInjection.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

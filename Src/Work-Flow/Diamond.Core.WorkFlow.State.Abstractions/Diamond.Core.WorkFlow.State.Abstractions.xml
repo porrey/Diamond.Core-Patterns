@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.WorkFlow.State.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.WorkFlow.State.IStateDictionary">
+            <summary>
+            Defines a dictionary that can be used to manage state in work flows
+            or other patterns.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.State.IStateDictionary.ConvertParameter(System.String,System.Type)">
+            <summary>
+            Retrieves and converts a dictionary item to the specified type.
+            </summary>
+            <param name="key">The unique key of the item to retrieve.</param>
+            <param name="targetType">The target type.</param>
+            <returns>The value of the dictionary item in the specified type or an 
+            error if the item could not be converted.</returns>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.State.IStateDictionary.ConvertParameter``1(System.String)">
+            <summary>
+            Retrieves and converts a dictionary item to the specified type.
+            </summary>
+            <typeparam name="TTarget">The target type.</typeparam>
+            <param name="key">The unique key of the item to retrieve.</param>
+            <returns>The value of the dictionary item in the specified type or an 
+            error if the item could not be converted.</returns>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.State.IStateDictionary.Get``1(System.String)">
+            <summary>
+            Retrieves a dictionary item and  casts it to the specified type. No 
+            conversion is performed. An exception is thrown if the key is invalid.
+            </summary>
+            <typeparam name="TProperty">The target type.</typeparam>
+            <param name="key">The unique key of the item to retrieve.</param>
+            <returns>returns the item as the given type.</returns>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.State.IStateDictionary.Get``1(System.String,``0)">
+            <summary>
+            Retrieves a dictionary item and  casts it to the specified type. No 
+            conversion is performed. The default value is returned if the key
+            is invalid.
+            </summary>
+            <typeparam name="TProperty">The target type.</typeparam>
+            <param name="key">The unique key of the item to retrieve.</param>
+            <param name="defaultValue">The default value to return if the item does not exist.</param>
+            <returns>returns the item (or the default value) as the given type.</returns>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.State.IStateDictionary.TryGet``1(System.String,``0)">
+            <summary>
+            Attempts to retrieve an item from the dictionary by the specified key. If the
+            item does not exist it will be created and initialized with initializeValue.
+            </summary>
+            <typeparam name="TProperty">The target type.</typeparam>
+            <param name="key">The unique key of the item to retrieve.</param>
+            <param name="initializeValue">The value to initialize the item to if it does not exist.</param>
+            <returns>Returns the existing item or the initialized item.</returns>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.State.IStateDictionary.Set``1(System.String,``0)">
+            <summary>
+            Sets a value in the dictionary. I the item does not exist, it is created. If
+            the item already exists, it is updated. Attempting to change the item type
+            could have unexpected side affects and is not recommended.
+            </summary>
+            <typeparam name="TProperty">The target type.</typeparam>
+            <param name="key">The unique key of the item to retrieve.</param>
+            <param name="value">The value used to set the item.</param>
+        </member>
+        <member name="T:Diamond.Core.WorkFlow.State.IStateTypeConverter">
+            <summary>
+            Defines a state converter that can convert a state dictionary time from one type to another.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.WorkFlow.State.IStateTypeConverter.TargetType">
+            <summary>
+            Get the target type of the converter.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.WorkFlow.State.IStateTypeConverter.ConvertSource(System.Object,System.Type)">
+            <summary>
+            Converts the item from the source to the target.
+            </summary>
+            <param name="sourceValue">The value being converted.</param>
+            <param name="specificTargetType">The target type of the conversion.</param>
+            <returns>Returns the converted item or an error.</returns>
+        </member>
+    </members>
+</doc>

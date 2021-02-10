@@ -24,8 +24,8 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
-	  <DocumentationFile>XmlDocs\Diamond.Core.AspNet.DoAction.Abstractions.xml</DocumentationFile>
+	<PropertyGroup>
+	  <DocumentationFile>Diamond.Core.AspNet.DoAction.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

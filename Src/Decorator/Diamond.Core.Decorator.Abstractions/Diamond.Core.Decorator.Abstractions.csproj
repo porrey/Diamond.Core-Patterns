@@ -28,7 +28,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-	  <DocumentationFile>XmlDocs\Diamond.Core.Decorator.Abstractions.xml</DocumentationFile>
+	  <DocumentationFile>Diamond.Core.Decorator.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

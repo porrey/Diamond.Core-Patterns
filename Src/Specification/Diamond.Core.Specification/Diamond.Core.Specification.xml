@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Specification</name>
+    </assembly>
+    <members>
+        <member name="P:Diamond.Core.Specification.SpecificationFactory.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Specification.SpecificationFactory.ServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup >
-    <DocumentationFile>XmlDocs\Diamond.Core.Extensions.InterfaceInjection.Abstractions.xml</DocumentationFile>
+    <DocumentationFile>Diamond.Core.Extensions.InterfaceInjection.Abstractions.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

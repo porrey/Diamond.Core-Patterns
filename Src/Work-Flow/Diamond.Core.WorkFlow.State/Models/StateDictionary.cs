@@ -17,10 +17,15 @@
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class StateDictionary : ConcurrentDictionary<string, object>, IStateDictionary {
+		/// <summary>
+		/// 
+		/// </summary>
 		public StateDictionary()
 			: this(new IStateTypeConverter[]
 					{
@@ -40,12 +45,26 @@ namespace Diamond.Core.WorkFlow.State {
 					}) {
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="converters"></param>
 		public StateDictionary(IStateTypeConverter[] converters) {
 			this.Converters = converters;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IStateTypeConverter[] Converters { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="key"></param>
+		/// <param name="defaultValue"></param>
+		/// <returns></returns>
 		public T Get<T>(string key, T defaultValue = default) {
 			T returnValue = defaultValue;
 
@@ -63,6 +82,12 @@ namespace Diamond.Core.WorkFlow.State {
 			return returnValue;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TProperty"></typeparam>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public TProperty Get<TProperty>(string key) {
 			TProperty returnValue = default(TProperty);
 
@@ -83,6 +108,13 @@ namespace Diamond.Core.WorkFlow.State {
 			return returnValue;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TProperty"></typeparam>
+		/// <param name="key"></param>
+		/// <param name="initializeValue"></param>
+		/// <returns></returns>
 		public TProperty TryGet<TProperty>(string key, TProperty initializeValue) {
 			TProperty returnValue = initializeValue;
 
@@ -96,6 +128,12 @@ namespace Diamond.Core.WorkFlow.State {
 			return returnValue;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TProperty"></typeparam>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
 		public void Set<TProperty>(string key, TProperty value) {
 			if (this.ContainsKey(key)) {
 				//
@@ -116,6 +154,12 @@ namespace Diamond.Core.WorkFlow.State {
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="targetType"></param>
+		/// <returns></returns>
 		public (bool, string, object) ConvertParameter(string key, Type targetType) {
 			(bool Success, string ErrorMessage, object ConvertedValue) returnValue = (false, null, null);
 
@@ -148,6 +192,12 @@ namespace Diamond.Core.WorkFlow.State {
 			return returnValue;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public (bool, string, T) ConvertParameter<T>(string key) {
 			(bool Success, string ErrorMessage, T ConvertedValue) returnValue = (false, null, default);
 
@@ -160,16 +210,31 @@ namespace Diamond.Core.WorkFlow.State {
 			return returnValue;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public new bool ContainsKey(string key) {
 			return base.ContainsKey(key.ToLower());
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
 		public void Add(string key, object value) {
 			if (!base.TryAdd(key.ToLower(), value)) {
 				throw new AddItemToStateException(key);
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public new object this[string key] {
 			get {
 				return base[key.ToLower()];

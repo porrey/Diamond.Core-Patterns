@@ -18,17 +18,34 @@ using System;
 using System.Linq;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class EnumConverter : ConverterBase<Enum> {
+		/// <summary>
+		/// 
+		/// </summary>
 		public EnumConverter()
 			: this(new char[] { '|', ',', ';' }) {
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="separator"></param>
 		public EnumConverter(char[] separator) {
 			this.Separator = separator;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected char[] Separator { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, object ConvertedValue) returnValue = (false, null, null);
 

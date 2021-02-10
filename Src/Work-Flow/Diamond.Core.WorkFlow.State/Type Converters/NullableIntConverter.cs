@@ -18,7 +18,14 @@ using System;
 using System.Threading.Tasks;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class NullableIntConverter : ConverterBase<int?> {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, int? ConvertedValue) returnValue = (false, null, null);
 

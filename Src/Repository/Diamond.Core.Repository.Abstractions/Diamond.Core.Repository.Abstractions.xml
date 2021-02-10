@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Repository.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Repository.DiamondRepositoryException">
+            <summary>
+            This is an abstract class the defines the base object for all
+            exceptions in the Diamond.Core.Repositry library. This allows exceptions
+            specific to this library to be caught separately than other exceptions.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.DiamondRepositoryException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Repository.DiamondRepositoryException"/> class.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.DiamondRepositoryException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Repository.DiamondRepositoryException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Diamond.Core.Repository.DiamondRepositoryException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Repository.DiamondRepositoryException"/> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference
+            if no inner exception is specified.</param>
+        </member>
+        <member name="M:Diamond.Core.Repository.DiamondRepositoryException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Repository.DiamondRepositoryException"/> class with serialized data.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
+            object data about the exception being thrown.</param>
+            <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
+            about the source or destination.</param>
+        </member>
+        <member name="T:Diamond.Core.Repository.IEntity">
+            <summary>
+            Base entity class allowing generic classes for any
+            interface defined as an "Entity".
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.IEntity`1">
+            <summary>
+            Base entity class with a "ID" defined as type T. Each
+            entity (or model) will defined it's own ID type based
+            on the Mail.dat specification.
+            </summary>
+            <typeparam name="T">The type of ID for this entity.</typeparam>
+        </member>
+        <member name="P:Diamond.Core.Repository.IEntity`1.Id">
+            <summary>
+            Get/sets or unique ID for this item.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.IEntityFactory`1">
+            <summary>
+            Defines a factory to create entity models.
+            </summary>
+            <typeparam name="TInterface">The type of the entity model.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Repository.IEntityFactory`1.CreateAsync">
+            <summary>
+            Creates a new empty instance of an entity model.
+            </summary>
+            <returns>The newly created entity.</returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.IQueryableRepository`1">
+            <summary>
+            Defines a repository that supports a queryable interface. The connection remains open until specifically
+            closed by the caller.
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetContextAsync">
+            <summary>
+            Gets an active context that can be used for subsequent queries. This context
+            can be shared among repositories for the same underlying data store (database).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetQueryableAsync(Diamond.Core.Repository.IRepositoryContext)">
+            <summary>
+            Gets a <see cref="T:System.Linq.IQueryable"/> of type TInterface using the specified context.
+            </summary>
+            <param name="context">A context retrieved from a all to GetContextAsync().</param>
+            <returns>Returns an <see cref="T:System.Linq.IQueryable"/> of type TInterface.</returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.IReadOnlyRepository`1">
+            <summary>
+            Defines a repository that supports read-only queries against a data store. These queries return
+            an IEnumberable of TInterface.
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Repository.IReadOnlyRepository`1.GetAllAsync">
+            <summary>
+            Returns all items in the data store.
+            </summary>
+            <returns>Returns an IEnumberable of TInterface</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IReadOnlyRepository`1.GetAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Returns a filtered list of items from the data store.
+            </summary>
+            <param name="predicate">Defines the query to be applied before returning the results.</param>
+            <returns>Returns an IEnumberable of TInterface</returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.IRepository">
+            <summary>
+            Defines a generic repository interface.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.IRepository`1">
+            <summary>
+            Defines a generic repository interface that stores an entity of type TInterface.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.IRepositoryContext">
+            <summary>
+            This interface is used as a handle for any type of context
+            without the need to expose the type.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryContext.SaveAsync">
+            <summary>
+            Saves all changes in  the current instance.
+            </summary>
+            <returns>Returns the number of items affected by the save operation.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryContext.EnsureCreated">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.IRepositoryFactory">
+            <summary>
+            Defines a factory to create/retrieve model repositories.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetAsync``1">
+            <summary>
+            Gets a generic <see cref="T:Diamond.Core.Repository.IRepository"/> for the specified model type.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <returns>An instance of the repository for the model type specified.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetReadOnlyAsync``1">
+            <summary>
+            Gets a read-only IReadOnlyRepository for the specified model type.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetQueryableAsync``1">
+            <summary>
+            Gets a read-only IQueryableRepository for the specified model type.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <returns>An instance of the repository for the model type specified.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetWritableAsync``1">
+            <summary>
+            Gets a read-only IWritableRepository for the specified model type.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <returns>An instance of the repository for the model type specified.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetAsync``1(System.String)">
+            <summary>
+            Gets a generic <see cref="T:Diamond.Core.Repository.IRepository"/> for the specified model type and name.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <param name="name"></param>
+            <returns>An instance of the repository for the model type specified.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetReadOnlyAsync``1(System.String)">
+            <summary>
+            Gets a read-only IReadOnlyRepository for the specified model type and name.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <param name="name"></param>
+            <returns>An instance of the repository for the model type specified.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetQueryableAsync``1(System.String)">
+            <summary>
+            Gets a read-only IQueryableRepository for the specified model type and name.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <param name="name"></param>
+            <returns>An instance of the repository for the model type specified.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryFactory.GetWritableAsync``1(System.String)">
+            <summary>
+            Gets a read-only IWritableRepository for the specified model type and name.
+            </summary>
+            <typeparam name="TInterface">The model type.</typeparam>
+            <param name="name"></param>
+            <returns>An instance of the repository for the model type specified.</returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.IWritableRepository`1">
+            <summary>
+            Defines a repository that can be used to modify items in a data store.
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Repository.IWritableRepository`1.ModelFactory">
+            <summary>
+            Gets the model factory used to create new models.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.AddAsync(`0)">
+            <summary>
+            Adds a new entity to the data store.
+            </summary>
+            <param name="entity">An instance of a new entity.</param>
+            <returns>Returns true along with an updated entity (if the data store changed
+            or added data); false otherwise.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.DeleteAsync(`0)">
+            <summary>
+            Deletes the specified entity from the data store.
+            </summary>
+            <param name="entity">An instance of an existing entity.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.UpdateAsync(`0)">
+            <summary>
+            Updates an existing entity in the data store.
+            </summary>
+            <param name="entity">An instance of an existing entity.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+            <summary>
+            Adds a new entity to the data store using the specified repository
+            context.
+            </summary>
+            <param name="repositoryContext">An existing repository context to use for the transaction.</param>
+            <param name="entity">An instance of a new entity.</param>
+            <returns>Returns the updated entity (if the data store changed
+            or added data)</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.DeleteAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+            <summary>
+            Deletes the specified entity from the data store using the
+            specified repository context.
+            </summary>
+            <param name="repositoryContext"></param>
+            <param name="entity">An instance of an existing entity.</param>
+            <returns>Returns true if successful; false otherwise.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+            <summary>
+            Updates an existing entity in the data store using the specified
+            repository context.
+            </summary>
+            <param name="repositoryContext"></param>
+            <param name="entity">An instance of an existing entity.</param>
+            <returns>Returns true if successful; false otherwise.</returns>
+        </member>
+    </members>
+</doc>

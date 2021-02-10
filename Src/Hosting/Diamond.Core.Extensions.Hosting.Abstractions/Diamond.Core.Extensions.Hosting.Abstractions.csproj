@@ -26,7 +26,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-	  <DocumentationFile>XmlDocs\Diamond.Core.Extensions.Hosting.Abstractions.xml</DocumentationFile>
+	  <DocumentationFile>Diamond.Core.Extensions.Hosting.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

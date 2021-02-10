@@ -21,6 +21,9 @@ namespace Diamond.Core.Specification {
 	/// Defines a generic specification.
 	/// </summary>
 	public interface ISpecification {
+		/// <summary>
+		/// 
+		/// </summary>
 		string Name { get; set; }
 	}
 

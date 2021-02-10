@@ -43,6 +43,9 @@ namespace Diamond.Core.System {
 			this.NamingFormat = namingFormat;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected virtual void Create() {
 			this.FullPath = String.Format(this.NamingFormat, Path.GetTempPath(), Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
 
@@ -64,6 +67,9 @@ namespace Diamond.Core.System {
 		/// </summary>
 		public string NamingFormat { get; set; } = "{0}{1}";
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected override void OnDisposeManagedObjects() {
 			try {
 				if (Directory.Exists(this.FullPath)) {

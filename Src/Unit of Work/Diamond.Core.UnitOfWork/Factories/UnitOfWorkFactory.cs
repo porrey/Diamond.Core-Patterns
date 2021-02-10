@@ -28,18 +28,41 @@ namespace Diamond.Core.UnitOfWork {
 	/// for any given entity interface.
 	/// </summary>
 	public class UnitOfWorkFactory : IUnitOfWorkFactory {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
 		public UnitOfWorkFactory(IServiceProvider serviceProvider) {
 			this.ServiceProvider = serviceProvider;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <param name="logger"></param>
 		public UnitOfWorkFactory(IServiceProvider serviceProvider, ILogger<UnitOfWorkFactory> logger) {
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		public ILogger<UnitOfWorkFactory> Logger { get; set; } = new NullLogger<UnitOfWorkFactory>();
+
+		/// <summary>
+		/// 
+		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TResult"></typeparam>
+		/// <typeparam name="TSourceItem"></typeparam>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name) {
 			IUnitOfWork<TResult, TSourceItem> returnValue = null;
 

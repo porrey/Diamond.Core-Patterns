@@ -17,17 +17,34 @@
 using System;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class StringArrayConverter : ConverterBase<string[]> {
+		/// <summary>
+		/// 
+		/// </summary>
 		public StringArrayConverter()
 			: this(new char[] { '|', ',', ';' }) {
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="separator"></param>
 		public StringArrayConverter(char[] separator) {
 			this.Separator = separator;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected char[] Separator { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, string[] ConvertedValue) returnValue = (false, null, new string[0]);
 

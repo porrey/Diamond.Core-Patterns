@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Specification.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Specification.ISpecification">
+            <summary>
+            Defines a generic specification.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Specification.ISpecification.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Specification.ISpecification`1">
+            <summary>
+            Defines a specification that does not require inputs and returns a result of type TResult.
+            </summary>
+            <typeparam name="TResult">The return type of the specification action.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.ISpecification`1.ExecuteQueryAsync">
+            <summary>
+            Executes the specification.
+            </summary>
+            <returns>Returns the result as a instance of type TResult.</returns>
+        </member>
+        <member name="T:Diamond.Core.Specification.ISpecification`2">
+            <summary>
+            Defines a specification that requires input of type TParameter (filter) and returns
+            a result of type TResult.
+            </summary>
+            <typeparam name="TParameter">The type of the filter applied to the execution of the 
+            specification execution.</typeparam>
+            <typeparam name="TResult">The return type of the specification action.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.ISpecification`2.ExecuteSelectionAsync(`0)">
+            <summary>
+            Executes the specification.
+            </summary>
+            <param name="inputs">The filter to apply to the execution of the specification.</param>
+            <returns>Returns the result as a instance of type TResult.</returns>
+        </member>
+        <member name="T:Diamond.Core.Specification.ISpecificationFactory">
+            <summary>
+            Defines a factory to create/retrieve a specification.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.ISpecificationFactory.GetAsync``1(System.String)">
+            <summary>
+            Gets a specification with the return type TResult and has the given name.
+            </summary>
+            <typeparam name="TResult">The return type of the specification result.</typeparam>
+            <param name="name"></param>
+            <returns>An instance of the requested specification.</returns>
+        </member>
+        <member name="M:Diamond.Core.Specification.ISpecificationFactory.GetAsync``2(System.String)">
+            <summary>
+            Gets a specification that takes TParameter as the filter and returns
+            the type TResult with the given name.
+            </summary>
+            <typeparam name="TParameter">The type of the filter used in the specification.</typeparam>
+            <typeparam name="TResult">The return type of the specification result.</typeparam>
+            <param name="name"></param>
+            <returns>An instance of the requested specification.</returns>
+        </member>
+    </members>
+</doc>

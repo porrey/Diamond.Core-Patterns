@@ -25,6 +25,10 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
+	<PropertyGroup>
+	  <DocumentationFile>Diamond.Core.Repository.Abstractions.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<ItemGroup>
 	  <None Include="..\..\..\Images\Diamond.Core.png">
 	    <Pack>True</Pack>

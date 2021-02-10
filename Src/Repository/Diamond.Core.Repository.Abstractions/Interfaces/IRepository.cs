@@ -19,6 +19,9 @@ namespace Diamond.Core.Repository {
 	/// Defines a generic repository interface.
 	/// </summary>
 	public interface IRepository {
+		/// <summary>
+		/// 
+		/// </summary>
 		public string Name { get; set; }
 	}
 

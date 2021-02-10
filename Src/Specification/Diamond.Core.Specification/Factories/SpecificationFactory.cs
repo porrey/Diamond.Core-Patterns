@@ -24,11 +24,23 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Specification {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class SpecificationFactory : ISpecificationFactory, ILoggerPublisher<SpecificationFactory> {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
 		public SpecificationFactory(IServiceProvider serviceProvider) {
 			this.ServiceProvider = serviceProvider;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="serviceProvider"></param>
+		/// <param name="logger"></param>
 		public SpecificationFactory(IServiceProvider serviceProvider, ILogger<SpecificationFactory> logger) {
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
@@ -44,6 +56,12 @@ namespace Diamond.Core.Specification {
 		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public Task<ISpecification<TResult>> GetAsync<TResult>(string name) {
 			ISpecification<TResult> returnValue = null;
 
@@ -81,6 +99,13 @@ namespace Diamond.Core.Specification {
 			return Task.FromResult(returnValue);
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TParameter"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string name) {
 			ISpecification<TParameter, TResult> returnValue = null;
 

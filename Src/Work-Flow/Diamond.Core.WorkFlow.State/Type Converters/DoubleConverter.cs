@@ -17,7 +17,14 @@
 using System;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class DoubleConverter : ConverterBase<Double> {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, Double ConvertedValue) returnValue = (false, null, 0.0F);
 

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.UnitOfWork</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkFactory">
+            <summary>
+            This is a generic repository factory that can return a repository
+            for any given entity interface.
+            </summary>
+        </member>
+    </members>
+</doc>

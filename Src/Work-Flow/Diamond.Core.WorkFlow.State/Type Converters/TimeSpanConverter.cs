@@ -17,7 +17,14 @@
 using System;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class TimeSpanConverter : ConverterBase<TimeSpan> {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, TimeSpan ConvertedValue) returnValue = (false, null, TimeSpan.Zero);
 

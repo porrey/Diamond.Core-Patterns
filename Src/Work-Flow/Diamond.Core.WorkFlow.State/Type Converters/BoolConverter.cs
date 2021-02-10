@@ -17,9 +17,19 @@
 using System.Linq;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class BoolConverter : ConverterBase<bool> {
+		/// <summary>
+		/// 
+		/// </summary>
 		protected string[] SupportedTrueValues = new string[] { "yes", "true", "1", "on" };
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, bool ConvertedValue) returnValue = (false, null, false);
 

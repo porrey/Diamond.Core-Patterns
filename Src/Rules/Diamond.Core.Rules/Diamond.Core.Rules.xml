@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Rules</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Rules.RulesNotFoundException`1">
+            <summary>
+            Exception thrown when rules have not been configured in the application container.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesNotFoundException`1.#ctor">
+            <summary>
+            Exception thrown when no rules have been defined.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesNotFoundException`1.#ctor(System.String)">
+            <summary>
+            Exception thrown when no rules with the specified
+            group name have been defined.
+            </summary>
+            <param name="groupName">A group name that specifies a set of rules.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Diamond.Core.Rules.RulesFactory" -->
+        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider)" -->
+        <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RulesFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Diamond.Core.Rules.RulesFactory.ServiceProvider" -->
+        <member name="P:Diamond.Core.Rules.RulesFactory.Logger">
+            <summary>
+            Gets/sets a reference to the <see cref="T:Microsoft.Extensions.Logging.ILogger"/> for this object.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1" -->
+        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1(System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2" -->
+        <!-- Badly formed XML comment ignored for member "M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2(System.String)" -->
+        <member name="T:Diamond.Core.Rules.Rule`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Rules.Rule`1.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.Rule`1.ValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.Rule`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Rules.Rule`2.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.Rule`2.ValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.RuleResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResult.Passed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResult.ErrorMessage">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

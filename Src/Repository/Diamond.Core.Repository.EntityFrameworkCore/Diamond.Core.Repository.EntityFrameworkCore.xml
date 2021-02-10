@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Repository.EntityFrameworkCore</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Repository.EntityFrameworkCore.InvalidContextException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.InvalidContextException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3">
+            <summary>
+            This repository implements a base repository for an Entity (TEntity) that
+            implements interface TItem.
+            </summary>
+            <typeparam name="TInterface">The interface type that the entity implements.</typeparam>
+            <typeparam name="TEntity">The entity object type.</typeparam>
+            <typeparam name="TContext">The Entity Framework database context.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.#ctor(`2,Diamond.Core.Repository.IEntityFactory{`0})">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="modelFactory"></param>
+        </member>
+        <member name="P:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.Context">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.MyDbSet(`2)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.ModelFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetAllAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetContextAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetQueryableAsync(Diamond.Core.Repository.IRepositoryContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.UpdateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.AddAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.DeleteAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+            <summary>
+            
+            </summary>
+            <param name="repositoryContext"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+            <summary>
+            
+            </summary>
+            <param name="repositoryContext"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.DeleteAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+            <summary>
+            
+            </summary>
+            <param name="repositoryContext"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.SaveAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureCreated">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

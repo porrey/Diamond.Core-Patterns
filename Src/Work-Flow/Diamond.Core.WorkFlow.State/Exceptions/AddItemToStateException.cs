@@ -17,7 +17,14 @@
 using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class AddItemToStateException : DiamondCoreException {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="propertyName"></param>
 		public AddItemToStateException(string propertyName)
 			: base($"Failed to add the item '{propertyName}' to the context state.") {
 		}

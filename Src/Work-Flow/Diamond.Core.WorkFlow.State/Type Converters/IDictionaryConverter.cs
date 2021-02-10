@@ -18,17 +18,34 @@ using System;
 using System.Collections.Generic;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class IDictionaryConverter : ConverterBase<IDictionary<string, string>> {
+		/// <summary>
+		/// 
+		/// </summary>
 		public IDictionaryConverter()
 			: this(new char[] { '|', ',', ';' }) {
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="separator"></param>
 		public IDictionaryConverter(char[] separator) {
 			this.Separator = separator;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		protected char[] Separator { get; set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool success, string errorMessage, IDictionary<string, string> convertedValue) = (false, null, new Dictionary<string, string>());
 

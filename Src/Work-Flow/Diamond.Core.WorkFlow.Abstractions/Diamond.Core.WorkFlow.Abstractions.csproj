@@ -27,6 +27,10 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
+	<PropertyGroup>
+	  <DocumentationFile>Diamond.Core.WorkFlow.Abstractions.xml</DocumentationFile>
+	</PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Core.WorkFlow.State.Abstractions\Diamond.Core.WorkFlow.State.Abstractions.csproj" />
   </ItemGroup>

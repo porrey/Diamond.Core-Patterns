@@ -16,6 +16,9 @@
 // 
 
 namespace Diamond.Core.System {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class TemporaryFolderFactory : ITemporaryFolderFactory {
 		/// <summary>
 		/// Prevents instances of this class from being created externally.

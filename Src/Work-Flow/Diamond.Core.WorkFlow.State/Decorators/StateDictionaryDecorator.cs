@@ -19,7 +19,16 @@ using System.Threading.Tasks;
 using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class StateDictionaryDecorator {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="target"></param>
+		/// <param name="source"></param>
+		/// <returns></returns>
 		public static Task Merge(this IStateDictionary target, IStateDictionary source) {
 			//
 			// Add the iteration instance context properties
@@ -37,6 +46,12 @@ namespace Diamond.Core.WorkFlow.State {
 			return Task.FromResult(0);
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="target"></param>
+		/// <param name="source"></param>
+		/// <returns></returns>
 		public static Task Remove(this IStateDictionary target, IStateDictionary source) {
 			//
 			// Add the iteration instance context properties

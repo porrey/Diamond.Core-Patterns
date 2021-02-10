@@ -26,7 +26,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-	  <DocumentationFile>XmlDocs\Diamond.Core.Extensions.Hosting.xml</DocumentationFile>
+	  <DocumentationFile>Diamond.Core.Extensions.Hosting.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

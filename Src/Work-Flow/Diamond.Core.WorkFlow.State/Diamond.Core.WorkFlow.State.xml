@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.WorkFlow.State</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.WorkFlow.State.MissingContextPropertyException">
+            <summary>
+            Generic error for a missing context property.
+            </summary>
+        </member>
+    </members>
+</doc>

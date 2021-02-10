@@ -25,12 +25,12 @@ using Microsoft.Extensions.Logging;
 namespace Diamond.Core.Rules {
 	/// <summary>
 	/// Defines a generic repository factory that can be used to retrieve
-	/// an object that implements <see cref="IRule<TItem, TResult>" from the container.
+	/// an object that implements <see cref="IRule"/> from the container.
 	/// </summary>
 	public class RulesFactory : IRulesFactory, ILoggerPublisher {
 		/// <summary>
-		/// Creates an instance of <see cref="IRule<TItem, TResult>" with the
-		/// specififed instance of <see cref="IServiceProvider">."</see>
+		/// Creates an instance of <see cref="IRule"/> with the
+		/// specififed instance of <see cref="IServiceProvider"/>.
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		public RulesFactory(IServiceProvider serviceProvider) {
@@ -48,7 +48,7 @@ namespace Diamond.Core.Rules {
 		}
 
 		/// <summary>
-		/// Gets/sets the internal instance of <see cref="IServiceProvider">.
+		/// Gets/sets the internal instance of <see cref="IServiceProvider"/>.
 		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 
@@ -61,7 +61,7 @@ namespace Diamond.Core.Rules {
 		/// Get all model rule instances registered based on TInterface.
 		/// </summary>
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
-		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		/// <returns>A list of <see cref="IRule"/> instances.</returns>
 		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>() {
 			return this.GetAllAsync<TItem>(null);
 		}
@@ -70,7 +70,7 @@ namespace Diamond.Core.Rules {
 		/// Get all model rule instances registered based on TInterface and group name.
 		/// </summary>
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
-		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		/// <returns>A list of <see cref="IRule"/> instances.</returns>
 		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>(string group) {
 			IList<IRule<TItem>> returnValue = new List<IRule<TItem>>();
 
@@ -112,7 +112,8 @@ namespace Diamond.Core.Rules {
 		/// Get all model rule instances registered based on TInterface and group name.
 		/// </summary>
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
-		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		/// <typeparam name="TResult">The type of the model being validated.</typeparam>
+		/// <returns>A list of <see cref="IRule"/> instances.</returns>
 		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>() {
 			return this.GetAllAsync<TItem, TResult>(null);
 		}
@@ -121,7 +122,8 @@ namespace Diamond.Core.Rules {
 		/// Get all model rule instances registered based on TInterface and group name.
 		/// </summary>
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
-		/// <returns>A list of <see cref="IRule<TItem, TResult>" instances.</returns>
+		/// <typeparam name="TResult">The type of the model being validated.</typeparam>
+		/// <returns>A list of <see cref="IRule"/> instances.</returns>
 		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>(string group) {
 			IList<IRule<TItem, TResult>> returnValue = new List<IRule<TItem, TResult>>();
 

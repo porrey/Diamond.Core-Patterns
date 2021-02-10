@@ -18,7 +18,14 @@ using System;
 using System.ComponentModel;
 
 namespace Diamond.Core.WorkFlow.State {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class DateConverter : ConverterBase<DateTime> {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		protected override (bool, string, object) OnConvertSource() {
 			(bool Success, string ErrorMessage, DateTime ConvertedValue) returnValue = (false, null, DateTime.MinValue);
 
