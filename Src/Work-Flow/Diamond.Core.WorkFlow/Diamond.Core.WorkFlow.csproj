@@ -8,7 +8,7 @@
 		<Product>Diamond Pattern Library - Work-Flow</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides work-flow interfaces and abstract or default implementations for common patterns.</Description>
-		<Version>5.0.0</Version>
+		<Version>5.0.0-rc.1</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -16,9 +16,9 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageIcon>Diamond.Core.png</PackageIcon>
+		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Core/master/Images/Diamond.Core.png</PackageIconUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Core/master/Images/Diamond.Core.128x128.png</PackageIconUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -50,7 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\..\Images\Diamond.Core.png">
+	  <None Include="..\..\..\Images\Diamond.Core.128x128.png">
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
 	  </None>

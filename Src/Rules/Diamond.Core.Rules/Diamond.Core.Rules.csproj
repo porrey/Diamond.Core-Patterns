@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<Version>5.0.0</Version>
+		<Version>5.0.0-rc.1</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
@@ -16,7 +16,7 @@
 		<PackageIconUrl></PackageIconUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageIcon>Diamond.Core.png</PackageIcon>
+		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>English (United States)</NeutralLanguage>
 		<Company>Daniel M. Porrey</Company>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -32,7 +32,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\..\Images\Diamond.Core.png">
+		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
