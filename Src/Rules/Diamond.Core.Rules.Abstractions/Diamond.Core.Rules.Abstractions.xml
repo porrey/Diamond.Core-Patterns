@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Rules.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Rules.IRule">
+            <summary>
+            Interface defining a generic rule.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.IRule.Group">
+            <summary>
+            Group name to distinguish between different rule sets.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Rules.IRule`2">
+            <summary>
+            Interface defining a generic rule.
+            </summary>
+            <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
+            <typeparam name="TResult">The object type of the result.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.IRule`2.ValidateAsync(`0)">
+            <summary>
+            Validate entity based on the defined rule asynchronously.
+            </summary>
+            <param name="item">The item to be validated.</param>
+            <returns>A boolean value indicating whether or not the rule has been
+            validated. If false, an error message is returned.</returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.IRule`1">
+            <summary>
+            Interface defining a generic rule.
+            </summary>
+            <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
+        </member>
+        <member name="T:Diamond.Core.Rules.IRuleResult">
+            <summary>
+            Contains details of the result of applying a rule.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.IRuleResult.Passed">
+            <summary>
+            Indicates if the rule passed or not.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.IRuleResult.ErrorMessage">
+            <summary>
+            The error message in case the rule did not pass.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Rules.IRulesFactory">
+            <summary>
+            Defines a factory that can return all rules defined for a specific model
+            (by type) and optionally a group name.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.IRulesFactory.GetAllAsync``1">
+            <summary>
+            Get all model rule instances registered based on TInterface.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.IRulesFactory.GetAllAsync``1(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.IRulesFactory.GetAllAsync``2">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.IRulesFactory.GetAllAsync``2(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+    </members>
+</doc>

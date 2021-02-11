@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Rules</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Rules.RulesNotFoundException`1">
+            <summary>
+            Exception thrown when rules have not been configured in the application container.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesNotFoundException`1.#ctor">
+            <summary>
+            Exception thrown when no rules have been defined.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesNotFoundException`1.#ctor(System.String)">
+            <summary>
+            Exception thrown when no rules with the specified
+            group name have been defined.
+            </summary>
+            <param name="groupName">A group name that specifies a set of rules.</param>
+        </member>
+        <member name="T:Diamond.Core.Rules.RulesFactory">
+            <summary>
+            Defines a generic repository factory that can be used to retrieve
+            an object that implements <see cref="T:Diamond.Core.Rules.IRule"/> from the container.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Rules.IRule"/> with the
+            specififed instance of <see cref="T:System.IServiceProvider"/>.
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RulesFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.Rules.RulesFactory.ServiceProvider">
+            <summary>
+            Gets/sets the internal instance of <see cref="T:System.IServiceProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RulesFactory.Logger">
+            <summary>
+            Gets/sets a reference to the <see cref="T:Microsoft.Extensions.Logging.ILogger"/> for this object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1">
+            <summary>
+            Get all model rule instances registered based on TInterface.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <typeparam name="TResult">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <typeparam name="TResult">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.Rule`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Rules.Rule`1.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.Rule`1.ValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.Rule`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Rules.Rule`2.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.Rule`2.ValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.RuleResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResult.Passed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResult.ErrorMessage">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

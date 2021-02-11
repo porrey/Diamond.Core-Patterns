@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Version>5.0.0-rc.1</Version>
+    <FileVersion>5.0.0</FileVersion>
+    <AssemblyVersion>5.0.0</AssemblyVersion>
+    <AssemblyName>WebExample</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>XmlDocs\WebExample.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="XmlDocs\Microsoft.AspNetCore.Mvc.Core.xml" />
+    <None Remove="XmlDocs\WebExample.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="XmlDocs\Microsoft.AspNetCore.Mvc.Core.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XmlDocs\WebExample.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.0.2" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.Mvc\Diamond.Core.AspNet.DoAction.csproj" />
+		<ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

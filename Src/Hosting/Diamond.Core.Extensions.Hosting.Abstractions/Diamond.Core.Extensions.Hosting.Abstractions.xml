@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.Hosting.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.Hosting.IStartup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.IStartupAppConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.IStartupAppConfiguration.ConfigureAppConfiguration(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.IStartupConfigureContainer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.IStartupConfigureContainer.ConfigureContainer``1(``0)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.IStartupConfigureLogging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.IStartupConfigureLogging.ConfigureLogging(Microsoft.Extensions.Logging.ILoggingBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.IStartupConfigureServices">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.IStartupConfigureServices.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

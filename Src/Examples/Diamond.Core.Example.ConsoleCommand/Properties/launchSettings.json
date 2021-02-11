@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Diamond.Core.Example.Command.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "echo --phrase \"Hello there!\""
+    }
+  }
+}

@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Version>5.0.0-rc.1</Version>
+    <FileVersion>5.0.0</FileVersion>
+    <AssemblyVersion>5.0.0</AssemblyVersion>
+    <AssemblyName>ConsoleExample</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
+    <ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

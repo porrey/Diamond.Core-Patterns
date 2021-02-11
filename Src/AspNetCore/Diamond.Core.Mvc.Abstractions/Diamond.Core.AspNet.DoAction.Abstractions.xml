@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.AspNet.DoAction.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.AspNet.DoAction.DoActionResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionResult.Ok">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionResult.Created">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionResult.NoContent">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionResult.BadRequest(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionResult.NotFound(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionResult.NotImplemented(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionResult.InternalServerError(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.AspNet.DoAction.IControllerActionResult`1">
+            <summary>
+            Contains the result of a controller action.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.AspNet.DoAction.IControllerActionResult`1.ResultDetails">
+            <summary>
+            The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that is returned to the caller
+            if the result is not a 200.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNet.DoAction.IControllerActionResult`1.Result">
+            <summary>
+            The resulting object instance if the action was successful.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNet.DoAction.IDoAction">
+            <summary>
+            Defines a generic decorator.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNet.DoAction.IDoAction.ActionKey">
+            <summary>
+            Gets/sets the unique name for this action.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNet.DoAction.IDoAction`2">
+            <summary>
+            Defines a decorator that can has wraps TItem and
+            returns TResult.
+            </summary>
+            <typeparam name="TInputs">The instance type being decorated.</typeparam>
+            <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.IDoAction`2.ExecuteActionAsync(`0)">
+            <summary>
+            Executes the action.
+            </summary>
+            <param name="item">The instance of the item being decorated.</param>
+            <returns>The defined result of the action.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNet.DoAction.IDoActionFactory">
+            <summary>
+            Defines a factory to create/retrieve decorator instances.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.IDoActionFactory.GetAsync``2(System.String)">
+            <summary>
+            Gets the specific action by type and action key.
+            </summary>
+            <typeparam name="TInputs">The inputs required for the action handler.</typeparam>
+            <typeparam name="TResult">The type of the result returned by the action.</typeparam>
+            <param name="actionKey">The unique name of the action.</param>
+            <returns>The result of the action.</returns>
+        </member>
+    </members>
+</doc>

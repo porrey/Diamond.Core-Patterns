@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Repository</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Repository.ServicesExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.ServicesExtensions.UseDiamondRepositoryPattern(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.RepositoryException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:Diamond.Core.Repository.RepositoryNotDefinedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryNotDefinedException.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="t"></param>
+        </member>
+        <member name="T:Diamond.Core.Repository.RepositoryNotInitializedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryNotInitializedException.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="T:Diamond.Core.Repository.RepositoryNotReadableException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryNotReadableException.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="t"></param>
+        </member>
+        <member name="T:Diamond.Core.Repository.RepositoryNotWritableException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryNotWritableException.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="t"></param>
+        </member>
+        <member name="T:Diamond.Core.Repository.EntityFactory`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Repository.EntityFactory`2.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFactory`2.CreateAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.RepositoryFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Repository.RepositoryFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.Repository.RepositoryFactory.ServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.RepositoryFactory.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetAsync``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetAsync``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetReadOnlyAsync``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetReadOnlyAsync``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetWritableAsync``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetWritableAsync``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetQueryableAsync``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryFactory.GetQueryableAsync``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.Entity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.Entity`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Repository.Entity`1.Id">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

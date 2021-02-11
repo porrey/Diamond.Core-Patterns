@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Decorator.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Decorator.IDecorator">
+            <summary>
+            Defines a generic decorator.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Decorator.IDecorator.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Decorator.IDecorator`2">
+            <summary>
+            Defines a decorator that can has wraps TItem and
+            returns TResult.
+            </summary>
+            <typeparam name="TDecoratedItem">The instance type being decorated.</typeparam>
+            <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Decorator.IDecorator`2.TakeActionAsync(`0)">
+            <summary>
+            Executes the decorator action.
+            </summary>
+            <param name="item">The instance of the item being decorated.</param>
+            <returns>The defined result of the action.</returns>
+        </member>
+        <member name="T:Diamond.Core.Decorator.IDecoratorFactory">
+            <summary>
+            Defines a factory to create/retrieve decorator instances.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Decorator.IDecoratorFactory.GetAsync``2(System.String)">
+            <summary>
+            Gets the specific decorator by type and name.
+            </summary>
+            <typeparam name="TDecoratedItem">The type of object being decorated.</typeparam>
+            <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
+            <param name="name">The unique name of the decorator.</param>
+            <returns>The result of the decorator action.</returns>
+        </member>
+    </members>
+</doc>

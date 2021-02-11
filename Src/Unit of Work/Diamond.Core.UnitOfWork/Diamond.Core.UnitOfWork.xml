@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.UnitOfWork</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkNotFoundException`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TSourceItem"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkNotFoundException`2.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkFactory">
+            <summary>
+            This is a generic repository factory that can return a repository
+            for any given entity interface.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.UnitOfWork.UnitOfWorkFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.UnitOfWork.UnitOfWorkFactory.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.UnitOfWork.UnitOfWorkFactory.ServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkFactory.GetAsync``2(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TSourceItem"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
