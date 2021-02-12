@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.UnitOfWork {
+namespace Diamond.Core.UnitOfWork
+{
 	/// <summary>
 	/// Defines a factory to create/retrieve a specification.
 	/// </summary>
-	public interface IUnitOfWorkFactory {
+	public interface IUnitOfWorkFactory
+	{
 		/// <summary>
 		/// Gets a unit of work that takes in TSourceItem and returns TResult with the given key.
 		/// </summary>

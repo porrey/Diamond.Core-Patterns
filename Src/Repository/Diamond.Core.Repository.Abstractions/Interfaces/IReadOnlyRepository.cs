@@ -19,13 +19,15 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// Defines a repository that supports read-only queries against a data store. These queries return
 	/// an IEnumberable of TInterface.
 	/// </summary>
 	/// <typeparam name="TInterface"></typeparam>
-	public interface IReadOnlyRepository<TInterface> : IRepository<TInterface> where TInterface : IEntity {
+	public interface IReadOnlyRepository<TInterface> : IRepository<TInterface> where TInterface : IEntity
+	{
 		/// <summary>
 		/// Returns all items in the data store.
 		/// </summary>

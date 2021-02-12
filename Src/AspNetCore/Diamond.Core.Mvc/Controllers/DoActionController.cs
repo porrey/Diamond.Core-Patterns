@@ -22,20 +22,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.AspNet.DoAction {
+namespace Diamond.Core.AspNet.DoAction
+{
 	/// <summary>
 	/// Provides the base class for a "Do Action" controller where the action
 	/// of the controller method is delegated to a DoAction handler that is
 	/// registered in the container using the name of the controller method.
 	/// </summary>
 	public abstract class DoActionController
-		: ControllerBase {
+		: ControllerBase
+	{
 		/// <summary>
 		/// Initializes an instance of <see cref="DoActionController"/> with
 		/// an instance of the <see cref="IDoActionFactory"/>.
 		/// </summary>
 		/// <param name="doActionFactory">An instance of the <see cref="IDoActionFactory"/>.</param>
-		public DoActionController(IDoActionFactory doActionFactory) {
+		public DoActionController(IDoActionFactory doActionFactory)
+		{
 			this.DoActionFactory = doActionFactory;
 		}
 
@@ -45,7 +48,8 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// </summary>
 		/// <param name="doActionFactory"></param>
 		/// <param name="logger"></param>
-		public DoActionController(IDoActionFactory doActionFactory, ILogger<DoActionController> logger) {
+		public DoActionController(IDoActionFactory doActionFactory, ILogger<DoActionController> logger)
+		{
 			this.DoActionFactory = doActionFactory;
 			this.Logger = logger;
 		}
@@ -67,7 +71,8 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
 		/// <param name="actionKey">The name of the action retrieved from the container.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected virtual Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string actionKey = null) {
+		protected virtual Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string actionKey = null)
+		{
 			this.Logger.LogTrace($"Do method called with action key '{actionKey}'.");
 			return this.Do<object, TResult>(null, actionKey);
 		}
@@ -80,21 +85,25 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// <param name="actionKey">The name of the action retrieved from the container.</param>
 		/// <param name="inputs">The input parameter for the action.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected virtual async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs inputs, [CallerMemberName] string actionKey = null) {
+		protected virtual async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs inputs, [CallerMemberName] string actionKey = null)
+		{
 			ActionResult<TResult> returnValue = default;
 
-			try {
+			try
+			{
 				//
 				// Get the IDoAction
 				//
 				IDoAction<TInputs, TResult> action = null;
 
-				try {
+				try
+				{
 					this.Logger.LogTrace($"Retrieving controller method action '{actionKey}'.");
 					action = await this.DoActionFactory.GetAsync<TInputs, TResult>(actionKey);
 					this.Logger.LogTrace($"Controller method action '{actionKey}' was successfully retrieved.");
 				}
-				catch (DoActionNotFoundException) {
+				catch (DoActionNotFoundException)
+				{
 					//
 					// An implementation of this method was not found.
 					//
@@ -102,7 +111,8 @@ namespace Diamond.Core.AspNet.DoAction {
 					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented, this.OnCreateProblemDetail(DoActionResult.NotImplemented($"The method has not been implemented. This could be a configuration error or the service is still under development.")));
 					action = null;
 				}
-				catch (Exception ex) {
+				catch (Exception ex)
+				{
 					//
 					// An implementation of this method was not found.
 					//
@@ -111,32 +121,38 @@ namespace Diamond.Core.AspNet.DoAction {
 					action = null;
 				}
 
-				if (action != null) {
-					using (ITryDisposable<IDoAction<TInputs, TResult>> disposable = new TryDisposable<IDoAction<TInputs, TResult>>(action)) {
+				if (action != null)
+				{
+					using (ITryDisposable<IDoAction<TInputs, TResult>> disposable = new TryDisposable<IDoAction<TInputs, TResult>>(action))
+					{
 						//
 						// Perform the extra moodel validation step.
 						//
 						(bool modelResult, string errorMessage) = await action.ValidateModel(inputs);
 
-						if (modelResult) {
+						if (modelResult)
+						{
 							//
 							// Execute the action.
 							//
 							this.Logger.LogTrace($"Executing controller method action '{actionKey}.TakeActionAsync()'.");
 							IControllerActionResult<TResult> result = await action.ExecuteActionAsync(inputs);
 
-							if (result.ResultDetails.Status == StatusCodes.Status200OK) {
+							if (result.ResultDetails.Status == StatusCodes.Status200OK)
+							{
 								this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed successfully.");
 								returnValue = this.Ok(result.Result);
 							}
-							else {
+							else
+							{
 								this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {result.ResultDetails.Status}.");
 								this.Logger.LogTrace($"The action returned: '{result.ResultDetails.Detail}'.");
 
 								//
 								// Check if the instance is null.
 								//
-								if (result.ResultDetails.Instance == null) {
+								if (result.ResultDetails.Instance == null)
+								{
 									//
 									// Add the request path.
 									//
@@ -146,7 +162,8 @@ namespace Diamond.Core.AspNet.DoAction {
 								returnValue = this.BadRequest(this.OnCreateProblemDetail(result.ResultDetails));
 							}
 						}
-						else {
+						else
+						{
 							//
 							// Model validation failed. Return a 400
 							//
@@ -156,7 +173,8 @@ namespace Diamond.Core.AspNet.DoAction {
 					}
 				}
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				//
 				// Internal error.
 				//
@@ -171,7 +189,8 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// Logs a method call.
 		/// </summary>
 		/// <param name="name"></param>
-		protected virtual void LogMethodCall([CallerMemberName] string name = null) {
+		protected virtual void LogMethodCall([CallerMemberName] string name = null)
+		{
 			this.Logger.LogTrace($"Controller method '{name}' was called.");
 		}
 
@@ -181,7 +200,8 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// </summary>
 		/// <param name="problemDetails">The instance of <see cref="ProblemDetails"/> that will be returned to the client.</param>
 		/// <returns>An instance of <see cref="ProblemDetails"/>.</returns>
-		protected virtual ProblemDetails OnCreateProblemDetail(ProblemDetails problemDetails) {
+		protected virtual ProblemDetails OnCreateProblemDetail(ProblemDetails problemDetails)
+		{
 			//
 			// TO DO: Add code here to override details...
 			//

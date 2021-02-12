@@ -22,17 +22,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.UnitOfWork {
+namespace Diamond.Core.UnitOfWork
+{
 	/// <summary>
 	/// This is a generic repository factory that can return a repository
 	/// for any given entity interface.
 	/// </summary>
-	public class UnitOfWorkFactory : IUnitOfWorkFactory {
+	public class UnitOfWorkFactory : IUnitOfWorkFactory
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="serviceProvider"></param>
-		public UnitOfWorkFactory(IServiceProvider serviceProvider) {
+		public UnitOfWorkFactory(IServiceProvider serviceProvider)
+		{
 			this.ServiceProvider = serviceProvider;
 		}
 
@@ -41,7 +44,8 @@ namespace Diamond.Core.UnitOfWork {
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
-		public UnitOfWorkFactory(IServiceProvider serviceProvider, ILogger<UnitOfWorkFactory> logger) {
+		public UnitOfWorkFactory(IServiceProvider serviceProvider, ILogger<UnitOfWorkFactory> logger)
+		{
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
@@ -63,7 +67,8 @@ namespace Diamond.Core.UnitOfWork {
 		/// <typeparam name="TSourceItem"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name) {
+		public Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name)
+		{
 			IUnitOfWork<TResult, TSourceItem> returnValue = null;
 
 			//
@@ -83,8 +88,10 @@ namespace Diamond.Core.UnitOfWork {
 			//
 			// Within the list, find the target decorator.
 			//
-			foreach (IUnitOfWork item in keyItems) {
-				if (targetType.IsInstanceOfType(item)) {
+			foreach (IUnitOfWork item in keyItems)
+			{
+				if (targetType.IsInstanceOfType(item))
+				{
 					returnValue = (IUnitOfWork<TResult, TSourceItem>)item;
 					this.Logger.LogTrace($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was found.");
 					break;
@@ -94,7 +101,8 @@ namespace Diamond.Core.UnitOfWork {
 			//
 			// Check the result.
 			//
-			if (returnValue == null) {
+			if (returnValue == null)
+			{
 				this.Logger.LogTrace($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(name);
 			}

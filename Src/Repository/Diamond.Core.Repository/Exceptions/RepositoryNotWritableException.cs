@@ -16,17 +16,20 @@
 // 
 using System;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RepositoryNotWritableException : RepositoryException {
+	public class RepositoryNotWritableException : RepositoryException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="t"></param>
 		public RepositoryNotWritableException(Type t)
-			: base($"The repository {t.Name} does not implement IWritableRepository.") {
+			: base($"The repository {t.Name} does not implement IWritableRepository.")
+		{
 		}
 	}
 }

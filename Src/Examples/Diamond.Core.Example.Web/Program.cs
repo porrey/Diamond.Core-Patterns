@@ -1,3 +1,5 @@
+using Diamond.Core.Extensions.Configuration.Services;
+using Diamond.Core.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -12,10 +14,13 @@ namespace Diamond.Core.Example {
 		/// <param name="args"></param>
 		static void Main(string[] args) =>
 			Host.CreateDefaultBuilder(args)
+				.ConfigureServicesFolder("./Config")
 				.ConfigureWebHostDefaults(webBuilder => {
 					webBuilder.UseStartup<Startup>();
 				})
-			.Build()
-			.Run();
+				.UseConfiguredServices()
+				.UseConfiguredHostedServices()
+				.Build()
+				.Run();
 	}
 }

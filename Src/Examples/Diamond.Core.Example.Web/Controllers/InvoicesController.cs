@@ -1,4 +1,20 @@
-﻿using System.Collections.Generic;
+﻿//
+// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+//
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Diamond.Core.AspNet.DoAction;
@@ -8,7 +24,8 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace Diamond.Core.Example {
+namespace Diamond.Core.Example
+{
 	/// <summary>
 	/// Retrieves invoice information from the ERP system.
 	/// </summary>y
@@ -17,14 +34,16 @@ namespace Diamond.Core.Example {
 	[ApiVersion("1.0")]
 	[Produces("application/json", "application/xml")]
 	[Description("Retrieves invoice information from the ERP system.")]
-	public class InvoicesController : DoActionController {
+	public class InvoicesController : DoActionController
+	{
 		/// <summary>
 		/// Creates an instance of <see cref="InvoicesController"/> with a dependency
 		/// on <see cref="IDoActionFactory"/>.
 		/// </summary>
 		/// <param name="doActionFactory"></param>
 		public InvoicesController(IDoActionFactory doActionFactory)
-			: base(doActionFactory) {
+			: base(doActionFactory)
+		{
 		}
 
 		/// <summary>
@@ -40,7 +59,8 @@ namespace Diamond.Core.Example {
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> GetInvoiceAsync(string invoiceNumber) {
+		public Task<ActionResult<Invoice>> GetInvoiceAsync(string invoiceNumber)
+		{
 			this.LogMethodCall();
 			return this.Do<string, Invoice>(invoiceNumber);
 		}
@@ -55,7 +75,8 @@ namespace Diamond.Core.Example {
 		[ProducesResponseType(typeof(IEnumerable<Invoice>), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<IEnumerable<Invoice>>> GetAllInvoicesAsync() {
+		public Task<ActionResult<IEnumerable<Invoice>>> GetAllInvoicesAsync()
+		{
 			this.LogMethodCall();
 			return this.Do<IEnumerable<Invoice>>();
 		}
@@ -71,7 +92,8 @@ namespace Diamond.Core.Example {
 		[ProducesResponseType(typeof(IEnumerable<Invoice>), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> CreateInvoiceAsync([FromBody] Invoice item) {
+		public Task<ActionResult<Invoice>> CreateInvoiceAsync([FromBody] Invoice item)
+		{
 			this.LogMethodCall();
 			return this.Do<Invoice, Invoice>(item);
 		}
@@ -90,7 +112,8 @@ namespace Diamond.Core.Example {
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> MarkInvoicePaidAsync(string invoiceNumber, bool paid) {
+		public Task<ActionResult<Invoice>> MarkInvoicePaidAsync(string invoiceNumber, bool paid)
+		{
 			this.LogMethodCall();
 			return this.Do<(string, bool), Invoice>((invoiceNumber, paid));
 		}
@@ -106,7 +129,8 @@ namespace Diamond.Core.Example {
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
 		[SwaggerRequestExample(typeof(Operation), typeof(JsonPatchDefaultExample))]
-		public Task<ActionResult<Invoice>> UpdateInvoiceAsync(string invoiceNumber, [FromBody] JsonPatchDocument<Invoice> item) {
+		public Task<ActionResult<Invoice>> UpdateInvoiceAsync(string invoiceNumber, [FromBody] JsonPatchDocument<Invoice> item)
+		{
 			this.LogMethodCall();
 			return this.Do<(string, JsonPatchDocument<Invoice>), Invoice>((invoiceNumber, item));
 		}
@@ -122,7 +146,8 @@ namespace Diamond.Core.Example {
 		[ProducesResponseType(typeof(Invoice), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> DeleteInvoiceAsync(string invoiceNumber) {
+		public Task<ActionResult<Invoice>> DeleteInvoiceAsync(string invoiceNumber)
+		{
 			this.LogMethodCall();
 			return this.Do<string, Invoice>(invoiceNumber);
 		}
@@ -134,7 +159,8 @@ namespace Diamond.Core.Example {
 		/// </summary>
 		/// <param name="problemDetails">The instance of <see cref="ProblemDetails"/> that will be returned to the client.</param>
 		/// <returns>An instance of <see cref="ProblemDetails"/>.</returns>
-		protected override ProblemDetails OnCreateProblemDetail(ProblemDetails problemDetails) {
+		protected override ProblemDetails OnCreateProblemDetail(ProblemDetails problemDetails)
+		{
 			return base.OnCreateProblemDetail(problemDetails);
 		}
 	}

@@ -16,12 +16,14 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Rules {
+namespace Diamond.Core.Rules
+{
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <typeparam name="TItem"></typeparam>
-	public abstract class Rule<TItem> : IRule<TItem> {
+	public abstract class Rule<TItem> : IRule<TItem>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -40,7 +42,8 @@ namespace Diamond.Core.Rules {
 	/// </summary>
 	/// <typeparam name="TItem"></typeparam>
 	/// <typeparam name="TResult"></typeparam>
-	public abstract class Rule<TItem, TResult> : IRule<TItem, TResult> {
+	public abstract class Rule<TItem, TResult> : IRule<TItem, TResult>
+	{
 		/// <summary>
 		/// 
 		/// </summary>

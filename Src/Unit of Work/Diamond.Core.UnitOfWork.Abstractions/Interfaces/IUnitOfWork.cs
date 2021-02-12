@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.UnitOfWork {
+namespace Diamond.Core.UnitOfWork
+{
 	/// <summary>
 	/// Defines a generic unit of work.
 	/// </summary>
-	public interface IUnitOfWork {
+	public interface IUnitOfWork
+	{
 		/// <summary>
 		/// A unique key to distinguish similar unit of works instances.
 		/// </summary>
@@ -32,7 +34,8 @@ namespace Diamond.Core.UnitOfWork {
 	/// </summary>
 	/// <typeparam name="TResult">The type of the result returned by the unit of work.</typeparam>
 	/// <typeparam name="TSourceItem">The type of the source item for the unit of work.</typeparam>
-	public interface IUnitOfWork<TResult, TSourceItem> : IUnitOfWork {
+	public interface IUnitOfWork<TResult, TSourceItem> : IUnitOfWork
+	{
 		/// <summary>
 		/// Executes the unit of work.
 		/// </summary>

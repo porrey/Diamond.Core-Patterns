@@ -18,7 +18,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
@@ -26,7 +27,8 @@ namespace Diamond.Core.Repository {
 	/// <typeparam name="TEntity"></typeparam>
 	public class EntityFactory<TInterface, TEntity> : IEntityFactory<TInterface>
 		where TEntity : TInterface, new()
-		where TInterface : IEntity {
+		where TInterface : IEntity
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -36,7 +38,8 @@ namespace Diamond.Core.Repository {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public Task<TInterface> CreateAsync() {
+		public Task<TInterface> CreateAsync()
+		{
 			TEntity returnValue = new TEntity();
 
 			this.Logger.LogTrace($"Model factory is creating instance of model type '{typeof(TEntity).Name}'.");

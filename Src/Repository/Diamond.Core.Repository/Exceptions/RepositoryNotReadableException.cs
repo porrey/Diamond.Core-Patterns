@@ -16,17 +16,20 @@
 // 
 using System;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RepositoryNotReadableException : RepositoryException {
+	public class RepositoryNotReadableException : RepositoryException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="t"></param>
 		public RepositoryNotReadableException(Type t)
-			: base($"The repository {t.Name} does not implement IReadOnlyRepository.") {
+			: base($"The repository {t.Name} does not implement IReadOnlyRepository.")
+		{
 		}
 	}
 }

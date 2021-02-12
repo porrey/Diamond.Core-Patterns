@@ -1,45 +1,57 @@
-﻿using Diamond.Core.AspNet.DoAction;
+﻿//
+// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+//
 using Diamond.Core.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Diamond.Core.Example {
+namespace Diamond.Core.Example
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class DiamondCoreStartup {
+	public static class DiamondCoreStartup
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
-		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services) {
+		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services)
+		{
+			string s1 = typeof(IRepository<IInvoice>).AssemblyQualifiedName;
+			string s2 = typeof(InvoiceRepository).AssemblyQualifiedName;
+
 			//
 			// Add the data storage services.
 			//
-			services.AddScoped<IDoActionFactory, DoActionFactory>()
-					.AddScoped<IRepositoryFactory, RepositoryFactory>()
-					.AddScoped<IEntityFactory<IInvoice>, InvoiceEntityFactory>()
-					.AddScoped<IRepository<IInvoice>, InvoiceRepository>()
-					.AddDbContext<ErpContext>((sp, options) => {
-						IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
-						options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
-						//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
-						//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
-						//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
-					})
-					.AddScoped<IDoAction, GetAllInvoicesAsyncAction>()
-					.AddScoped<IDoAction, CreateInvoiceAsyncAction>()
-					.AddScoped<IDoAction, GetInvoiceAsyncAction>()
-					.AddScoped<IDoAction, UpdateInvoiceAsyncAction>()
-					.AddScoped<IDoAction, DeleteInvoiceAsyncAction>()
-					.AddScoped<IDoAction, MarkInvoicePaidAsyncAction>();
+			services.AddDbContext<ErpContext>((sp, options) =>
+			{
+				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+				options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
+				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
+				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
+				//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
+			});
 
 			//
 			// Add the hosted service to populate the sample database.
 			//
-			services.AddHostedService<RepositoryExampleHostedService>();
+			//services.AddHostedService<RepositoryExampleHostedService>();
 
 			return services;
 		}

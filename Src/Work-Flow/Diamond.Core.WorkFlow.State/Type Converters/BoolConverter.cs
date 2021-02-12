@@ -16,11 +16,13 @@
 // 
 using System.Linq;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class BoolConverter : ConverterBase<bool> {
+	public class BoolConverter : ConverterBase<bool>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -30,14 +32,17 @@ namespace Diamond.Core.WorkFlow.State {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, bool ConvertedValue) returnValue = (false, null, false);
 
-			if (this.SupportedTrueValues.Contains(this.SourceStringValue.ToLower())) {
+			if (this.SupportedTrueValues.Contains(this.SourceStringValue.ToLower()))
+			{
 				returnValue.ConvertedValue = true;
 				returnValue.Success = true;
 			}
-			else {
+			else
+			{
 				returnValue.ConvertedValue = false;
 				returnValue.Success = true;
 			}

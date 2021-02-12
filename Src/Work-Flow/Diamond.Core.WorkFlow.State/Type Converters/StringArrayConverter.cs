@@ -16,23 +16,27 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class StringArrayConverter : ConverterBase<string[]> {
+	public class StringArrayConverter : ConverterBase<string[]>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public StringArrayConverter()
-			: this(new char[] { '|', ',', ';' }) {
+			: this(new char[] { '|', ',', ';' })
+		{
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="separator"></param>
-		public StringArrayConverter(char[] separator) {
+		public StringArrayConverter(char[] separator)
+		{
 			this.Separator = separator;
 		}
 
@@ -45,7 +49,8 @@ namespace Diamond.Core.WorkFlow.State {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, string[] ConvertedValue) returnValue = (false, null, new string[0]);
 
 			returnValue.ConvertedValue = this.SourceStringValue.Split(this.Separator, StringSplitOptions.RemoveEmptyEntries);

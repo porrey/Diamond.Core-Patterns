@@ -1,0 +1,34 @@
+{
+	"services": [
+		{
+			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.CreateInvoiceAsyncAction, WebExample",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.DeleteInvoiceAsyncAction, WebExample",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.GetInvoiceAsyncAction, WebExample",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.GetAllInvoicesAsyncAction, WebExample",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.UpdateInvoiceAsyncAction, WebExample",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.MarkInvoicePaidAsyncAction, WebExample",
+			"Lifetime": "Scoped"
+		}
+	]
+}

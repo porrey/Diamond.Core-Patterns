@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Specification {
+namespace Diamond.Core.Specification
+{
 	/// <summary>
 	/// Defines a generic specification.
 	/// </summary>
-	public interface ISpecification {
+	public interface ISpecification
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -31,7 +33,8 @@ namespace Diamond.Core.Specification {
 	/// Defines a specification that does not require inputs and returns a result of type TResult.
 	/// </summary>
 	/// <typeparam name="TResult">The return type of the specification action.</typeparam>
-	public interface ISpecification<TResult> : ISpecification {
+	public interface ISpecification<TResult> : ISpecification
+	{
 		/// <summary>
 		/// Executes the specification.
 		/// </summary>
@@ -46,7 +49,8 @@ namespace Diamond.Core.Specification {
 	/// <typeparam name="TParameter">The type of the filter applied to the execution of the 
 	/// specification execution.</typeparam>
 	/// <typeparam name="TResult">The return type of the specification action.</typeparam>
-	public interface ISpecification<TParameter, TResult> : ISpecification {
+	public interface ISpecification<TParameter, TResult> : ISpecification
+	{
 		/// <summary>
 		/// Executes the specification.
 		/// </summary>

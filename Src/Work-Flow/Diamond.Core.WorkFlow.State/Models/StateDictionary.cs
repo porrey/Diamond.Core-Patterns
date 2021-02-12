@@ -18,11 +18,13 @@ using System;
 using System.Collections.Concurrent;
 using System.Linq;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class StateDictionary : ConcurrentDictionary<string, object>, IStateDictionary {
+	public class StateDictionary : ConcurrentDictionary<string, object>, IStateDictionary
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -42,14 +44,16 @@ namespace Diamond.Core.WorkFlow.State {
 						new SingleConverter(),
 						new DoubleConverter(),
 						new IDictionaryConverter()
-					}) {
+					})
+		{
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="converters"></param>
-		public StateDictionary(IStateTypeConverter[] converters) {
+		public StateDictionary(IStateTypeConverter[] converters)
+		{
 			this.Converters = converters;
 		}
 
@@ -65,16 +69,20 @@ namespace Diamond.Core.WorkFlow.State {
 		/// <param name="key"></param>
 		/// <param name="defaultValue"></param>
 		/// <returns></returns>
-		public T Get<T>(string key, T defaultValue = default) {
+		public T Get<T>(string key, T defaultValue = default)
+		{
 			T returnValue = defaultValue;
 
-			if (this.ContainsKey(key.ToLower())) {
+			if (this.ContainsKey(key.ToLower()))
+			{
 				(bool success, string errorMessage, T convertedValue) = this.ConvertParameter<T>(key);
 
-				if (success) {
+				if (success)
+				{
 					returnValue = convertedValue;
 				}
-				else {
+				else
+				{
 					returnValue = defaultValue;
 				}
 			}
@@ -88,20 +96,25 @@ namespace Diamond.Core.WorkFlow.State {
 		/// <typeparam name="TProperty"></typeparam>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public TProperty Get<TProperty>(string key) {
+		public TProperty Get<TProperty>(string key)
+		{
 			TProperty returnValue = default(TProperty);
 
-			if (this.ContainsKey(key.ToLower())) {
+			if (this.ContainsKey(key.ToLower()))
+			{
 				(bool success, string errorMessage, TProperty convertedValue) = this.ConvertParameter<TProperty>(key);
 
-				if (success) {
+				if (success)
+				{
 					returnValue = convertedValue;
 				}
-				else {
+				else
+				{
 					throw new InvalidCastException();
 				}
 			}
-			else {
+			else
+			{
 				throw new MissingContextPropertyException(key);
 			}
 
@@ -115,13 +128,16 @@ namespace Diamond.Core.WorkFlow.State {
 		/// <param name="key"></param>
 		/// <param name="initializeValue"></param>
 		/// <returns></returns>
-		public TProperty TryGet<TProperty>(string key, TProperty initializeValue) {
+		public TProperty TryGet<TProperty>(string key, TProperty initializeValue)
+		{
 			TProperty returnValue = initializeValue;
 
-			if (this.ContainsKey(key)) {
+			if (this.ContainsKey(key))
+			{
 				returnValue = (TProperty)this[key.ToLower()];
 			}
-			else {
+			else
+			{
 				this.Add(key.ToLower(), initializeValue);
 			}
 
@@ -134,22 +150,26 @@ namespace Diamond.Core.WorkFlow.State {
 		/// <typeparam name="TProperty"></typeparam>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
-		public void Set<TProperty>(string key, TProperty value) {
-			if (this.ContainsKey(key)) {
+		public void Set<TProperty>(string key, TProperty value)
+		{
+			if (this.ContainsKey(key))
+			{
 				//
 				// Try to dispose this object. If it is not disposable
 				// nothing will happen.
 				//
 				object obj = this[key];
 
-				if (obj != null) {
+				if (obj != null)
+				{
 					ITryDisposable<object> disposable = TryDisposableFactory.Create(obj);
 					disposable.Dispose();
 				}
 
 				this[key] = value;
 			}
-			else {
+			else
+			{
 				this.Add(key, value);
 			}
 		}
@@ -160,7 +180,8 @@ namespace Diamond.Core.WorkFlow.State {
 		/// <param name="key"></param>
 		/// <param name="targetType"></param>
 		/// <returns></returns>
-		public (bool, string, object) ConvertParameter(string key, Type targetType) {
+		public (bool, string, object) ConvertParameter(string key, Type targetType)
+		{
 			(bool Success, string ErrorMessage, object ConvertedValue) returnValue = (false, null, null);
 
 			//
@@ -171,20 +192,24 @@ namespace Diamond.Core.WorkFlow.State {
 			//
 			// Check if the value can be converted
 			//
-			if (value is string) {
+			if (value is string)
+			{
 				IStateTypeConverter customConverter = (from tbl in this.Converters
 													   where tbl.TargetType == targetType ||
 													   tbl.TargetType == targetType.BaseType
 													   select tbl).FirstOrDefault();
 
-				if (customConverter != null) {
+				if (customConverter != null)
+				{
 					returnValue = customConverter.ConvertSource(value, targetType);
 				}
-				else {
+				else
+				{
 					throw new ArgumentOutOfRangeException($"A value converter for type '{targetType.Name}' could not be found.");
 				}
 			}
-			else {
+			else
+			{
 				returnValue.ConvertedValue = value;
 				returnValue.Success = true;
 			}
@@ -198,7 +223,8 @@ namespace Diamond.Core.WorkFlow.State {
 		/// <typeparam name="T"></typeparam>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public (bool, string, T) ConvertParameter<T>(string key) {
+		public (bool, string, T) ConvertParameter<T>(string key)
+		{
 			(bool Success, string ErrorMessage, T ConvertedValue) returnValue = (false, null, default);
 
 			(bool success, string errorMessage, object convertedValue) = this.ConvertParameter(key, typeof(T));
@@ -215,7 +241,8 @@ namespace Diamond.Core.WorkFlow.State {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public new bool ContainsKey(string key) {
+		public new bool ContainsKey(string key)
+		{
 			return base.ContainsKey(key.ToLower());
 		}
 
@@ -224,8 +251,10 @@ namespace Diamond.Core.WorkFlow.State {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
-		public void Add(string key, object value) {
-			if (!base.TryAdd(key.ToLower(), value)) {
+		public void Add(string key, object value)
+		{
+			if (!base.TryAdd(key.ToLower(), value))
+			{
 				throw new AddItemToStateException(key);
 			}
 		}
@@ -235,11 +264,14 @@ namespace Diamond.Core.WorkFlow.State {
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public new object this[string key] {
-			get {
+		public new object this[string key]
+		{
+			get
+			{
 				return base[key.ToLower()];
 			}
-			set {
+			set
+			{
 				base[key.ToLower()] = value;
 			}
 		}

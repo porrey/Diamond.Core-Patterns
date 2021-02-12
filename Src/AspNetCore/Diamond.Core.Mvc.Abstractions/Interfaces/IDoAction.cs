@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.AspNet.DoAction {
+namespace Diamond.Core.AspNet.DoAction
+{
 	/// <summary>
 	/// Defines a generic decorator.
 	/// </summary>
-	public interface IDoAction {
+	public interface IDoAction
+	{
 		/// <summary>
 		/// Gets/sets the unique name for this action.
 		/// </summary>
@@ -33,7 +35,8 @@ namespace Diamond.Core.AspNet.DoAction {
 	/// </summary>
 	/// <typeparam name="TInputs">The instance type being decorated.</typeparam>
 	/// <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
-	public interface IDoAction<TInputs, TResult> : IDoAction {
+	public interface IDoAction<TInputs, TResult> : IDoAction
+	{
 		/// <summary>
 		/// 
 		/// </summary>

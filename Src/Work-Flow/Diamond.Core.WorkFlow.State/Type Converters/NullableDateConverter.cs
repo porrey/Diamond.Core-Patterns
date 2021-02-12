@@ -16,16 +16,19 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class NullableDateConverter : ConverterBase<DateTime?> {
+	public class NullableDateConverter : ConverterBase<DateTime?>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, DateTime? ConvertedValue) returnValue = (false, null, null);
 
 

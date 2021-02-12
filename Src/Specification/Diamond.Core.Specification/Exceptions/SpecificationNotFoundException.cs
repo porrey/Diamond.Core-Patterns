@@ -16,18 +16,21 @@
 // 
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.Specification {
+namespace Diamond.Core.Specification
+{
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <typeparam name="TResult"></typeparam>
-	public class SpecificationNotFoundException<TResult> : DiamondCoreException {
+	public class SpecificationNotFoundException<TResult> : DiamondCoreException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="name"></param>
 		public SpecificationNotFoundException(string name)
-			: base($"A Specification of type 'ISpeciification<{typeof(TResult).Name}>' with name '{name}' has not been configured.") {
+			: base($"A Specification of type 'ISpeciification<{typeof(TResult).Name}>' with name '{name}' has not been configured.")
+		{
 		}
 	}
 
@@ -36,13 +39,15 @@ namespace Diamond.Core.Specification {
 	/// </summary>
 	/// <typeparam name="TParameter"></typeparam>
 	/// <typeparam name="TResult"></typeparam>
-	public class SpecificationNotFoundException<TParameter, TResult> : DiamondCoreException {
+	public class SpecificationNotFoundException<TParameter, TResult> : DiamondCoreException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="name"></param>
 		public SpecificationNotFoundException(string name)
-			: base($"A Specification of type 'ISpeciification<{typeof(TParameter).Name}, {typeof(TResult).Name}>' with name '{name}' has not been configured.") {
+			: base($"A Specification of type 'ISpeciification<{typeof(TParameter).Name}, {typeof(TResult).Name}>' with name '{name}' has not been configured.")
+		{
 		}
 	}
 }

@@ -1,0 +1,7 @@
+{
+	"hostedServices": [
+		{
+			"ImplementationType": "Diamond.Core.Example.RepositoryExampleHostedService, Diamond.Core.Example.Shared"
+		}
+	]
+}

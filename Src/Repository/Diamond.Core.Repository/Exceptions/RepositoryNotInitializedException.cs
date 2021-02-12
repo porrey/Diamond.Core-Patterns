@@ -16,17 +16,20 @@
 // 
 using System;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RepositoryNotInitializedException : RepositoryException {
+	public class RepositoryNotInitializedException : RepositoryException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="type"></param>
 		public RepositoryNotInitializedException(Type type)
-			: base($"The repository for Type '{type.Name}' failed to initialize.") {
+			: base($"The repository for Type '{type.Name}' failed to initialize.")
+		{
 		}
 	}
 }

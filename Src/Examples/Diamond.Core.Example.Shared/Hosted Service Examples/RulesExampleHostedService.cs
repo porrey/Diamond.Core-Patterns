@@ -1,4 +1,20 @@
-﻿using System;
+﻿//
+// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+//
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -8,8 +24,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example {
-	public class RulesExampleHostedService : IHostedService {
+namespace Diamond.Core.Example
+{
+	public class RulesExampleHostedService : IHostedService
+	{
 		private readonly ILogger<RulesExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
@@ -17,14 +35,16 @@ namespace Diamond.Core.Example {
 
 		private int _exitCode = 0;
 
-		public RulesExampleHostedService(ILogger<RulesExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IRulesFactory rulesFactory) {
+		public RulesExampleHostedService(ILogger<RulesExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IRulesFactory rulesFactory)
+		{
 			_logger = logger;
 			_appLifetime = appLifetime;
 			_configuration = configuration;
 			_rulesFactory = rulesFactory;
 		}
 
-		public async Task StartAsync(CancellationToken cancellationToken) {
+		public async Task StartAsync(CancellationToken cancellationToken)
+		{
 			_logger.LogInformation("Starting application.");
 
 			//
@@ -32,7 +52,8 @@ namespace Diamond.Core.Example {
 			//
 			Random rnd = new Random();
 
-			IShipmentModel shipment = new ShipmentModel() {
+			IShipmentModel shipment = new ShipmentModel()
+			{
 				ProNumber = $"PRO{rnd.Next(100000000, 999999999):000000000}",
 				Weight = rnd.Next(100, 14000),
 				PickupAddress = rnd.Next(1, 2) == 1 ? "1234 MAIN ST, CHICAGO IL 60601" : "",
@@ -60,18 +81,21 @@ namespace Diamond.Core.Example {
 			//
 			//
 			//
-			if (messages.Any()) {
+			if (messages.Any())
+			{
 				string message = string.Join(" ", messages.Select(t => t.ErrorMessage));
 				_logger.LogError($"Shipment '{shipment.ProNumber}' failed validation: {message}");
 				_exitCode = 1;
 			}
-			else {
+			else
+			{
 				_logger.LogInformation($"Shipment '{shipment.ProNumber}' passed validation.");
 				_exitCode = 0;
 			}
 		}
 
-		public Task StopAsync(CancellationToken cancellationToken) {
+		public Task StopAsync(CancellationToken cancellationToken)
+		{
 			_logger.LogDebug($"Exiting with return code: {_exitCode}");
 
 			//

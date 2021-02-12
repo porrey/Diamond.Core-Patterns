@@ -16,12 +16,14 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// Defines a factory to create entity models.
 	/// </summary>
 	/// <typeparam name="TInterface">The type of the entity model.</typeparam>
-	public interface IEntityFactory<TInterface> {
+	public interface IEntityFactory<TInterface>
+	{
 		/// <summary>
 		/// Creates a new empty instance of an entity model.
 		/// </summary>

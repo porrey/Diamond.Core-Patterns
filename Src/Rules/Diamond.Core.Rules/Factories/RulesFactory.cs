@@ -22,18 +22,21 @@ using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Rules {
+namespace Diamond.Core.Rules
+{
 	/// <summary>
 	/// Defines a generic repository factory that can be used to retrieve
 	/// an object that implements <see cref="IRule"/> from the container.
 	/// </summary>
-	public class RulesFactory : IRulesFactory, ILoggerPublisher {
+	public class RulesFactory : IRulesFactory, ILoggerPublisher
+	{
 		/// <summary>
 		/// Creates an instance of <see cref="IRule"/> with the
 		/// specififed instance of <see cref="IServiceProvider"/>.
 		/// </summary>
 		/// <param name="serviceProvider"></param>
-		public RulesFactory(IServiceProvider serviceProvider) {
+		public RulesFactory(IServiceProvider serviceProvider)
+		{
 			this.ServiceProvider = serviceProvider;
 		}
 
@@ -42,7 +45,8 @@ namespace Diamond.Core.Rules {
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
-		public RulesFactory(IServiceProvider serviceProvider, ILogger<RulesFactory> logger) {
+		public RulesFactory(IServiceProvider serviceProvider, ILogger<RulesFactory> logger)
+		{
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
@@ -62,7 +66,8 @@ namespace Diamond.Core.Rules {
 		/// </summary>
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
-		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>() {
+		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>()
+		{
 			return this.GetAllAsync<TItem>(null);
 		}
 
@@ -71,7 +76,8 @@ namespace Diamond.Core.Rules {
 		/// </summary>
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
-		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>(string group) {
+		public Task<IEnumerable<IRule<TItem>>> GetAllAsync<TItem>(string group)
+		{
 			IList<IRule<TItem>> returnValue = new List<IRule<TItem>>();
 
 			//
@@ -85,22 +91,29 @@ namespace Diamond.Core.Rules {
 			//
 			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
-			if (!String.IsNullOrEmpty(group)) {
+			if (!String.IsNullOrEmpty(group))
+			{
 				items = items.Where(t => t.Group == group);
 			}
 
-			if (items.Count() > 0) {
-				foreach (IRule item in items) {
-					if (targetType.IsInstanceOfType(item)) {
+			if (items.Count() > 0)
+			{
+				foreach (IRule item in items)
+				{
+					if (targetType.IsInstanceOfType(item))
+					{
 						returnValue.Add((IRule<TItem>)item);
 					}
 				}
 			}
-			else {
-				if (!String.IsNullOrWhiteSpace(group)) {
+			else
+			{
+				if (!String.IsNullOrWhiteSpace(group))
+				{
 					throw new RulesNotFoundException<TItem>(group);
 				}
-				else {
+				else
+				{
 					throw new RulesNotFoundException<TItem>();
 				}
 			}
@@ -114,7 +127,8 @@ namespace Diamond.Core.Rules {
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
 		/// <typeparam name="TResult">The type of the model being validated.</typeparam>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
-		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>() {
+		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>()
+		{
 			return this.GetAllAsync<TItem, TResult>(null);
 		}
 
@@ -124,7 +138,8 @@ namespace Diamond.Core.Rules {
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
 		/// <typeparam name="TResult">The type of the model being validated.</typeparam>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
-		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>(string group) {
+		public Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>(string group)
+		{
 			IList<IRule<TItem, TResult>> returnValue = new List<IRule<TItem, TResult>>();
 
 			//
@@ -139,26 +154,33 @@ namespace Diamond.Core.Rules {
 			//
 			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
-			if (!String.IsNullOrEmpty(group)) {
+			if (!String.IsNullOrEmpty(group))
+			{
 				items = items.Where(t => t.Group == group);
 			}
 
-			if (items.Count() > 0) {
+			if (items.Count() > 0)
+			{
 				this.Logger.LogTrace($"{items.Count()} Rules with group '{group}' and Target Type '{targetType.Name}' were found.");
 
-				foreach (IRule item in items) {
-					if (targetType.IsInstanceOfType(item)) {
+				foreach (IRule item in items)
+				{
+					if (targetType.IsInstanceOfType(item))
+					{
 						returnValue.Add((IRule<TItem, TResult>)item);
 					}
 				}
 			}
-			else {
+			else
+			{
 				this.Logger.LogTrace("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...");
 
-				if (!String.IsNullOrWhiteSpace(group)) {
+				if (!String.IsNullOrWhiteSpace(group))
+				{
 					throw new RulesNotFoundException<TItem>(group);
 				}
-				else {
+				else
+				{
 					throw new RulesNotFoundException<TItem>();
 				}
 			}

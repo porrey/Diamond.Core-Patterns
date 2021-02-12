@@ -17,13 +17,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// Defines a repository that supports a queryable interface. The connection remains open until specifically
 	/// closed by the caller.
 	/// </summary>
 	/// <typeparam name="TInterface"></typeparam>
-	public interface IQueryableRepository<TInterface> : IReadOnlyRepository<TInterface> where TInterface : IEntity {
+	public interface IQueryableRepository<TInterface> : IReadOnlyRepository<TInterface> where TInterface : IEntity
+	{
 		/// <summary>
 		/// Gets an active context that can be used for subsequent queries. This context
 		/// can be shared among repositories for the same underlying data store (database).

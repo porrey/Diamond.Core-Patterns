@@ -1,4 +1,20 @@
-﻿using System;
+﻿//
+// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+//
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -9,8 +25,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example {
-	public class RepositoryExampleHostedService : IHostedService {
+namespace Diamond.Core.Example
+{
+	public class RepositoryExampleHostedService : IHostedService
+	{
 		private readonly ILogger<RepositoryExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
@@ -18,21 +36,24 @@ namespace Diamond.Core.Example {
 
 		private int _exitCode = 0;
 
-		public RepositoryExampleHostedService(ILogger<RepositoryExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IServiceScopeFactory serviceScopeFactory) {
+		public RepositoryExampleHostedService(ILogger<RepositoryExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IServiceScopeFactory serviceScopeFactory)
+		{
 			_logger = logger;
 			_appLifetime = appLifetime;
 			_configuration = configuration;
 			_serviceScopeFactory = serviceScopeFactory;
 		}
 
-		public async Task StartAsync(CancellationToken cancellationToken) {
+		public async Task StartAsync(CancellationToken cancellationToken)
+		{
 			_logger.LogInformation("Starting application.");
 
 			//
 			// Since this hosted service runs as a singleton we need
 			// a scope to get access to scoped services.
 			//
-			using (var scope = _serviceScopeFactory.CreateScope()) {
+			using (var scope = _serviceScopeFactory.CreateScope())
+			{
 				//
 				// Get the IRepositoryFactory service.
 				//
@@ -46,15 +67,19 @@ namespace Diamond.Core.Example {
 				//
 				// Ensure the database is created.
 				//
-				using (IRepositoryContext db = await repository.GetContextAsync()) {
-					if (await db.EnsureCreated()) {
-						if (!(await repository.GetAllAsync()).Any()) {
+				using (IRepositoryContext db = await repository.GetContextAsync())
+				{
+					if (await db.EnsureCreated())
+					{
+						if (!(await repository.GetAllAsync()).Any())
+						{
 							//
 							// Create 100 new items.
 							//
 							Random rnd = new Random();
 
-							for (int i = 0; i < 100; i++) {
+							for (int i = 0; i < 100; i++)
+							{
 								//
 								// Create a new empty model.
 								//
@@ -72,10 +97,12 @@ namespace Diamond.Core.Example {
 								//
 								(bool result, IInvoice invoice) = await repository.AddAsync(model);
 
-								if (result) {
+								if (result)
+								{
 									_logger.LogInformation($"Successfully create invoice with ID = {invoice.Id} [{i}].");
 								}
-								else {
+								else
+								{
 									_logger.LogError($"Failed to create new invoice [{i}].");
 								}
 							}
@@ -91,7 +118,8 @@ namespace Diamond.Core.Example {
 			}
 		}
 
-		public Task StopAsync(CancellationToken cancellationToken) {
+		public Task StopAsync(CancellationToken cancellationToken)
+		{
 			_logger.LogDebug($"Exiting with return code: {_exitCode}");
 
 			//

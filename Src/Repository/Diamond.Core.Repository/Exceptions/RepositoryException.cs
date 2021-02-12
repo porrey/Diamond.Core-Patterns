@@ -17,16 +17,19 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class RepositoryException : Exception {
+	public abstract class RepositoryException : Exception
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public RepositoryException()
-			: base() {
+			: base()
+		{
 		}
 
 		/// <summary>
@@ -34,7 +37,8 @@ namespace Diamond.Core.Repository {
 		/// </summary>
 		/// <param name="message"></param>
 		public RepositoryException(string message)
-				: base(message) {
+				: base(message)
+		{
 		}
 
 		/// <summary>
@@ -43,7 +47,8 @@ namespace Diamond.Core.Repository {
 		/// <param name="info"></param>
 		/// <param name="context"></param>
 		protected RepositoryException(SerializationInfo info, StreamingContext context)
-				: base(info, context) {
+				: base(info, context)
+		{
 		}
 
 		/// <summary>
@@ -52,7 +57,8 @@ namespace Diamond.Core.Repository {
 		/// <param name="message"></param>
 		/// <param name="innerException"></param>
 		public RepositoryException(string message, Exception innerException) :
-				base(message, innerException) {
+				base(message, innerException)
+		{
 		}
 	}
 }

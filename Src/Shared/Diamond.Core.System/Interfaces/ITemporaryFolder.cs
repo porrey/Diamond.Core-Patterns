@@ -16,13 +16,15 @@
 // 
 using System;
 
-namespace Diamond.Core.System {
+namespace Diamond.Core.System
+{
 	/// <summary>
 	/// Provides a wrapper for creating and managing temporary folders. Concrete
 	/// classes should implement IDisposable (not required) to remove temporary
 	/// files and folders when the instance is no longer in use.
 	/// </summary>
-	public interface ITemporaryFolder : IDisposable {
+	public interface ITemporaryFolder : IDisposable
+	{
 		/// <summary>
 		/// Gets/sets a string format with two variables, {0} and {1}, where
 		/// the first place holder will be replaced with the temporary folder
@@ -40,7 +42,8 @@ namespace Diamond.Core.System {
 	/// <summary>
 	/// Factory for creating instances of ITemporaryFolder.
 	/// </summary>
-	public interface ITemporaryFolderFactory {
+	public interface ITemporaryFolderFactory
+	{
 		/// <summary>
 		/// Creates a default instance of ITemporaryFolder.
 		/// </summary>

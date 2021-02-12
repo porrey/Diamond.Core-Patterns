@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Decorator {
+namespace Diamond.Core.Decorator
+{
 	/// <summary>
 	/// Defines a factory to create/retrieve decorator instances.
 	/// </summary>
-	public interface IDecoratorFactory {
+	public interface IDecoratorFactory
+	{
 		/// <summary>
 		/// Gets the specific decorator by type and name.
 		/// </summary>

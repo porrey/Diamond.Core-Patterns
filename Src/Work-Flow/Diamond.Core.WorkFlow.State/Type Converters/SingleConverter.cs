@@ -16,27 +16,34 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class SingleConverter : ConverterBase<Single> {
+	public class SingleConverter : ConverterBase<Single>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, Single ConvertedValue) returnValue = (false, null, 0.0F);
 
-			if (String.IsNullOrWhiteSpace(this.SourceStringValue)) {
+			if (String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
 				returnValue.ErrorMessage = $"Cannot convert empty string or space(s) to a float.";
 			}
-			else {
-				if (Single.TryParse(this.SourceStringValue, out Single result)) {
+			else
+			{
+				if (Single.TryParse(this.SourceStringValue, out Single result))
+				{
 					returnValue.Success = true;
 					returnValue.ConvertedValue = result;
 				}
-				else {
+				else
+				{
 					returnValue.ErrorMessage = $"The value '{this.SourceObjectValue}' cannot be converted to a float.";
 				}
 			}

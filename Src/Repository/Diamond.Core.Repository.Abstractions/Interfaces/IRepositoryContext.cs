@@ -17,12 +17,14 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// This interface is used as a handle for any type of context
 	/// without the need to expose the type.
 	/// </summary>
-	public interface IRepositoryContext : IDisposable {
+	public interface IRepositoryContext : IDisposable
+	{
 		/// <summary>
 		/// Saves all changes in  the current instance.
 		/// </summary>

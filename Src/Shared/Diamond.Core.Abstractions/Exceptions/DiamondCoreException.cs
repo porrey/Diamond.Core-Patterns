@@ -17,18 +17,21 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Diamond.Core.Abstractions {
+namespace Diamond.Core.Abstractions
+{
 	/// <summary>
 	/// This is an abstract class the defines the base object for all
 	/// exceptions in the Diamond.Core library. This allows exceptions
 	/// specific to this library to be caught separately than other exceptions.
 	/// </summary>
-	public class DiamondCoreException : Exception {
+	public class DiamondCoreException : Exception
+	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DiamondCoreException"/> class.
 		/// </summary>
 		public DiamondCoreException()
-			: base() {
+			: base()
+		{
 		}
 
 		/// <summary>
@@ -36,7 +39,8 @@ namespace Diamond.Core.Abstractions {
 		/// </summary>
 		/// <param name="message">The message that describes the error.</param>
 		public DiamondCoreException(string message)
-				: base(message) {
+				: base(message)
+		{
 		}
 
 		/// <summary>
@@ -47,7 +51,8 @@ namespace Diamond.Core.Abstractions {
 		/// <param name="innerException">The exception that is the cause of the current exception, or a null reference
 		/// if no inner exception is specified.</param>
 		public DiamondCoreException(string message, Exception innerException) :
-				base(message, innerException) {
+				base(message, innerException)
+		{
 		}
 
 		/// <summary>
@@ -58,7 +63,8 @@ namespace Diamond.Core.Abstractions {
 		/// <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
 		/// about the source or destination.</param>
 		protected DiamondCoreException(SerializationInfo info, StreamingContext context)
-		: base(info, context) {
+		: base(info, context)
+		{
 		}
 	}
 }

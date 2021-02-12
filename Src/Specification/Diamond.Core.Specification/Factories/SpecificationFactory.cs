@@ -23,16 +23,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.Specification {
+namespace Diamond.Core.Specification
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class SpecificationFactory : ISpecificationFactory, ILoggerPublisher<SpecificationFactory> {
+	public class SpecificationFactory : ISpecificationFactory, ILoggerPublisher<SpecificationFactory>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="serviceProvider"></param>
-		public SpecificationFactory(IServiceProvider serviceProvider) {
+		public SpecificationFactory(IServiceProvider serviceProvider)
+		{
 			this.ServiceProvider = serviceProvider;
 		}
 
@@ -41,7 +44,8 @@ namespace Diamond.Core.Specification {
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
-		public SpecificationFactory(IServiceProvider serviceProvider, ILogger<SpecificationFactory> logger) {
+		public SpecificationFactory(IServiceProvider serviceProvider, ILogger<SpecificationFactory> logger)
+		{
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
@@ -62,7 +66,8 @@ namespace Diamond.Core.Specification {
 		/// <typeparam name="TResult"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<ISpecification<TResult>> GetAsync<TResult>(string name) {
+		public Task<ISpecification<TResult>> GetAsync<TResult>(string name)
+		{
 			ISpecification<TResult> returnValue = null;
 
 			//
@@ -81,17 +86,21 @@ namespace Diamond.Core.Specification {
 			//
 			// Within the list, find the target decorator.
 			//
-			if (item != null) {
-				if (targetType.IsInstanceOfType(item)) {
+			if (item != null)
+			{
+				if (targetType.IsInstanceOfType(item))
+				{
 					this.Logger.LogTrace($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TResult>)item;
 				}
-				else {
+				else
+				{
 					this.Logger.LogError($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 					throw new SpecificationNotFoundException<TResult>(name);
 				}
 			}
-			else {
+			else
+			{
 				this.Logger.LogError($"The Specification key '{name}' was NOT found. Throwing exception...");
 				throw new SpecificationNotFoundException<TResult>(name);
 			}
@@ -106,7 +115,8 @@ namespace Diamond.Core.Specification {
 		/// <typeparam name="TResult"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string name) {
+		public Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string name)
+		{
 			ISpecification<TParameter, TResult> returnValue = null;
 
 			//
@@ -125,17 +135,21 @@ namespace Diamond.Core.Specification {
 			//
 			// Within the list, find the target decorator.
 			//
-			if (item != null) {
-				if (targetType.IsInstanceOfType(item)) {
+			if (item != null)
+			{
+				if (targetType.IsInstanceOfType(item))
+				{
 					this.Logger.LogTrace($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TParameter, TResult>)item;
 				}
-				else {
+				else
+				{
 					this.Logger.LogError($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
 					throw new SpecificationNotFoundException<TParameter, TResult>(name);
 				}
 			}
-			else {
+			else
+			{
 				this.Logger.LogError($"The Specification key '{name}' was NOT found. Throwing exception...");
 				throw new SpecificationNotFoundException<TParameter, TResult>(name);
 			}

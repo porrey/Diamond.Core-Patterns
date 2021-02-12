@@ -16,28 +16,35 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class TimeSpanConverter : ConverterBase<TimeSpan> {
+	public class TimeSpanConverter : ConverterBase<TimeSpan>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, TimeSpan ConvertedValue) returnValue = (false, null, TimeSpan.Zero);
 
-			if (!String.IsNullOrWhiteSpace(this.SourceStringValue)) {
-				if (TimeSpan.TryParse(this.SourceStringValue, out TimeSpan value)) {
+			if (!String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
+				if (TimeSpan.TryParse(this.SourceStringValue, out TimeSpan value))
+				{
 					returnValue.ConvertedValue = value;
 					returnValue.Success = true;
 				}
-				else {
+				else
+				{
 					returnValue.ErrorMessage = $"The value '{this.SourceObjectValue}' cannot be converted to a Time Span.";
 				}
 			}
-			else {
+			else
+			{
 				returnValue.ErrorMessage = "Cannot convert empty string or space(s) to a Time Span value.";
 			}
 

@@ -16,12 +16,14 @@
 //
 using Microsoft.AspNetCore.Mvc;
 
-namespace Diamond.Core.AspNet.DoAction {
+namespace Diamond.Core.AspNet.DoAction
+{
 	/// <summary>
 	/// Contains the result of a controller action.
 	/// </summary>
 	/// <typeparam name="TResult"></typeparam>
-	public interface IControllerActionResult<TResult> {
+	public interface IControllerActionResult<TResult>
+	{
 		/// <summary>
 		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
 		/// if the result is not a 200.

@@ -17,17 +17,20 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Diamond.Core.System {
+namespace Diamond.Core.System
+{
 	/// <summary>
 	/// Supports cloning, which creates a new instance of a class with the same value
 	/// as an existing instance.
 	/// </summary>
-	public abstract class Cloneable : ICloneable {
+	public abstract class Cloneable : ICloneable
+	{
 		/// <summary>
 		/// Creates a new object that is a copy of the current instance.
 		/// </summary>
 		/// <returns>A new object that is a copy of this instance.</returns>
-		public object Clone() {
+		public object Clone()
+		{
 			return this.OnClone();
 		}
 
@@ -36,14 +39,17 @@ namespace Diamond.Core.System {
 		/// member to override the default cloning mechanism.
 		/// </summary>
 		/// <returns>A new object that is a copy of this instance.</returns>
-		protected virtual object OnClone() {
+		protected virtual object OnClone()
+		{
 			object returnValue = null;
 
-			lock (this) {
+			lock (this)
+			{
 				//
 				// Tell the converter to store the type names.
 				//
-				JsonSerializerSettings settings = new JsonSerializerSettings() {
+				JsonSerializerSettings settings = new JsonSerializerSettings()
+				{
 					ObjectCreationHandling = ObjectCreationHandling.Replace,
 					TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full,
 					TypeNameHandling = TypeNameHandling.All,

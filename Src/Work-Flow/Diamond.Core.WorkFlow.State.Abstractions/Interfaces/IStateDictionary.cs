@@ -17,12 +17,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// Defines a dictionary that can be used to manage state in work flows
 	/// or other patterns.
 	/// </summary>
-	public interface IStateDictionary : IDictionary<string, object> {
+	public interface IStateDictionary : IDictionary<string, object>
+	{
 		/// <summary>
 		/// Retrieves and converts a dictionary item to the specified type.
 		/// </summary>

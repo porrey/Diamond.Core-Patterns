@@ -16,17 +16,20 @@
 // 
 using System;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RepositoryNotDefinedException : RepositoryException {
+	public class RepositoryNotDefinedException : RepositoryException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="t"></param>
 		public RepositoryNotDefinedException(Type t)
-			: base($"A repository for Type {t.Name} has not been configured.") {
+			: base($"A repository for Type {t.Name} has not been configured.")
+		{
 		}
 	}
 }

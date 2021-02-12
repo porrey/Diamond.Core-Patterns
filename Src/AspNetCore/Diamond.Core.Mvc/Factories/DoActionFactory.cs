@@ -22,17 +22,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.AspNet.DoAction {
+namespace Diamond.Core.AspNet.DoAction
+{
 	/// <summary>
 	/// Defines a generic repository factory that can be used to retrieve
 	/// an object that implements IDecorator[TItem, TResult] from the container.
 	/// </summary>
-	public class DoActionFactory : IDoActionFactory {
+	public class DoActionFactory : IDoActionFactory
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="serviceProvider"></param>
-		public DoActionFactory(IServiceProvider serviceProvider) {
+		public DoActionFactory(IServiceProvider serviceProvider)
+		{
 			this.ServiceProvider = serviceProvider;
 		}
 
@@ -53,7 +56,8 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// <typeparam name="TResult"></typeparam>
 		/// <param name="actionKey"></param>
 		/// <returns></returns>
-		public Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string actionKey) {
+		public Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string actionKey)
+		{
 			IDoAction<TInputs, TResult> returnValue = null;
 
 			//
@@ -72,17 +76,21 @@ namespace Diamond.Core.AspNet.DoAction {
 			//
 			// Within the list, find the target decorator.
 			//
-			if (doAction != null) {
-				if (targetType.IsInstanceOfType(doAction)) {
+			if (doAction != null)
+			{
+				if (targetType.IsInstanceOfType(doAction))
+				{
 					this.Logger.LogTrace($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was found.");
 					returnValue = (IDoAction<TInputs, TResult>)doAction;
 				}
-				else {
+				else
+				{
 					this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
 					throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
 				}
 			}
-			else {
+			else
+			{
 				this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
 				throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
 			}

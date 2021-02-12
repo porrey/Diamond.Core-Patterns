@@ -17,23 +17,27 @@
 using System;
 using System.Linq;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class EnumConverter : ConverterBase<Enum> {
+	public class EnumConverter : ConverterBase<Enum>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public EnumConverter()
-			: this(new char[] { '|', ',', ';' }) {
+			: this(new char[] { '|', ',', ';' })
+		{
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="separator"></param>
-		public EnumConverter(char[] separator) {
+		public EnumConverter(char[] separator)
+		{
 			this.Separator = separator;
 		}
 
@@ -46,12 +50,14 @@ namespace Diamond.Core.WorkFlow.State {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, object ConvertedValue) returnValue = (false, null, null);
 
 			string localValue = this.SourceStringValue;
 
-			if (String.IsNullOrWhiteSpace(this.SourceStringValue)) {
+			if (String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
 				//
 				// Use 'None' for blanks. If the enumeration has not defined 'None' then the
 				// conversion will fail as expected.
@@ -64,18 +70,22 @@ namespace Diamond.Core.WorkFlow.State {
 			//
 			bool multi = this.SpecificTargetType.CustomAttributes.Where(t => t.AttributeType == typeof(FlagsAttribute)).Count() > 0;
 
-			if (multi) {
+			if (multi)
+			{
 				//
 				// This type supports multiple values.
 				//
 				string[] items = localValue.Split(this.Separator, StringSplitOptions.RemoveEmptyEntries);
 				int values = 0;
 
-				foreach (string item in items) {
-					try {
+				foreach (string item in items)
+				{
+					try
+					{
 						values += Convert.ToInt32(Enum.Parse(this.SpecificTargetType, item, true));
 					}
-					catch {
+					catch
+					{
 						returnValue.ErrorMessage = $"The value '{item}' is not valid for the type '{this.SpecificTargetType.Name}'.";
 					}
 				}
@@ -83,22 +93,27 @@ namespace Diamond.Core.WorkFlow.State {
 				returnValue.ConvertedValue = values;
 				returnValue.Success = String.IsNullOrWhiteSpace(returnValue.ErrorMessage);
 			}
-			else {
+			else
+			{
 				//
 				// Check if the value supplied has multiple values.
 				//
 				int pos = localValue.IndexOfAny(this.Separator);
 
-				if (localValue.IndexOfAny(this.Separator) == -1) {
-					try {
+				if (localValue.IndexOfAny(this.Separator) == -1)
+				{
+					try
+					{
 						returnValue.ConvertedValue = Enum.Parse(this.SpecificTargetType, localValue, true);
 						returnValue.Success = true;
 					}
-					catch {
+					catch
+					{
 						returnValue.ErrorMessage = $"The value '{localValue}' is not valid for type '{this.SpecificTargetType.Name}'.";
 					}
 				}
-				else {
+				else
+				{
 					returnValue.ErrorMessage = $"The type '{this.SpecificTargetType.Name}' does not support multiple values.";
 				}
 			}

@@ -17,29 +17,36 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class NullableIntConverter : ConverterBase<int?> {
+	public class NullableIntConverter : ConverterBase<int?>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, int? ConvertedValue) returnValue = (false, null, null);
 
-			if (String.IsNullOrWhiteSpace(this.SourceStringValue)) {
+			if (String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
 				returnValue.Success = true;
 				returnValue.ConvertedValue = null;
 			}
-			else {
-				if (Int32.TryParse(this.SourceStringValue, out int result)) {
+			else
+			{
+				if (Int32.TryParse(this.SourceStringValue, out int result))
+				{
 					returnValue.Success = true;
 					;
 					returnValue.ConvertedValue = result;
 				}
-				else {
+				else
+				{
 					returnValue.ErrorMessage = $"The value '{this.SourceObjectValue}' cannot be converted to an integer.";
 				}
 			}

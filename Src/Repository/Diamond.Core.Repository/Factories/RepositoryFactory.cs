@@ -22,16 +22,19 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RepositoryFactory : IRepositoryFactory {
+	public class RepositoryFactory : IRepositoryFactory
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="serviceProvider"></param>
-		public RepositoryFactory(IServiceProvider serviceProvider) {
+		public RepositoryFactory(IServiceProvider serviceProvider)
+		{
 			this.ServiceProvider = serviceProvider;
 		}
 
@@ -40,7 +43,8 @@ namespace Diamond.Core.Repository {
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
-		public RepositoryFactory(IServiceProvider serviceProvider, ILogger<RepositoryFactory> logger) {
+		public RepositoryFactory(IServiceProvider serviceProvider, ILogger<RepositoryFactory> logger)
+		{
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
@@ -49,7 +53,7 @@ namespace Diamond.Core.Repository {
 		/// 
 		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
-		
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -60,7 +64,8 @@ namespace Diamond.Core.Repository {
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity {
+		public Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity
+		{
 			return this.GetAsync<TInterface>(null);
 		}
 
@@ -70,22 +75,26 @@ namespace Diamond.Core.Repository {
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<IRepository<TInterface>> GetAsync<TInterface>(string name) where TInterface : IEntity {
+		public Task<IRepository<TInterface>> GetAsync<TInterface>(string name) where TInterface : IEntity
+		{
 			IRepository<TInterface> returnValue = null;
 
 			//
 			// Find the repository that supports the given type.
 			//
-			if (name == null) {
+			if (name == null)
+			{
 				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}'.");
 				returnValue = this.ServiceProvider.GetService<IRepository<TInterface>>();
 			}
-			else {
+			else
+			{
 				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 				IEnumerable<IRepository<TInterface>> repositories = this.ServiceProvider.GetRequiredService<IEnumerable<IRepository<TInterface>>>();
 				returnValue = repositories.Where(t => t.Name == name).SingleOrDefault();
 
-				if (returnValue == null) {
+				if (returnValue == null)
+				{
 					this.Logger.LogWarning($"A IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 				}
 			}
@@ -98,7 +107,8 @@ namespace Diamond.Core.Repository {
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity {
+		public Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity
+		{
 			return this.GetReadOnlyAsync<TInterface>(null);
 		}
 
@@ -108,7 +118,8 @@ namespace Diamond.Core.Repository {
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name) where TInterface : IEntity {
+		public async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name) where TInterface : IEntity
+		{
 			IReadOnlyRepository<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"Retrieving IReadOnlyRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
@@ -118,7 +129,8 @@ namespace Diamond.Core.Repository {
 			//
 			IRepository repository = await this.GetAsync<TInterface>(name);
 
-			if (repository is IReadOnlyRepository<TInterface> castedRepository) {
+			if (repository is IReadOnlyRepository<TInterface> castedRepository)
+			{
 				this.Logger.LogTrace($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
 
 				//
@@ -127,7 +139,8 @@ namespace Diamond.Core.Repository {
 				returnValue = castedRepository;
 				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IReadOnlyRepository.");
 			}
-			else {
+			else
+			{
 				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IReadOnlyRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
@@ -140,7 +153,8 @@ namespace Diamond.Core.Repository {
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity {
+		public Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity
+		{
 			return this.GetWritableAsync<TInterface>(null);
 		}
 
@@ -150,7 +164,8 @@ namespace Diamond.Core.Repository {
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name) where TInterface : IEntity {
+		public async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name) where TInterface : IEntity
+		{
 			IWritableRepository<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"Retrieving IWritableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
@@ -160,7 +175,8 @@ namespace Diamond.Core.Repository {
 			//
 			IRepository repository = await this.GetAsync<TInterface>(name);
 
-			if (repository is IWritableRepository<TInterface> castedRepository) {
+			if (repository is IWritableRepository<TInterface> castedRepository)
+			{
 				this.Logger.LogTrace($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
 
 				//
@@ -169,7 +185,8 @@ namespace Diamond.Core.Repository {
 				returnValue = castedRepository;
 				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IWritableRepository.");
 			}
-			else {
+			else
+			{
 				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IWritableRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}
@@ -182,7 +199,8 @@ namespace Diamond.Core.Repository {
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity {
+		public Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity
+		{
 			return this.GetQueryableAsync<TInterface>(null);
 		}
 
@@ -192,7 +210,8 @@ namespace Diamond.Core.Repository {
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name) where TInterface : IEntity {
+		public async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name) where TInterface : IEntity
+		{
 			IQueryableRepository<TInterface> returnValue = null;
 
 			this.Logger.LogTrace($"Retrieving IQueryableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
@@ -202,14 +221,16 @@ namespace Diamond.Core.Repository {
 			//
 			IRepository repository = await this.GetAsync<TInterface>(name);
 
-			if (repository is IQueryableRepository<TInterface> castedRepository) {
+			if (repository is IQueryableRepository<TInterface> castedRepository)
+			{
 				//
 				// Cast the repository to IRepositry<T> and return it.
 				//
 				returnValue = castedRepository;
 				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IQueryableRepository.");
 			}
-			else {
+			else
+			{
 				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IQueryableRepository. Throwing exception...");
 				throw new RepositoryNotDefinedException(typeof(TInterface));
 			}

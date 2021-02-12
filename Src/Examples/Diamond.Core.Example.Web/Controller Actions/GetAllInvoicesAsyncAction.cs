@@ -1,4 +1,20 @@
-﻿using System.Collections.Generic;
+﻿//
+// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+//
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -6,19 +22,22 @@ using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example {
+namespace Diamond.Core.Example
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetAllInvoicesAsyncAction : DoAction<object, IEnumerable<Invoice>> {
+	public class GetAllInvoicesAsyncAction : DoAction<object, IEnumerable<Invoice>>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public GetAllInvoicesAsyncAction(ILogger<GetAllInvoicesAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) 
-			: base(logger) {
+		public GetAllInvoicesAsyncAction(ILogger<GetAllInvoicesAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
+			: base(logger)
+		{
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
 		}
@@ -38,7 +57,8 @@ namespace Diamond.Core.Example {
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		protected override async Task<IControllerActionResult<IEnumerable<Invoice>>> OnExecuteActionAsync(object item) {
+		protected override async Task<IControllerActionResult<IEnumerable<Invoice>>> OnExecuteActionAsync(object item)
+		{
 			ControllerActionResult<IEnumerable<Invoice>> returnValue = new ControllerActionResult<IEnumerable<Invoice>>();
 
 			//
@@ -54,12 +74,14 @@ namespace Diamond.Core.Example {
 			IEnumerable<Invoice> items = from tbl in await repository.GetAllAsync()
 										 select this.Mapper.Map<Invoice>(tbl);
 
-			if (items.Any()) {
+			if (items.Any())
+			{
 				this.Logger.LogTrace($"There were {items.Count()} IInvoice items retrieved.");
 				returnValue.ResultDetails = DoActionResult.Ok();
 				returnValue.Result = items;
 			}
-			else {
+			else
+			{
 				returnValue.ResultDetails = DoActionResult.NotFound("There are no invoices in the ERP system.");
 			}
 

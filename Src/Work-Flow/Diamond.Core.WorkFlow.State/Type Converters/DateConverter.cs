@@ -17,19 +17,23 @@
 using System;
 using System.ComponentModel;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DateConverter : ConverterBase<DateTime> {
+	public class DateConverter : ConverterBase<DateTime>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, DateTime ConvertedValue) returnValue = (false, null, DateTime.MinValue);
 
-			if (!String.IsNullOrWhiteSpace(this.SourceStringValue)) {
+			if (!String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
 				//
 				// Get the converter for string
 				//
@@ -38,16 +42,19 @@ namespace Diamond.Core.WorkFlow.State {
 				//
 				// Allow the word NOW to indicate the current date and time.
 				//
-				if (this.SourceStringValue.ToLower().Equals("now")) {
+				if (this.SourceStringValue.ToLower().Equals("now"))
+				{
 					returnValue.ConvertedValue = DateTime.Now;
 					returnValue.Success = true;
 				}
-				else if (converter.CanConvertFrom(typeof(string))) {
+				else if (converter.CanConvertFrom(typeof(string)))
+				{
 					returnValue.ConvertedValue = (DateTime)converter.ConvertFromString(this.SourceStringValue);
 					returnValue.Success = true;
 				}
 			}
-			else {
+			else
+			{
 				returnValue.ErrorMessage = "Cannot convert empty string or space(s) to a Date Time value.";
 			}
 

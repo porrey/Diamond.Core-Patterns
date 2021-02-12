@@ -16,7 +16,8 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Abstractions {
+namespace Diamond.Core.Abstractions
+{
 	/// <summary>
 	/// Defines an interfaces to be used to indicate that an object within
 	/// a container requires initialization. This is useful when objects are
@@ -25,7 +26,8 @@ namespace Diamond.Core.Abstractions {
 	/// this interface and calls InitializeAsync() when CanInitialize returns
 	/// true and IsInitialized returns false.
 	/// </summary>
-	public interface IRequiresInitialization {
+	public interface IRequiresInitialization
+	{
 		/// <summary>
 		/// Gets a value indicating if the instance can be initialized.
 		/// </summary>

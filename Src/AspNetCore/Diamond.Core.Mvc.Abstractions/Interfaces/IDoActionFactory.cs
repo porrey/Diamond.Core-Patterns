@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.AspNet.DoAction {
+namespace Diamond.Core.AspNet.DoAction
+{
 	/// <summary>
 	/// Defines a factory to create/retrieve decorator instances.
 	/// </summary>
-	public interface IDoActionFactory {
+	public interface IDoActionFactory
+	{
 		/// <summary>
 		/// Gets the specific action by type and action key.
 		/// </summary>

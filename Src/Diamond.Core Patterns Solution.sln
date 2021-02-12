@@ -85,7 +85,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.Hos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.Hosting.Abstractions", "Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj", "{0B974885-8A65-478A-A5AF-991D8E3E29DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.AspNet.Swagger", "AspNetCore\Diamond.Core.AspNet.Swagger\Diamond.Core.AspNet.Swagger.csproj", "{008A3B7C-545F-400A-8230-BFF65FCDA8C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNet.Swagger", "AspNetCore\Diamond.Core.AspNet.Swagger\Diamond.Core.AspNet.Swagger.csproj", "{008A3B7C-545F-400A-8230-BFF65FCDA8C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj", "{4746CD33-4D2B-4304-89D8-953CE327E1DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Extensions.Configuration.Services", "Diamond.Core.Extensions.Configuration.Services\Diamond.Core.Extensions.Configuration.Services.csproj", "{D8988363-3462-4420-9FCC-27701E663A0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -213,6 +217,14 @@ Global
 		{008A3B7C-545F-400A-8230-BFF65FCDA8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{008A3B7C-545F-400A-8230-BFF65FCDA8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{008A3B7C-545F-400A-8230-BFF65FCDA8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4746CD33-4D2B-4304-89D8-953CE327E1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4746CD33-4D2B-4304-89D8-953CE327E1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4746CD33-4D2B-4304-89D8-953CE327E1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4746CD33-4D2B-4304-89D8-953CE327E1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8988363-3462-4420-9FCC-27701E663A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8988363-3462-4420-9FCC-27701E663A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8988363-3462-4420-9FCC-27701E663A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8988363-3462-4420-9FCC-27701E663A0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,6 +260,8 @@ Global
 		{BF814ED9-A33F-4582-9658-FDC9A501A2AE} = {F8A33FE8-1B4F-44AD-A0CF-A6C28373AFD9}
 		{0B974885-8A65-478A-A5AF-991D8E3E29DA} = {F8A33FE8-1B4F-44AD-A0CF-A6C28373AFD9}
 		{008A3B7C-545F-400A-8230-BFF65FCDA8C2} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
+		{4746CD33-4D2B-4304-89D8-953CE327E1DD} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
+		{D8988363-3462-4420-9FCC-27701E663A0B} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

@@ -16,17 +16,20 @@
 // 
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.Rules {
+namespace Diamond.Core.Rules
+{
 	/// <summary>
 	/// Exception thrown when rules have not been configured in the application container.
 	/// </summary>
 	/// <typeparam name="TItem"></typeparam>
-	public class RulesNotFoundException<TItem> : DiamondCoreException {
+	public class RulesNotFoundException<TItem> : DiamondCoreException
+	{
 		/// <summary>
 		/// Exception thrown when no rules have been defined.
 		/// </summary>
 		public RulesNotFoundException()
-			: base($"Rules of type 'IRule<{typeof(TItem).Name}>' have not been configured.") {
+			: base($"Rules of type 'IRule<{typeof(TItem).Name}>' have not been configured.")
+		{
 		}
 
 		/// <summary>
@@ -35,7 +38,8 @@ namespace Diamond.Core.Rules {
 		/// </summary>
 		/// <param name="groupName">A group name that specifies a set of rules.</param>
 		public RulesNotFoundException(string groupName)
-			: base($"Rules of type 'IRule<{typeof(TItem).Name}>' and a group name of '{groupName}' have not been configured.") {
+			: base($"Rules of type 'IRule<{typeof(TItem).Name}>' and a group name of '{groupName}' have not been configured.")
+		{
 		}
 	}
 }

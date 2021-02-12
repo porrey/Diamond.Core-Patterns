@@ -17,18 +17,21 @@
 
 using Diamond.Core.System;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class Entity : Cloneable, IEntity {
+	public abstract class Entity : Cloneable, IEntity
+	{
 	}
 
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class Entity<T> : Entity, IEntity<T> {
+	public class Entity<T> : Entity, IEntity<T>
+	{
 		/// <summary>
 		/// 
 		/// </summary>

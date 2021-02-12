@@ -14,11 +14,13 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// Defines a generic repository interface.
 	/// </summary>
-	public interface IRepository {
+	public interface IRepository
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -28,6 +30,7 @@ namespace Diamond.Core.Repository {
 	/// <summary>
 	/// Defines a generic repository interface that stores an entity of type TInterface.
 	/// </summary>
-	public interface IRepository<TInterface> : IRepository where TInterface : IEntity {
+	public interface IRepository<TInterface> : IRepository where TInterface : IEntity
+	{
 	}
 }

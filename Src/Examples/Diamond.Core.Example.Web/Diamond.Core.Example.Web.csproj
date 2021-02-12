@@ -39,7 +39,24 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNet.Swagger\Diamond.Core.AspNet.Swagger.csproj" />
 		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.Mvc\Diamond.Core.AspNet.DoAction.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
+		<ProjectReference Include="..\..\Diamond.Core.Extensions.Configuration.Services\Diamond.Core.Extensions.Configuration.Services.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Config\Hosted.Services.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Config\Diamond.Core.Services.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Config\Web.Example.Services.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Config\Example.Shared.Services.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>

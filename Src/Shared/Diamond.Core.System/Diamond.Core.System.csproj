@@ -7,7 +7,7 @@
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<Authors>Daniel M. Porrey</Authors>
 		<Company>Daniel M. Porrey</Company>
-		<Product>Diamond Pattern Library - Core</Product>
+		<Product>Diamond.Core Pattern Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides some basic support functionality.</Description>
 		<Version>5.0.0-rc.2</Version>

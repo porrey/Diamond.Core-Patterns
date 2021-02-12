@@ -16,27 +16,34 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class IntConverter : ConverterBase<int> {
+	public class IntConverter : ConverterBase<int>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, int ConvertedValue) returnValue = (false, null, 0);
 
-			if (String.IsNullOrWhiteSpace(this.SourceStringValue)) {
+			if (String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
 				returnValue.ErrorMessage = $"Cannot convert empty string or space(s) to an integer.";
 			}
-			else {
-				if (Int32.TryParse(this.SourceStringValue, out int result)) {
+			else
+			{
+				if (Int32.TryParse(this.SourceStringValue, out int result))
+				{
 					returnValue.Success = true;
 					returnValue.ConvertedValue = result;
 				}
-				else {
+				else
+				{
 					returnValue.ErrorMessage = $"The value '{this.SourceObjectValue}' cannot be converted to an integer.";
 				}
 			}

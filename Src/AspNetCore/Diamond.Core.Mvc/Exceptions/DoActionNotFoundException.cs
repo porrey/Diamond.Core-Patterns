@@ -17,11 +17,13 @@
 using System;
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.AspNet.DoAction {
+namespace Diamond.Core.AspNet.DoAction
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DoActionNotFoundException : DiamondCoreException {
+	public class DoActionNotFoundException : DiamondCoreException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -29,7 +31,8 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// <param name="tresult"></param>
 		/// <param name="actionKey"></param>
 		public DoActionNotFoundException(Type tinputs, Type tresult, string actionKey)
-			: base($"A do action of type 'IDoAction<{tinputs.Name}, {tresult.Name}>' named '{actionKey}' has not been configured.") {
+			: base($"A do action of type 'IDoAction<{tinputs.Name}, {tresult.Name}>' named '{actionKey}' has not been configured.")
+		{
 		}
 	}
 }

@@ -16,27 +16,34 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DoubleConverter : ConverterBase<Double> {
+	public class DoubleConverter : ConverterBase<Double>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, Double ConvertedValue) returnValue = (false, null, 0.0F);
 
-			if (String.IsNullOrWhiteSpace(this.SourceStringValue)) {
+			if (String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
 				returnValue.ErrorMessage = $"Cannot convert empty string or space(s) to a double.";
 			}
-			else {
-				if (Double.TryParse(this.SourceStringValue, out Double result)) {
+			else
+			{
+				if (Double.TryParse(this.SourceStringValue, out Double result))
+				{
 					returnValue.Success = true;
 					returnValue.ConvertedValue = result;
 				}
-				else {
+				else
+				{
 					returnValue.ErrorMessage = $"The value '{this.SourceObjectValue}' cannot be converted to a double.";
 				}
 			}

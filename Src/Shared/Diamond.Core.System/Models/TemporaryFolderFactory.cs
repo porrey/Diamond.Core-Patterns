@@ -15,22 +15,26 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 
-namespace Diamond.Core.System {
+namespace Diamond.Core.System
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class TemporaryFolderFactory : ITemporaryFolderFactory {
+	public class TemporaryFolderFactory : ITemporaryFolderFactory
+	{
 		/// <summary>
 		/// Prevents instances of this class from being created externally.
 		/// </summary>
-		internal TemporaryFolderFactory() {
+		internal TemporaryFolderFactory()
+		{
 		}
 
 		/// <summary>
 		/// Creates a default instance of ITemporaryFolder.
 		/// </summary>
 		/// <returns>An instance of ITemporaryFolder.</returns>
-		public ITemporaryFolder Create() {
+		public ITemporaryFolder Create()
+		{
 			return new TemporaryFolder();
 		}
 
@@ -41,7 +45,8 @@ namespace Diamond.Core.System {
 		/// <param name="namingFormat">Specifies the naming format to
 		/// use with this new instance</param>
 		/// <returns>An instance of ITemporaryFolder.</returns>
-		public ITemporaryFolder Create(string namingFormat) {
+		public ITemporaryFolder Create(string namingFormat)
+		{
 			return new TemporaryFolder(namingFormat);
 		}
 	}

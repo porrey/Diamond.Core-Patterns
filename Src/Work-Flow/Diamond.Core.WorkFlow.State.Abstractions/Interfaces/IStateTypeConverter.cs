@@ -16,11 +16,13 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// Defines a state converter that can convert a state dictionary time from one type to another.
 	/// </summary>
-	public interface IStateTypeConverter {
+	public interface IStateTypeConverter
+	{
 		/// <summary>
 		/// Get the target type of the converter.
 		/// </summary>

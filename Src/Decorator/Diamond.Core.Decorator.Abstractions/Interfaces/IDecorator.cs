@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Decorator {
+namespace Diamond.Core.Decorator
+{
 	/// <summary>
 	/// Defines a generic decorator.
 	/// </summary>
-	public interface IDecorator {
+	public interface IDecorator
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -33,7 +35,8 @@ namespace Diamond.Core.Decorator {
 	/// </summary>
 	/// <typeparam name="TDecoratedItem">The instance type being decorated.</typeparam>
 	/// <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
-	public interface IDecorator<TDecoratedItem, TResult> : IDecorator {
+	public interface IDecorator<TDecoratedItem, TResult> : IDecorator
+	{
 		/// <summary>
 		/// Executes the decorator action.
 		/// </summary>

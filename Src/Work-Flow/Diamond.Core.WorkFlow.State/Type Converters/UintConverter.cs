@@ -16,27 +16,34 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class UintConverter : ConverterBase<uint> {
+	public class UintConverter : ConverterBase<uint>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override (bool, string, object) OnConvertSource() {
+		protected override (bool, string, object) OnConvertSource()
+		{
 			(bool Success, string ErrorMessage, uint ConvertedValue) returnValue = (false, null, 0);
 
-			if (String.IsNullOrWhiteSpace(this.SourceStringValue)) {
+			if (String.IsNullOrWhiteSpace(this.SourceStringValue))
+			{
 				returnValue.ErrorMessage = $"Cannot convert empty string or space(s) to an unsigned integer.";
 			}
-			else {
-				if (UInt32.TryParse(this.SourceStringValue, out uint result)) {
+			else
+			{
+				if (UInt32.TryParse(this.SourceStringValue, out uint result))
+				{
 					returnValue.Success = true;
 					returnValue.ConvertedValue = result;
 				}
-				else {
+				else
+				{
 					returnValue.ErrorMessage = $"The value '{this.SourceObjectValue}' cannot be converted to an unsigned integer.";
 				}
 			}

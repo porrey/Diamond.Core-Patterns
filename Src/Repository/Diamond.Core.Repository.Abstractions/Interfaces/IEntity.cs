@@ -16,12 +16,14 @@
 // 
 using System;
 
-namespace Diamond.Core.Repository {
+namespace Diamond.Core.Repository
+{
 	/// <summary>
 	/// Base entity class allowing generic classes for any
 	/// interface defined as an "Entity".
 	/// </summary>
-	public interface IEntity : ICloneable {
+	public interface IEntity : ICloneable
+	{
 	}
 
 	/// <summary>
@@ -30,7 +32,8 @@ namespace Diamond.Core.Repository {
 	/// on the Mail.dat specification.
 	/// </summary>
 	/// <typeparam name="T">The type of ID for this entity.</typeparam>
-	public interface IEntity<T> : IEntity {
+	public interface IEntity<T> : IEntity
+	{
 		/// <summary>
 		/// Get/sets or unique ID for this item.
 		/// </summary>

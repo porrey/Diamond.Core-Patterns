@@ -18,27 +18,33 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.WorkFlow.State {
+namespace Diamond.Core.WorkFlow.State
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class StateDictionaryDecorator {
+	public static class StateDictionaryDecorator
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="target"></param>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static Task Merge(this IStateDictionary target, IStateDictionary source) {
+		public static Task Merge(this IStateDictionary target, IStateDictionary source)
+		{
 			//
 			// Add the iteration instance context properties
 			// to the current context.
 			//
-			foreach (KeyValuePair<string, object> property in source) {
-				if (target.ContainsKey(property.Key)) {
+			foreach (KeyValuePair<string, object> property in source)
+			{
+				if (target.ContainsKey(property.Key))
+				{
 					target[property.Key] = property.Value;
 				}
-				else {
+				else
+				{
 					target.Add(property.Key, property.Value);
 				}
 			}
@@ -52,13 +58,16 @@ namespace Diamond.Core.WorkFlow.State {
 		/// <param name="target"></param>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static Task Remove(this IStateDictionary target, IStateDictionary source) {
+		public static Task Remove(this IStateDictionary target, IStateDictionary source)
+		{
 			//
 			// Add the iteration instance context properties
 			// to the current context.
 			//
-			foreach (KeyValuePair<string, object> property in source) {
-				if (target.ContainsKey(property.Key)) {
+			foreach (KeyValuePair<string, object> property in source)
+			{
+				if (target.ContainsKey(property.Key))
+				{
 					target.Remove(property.Key);
 				}
 			}
