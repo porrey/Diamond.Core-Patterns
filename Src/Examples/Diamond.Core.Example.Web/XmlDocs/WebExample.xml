@@ -327,6 +327,14 @@
             <response code="404">The invoice specified was not found.</response>
             <returns>The details of the updated invoice.</returns>
         </member>
+        <member name="M:Diamond.Core.Example.InvoicesController.PathUpdateInvoiceAsync(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Diamond.Core.Example.InvoiceUpdate})">
+            <summary>
+            Updates an invoice using the JSON patch document.
+            </summary>
+            <param name="invoiceNumber"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Example.InvoicesController.DeleteInvoiceAsync(System.String)">
             <summary>
             Delete an existing invoice.
@@ -344,6 +352,42 @@
             </summary>
             <param name="problemDetails">The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that will be returned to the client.</param>
             <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/>.</returns>
+        </member>
+        <member name="T:Diamond.Core.Example.JsonPatchUserRequestExample">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.JsonPatchUserRequestExample.GetExamples">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Example.JsonPatchDocumentFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.JsonPatchDocumentFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="swaggerDoc"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Diamond.Core.Example.JsonPatchDocumentFilter.RemoveSchema(Microsoft.OpenApi.Models.OpenApiDocument,System.String)">
+            <summary>
+            Removes items where the key passed mactehs any part of the schema key.
+            </summary>
+            <param name="swaggerDoc">A reference to the Swagger document.</param>
+            <param name="key">The key or partial ket ot match.</param>
+        </member>
+        <member name="M:Diamond.Core.Example.JsonPatchDocumentFilter.AddJsonPatchTypes(Microsoft.OpenApi.Models.OpenApiDocument)">
+            <summary>
+            Adss the JSON patch definitions.
+            </summary>
+            <param name="swaggerDoc">A reference to the Swagger document.</param>
         </member>
         <member name="T:Diamond.Core.Example.StandardOperationFilter">
             <summary>
@@ -513,6 +557,26 @@
         <member name="P:Diamond.Core.Example.InvoiceUpdate.Total">
             <summary>
             The total dollar amount of the invoice.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Example.Operation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.Operation.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.Operation.Path">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.Operation.Op">
+            <summary>
+            
             </summary>
         </member>
     </members>

@@ -47,6 +47,7 @@ namespace Diamond.Core.Example {
 
 				config.OperationFilter<StandardOperationFilter>();
 				config.OperationFilter<UnsupportedMediaTypeFilter>();
+				config.DocumentFilter<JsonPatchDocumentFilter>();
 			});
 
 			return services;
