@@ -10,7 +10,6 @@ namespace Diamond.Core.Example.Web.Mappings {
 		/// </summary>
 		public MappingProfile() {
 			CreateMap<Invoice, IInvoice>();
-			CreateMap<InvoiceUpdate, IInvoice>();
 			CreateMap<IInvoice, Invoice>();
 		}
 	}

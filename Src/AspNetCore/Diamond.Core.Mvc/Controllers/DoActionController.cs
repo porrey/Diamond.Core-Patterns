@@ -78,20 +78,20 @@ namespace Diamond.Core.AspNet.DoAction {
 		/// <typeparam name="TInputs"></typeparam>
 		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
 		/// <param name="actionKey">The name of the action retrieved from the container.</param>
-		/// <param name="request">The input parameter for the action.</param>
+		/// <param name="inputs">The input parameter for the action.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected virtual async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs request, [CallerMemberName] string actionKey = null) {
+		protected virtual async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs inputs, [CallerMemberName] string actionKey = null) {
 			ActionResult<TResult> returnValue = default;
 
 			try {
 				//
 				// Get the IDoAction
 				//
-				IDoAction<TInputs, IControllerActionResult<TResult>> action = null;
+				IDoAction<TInputs, TResult> action = null;
 
 				try {
 					this.Logger.LogTrace($"Retrieving controller method action '{actionKey}'.");
-					action = await this.DoActionFactory.GetAsync<TInputs, IControllerActionResult<TResult>>(actionKey);
+					action = await this.DoActionFactory.GetAsync<TInputs, TResult>(actionKey);
 					this.Logger.LogTrace($"Controller method action '{actionKey}' was successfully retrieved.");
 				}
 				catch (DoActionNotFoundException) {
@@ -112,32 +112,46 @@ namespace Diamond.Core.AspNet.DoAction {
 				}
 
 				if (action != null) {
-					using (ITryDisposable<IDoAction<TInputs, IControllerActionResult<TResult>>> disposable = new TryDisposable<IDoAction<TInputs, IControllerActionResult<TResult>>>(action)) {
+					using (ITryDisposable<IDoAction<TInputs, TResult>> disposable = new TryDisposable<IDoAction<TInputs, TResult>>(action)) {
 						//
-						// Execute the action.
+						// Perform the extra moodel validation step.
 						//
-						this.Logger.LogTrace($"Executing controller method action '{actionKey}.TakeActionAsync()'.");
-						IControllerActionResult<TResult> result = await action.ExecuteActionAsync(request);
+						(bool modelResult, string errorMessage) = await action.ValidateModel(inputs);
 
-						if (result.ResultDetails.Status == StatusCodes.Status200OK) {
-							this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed successfully.");
-							returnValue = this.Ok(result.Result);
+						if (modelResult) {
+							//
+							// Execute the action.
+							//
+							this.Logger.LogTrace($"Executing controller method action '{actionKey}.TakeActionAsync()'.");
+							IControllerActionResult<TResult> result = await action.ExecuteActionAsync(inputs);
+
+							if (result.ResultDetails.Status == StatusCodes.Status200OK) {
+								this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed successfully.");
+								returnValue = this.Ok(result.Result);
+							}
+							else {
+								this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {result.ResultDetails.Status}.");
+								this.Logger.LogTrace($"The action returned: '{result.ResultDetails.Detail}'.");
+
+								//
+								// Check if the instance is null.
+								//
+								if (result.ResultDetails.Instance == null) {
+									//
+									// Add the request path.
+									//
+									result.ResultDetails.Instance = HttpContext.Request.Path;
+								}
+
+								returnValue = this.BadRequest(this.OnCreateProblemDetail(result.ResultDetails));
+							}
 						}
 						else {
-							this.Logger.LogTrace($"Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {result.ResultDetails.Status}.");
-							this.Logger.LogTrace($"The action returned: '{result.ResultDetails.Detail}'.");
-
 							//
-							// Check if the instance is null.
+							// Model validation failed. Return a 400
 							//
-							if (result.ResultDetails.Instance == null) {
-								//
-								// Add the request path.
-								//
-								result.ResultDetails.Instance = HttpContext.Request.Path;
-							}
-
-							returnValue = this.BadRequest(this.OnCreateProblemDetail(result.ResultDetails));
+							ProblemDetails problemDetails = DoActionResult.BadRequest(errorMessage);
+							returnValue = this.BadRequest(this.OnCreateProblemDetail(problemDetails));
 						}
 					}
 				}

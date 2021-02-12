@@ -9,23 +9,18 @@ namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class MarkInvoicePaidAsyncAction : IDoAction<(string InvoiceNumber, bool Paid), IControllerActionResult<Invoice>> {
+	public class MarkInvoicePaidAsyncAction : DoActionAsync<(string InvoiceNumber, bool Paid), Invoice> {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public MarkInvoicePaidAsyncAction(ILogger<MarkInvoicePaidAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) {
-			this.Logger = logger;
+		public MarkInvoicePaidAsyncAction(ILogger<MarkInvoicePaidAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) 
+			: base(logger) {
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
 		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<MarkInvoicePaidAsyncAction> Logger { get; set; }
 
 		/// <summary>
 		/// Holds the reference to <see cref="IRepositoryFactory"/>.
@@ -38,18 +33,11 @@ namespace Diamond.Core.Example {
 		protected IMapper Mapper { get; set; }
 
 		/// <summary>
-		/// As a best practice, the name of this class should match the controller
-		/// method name with the word "Action" appended to the end. The DoActionController
-		/// uses [CallerMemberName] as the action key by default.
-		/// </summary>
-		public string ActionKey => typeof(MarkInvoicePaidAsyncAction).Name.Replace("Action", "");
-
-		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync((string InvoiceNumber, bool Paid) item) {
+		protected override async Task<IControllerActionResult<Invoice>> OnExecuteActionAsync((string InvoiceNumber, bool Paid) item) {
 			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
 			//

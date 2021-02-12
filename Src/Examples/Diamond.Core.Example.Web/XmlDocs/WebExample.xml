@@ -27,11 +27,6 @@
             <param name="repositoryFactory"></param>
             <param name="mapper"></param>
         </member>
-        <member name="P:Diamond.Core.Example.CreateInvoiceAsyncAction.Logger">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Diamond.Core.Example.CreateInvoiceAsyncAction.RepositoryFactory">
             <summary>
             Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
@@ -42,14 +37,7 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.CreateInvoiceAsyncAction.ActionKey">
-            <summary>
-            As a best practice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The DoActionController
-            uses [CallerMemberName] as the action key by default.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.CreateInvoiceAsyncAction.ExecuteActionAsync(Diamond.Core.Example.Invoice)">
+        <member name="M:Diamond.Core.Example.CreateInvoiceAsyncAction.OnExecuteActionAsync(Diamond.Core.Example.Invoice)">
             <summary>
             
             </summary>
@@ -69,11 +57,6 @@
             <param name="repositoryFactory"></param>
             <param name="mapper"></param>
         </member>
-        <member name="P:Diamond.Core.Example.DeleteInvoiceAsyncAction.Logger">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Diamond.Core.Example.DeleteInvoiceAsyncAction.RepositoryFactory">
             <summary>
             Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
@@ -84,14 +67,7 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.DeleteInvoiceAsyncAction.ActionKey">
-            <summary>
-            As a best practice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The DoActionController
-            uses [CallerMemberName] as the action key by default.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.DeleteInvoiceAsyncAction.ExecuteActionAsync(System.String)">
+        <member name="M:Diamond.Core.Example.DeleteInvoiceAsyncAction.OnExecuteActionAsync(System.String)">
             <summary>
             
             </summary>
@@ -111,11 +87,6 @@
             <param name="repositoryFactory"></param>
             <param name="mapper"></param>
         </member>
-        <member name="P:Diamond.Core.Example.GetAllInvoicesAsyncAction.Logger">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Diamond.Core.Example.GetAllInvoicesAsyncAction.RepositoryFactory">
             <summary>
             Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
@@ -126,14 +97,7 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.GetAllInvoicesAsyncAction.ActionKey">
-            <summary>
-            As a best practice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The DoActionController
-            uses [CallerMemberName] as the action key by default.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.GetAllInvoicesAsyncAction.ExecuteActionAsync(System.Object)">
+        <member name="M:Diamond.Core.Example.GetAllInvoicesAsyncAction.OnExecuteActionAsync(System.Object)">
             <summary>
             
             </summary>
@@ -145,18 +109,13 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Example.GetInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.CreateInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
+        <member name="M:Diamond.Core.Example.GetInvoiceAsyncAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Example.GetInvoiceAsyncAction},Diamond.Core.Repository.IRepositoryFactory,AutoMapper.IMapper)">
             <summary>
             
             </summary>
             <param name="logger"></param>
             <param name="repositoryFactory"></param>
             <param name="mapper"></param>
-        </member>
-        <member name="P:Diamond.Core.Example.GetInvoiceAsyncAction.Logger">
-            <summary>
-            
-            </summary>
         </member>
         <member name="P:Diamond.Core.Example.GetInvoiceAsyncAction.RepositoryFactory">
             <summary>
@@ -168,14 +127,7 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.GetInvoiceAsyncAction.ActionKey">
-            <summary>
-            As a best practice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The DoActionController
-            uses [CallerMemberName] as the action key by default.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.GetInvoiceAsyncAction.ExecuteActionAsync(System.String)">
+        <member name="M:Diamond.Core.Example.GetInvoiceAsyncAction.OnExecuteActionAsync(System.String)">
             <summary>
             
             </summary>
@@ -195,11 +147,6 @@
             <param name="repositoryFactory"></param>
             <param name="mapper"></param>
         </member>
-        <member name="P:Diamond.Core.Example.MarkInvoicePaidAsyncAction.Logger">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Diamond.Core.Example.MarkInvoicePaidAsyncAction.RepositoryFactory">
             <summary>
             Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
@@ -210,14 +157,7 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.MarkInvoicePaidAsyncAction.ActionKey">
-            <summary>
-            As a best practice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The DoActionController
-            uses [CallerMemberName] as the action key by default.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.MarkInvoicePaidAsyncAction.ExecuteActionAsync(System.ValueTuple{System.String,System.Boolean})">
+        <member name="M:Diamond.Core.Example.MarkInvoicePaidAsyncAction.OnExecuteActionAsync(System.ValueTuple{System.String,System.Boolean})">
             <summary>
             
             </summary>
@@ -237,11 +177,6 @@
             <param name="repositoryFactory"></param>
             <param name="mapper"></param>
         </member>
-        <member name="P:Diamond.Core.Example.UpdateInvoiceAsyncAction.Logger">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:Diamond.Core.Example.UpdateInvoiceAsyncAction.RepositoryFactory">
             <summary>
             Holds the reference to <see cref="T:Diamond.Core.Repository.IRepositoryFactory"/>.
@@ -252,14 +187,14 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.UpdateInvoiceAsyncAction.ActionKey">
+        <member name="M:Diamond.Core.Example.UpdateInvoiceAsyncAction.ValidateModel(System.ValueTuple{System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Diamond.Core.Example.Invoice}})">
             <summary>
-            As a best practice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The DoActionController
-            uses [CallerMemberName] as the action key by default.
+            
             </summary>
+            <param name="item"></param>
+            <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Example.UpdateInvoiceAsyncAction.ExecuteActionAsync(System.ValueTuple{System.String,Diamond.Core.Example.InvoiceUpdate})">
+        <member name="M:Diamond.Core.Example.UpdateInvoiceAsyncAction.OnExecuteActionAsync(System.ValueTuple{System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Diamond.Core.Example.Invoice}})">
             <summary>
             
             </summary>
@@ -305,17 +240,6 @@
             <response code="400">The invoice details were invalid or resulted in a duplicate invoice.</response>
             <returns>The newly create invoice.</returns>
         </member>
-        <member name="M:Diamond.Core.Example.InvoicesController.UpdateInvoiceAsync(System.String,Diamond.Core.Example.InvoiceUpdate)">
-            <summary>
-            Update an existing invoice.
-            </summary>
-            <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
-            <param name="item">The updated details of the invoice.</param>
-            <response code="200">The invoice was successfully created.</response>
-            <response code="400">The invoice could not be updated.</response>
-            <response code="404">The invoice specified was not found.</response>
-            <returns>The updated invoice.</returns>
-        </member>
         <member name="M:Diamond.Core.Example.InvoicesController.MarkInvoicePaidAsync(System.String,System.Boolean)">
             <summary>
             Mark an existing invoice paid/unpaid.
@@ -327,7 +251,7 @@
             <response code="404">The invoice specified was not found.</response>
             <returns>The details of the updated invoice.</returns>
         </member>
-        <member name="M:Diamond.Core.Example.InvoicesController.PathUpdateInvoiceAsync(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Diamond.Core.Example.InvoiceUpdate})">
+        <member name="M:Diamond.Core.Example.InvoicesController.UpdateInvoiceAsync(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Diamond.Core.Example.Invoice})">
             <summary>
             Updates an invoice using the JSON patch document.
             </summary>
@@ -472,24 +396,19 @@
             The unique invoice number.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.Invoice.Paid">
-            <summary>
-            Determines if the invoice has been paid or not.
-            </summary>
-        </member>
-        <member name="T:Diamond.Core.Example.InvoiceUpdate">
-            <summary>
-            Contains the details of an invoice that support being updated.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.InvoiceUpdate.Description">
+        <member name="P:Diamond.Core.Example.Invoice.Description">
             <summary>
             A description of invoice.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Example.InvoiceUpdate.Total">
+        <member name="P:Diamond.Core.Example.Invoice.Total">
             <summary>
             The total dollar amount of the invoice.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.Invoice.Paid">
+            <summary>
+            Determines if the invoice has been paid or not.
             </summary>
         </member>
     </members>

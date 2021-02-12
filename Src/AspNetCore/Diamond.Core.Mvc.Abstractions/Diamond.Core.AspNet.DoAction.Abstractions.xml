@@ -102,6 +102,13 @@
             <typeparam name="TInputs">The instance type being decorated.</typeparam>
             <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
         </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.IDoAction`2.ValidateModel(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.AspNet.DoAction.IDoAction`2.ExecuteActionAsync(`0)">
             <summary>
             Executes the action.

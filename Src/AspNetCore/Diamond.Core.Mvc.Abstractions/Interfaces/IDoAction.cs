@@ -35,10 +35,17 @@ namespace Diamond.Core.AspNet.DoAction {
 	/// <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
 	public interface IDoAction<TInputs, TResult> : IDoAction {
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		Task<(bool, string)> ValidateModel(TInputs item);
+
+		/// <summary>
 		/// Executes the action.
 		/// </summary>
 		/// <param name="item">The instance of the item being decorated.</param>
 		/// <returns>The defined result of the action.</returns>
-		Task<TResult> ExecuteActionAsync(TInputs item);
+		Task<IControllerActionResult<TResult>> ExecuteActionAsync(TInputs item);
 	}
 }

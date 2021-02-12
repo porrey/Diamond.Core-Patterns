@@ -10,23 +10,18 @@ namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetInvoiceAsyncAction : IDoAction<string, IControllerActionResult<Invoice>> {
+	public class GetInvoiceAsyncAction : DoActionAsync<string, Invoice> {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public GetInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) {
-			this.Logger = logger;
+		public GetInvoiceAsyncAction(ILogger<GetInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
+			: base(logger) {
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
 		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<CreateInvoiceAsyncAction> Logger { get; set; }
 
 		/// <summary>
 		/// Holds the reference to <see cref="IRepositoryFactory"/>.
@@ -39,18 +34,11 @@ namespace Diamond.Core.Example {
 		protected IMapper Mapper { get; set; }
 
 		/// <summary>
-		/// As a best practice, the name of this class should match the controller
-		/// method name with the word "Action" appended to the end. The DoActionController
-		/// uses [CallerMemberName] as the action key by default.
-		/// </summary>
-		public string ActionKey => typeof(GetInvoiceAsyncAction).Name.Replace("Action", "");
-
-		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="invoiceNumber"></param>
 		/// <returns></returns>
-		public async Task<IControllerActionResult<Invoice>> ExecuteActionAsync(string invoiceNumber) {
+		protected override async Task<IControllerActionResult<Invoice>> OnExecuteActionAsync(string invoiceNumber) {
 			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
 			//

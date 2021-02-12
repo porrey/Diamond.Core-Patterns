@@ -1,0 +1,1 @@
+﻿Copy all XML documentationm files that Swagger will use to generate documentation to this folder.

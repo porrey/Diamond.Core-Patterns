@@ -4,6 +4,50 @@
         <name>Diamond.Core.AspNet.DoAction</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.AspNet.DoAction.DoActionAsync`2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionAsync`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNet.DoAction.DoActionAsync{`0,`1}})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.AspNet.DoAction.DoActionAsync`2.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNet.DoAction.DoActionAsync`2.ActionKey">
+            <summary>
+            As a best practice, the name of this class should match the controller
+            method name with the word "Action" appended to the end. The DoActionController
+            uses [CallerMemberName] as the action key by default.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionAsync`2.ExecuteActionAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionAsync`2.OnExecuteActionAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNet.DoAction.DoActionAsync`2.ValidateModel(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.AspNet.DoAction.DoActionController">
             <summary>
             Provides the base class for a "Do Action" controller where the action
@@ -52,7 +96,7 @@
             <typeparam name="TInputs"></typeparam>
             <typeparam name="TResult">The type of object returned by the action.</typeparam>
             <param name="actionKey">The name of the action retrieved from the container.</param>
-            <param name="request">The input parameter for the action.</param>
+            <param name="inputs">The input parameter for the action.</param>
             <returns>An ActionResult encapsulating the expected return type.</returns>
         </member>
         <member name="M:Diamond.Core.AspNet.DoAction.DoActionController.LogMethodCall(System.String)">

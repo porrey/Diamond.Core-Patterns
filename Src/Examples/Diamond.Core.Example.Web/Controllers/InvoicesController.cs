@@ -77,25 +77,6 @@ namespace Diamond.Core.Example {
 		}
 
 		/// <summary>
-		/// Update an existing invoice.
-		/// </summary>
-		/// <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
-		/// <param name="item">The updated details of the invoice.</param>
-		/// <response code="200">The invoice was successfully created.</response>
-		/// <response code="400">The invoice could not be updated.</response>
-		/// <response code="404">The invoice specified was not found.</response>
-		/// <returns>The updated invoice.</returns>
-		[HttpPut("{invoiceNumber}")]
-		[ProducesResponseType(typeof(InvoiceUpdate), StatusCodes.Status200OK)]
-		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-		[Consumes("application/json", "application/xml")]
-		public Task<ActionResult<Invoice>> UpdateInvoiceAsync(string invoiceNumber, [FromBody] InvoiceUpdate item) {
-			this.LogMethodCall();
-			return this.Do<(string, InvoiceUpdate), Invoice>((invoiceNumber, item));
-		}
-
-		/// <summary>
 		/// Mark an existing invoice paid/unpaid.
 		/// </summary>
 		/// <param name="invoiceNumber">The unique invoice number of the invoice to update.</param>
@@ -105,7 +86,7 @@ namespace Diamond.Core.Example {
 		/// <response code="404">The invoice specified was not found.</response>
 		/// <returns>The details of the updated invoice.</returns>
 		[HttpPut("{invoiceNumber}/{paid}")]
-		[ProducesResponseType(typeof(InvoiceUpdate), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(Invoice), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 		[Consumes("application/json", "application/xml")]
@@ -125,9 +106,9 @@ namespace Diamond.Core.Example {
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
 		[SwaggerRequestExample(typeof(Operation), typeof(JsonPatchDefaultExample))]
-		public Task<ActionResult<Invoice>> PathUpdateInvoiceAsync(string invoiceNumber, [FromBody] JsonPatchDocument<InvoiceUpdate> item) {
+		public Task<ActionResult<Invoice>> UpdateInvoiceAsync(string invoiceNumber, [FromBody] JsonPatchDocument<Invoice> item) {
 			this.LogMethodCall();
-			return this.Do<(string, JsonPatchDocument<InvoiceUpdate>), Invoice>((invoiceNumber, item));
+			return this.Do<(string, JsonPatchDocument<Invoice>), Invoice>((invoiceNumber, item));
 		}
 
 		/// <summary>
