@@ -5,19 +5,19 @@ namespace Diamond.Core.AspNet.DoAction {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DoActionAsync<TInputs, TResult> : IDoAction<TInputs, TResult> {
+	public class DoAction<TInputs, TResult> : IDoAction<TInputs, TResult> {
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
-		public DoActionAsync(ILogger<DoActionAsync<TInputs, TResult>> logger) {
+		public DoAction(ILogger<DoAction<TInputs, TResult>> logger) {
 			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected virtual ILogger<DoActionAsync<TInputs, TResult>> Logger { get; set; }
+		protected virtual ILogger<DoAction<TInputs, TResult>> Logger { get; set; }
 
 		/// <summary>
 		/// As a best practice, the name of this class should match the controller

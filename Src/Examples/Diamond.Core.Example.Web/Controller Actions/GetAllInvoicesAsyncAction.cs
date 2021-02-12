@@ -10,7 +10,7 @@ namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetAllInvoicesAsyncAction : DoActionAsync<object, IEnumerable<Invoice>> {
+	public class GetAllInvoicesAsyncAction : DoAction<object, IEnumerable<Invoice>> {
 		/// <summary>
 		/// 
 		/// </summary>

@@ -11,7 +11,7 @@ namespace Diamond.Core.Example {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class UpdateInvoiceAsyncAction : DoActionAsync<(string InvoiceNumber, JsonPatchDocument<Invoice> Invoice), Invoice> {
+	public class UpdateInvoiceAsyncAction : DoAction<(string InvoiceNumber, JsonPatchDocument<Invoice> Invoice), Invoice> {
 		/// <summary>
 		/// 
 		/// </summary>
