@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>CommandConsoleExample</AssemblyName>
-    <Version>5.0.0-rc.1</Version>
+    <Version>5.0.0-rc.2</Version>
     <FileVersion>5.0.0</FileVersion>
     <AssemblyVersion>5.0.0</AssemblyVersion>
   </PropertyGroup>

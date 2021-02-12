@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Diamond.Core.Example {
+namespace Diamond.Core.AspNet.Swagger {
 	/// <summary>
 	/// 
 	/// </summary>
@@ -14,7 +14,7 @@ namespace Diamond.Core.Example {
 		/// </summary>
 		/// <param name="swaggerDoc"></param>
 		/// <param name="context"></param>
-		public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context) {
+		public virtual void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context) {
 			//
 			// Remove the schemas.
 			//
@@ -61,7 +61,7 @@ namespace Diamond.Core.Example {
 		/// </summary>
 		/// <param name="swaggerDoc">A reference to the Swagger document.</param>
 		/// <param name="key">The key or partial ket ot match.</param>
-		protected void RemoveSchema(OpenApiDocument swaggerDoc, string key) {
+		protected virtual void RemoveSchema(OpenApiDocument swaggerDoc, string key) {
 			//
 			// Get a list of schema keys matching the key passed.
 			//
@@ -86,7 +86,7 @@ namespace Diamond.Core.Example {
 		/// Adss the JSON patch definitions.
 		/// </summary>
 		/// <param name="swaggerDoc">A reference to the Swagger document.</param>
-		protected void AddJsonPatchTypes(OpenApiDocument swaggerDoc) {
+		protected virtual void AddJsonPatchTypes(OpenApiDocument swaggerDoc) {
 			//
 			// Add the Operation object.
 			//

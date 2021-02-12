@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Diamond.Core.Example {
+namespace Diamond.Core.AspNet.Swagger {
 	/// <summary>
 	/// 
 	/// </summary>

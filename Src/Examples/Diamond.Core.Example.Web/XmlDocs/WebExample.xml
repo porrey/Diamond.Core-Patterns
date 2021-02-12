@@ -331,8 +331,8 @@
             <summary>
             Updates an invoice using the JSON patch document.
             </summary>
-            <param name="invoiceNumber"></param>
-            <param name="item"></param>
+            <param name="invoiceNumber">The unique invoice number of the invoice to delete.</param>
+            <param name="item">The updated details of the invoice.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Example.InvoicesController.DeleteInvoiceAsync(System.String)">
@@ -352,66 +352,6 @@
             </summary>
             <param name="problemDetails">The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that will be returned to the client.</param>
             <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/>.</returns>
-        </member>
-        <member name="T:Diamond.Core.Example.JsonPatchUserRequestExample">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.JsonPatchUserRequestExample.GetExamples">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Example.JsonPatchDocumentFilter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.JsonPatchDocumentFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
-            <summary>
-            
-            </summary>
-            <param name="swaggerDoc"></param>
-            <param name="context"></param>
-        </member>
-        <member name="M:Diamond.Core.Example.JsonPatchDocumentFilter.RemoveSchema(Microsoft.OpenApi.Models.OpenApiDocument,System.String)">
-            <summary>
-            Removes items where the key passed mactehs any part of the schema key.
-            </summary>
-            <param name="swaggerDoc">A reference to the Swagger document.</param>
-            <param name="key">The key or partial ket ot match.</param>
-        </member>
-        <member name="M:Diamond.Core.Example.JsonPatchDocumentFilter.AddJsonPatchTypes(Microsoft.OpenApi.Models.OpenApiDocument)">
-            <summary>
-            Adss the JSON patch definitions.
-            </summary>
-            <param name="swaggerDoc">A reference to the Swagger document.</param>
-        </member>
-        <member name="T:Diamond.Core.Example.StandardOperationFilter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.StandardOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
-            <summary>
-            
-            </summary>
-            <param name="operation"></param>
-            <param name="context"></param>
-        </member>
-        <member name="T:Diamond.Core.Example.UnsupportedMediaTypeFilter">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.UnsupportedMediaTypeFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
-            <summary>
-            
-            </summary>
-            <param name="operation"></param>
-            <param name="context"></param>
         </member>
         <member name="T:Diamond.Core.Example.Program">
             <summary>
@@ -510,13 +450,6 @@
             <param name="configuration"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Example.SwaggerStartup.LoadXmlCommentFiles(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
-            <summary>
-            Load any XML comment files found in the folder ./XmlDocs this
-            are to be used for Swagger documentation.
-            </summary>
-            <param name="config"></param>
-        </member>
         <member name="T:Diamond.Core.Example.VersioningStartup">
             <summary>
             
@@ -557,26 +490,6 @@
         <member name="P:Diamond.Core.Example.InvoiceUpdate.Total">
             <summary>
             The total dollar amount of the invoice.
-            </summary>
-        </member>
-        <member name="T:Diamond.Core.Example.Operation">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.Operation.Value">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.Operation.Path">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.Operation.Op">
-            <summary>
-            
             </summary>
         </member>
     </members>

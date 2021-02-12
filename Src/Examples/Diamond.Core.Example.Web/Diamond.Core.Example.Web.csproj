@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>5.0.0-rc.1</Version>
+    <Version>5.0.0-rc.2</Version>
     <FileVersion>5.0.0</FileVersion>
     <AssemblyVersion>5.0.0</AssemblyVersion>
     <AssemblyName>WebExample</AssemblyName>
@@ -30,13 +30,14 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.0.4" />
   </ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNet.Swagger\Diamond.Core.AspNet.Swagger.csproj" />
 		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.Mvc\Diamond.Core.AspNet.DoAction.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
 	</ItemGroup>

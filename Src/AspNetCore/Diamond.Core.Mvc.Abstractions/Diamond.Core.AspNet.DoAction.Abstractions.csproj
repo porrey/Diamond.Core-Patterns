@@ -4,15 +4,15 @@
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>5.0.0-rc.1</Version>
+		<Version>5.0.0-rc.2</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>Provides concrete implementations for Diamond.Patterns.Mvc.</Description>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/porrey/Diamond.Patterns</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
-		<RepositoryUrl>https://github.com/porrey/Diamond.Patterns</RepositoryUrl>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl></PackageIconUrl>

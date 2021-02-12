@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
+using Diamond.Core.AspNet.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Diamond.Core.Example {
@@ -42,32 +44,16 @@ namespace Diamond.Core.Example {
 					Description = configuration["Swagger:ApiDescription"]
 				});
 
-				SwaggerStartup.LoadXmlCommentFiles(config);
+				config.LoadXmlCommentFiles(new DirectoryInfo($@"{AppContext.BaseDirectory}/XmlDocs"));
 				config.DescribeAllParametersInCamelCase();
-
 				config.OperationFilter<StandardOperationFilter>();
 				config.OperationFilter<UnsupportedMediaTypeFilter>();
 				config.DocumentFilter<JsonPatchDocumentFilter>();
 			});
 
+			services.AddSwaggerExamplesFromAssemblyOf<JsonPatchDefaultExample>();
+
 			return services;
-		}
-
-		/// <summary>
-		/// Load any XML comment files found in the folder ./XmlDocs this
-		/// are to be used for Swagger documentation.
-		/// </summary>
-		/// <param name="config"></param>
-		private static void LoadXmlCommentFiles(SwaggerGenOptions config) {
-			DirectoryInfo dir = new DirectoryInfo($@"{AppContext.BaseDirectory}/XmlDocs");
-
-			if (dir.Exists) {
-				FileInfo[] files = dir.GetFiles("*.xml");
-
-				foreach (FileInfo file in files) {
-					config.IncludeXmlComments(file.FullName);
-				}
-			}
 		}
 	}
 }

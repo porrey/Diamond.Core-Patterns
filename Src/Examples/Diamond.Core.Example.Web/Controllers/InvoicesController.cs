@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Diamond.Core.AspNet.DoAction;
+using Diamond.Core.AspNet.Swagger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -103,7 +104,7 @@ namespace Diamond.Core.Example {
 		/// <response code="400">The invoice could not be updated.</response>
 		/// <response code="404">The invoice specified was not found.</response>
 		/// <returns>The details of the updated invoice.</returns>
-		[HttpPatch("{invoiceNumber}/{paid}")]
+		[HttpPut("{invoiceNumber}/{paid}")]
 		[ProducesResponseType(typeof(InvoiceUpdate), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -116,14 +117,14 @@ namespace Diamond.Core.Example {
 		/// <summary>
 		/// Updates an invoice using the JSON patch document.
 		/// </summary>
-		/// <param name="invoiceNumber"></param>
-		/// <param name="item"></param>
+		/// <param name="invoiceNumber">The unique invoice number of the invoice to delete.</param>
+		/// <param name="item">The updated details of the invoice.</param>
 		/// <returns></returns>
 		[HttpPatch("{invoiceNumber}")]
 		[ProducesResponseType(typeof(Invoice), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
-		[SwaggerRequestExample(typeof(Operation), typeof(JsonPatchUserRequestExample))]
+		[SwaggerRequestExample(typeof(Operation), typeof(JsonPatchDefaultExample))]
 		public Task<ActionResult<Invoice>> PathUpdateInvoiceAsync(string invoiceNumber, [FromBody] JsonPatchDocument<InvoiceUpdate> item) {
 			this.LogMethodCall();
 			return this.Do<(string, JsonPatchDocument<InvoiceUpdate>), Invoice>((invoiceNumber, item));
