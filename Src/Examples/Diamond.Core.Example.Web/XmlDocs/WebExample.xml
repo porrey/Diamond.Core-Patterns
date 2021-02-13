@@ -277,6 +277,62 @@
             <param name="problemDetails">The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that will be returned to the client.</param>
             <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/>.</returns>
         </member>
+        <member name="T:Diamond.Core.Example.ActiveDatabase">
+            <summary>
+            Specifies the active database configuration to use.
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Example.ActiveDatabase.SqlServer">
+            <summary>
+            SQL Server database is used.
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Example.ActiveDatabase.SQLite">
+            <summary>
+            SQLite database is used.
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Example.ActiveDatabase.PostgreSQL">
+            <summary>
+            The PostgreSQL is used.
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Example.ActiveDatabase.InMemory">
+            <summary>
+            The in memoery database is used.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Example.DatabaseOptions">
+            <summary>
+            Contains connection strings for the database. This model
+            is used forbinding against the application settings.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DatabaseOptions.ActiveDatabase">
+            <summary>
+            Specifies the currently active database.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DatabaseOptions.SqlServer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DatabaseOptions.SQLite">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DatabaseOptions.PostgreSQL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Example.DatabaseOptions.InMemory">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Diamond.Core.Example.Program">
             <summary>
             

@@ -16,14 +16,19 @@
 //
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text.Json;
 
 namespace Diamond.Core.Extensions.Configuration.Services
 {
-	internal class JsonConfigurationFileParser
+	/// <summary>
+	/// 
+	/// </summary>
+	public class ServicesConfigurationFileParser
 	{
-		internal JsonConfigurationFileParser()
+		/// <summary>
+		/// 
+		/// </summary>
+		public ServicesConfigurationFileParser()
 		{
 		}
 
@@ -31,27 +36,44 @@ namespace Diamond.Core.Extensions.Configuration.Services
 		private readonly Stack<string> _paths = new Stack<string>();
 		private int _baseIndex = 0;
 
-		public static IDictionary<string, string> Parse(int baseIndex, string json)
-			=> new JsonConfigurationFileParser().ParseStream(baseIndex, json);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="baseIndex"></param>
+		/// <param name="json"></param>
+		/// <returns></returns>
+		public static IDictionary<string, string> Parse(int baseIndex, string json) => new ServicesConfigurationFileParser().ParseStream(baseIndex, json);
 
 		private IDictionary<string, string> ParseStream(int baseIndex, string json)
 		{
 			_baseIndex = baseIndex;
 
+			//
+			// Set up JSON otpions.
+			//
 			JsonDocumentOptions jsonDocumentOptions = new JsonDocumentOptions
 			{
 				CommentHandling = JsonCommentHandling.Skip,
 				AllowTrailingCommas = true,
 			};
 
+			//
+			// Create a document and parse the JSON text.
+			//
 			using (JsonDocument doc = JsonDocument.Parse(json, jsonDocumentOptions))
 			{
+				//
+				// Only allow an object at the root of the document.
+				//
 				if (doc.RootElement.ValueKind != JsonValueKind.Object)
 				{
 					throw new FormatException("Invalid top level JSON object.");
 				}
 
-				VisitElement(doc.RootElement);
+				//
+				// Start parsing t the top level object.
+				//
+				this.VisitElement(doc.RootElement);
 			}
 
 			return _data;
@@ -64,9 +86,9 @@ namespace Diamond.Core.Extensions.Configuration.Services
 			foreach (JsonProperty property in element.EnumerateObject())
 			{
 				isEmpty = false;
-				EnterContext(property.Name);
-				VisitValue(property.Value);
-				ExitContext();
+				this.AddPathItem(property.Name);
+				this.VisitValue(property.Value);
+				this.GetPath();
 			}
 
 			if (isEmpty && _paths.Count > 0)
@@ -77,21 +99,20 @@ namespace Diamond.Core.Extensions.Configuration.Services
 
 		private void VisitValue(JsonElement value)
 		{
-			Debug.Assert(_paths.Count > 0);
-
 			switch (value.ValueKind)
 			{
 				case JsonValueKind.Object:
-					VisitElement(value);
+					this.VisitElement(value);
 					break;
 
 				case JsonValueKind.Array:
 					int index = _baseIndex;
+					
 					foreach (JsonElement arrayElement in value.EnumerateArray())
 					{
-						EnterContext(index.ToString());
-						VisitValue(arrayElement);
-						ExitContext();
+						this.AddPathItem(index.ToString());
+						this.VisitValue(arrayElement);
+						this.GetPath();
 						index++;
 					}
 					break;
@@ -102,10 +123,12 @@ namespace Diamond.Core.Extensions.Configuration.Services
 				case JsonValueKind.False:
 				case JsonValueKind.Null:
 					string key = _paths.Peek();
+
 					if (_data.ContainsKey(key))
 					{
 						throw new FormatException($"The key '{key}' is duplicated.");
 					}
+
 					_data[key] = value.ToString();
 					break;
 
@@ -115,11 +138,8 @@ namespace Diamond.Core.Extensions.Configuration.Services
 			}
 		}
 
-		private void EnterContext(string context) =>
-			_paths.Push(_paths.Count > 0 ?
-				_paths.Peek() + ":" + context :
-				context);
+		private void AddPathItem(string pathItem) => _paths.Push(_paths.Count > 0 ? _paths.Peek() + ":" + pathItem : pathItem);
 
-		private void ExitContext() => _paths.Pop();
+		private void GetPath() => _paths.Pop();
 	}
 }

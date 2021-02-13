@@ -18,13 +18,16 @@ using Microsoft.Extensions.Configuration;
 
 namespace Diamond.Core.Extensions.Configuration.Services
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class ServicesConfigurationSource : FileConfigurationSource
 	{
 		/// <summary>
 		/// Builds the <see cref="ServicesConfigurationProvider"/> for this source.
 		/// </summary>
 		/// <param name="builder">The <see cref="IConfigurationBuilder"/>.</param>
-		/// <returns>A <see cref="JsonConfigurationProvider"/></returns>
+		/// <returns>A <see cref="ServicesConfigurationSource"/></returns>
 		public override IConfigurationProvider Build(IConfigurationBuilder builder)
 		{
 			this.EnsureDefaults(builder);

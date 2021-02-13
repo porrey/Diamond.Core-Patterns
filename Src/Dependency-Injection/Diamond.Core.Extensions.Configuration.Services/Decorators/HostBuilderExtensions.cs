@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System.IO;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace Diamond.Core.Extensions.Configuration.Services
@@ -29,6 +27,7 @@ namespace Diamond.Core.Extensions.Configuration.Services
 		/// 
 		/// </summary>
 		/// <param name="hostBuilder"></param>
+		/// /// <param name="folderPath"></param>
 		/// <returns></returns>
 		public static IHostBuilder ConfigureServicesFolder(this IHostBuilder hostBuilder, string folderPath)
 		{

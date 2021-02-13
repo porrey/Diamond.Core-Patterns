@@ -33,25 +33,41 @@ namespace Diamond.Core.Example
 		/// <returns></returns>
 		public static IServiceCollection AddMyDiamondCore(this IServiceCollection services)
 		{
-			string s1 = typeof(IRepository<IInvoice>).AssemblyQualifiedName;
-			string s2 = typeof(InvoiceRepository).AssemblyQualifiedName;
-
 			//
 			// Add the data storage services.
 			//
 			services.AddDbContext<ErpContext>((sp, options) =>
 			{
-				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
-				options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
-				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
-				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
-				//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
-			});
+				//
+				// Create a DatabaseOptions object to hold the application settings.
+				//
+				DatabaseOptions databaseOptions = new DatabaseOptions();
 
-			//
-			// Add the hosted service to populate the sample database.
-			//
-			//services.AddHostedService<RepositoryExampleHostedService>();
+				//
+				// Get the configuration and bind the object to the data.
+				//
+				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+				configuration.Bind("DatabaseOptions", databaseOptions);
+
+				//
+				// Select the active database configuration.
+				//
+				switch (databaseOptions.ActiveDatabase)
+				{
+					case ActiveDatabase.InMemory:
+						options.UseInMemoryDatabase(databaseOptions.InMemory);
+						break;
+					case ActiveDatabase.SqlServer:
+						options.UseSqlServer(databaseOptions.SqlServer);
+						break;
+					case ActiveDatabase.PostgreSQL:
+						options.UseNpgsql(databaseOptions.PostgreSQL);
+						break;
+					case ActiveDatabase.SQLite:
+						options.UseSqlite(databaseOptions.SQLite);
+						break;
+				}
+			});
 
 			return services;
 		}

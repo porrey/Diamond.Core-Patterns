@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.DependencyInjection</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.HostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.HostBuilderExtensions.UseConfiguredServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.HostBuilderExtensions.UseConfiguredHostedServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.Lifetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.ServiceType">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
