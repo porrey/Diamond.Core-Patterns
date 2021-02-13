@@ -9,14 +9,18 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.ConsoleCommands.ServicesExtensions.UseDiamondCoreHost``1(Diamond.Core.ConsoleCommands.RootCommandService,System.String[])">
+        <member name="M:Diamond.Core.ConsoleCommands.ServicesExtensions.UseDiamondCoreHost``1(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             
             </summary>
             <typeparam name="TStartup"></typeparam>
-            <param name="rootCommand"></param>
-            <param name="args"></param>
+            <param name="builder"></param>
             <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.ConsoleCommands.IRootCommandService">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Diamond.Core.ConsoleCommands.RootCommandService">
             <summary>
@@ -56,11 +60,12 @@
         </member>
         <member name="M:Diamond.Core.ConsoleCommands.ConsoleHost.CreateRootCommand(System.String,System.String[])">
             <summary>
-            
+            Create a root comand object that wraps a host builder. the host builder
+            is create using defaults.
             </summary>
-            <param name="name"></param>
-            <param name="args"></param>
-            <returns></returns>
+            <param name="name">The name of the root command.</param>
+            <param name="args">The arguments passed to the application at the console prompt.</param>
+            <returns>A <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance used to configure and build the application.</returns>
         </member>
     </members>
 </doc>

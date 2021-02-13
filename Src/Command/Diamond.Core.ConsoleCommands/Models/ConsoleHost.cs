@@ -14,6 +14,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace Diamond.Core.ConsoleCommands
 {
 	/// <summary>
@@ -22,14 +25,34 @@ namespace Diamond.Core.ConsoleCommands
 	public static class ConsoleHost
 	{
 		/// <summary>
-		/// 
+		/// Create a root comand object that wraps a host builder. the host builder
+		/// is create using defaults.
 		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="args"></param>
-		/// <returns></returns>
-		public static RootCommandService CreateRootCommand(string name, string[] args)
+		/// <param name="name">The name of the root command.</param>
+		/// <param name="args">The arguments passed to the application at the console prompt.</param>
+		/// <returns>A <see cref="IHostBuilder"/> instance used to configure and build the application.</returns>
+		public static IHostBuilder CreateRootCommand(string name, string[] args)
 		{
-			return new RootCommandService(name, args);
+			//
+			// Create the root command/service for this application. Only
+			// one instance is needed.
+			//
+			RootCommandService root = new RootCommandService(name, args);
+
+			//
+			// Create the default builder.
+			//
+			IHostBuilder builder = Host.CreateDefaultBuilder(args);
+
+			//
+			// Add the root command to the services.
+			//
+			builder.ConfigureServices(services =>
+			{
+				services.AddSingleton<IRootCommandService>(root);
+			});
+			
+			return builder;
 		}
 	}
 }

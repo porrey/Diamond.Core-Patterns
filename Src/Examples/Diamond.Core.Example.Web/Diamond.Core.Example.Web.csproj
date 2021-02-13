@@ -45,13 +45,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="Config\Hosted.Services.json">
+	  <Content Update="Services\Hosted.Services.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Config\Diamond.Core.Services.json">
+	  <Content Update="Services\Diamond.Core.Services.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="Config\Web.Example.Services.json">
+	  <Content Update="Services\Web.Example.Services.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

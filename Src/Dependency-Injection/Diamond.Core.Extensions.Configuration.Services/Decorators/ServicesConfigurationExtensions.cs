@@ -81,9 +81,9 @@ namespace Diamond.Core.Extensions.Configuration.Services
                 throw new ArgumentNullException(nameof(builder));
             }
 
-            if (string.IsNullOrEmpty(path))
+            if (string.IsNullOrWhiteSpace(path))
             {
-                //throw new ArgumentException(SR.Error_InvalidFilePath, nameof(path));
+                throw new ArgumentNullException(nameof(path));
             }
 
             return builder.AddServicesConfigurationFolder(s =>
@@ -104,21 +104,5 @@ namespace Diamond.Core.Extensions.Configuration.Services
         /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
         public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, Action<ServicesConfigurationSource> configureSource)
             => builder.Add(configureSource);
-
-        ///// <summary>
-        ///// Adds a JSON configuration source to <paramref name="builder"/>.
-        ///// </summary>
-        ///// <param name="builder">The <see cref="IConfigurationBuilder"/> to add to.</param>
-        ///// <param name="stream">The <see cref="Stream"/> to read the json configuration data from.</param>
-        ///// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
-        //public static IConfigurationBuilder AddServicesConfigurationStream(this IConfigurationBuilder builder, Stream stream)
-        //{
-        //    if (builder == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(builder));
-        //    }
-
-        //    return builder.Add<JsonStreamConfigurationSource>(s => s.Stream = stream);
-        //}
     }
 }

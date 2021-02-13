@@ -25,7 +25,7 @@ namespace Diamond.Core.ConsoleCommands
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RootCommandService : RootCommand, IHostedService
+	public class RootCommandService : RootCommand, IRootCommandService
 	{
 		/// <summary>
 		/// 

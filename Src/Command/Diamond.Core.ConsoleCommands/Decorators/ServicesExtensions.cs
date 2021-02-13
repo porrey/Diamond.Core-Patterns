@@ -32,24 +32,18 @@ namespace Diamond.Core.ConsoleCommands
 		/// 
 		/// </summary>
 		/// <typeparam name="TStartup"></typeparam>
-		/// <param name="rootCommand"></param>
-		/// <param name="args"></param>
+		/// <param name="builder"></param>
 		/// <returns></returns>
-		public static IHostBuilder UseDiamondCoreHost<TStartup>(this RootCommandService rootCommand, string[] args)
+		public static IHostBuilder UseDiamondCoreHost<TStartup>(this IHostBuilder builder)
 			where TStartup : IStartup, new()
 		{
 			//
-			// 
-			//
-			IHostBuilder builder = Host.CreateDefaultBuilder(args);
-
-			//
-			//
+			// Create an instance of the start up class.
 			//
 			IStartup startup = new TStartup();
 
 			//
-			//
+			// Call the startup object's ConfigureAppConfiguration method.
 			//
 			if (startup is IStartupAppConfiguration startupAppConfiguration)
 			{
@@ -57,7 +51,7 @@ namespace Diamond.Core.ConsoleCommands
 			}
 
 			//
-			//
+			// Call the startup object's ConfigureLogging method.
 			//
 			if (startup is IStartupConfigureLogging startupConfigureLogging)
 			{
@@ -65,12 +59,12 @@ namespace Diamond.Core.ConsoleCommands
 			}
 
 			//
-			//
+			// Configure the command services.
 			//
 			IHostBuilder services = builder.ConfigureServices(services =>
 			{
 				//
-				//
+				// Call the startup object's ConfigureServices method.
 				//
 				if (startup is IStartupConfigureServices startupConfigureServices)
 				{
@@ -78,7 +72,7 @@ namespace Diamond.Core.ConsoleCommands
 				}
 
 				//
-				//
+				// Build the services now to gain access to the needed componetns.
 				//
 				ServiceProvider sp = services.BuildServiceProvider();
 
@@ -87,21 +81,30 @@ namespace Diamond.Core.ConsoleCommands
 				//
 				IEnumerable<ICommand> commands = sp.GetRequiredService<IEnumerable<ICommand>>();
 
-				if (commands.Any())
+				//
+				// Get the root command
+				//
+				IRootCommandService rootCommandService = sp.GetRequiredService<IRootCommandService>();
+
+				if (rootCommandService is RootCommand rootCommand)
 				{
-					foreach (ICommand command in commands)
+					if (commands.Any())
 					{
-						if (command is Command cmd)
+						foreach (ICommand command in commands)
 						{
-							rootCommand.AddCommand(cmd);
+							if (command is Command cmd)
+							{
+								rootCommand.AddCommand(cmd);
+							}
 						}
 					}
-				}
 
-				//
-				//
-				//
-				services.AddHostedService(_ => rootCommand);
+					//
+					// Add the root command as the hosted service so that
+					// it will get executed when all the setup has completed.
+					//
+					services.AddHostedService(_ => rootCommandService);
+				}
 			});
 
 			return builder;

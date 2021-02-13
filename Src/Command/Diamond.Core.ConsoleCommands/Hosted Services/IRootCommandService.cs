@@ -14,16 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-namespace Diamond.Core.Example
+using Microsoft.Extensions.Hosting;
+
+namespace Diamond.Core.ConsoleCommands
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class EchoProperties
+	public interface IRootCommandService : IHostedService
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		public string Phrase { get; set; }
 	}
 }

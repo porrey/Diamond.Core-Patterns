@@ -14,7 +14,7 @@ namespace Diamond.Core.Example {
 		/// <param name="args"></param>
 		static void Main(string[] args) =>
 			Host.CreateDefaultBuilder(args)
-				.ConfigureServicesFolder("./Config")
+				.ConfigureServicesFolder("./Services")
 				.ConfigureWebHostDefaults(webBuilder => {
 					webBuilder.UseStartup<Startup>();
 				})

@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Config\Example.Shared.Services.json" />
+    <None Remove="Services\Example.Shared.Services.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Config\Example.Shared.Services.json">
+    <Content Include="Services\Example.Shared.Services.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
