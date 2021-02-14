@@ -21,7 +21,7 @@ namespace Diamond.Core.Repository
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RepositoryNotWritableException : RepositoryException
+	public class RepositoryNotWritableException : DiamondRepositoryException
 	{
 		/// <summary>
 		/// 

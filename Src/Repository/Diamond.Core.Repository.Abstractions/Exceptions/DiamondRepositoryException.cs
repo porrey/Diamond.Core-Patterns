@@ -25,7 +25,7 @@ namespace Diamond.Core.Repository
 	/// exceptions in the Diamond.Core.Repositry library. This allows exceptions
 	/// specific to this library to be caught separately than other exceptions.
 	/// </summary>
-	public class DiamondRepositoryException : DiamondCoreException
+	public abstract class DiamondRepositoryException : DiamondCoreException
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DiamondRepositoryException"/> class.

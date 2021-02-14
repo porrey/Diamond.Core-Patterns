@@ -32,14 +32,10 @@ namespace Diamond.Core.Example
 					.AddScoped<IEntityFactory<IInvoice>, InvoiceEntityFactory>()
 					.AddScoped<IRepository<IInvoice>, InvoiceRepository>();
 
-			services.AddDbContext<ErpContext>((sp, options) =>
-			{
-				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
-				options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
-				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
-				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
-				//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
-			});
+			//
+			// Add the configured database and context.
+			//
+			services.AddDatabaseConfiguration();
 
 			return services;
 		}

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<Product>Diamond.Core Pattern Library</Product>
+		<Product>Diamond.Core Patterns Library</Product>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>

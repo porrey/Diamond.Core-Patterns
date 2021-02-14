@@ -4,48 +4,6 @@
         <name>Diamond.Core.Repository</name>
     </assembly>
     <members>
-        <member name="T:Diamond.Core.Repository.ServicesExtensions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Repository.ServicesExtensions.UseDiamondRepositoryPattern(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            
-            </summary>
-            <param name="services"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Repository.RepositoryException">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
-        </member>
-        <member name="M:Diamond.Core.Repository.RepositoryException.#ctor(System.String,System.Exception)">
-            <summary>
-            
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
-        </member>
         <member name="T:Diamond.Core.Repository.RepositoryNotDefinedException">
             <summary>
             
@@ -57,16 +15,23 @@
             </summary>
             <param name="t"></param>
         </member>
-        <member name="T:Diamond.Core.Repository.RepositoryNotInitializedException">
+        <member name="M:Diamond.Core.Repository.RepositoryNotDefinedException.#ctor(System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="t"></param>
+            <param name="name"></param>
+        </member>
+        <member name="T:Diamond.Core.Repository.RepositoryNotQueryableException">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Repository.RepositoryNotInitializedException.#ctor(System.Type)">
+        <member name="M:Diamond.Core.Repository.RepositoryNotQueryableException.#ctor(System.Type)">
             <summary>
             
             </summary>
-            <param name="type"></param>
+            <param name="t"></param>
         </member>
         <member name="T:Diamond.Core.Repository.RepositoryNotReadableException">
             <summary>

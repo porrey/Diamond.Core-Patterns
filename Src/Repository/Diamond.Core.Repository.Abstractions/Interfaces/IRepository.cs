@@ -30,7 +30,8 @@ namespace Diamond.Core.Repository
 	/// <summary>
 	/// Defines a generic repository interface that stores an entity of type TInterface.
 	/// </summary>
-	public interface IRepository<TInterface> : IRepository where TInterface : IEntity
+	public interface IRepository<TInterface> : IRepository
+		where TInterface : IEntity
 	{
 	}
 }

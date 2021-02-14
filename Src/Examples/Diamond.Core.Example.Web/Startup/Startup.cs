@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System;
+using Diamond.Core.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -50,7 +52,7 @@ namespace Diamond.Core.Example
 			//
 			// Add the required services
 			//
-			services.AddMyDiamondCore()
+			services.AddDatabaseConfiguration()
 					.AddMyMvc()
 					.AddMySwagger(this.Configuration)
 					.AddMyVersioning()

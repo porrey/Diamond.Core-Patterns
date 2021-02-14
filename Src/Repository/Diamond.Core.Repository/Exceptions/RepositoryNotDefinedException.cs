@@ -21,7 +21,7 @@ namespace Diamond.Core.Repository
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RepositoryNotDefinedException : RepositoryException
+	public class RepositoryNotDefinedException : DiamondRepositoryException
 	{
 		/// <summary>
 		/// 
@@ -29,6 +29,16 @@ namespace Diamond.Core.Repository
 		/// <param name="t"></param>
 		public RepositoryNotDefinedException(Type t)
 			: base($"A repository for Type {t.Name} has not been configured.")
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="t"></param>
+		/// <param name="name"></param>
+		public RepositoryNotDefinedException(Type t, string name)
+			: base($"A repository for Type {t.Name} and name '{name}' has not been configured.")
 		{
 		}
 	}

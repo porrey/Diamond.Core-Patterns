@@ -44,13 +44,12 @@ namespace Diamond.Core.Example
 			//
 			// Add the example application services.
 			//
-			//services.AddHostedService<WorkFlowExampleHostedService>();
-			//services.AddHostedService<SpecificationExampleHostedService>();
-			//services.AddHostedService<RulesExampleHostedService>();
-			//services.AddHostedService<DecoratorExampleHostedService>();
-			//services.AddHostedService<UnitOfWorkExampleHostedService>();
-			//services.AddHostedService<RepositoryExampleHostedService>();
-			services.AddHostedService<LifetimeEventsHostedService>();
+			services.AddHostedService<WorkFlowExampleHostedService>();
+			services.AddHostedService<SpecificationExampleHostedService>();
+			services.AddHostedService<RulesExampleHostedService>();
+			services.AddHostedService<DecoratorExampleHostedService>();
+			services.AddHostedService<UnitOfWorkExampleHostedService>();
+			services.AddHostedService<RepositoryExampleHostedService>();
 		}
 	}
 }

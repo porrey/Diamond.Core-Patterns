@@ -86,6 +86,11 @@ namespace Diamond.Core.Repository
 			{
 				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}'.");
 				returnValue = this.ServiceProvider.GetService<IRepository<TInterface>>();
+
+				if (returnValue == null)
+				{
+					throw new RepositoryNotDefinedException(typeof(TInterface));
+				}
 			}
 			else
 			{
@@ -96,6 +101,7 @@ namespace Diamond.Core.Repository
 				if (returnValue == null)
 				{
 					this.Logger.LogWarning($"A IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+					throw new RepositoryNotDefinedException(typeof(TInterface), name);
 				}
 			}
 
@@ -142,7 +148,7 @@ namespace Diamond.Core.Repository
 			else
 			{
 				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IReadOnlyRepository. Throwing exception...");
-				throw new RepositoryNotDefinedException(typeof(TInterface));
+				throw new RepositoryNotReadableException(typeof(TInterface));
 			}
 
 			return returnValue;
@@ -188,7 +194,7 @@ namespace Diamond.Core.Repository
 			else
 			{
 				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IWritableRepository. Throwing exception...");
-				throw new RepositoryNotDefinedException(typeof(TInterface));
+				throw new RepositoryNotWritableException(typeof(TInterface));
 			}
 
 			return returnValue;
@@ -232,7 +238,7 @@ namespace Diamond.Core.Repository
 			else
 			{
 				this.Logger.LogError($"The repository '{repository.GetType().Name}' does NOT implement IQueryableRepository. Throwing exception...");
-				throw new RepositoryNotDefinedException(typeof(TInterface));
+				throw new RepositoryNotQueryableException(typeof(TInterface));
 			}
 
 			return returnValue;

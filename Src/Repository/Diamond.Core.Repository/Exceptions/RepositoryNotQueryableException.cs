@@ -15,49 +15,20 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 using System;
-using System.Runtime.Serialization;
 
 namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class RepositoryException : Exception
+	public class RepositoryNotQueryableException : DiamondRepositoryException
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public RepositoryException()
-			: base()
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		public RepositoryException(string message)
-				: base(message)
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="info"></param>
-		/// <param name="context"></param>
-		protected RepositoryException(SerializationInfo info, StreamingContext context)
-				: base(info, context)
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="innerException"></param>
-		public RepositoryException(string message, Exception innerException) :
-				base(message, innerException)
+		/// <param name="t"></param>
+		public RepositoryNotQueryableException(Type t)
+			: base($"The repository {t.Name} does not implement IQueryableRepository.")
 		{
 		}
 	}

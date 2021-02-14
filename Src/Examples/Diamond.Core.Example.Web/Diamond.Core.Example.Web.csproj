@@ -1,40 +1,47 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Version>5.0.0-rc.3</Version>
-    <FileVersion>5.0.0</FileVersion>
-    <AssemblyVersion>5.0.0</AssemblyVersion>
-    <AssemblyName>WebExample</AssemblyName>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Version>5.0.0-rc.3</Version>
+		<FileVersion>5.0.0</FileVersion>
+		<AssemblyVersion>5.0.0</AssemblyVersion>
+		<AssemblyName>WebExample</AssemblyName>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <DocumentationFile>XmlDocs\WebExample.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<DocumentationFile>XmlDocs\WebExample.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="XmlDocs\Microsoft.AspNetCore.Mvc.Core.xml" />
-    <None Remove="XmlDocs\WebExample.xml" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="XmlDocs\Microsoft.AspNetCore.Mvc.Core.xml" />
+		<None Remove="XmlDocs\WebExample.xml" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="XmlDocs\Microsoft.AspNetCore.Mvc.Core.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="XmlDocs\WebExample.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="XmlDocs\Microsoft.AspNetCore.Mvc.Core.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="XmlDocs\WebExample.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.0.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.0.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection"
+						  Version="8.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson"
+						  Version="5.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning"
+						  Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore"
+						  Version="6.0.4" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters"
+						  Version="6.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen"
+						  Version="6.0.4" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI"
+						  Version="6.0.4" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNet.Swagger\Diamond.Core.AspNet.Swagger.csproj" />
@@ -45,15 +52,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="Services\Hosted.Services.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Update="Services\Diamond.Core.Services.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Update="Services\Web.Example.Services.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
+		<Content Update="Services\Hosted.Services.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Services\Diamond.Core.Services.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="Services\Web.Example.Services.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 </Project>

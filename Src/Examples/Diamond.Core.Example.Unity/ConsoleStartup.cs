@@ -36,7 +36,6 @@ namespace Diamond.Core.Example
 		/// <returns></returns>
 		public void ConfigureContainer<IUnityContainer>(IUnityContainer container)
 		{
-
 		}
 
 		/// <summary>
@@ -47,13 +46,9 @@ namespace Diamond.Core.Example
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//
-			// Add the default dependencies.
-			//
-			services.UseDiamondRepositoryPattern();
-
-			//
 			// Add the entity factory and repository to the container.
 			//
+			services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
 			services.AddSingleton<IEntityFactory<IInvoice>, InvoiceEntityFactory>();
 			services.AddTransient<IRepository<IInvoice>, InvoiceRepository>();
 
