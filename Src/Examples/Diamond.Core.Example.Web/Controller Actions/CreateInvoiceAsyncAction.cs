@@ -4,19 +4,22 @@ using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example {
+namespace Diamond.Core.Example
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class CreateInvoiceAsyncAction : DoAction<Invoice, Invoice> {
+	public class CreateInvoiceAsyncAction : DoAction<Invoice, Invoice>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public CreateInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper) 
-			: base(logger) {
+		public CreateInvoiceAsyncAction(ILogger<CreateInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
+			: base(logger)
+		{
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
 		}
@@ -36,13 +39,14 @@ namespace Diamond.Core.Example {
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		protected override async Task<IControllerActionResult<Invoice>> OnExecuteActionAsync(Invoice item) {
+		protected override async Task<IControllerActionResult<Invoice>> OnExecuteActionAsync(Invoice item)
+		{
 			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
 
 			//
 			// Get a writable repository for IInvoice.
 			//
-			this.Logger.LogTrace("Retrieving a writable repository for IInvoice.");
+			this.Logger.LogDebug("Retrieving a writable repository for IInvoice.");
 			IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
 
 			//
@@ -60,11 +64,13 @@ namespace Diamond.Core.Example {
 			//
 			(bool result, IInvoice newItem) = await repository.AddAsync(model);
 
-			if (result) {
+			if (result)
+			{
 				returnValue.ResultDetails = DoActionResult.Created();
 				returnValue.Result = this.Mapper.Map<Invoice>(newItem);
 			}
-			else {
+			else
+			{
 				returnValue.ResultDetails = DoActionResult.BadRequest("Could not create invoice.");
 			}
 

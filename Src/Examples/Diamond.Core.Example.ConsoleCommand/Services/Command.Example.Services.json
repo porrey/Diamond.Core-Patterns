@@ -1,16 +1,28 @@
 {
 	"services": [
 		{
-			// Hello Command
+			// Create Command
 			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
-			"ImplementationType": "Diamond.Core.Example.HelloCommand, CommandConsoleExample",
-			"Lifetime": "Transient"
+			"ImplementationType": "Diamond.Core.Example.CreateCommand, CommandConsoleExample",
+			"Lifetime": "Scoped"
 		},
 		{
-			// Echo Command
+			// Update Command
 			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
-			"ImplementationType": "Diamond.Core.Example.EchoCommand, CommandConsoleExample",
-			"Lifetime": "Transient"
+			"ImplementationType": "Diamond.Core.Example.UpdateCommand, CommandConsoleExample",
+			"Lifetime": "Scoped"
+		},
+		{
+			// Delete Command
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.DeleteCommand, CommandConsoleExample",
+			"Lifetime": "Scoped"
+		},
+		{
+			// List Command
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.ListCommand, CommandConsoleExample",
+			"Lifetime": "Scoped"
 		}
 	]
 }

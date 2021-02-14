@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 {
 	/// <summary>
@@ -34,7 +36,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Lifetime { get; set; }
+		public string Lifetime { get; set; } = ServiceLifetime.Scoped.ToString();
 
 		/// <summary>
 		/// 

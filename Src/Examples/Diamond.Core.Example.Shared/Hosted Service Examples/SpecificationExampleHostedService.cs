@@ -70,13 +70,13 @@ namespace Diamond.Core.Example
 			//
 			// Get the required specification from the services.
 			//
-			_logger.LogTrace("Retrieving specification for widget qualification.");
+			_logger.LogDebug("Retrieving specification for widget qualification.");
 			ISpecification<IEnumerable<Widget>, IEnumerable<Widget>> specification = await _specificationFactory.GetAsync<IEnumerable<Widget>, IEnumerable<Widget>>(WellKnown.Specification.QualifyWidget);
 
 			//
 			// Execute the specification to get the list of qualified widgets.
 			//
-			_logger.LogTrace("Executing specification on widgets.");
+			_logger.LogDebug("Executing specification on widgets.");
 			IEnumerable<Widget> qualifiedItems = await specification.ExecuteSelectionAsync(widgets);
 
 			_logger.LogInformation($"{qualifiedItems.Count()} widget(s) were qualified.");

@@ -69,7 +69,7 @@ namespace Diamond.Core.WorkFlow {
 			// Get the type being requested.
 			//
 			Type targetType = typeof(IWorkFlowManager);
-			this.Logger.LogTrace($"Location Work-Flow manager with group name '{groupName}'.");
+			this.Logger.LogDebug($"Location Work-Flow manager with group name '{groupName}'.");
 
 			//
 			// Find the repository that supports the given type.
@@ -78,7 +78,7 @@ namespace Diamond.Core.WorkFlow {
 			IWorkFlowManager item = items.Where(t => t.Group == groupName).SingleOrDefault();
 
 			if (item != null) {
-				this.Logger.LogTrace($"Work-Flow manager with group '{groupName}' was found.");
+				this.Logger.LogDebug($"Work-Flow manager with group '{groupName}' was found.");
 				returnValue = (IWorkFlowManager)item;
 			}
 			else {

@@ -4,6 +4,42 @@
         <name>Diamond.Core.CommandLine.Abstractions</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.CommandLine.DiamondCommandLineException">
+            <summary>
+            This is an abstract class the defines the base object for all
+            exceptions in the Diamond.Core.Repositry library. This allows exceptions
+            specific to this library to be caught separately than other exceptions.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.DiamondCommandLineException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.CommandLine.DiamondCommandLineException"/> class.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.DiamondCommandLineException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.CommandLine.DiamondCommandLineException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.DiamondCommandLineException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.CommandLine.DiamondCommandLineException"/> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference
+            if no inner exception is specified.</param>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.DiamondCommandLineException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.CommandLine.DiamondCommandLineException"/> class with serialized data.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
+            object data about the exception being thrown.</param>
+            <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
+            about the source or destination.</param>
+        </member>
         <member name="T:Diamond.Core.CommandLine.IRootCommand">
             <summary>
             Distinguishes a root command from a regular command.

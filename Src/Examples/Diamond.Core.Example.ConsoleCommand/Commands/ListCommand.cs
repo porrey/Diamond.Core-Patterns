@@ -15,76 +15,83 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Collections.Generic;
+using System.CommandLine;
+using System.CommandLine.Invocation;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Diamond.Core.AspNet.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetInvoiceAsyncAction : DoAction<string, Invoice>
+	public class ListCommand : Command
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
-		/// <param name="mapper"></param>
-		public GetInvoiceAsyncAction(ILogger<GetInvoiceAsyncAction> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
-			: base(logger)
+		public ListCommand(ILogger<ListCommand> logger, IRepositoryFactory repositoryFactory)
+			: base("list", "List all invoices in the data storage.")
 		{
+			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
-			this.Mapper = mapper;
+
+			this.Handler = CommandHandler.Create<string>(async _ =>
+			{
+				return await this.OnHandleCommand();
+			});
 		}
 
 		/// <summary>
-		/// Holds the reference to <see cref="IRepositoryFactory"/>.
+		/// 
+		/// </summary>
+		protected ILogger<ListCommand> Logger { get; set; } = new NullLogger<ListCommand>();
+
+		/// <summary>
+		/// 
 		/// </summary>
 		protected IRepositoryFactory RepositoryFactory { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IMapper Mapper { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="invoiceNumber"></param>
 		/// <returns></returns>
-		protected override async Task<IControllerActionResult<Invoice>> OnExecuteActionAsync(string invoiceNumber)
+		protected async Task<int> OnHandleCommand()
 		{
-			ControllerActionResult<Invoice> returnValue = new ControllerActionResult<Invoice>();
+			int returnValue = 0;
 
 			//
 			// Get a read-only repository for IInvoice.
 			//
-			this.Logger.LogDebug("Retrieving a read-only repository for IInvoice.");
+			this.Logger.LogDebug("Retrieving read-only repository for IInvoice.");
 			IReadOnlyRepository<IInvoice> repository = await this.RepositoryFactory.GetReadOnlyAsync<IInvoice>();
 
 			//
-			// Attempt to create the item.
+			// Query all of the items and create a InvoiceReponse for each.
 			//
-			IInvoice item = (await repository.GetAsync(t => t.Number == invoiceNumber)).SingleOrDefault();
+			this.Logger.LogDebug("Retrieving all Invoice items from data storage.");
+			IEnumerable<IInvoice> items = from tbl in await repository.GetAllAsync()
+										  select tbl;
 
-			if (item != null)
+			if (items.Any())
 			{
-				returnValue.ResultDetails = DoActionResult.Ok();
-				returnValue.Result = this.Mapper.Map<Invoice>(item);
+				this.Logger.LogDebug($"There were {items.Count()} Invoice items retrieved.");
+
+				foreach (IInvoice item in items)
+				{
+					string paid = item.Paid ? "Yes" : "No";
+					this.Logger.LogInformation($"[{item.Id}] {item.Number}, Description = '{item.Description}', Total = {item.Total:$#,##0.00}, Paid = {paid}");
+				}
 			}
 			else
 			{
-				IDictionary<string, object> extensions = new Dictionary<string, object>
-				{
-					{ "Number", invoiceNumber }
-				};
-
-				returnValue.ResultDetails = DoActionResult.NotFound($"An invoice with invoice number '{invoiceNumber}' could not be found.", null, null, extensions);
+				this.Logger.LogInformation("There are no invoices in the ERP system.");
+				returnValue = 1;
 			}
 
 			return returnValue;

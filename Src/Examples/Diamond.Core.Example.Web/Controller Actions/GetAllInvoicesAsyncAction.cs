@@ -64,19 +64,19 @@ namespace Diamond.Core.Example
 			//
 			// Get a read-only repository for IInvoice.
 			//
-			this.Logger.LogTrace("Retrieving read-only repository for IInvoice.");
+			this.Logger.LogDebug("Retrieving read-only repository for IInvoice.");
 			IReadOnlyRepository<IInvoice> repository = await this.RepositoryFactory.GetReadOnlyAsync<IInvoice>();
 
 			//
 			// Query all of the items and create a InvoiceReponse for each.
 			//
-			this.Logger.LogTrace("Retrieving all IInvoice items from data storage.");
+			this.Logger.LogDebug("Retrieving all IInvoice items from data storage.");
 			IEnumerable<Invoice> items = from tbl in await repository.GetAllAsync()
 										 select this.Mapper.Map<Invoice>(tbl);
 
 			if (items.Any())
 			{
-				this.Logger.LogTrace($"There were {items.Count()} IInvoice items retrieved.");
+				this.Logger.LogDebug($"There were {items.Count()} IInvoice items retrieved.");
 				returnValue.ResultDetails = DoActionResult.Ok();
 				returnValue.Result = items;
 			}

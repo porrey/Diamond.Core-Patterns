@@ -30,7 +30,7 @@ namespace Diamond.Core.Example
 		/// <returns></returns>
 		public static IServiceCollection AddMyAutoMapper(this IServiceCollection services)
 		{
-			services.AddAutoMapper(typeof(Startup));
+			services.AddAutoMapper(typeof(MappingProfile));
 			return services;
 		}
 	}

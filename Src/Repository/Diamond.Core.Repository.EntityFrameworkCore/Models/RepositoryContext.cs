@@ -17,18 +17,21 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Diamond.Core.Repository.EntityFrameworkCore {
+namespace Diamond.Core.Repository.EntityFrameworkCore
+{
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <typeparam name="TContext"></typeparam>
 	public abstract class RepositoryContext<TContext> : DbContext, IRepositoryContext
-		where TContext : DbContext {
+		where TContext : DbContext
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public RepositoryContext()
-			: base() {
+			: base()
+		{
 		}
 
 		/// <summary>
@@ -36,14 +39,16 @@ namespace Diamond.Core.Repository.EntityFrameworkCore {
 		/// </summary>
 		/// <param name="options"></param>
 		public RepositoryContext(DbContextOptions options)
-			: base(options) {
+			: base(options)
+		{
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public virtual Task<int> SaveAsync() {
+		public virtual Task<int> SaveAsync()
+		{
 			return this.SaveChangesAsync();
 		}
 
@@ -51,8 +56,18 @@ namespace Diamond.Core.Repository.EntityFrameworkCore {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public virtual Task<bool> EnsureCreated() {
+		public virtual Task<bool> EnsureCreated()
+		{
 			return this.Database.EnsureCreatedAsync();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public virtual Task<bool> EnsureDeleted()
+		{
+			return this.Database.EnsureDeletedAsync();
 		}
 	}
 }

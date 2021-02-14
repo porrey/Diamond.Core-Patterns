@@ -1,43 +1,45 @@
 {
+	//
+	// Aliases are global and can be used anywhere.
+	//
+	"aliases": [
+		{
+			"Key": "IDoAction",
+			"TypeDefinition": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions"
+		}
+	],
+	//
+	// If Lifetime is not specified, the default is Scoped.
+	//
 	"services": [
 		{
-			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.CreateInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.DeleteInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.GetInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.GetAllInvoicesAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.UpdateInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions",
+			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.MarkInvoicePaidAsyncAction, WebExample",
-			"Lifetime": "Scoped"
-		},
-		{
-			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[Diamond.Core.Example.IInvoice, Diamond.Core.Example.Shared]], Diamond.Core.Repository.Abstractions",
-			"ImplementationType": "Diamond.Core.Example.InvoiceEntityFactory, Diamond.Core.Example.Shared",
-			"Lifetime": "Scoped"
-		},
-		{
-			"ServiceType": "Diamond.Core.Repository.IRepository`1[[Diamond.Core.Example.IInvoice, Diamond.Core.Example.Shared]], Diamond.Core.Repository.Abstractions",
-			"ImplementationType": "Diamond.Core.Example.InvoiceRepository, Diamond.Core.Example.Shared",
 			"Lifetime": "Scoped"
 		}
 	]

@@ -95,6 +95,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.Configuration.JsonServices", "Configuration\Diamond.Core.Extensions.Configuration.JsonServices\Diamond.Core.Extensions.Configuration.JsonServices.csproj", "{C18092FE-34C8-4ED5-BD64-E444D760AC68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Extensions.DependencyInjection.JsonServices.Abstractions", "Diamond.Core.Extensions.DependencyInjection.JsonServices.Abstractions\Diamond.Core.Extensions.DependencyInjection.JsonServices.Abstractions.csproj", "{81437D5F-FC91-4F25-8795-7F8950A916F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +235,10 @@ Global
 		{C18092FE-34C8-4ED5-BD64-E444D760AC68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C18092FE-34C8-4ED5-BD64-E444D760AC68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C18092FE-34C8-4ED5-BD64-E444D760AC68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81437D5F-FC91-4F25-8795-7F8950A916F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81437D5F-FC91-4F25-8795-7F8950A916F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81437D5F-FC91-4F25-8795-7F8950A916F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81437D5F-FC91-4F25-8795-7F8950A916F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -271,6 +277,7 @@ Global
 		{981015AE-CB24-43BE-B671-464358906B28} = {0A4746BF-500B-4583-A39F-76EA4D0A9B9E}
 		{44B3BF8A-3491-44C3-82FD-A6A435A72535} = {0A4746BF-500B-4583-A39F-76EA4D0A9B9E}
 		{C18092FE-34C8-4ED5-BD64-E444D760AC68} = {FECFB839-8588-4F9B-B236-E08D0B38A6F4}
+		{81437D5F-FC91-4F25-8795-7F8950A916F0} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

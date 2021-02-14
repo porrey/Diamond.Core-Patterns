@@ -4,11 +4,6 @@
 			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoActionFactory, Diamond.Core.AspNet.DoAction.Abstractions",
 			"ImplementationType": "Diamond.Core.AspNet.DoAction.DoActionFactory, Diamond.Core.AspNet.DoAction",
 			"Lifetime": "Scoped"
-		},
-		{
-			"ServiceType": "Diamond.Core.Repository.IRepositoryFactory, Diamond.Core.Repository.Abstractions",
-			"ImplementationType": "Diamond.Core.Repository.RepositoryFactory, Diamond.Core.Repository",
-			"Lifetime": "Scoped"
 		}
 	]
 }

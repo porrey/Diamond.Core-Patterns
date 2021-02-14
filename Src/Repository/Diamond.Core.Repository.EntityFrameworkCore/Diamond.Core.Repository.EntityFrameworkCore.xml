@@ -157,5 +157,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureDeleted">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

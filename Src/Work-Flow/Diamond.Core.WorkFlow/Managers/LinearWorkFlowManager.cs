@@ -134,7 +134,7 @@ namespace Diamond.Core.WorkFlow {
 				// Loop through each work-flow step executing them one at a time.
 				//
 				for (int i = 0; i <= this.FinalStepOfWorkflow; i++) {
-					this.Logger.LogTrace($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.Logger.LogDebug($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
 
 					//
 					// Start the stop watch.
@@ -160,11 +160,11 @@ namespace Diamond.Core.WorkFlow {
 						//
 						if (result) {
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							this.Logger.LogTrace($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
+							this.Logger.LogDebug($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
 						}
 						else {
 							returnValue = false;
-							this.Logger.LogTrace($"The work-flow step '{this.Steps[i].Name}' failed.");
+							this.Logger.LogDebug($"The work-flow step '{this.Steps[i].Name}' failed.");
 						}
 
 						//
@@ -188,13 +188,13 @@ namespace Diamond.Core.WorkFlow {
 				// one of the other steps fail.
 				//
 				if (this.HasAlwaysExecuteStep) {
-					this.Logger.LogTrace($"Starting final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' [{this.AlwaysExecuteStepIndex + 1} of {this.Steps.Count()}].");
+					this.Logger.LogDebug($"Starting final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' [{this.AlwaysExecuteStepIndex + 1} of {this.Steps.Count()}].");
 
 					if (await this.ExecuteStepAsync(this.Steps[this.AlwaysExecuteStepIndex], context)) {
-						this.Logger.LogTrace($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' completed successfully.");
+						this.Logger.LogDebug($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' completed successfully.");
 					}
 					else {
-						this.Logger.LogTrace($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' failed.");
+						this.Logger.LogDebug($"The final work-flow step '{this.Steps[this.AlwaysExecuteStepIndex].Name}' failed.");
 					}
 				}
 			}

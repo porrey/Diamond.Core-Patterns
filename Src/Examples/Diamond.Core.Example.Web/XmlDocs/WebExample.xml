@@ -4,16 +4,6 @@
         <name>WebExample</name>
     </assembly>
     <members>
-        <member name="T:Diamond.Core.Example.Web.Mappings.MappingProfile">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Example.Web.Mappings.MappingProfile.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Example.CreateInvoiceAsyncAction">
             <summary>
             
@@ -373,31 +363,6 @@
             </summary>
             <param name="services"></param>
             <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Example.Invoice">
-            <summary>
-            Contains the details of an invoice.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.Invoice.Number">
-            <summary>
-            The unique invoice number.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.Invoice.Description">
-            <summary>
-            A description of invoice.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.Invoice.Total">
-            <summary>
-            The total dollar amount of the invoice.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Example.Invoice.Paid">
-            <summary>
-            Determines if the invoice has been paid or not.
-            </summary>
         </member>
     </members>
 </doc>

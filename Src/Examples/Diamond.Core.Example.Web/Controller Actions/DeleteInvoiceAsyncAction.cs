@@ -63,7 +63,7 @@ namespace Diamond.Core.Example
 			//
 			// Get a writable repository for IInvoice.
 			//
-			this.Logger.LogTrace("Retrieving a writable repository for IInvoice.");
+			this.Logger.LogDebug("Retrieving a writable repository for IInvoice.");
 			IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
 
 			//

@@ -17,6 +17,7 @@
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.Threading.Tasks;
+using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -25,25 +26,24 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class HelloCommand : Command
+	public class DeleteCommand : Command
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
-		public HelloCommand(ILogger<HelloCommand> logger)
-			: base("hello", "Responds with a hello greeting.")
+		/// <param name="repositoryFactory"></param>
+		public DeleteCommand(ILogger<DeleteCommand> logger, IRepositoryFactory repositoryFactory)
+			: base("delete", "Delete an existing invoice item.")
 		{
 			this.Logger = logger;
 
-			Option<string> option = new Option<string>($"--{nameof(HelloProperties.YourName).ToLower()}", "Full name of person to greet.")
+			this.AddOption(new Option<string>($"--{nameof(Invoice.Number).ToLower()}", "Invoice Number.")
 			{
 				IsRequired = true
-			};
+			});
 
-			this.AddOption(option);
-
-			this.Handler = CommandHandler.Create<HelloProperties>(async (p) =>
+			this.Handler = CommandHandler.Create<string>(async (p) =>
 			{
 				return await this.OnHandleCommand(p);
 			});
@@ -52,16 +52,16 @@ namespace Diamond.Core.Example
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<HelloCommand> Logger { get; set; } = new NullLogger<HelloCommand>();
+		protected ILogger<DeleteCommand> Logger { get; set; } = new NullLogger<DeleteCommand>();
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="properties"></param>
+		/// <param name="invoiceNumber"></param>
 		/// <returns></returns>
-		protected Task<int> OnHandleCommand(HelloProperties properties)
+		protected Task<int> OnHandleCommand(string invoiceNumber)
 		{
-			this.Logger.LogInformation($"Hello '{properties.YourName}'.");
+			//this.Logger.LogInformation($"You said: '{properties.Phrase}'.");
 			return Task.FromResult(0);
 		}
 	}

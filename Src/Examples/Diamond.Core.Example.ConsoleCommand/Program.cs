@@ -27,19 +27,26 @@ using Serilog;
 // for details on host based applications.
 //
 
-namespace Diamond.Core.Example.ConsoleCommand
+namespace Diamond.Core.Example
 {
-	class Program
+	/// <summary>
+	/// 
+	/// </summary>
+	public class Program
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
-							.UseRootCommand("Sample Application", args)
+							.AddRootCommand("Sample Application", args)
 							.UseSerilog((c, l) =>
 							{
 								l.ReadFrom.Configuration(c.Configuration);
 							})
 							.ConfigureServicesFolder("./Services")
 							.UseConfiguredServices()
-							.UseCommands()
 							.UseStartup<ConsoleStartup>()
 							.UseConsoleLifetime()
 							.Build()

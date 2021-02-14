@@ -15,16 +15,19 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 
-namespace Diamond.Core.Repository.EntityFrameworkCore {
+namespace Diamond.Core.Repository.EntityFrameworkCore
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public sealed class InvalidContextException : DiamondRepositoryException {
+	public sealed class InvalidContextException : DiamondRepositoryException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public InvalidContextException()
-			: base($"The IDatabaseContext instance provided is invalid.") {
+			: base($"The IDatabaseContext instance provided is invalid.")
+		{
 		}
 	}
 }

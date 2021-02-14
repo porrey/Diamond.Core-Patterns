@@ -72,7 +72,7 @@ namespace Diamond.Core.WorkFlow {
 		public virtual async Task<bool> ExecuteStepAsync(IContext context) {
 			bool returnValue = false;
 
-			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(ExecuteStepAsync)}");
+			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(ExecuteStepAsync)}");
 
 			if (await this.OnPrepareForExecutionAsync(context)) {
 				returnValue = await this.OnExecuteStepAsync(context);
@@ -87,7 +87,7 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="context"></param>
 		/// <returns></returns>
 		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context) {
-			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(OnPrepareForExecutionAsync)}");
+			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(OnPrepareForExecutionAsync)}");
 			return Task.FromResult(true);
 		}
 
@@ -97,7 +97,7 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="context"></param>
 		/// <returns></returns>
 		protected virtual Task<bool> OnExecuteStepAsync(IContext context) {
-			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(OnExecuteStepAsync)}");
+			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(OnExecuteStepAsync)}");
 			return Task.FromResult(true);
 		}
 
@@ -116,7 +116,7 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="message"></param>
 		/// <returns></returns>
 		protected Task StepFailedAsync(IContext context, string message) {
-			this.Logger.LogTrace($"Work Flow Step '{this.Name}': {nameof(StepFailedAsync)}");
+			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(StepFailedAsync)}");
 			context.SetException(message);
 			return Task.FromResult(0);
 		}

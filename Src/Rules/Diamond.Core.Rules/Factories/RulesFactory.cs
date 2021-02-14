@@ -146,7 +146,7 @@ namespace Diamond.Core.Rules
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IRule<TItem, TResult>);
-			this.Logger.LogTrace($"Finding a Rules with group '{group}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogDebug($"Finding a Rules with group '{group}' and Target Type '{targetType.Name}'.");
 
 			//
 			// Get all decorators from the container of
@@ -161,7 +161,7 @@ namespace Diamond.Core.Rules
 
 			if (items.Count() > 0)
 			{
-				this.Logger.LogTrace($"{items.Count()} Rules with group '{group}' and Target Type '{targetType.Name}' were found.");
+				this.Logger.LogDebug($"{items.Count()} Rules with group '{group}' and Target Type '{targetType.Name}' were found.");
 
 				foreach (IRule item in items)
 				{
@@ -173,7 +173,7 @@ namespace Diamond.Core.Rules
 			}
 			else
 			{
-				this.Logger.LogTrace("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...");
+				this.Logger.LogDebug("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...");
 
 				if (!String.IsNullOrWhiteSpace(group))
 				{

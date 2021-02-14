@@ -52,6 +52,11 @@ namespace Diamond.Core.Example
 		/// <returns></returns>
 		public void ConfigureServices(IServiceCollection services)
 		{
+			//
+			// Add the the database context.
+			//
+			services.AddAutoMapper(typeof(MappingProfile));
+			services.AddDatabaseConfiguration();
 		}
 	}
 }

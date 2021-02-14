@@ -1,11 +1,11 @@
 {
-	"profiles": {
-		"Diamond.Core.Example.Command.Console": {
-			"commandName": "Project",
-			"commandLineArgs": "echo --phrase \"Hello there!\"",
-			"environmentVariables": {
-				"DOTNET_ENVIRONMENT": "Development"
-			}
-		}
-	}
+  "profiles": {
+    "Diamond.Core.Example.Command.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "update --number INV12345 --description \"Shipment invoice\" --total 125.60 --paid true",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
 }

@@ -15,9 +15,12 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System;
+using System.Collections.Generic;
 using System.CommandLine;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -34,11 +37,13 @@ namespace Diamond.Core.CommandLine
 		/// <param name="logger"></param>
 		/// <param name="hostApplicationLifetime"></param>
 		/// <param name="rootCommand"></param>
-		public RootCommandService(ILogger<RootCommandService> logger, IHostApplicationLifetime hostApplicationLifetime, IRootCommand rootCommand)
+		/// <param name="serviceScopeFactory"></param>
+		public RootCommandService(ILogger<RootCommandService> logger, IHostApplicationLifetime hostApplicationLifetime, IRootCommand rootCommand, IServiceScopeFactory serviceScopeFactory)
 		{
 			this.Logger = logger;
 			this.HostApplicationLifetime = hostApplicationLifetime;
 			this.RootCommand = rootCommand;
+			this.ServiceScopeFactory = serviceScopeFactory;
 		}
 
 		/// <summary>
@@ -59,10 +64,51 @@ namespace Diamond.Core.CommandLine
 		/// <summary>
 		/// 
 		/// </summary>
+		protected IServiceScopeFactory ServiceScopeFactory { get; set; }
+
+		private IServiceScope Scope { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
 		public Task StartAsync(CancellationToken cancellationToken)
 		{
+			//
+			// Since this hosted service runs as a singleton we need
+			// a scope to get access to scoped services.
+			//
+			this.Scope = this.ServiceScopeFactory.CreateScope();
+			
+			//
+			// Get any commands configured.
+			//
+			IEnumerable<ICommand> commands = this.Scope.ServiceProvider.GetRequiredService<IEnumerable<ICommand>>();
+			this.Logger.LogDebug($"Found {commands.Count()} ICommand objects registered.");
+
+			//
+			// There should be at least one command.
+			//
+			if (commands.Any())
+			{
+				//
+				// Add the commands.
+				//
+				foreach (ICommand cmd in commands)
+				{
+					if (cmd is Command c)
+					{
+						this.Logger.LogDebug($"Addng '{c.Name}' command to Root Command.");
+						((RootCommand)this.RootCommand).AddCommand(c);
+					}
+				}
+			}
+			else
+			{
+				throw new NoCommandsConfiguredException();
+			}
+
 			this.Logger.LogDebug("Registering 'ApplicationStarted' in Root Command Service.");
 			this.HostApplicationLifetime.ApplicationStarted.Register(this.OnStarted);
 			this.Logger.LogDebug("Registering 'ApplicationStopping' in Root Command Service.");
@@ -115,6 +161,12 @@ namespace Diamond.Core.CommandLine
 
 		private void OnStopping()
 		{
+			if (this.Scope != null)
+			{
+				this.Scope.Dispose();
+				this.Scope = null;
+			}
+
 			this.Logger.LogDebug("OnStopping has been called on Root Command Service.");
 		}
 

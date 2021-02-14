@@ -14,16 +14,22 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using AutoMapper;
+
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class EchoProperties
+	public class MappingProfile : Profile
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Phrase { get; set; }
+		public MappingProfile()
+		{
+			CreateMap<Invoice, IInvoice>();
+			CreateMap<IInvoice, Invoice>();
+		}
 	}
 }

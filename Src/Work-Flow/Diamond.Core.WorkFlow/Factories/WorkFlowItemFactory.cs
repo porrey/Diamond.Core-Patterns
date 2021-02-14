@@ -74,18 +74,18 @@ namespace Diamond.Core.WorkFlow {
 			//
 			IEnumerable<IWorkFlowItem> items = this.ServiceProvider.GetService<IEnumerable<IWorkFlowItem>>();
 			IEnumerable<IWorkFlowItem> groupItems = items.Where(t => t.Group == groupName);
-			this.Logger.LogTrace($"Found {groupItems.Count()} Work-Flow items for group '{groupName}'.");
+			this.Logger.LogDebug($"Found {groupItems.Count()} Work-Flow items for group '{groupName}'.");
 
 			if (groupItems.Count() > 0) {
-				this.Logger.LogTrace($"Loading Work-Flow items for group '{groupName}'.");
+				this.Logger.LogDebug($"Loading Work-Flow items for group '{groupName}'.");
 
 				foreach (IWorkFlowItem groupItem in groupItems) {
 					if (targetType.IsInstanceOfType(groupItem)) {
 						returnValue.Add((IWorkFlowItem)groupItem);
-						this.Logger.LogTrace($"Added Work-Flow item '{groupItem.Name}'.");
+						this.Logger.LogDebug($"Added Work-Flow item '{groupItem.Name}'.");
 					}
 					else {
-						this.Logger.LogTrace($"Skipping Work-Flow item '{groupItem.Name}' because it does not have the correct Type.");
+						this.Logger.LogDebug($"Skipping Work-Flow item '{groupItem.Name}' because it does not have the correct Type.");
 					}
 				}
 			}

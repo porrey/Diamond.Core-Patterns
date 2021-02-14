@@ -45,7 +45,7 @@ namespace Diamond.Core.WorkFlow {
 				// Cache the name since the object is being disposed.
 				//
 				string tempPath = temporaryFolder.FullPath;
-				this.Logger.LogTrace($"Deleting temporary folder '{tempPath}'.");
+				this.Logger.LogDebug($"Deleting temporary folder '{tempPath}'.");
 
 				TryDisposable<ITemporaryFolder>.Dispose(temporaryFolder);
 				context.Properties.Remove(DiamondWorkFlow.WellKnown.Context.TemporaryFolder);
@@ -54,7 +54,7 @@ namespace Diamond.Core.WorkFlow {
 					this.Logger.LogWarning("The temporary folder '{0}' could not be deleted.", tempPath);
 				}
 				else {
-					this.Logger.LogTrace("The temporary folder '{0}' was deleted successfully.", tempPath);
+					this.Logger.LogDebug("The temporary folder '{0}' was deleted successfully.", tempPath);
 				}
 			}
 

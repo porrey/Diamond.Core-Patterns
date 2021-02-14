@@ -24,7 +24,7 @@ namespace Diamond.Core.Example
 		public SampleWorkFlowManager(ILogger<SampleWorkFlowManager> logger, IWorkFlowItemFactory workFlowItemFactory)
 			: base(workFlowItemFactory, WellKnown.WorkFlow.SampleWorkFlow)
 		{
-			logger.LogTrace($"An instance of {nameof(SampleWorkFlowManager)} with group name '{this.Group}' was created.");
+			logger.LogDebug($"An instance of {nameof(SampleWorkFlowManager)} with group name '{this.Group}' was created.");
 		}
 	}
 }

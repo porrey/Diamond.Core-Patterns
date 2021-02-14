@@ -74,7 +74,7 @@ namespace Diamond.Core.Specification
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(ISpecification<TResult>);
-			this.Logger.LogTrace($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogDebug($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
 
 			//
 			// Get all decorators from the container of
@@ -90,7 +90,7 @@ namespace Diamond.Core.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogTrace($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogDebug($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TResult>)item;
 				}
 				else
@@ -123,7 +123,7 @@ namespace Diamond.Core.Specification
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(ISpecification<TParameter, TResult>);
-			this.Logger.LogTrace($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogDebug($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
 
 			//
 			// Get all decorators from the container of
@@ -139,7 +139,7 @@ namespace Diamond.Core.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogTrace($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogDebug($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
 					returnValue = (ISpecification<TParameter, TResult>)item;
 				}
 				else

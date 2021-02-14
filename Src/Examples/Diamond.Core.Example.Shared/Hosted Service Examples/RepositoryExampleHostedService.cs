@@ -52,7 +52,7 @@ namespace Diamond.Core.Example
 			// Since this hosted service runs as a singleton we need
 			// a scope to get access to scoped services.
 			//
-			using (var scope = _serviceScopeFactory.CreateScope())
+			using (IServiceScope scope = _serviceScopeFactory.CreateScope())
 			{
 				//
 				// Get the IRepositoryFactory service.

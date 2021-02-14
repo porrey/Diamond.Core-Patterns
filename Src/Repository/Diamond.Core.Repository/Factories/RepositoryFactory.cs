@@ -84,7 +84,7 @@ namespace Diamond.Core.Repository
 			//
 			if (name == null)
 			{
-				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}'.");
+				this.Logger.LogDebug($"Retrieving IRepository for type '{typeof(TInterface)}'.");
 				returnValue = this.ServiceProvider.GetService<IRepository<TInterface>>();
 
 				if (returnValue == null)
@@ -94,7 +94,7 @@ namespace Diamond.Core.Repository
 			}
 			else
 			{
-				this.Logger.LogTrace($"Retrieving IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+				this.Logger.LogDebug($"Retrieving IRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 				IEnumerable<IRepository<TInterface>> repositories = this.ServiceProvider.GetRequiredService<IEnumerable<IRepository<TInterface>>>();
 				returnValue = repositories.Where(t => t.Name == name).SingleOrDefault();
 
@@ -128,7 +128,7 @@ namespace Diamond.Core.Repository
 		{
 			IReadOnlyRepository<TInterface> returnValue = null;
 
-			this.Logger.LogTrace($"Retrieving IReadOnlyRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+			this.Logger.LogDebug($"Retrieving IReadOnlyRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 
 			//
 			// Find the repository that supports the given type.
@@ -137,13 +137,13 @@ namespace Diamond.Core.Repository
 
 			if (repository is IReadOnlyRepository<TInterface> castedRepository)
 			{
-				this.Logger.LogTrace($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
+				this.Logger.LogDebug($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
 
 				//
 				// Cast the repository to IRepositry<T> and return it.
 				//
 				returnValue = castedRepository;
-				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IReadOnlyRepository.");
+				this.Logger.LogDebug($"The repository '{repository.GetType().Name}' implements IReadOnlyRepository.");
 			}
 			else
 			{
@@ -174,7 +174,7 @@ namespace Diamond.Core.Repository
 		{
 			IWritableRepository<TInterface> returnValue = null;
 
-			this.Logger.LogTrace($"Retrieving IWritableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+			this.Logger.LogDebug($"Retrieving IWritableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 
 			//
 			// Find the repository that supports the given type.
@@ -183,13 +183,13 @@ namespace Diamond.Core.Repository
 
 			if (repository is IWritableRepository<TInterface> castedRepository)
 			{
-				this.Logger.LogTrace($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
+				this.Logger.LogDebug($"IRepository for type '{typeof(TInterface)}' and container registration name '{name}' was found.");
 
 				//
 				// Cast the repository to IRepositry<T> and return it.
 				//
 				returnValue = castedRepository;
-				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IWritableRepository.");
+				this.Logger.LogDebug($"The repository '{repository.GetType().Name}' implements IWritableRepository.");
 			}
 			else
 			{
@@ -220,7 +220,7 @@ namespace Diamond.Core.Repository
 		{
 			IQueryableRepository<TInterface> returnValue = null;
 
-			this.Logger.LogTrace($"Retrieving IQueryableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
+			this.Logger.LogDebug($"Retrieving IQueryableRepository for type '{typeof(TInterface)}' and container registration name '{name}'.");
 
 			//
 			// Find the repository that supports the given type.
@@ -233,7 +233,7 @@ namespace Diamond.Core.Repository
 				// Cast the repository to IRepositry<T> and return it.
 				//
 				returnValue = castedRepository;
-				this.Logger.LogTrace($"The repository '{repository.GetType().Name}' implements IQueryableRepository.");
+				this.Logger.LogDebug($"The repository '{repository.GetType().Name}' implements IQueryableRepository.");
 			}
 			else
 			{

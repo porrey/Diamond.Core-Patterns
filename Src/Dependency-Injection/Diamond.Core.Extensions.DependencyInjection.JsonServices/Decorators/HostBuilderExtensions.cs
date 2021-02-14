@@ -55,38 +55,27 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
 
 				//
+				// Get configured aliases.
+				//
+				IList<Alias> aliases = new List<Alias>();
+				configuration.Bind("aliases", aliases);
+				logger.LogDebug($"There were {aliases.Count()} aliases found in JSON configuration file(s).");
+				aliases.Set();
+
+				//
 				// Get all of the services defined in the configuration.
 				//
 				IList<ServiceDescriptorConfiguration> items = new List<ServiceDescriptorConfiguration>();
 				configuration.Bind("services", items);
 				logger.LogDebug($"There were {items.Count()} services found in JSON configuration file(s).");
 
-				foreach (var item in items)
+				//
+				// Create a service descriptor for each defined service and add it to the services.
+				//
+				foreach (ServiceDescriptorConfiguration item in items)
 				{
-					Type implementationType = Type.GetType(item.ImplementationType, true);
-					Type serviceType = Type.GetType(item.ServiceType, true);
-					ServiceDescriptor sd = null;
-
-					switch (item.Lifetime)
-					{
-						case "Scoped":
-							{
-								sd = ServiceDescriptor.Scoped(serviceType, implementationType);
-							}
-							break;
-						case "Singleton":
-							{
-								sd = ServiceDescriptor.Singleton(serviceType, implementationType);
-							}
-							break;
-						case "Transient":
-							{
-								sd = ServiceDescriptor.Transient(serviceType, implementationType);
-							}
-							break;
-					}
-
-					logger.LogDebug($"Adding service descriptor from JSON configuration for '{serviceType}' implemented by '{implementationType}' of type '{item.Lifetime}'.");
+					ServiceDescriptor sd = item.CreateServiceDescriptor();
+					logger.LogDebug($"Adding service descriptor from JSON configuration for '{sd.ServiceType.FullName}' implemented by '{sd.ImplementationType.FullName}' of type '{item.Lifetime}'.");
 					services.Add(sd);
 				}
 			});

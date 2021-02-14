@@ -14,13 +14,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.Collections.Generic;
-using System.CommandLine;
-using System.Linq;
-using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.CommandLine
 {
@@ -37,7 +32,7 @@ namespace Diamond.Core.CommandLine
 		/// <param name="name">The name of the root command.</param>
 		/// <param name="args">The arguments passed to the application at the console prompt.</param>
 		/// <returns>A <see cref="IHostBuilder"/> instance used to configure and build the application.</returns>
-		public static IHostBuilder UseRootCommand(this IHostBuilder hostBuilder, string name, string[] args)
+		public static IHostBuilder AddRootCommand(this IHostBuilder hostBuilder, string name, string[] args)
 		{
 			//
 			// Create the root command/service for this application. Only
@@ -51,60 +46,6 @@ namespace Diamond.Core.CommandLine
 			hostBuilder.ConfigureServices(services =>
 			{
 				services.AddSingleton<IRootCommand>(rootCommand);
-			});
-
-			return hostBuilder;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns></returns>
-		public static IHostBuilder UseCommands(this IHostBuilder hostBuilder)
-		{
-			//
-			// Configure the command services.
-			//
-			IHostBuilder services = hostBuilder.ConfigureServices(services =>
-			{
-				//
-				// Build the services now to gain access to the needed componetns.
-				//
-				ServiceProvider sp = services.BuildServiceProvider();
-
-				//
-				// Get a logger.
-				//
-				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
-
-				//
-				// Get any commands configured.
-				//
-				IEnumerable<ICommand> commands = sp.GetRequiredService<IEnumerable<ICommand>>();
-
-				if (commands.Any())
-				{
-					//
-					// Get the root command
-					//
-					IRootCommand rootCommand = sp.GetRequiredService<IRootCommand>();
-
-					foreach (ICommand cmd in commands)
-					{
-						if (cmd is Command c)
-						{
-							logger.LogDebug($"Loading '{c.Name}' command.");
-							((RootCommand)rootCommand).AddCommand(c);
-						}
-					}
-				}
-
-				//
-				// Add the root command service as the hosted service so that
-				// it will get executed when all the setup has completed.
-				//
-				logger.LogDebug($"Adding Root Command Host Service.");
 				services.AddHostedService<RootCommandService>();
 			});
 

@@ -42,7 +42,7 @@ namespace Diamond.Core.Repository
 		{
 			TEntity returnValue = new TEntity();
 
-			this.Logger.LogTrace($"Model factory is creating instance of model type '{typeof(TEntity).Name}'.");
+			this.Logger.LogDebug($"Model factory is creating instance of model type '{typeof(TEntity).Name}'.");
 
 			return Task.FromResult<TInterface>(returnValue);
 		}

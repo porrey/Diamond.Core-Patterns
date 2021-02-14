@@ -64,13 +64,13 @@ namespace Diamond.Core.Example
 			//
 			// Get the required specification from the services.
 			//
-			_logger.LogTrace("Retrieving rules to validate shipment.");
+			_logger.LogDebug("Retrieving rules to validate shipment.");
 			IEnumerable<IRule<IShipmentModel>> rules = await _rulesFactory.GetAllAsync<IShipmentModel>(WellKnown.Rules.Shipment);
 
 			//
 			// Execute the specification to get the list of qualified widgets.
 			//
-			_logger.LogTrace("Executing rules on shipment.");
+			_logger.LogDebug("Executing rules on shipment.");
 			IEnumerable<IRuleResult> results = rules.Select(t => t.ValidateAsync(shipment).Result);
 
 			//

@@ -1,0 +1,28 @@
+{
+	//
+	// Aliases are global and can be used anywhere.
+	//
+	"aliases": [
+		{
+			"Key": "IInvoice",
+			"TypeDefinition": "Diamond.Core.Example.IInvoice, Diamond.Core.Example.Shared"
+		}
+	],
+	"services": [
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepositoryFactory, Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.RepositoryFactory, Diamond.Core.Repository",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IInvoice>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.InvoiceEntityFactory, Diamond.Core.Example.Shared",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IInvoice>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.InvoiceRepository, Diamond.Core.Example.Shared",
+			"Lifetime": "Scoped"
+		}
+	]
+}

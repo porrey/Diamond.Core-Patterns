@@ -40,7 +40,7 @@ namespace Diamond.Core.WorkFlow {
 			bool returnValue = false;
 
 			ITemporaryFolder temporaryFolder = TemporaryFolder.Factory.Create("{0}DynaMailCmd.{1}");
-			this.Logger.LogTrace("Created temporary folder '{0}'.", temporaryFolder.FullPath);
+			this.Logger.LogDebug("Created temporary folder '{0}'.", temporaryFolder.FullPath);
 
 			if (Directory.Exists(temporaryFolder.FullPath)) {
 				context.Properties.Set(DiamondWorkFlow.WellKnown.Context.TemporaryFolder, temporaryFolder);

@@ -64,7 +64,7 @@ namespace Diamond.Core.AspNet.DoAction
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IDoAction<TInputs, TResult>);
-			this.Logger.LogTrace($"Finding an IDoAction of type '{targetType.Name}' and action key of '{actionKey}'.");
+			this.Logger.LogDebug($"Finding an IDoAction of type '{targetType.Name}' and action key of '{actionKey}'.");
 
 			//
 			// Get all decorators from the container of
@@ -80,7 +80,7 @@ namespace Diamond.Core.AspNet.DoAction
 			{
 				if (targetType.IsInstanceOfType(doAction))
 				{
-					this.Logger.LogTrace($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was found.");
+					this.Logger.LogDebug($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was found.");
 					returnValue = (IDoAction<TInputs, TResult>)doAction;
 				}
 				else
