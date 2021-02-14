@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.DependencyInjection.JsonServices</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.JsonServices.HostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonServices.HostBuilderExtensions.UseConfiguredServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonServices.HostBuilderExtensions.UseConfiguredHostedServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.JsonServices.ServiceDescriptorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.JsonServices.ServiceDescriptorConfiguration.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.JsonServices.ServiceDescriptorConfiguration.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.JsonServices.ServiceDescriptorConfiguration.Lifetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.JsonServices.ServiceDescriptorConfiguration.ServiceType">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

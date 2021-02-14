@@ -45,7 +45,7 @@ namespace Diamond.Core.Example
 
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogInformation("Starting application.");
+			_logger.LogInformation($"Starting {nameof(SpecificationExampleHostedService)} service.");
 
 			//
 			// Create the widgets to qualify.
@@ -95,7 +95,7 @@ namespace Diamond.Core.Example
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogDebug($"Exiting with return code: {_exitCode}");
+			_logger.LogDebug($"Exiting service {nameof(SpecificationExampleHostedService)} with return code: {_exitCode}");
 
 			//
 			// Exit code.

@@ -18,17 +18,19 @@ using Microsoft.Extensions.Configuration;
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
-	/// 
+	/// This startup class is called by the host builder. The host build checks which
+	/// interfaces are implemented and then calls the interfaces methods.
 	/// </summary>
 	public class ConsoleStartup : IStartupConfigureServices, IStartupAppConfiguration, IStartupConfigureLogging
 	{
 		/// <summary>
-		/// Called to add additioonal logging.
+		/// Called to configure additional settings.
 		/// </summary>
 		/// <param name="builder"></param>
 		public void ConfigureAppConfiguration(IConfigurationBuilder builder)
@@ -36,7 +38,7 @@ namespace Diamond.Core.Example
 		}
 
 		/// <summary>
-		/// 
+		/// Called to add additioonal logging.
 		/// </summary>
 		/// <param name="builder"></param>
 		public void ConfigureLogging(ILoggingBuilder builder)
@@ -44,14 +46,12 @@ namespace Diamond.Core.Example
 		}
 
 		/// <summary>
-		/// 
+		/// Called to configure additional services.
 		/// </summary>
 		/// <param name="services"></param>
 		/// <returns></returns>
 		public void ConfigureServices(IServiceCollection services)
 		{
-			//services.AddTransient<ICommand, HelloCommand>();
-			//services.AddTransient<ICommand, EchoCommand>();
 		}
 	}
 }

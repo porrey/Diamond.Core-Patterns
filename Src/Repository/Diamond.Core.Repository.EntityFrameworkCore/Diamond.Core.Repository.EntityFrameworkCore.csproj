@@ -8,7 +8,7 @@
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides an implementation of the repository that can be used with Entity Framework Core.</Description>
-		<Version>5.0.0-rc.2</Version>
+		<Version>5.0.0-rc.3</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>

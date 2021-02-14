@@ -89,7 +89,7 @@
             <summary>
             
             </summary>
-            <param name="hostBuilder"></param>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
             <returns></returns>
         </member>
     </members>

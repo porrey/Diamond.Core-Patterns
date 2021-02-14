@@ -1,11 +1,13 @@
 {
 	"services": [
 		{
+			// Hello Command
 			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
 			"ImplementationType": "Diamond.Core.Example.HelloCommand, CommandConsoleExample",
 			"Lifetime": "Transient"
 		},
 		{
+			// Echo Command
 			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
 			"ImplementationType": "Diamond.Core.Example.EchoCommand, CommandConsoleExample",
 			"Lifetime": "Transient"

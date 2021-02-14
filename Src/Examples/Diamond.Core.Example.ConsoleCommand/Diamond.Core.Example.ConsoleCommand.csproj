@@ -4,16 +4,20 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>CommandConsoleExample</AssemblyName>
-    <Version>5.0.0-rc.2</Version>
+    <Version>5.0.0-rc.3</Version>
     <FileVersion>5.0.0</FileVersion>
     <AssemblyVersion>5.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
     <None Remove="Services\Command.Example.Services.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Services\Command.Example.Services.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -24,14 +28,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="3.1.0" />
+    <PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20574.7" />
     <PackageReference Include="System.CommandLine.Hosting" Version="0.3.0-alpha.20574.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Command\Diamond.Core.ConsoleCommands\Diamond.Core.ConsoleCommands.csproj" />
-    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.Configuration.Services\Diamond.Core.Extensions.Configuration.Services.csproj" />
-    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine\Diamond.Core.CommandLine.csproj" />
+    <ProjectReference Include="..\..\Configuration\Diamond.Core.Extensions.Configuration.JsonServices\Diamond.Core.Extensions.Configuration.JsonServices.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.JsonServices\Diamond.Core.Extensions.DependencyInjection.JsonServices.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
   </ItemGroup>

@@ -14,7 +14,7 @@
             
             </summary>
             <typeparam name="TStartup"></typeparam>
-            <param name="builder"></param>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Extensions.Hosting.ServicesExtensions.UseStartup``2(Microsoft.Extensions.Hosting.IHostBuilder)">
@@ -23,16 +23,30 @@
             </summary>
             <typeparam name="TStartup"></typeparam>
             <typeparam name="TContainer"></typeparam>
-            <param name="builder"></param>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.ServicesExtensions.RunCommandAsync(Microsoft.Extensions.Hosting.IHostBuilder,System.Threading.CancellationToken)">
+        <member name="M:Diamond.Core.Extensions.Hosting.ServicesExtensions.BuildAndRunWithExitCodeAsync(Microsoft.Extensions.Hosting.IHostBuilder,System.Threading.CancellationToken)">
             <summary>
             Enables console support, builds and starts the host, and waits for Ctrl+C or SIGTERM to shut down.
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <param name="cancellationToken"></param>
+            <param name="cancellationToken">The token to trigger shutdown.</param>
             <returns>Returns the exit code set in the environment.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.ServicesExtensions.RunWithExitCodeAsync(Microsoft.Extensions.Hosting.IHost,System.Threading.CancellationToken)">
+            <summary>
+            Runs an application and returns a Task that only completes when the token is
+            triggered or shutdown is triggered.
+            </summary>
+            <param name="host">The Microsoft.Extensions.Hosting.IHost to run.</param>
+            <param name="cancellationToken">The token to trigger shutdown.</param>
+            <returns>Returns the exit code set in the environment.</returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.NullStartup">
+            <summary>
+            Implements the Null Pattern for IStartup.
+            </summary>
         </member>
     </members>
 </doc>

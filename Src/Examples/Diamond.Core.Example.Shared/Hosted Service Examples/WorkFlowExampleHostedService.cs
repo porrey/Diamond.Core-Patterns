@@ -43,7 +43,7 @@ namespace Diamond.Core.Example
 
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogInformation("Starting application.");
+			_logger.LogInformation($"Starting {nameof(WorkFlowExampleHostedService)} service.");
 
 			try
 			{
@@ -71,7 +71,7 @@ namespace Diamond.Core.Example
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogDebug($"Exiting with return code: {_exitCode}");
+			_logger.LogDebug($"Exiting service {nameof(WorkFlowExampleHostedService)} with return code: {_exitCode}");
 
 			//
 			// Exit code.

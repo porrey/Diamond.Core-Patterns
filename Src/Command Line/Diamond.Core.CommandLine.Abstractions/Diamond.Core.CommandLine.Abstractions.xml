@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.CommandLine.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.CommandLine.IRootCommand">
+            <summary>
+            Distinguishes a root command from a regular command.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.IRootCommand.Args">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

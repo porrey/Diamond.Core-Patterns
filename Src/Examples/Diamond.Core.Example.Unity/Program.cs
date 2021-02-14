@@ -27,6 +27,6 @@ namespace Diamond.Core.Example
 		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
 				.UseUnityServiceProvider()
 				.UseStartup<ConsoleStartup, IUnityContainer>()
-				.RunCommandAsync();
+				.BuildAndRunWithExitCodeAsync();
 	}
 }

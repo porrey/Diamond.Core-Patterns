@@ -30,9 +30,9 @@ namespace Diamond.Core.Extensions.Hosting
 		/// 
 		/// </summary>
 		/// <typeparam name="TStartup"></typeparam>
-		/// <param name="builder"></param>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
 		/// <returns></returns>
-		public static IHostBuilder UseStartup<TStartup>(this IHostBuilder builder)
+		public static IHostBuilder UseStartup<TStartup>(this IHostBuilder hostBuilder)
 			where TStartup : IStartup, new()
 		{
 			//
@@ -45,7 +45,7 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupAppConfiguration startupAppConfiguration)
 			{
-				builder.ConfigureAppConfiguration(builder => startupAppConfiguration.ConfigureAppConfiguration(builder));
+				hostBuilder.ConfigureAppConfiguration(builder => startupAppConfiguration.ConfigureAppConfiguration(builder));
 			}
 
 			//
@@ -53,7 +53,7 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupConfigureLogging startupConfigureLogging)
 			{
-				builder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
+				hostBuilder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
 			}
 
 			//
@@ -61,10 +61,10 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupConfigureServices startupConfigureServices)
 			{
-				builder.ConfigureServices(services => startupConfigureServices.ConfigureServices(services));
+				hostBuilder.ConfigureServices(services => startupConfigureServices.ConfigureServices(services));
 			}
 
-			return builder;
+			return hostBuilder;
 		}
 
 		/// <summary>
@@ -72,9 +72,9 @@ namespace Diamond.Core.Extensions.Hosting
 		/// </summary>
 		/// <typeparam name="TStartup"></typeparam>
 		/// <typeparam name="TContainer"></typeparam>
-		/// <param name="builder"></param>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
 		/// <returns></returns>
-		public static IHostBuilder UseStartup<TStartup, TContainer>(this IHostBuilder builder)
+		public static IHostBuilder UseStartup<TStartup, TContainer>(this IHostBuilder hostBuilder)
 			where TStartup : IStartup, new()
 		{
 			//
@@ -87,7 +87,7 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupAppConfiguration startupAppConfiguration)
 			{
-				builder.ConfigureAppConfiguration(builder => startupAppConfiguration.ConfigureAppConfiguration(builder));
+				hostBuilder.ConfigureAppConfiguration(builder => startupAppConfiguration.ConfigureAppConfiguration(builder));
 			}
 
 			//
@@ -95,7 +95,7 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupConfigureLogging startupConfigureLogging)
 			{
-				builder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
+				hostBuilder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
 			}
 
 			//
@@ -103,7 +103,7 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupConfigureServices startupConfigureServices)
 			{
-				builder.ConfigureServices(services => startupConfigureServices.ConfigureServices(services));
+				hostBuilder.ConfigureServices(services => startupConfigureServices.ConfigureServices(services));
 			}
 
 			//
@@ -111,21 +111,34 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupConfigureContainer startupConfigureContainer)
 			{
-				builder.ConfigureContainer<TContainer>(container => startupConfigureContainer.ConfigureContainer<TContainer>(container));
+				hostBuilder.ConfigureContainer<TContainer>(container => startupConfigureContainer.ConfigureContainer<TContainer>(container));
 			}
 
-			return builder;
+			return hostBuilder;
 		}
 
 		/// <summary>
 		/// Enables console support, builds and starts the host, and waits for Ctrl+C or SIGTERM to shut down.
 		/// </summary>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <param name="cancellationToken"></param>
+		/// <param name="cancellationToken">The token to trigger shutdown.</param>
 		/// <returns>Returns the exit code set in the environment.</returns>
-		public static async Task<int> RunCommandAsync(this IHostBuilder hostBuilder, CancellationToken cancellationToken = default)
+		public static async Task<int> BuildAndRunWithExitCodeAsync(this IHostBuilder hostBuilder, CancellationToken cancellationToken = default)
 		{
 			await hostBuilder.UseConsoleLifetime().Build().RunAsync(cancellationToken);
+			return Environment.ExitCode;
+		}
+
+		/// <summary>
+		/// Runs an application and returns a Task that only completes when the token is
+		/// triggered or shutdown is triggered.
+		/// </summary>
+		/// <param name="host">The Microsoft.Extensions.Hosting.IHost to run.</param>
+		/// <param name="cancellationToken">The token to trigger shutdown.</param>
+		/// <returns>Returns the exit code set in the environment.</returns>
+		public static async Task<int> RunWithExitCodeAsync(this IHost host, CancellationToken cancellationToken = default)
+		{
+			await host.RunAsync(cancellationToken);
 			return Environment.ExitCode;
 		}
 	}

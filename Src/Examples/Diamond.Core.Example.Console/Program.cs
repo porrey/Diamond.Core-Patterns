@@ -18,12 +18,17 @@ using System.Threading.Tasks;
 using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Hosting;
 
+//
+// See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-5.0
+// for details on host based applications.
+//
+
 namespace Diamond.Core.Example
 {
 	class Program
 	{
-		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
+		static Task Main(string[] args) => Host.CreateDefaultBuilder(args)
 				.UseStartup<ConsoleStartup>()
-				.RunCommandAsync();
+				.BuildAndRunWithExitCodeAsync();
 	}
 }

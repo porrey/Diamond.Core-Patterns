@@ -1,5 +1,5 @@
-using Diamond.Core.Extensions.Configuration.Services;
-using Diamond.Core.Extensions.DependencyInjection;
+using Diamond.Core.Extensions.Configuration.JsonServices;
+using Diamond.Core.Extensions.DependencyInjection.JsonServices;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

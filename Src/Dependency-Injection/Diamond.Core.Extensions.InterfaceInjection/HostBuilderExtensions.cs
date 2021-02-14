@@ -34,7 +34,7 @@ namespace Diamond.Core.Extensions.InterfaceInjection
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="hostBuilder"></param>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
 		/// <returns></returns>
 		public static IHostBuilder UseDiamondDependencyInterfaceInjection(this IHostBuilder hostBuilder)
 		{

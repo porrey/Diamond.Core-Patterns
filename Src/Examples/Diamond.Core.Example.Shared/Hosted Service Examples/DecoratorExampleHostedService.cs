@@ -43,11 +43,11 @@ namespace Diamond.Core.Example
 
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogInformation("Starting application.");
+			_logger.LogInformation($"Starting {nameof(DecoratorExampleHostedService)} service.");
 
-			//*
-			//* Create a book.
-			//*
+			//
+			// Create a book.
+			//
 			Random rnd = new Random();
 
 			IBook book = new Book()
@@ -57,14 +57,14 @@ namespace Diamond.Core.Example
 				CheckedOut = rnd.Next(1, 2) == 1 ? true : false
 			};
 
-			//*
-			//* Get a decorator to check out the book.
-			//*
+			//
+			// Get a decorator to check out the book.
+			//
 			IDecorator<IBook, bool> decorator = await _decoratorFactory.GetAsync<IBook, bool>(WellKnown.Decorator.BookTransaction);
 
-			//*
-			//* Check the book out of the library.
-			//*
+			//
+			// Check the book out of the library.
+			//
 			if (await decorator.TakeActionAsync(book))
 			{
 				_logger.LogInformation("The book was successfully checked out.");
@@ -77,7 +77,7 @@ namespace Diamond.Core.Example
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogDebug($"Exiting with return code: {_exitCode}");
+			_logger.LogDebug($"Exiting service {nameof(DecoratorExampleHostedService)} with return code: {_exitCode}");
 
 			//
 			// Exit code.

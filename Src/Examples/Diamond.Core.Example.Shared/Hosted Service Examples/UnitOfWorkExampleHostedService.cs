@@ -43,25 +43,25 @@ namespace Diamond.Core.Example
 
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogInformation("Starting application.");
+			_logger.LogInformation($"Starting {nameof(UnitOfWorkExampleHostedService)} service.");
 
-			//*
-			//* Create a person.
-			//*
+			//
+			// Create a person.
+			//
 			IPerson person = new Person()
 			{
 				Id = 1,
 				FullName = "John Doe"
 			};
 
-			//*
-			//* Get a Unit of Work to create an appointment in the storage system.
-			//*
+			//
+			// Get a Unit of Work to create an appointment in the storage system.
+			//
 			IUnitOfWork<(bool, IAppointment), (IPerson, DateTime)> uow = await _unitOfWorkFactory.GetAsync<(bool, IAppointment), (IPerson, DateTime)>(WellKnown.UnitOfWork.CreateAppointment);
 
-			//*
-			//* Create the appointment in the storage system.
-			//*
+			//
+			// Create the appointment in the storage system.
+			//
 			(bool result, IAppointment appointment) = await uow.CommitAsync((person, DateTime.Now.AddDays(5)));
 
 			if (result)
@@ -76,7 +76,7 @@ namespace Diamond.Core.Example
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogDebug($"Exiting with return code: {_exitCode}");
+			_logger.LogDebug($"Exiting service {nameof(UnitOfWorkExampleHostedService)} with return code: {_exitCode}");
 
 			//
 			// Exit code.

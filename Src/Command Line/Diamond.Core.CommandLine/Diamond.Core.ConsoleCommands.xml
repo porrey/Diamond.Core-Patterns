@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.CommandLine</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.CommandLine.ServicesExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.ServicesExtensions.UseRootCommand(Microsoft.Extensions.Hosting.IHostBuilder,System.String,System.String[])">
+            <summary>
+            Create a root comand object that wraps a host builder. The host builder
+            is create using defaults.
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <param name="name">The name of the root command.</param>
+            <param name="args">The arguments passed to the application at the console prompt.</param>
+            <returns>A <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance used to configure and build the application.</returns>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.ServicesExtensions.UseCommands(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.CommandLine.RootCommandService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.RootCommandService.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.CommandLine.RootCommandService},Microsoft.Extensions.Hosting.IHostApplicationLifetime,Diamond.Core.CommandLine.IRootCommand)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="hostApplicationLifetime"></param>
+            <param name="rootCommand"></param>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.RootCommandService.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.RootCommandService.HostApplicationLifetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.RootCommandService.RootCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.RootCommandService.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.RootCommandService.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

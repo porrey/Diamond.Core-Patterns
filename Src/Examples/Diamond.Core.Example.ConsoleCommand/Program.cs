@@ -15,19 +15,34 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Threading.Tasks;
-using Diamond.Core.ConsoleCommands;
-using Diamond.Core.Extensions.Configuration.Services;
-using Diamond.Core.Extensions.DependencyInjection;
+using Diamond.Core.CommandLine;
+using Diamond.Core.Extensions.Configuration.JsonServices;
+using Diamond.Core.Extensions.DependencyInjection.JsonServices;
 using Diamond.Core.Extensions.Hosting;
+using Microsoft.Extensions.Hosting;
+using Serilog;
+
+//
+// See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-5.0
+// for details on host based applications.
+//
 
 namespace Diamond.Core.Example.ConsoleCommand
 {
 	class Program
 	{
-		static async Task Main(string[] args) => await ConsoleHost.CreateRootCommand("Sample Application", args)
-				.ConfigureServicesFolder("./Services")
-				.UseConfiguredServices()
-				.UseDiamondCoreHost<ConsoleStartup>()
-				.RunCommandAsync();
+		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
+							.UseRootCommand("Sample Application", args)
+							.UseSerilog((c, l) =>
+							{
+								l.ReadFrom.Configuration(c.Configuration);
+							})
+							.ConfigureServicesFolder("./Services")
+							.UseConfiguredServices()
+							.UseCommands()
+							.UseStartup<ConsoleStartup>()
+							.UseConsoleLifetime()
+							.Build()
+							.RunWithExitCodeAsync();
 	}
 }
