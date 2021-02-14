@@ -18,13 +18,15 @@ using System;
 using System.Threading.Tasks;
 using Diamond.Core.WorkFlow.State;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Defines a generic context that can be used for a work-flow. The
 	/// context allows data to be shared between the multiple steps of
 	/// a work-flow during execution.
 	/// </summary>
-	public class GenericContext : DisposableObject, IContext {
+	public class GenericContext : DisposableObject, IContext
+	{
 		/// <summary>
 		/// Gets the name of the context. The name is used for logging purposes.
 		/// </summary>
@@ -44,7 +46,8 @@ namespace Diamond.Core.WorkFlow {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public Task ResetAsync() {
+		public Task ResetAsync()
+		{
 			throw new NotImplementedException();
 		}
 	}

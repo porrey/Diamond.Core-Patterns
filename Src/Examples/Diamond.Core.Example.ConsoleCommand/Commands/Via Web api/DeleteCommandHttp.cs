@@ -14,55 +14,45 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.CommandLine;
-using System.CommandLine.Invocation;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DeleteCommand : Command
+	public class DeleteCommandHttp : DeleteCommandBase
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
-		public DeleteCommand(ILogger<DeleteCommand> logger, IRepositoryFactory repositoryFactory)
-			: base("delete", "Delete an existing invoice item.")
+		public DeleteCommandHttp(ILogger<DeleteCommandHttp> logger, IHttpClientFactory repositoryFactory)
+			: base(logger)
 		{
-			this.Logger = logger;
-
-			this.AddOption(new Option<string>($"--{nameof(Invoice.Number).ToLower()}", "Invoice Number.")
-			{
-				IsRequired = true
-			});
-
-			this.Handler = CommandHandler.Create<string>(async (p) =>
-			{
-				return await this.OnHandleCommand(p);
-			});
+			this.HttpClientFactory = repositoryFactory;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<DeleteCommand> Logger { get; set; } = new NullLogger<DeleteCommand>();
+		protected IHttpClientFactory HttpClientFactory { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="invoiceNumber"></param>
+		/// <param name="invoice"></param>
 		/// <returns></returns>
-		protected Task<int> OnHandleCommand(string invoiceNumber)
+		protected override async Task<int> OnHandleCommand(Invoice invoice)
 		{
-			//this.Logger.LogInformation($"You said: '{properties.Phrase}'.");
-			return Task.FromResult(0);
+			int returnValue = 0;
+
+			await Task.Delay(1);
+
+			return returnValue;
 		}
 	}
 }

@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Defines a factory that will retrieve the work flow manager for a given work flow.
 	/// </summary>
-	public interface IWorkFlowManagerFactory {
+	public interface IWorkFlowManagerFactory
+	{
 		/// <summary>
 		/// Gets the work flow items for a given work flow identified by groupName;
 		/// </summary>

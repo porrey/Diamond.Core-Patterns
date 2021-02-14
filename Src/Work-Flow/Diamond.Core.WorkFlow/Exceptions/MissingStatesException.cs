@@ -14,17 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Generic error for a missing context property.
 	/// </summary>
-	public class MissingStepsException : WorkFlowException {
+	public class MissingStepsException : WorkFlowException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="group"></param>
 		public MissingStepsException(string group)
-			: base($"No Work-Flow steps with group '{group}' were found.") {
+			: base($"No Work-Flow steps with group '{group}' were found.")
+		{
 		}
 	}
 }

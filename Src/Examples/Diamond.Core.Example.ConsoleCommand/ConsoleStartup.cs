@@ -1,4 +1,5 @@
-﻿using System.CommandLine;
+﻿using System;
+using System.CommandLine;
 using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 //
@@ -30,6 +31,11 @@ namespace Diamond.Core.Example
 	public class ConsoleStartup : IStartupConfigureServices, IStartupAppConfiguration, IStartupConfigureLogging
 	{
 		/// <summary>
+		/// 
+		/// </summary>
+		public IConfiguration Configuration { get; set; }
+
+		/// <summary>
 		/// Called to configure additional settings.
 		/// </summary>
 		/// <param name="builder"></param>
@@ -53,10 +59,16 @@ namespace Diamond.Core.Example
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//
-			// Add the the database context.
+			// Add required services.
 			//
 			services.AddAutoMapper(typeof(MappingProfile));
 			services.AddDatabaseConfiguration();
+
+			services.AddHttpClient("Invoice", c =>
+			{
+				c.BaseAddress = new Uri("http://localhost:50481/invoices");
+				c.DefaultRequestHeaders.Add("Accept", "application/xml");
+			});
 		}
 	}
 }

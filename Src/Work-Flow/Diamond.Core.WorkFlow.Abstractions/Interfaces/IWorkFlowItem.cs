@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Defines a work flow item.
 	/// </summary>
-	public interface IWorkFlowItem {
+	public interface IWorkFlowItem
+	{
 		/// <summary>
 		/// Specifies the order in which the specified step is executed in a given
 		/// work flow.

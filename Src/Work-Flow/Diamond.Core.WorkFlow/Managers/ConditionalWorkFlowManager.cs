@@ -22,24 +22,28 @@ using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	///  This work-flow manager executes ALL steps in a work flow. If the
 	///  current step indicates it should not be executed it is skipped
 	///  and the work flow moves on to the next step.
 	/// </summary>
-	public class ConditionalWorkFlowManager : IWorkFlowManager, ILoggerPublisher<ConditionalWorkFlowManager> {
+	public class ConditionalWorkFlowManager : IWorkFlowManager, ILoggerPublisher<ConditionalWorkFlowManager>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public ConditionalWorkFlowManager() {
+		public ConditionalWorkFlowManager()
+		{
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="steps"></param>
-		public ConditionalWorkFlowManager(IWorkFlowItem[] steps) {
+		public ConditionalWorkFlowManager(IWorkFlowItem[] steps)
+		{
 			this.Group = null;
 			this.Steps = steps;
 		}
@@ -49,7 +53,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="steps"></param>
 		/// <param name="group"></param>
-		public ConditionalWorkFlowManager(IWorkFlowItem[] steps, string group) {
+		public ConditionalWorkFlowManager(IWorkFlowItem[] steps, string group)
+		{
 			this.Group = group;
 			this.Steps = steps;
 		}
@@ -59,7 +64,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="workFlowItemFactory"></param>
 		/// <param name="group"></param>
-		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group) {
+		public ConditionalWorkFlowManager(IWorkFlowItemFactory workFlowItemFactory, string group)
+		{
 			this.Group = group;
 			this.WorkFlowItemFactory = workFlowItemFactory;
 		}
@@ -77,29 +83,36 @@ namespace Diamond.Core.WorkFlow {
 		/// <summary>
 		/// 
 		/// </summary>
-		public IWorkFlowItem[] Steps {
-			get {
+		public IWorkFlowItem[] Steps
+		{
+			get
+			{
 				return _steps;
 			}
-			set {
+			set
+			{
 				//
 				// Ensure that the states are numbered contiguously.
 				//
-				if (value.OrderBy(t => t.Ordinal).First().Ordinal == 1) {
+				if (value.OrderBy(t => t.Ordinal).First().Ordinal == 1)
+				{
 					bool isContiguous = !value.OrderBy(s => s.Ordinal).Select(t => t.Ordinal).Select((i, j) => i - j).Distinct().Skip(1).Any();
 
-					if (isContiguous) {
+					if (isContiguous)
+					{
 						//
 						// Store the steps ordered by the ordinal property value.
 						//
 						_steps = value.OrderBy(s => s.Ordinal).ToArray();
 					}
-					else {
-						throw new ArgumentOutOfRangeException($"The state items for group {this.Group} are not numbered consecutively.");
+					else
+					{
+						throw new ArgumentOutOfRangeException("The state items for group {group} are not numbered consecutively.", this.Group);
 					}
 				}
-				else {
-					throw new ArgumentOutOfRangeException($"The state items for group {this.Group} must be numbered starting with 1.");
+				else
+				{
+					throw new ArgumentOutOfRangeException("The state items for group {group} must be numbered starting with 1.", this.Group);
 				}
 			}
 		}
@@ -119,7 +132,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public async Task<bool> ExecuteWorkflowAsync(IContext context) {
+		public async Task<bool> ExecuteWorkflowAsync(IContext context)
+		{
 			bool returnValue = true;
 
 			//
@@ -141,12 +155,14 @@ namespace Diamond.Core.WorkFlow {
 			//
 			// Loop through each work-flow step executing them one at a time.
 			//
-			for (int i = 0; i < this.Steps.Count(); i++) {
-				if (this.Steps[i].ShouldExecute(context)) {
+			for (int i = 0; i < this.Steps.Count(); i++)
+			{
+				if (this.Steps[i].ShouldExecute(context))
+				{
 					//
 					// Publish a progress update.
 					//
-					this.Logger.LogDebug($"Starting work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+					this.Logger.LogDebug("Starting work-flow step '{name}' [{i}].", this.Steps[i].Name, $"{i + 1} of {this.Steps.Count()}");
 
 					//
 					// Start the stop watch.
@@ -158,10 +174,12 @@ namespace Diamond.Core.WorkFlow {
 					//
 					bool result = false;
 
-					try {
+					try
+					{
 						result = await this.ExecuteStepAsync(this.Steps[i], context);
 					}
-					finally {
+					finally
+					{
 						//
 						// Stop the stop watch.
 						//
@@ -170,16 +188,18 @@ namespace Diamond.Core.WorkFlow {
 						//
 						// Check the result.
 						//
-						if (result) {
+						if (result)
+						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, true);
 							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							this.Logger.LogDebug($"The work-flow step '{this.Steps[i].Name}' completed successfully [Execution time = {time} second(s)].");
+							this.Logger.LogDebug("The work-flow step '{name}' completed successfully [Execution time = {time} second(s)].", this.Steps[i].Name, time);
 							returnValue = true;
 						}
-						else {
+						else
+						{
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed, true);
 							context.Properties.Set(DiamondWorkFlow.WellKnown.Context.LastStepSuccess, false);
-							this.Logger.LogDebug($"The work-flow step '{this.Steps[i].Name}' failed.");
+							this.Logger.LogDebug("The work-flow step '{name}' failed.", this.Steps[i].Name);
 							returnValue = false;
 						}
 
@@ -189,15 +209,17 @@ namespace Diamond.Core.WorkFlow {
 						stopWatch.Reset();
 					}
 				}
-				else {
-					this.Logger.LogDebug($"Skipping work-flow step '{this.Steps[i].Name}' [{i + 1} of {this.Steps.Count()}].");
+				else
+				{
+					this.Logger.LogDebug("Skipping work-flow step '{name}' [{i}].", this.Steps[i].Name, $"{i + 1} of {this.Steps.Count()}");
 				}
 			}
 
 			//
 			// Check if the context contains a failed flag.
 			//
-			if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed)) {
+			if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed))
+			{
 				returnValue = !context.Properties.Get<bool>(DiamondWorkFlow.WellKnown.Context.WorkFlowFailed);
 			}
 
@@ -208,14 +230,17 @@ namespace Diamond.Core.WorkFlow {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected async Task LoadAsync() {
-			if (this.Steps == null || this.Steps.Count() == 0) {
+		protected async Task LoadAsync()
+		{
+			if (this.Steps == null || this.Steps.Count() == 0)
+			{
 				this.Logger.LogDebug("Loading Work-Flow steps.");
 				this.Steps = (await this.WorkFlowItemFactory.GetItemsAsync(this.Group)).ToArray();
-				this.Logger.LogDebug($"{this.Steps.Count()} steps were loaded.");
+				this.Logger.LogDebug("{count} steps were loaded.", this.Steps.Count());
 
-				if (this.Steps.Count() == 0) {
-					this.Logger.LogDebug($"Throwing exception because no steps were found for the Work-Flow with group name '{this.Group}'.");
+				if (this.Steps.Count() == 0)
+				{
+					this.Logger.LogDebug("Throwing exception because no steps were found for the Work-Flow with group name '{group}'.", this.Group);
 					throw new MissingStepsException(this.Group);
 				}
 			}
@@ -227,29 +252,36 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="step"></param>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem step, IContext context) {
+		protected async Task<bool> ExecuteStepAsync(IWorkFlowItem step, IContext context)
+		{
 			bool returnValue = false;
 
-			try {
-				this.Logger.LogDebug($"Executing Work-Flow step '{step.Name}'.");
-				if (await step.ExecuteStepAsync(context)) {
-					this.Logger.LogDebug($"The Work-Flow step '{step.Name}' completed successfully.");
+			try
+			{
+				this.Logger.LogDebug("Executing Work-Flow step '{name}'.", step.Name);
+				if (await step.ExecuteStepAsync(context))
+				{
+					this.Logger.LogDebug("The Work-Flow step '{name}' completed successfully.", step.Name);
 					returnValue = true;
 				}
-				else {
-					this.Logger.LogError($"The Work-Flow step '{step.Name}' failed.");
+				else
+				{
+					this.Logger.LogError("The Work-Flow step '{name}' failed.", step.Name);
 
-					if (context.HasException()) {
-						this.Logger.LogDebug($"The Work-Flow step '{step.Name}' had an exception set.");
+					if (context.HasException())
+					{
+						this.Logger.LogDebug("The Work-Flow step '{name}' had an exception set.", step.Name);
 						context.SetException(new WorkFlowFailureException(context.GetException(), step.Name, step.Ordinal));
 					}
-					else {
-						this.Logger.LogWarning($"The Work-Flow step '{step.Name}' did NOT have an exception set.");
+					else
+					{
+						this.Logger.LogWarning("The Work-Flow step '{name}' did NOT have an exception set.", step.Name);
 						context.SetException(new UnknownFailureException(step.Name, step.Ordinal));
 					}
 				}
 			}
-			catch (Exception ex) {
+			catch (Exception ex)
+			{
 				this.Logger.LogError(ex, nameof(ExecuteStepAsync));
 				context.SetException(ex);
 				returnValue = false;

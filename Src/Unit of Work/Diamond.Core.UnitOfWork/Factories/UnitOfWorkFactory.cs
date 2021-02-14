@@ -75,7 +75,7 @@ namespace Diamond.Core.UnitOfWork
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IUnitOfWork<TResult, TSourceItem>);
-			this.Logger.LogDebug($"Finding a Unit of Work with key '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogDebug("Finding a Unit of Work with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
 
 			//
 			// Get all decorators from the container of
@@ -83,7 +83,7 @@ namespace Diamond.Core.UnitOfWork
 			//
 			IEnumerable<IUnitOfWork> items = this.ServiceProvider.GetService<IEnumerable<IUnitOfWork>>();
 			IEnumerable<IUnitOfWork> keyItems = items.Where(t => t.Key == name);
-			this.Logger.LogDebug($"{keyItems.Count()} match items of the target type were found.");
+			this.Logger.LogDebug("{count} match items of the target type were found.", keyItems.Count());
 
 			//
 			// Within the list, find the target decorator.
@@ -93,7 +93,7 @@ namespace Diamond.Core.UnitOfWork
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (IUnitOfWork<TResult, TSourceItem>)item;
-					this.Logger.LogDebug($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogDebug("The Unit of Work key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 					break;
 				}
 			}
@@ -103,7 +103,7 @@ namespace Diamond.Core.UnitOfWork
 			//
 			if (returnValue == null)
 			{
-				this.Logger.LogDebug($"The Unit of Work key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
+				this.Logger.LogDebug("The Unit of Work key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
 				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(name);
 			}
 

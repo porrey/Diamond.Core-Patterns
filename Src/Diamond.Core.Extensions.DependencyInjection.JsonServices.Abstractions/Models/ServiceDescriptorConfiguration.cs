@@ -26,11 +26,6 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Key { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
 		public string ImplementationType { get; set; }
 
 		/// <summary>
@@ -42,5 +37,23 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 		/// 
 		/// </summary>
 		public string ServiceType { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public Condition Condition { get; set; }
+	}
+
+	public class Condition
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		public string ConfigurationKey { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public string ConfigurationValue { get; set; }
 	}
 }

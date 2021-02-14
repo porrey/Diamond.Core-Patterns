@@ -75,7 +75,7 @@ namespace Diamond.Core.Decorator
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IDecorator<TDecoratedItem, TResult>);
-			this.Logger.LogDebug($"Finding an IDecorator of type '{targetType.Name}' and container registration name of '{name}'.");
+			this.Logger.LogDebug("Finding an IDecorator of type '{targetType}' and container registration name of '{name}'.", targetType.Name, name);
 
 			//
 			// Get all decorators from the container of
@@ -91,12 +91,12 @@ namespace Diamond.Core.Decorator
 			{
 				if (targetType.IsInstanceOfType(decorator))
 				{
-					this.Logger.LogDebug($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was found.");
+					this.Logger.LogDebug("IDecorator of type '{targetType}' and container registration name of '{name}' was found.", targetType.Name, name);
 					returnValue = (IDecorator<TDecoratedItem, TResult>)decorator;
 				}
 				else
 				{
-					this.Logger.LogError($"IDecorator of type '{targetType.Name}' and container registration name of '{name}' was NOT found. Throwing exception...");
+					this.Logger.LogError("IDecorator of type '{targetType}' and container registration name of '{name}' was NOT found. Throwing exception...", targetType.Name, name);
 					throw new DecoratorNotFoundException<TDecoratedItem, TResult>(name);
 				}
 			}

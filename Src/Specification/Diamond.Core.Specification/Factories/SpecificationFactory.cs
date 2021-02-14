@@ -74,7 +74,7 @@ namespace Diamond.Core.Specification
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(ISpecification<TResult>);
-			this.Logger.LogDebug($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogDebug("Finding a Specification with container registration name '{name}' and Target Type '{targetType}'.", name, targetType.Name);
 
 			//
 			// Get all decorators from the container of
@@ -90,18 +90,18 @@ namespace Diamond.Core.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogDebug($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogDebug("The Specification '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 					returnValue = (ISpecification<TResult>)item;
 				}
 				else
 				{
-					this.Logger.LogError($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
+					this.Logger.LogError("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
 					throw new SpecificationNotFoundException<TResult>(name);
 				}
 			}
 			else
 			{
-				this.Logger.LogError($"The Specification key '{name}' was NOT found. Throwing exception...");
+				this.Logger.LogError("The Specification key '{name}' was NOT found. Throwing exception...", name);
 				throw new SpecificationNotFoundException<TResult>(name);
 			}
 
@@ -123,7 +123,7 @@ namespace Diamond.Core.Specification
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(ISpecification<TParameter, TResult>);
-			this.Logger.LogDebug($"Finding a Specification with container registration name '{name}' and Target Type '{targetType.Name}'.");
+			this.Logger.LogDebug("Finding a Specification with container registration name '{name}' and Target Type '{targetType}'.", name, targetType.Name);
 
 			//
 			// Get all decorators from the container of
@@ -139,18 +139,18 @@ namespace Diamond.Core.Specification
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogDebug($"The Specification '{name}' and Target Type '{targetType.Name}' was found.");
+					this.Logger.LogDebug("The Specification '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 					returnValue = (ISpecification<TParameter, TResult>)item;
 				}
 				else
 				{
-					this.Logger.LogError($"The Specification key '{name}' and Target Type '{targetType.Name}' was NOT found. Throwing exception...");
+					this.Logger.LogError("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
 					throw new SpecificationNotFoundException<TParameter, TResult>(name);
 				}
 			}
 			else
 			{
-				this.Logger.LogError($"The Specification key '{name}' was NOT found. Throwing exception...");
+				this.Logger.LogError("The Specification key '{name}' was NOT found. Throwing exception...", name);
 				throw new SpecificationNotFoundException<TParameter, TResult>(name);
 			}
 

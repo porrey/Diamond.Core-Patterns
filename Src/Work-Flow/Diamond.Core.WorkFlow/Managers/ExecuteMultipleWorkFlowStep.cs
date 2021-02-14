@@ -20,7 +20,8 @@ using System.Threading.Tasks;
 using Diamond.Core.Abstractions;
 using Diamond.Core.WorkFlow;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	//public class ExecuteMultipleWorkFlowStep<T> : WorkFlowItem<T> where T : IContext
 	//{
 	//	public ExecuteMultipleWorkFlowStep(IObjectFactory objectFactory, string workFlowManagerName, string workflowTitle, bool stopOnError)

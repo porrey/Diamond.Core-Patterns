@@ -15,42 +15,28 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Collections.Generic;
-using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ListCommand : Command
+	public class ListCommandDirect : ListCommandBase
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
-		public ListCommand(ILogger<ListCommand> logger, IRepositoryFactory repositoryFactory)
-			: base("list", "List all invoices in the data storage.")
+		public ListCommandDirect(ILogger<ListCommandDirect> logger, IRepositoryFactory repositoryFactory)
+			: base(logger)
 		{
-			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
-
-			this.Handler = CommandHandler.Create<string>(async _ =>
-			{
-				return await this.OnHandleCommand();
-			});
 		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<ListCommand> Logger { get; set; } = new NullLogger<ListCommand>();
 
 		/// <summary>
 		/// 
@@ -61,7 +47,7 @@ namespace Diamond.Core.Example
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected async Task<int> OnHandleCommand()
+		protected override async Task<int> OnHandleCommand()
 		{
 			int returnValue = 0;
 
@@ -85,7 +71,7 @@ namespace Diamond.Core.Example
 				foreach (IInvoice item in items)
 				{
 					string paid = item.Paid ? "Yes" : "No";
-					this.Logger.LogInformation($"[{item.Id}] {item.Number}, Description = '{item.Description}', Total = {item.Total:$#,##0.00}, Paid = {paid}");
+					this.Logger.LogInformation("[{id}] {number}, Description = '{description}', Total = {total}, Paid = {paid}", item.Id, item.Number, item.Description, item.Total.ToString("$#,##0.00"), item.Paid ? "Yes" : "No");
 				}
 			}
 			else

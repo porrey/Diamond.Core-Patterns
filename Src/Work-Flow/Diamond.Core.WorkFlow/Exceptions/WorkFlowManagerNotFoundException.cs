@@ -16,17 +16,20 @@
 // 
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class WorkFlowManagerNotFoundException : DiamondCoreException {
+	public class WorkFlowManagerNotFoundException : DiamondCoreException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="groupName"></param>
 		public WorkFlowManagerNotFoundException(string groupName)
-			: base($"A work flow manager of type 'IWorkFlowManager<{typeof(IContext).Name}>' with group name '{groupName}' has not been configured.") {
+			: base($"A work flow manager of type 'IWorkFlowManager<{typeof(IContext).Name}>' with group name '{groupName}' has not been configured.")
+		{
 		}
 	}
 }

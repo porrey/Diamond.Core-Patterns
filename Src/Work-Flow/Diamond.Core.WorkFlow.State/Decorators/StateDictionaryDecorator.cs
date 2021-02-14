@@ -16,7 +16,6 @@
 // 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.WorkFlow.State
 {

@@ -50,16 +50,18 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 				//
 				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
 
+				//
 				// Get the configuration.
 				//
 				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+				ServiceDescriptorConfigurationDecorator.Configuration = configuration;
 
 				//
 				// Get configured aliases.
 				//
 				IList<Alias> aliases = new List<Alias>();
 				configuration.Bind("aliases", aliases);
-				logger.LogDebug($"There were {aliases.Count()} aliases found in JSON configuration file(s).");
+				logger.LogDebug("There were {count} aliases found in JSON configuration file(s).", aliases.Count());
 				aliases.Set();
 
 				//
@@ -67,7 +69,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 				//
 				IList<ServiceDescriptorConfiguration> items = new List<ServiceDescriptorConfiguration>();
 				configuration.Bind("services", items);
-				logger.LogDebug($"There were {items.Count()} services found in JSON configuration file(s).");
+				logger.LogDebug("There were {count} services focountund in JSON configuration file(s).", items.Count());
 
 				//
 				// Create a service descriptor for each defined service and add it to the services.
@@ -75,8 +77,16 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 				foreach (ServiceDescriptorConfiguration item in items)
 				{
 					ServiceDescriptor sd = item.CreateServiceDescriptor();
-					logger.LogDebug($"Adding service descriptor from JSON configuration for '{sd.ServiceType.FullName}' implemented by '{sd.ImplementationType.FullName}' of type '{item.Lifetime}'.");
-					services.Add(sd);
+
+					if (sd != null)
+					{
+						logger.LogDebug("Adding service descriptor from JSON configuration for '{serviceType}' implemented by '{implementationType}' of type '{lifetime}'.", sd.ServiceType.FullName, sd.ImplementationType.FullName, item.Lifetime);
+						services.Add(sd);
+					}
+					else
+					{
+						logger.LogDebug("Skipping creation of service descriptor for Service Type = '{serviceType}' and ImplementationType = '{implementationType}' [Lifetime = {lifetime}].", item.ServiceType, item.ImplementationType, item.Lifetime);
+					}
 				}
 			});
 		}
@@ -114,7 +124,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 
 				foreach (var hostedItem in hostedItems)
 				{
-					logger.LogDebug($"Add hosted service '{hostedItem.ImplementationType}'.");
+					logger.LogDebug("Add hosted service '{hostedItem}'.", hostedItem.ImplementationType);
 					Type implementationType = Type.GetType(hostedItem.ImplementationType, true);
 					services.TryAddEnumerable(ServiceDescriptor.Singleton(typeof(IHostedService), implementationType));
 				}

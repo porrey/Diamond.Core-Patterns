@@ -14,18 +14,21 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Generic error for a missing context property.
 	/// </summary>
-	public class UnknownFailureException : WorkFlowException {
+	public class UnknownFailureException : WorkFlowException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="stepName"></param>
 		/// <param name="stepNumber"></param>
 		public UnknownFailureException(string stepName, int stepNumber)
-			: base($"The step '{stepName}' [{stepNumber}] failed for an unknown reason.") {
+			: base($"The step '{stepName}' [{stepNumber}] failed for an unknown reason.")
+		{
 		}
 	}
 }

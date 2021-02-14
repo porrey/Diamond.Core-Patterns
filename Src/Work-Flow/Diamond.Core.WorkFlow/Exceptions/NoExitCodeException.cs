@@ -16,16 +16,19 @@
 // 
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class NoExitCodeException : DiamondCoreException {
+	public class NoExitCodeException : DiamondCoreException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public NoExitCodeException()
-			: base($"An exit code was not found in the context properties.") {
+			: base($"An exit code was not found in the context properties.")
+		{
 		}
 	}
 }

@@ -13,47 +13,45 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-// 
-using System.IO;
+//
+using System.Net.Http;
 using System.Threading.Tasks;
-using Diamond.Core.System;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.WorkFlow
+namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class CreateTemporaryFolderStep : WorkFlowItem
+	public class ListCommandHttp : ListCommandBase
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public override string Name => "Create Temporary Folder";
+		/// <param name="logger"></param>
+		/// <param name="httpClientFactory"></param>
+		public ListCommandHttp(ILogger<ListCommandHttp> logger, IHttpClientFactory httpClientFactory)
+			: base(logger)
+		{
+			this.HttpClientFactory = httpClientFactory;
+		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		protected IHttpClientFactory HttpClientFactory { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <returns></returns>
-		protected override Task<bool> OnExecuteStepAsync(IContext context)
+		protected override async Task<int> OnHandleCommand()
 		{
-			bool returnValue = false;
+			int returnValue = 0;
 
-			ITemporaryFolder temporaryFolder = TemporaryFolder.Factory.Create("{0}DynaMailCmd.{1}");
-			this.Logger.LogDebug("Created temporary folder '{path}'.", temporaryFolder.FullPath);
+			await Task.Delay(1);
 
-			if (Directory.Exists(temporaryFolder.FullPath))
-			{
-				context.Properties.Set(DiamondWorkFlow.WellKnown.Context.TemporaryFolder, temporaryFolder);
-				returnValue = true;
-			}
-			else
-			{
-				this.StepFailedAsync(context, "Failed to create temporary folder.");
-			}
-
-			return Task.FromResult(returnValue);
+			return returnValue;
 		}
 	}
 }

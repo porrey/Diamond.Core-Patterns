@@ -16,16 +16,19 @@
 // 
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class NoExceptionException : DiamondCoreException {
+	public class NoExceptionException : DiamondCoreException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public NoExceptionException()
-			: base($"An exception object was not found in the context properties.") {
+			: base($"An exception object was not found in the context properties.")
+		{
 		}
 	}
 }

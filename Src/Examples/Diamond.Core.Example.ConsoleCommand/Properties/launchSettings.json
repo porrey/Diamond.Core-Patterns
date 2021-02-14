@@ -2,7 +2,7 @@
   "profiles": {
     "Diamond.Core.Example.Command.Console": {
       "commandName": "Project",
-      "commandLineArgs": "update --number INV12345 --description \"Shipment invoice\" --total 125.60 --paid true",
+      "commandLineArgs": "get --number INV12345",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

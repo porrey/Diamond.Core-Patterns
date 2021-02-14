@@ -19,11 +19,13 @@ using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class WorkFlowItem : IWorkFlowItem, ILoggerPublisher<WorkFlowItem> {
+	public abstract class WorkFlowItem : IWorkFlowItem, ILoggerPublisher<WorkFlowItem>
+	{
 		/// <summary>
 		/// Gets/sets the name of this work-flow item for logging purposes.
 		/// </summary>
@@ -60,7 +62,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public virtual bool ShouldExecute(IContext context) {
+		public virtual bool ShouldExecute(IContext context)
+		{
 			return true;
 		}
 
@@ -69,12 +72,14 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public virtual async Task<bool> ExecuteStepAsync(IContext context) {
+		public virtual async Task<bool> ExecuteStepAsync(IContext context)
+		{
 			bool returnValue = false;
 
 			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(ExecuteStepAsync)}");
 
-			if (await this.OnPrepareForExecutionAsync(context)) {
+			if (await this.OnPrepareForExecutionAsync(context))
+			{
 				returnValue = await this.OnExecuteStepAsync(context);
 			}
 
@@ -86,7 +91,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context) {
+		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context)
+		{
 			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(OnPrepareForExecutionAsync)}");
 			return Task.FromResult(true);
 		}
@@ -96,7 +102,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		protected virtual Task<bool> OnExecuteStepAsync(IContext context) {
+		protected virtual Task<bool> OnExecuteStepAsync(IContext context)
+		{
 			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(OnExecuteStepAsync)}");
 			return Task.FromResult(true);
 		}
@@ -105,7 +112,8 @@ namespace Diamond.Core.WorkFlow {
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public override string ToString() {
+		public override string ToString()
+		{
 			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";
 		}
 
@@ -115,7 +123,8 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="context"></param>
 		/// <param name="message"></param>
 		/// <returns></returns>
-		protected Task StepFailedAsync(IContext context, string message) {
+		protected Task StepFailedAsync(IContext context, string message)
+		{
 			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(StepFailedAsync)}");
 			context.SetException(message);
 			return Task.FromResult(0);

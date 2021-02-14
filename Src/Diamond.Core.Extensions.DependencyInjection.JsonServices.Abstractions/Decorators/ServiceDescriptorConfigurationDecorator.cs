@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
@@ -39,6 +40,11 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 		{
 			AliasList = aliasList.ToDictionary(p => $"<{p.Key}>");
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static IConfiguration Configuration { get; set; }
 
 		/// <summary>
 		/// 
@@ -125,34 +131,58 @@ namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
+		public static bool ShouldCreate(this ServiceDescriptorConfiguration item)
+		{
+			bool returnValue = false;
+
+			if (item.Condition != null)
+			{
+				returnValue = Configuration[item.Condition.ConfigurationKey] == item.Condition.ConfigurationValue;
+			}
+			else
+			{
+				returnValue = true;
+			}
+
+			return returnValue;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static ServiceDescriptor CreateServiceDescriptor(this ServiceDescriptorConfiguration item)
 		{
 			ServiceDescriptor returnValue = null;
 
-			//
-			// Get the service type.
-			//
-			Type serviceType = item.FindType(TypeSource.Service);
-
-			//
-			// Get the implementation type.
-			//
-			Type implementationType = item.FindType(TypeSource.Implemenation);
-
-			//
-			// Select the lifetime and create the descriptor.
-			//
-			switch (item.Lifetime)
+			if (item.ShouldCreate())
 			{
-				case "Scoped":
-					returnValue = ServiceDescriptor.Scoped(serviceType, implementationType);
-					break;
-				case "Singleton":
-					returnValue = ServiceDescriptor.Singleton(serviceType, implementationType);
-					break;
-				case "Transient":
-					returnValue = ServiceDescriptor.Transient(serviceType, implementationType);
-					break;
+				//
+				// Get the service type.
+				//
+				Type serviceType = item.FindType(TypeSource.Service);
+
+				//
+				// Get the implementation type.
+				//
+				Type implementationType = item.FindType(TypeSource.Implemenation);
+
+				//
+				// Select the lifetime and create the descriptor.
+				//
+				switch (item.Lifetime)
+				{
+					case "Scoped":
+						returnValue = ServiceDescriptor.Scoped(serviceType, implementationType);
+						break;
+					case "Singleton":
+						returnValue = ServiceDescriptor.Singleton(serviceType, implementationType);
+						break;
+					case "Transient":
+						returnValue = ServiceDescriptor.Transient(serviceType, implementationType);
+						break;
+				}
 			}
 
 			return returnValue;

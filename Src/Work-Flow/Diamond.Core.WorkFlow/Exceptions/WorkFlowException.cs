@@ -18,16 +18,19 @@ using System;
 using System.Runtime.Serialization;
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class WorkFlowException : DiamondCoreException {
+	public abstract class WorkFlowException : DiamondCoreException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		public WorkFlowException()
-			: base() {
+			: base()
+		{
 		}
 
 		/// <summary>
@@ -35,7 +38,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="message"></param>
 		public WorkFlowException(string message)
-				: base(message) {
+				: base(message)
+		{
 		}
 
 		/// <summary>
@@ -44,7 +48,8 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="info"></param>
 		/// <param name="context"></param>
 		protected WorkFlowException(SerializationInfo info, StreamingContext context)
-				: base(info, context) {
+				: base(info, context)
+		{
 		}
 
 		/// <summary>
@@ -53,7 +58,8 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="message"></param>
 		/// <param name="innerException"></param>
 		public WorkFlowException(string message, Exception innerException) :
-				base(message, innerException) {
+				base(message, innerException)
+		{
 		}
 	}
 }

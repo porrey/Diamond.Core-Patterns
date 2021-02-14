@@ -22,11 +22,13 @@ using Microsoft.Extensions.Logging;
 
 #pragma warning disable DF0010
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DeleteTemporaryFolderStep : WorkFlowItem {
+	public class DeleteTemporaryFolderStep : WorkFlowItem
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -37,8 +39,10 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		protected override Task<bool> OnExecuteStepAsync(IContext context) {
-			if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.TemporaryFolder)) {
+		protected override Task<bool> OnExecuteStepAsync(IContext context)
+		{
+			if (context.Properties.ContainsKey(DiamondWorkFlow.WellKnown.Context.TemporaryFolder))
+			{
 				ITemporaryFolder temporaryFolder = context.Properties.Get<ITemporaryFolder>(DiamondWorkFlow.WellKnown.Context.TemporaryFolder);
 
 				//
@@ -50,11 +54,13 @@ namespace Diamond.Core.WorkFlow {
 				TryDisposable<ITemporaryFolder>.Dispose(temporaryFolder);
 				context.Properties.Remove(DiamondWorkFlow.WellKnown.Context.TemporaryFolder);
 
-				if (Directory.Exists(tempPath)) {
-					this.Logger.LogWarning("The temporary folder '{0}' could not be deleted.", tempPath);
+				if (Directory.Exists(tempPath))
+				{
+					this.Logger.LogWarning("The temporary folder '{path}' could not be deleted.", tempPath);
 				}
-				else {
-					this.Logger.LogDebug("The temporary folder '{0}' was deleted successfully.", tempPath);
+				else
+				{
+					this.Logger.LogDebug("The temporary folder '{path}' was deleted successfully.", tempPath);
 				}
 			}
 

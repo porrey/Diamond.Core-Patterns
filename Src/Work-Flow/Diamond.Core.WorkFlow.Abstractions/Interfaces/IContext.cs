@@ -17,11 +17,13 @@
 using System.Threading.Tasks;
 using Diamond.Core.WorkFlow.State;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Defines a generic context.
 	/// </summary>
-	public interface IContext {
+	public interface IContext
+	{
 		/// <summary>
 		/// Gets the name of the context.
 		/// </summary>

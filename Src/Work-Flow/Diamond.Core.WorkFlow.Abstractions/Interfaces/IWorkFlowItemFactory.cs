@@ -17,11 +17,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Defines a factory to create/retrieve work flow items.
 	/// </summary>
-	public interface IWorkFlowItemFactory {
+	public interface IWorkFlowItemFactory
+	{
 		/// <summary>
 		/// gets all work flow items instances with the given key.
 		/// </summary>

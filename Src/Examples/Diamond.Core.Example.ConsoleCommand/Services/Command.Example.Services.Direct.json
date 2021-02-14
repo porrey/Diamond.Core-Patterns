@@ -1,0 +1,54 @@
+{
+	"services": [
+		{
+			// Create Command
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.CreateCommandDirect, CommandConsoleExample",
+			"Lifetime": "Scoped",
+			"Condition": {
+				"ConfigurationKey": "Settings:CommandMode",
+				"ConfigurationValue": "Direct"
+			}
+		},
+		{
+			// Update Command
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.UpdateCommandDirect, CommandConsoleExample",
+			"Lifetime": "Scoped",
+			"Condition": {
+				"ConfigurationKey": "Settings:CommandMode",
+				"ConfigurationValue": "Direct"
+			}
+		},
+		{
+			// Delete Command
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.DeleteCommandDirect, CommandConsoleExample",
+			"Lifetime": "Scoped",
+			"Condition": {
+				"ConfigurationKey": "Settings:CommandMode",
+				"ConfigurationValue": "Direct"
+			}
+		},
+		{
+			// List Command
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.ListCommandDirect, CommandConsoleExample",
+			"Lifetime": "Scoped",
+			"Condition": {
+				"ConfigurationKey": "Settings:CommandMode",
+				"ConfigurationValue": "Direct"
+			}
+		},
+		{
+			// Direct Get Command
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.GetCommandDirect, CommandConsoleExample",
+			"Lifetime": "Scoped",
+			"Condition": {
+				"ConfigurationKey": "Settings:CommandMode",
+				"ConfigurationValue": "Direct"
+			}
+		}
+	]
+}

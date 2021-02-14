@@ -14,13 +14,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
 using System.CommandLine;
 using System.CommandLine.Invocation;
-using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -29,20 +25,16 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class UpdateCommand : Command
+	public class UpdateCommandBase : Command
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
-		/// <param name="repositoryFactory"></param>
-		/// <param name="mapper"></param>
-		public UpdateCommand(ILogger<UpdateCommand> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
+		public UpdateCommandBase(ILogger<UpdateCommandBase> logger)
 			: base("update", "Updates an invoice.")
 		{
 			this.Logger = logger;
-			this.RepositoryFactory = repositoryFactory;
-			this.Mapper = mapper;
 
 			this.AddOption(new Option<string>($"--{nameof(Invoice.Number).ToLower()}", "Invoice Number.")
 			{
@@ -73,73 +65,16 @@ namespace Diamond.Core.Example
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<UpdateCommand> Logger { get; set; } = new NullLogger<UpdateCommand>();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected IRepositoryFactory RepositoryFactory { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected IMapper Mapper { get; set; }
+		protected ILogger<UpdateCommandBase> Logger { get; set; } = new NullLogger<UpdateCommandBase>();
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		protected async Task<int> OnHandleCommand(Invoice item)
+		protected virtual Task<int> OnHandleCommand(Invoice item)
 		{
-			int returnValue = 0;
-
-			//
-			// Get a writable repository for IInvoice.
-			//
-			this.Logger.LogDebug("Retrieving a writable repository for IInvoice.");
-			IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
-
-			//
-			// Get the invoice.
-			//
-			IInvoice exisingItem = (await repository.GetAsync(t => t.Number == item.Number)).SingleOrDefault();
-
-			if (exisingItem != null)
-			{
-				//
-				// Apply the patch 
-				//
-				this.Mapper.Map(item, exisingItem);
-
-				try
-				{
-					//
-					// Update the data.
-					//
-					bool result = await repository.UpdateAsync(exisingItem);
-
-					if (result)
-					{
-						this.Logger.LogInformation($"Successfully update invoice {item.Number} [ID = {exisingItem.Id}].");
-						returnValue = 0;
-					}
-					else
-					{
-						this.Logger.LogError($"The invoice with invoice number '{item.Number}' could not be updated.");
-					}
-				}
-				catch (Exception ex)
-				{
-					this.Logger.LogError(ex, "Exception while updating invoice.");
-				}
-			}
-			else
-			{
-				this.Logger.LogInformation($"An invoice with invoice number '{item.Number}' could not be found.");
-			}
-
-			return returnValue;
+			return Task.FromResult(0);
 		}
 	}
 }

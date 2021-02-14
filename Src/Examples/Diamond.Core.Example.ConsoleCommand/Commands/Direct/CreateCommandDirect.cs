@@ -15,21 +15,18 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System;
-using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.Threading.Tasks;
 using AutoMapper;
 using Diamond.Core.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class CreateCommand : Command
+	public class CreateCommandDirect : CreateCommandBase
 	{
 		/// <summary>
 		/// 
@@ -37,43 +34,12 @@ namespace Diamond.Core.Example
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
 		/// <param name="mapper"></param>
-		public CreateCommand(ILogger<CreateCommand> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
-			: base("create", "Creates a new invoice item.")
+		public CreateCommandDirect(ILogger<CreateCommandDirect> logger, IRepositoryFactory repositoryFactory, IMapper mapper)
+			: base(logger)
 		{
-			this.Logger = logger;
 			this.RepositoryFactory = repositoryFactory;
 			this.Mapper = mapper;
-
-			this.AddOption(new Option<string>($"--{nameof(Invoice.Number).ToLower()}", "Invoice Number.")
-			{
-				IsRequired = true
-			});
-
-			this.AddOption(new Option<string>($"--{nameof(Invoice.Description).ToLower()}", "Invoice Description.")
-			{
-				IsRequired = true
-			});
-
-			this.AddOption(new Option<float>($"--{nameof(Invoice.Total).ToLower()}", "Invoice Total.")
-			{
-				IsRequired = true
-			});
-
-			this.AddOption(new Option<bool>($"--{nameof(Invoice.Paid).ToLower()}", "Indicates if the invoice has been paid or not.")
-			{
-				IsRequired = false
-			});
-
-			this.Handler = CommandHandler.Create<Invoice>(async (p) =>
-			{
-				return await this.OnHandleCommand(p);
-			});
 		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<CreateCommand> Logger { get; set; } = new NullLogger<CreateCommand>();
 
 		/// <summary>
 		/// 
@@ -90,7 +56,7 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		protected async Task<int> OnHandleCommand(Invoice item)
+		protected override async Task<int> OnHandleCommand(Invoice item)
 		{
 			int returnValue = 0;
 

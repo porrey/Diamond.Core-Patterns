@@ -143,8 +143,8 @@ namespace Diamond.Core.CommandLine
 					this.Logger.LogDebug("OnStarted has been called on Root Command Service.");
 					this.Logger.LogDebug("Executing InvokeAsync on Root Command.");
 					int result = await ((RootCommand)this.RootCommand).InvokeAsync(this.RootCommand.Args);
-					this.Logger.LogDebug($"Root Command returned integer value of {result}.");
-					this.Logger.LogDebug($"Setting Environment.ExitCode to {result}.");
+					this.Logger.LogDebug("Root Command returned integer value of {result}.", result);
+					this.Logger.LogDebug("Setting Environment.ExitCode to {result}.", result);
 					Environment.ExitCode = result;
 				}
 				catch (Exception ex)

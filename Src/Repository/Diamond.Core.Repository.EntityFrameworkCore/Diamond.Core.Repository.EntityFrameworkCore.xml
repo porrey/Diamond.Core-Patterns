@@ -14,6 +14,41 @@
             
             </summary>
         </member>
+        <member name="T:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.SaveAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureCreated">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureDeleted">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3">
             <summary>
             This repository implements a base repository for an Entity (TEntity) that
@@ -126,41 +161,6 @@
             </summary>
             <param name="repositoryContext"></param>
             <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1">
-            <summary>
-            
-            </summary>
-            <typeparam name="TContext"></typeparam>
-        </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
-            <summary>
-            
-            </summary>
-            <param name="options"></param>
-        </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.SaveAsync">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureCreated">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureDeleted">
-            <summary>
-            
-            </summary>
             <returns></returns>
         </member>
     </members>

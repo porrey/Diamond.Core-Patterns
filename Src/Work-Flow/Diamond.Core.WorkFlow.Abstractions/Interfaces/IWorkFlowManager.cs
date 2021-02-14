@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Defines a generic work flow manager.
 	/// </summary>
-	public interface IWorkFlowManager {
+	public interface IWorkFlowManager
+	{
 		/// <summary>
 		/// The group name used to determine the work flow
 		/// items that are part of this work flow.

@@ -16,11 +16,13 @@
 // 
 using System;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// Generic error for a missing context property.
 	/// </summary>
-	public class WorkFlowFailureException : WorkFlowException {
+	public class WorkFlowFailureException : WorkFlowException
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -28,7 +30,8 @@ namespace Diamond.Core.WorkFlow {
 		/// <param name="stepName"></param>
 		/// <param name="stepNumber"></param>
 		public WorkFlowFailureException(Exception innerException, string stepName, int stepNumber)
-			: base($"The work flow failure at the step '{stepName}' [{stepNumber}]. See the inner exception for details.", innerException) {
+			: base($"The work flow failure at the step '{stepName}' [{stepNumber}]. See the inner exception for details.", innerException)
+		{
 		}
 	}
 }

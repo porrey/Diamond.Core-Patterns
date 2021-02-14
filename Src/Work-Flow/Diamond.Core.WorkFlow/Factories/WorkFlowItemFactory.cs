@@ -23,16 +23,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public class WorkFlowItemFactory : IWorkFlowItemFactory, ILoggerPublisher<WorkFlowItemFactory> {
+	public class WorkFlowItemFactory : IWorkFlowItemFactory, ILoggerPublisher<WorkFlowItemFactory>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="serviceProvider"></param>
-		public WorkFlowItemFactory(IServiceProvider serviceProvider) {
+		public WorkFlowItemFactory(IServiceProvider serviceProvider)
+		{
 			this.ServiceProvider = serviceProvider;
 		}
 
@@ -41,7 +44,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
-		public WorkFlowItemFactory(IServiceProvider serviceProvider, ILogger<WorkFlowItemFactory> logger) {
+		public WorkFlowItemFactory(IServiceProvider serviceProvider, ILogger<WorkFlowItemFactory> logger)
+		{
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
@@ -61,7 +65,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="groupName"></param>
 		/// <returns></returns>
-		public Task<IEnumerable<IWorkFlowItem>> GetItemsAsync(string groupName) {
+		public Task<IEnumerable<IWorkFlowItem>> GetItemsAsync(string groupName)
+		{
 			IList<IWorkFlowItem> returnValue = new List<IWorkFlowItem>();
 
 			//
@@ -76,20 +81,25 @@ namespace Diamond.Core.WorkFlow {
 			IEnumerable<IWorkFlowItem> groupItems = items.Where(t => t.Group == groupName);
 			this.Logger.LogDebug($"Found {groupItems.Count()} Work-Flow items for group '{groupName}'.");
 
-			if (groupItems.Count() > 0) {
+			if (groupItems.Count() > 0)
+			{
 				this.Logger.LogDebug($"Loading Work-Flow items for group '{groupName}'.");
 
-				foreach (IWorkFlowItem groupItem in groupItems) {
-					if (targetType.IsInstanceOfType(groupItem)) {
+				foreach (IWorkFlowItem groupItem in groupItems)
+				{
+					if (targetType.IsInstanceOfType(groupItem))
+					{
 						returnValue.Add((IWorkFlowItem)groupItem);
 						this.Logger.LogDebug($"Added Work-Flow item '{groupItem.Name}'.");
 					}
-					else {
+					else
+					{
 						this.Logger.LogDebug($"Skipping Work-Flow item '{groupItem.Name}' because it does not have the correct Type.");
 					}
 				}
 			}
-			else {
+			else
+			{
 				//
 				// No items
 				//

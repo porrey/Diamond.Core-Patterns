@@ -23,17 +23,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.WorkFlow {
+namespace Diamond.Core.WorkFlow
+{
 	/// <summary>
 	/// This is a generic repository factory that can return a repository
 	/// for any given entity interface.
 	/// </summary>
-	public class WorkFlowManagerFactory : IWorkFlowManagerFactory, ILoggerPublisher<WorkFlowManagerFactory> {
+	public class WorkFlowManagerFactory : IWorkFlowManagerFactory, ILoggerPublisher<WorkFlowManagerFactory>
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="serviceProvider"></param>
-		public WorkFlowManagerFactory(IServiceProvider serviceProvider) {
+		public WorkFlowManagerFactory(IServiceProvider serviceProvider)
+		{
 			this.ServiceProvider = serviceProvider;
 		}
 
@@ -42,7 +45,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
-		public WorkFlowManagerFactory(IServiceProvider serviceProvider, ILogger<WorkFlowManagerFactory> logger) {
+		public WorkFlowManagerFactory(IServiceProvider serviceProvider, ILogger<WorkFlowManagerFactory> logger)
+		{
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
@@ -62,7 +66,8 @@ namespace Diamond.Core.WorkFlow {
 		/// </summary>
 		/// <param name="groupName"></param>
 		/// <returns></returns>
-		public Task<IWorkFlowManager> GetAsync(string groupName) {
+		public Task<IWorkFlowManager> GetAsync(string groupName)
+		{
 			IWorkFlowManager returnValue = null;
 
 			//
@@ -77,11 +82,13 @@ namespace Diamond.Core.WorkFlow {
 			IEnumerable<IWorkFlowManager> items = this.ServiceProvider.GetService<IEnumerable<IWorkFlowManager>>();
 			IWorkFlowManager item = items.Where(t => t.Group == groupName).SingleOrDefault();
 
-			if (item != null) {
+			if (item != null)
+			{
 				this.Logger.LogDebug($"Work-Flow manager with group '{groupName}' was found.");
 				returnValue = (IWorkFlowManager)item;
 			}
-			else {
+			else
+			{
 				this.Logger.LogWarning($"Work-Flow manager with group '{groupName}' was NOT found.");
 				throw new WorkFlowManagerNotFoundException(groupName);
 			}

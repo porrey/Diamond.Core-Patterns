@@ -13,47 +13,47 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-// 
-using System.IO;
+//
+using System.CommandLine;
+using System.CommandLine.Invocation;
 using System.Threading.Tasks;
-using Diamond.Core.System;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.WorkFlow
+namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class CreateTemporaryFolderStep : WorkFlowItem
+	public abstract class ListCommandBase : Command
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public override string Name => "Create Temporary Folder";
+		/// <param name="logger"></param>
+		public ListCommandBase(ILogger<ListCommandBase> logger)
+			: base("list", "List all invoices in the data storage.")
+		{
+			this.Logger = logger;
+
+			this.Handler = CommandHandler.Create<string>(async _ =>
+			{
+				return await this.OnHandleCommand();
+			});
+		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		protected ILogger<ListCommandBase> Logger { get; set; } = new NullLogger<ListCommandBase>();
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <returns></returns>
-		protected override Task<bool> OnExecuteStepAsync(IContext context)
+		protected virtual Task<int> OnHandleCommand()
 		{
-			bool returnValue = false;
-
-			ITemporaryFolder temporaryFolder = TemporaryFolder.Factory.Create("{0}DynaMailCmd.{1}");
-			this.Logger.LogDebug("Created temporary folder '{path}'.", temporaryFolder.FullPath);
-
-			if (Directory.Exists(temporaryFolder.FullPath))
-			{
-				context.Properties.Set(DiamondWorkFlow.WellKnown.Context.TemporaryFolder, temporaryFolder);
-				returnValue = true;
-			}
-			else
-			{
-				this.StepFailedAsync(context, "Failed to create temporary folder.");
-			}
-
-			return Task.FromResult(returnValue);
+			return Task.FromResult(0);
 		}
 	}
 }
