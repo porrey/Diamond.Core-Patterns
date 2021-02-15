@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.JsonServices.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.TypeSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.TypeSource.Service">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.TypeSource.Implemenation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.AliasList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.Set(System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.JsonServices.Alias})">
+            <summary>
+            
+            </summary>
+            <param name="aliasList"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.FindType(Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration,Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.ExtractTypeDefinition(Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration,Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.TransformAlias(Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration,Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.ShouldCreate(Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfigurationDecorator.CreateServiceDescriptor(Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.AliasNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.AliasNotFoundException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException">
+            <summary>
+            This is an abstract class the defines the base object for all
+            exceptions in the Diamond.Core.Repositry library. This allows exceptions
+            specific to this library to be caught separately than other exceptions.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException"/> class.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException"/> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference
+            if no inner exception is specified.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.JsonServices.DiamondJsonServicesException"/> class with serialized data.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
+            object data about the exception being thrown.</param>
+            <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
+            about the source or destination.</param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.Alias">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.Alias.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.Alias.TypeDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.Condition.ConfigurationKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.Condition.ConfigurationValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration.Lifetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration.ServiceType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration.Condition">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

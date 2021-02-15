@@ -21,26 +21,16 @@ namespace Diamond.Core.Extensions.JsonServices
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ServiceDescriptorConfiguration
+	public class Condition
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ImplementationType { get; set; }
+		public string ConfigurationKey { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Lifetime { get; set; } = ServiceLifetime.Scoped.ToString();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ServiceType { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Condition Condition { get; set; }
+		public string ConfigurationValue { get; set; }
 	}
 }

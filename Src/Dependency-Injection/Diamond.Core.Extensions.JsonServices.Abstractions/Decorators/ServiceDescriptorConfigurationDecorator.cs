@@ -49,7 +49,8 @@ namespace Diamond.Core.Extensions.JsonServices
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="typeDefinition"></param>
+		/// <param name="item"></param>
+		/// <param name="typeSource"></param>
 		/// <returns></returns>
 		public static Type FindType(this ServiceDescriptorConfiguration item, TypeSource typeSource)
 		{
@@ -94,7 +95,8 @@ namespace Diamond.Core.Extensions.JsonServices
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="typeDefinition"></param>
+		/// <param name="item"></param>
+		/// <param name="typeSource"></param>
 		/// <returns></returns>
 		public static string TransformAlias(this ServiceDescriptorConfiguration item, TypeSource typeSource)
 		{
