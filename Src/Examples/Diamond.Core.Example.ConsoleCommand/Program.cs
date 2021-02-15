@@ -17,7 +17,7 @@
 using System.Threading.Tasks;
 using Diamond.Core.CommandLine;
 using Diamond.Core.Extensions.Configuration.JsonServices;
-using Diamond.Core.Extensions.DependencyInjection.JsonServices;
+using Diamond.Core.Extensions.JsonServices;
 using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;

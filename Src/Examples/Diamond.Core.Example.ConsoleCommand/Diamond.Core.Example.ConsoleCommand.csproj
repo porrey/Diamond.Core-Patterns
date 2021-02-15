@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>CommandConsoleExample</AssemblyName>
-    <Version>5.0.0-rc.3</Version>
+    <Version>5.0.0-rc.4</Version>
     <FileVersion>5.0.0</FileVersion>
     <AssemblyVersion>5.0.0</AssemblyVersion>
   </PropertyGroup>
@@ -36,7 +36,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Serilog.Extensions.Hosting" Version="3.1.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="4.0.0" />
     <PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
@@ -47,7 +47,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine\Diamond.Core.CommandLine.csproj" />
     <ProjectReference Include="..\..\Configuration\Diamond.Core.Extensions.Configuration.JsonServices\Diamond.Core.Extensions.Configuration.JsonServices.csproj" />
-    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.JsonServices\Diamond.Core.Extensions.DependencyInjection.JsonServices.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.JsonServices\Diamond.Core.Extensions.JsonServices.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
     <ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />

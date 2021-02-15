@@ -13,47 +13,19 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-//
-using Microsoft.Extensions.DependencyInjection;
+// 
+using Microsoft.Extensions.Configuration;
 
-namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
+namespace Diamond.Core.Extensions.Hosting
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ServiceDescriptorConfiguration
+	public interface IStartupConfiguration : IStartup
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ImplementationType { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public string Lifetime { get; set; } = ServiceLifetime.Scoped.ToString();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ServiceType { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Condition Condition { get; set; }
-	}
-
-	public class Condition
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ConfigurationKey { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ConfigurationValue { get; set; }
+		IConfiguration Configuration { get; set; }
 	}
 }

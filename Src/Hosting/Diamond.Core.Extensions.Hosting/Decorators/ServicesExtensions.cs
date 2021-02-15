@@ -45,7 +45,21 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupAppConfiguration startupAppConfiguration)
 			{
-				hostBuilder.ConfigureAppConfiguration(builder => startupAppConfiguration.ConfigureAppConfiguration(builder));
+				hostBuilder.ConfigureAppConfiguration((context, builder) =>
+				{
+					//
+					//
+					//
+					if (startup is IStartupConfiguration startupConfiguration)
+					{
+						startupConfiguration.Configuration = context.Configuration;
+					}
+
+					//
+					//
+					//
+					startupAppConfiguration.ConfigureAppConfiguration(builder);
+				});
 			}
 
 			//
@@ -87,7 +101,21 @@ namespace Diamond.Core.Extensions.Hosting
 			//
 			if (startup is IStartupAppConfiguration startupAppConfiguration)
 			{
-				hostBuilder.ConfigureAppConfiguration(builder => startupAppConfiguration.ConfigureAppConfiguration(builder));
+				hostBuilder.ConfigureAppConfiguration((context, builder) =>
+				{
+					//
+					//
+					//
+					if (startup is IStartupConfiguration startupConfiguration)
+					{
+						startupConfiguration.Configuration = context.Configuration;
+					}
+
+					//
+					//
+					//
+					startupAppConfiguration.ConfigureAppConfiguration(builder);
+				});
 			}
 
 			//

@@ -1,4 +1,4 @@
-﻿namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
+﻿namespace Diamond.Core.Extensions.JsonServices
 {
 	/// <summary>
 	/// 

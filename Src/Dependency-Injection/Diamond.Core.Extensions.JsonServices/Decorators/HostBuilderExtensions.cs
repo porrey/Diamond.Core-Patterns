@@ -23,7 +23,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
+namespace Diamond.Core.Extensions.JsonServices
 {
 	/// <summary>
 	/// 

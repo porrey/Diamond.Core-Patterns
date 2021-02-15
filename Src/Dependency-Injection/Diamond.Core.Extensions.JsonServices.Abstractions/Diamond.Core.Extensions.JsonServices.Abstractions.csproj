@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -7,8 +8,8 @@
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
-		<Description>This library provides extensions for .NET Core dependency injection to support services defined in JSON configuration files.</Description>
-		<Version>5.0.0-rc.3</Version>
+		<Description>This library provides abstractions for .NET Core dependency injection to support services defined in JSON configuration files.</Description>
+		<Version>5.0.0-rc.4</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
@@ -28,30 +29,23 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
-	<PropertyGroup>
-	  <DocumentationFile>Diamond.Core.Extensions.DependencyInjection.JsonServices.xml</DocumentationFile>
-	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
 	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 	  <None Include="..\..\..\Images\Diamond.Core.128x128.png">
 	    <Pack>True</Pack>
 	    <PackagePath></PackagePath>
 	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\Diamond.Core.Extensions.DependencyInjection.JsonServices.Abstractions\Diamond.Core.Extensions.DependencyInjection.JsonServices.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>

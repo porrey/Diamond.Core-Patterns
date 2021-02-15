@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CommandLine;
 using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 //
@@ -19,7 +18,6 @@ using Microsoft.Extensions.Configuration;
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
@@ -28,7 +26,7 @@ namespace Diamond.Core.Example
 	/// This startup class is called by the host builder. The host build checks which
 	/// interfaces are implemented and then calls the interfaces methods.
 	/// </summary>
-	public class ConsoleStartup : IStartupConfigureServices, IStartupAppConfiguration, IStartupConfigureLogging
+	public class ConsoleStartup : IStartupConfiguration, IStartupConfigureServices, IStartupAppConfiguration, IStartupConfigureLogging
 	{
 		/// <summary>
 		/// 

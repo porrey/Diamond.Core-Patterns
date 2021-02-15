@@ -20,6 +20,16 @@
             </summary>
             <param name="builder"></param>
         </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.IStartupConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.Hosting.IStartupConfiguration.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Diamond.Core.Extensions.Hosting.IStartupConfigureContainer">
             <summary>
             

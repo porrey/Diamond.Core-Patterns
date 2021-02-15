@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
+namespace Diamond.Core.Extensions.JsonServices
 {
 	/// <summary>
 	/// 

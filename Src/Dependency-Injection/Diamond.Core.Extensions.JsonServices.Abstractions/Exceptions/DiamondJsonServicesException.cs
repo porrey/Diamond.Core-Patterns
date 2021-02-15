@@ -18,7 +18,7 @@ using System;
 using System.Runtime.Serialization;
 using Diamond.Core.Abstractions;
 
-namespace Diamond.Core.Extensions.DependencyInjection.JsonServices
+namespace Diamond.Core.Extensions.JsonServices
 {
 	/// <summary>
 	/// This is an abstract class the defines the base object for all

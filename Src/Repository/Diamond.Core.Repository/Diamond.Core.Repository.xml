@@ -4,6 +4,155 @@
         <name>Diamond.Core.Repository</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Repository.RepositoryDecorator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadonly``1(Diamond.Core.Repository.IWritableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsQueryable``1(Diamond.Core.Repository.IWritableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadonly``1(Diamond.Core.Repository.IQueryableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsWritable``1(Diamond.Core.Repository.IQueryableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsQueryable``1(Diamond.Core.Repository.IReadOnlyRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsWritable``1(Diamond.Core.Repository.IReadOnlyRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadonly``1(Diamond.Core.Repository.IRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsWritable``1(Diamond.Core.Repository.IRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsQueryable``1(Diamond.Core.Repository.IRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadonly``1(Diamond.Core.Repository.IWritableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsQueryable``1(Diamond.Core.Repository.IWritableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadonly``1(Diamond.Core.Repository.IQueryableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsWritable``1(Diamond.Core.Repository.IQueryableRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsQueryable``1(Diamond.Core.Repository.IReadOnlyRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsWritable``1(Diamond.Core.Repository.IReadOnlyRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadonly``1(Diamond.Core.Repository.IRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsWritable``1(Diamond.Core.Repository.IRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsQueryable``1(Diamond.Core.Repository.IRepository{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Repository.RepositoryNotDefinedException">
             <summary>
             

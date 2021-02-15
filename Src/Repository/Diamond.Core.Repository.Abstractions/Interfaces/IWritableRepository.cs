@@ -22,8 +22,7 @@ namespace Diamond.Core.Repository
 	/// Defines a repository that can be used to modify items in a data store.
 	/// </summary>
 	/// <typeparam name="TInterface"></typeparam>
-	public interface IWritableRepository<TInterface> : IQueryableRepository<TInterface>
-		where TInterface : IEntity
+	public interface IWritableRepository<TInterface> : IRepository<TInterface> where TInterface : IEntity
 	{
 		/// <summary>
 		/// Gets the model factory used to create new models.

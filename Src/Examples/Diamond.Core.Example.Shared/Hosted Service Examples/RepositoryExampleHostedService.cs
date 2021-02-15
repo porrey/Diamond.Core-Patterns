@@ -67,11 +67,11 @@ namespace Diamond.Core.Example
 				//
 				// Ensure the database is created.
 				//
-				using (IRepositoryContext db = await repository.GetContextAsync())
+				using (IRepositoryContext db = await repository.AsQueryable().GetContextAsync())
 				{
 					if (await db.EnsureCreated())
 					{
-						if (!(await repository.GetAllAsync()).Any())
+						if (!(await repository.AsReadonly().GetAllAsync()).Any())
 						{
 							//
 							// Create 100 new items.
@@ -112,7 +112,7 @@ namespace Diamond.Core.Example
 					//
 					// Query the database and retrieve all of the invoices.
 					//
-					IEnumerable<IInvoice> items = await repository.GetAllAsync();
+					IEnumerable<IInvoice> items = await repository.AsReadonly().GetAllAsync();
 					_logger.LogInformation($"There are {items.Count()} invoices in the database.");
 				}
 			}

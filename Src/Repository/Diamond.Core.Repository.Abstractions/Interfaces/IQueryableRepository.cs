@@ -24,7 +24,7 @@ namespace Diamond.Core.Repository
 	/// closed by the caller.
 	/// </summary>
 	/// <typeparam name="TInterface"></typeparam>
-	public interface IQueryableRepository<TInterface> : IReadOnlyRepository<TInterface> where TInterface : IEntity
+	public interface IQueryableRepository<TInterface> : IRepository<TInterface> where TInterface : IEntity
 	{
 		/// <summary>
 		/// Gets an active context that can be used for subsequent queries. This context
