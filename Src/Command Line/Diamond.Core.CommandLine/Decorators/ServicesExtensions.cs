@@ -25,7 +25,7 @@ namespace Diamond.Core.CommandLine
 	public static class ServicesExtensions
 	{
 		/// <summary>
-		/// Create a root comand object that wraps a host builder. The host builder
+		/// Create a root command object that wraps a host builder. The host builder
 		/// is create using defaults.
 		/// </summary>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>

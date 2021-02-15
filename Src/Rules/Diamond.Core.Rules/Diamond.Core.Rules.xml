@@ -31,7 +31,7 @@
         <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider)">
             <summary>
             Creates an instance of <see cref="T:Diamond.Core.Rules.IRule"/> with the
-            specififed instance of <see cref="T:System.IServiceProvider"/>.
+            specified instance of <see cref="T:System.IServiceProvider"/>.
             </summary>
             <param name="serviceProvider"></param>
         </member>

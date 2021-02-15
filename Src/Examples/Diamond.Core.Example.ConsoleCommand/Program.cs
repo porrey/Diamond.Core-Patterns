@@ -45,7 +45,7 @@ namespace Diamond.Core.Example
 							{
 								l.ReadFrom.Configuration(c.Configuration);
 							})
-							.ConfigureServicesFolder("./Services")
+							.ConfigureServicesFolder("Services")
 							.UseConfiguredServices()
 							.UseStartup<ConsoleStartup>()
 							.UseConsoleLifetime()

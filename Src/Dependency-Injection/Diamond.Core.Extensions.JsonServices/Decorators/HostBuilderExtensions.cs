@@ -69,7 +69,7 @@ namespace Diamond.Core.Extensions.JsonServices
 				//
 				IList<ServiceDescriptorConfiguration> items = new List<ServiceDescriptorConfiguration>();
 				configuration.Bind("services", items);
-				logger.LogDebug("There were {count} services focountund in JSON configuration file(s).", items.Count());
+				logger.LogDebug("There were {count} services found in JSON configuration file(s).", items.Count());
 
 				//
 				// Create a service descriptor for each defined service and add it to the services.

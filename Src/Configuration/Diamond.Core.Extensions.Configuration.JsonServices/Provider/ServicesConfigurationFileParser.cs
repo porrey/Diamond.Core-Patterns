@@ -49,7 +49,7 @@ namespace Diamond.Core.Extensions.Configuration.JsonServices
 			_baseIndex = baseIndex;
 
 			//
-			// Set up JSON otpions.
+			// Set up JSON options.
 			//
 			JsonDocumentOptions jsonDocumentOptions = new JsonDocumentOptions
 			{

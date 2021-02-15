@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 
 namespace Diamond.Core.Extensions.Configuration.JsonServices
@@ -42,9 +43,9 @@ namespace Diamond.Core.Extensions.Configuration.JsonServices
 		public override void Load()
 		{
 			//
-			// Gte a DirectoryInof object to convert relative paths to full paths.
+			// Get a DirectoryInof object to convert relative paths to full paths.
 			//
-			DirectoryInfo dir = new DirectoryInfo(this.Source.Path);
+			DirectoryInfo dir = new DirectoryInfo($"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}/{this.Source.Path}");
 
 			//
 			// Ensue the directory exists.
@@ -55,9 +56,9 @@ namespace Diamond.Core.Extensions.Configuration.JsonServices
 				// Get all of the files.
 				//
 				FileInfo[] files = dir.GetFiles("*.json", SearchOption.AllDirectories);
-				
+
 				//
-				// When reading the the arrays from multiple files, the index needs to
+				// When reading the arrays from multiple files, the index needs to
 				// to be contiguous across the multiple files. This index will keep track.
 				//
 				int baseIndex = 0;

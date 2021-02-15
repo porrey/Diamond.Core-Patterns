@@ -35,7 +35,7 @@ namespace Diamond.Core.Example
 		{
 			(bool result, IAppointment appointment) = (false, null);
 
-			this.Logger.LogInformation($"Creating appointmnet for '{item.Person.FullName}'.");
+			this.Logger.LogInformation($"Creating appointment for '{item.Person.FullName}'.");
 
 			appointment = new Appointment()
 			{

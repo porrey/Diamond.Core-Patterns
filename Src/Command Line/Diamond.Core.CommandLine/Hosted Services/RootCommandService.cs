@@ -99,7 +99,7 @@ namespace Diamond.Core.CommandLine
 				{
 					if (cmd is Command c)
 					{
-						this.Logger.LogDebug($"Addng '{c.Name}' command to Root Command.");
+						this.Logger.LogDebug($"Adding '{c.Name}' command to Root Command.");
 						((RootCommand)this.RootCommand).AddCommand(c);
 					}
 				}
@@ -149,7 +149,7 @@ namespace Diamond.Core.CommandLine
 				}
 				catch (Exception ex)
 				{
-					this.Logger.LogError(ex, "Caught excepion in RootCommandService.OnStarted().");
+					this.Logger.LogError(ex, "Caught exception in RootCommandService.OnStarted().");
 				}
 				finally
 				{

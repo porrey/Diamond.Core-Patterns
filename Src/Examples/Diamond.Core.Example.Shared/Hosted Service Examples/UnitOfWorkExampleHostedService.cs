@@ -66,7 +66,7 @@ namespace Diamond.Core.Example
 
 			if (result)
 			{
-				_logger.LogInformation($"The appointment was successfully created. The appointmnet ID is {appointment.Id}.");
+				_logger.LogInformation($"The appointment was successfully created. The appointment ID is {appointment.Id}.");
 			}
 			else
 			{

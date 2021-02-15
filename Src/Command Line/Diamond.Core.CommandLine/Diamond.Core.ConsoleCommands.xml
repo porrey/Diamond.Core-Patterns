@@ -11,7 +11,7 @@
         </member>
         <member name="M:Diamond.Core.CommandLine.ServicesExtensions.AddRootCommand(Microsoft.Extensions.Hosting.IHostBuilder,System.String,System.String[])">
             <summary>
-            Create a root comand object that wraps a host builder. The host builder
+            Create a root command object that wraps a host builder. The host builder
             is create using defaults.
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>

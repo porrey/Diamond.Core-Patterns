@@ -32,7 +32,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 	/// <typeparam name="TInterface">The interface type that the entity implements.</typeparam>
 	/// <typeparam name="TEntity">The entity object type.</typeparam>
 	/// <typeparam name="TContext">The Entity Framework database context.</typeparam>
-	public abstract class EntityFrameworkRepository<TInterface, TEntity, TContext> : IWritableRepository<TInterface>
+	public abstract class EntityFrameworkRepository<TInterface, TEntity, TContext> : IWritableRepository<TInterface>, IQueryableRepository<TInterface>, IReadOnlyRepository<TInterface>
 		where TEntity : class, TInterface, new()
 		where TInterface : IEntity
 		where TContext : DbContext

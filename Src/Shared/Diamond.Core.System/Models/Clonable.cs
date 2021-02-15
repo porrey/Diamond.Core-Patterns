@@ -35,7 +35,7 @@ namespace Diamond.Core.System
 		}
 
 		/// <summary>
-		/// A class that inherits from Cloneable can implement this
+		/// A class that inherits from Clonable can implement this
 		/// member to override the default cloning mechanism.
 		/// </summary>
 		/// <returns>A new object that is a copy of this instance.</returns>

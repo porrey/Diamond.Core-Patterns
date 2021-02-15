@@ -50,7 +50,8 @@ namespace Diamond.Core.Example
 		{
 			int returnValue = 0;
 
-			await Task.Delay(1);
+			HttpClient client = this.HttpClientFactory.CreateClient(typeof(Invoice).Name);
+			string result = await client.GetStringAsync(invoice.Number);
 
 			return returnValue;
 		}

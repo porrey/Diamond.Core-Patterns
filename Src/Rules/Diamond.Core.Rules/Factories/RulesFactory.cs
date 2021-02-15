@@ -32,7 +32,7 @@ namespace Diamond.Core.Rules
 	{
 		/// <summary>
 		/// Creates an instance of <see cref="IRule"/> with the
-		/// specififed instance of <see cref="IServiceProvider"/>.
+		/// specified instance of <see cref="IServiceProvider"/>.
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		public RulesFactory(IServiceProvider serviceProvider)

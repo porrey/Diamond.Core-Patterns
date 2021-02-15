@@ -34,14 +34,14 @@ namespace Diamond.Core.Example
 		/// </summary>
 		PostgreSQL,
 		/// <summary>
-		/// The in memoery database is used.
+		/// The in memory database is used.
 		/// </summary>
 		InMemory
 	}
 
 	/// <summary>
 	/// Contains connection strings for the database. This model
-	/// is used forbinding against the application settings.
+	/// is used for binding against the application settings.
 	/// </summary>
 	public class DatabaseOptions
 	{

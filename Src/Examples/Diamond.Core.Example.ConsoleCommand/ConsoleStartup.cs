@@ -42,7 +42,7 @@ namespace Diamond.Core.Example
 		}
 
 		/// <summary>
-		/// Called to add additioonal logging.
+		/// Called to add additional logging.
 		/// </summary>
 		/// <param name="builder"></param>
 		public void ConfigureLogging(ILoggingBuilder builder)
@@ -62,10 +62,12 @@ namespace Diamond.Core.Example
 			services.AddAutoMapper(typeof(MappingProfile));
 			services.AddDatabaseConfiguration();
 
-			services.AddHttpClient("Invoice", c =>
+			services.AddHttpClient(typeof(Invoice).Name, c =>
 			{
+				//http://localhost:50481/invoices
+				//c.BaseAddress = new Uri(Configuration["Settings:Invoice:BaseUri"]);
 				c.BaseAddress = new Uri("http://localhost:50481/invoices");
-				c.DefaultRequestHeaders.Add("Accept", "application/xml");
+				c.DefaultRequestHeaders.Add("Accept", "application/json");
 			});
 		}
 	}

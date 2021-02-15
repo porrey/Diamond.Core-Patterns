@@ -35,7 +35,7 @@ namespace Diamond.Core.AspNet.Swagger
 		public virtual void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
 		{
 			//
-			// Remove the schemas.
+			// Remove the schema's.
 			//
 			this.RemoveSchema(swaggerDoc, "IContractResolver");
 			this.RemoveSchema(swaggerDoc, "OperationType");
@@ -83,10 +83,10 @@ namespace Diamond.Core.AspNet.Swagger
 		}
 
 		/// <summary>
-		/// Removes items where the key passed mactehs any part of the schema key.
+		/// Removes items where the key passed matches any part of the schema key.
 		/// </summary>
 		/// <param name="swaggerDoc">A reference to the Swagger document.</param>
-		/// <param name="key">The key or partial ket ot match.</param>
+		/// <param name="key">The key or partial key to match.</param>
 		protected virtual void RemoveSchema(OpenApiDocument swaggerDoc, string key)
 		{
 			//
@@ -112,7 +112,7 @@ namespace Diamond.Core.AspNet.Swagger
 		}
 
 		/// <summary>
-		/// Adss the JSON patch definitions.
+		/// Adds the JSON patch definitions.
 		/// </summary>
 		/// <param name="swaggerDoc">A reference to the Swagger document.</param>
 		protected virtual void AddJsonPatchTypes(OpenApiDocument swaggerDoc)
