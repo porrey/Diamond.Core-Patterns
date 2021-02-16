@@ -40,6 +40,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Diamond.Core.Abstractions.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>

@@ -32,6 +32,10 @@
 	  <DocumentationFile>Diamond.Core.Workflow.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Diamond.Core.WorkFlow.Abstractions.xml" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Core.Workflow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />
   </ItemGroup>

@@ -32,6 +32,10 @@
 	  <DocumentationFile>Diamond.Core.AspNet.Swagger.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="Diamond.Core.AspNet.Swagger.xml" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.0.1" />

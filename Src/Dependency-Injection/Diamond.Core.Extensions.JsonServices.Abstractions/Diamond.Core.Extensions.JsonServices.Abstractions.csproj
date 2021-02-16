@@ -36,6 +36,11 @@
 
 
 	<ItemGroup>
+	  <None Remove="Diamond.Core.Extensions.JsonServices.Abstractions.xml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
 	</ItemGroup>
