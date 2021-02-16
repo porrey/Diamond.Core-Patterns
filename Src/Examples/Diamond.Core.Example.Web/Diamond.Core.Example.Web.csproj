@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<Version>5.0.0-rc.6</Version>
+		<Version>5.0.0-rc.7</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<AssemblyName>WebExample</AssemblyName>
@@ -39,8 +39,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNet.Swagger\Diamond.Core.AspNet.Swagger.csproj" />
 		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.Mvc\Diamond.Core.AspNet.DoAction.csproj" />
-		<ProjectReference Include="..\..\Configuration\Diamond.Core.Extensions.Configuration.JsonServices\Diamond.Core.Extensions.Configuration.JsonServices.csproj" />
-		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.JsonServices\Diamond.Core.Extensions.JsonServices.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
 	</ItemGroup>
 

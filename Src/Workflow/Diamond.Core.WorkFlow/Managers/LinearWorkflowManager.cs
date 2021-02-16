@@ -18,7 +18,6 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -27,7 +26,7 @@ namespace Diamond.Core.Workflow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class LinearWorkflowManager : IWorkflowManager, ILoggerPublisher<LinearWorkflowManager>
+	public class LinearWorkflowManager : IWorkflowManager
 	{
 		/// <summary>
 		/// 

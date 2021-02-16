@@ -8,17 +8,7 @@
 			"Condition": {
 				"ConfigurationKey": "Settings:CommandMode",
 				"ConfigurationValue": "Direct"
-			},
-			"Properties": [
-				{
-					"Name": "Hello",
-					"Value": "World"
-				},
-				{
-					"Name": "Total",
-					"Value": 12345.6
-				}
-			]
+			}
 		},
 		{
 			// Update Command
@@ -58,7 +48,17 @@
 			"Condition": {
 				"ConfigurationKey": "Settings:CommandMode",
 				"ConfigurationValue": "Direct"
-			}
+			},
+			"Properties": [
+				{
+					"Name": "Hello",
+					"Value": "World"
+				},
+				{
+					"Name": "Total",
+					"Value": "ABCd1234.5"
+				}
+			]
 		}
 	]
 }

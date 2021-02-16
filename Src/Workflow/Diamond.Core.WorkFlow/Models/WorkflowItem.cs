@@ -15,7 +15,6 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 using System.Threading.Tasks;
-using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -24,7 +23,7 @@ namespace Diamond.Core.Workflow
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class WorkflowItem : IWorkflowItem, ILoggerPublisher<WorkflowItem>
+	public abstract class WorkflowItem : IWorkflowItem
 	{
 		/// <summary>
 		/// 

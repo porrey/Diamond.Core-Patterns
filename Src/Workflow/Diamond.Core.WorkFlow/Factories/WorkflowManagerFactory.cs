@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -29,7 +28,7 @@ namespace Diamond.Core.Workflow
 	/// This is a generic repository factory that can return a repository
 	/// for any given entity interface.
 	/// </summary>
-	public class WorkflowManagerFactory : IWorkflowManagerFactory, ILoggerPublisher<WorkflowManagerFactory>
+	public class WorkflowManagerFactory : IWorkflowManagerFactory
 	{
 		/// <summary>
 		/// 

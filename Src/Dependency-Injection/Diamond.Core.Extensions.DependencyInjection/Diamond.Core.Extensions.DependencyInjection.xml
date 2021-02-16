@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.DependencyInjection</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions">
+            <summary>
+            Extension methods for adding <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String)">
+            <summary>
+            Adds the JSON configuration provider at <paramref name="path"/> to <paramref name="builder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="path">Path relative to the base path stored in
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean)">
+            <summary>
+            Adds the JSON configuration provider at <paramref name="path"/> to <paramref name="builder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="path">Path relative to the base path stored in
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Adds the JSON configuration provider at <paramref name="path"/> to <paramref name="builder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="path">Path relative to the base path stored in
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.FileProviders.IFileProvider,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Adds a JSON configuration source to <paramref name="builder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="provider">The <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> to use to access the file.</param>
+            <param name="path">Path relative to the base path stored in
+            <see cref="P:Microsoft.Extensions.Configuration.IConfigurationBuilder.Properties"/> of <paramref name="builder"/>.</param>
+            <param name="optional">Whether the file is optional.</param>
+            <param name="reloadOnChange">Whether the configuration should be reloaded if the file changes.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.Action{Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource})">
+            <summary>
+            Adds a JSON configuration source to <paramref name="builder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to add to.</param>
+            <param name="configureSource">Configures the source.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFolder(Microsoft.Extensions.Hosting.IHostBuilder,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            /// <param name="folderPath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser.Parse(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="baseIndex"></param>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.#ctor(Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource)">
+            <summary>
+            Initializes a new instance with the specified source.
+            </summary>
+            <param name="source">The source settings.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load">
+            <summary>
+            Load the files from the source folder.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load(System.IO.Stream)">
+            <summary>
+            Not currently implemented.
+            </summary>
+            <param name="stream">The stream used to load the files.</param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+            <summary>
+            Builds the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/> for this source.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</param>
+            <returns>A <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource"/></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider.BaseServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider.GetService(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProviderFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProviderFactory.CreateBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProviderFactory.CreateServiceProvider(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="containerBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProviderFactory.CreateServiceProvider(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="containerBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProviderFactory.Microsoft#Extensions#DependencyInjection#IServiceProviderFactory{Microsoft#Extensions#DependencyInjection#IServiceCollection}#CreateBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProviderFactory.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.HostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.DependencyInjection.HostBuilderExtensions._factory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.HostBuilderExtensions.UseDiamondDependencyInterfaceInjection(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.UseConfiguredServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.UseConfiguredHostedServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

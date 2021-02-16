@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.DependencyInjection.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ILoggerPublisher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ILoggerPublisher`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ILoggerPublisher`1.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource.Service">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource.Implemenation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.AliasList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.Set(System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.Alias})">
+            <summary>
+            
+            </summary>
+            <param name="aliasList"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.FindType(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.ExtractTypeDefinition(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TransformAlias(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.ShouldCreate(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.CreateServiceDescriptor(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.AliasNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.AliasNotFoundException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException">
+            <summary>
+            This is an abstract class the defines the base object for all
+            exceptions in the Diamond.Core.Repositry library. This allows exceptions
+            specific to this library to be caught separately than other exceptions.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException"/> class.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException"/> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference
+            if no inner exception is specified.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.DependencyInjectionException"/> class with serialized data.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
+            object data about the exception being thrown.</param>
+            <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
+            about the source or destination.</param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DuplicateAliasException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DuplicateAliasException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException.#ctor(System.Type,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException.#ctor(System.Type,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyNotFoundException.#ctor(System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.Alias">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.TypeDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Condition.ConfigurationKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Condition.ConfigurationValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.GetInstance(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="instance"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.Property">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Property.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Property.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.Lifetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.ServiceType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.Properties">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

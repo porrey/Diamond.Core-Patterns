@@ -18,7 +18,6 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -29,7 +28,7 @@ namespace Diamond.Core.Workflow
 	///  current step indicates it should not be executed it is skipped
 	///  and the work flow moves on to the next step.
 	/// </summary>
-	public class ConditionalWorkflowManager : IWorkflowManager, ILoggerPublisher<ConditionalWorkflowManager>
+	public class ConditionalWorkflowManager : IWorkflowManager
 	{
 		/// <summary>
 		/// 

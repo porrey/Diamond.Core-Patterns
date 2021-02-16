@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -28,7 +27,7 @@ namespace Diamond.Core.Rules
 	/// Defines a generic repository factory that can be used to retrieve
 	/// an object that implements <see cref="IRule"/> from the container.
 	/// </summary>
-	public class RulesFactory : IRulesFactory, ILoggerPublisher
+	public class RulesFactory : IRulesFactory
 	{
 		/// <summary>
 		/// Creates an instance of <see cref="IRule"/> with the

@@ -8,7 +8,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides workflow interfaces and abstract or default implementations for common patterns.</Description>
-		<Version>5.0.0-rc.6</Version>
+		<Version>5.0.0-rc.7</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -48,7 +48,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
-		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.InterfaceInjection.Abstractions\Diamond.Core.Extensions.InterfaceInjection.Abstractions.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Workflow.State\Diamond.Core.Workflow.State.csproj" />
 		<ProjectReference Include="..\..\Shared\Diamond.Core.System\Diamond.Core.System.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Workflow.Abstractions\Diamond.Core.Workflow.Abstractions.csproj" />

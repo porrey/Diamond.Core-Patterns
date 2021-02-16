@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Diamond.Core.Extensions.InterfaceInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -28,7 +27,7 @@ namespace Diamond.Core.Specification
 	/// <summary>
 	/// 
 	/// </summary>
-	public class SpecificationFactory : ISpecificationFactory, ILoggerPublisher<SpecificationFactory>
+	public class SpecificationFactory : ISpecificationFactory
 	{
 		/// <summary>
 		/// 

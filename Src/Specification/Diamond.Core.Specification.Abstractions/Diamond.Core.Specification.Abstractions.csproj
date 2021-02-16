@@ -12,7 +12,7 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>5.0.0-rc.6</Version>
+		<Version>5.0.0-rc.7</Version>
 		<Description>This library provides abstractions for the specification pattern.</Description>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>

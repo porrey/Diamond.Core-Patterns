@@ -139,7 +139,6 @@ namespace Diamond.Core.CommandLine
 			{
 				try
 				{
-
 					this.Logger.LogDebug("OnStarted has been called on Root Command Service.");
 					this.Logger.LogDebug("Executing InvokeAsync on Root Command.");
 					int result = await ((RootCommand)this.RootCommand).InvokeAsync(this.RootCommand.Args);

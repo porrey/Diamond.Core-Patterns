@@ -1,9 +1,9 @@
-using Diamond.Core.Extensions.Configuration.JsonServices;
-using Diamond.Core.Extensions.JsonServices;
+using Diamond.Core.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Diamond.Core.Example {
+namespace Diamond.Core.Example
+{
 	/// <summary>
 	/// 
 	/// </summary>
