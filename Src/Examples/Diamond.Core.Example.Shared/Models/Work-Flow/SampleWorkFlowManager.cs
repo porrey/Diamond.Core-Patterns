@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using Diamond.Core.WorkFlow;
+using Diamond.Core.Workflow;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
-	public class SampleWorkFlowManager : LinearWorkFlowManager
+	public class SampleWorkflowManager : LinearWorkflowManager
 	{
-		public SampleWorkFlowManager(ILogger<SampleWorkFlowManager> logger, IWorkFlowItemFactory workFlowItemFactory)
-			: base(workFlowItemFactory, WellKnown.WorkFlow.SampleWorkFlow)
+		public SampleWorkflowManager(ILogger<SampleWorkflowManager> logger, IWorkflowItemFactory workFlowItemFactory)
+			: base(workFlowItemFactory, WellKnown.Workflow.SampleWorkflow)
 		{
-			logger.LogDebug($"An instance of {nameof(SampleWorkFlowManager)} with group name '{this.Group}' was created.");
+			logger.LogDebug($"An instance of {nameof(SampleWorkflowManager)} with group name '{this.Group}' was created.");
 		}
 	}
 }

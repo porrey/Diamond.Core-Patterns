@@ -14,26 +14,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using Diamond.Core.WorkFlow;
+using Diamond.Core.Workflow;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Example
 {
-	public static class WorkFlowDependencies
+	public static class WorkflowDependencies
 	{
-		public static IServiceCollection AddWorkFlowExampleDependencies(this IServiceCollection services)
+		public static IServiceCollection AddWorkflowExampleDependencies(this IServiceCollection services)
 		{
 			//
 			// Add the sample work flow manager and work flow steps.
 			//
-			services.AddScoped<IWorkFlowManagerFactory, WorkFlowManagerFactory>()
-					.AddScoped<IWorkFlowItemFactory, WorkFlowItemFactory>()
-					.AddScoped<IWorkFlowManager, SampleWorkFlowManager>()
-					.AddScoped<IWorkFlowItem, SampleWorkStep1>()
-					.AddScoped<IWorkFlowItem, SampleWorkStep2>()
-					.AddScoped<IWorkFlowItem, SampleWorkStep3>()
-					.AddScoped<IWorkFlowItem, SampleWorkStep4>()
-					.AddScoped<IWorkFlowItem, SampleWorkStep5>();
+			services.AddScoped<IWorkflowManagerFactory, WorkflowManagerFactory>()
+					.AddScoped<IWorkflowItemFactory, WorkflowItemFactory>()
+					.AddScoped<IWorkflowManager, SampleWorkflowManager>()
+					.AddScoped<IWorkflowItem, SampleWorkStep1>()
+					.AddScoped<IWorkflowItem, SampleWorkStep2>()
+					.AddScoped<IWorkflowItem, SampleWorkStep3>()
+					.AddScoped<IWorkflowItem, SampleWorkStep4>()
+					.AddScoped<IWorkflowItem, SampleWorkStep5>();
 
 			return services;
 		}

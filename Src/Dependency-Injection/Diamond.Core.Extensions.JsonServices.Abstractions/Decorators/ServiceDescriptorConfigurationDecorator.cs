@@ -38,7 +38,15 @@ namespace Diamond.Core.Extensions.JsonServices
 		/// <param name="aliasList"></param>
 		public static void Set(this IEnumerable<Alias> aliasList)
 		{
-			AliasList = aliasList.ToDictionary(p => $"<{p.Key}>");
+			try
+			{
+				AliasList = aliasList.ToDictionary(p => $"<{p.Key}>");
+			}
+			catch (ArgumentException ex)
+			{
+				string message = ex.Message.Replace("An item with the same key has already been added. Key: ", "");
+				throw new DuplicateAliasException(message);
+			}
 		}
 
 		/// <summary>

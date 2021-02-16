@@ -15,21 +15,25 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Threading.Tasks;
-using Diamond.Core.WorkFlow;
+using Diamond.Core.Workflow;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example {
-	public class SampleWorkStep1 : WorkFlowItem {
+namespace Diamond.Core.Example
+{
+	public class SampleWorkStep1 : WorkflowItem
+	{
 		public override string Name => $"Sample Step {this.Ordinal}";
-		public override string Group { get => WellKnown.WorkFlow.SampleWorkFlow; set => base.Group = value; }
+		public override string Group { get => WellKnown.Workflow.SampleWorkflow; set => base.Group = value; }
 		public override int Ordinal { get => 1; set => base.Ordinal = value; }
 
-		protected override Task<bool> OnExecuteStepAsync(IContext context) {
+		protected override Task<bool> OnExecuteStepAsync(IContext context)
+		{
 			this.Logger.LogDebug($"Running '{nameof(OnExecuteStepAsync)}' on step [{this.Ordinal}] {this.Group}/{this.Name}.");
 			return Task.FromResult(true);
 		}
 
-		protected override Task<bool> OnPrepareForExecutionAsync(IContext context) {
+		protected override Task<bool> OnPrepareForExecutionAsync(IContext context)
+		{
 			this.Logger.LogDebug($"Running '{nameof(OnPrepareForExecutionAsync)}' on step [{this.Ordinal}] {this.Group}/{this.Name}.");
 			return Task.FromResult(true);
 		}

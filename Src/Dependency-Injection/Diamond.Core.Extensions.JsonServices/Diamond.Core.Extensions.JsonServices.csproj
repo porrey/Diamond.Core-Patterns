@@ -8,7 +8,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides extensions for .NET Core dependency injection to support services defined in JSON configuration files.</Description>
-		<Version>5.0.0-rc.5</Version>
+		<Version>5.0.0-rc.6</Version>
 		<FileVersion>5.0.0</FileVersion>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>

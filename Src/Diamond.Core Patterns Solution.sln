@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Decorator", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.UnitOfWork", "Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj", "{DFDBC1A2-4689-456A-83F1-60987CA888D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow", "Work-Flow\Diamond.Core.WorkFlow\Diamond.Core.WorkFlow.csproj", "{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Workflow", "Workflow\Diamond.Core.WorkFlow\Diamond.Core.Workflow.csproj", "{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Abstractions", "Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj", "{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.System", "Shar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Specification", "Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj", "{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow.State", "Work-Flow\Diamond.Core.WorkFlow.State\Diamond.Core.WorkFlow.State.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Workflow.State", "Workflow\Diamond.Core.WorkFlow.State\Diamond.Core.Workflow.State.csproj", "{923C2E38-839B-4400-AAC4-E48DF5AC9E8B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNet.DoAction", "AspNetCore\Diamond.Core.Mvc\Diamond.Core.AspNet.DoAction.csproj", "{CA5FD446-8EE5-49B5-909D-7AC35AD24FEA}"
 EndProject
@@ -27,15 +27,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.InterfaceInjection.Abstractions", "Dependency-Injection\Diamond.Core.Extensions.InterfaceInjection.Abstractions\Diamond.Core.Extensions.InterfaceInjection.Abstractions.csproj", "{787B266B-3B94-4996-BB63-06FE0EDB4AAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow.Abstractions", "Work-Flow\Diamond.Core.WorkFlow.Abstractions\Diamond.Core.WorkFlow.Abstractions.csproj", "{DDBF0AAF-D83C-405F-A9B7-8661689B2491}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Workflow.Abstractions", "Workflow\Diamond.Core.WorkFlow.Abstractions\Diamond.Core.Workflow.Abstractions.csproj", "{DDBF0AAF-D83C-405F-A9B7-8661689B2491}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Work-Flow", "Work-Flow", "{D2924B42-A572-4D29-AA82-EB69ADC9BBFF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{D2924B42-A572-4D29-AA82-EB69ADC9BBFF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency-Injection", "Dependency-Injection", "{AE576974-2F85-47D3-B00C-5FC577E3F321}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B27AF0DE-B54B-4F22-A25D-3E02107FAC58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.WorkFlow.State.Abstractions", "Work-Flow\Diamond.Core.WorkFlow.State.Abstractions\Diamond.Core.WorkFlow.State.Abstractions.csproj", "{8193E54B-CEBD-4C7A-A0CE-8647C5014387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Workflow.State.Abstractions", "Workflow\Diamond.Core.WorkFlow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj", "{8193E54B-CEBD-4C7A-A0CE-8647C5014387}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}"
 EndProject

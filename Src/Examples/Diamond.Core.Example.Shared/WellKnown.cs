@@ -7,9 +7,9 @@
 			public const string QualifyWidget = "QualifyWidget";
 		}
 
-		public static class WorkFlow
+		public static class Workflow
 		{
-			public const string SampleWorkFlow = "SampleWorkFlow";
+			public const string SampleWorkflow = "SampleWorkflow";
 		}
 
 		public static class Rules

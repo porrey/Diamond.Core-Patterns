@@ -125,6 +125,17 @@
             <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
             about the source or destination.</param>
         </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.DuplicateAliasException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.DuplicateAliasException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
         <member name="T:Diamond.Core.Extensions.JsonServices.Alias">
             <summary>
             

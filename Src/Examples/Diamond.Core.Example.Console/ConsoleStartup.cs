@@ -34,7 +34,7 @@ namespace Diamond.Core.Example
 			//
 			// Add the Diamond Core dependencies needed for the examples.
 			//
-			services.AddWorkFlowExampleDependencies();
+			services.AddWorkflowExampleDependencies();
 			services.AddSpecificationExampleDependencies();
 			services.AddRulesExampleDependencies();
 			services.AddDecoratorExampleDependencies();
@@ -44,7 +44,7 @@ namespace Diamond.Core.Example
 			//
 			// Add the example application services.
 			//
-			services.AddHostedService<WorkFlowExampleHostedService>();
+			services.AddHostedService<WorkflowExampleHostedService>();
 			services.AddHostedService<SpecificationExampleHostedService>();
 			services.AddHostedService<RulesExampleHostedService>();
 			services.AddHostedService<DecoratorExampleHostedService>();

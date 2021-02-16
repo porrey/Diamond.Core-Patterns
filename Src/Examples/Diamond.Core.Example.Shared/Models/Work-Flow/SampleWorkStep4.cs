@@ -15,15 +15,15 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Threading.Tasks;
-using Diamond.Core.WorkFlow;
+using Diamond.Core.Workflow;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
-	public class SampleWorkStep4 : WorkFlowItem
+	public class SampleWorkStep4 : WorkflowItem
 	{
 		public override string Name => $"Sample Step {this.Ordinal}";
-		public override string Group { get => WellKnown.WorkFlow.SampleWorkFlow; set => base.Group = value; }
+		public override string Group { get => WellKnown.Workflow.SampleWorkflow; set => base.Group = value; }
 		public override int Ordinal { get => 4; set => base.Ordinal = value; }
 
 		protected override Task<bool> OnExecuteStepAsync(IContext context)

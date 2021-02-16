@@ -17,23 +17,23 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Diamond.Core.WorkFlow;
+using Diamond.Core.Workflow;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
-	public class WorkFlowExampleHostedService : IHostedService
+	public class WorkflowExampleHostedService : IHostedService
 	{
-		private readonly ILogger<WorkFlowExampleHostedService> _logger = null;
+		private readonly ILogger<WorkflowExampleHostedService> _logger = null;
 		private readonly IHostApplicationLifetime _appLifetime = null;
 		private readonly IConfiguration _configuration = null;
-		private readonly IWorkFlowManagerFactory _workFlowManagerFactory = null;
+		private readonly IWorkflowManagerFactory _workFlowManagerFactory = null;
 
 		private int _exitCode = 0;
 
-		public WorkFlowExampleHostedService(ILogger<WorkFlowExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IWorkFlowManagerFactory workFlowManagerFactory)
+		public WorkflowExampleHostedService(ILogger<WorkflowExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IWorkflowManagerFactory workFlowManagerFactory)
 		{
 			_logger = logger;
 			_appLifetime = appLifetime;
@@ -43,15 +43,15 @@ namespace Diamond.Core.Example
 
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogInformation($"Starting {nameof(WorkFlowExampleHostedService)} service.");
+			_logger.LogInformation($"Starting {nameof(WorkflowExampleHostedService)} service.");
 
 			try
 			{
-				_logger.LogInformation($"Retrieving work flow manager '{WellKnown.WorkFlow.SampleWorkFlow}'.");
-				IWorkFlowManager wk1 = await _workFlowManagerFactory.GetAsync(WellKnown.WorkFlow.SampleWorkFlow);
+				_logger.LogInformation($"Retrieving work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
+				IWorkflowManager wk1 = await _workFlowManagerFactory.GetAsync(WellKnown.Workflow.SampleWorkflow);
 
-				_logger.LogInformation($"Executing work flow manager '{WellKnown.WorkFlow.SampleWorkFlow}'.");
-				if (await wk1.ExecuteWorkflowAsync(new GenericContext()))
+				_logger.LogInformation($"Executing work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
+				if (await wk1.ExecuteWorkflowAsync(new WorkflowContext()))
 				{
 					_logger.LogInformation("Work flow execution was successful.");
 					_exitCode = 0;
@@ -64,14 +64,14 @@ namespace Diamond.Core.Example
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, $"Exception while executing work flow '{WellKnown.WorkFlow.SampleWorkFlow}'.");
+				_logger.LogError(ex, $"Exception while executing work flow '{WellKnown.Workflow.SampleWorkflow}'.");
 				_exitCode = 2;
 			}
 		}
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			_logger.LogDebug($"Exiting service {nameof(WorkFlowExampleHostedService)} with return code: {_exitCode}");
+			_logger.LogDebug($"Exiting service {nameof(WorkflowExampleHostedService)} with return code: {_exitCode}");
 
 			//
 			// Exit code.

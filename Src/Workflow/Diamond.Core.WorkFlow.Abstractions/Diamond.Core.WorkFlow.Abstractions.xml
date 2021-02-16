@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Workflow.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Workflow.IContext">
+            <summary>
+            Defines a generic context.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IContext.Name">
+            <summary>
+            Gets the name of the context.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IContext.Properties">
+            <summary>
+            Gets/sets properties to be contained  within the context.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.IContext.ResetAsync">
+            <summary>
+            Resets the context.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IContext.Arguments">
+            <summary>
+            The optional arguments supplied to the application.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Workflow.IWorkflowItem">
+            <summary>
+            Defines a work flow item.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowItem.Ordinal">
+            <summary>
+            Specifies the order in which the specified step is executed in a given
+            work flow.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowItem.Name">
+            <summary>
+            A unique name for the specified step usually used for display or logging
+            purposes.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowItem.Group">
+            <summary>
+            A unique name that groups one or more steps together for a given
+            work flow.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowItem.Weight">
+            <summary>
+            Defines the weight applied to this step when showing progress. The default
+            is 1 which makes it "evenly" weighted. A smaller value indicates this
+            step should have less of an impact on the progress *takes less time to complete)
+            while larger numbers have more of an impact (they take more time to complete).
+            These numbers are totally arbitrary and are evaluated in relation to all
+            other weights in the work flow.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowItem.AlwaysExecute">
+            <summary>
+            Indicates that regardless of the result of previous steps, this step
+            should always execute. This is used in linear work flow managers that
+            stop executing when one of the steps fail. A step marked with this
+            attribute usually a "clean-up" step that must execute every time. This
+             property may be ignored by certain work flow managers.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.IWorkflowItem.ExecuteStepAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Performs the work for the specified step.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.IWorkflowItem.ShouldExecute(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Indicates whether or not a step should be executed during a work flow.
+            his is used by conditional work flow managers where every step in the
+            work flow is executed from start to finish unless tis property returns
+            false. This property may be ignored by certain work flow managers.
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.IWorkflowItemFactory">
+            <summary>
+            Defines a factory to create/retrieve work flow items.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.IWorkflowItemFactory.GetItemsAsync(System.String)">
+            <summary>
+            gets all work flow items instances with the given key.
+            </summary>
+            <param name="key">The key that groups two or more work flow items into a single sequence.</param>
+            <returns>A list of work flow items.</returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.IWorkflowManager">
+            <summary>
+            Defines a generic work flow manager.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowManager.Group">
+            <summary>
+            The group name used to determine the work flow
+            items that are part of this work flow.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowManager.WorkflowItemFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IWorkflowManager.Steps">
+            <summary>
+            Gets the work flow items in their execution order.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.IWorkflowManager.ExecuteWorkflowAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Executes the work flow.
+            </summary>
+            <param name="context">The current context to be used for this instance of the work flow execution.</param>
+            <returns>True if the work flow was successful; false otherwise.</returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.IWorkflowManagerFactory">
+            <summary>
+            Defines a factory that will retrieve the work flow manager for a given work flow.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.IWorkflowManagerFactory.GetAsync(System.String)">
+            <summary>
+            Gets the work flow items for a given work flow identified by groupName;
+            </summary>
+            <param name="groupName">a name that groups work flow items together.</param>
+            <returns>Returns the work flow manager for the specified work flow.</returns>
+        </member>
+    </members>
+</doc>
