@@ -26,7 +26,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DependencyFactory
+	public class DependencyFactory : IDependencyFactory
 	{
 		/// <summary>
 		/// 

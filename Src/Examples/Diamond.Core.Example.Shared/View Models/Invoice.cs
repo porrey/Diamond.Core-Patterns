@@ -21,7 +21,7 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// Contains the details of an invoice.
 	/// </summary>
-	public class Invoice
+	public class InvoiceNumber
 	{
 		/// <summary>
 		/// The unique invoice number.
@@ -29,15 +29,21 @@ namespace Diamond.Core.Example
 		[Required]
 		[MaxLength(30)]
 		[RegularExpression("INV[a-zA-Z0-9]*")]
-		[Display(Order = 0, Prompt = "Invoice Number")]
+		[Display(Order = 0, ShortName = "Number", Description = "The unique invoice number.")]
 		public string Number { get; set; }
+	}
 
+	/// <summary>
+	/// Contains the details of an invoice.
+	/// </summary>
+	public class Invoice : InvoiceNumber
+	{
 		/// <summary>
 		/// A description of invoice.
 		/// </summary>
 		[Required]
 		[MaxLength(100)]
-		[Display(Order = 1, Prompt = "Invoice Description")]
+		[Display(Order = 1, ShortName = "Description", Description = "A description of invoice.")]
 		public string Description { get; set; }
 
 		/// <summary>
@@ -45,13 +51,13 @@ namespace Diamond.Core.Example
 		/// </summary>
 		[Required]
 		[Range(0, float.MaxValue)]
-		[Display(Order = 2, Prompt = "Invoice Total")]
+		[Display(Order = 2, ShortName = "Total", Description = "The total dollar amount of the invoice.")]
 		public float Total { get; set; }
 
 		/// <summary>
-		/// Determines if the invoice has been paid or not.
+		/// Indicates if the invoice has been paid or not.
 		/// </summary>
-		[Display(Order = 3, Prompt = "Paid")]
+		[Display(Order = 3, ShortName = "Paid", Description = "Indicates if the invoice has been paid or not.")]
 		public bool Paid { get; set; }
 	}
 }

@@ -24,11 +24,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ConfigurationKey { get; set; }
+		public string Key { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ConfigurationValue { get; set; }
+		public string Value { get; set; }
 	}
 }

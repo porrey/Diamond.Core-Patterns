@@ -163,7 +163,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 
 			if (item.Condition != null)
 			{
-				returnValue = Configuration[item.Condition.ConfigurationKey] == item.Condition.ConfigurationValue;
+				returnValue = Configuration[item.Condition.Key] == item.Condition.Value;
 			}
 			else
 			{

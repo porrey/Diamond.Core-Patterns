@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
@@ -7,7 +7,7 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Version>5.0.0-rc.7</Version>
 		<Authors>Daniel M Porrey</Authors>
-		<Description>This library provides abstractions for the Diamond dependency injection extensions.</Description>
+		<Description>This library provides support for creating a command from a model.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -28,30 +28,27 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
-	  <DocumentationFile>Diamond.Core.Extensions.DependencyInjection.Abstractions.xml</DocumentationFile>
+	  <DocumentationFile>Diamond.Core.CommandLine.Model.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Configuration\**" />
-	  <EmbeddedResource Remove="Configuration\**" />
-	  <None Remove="Configuration\**" />
+	  <None Remove="Diamond.Core.CommandLine.Model.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\..\Images\Diamond.Core.128x128.png">
-	    <Pack>True</Pack>
-	    <PackagePath></PackagePath>
-	  </None>
+		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20574.7" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
-	</ItemGroup>
-
 </Project>

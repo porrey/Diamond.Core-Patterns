@@ -2,7 +2,7 @@
   "profiles": {
     "Diamond.Core.Example.Command.Console": {
       "commandName": "Project",
-      "commandLineArgs": "get --number INV12345",
+      "commandLineArgs": "list",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

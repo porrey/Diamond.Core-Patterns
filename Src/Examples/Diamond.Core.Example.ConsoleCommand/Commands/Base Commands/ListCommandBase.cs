@@ -14,46 +14,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.CommandLine;
-using System.CommandLine.Invocation;
-using System.Threading.Tasks;
+using Diamond.Core.CommandLine.Model;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class ListCommandBase : Command
+	public abstract class ListCommandBase : ModelCommand<NullModel>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		public ListCommandBase(ILogger<ListCommandBase> logger)
-			: base("list", "List all invoices in the data storage.")
+			: base(logger, "list", "List all invoices in the data storage.")
 		{
-			this.Logger = logger;
-
-			this.Handler = CommandHandler.Create<string>(async _ =>
-			{
-				return await this.OnHandleCommand();
-			});
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<ListCommandBase> Logger { get; set; } = new NullLogger<ListCommandBase>();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		protected virtual Task<int> OnHandleCommand()
-		{
-			return Task.FromResult(0);
 		}
 	}
 }

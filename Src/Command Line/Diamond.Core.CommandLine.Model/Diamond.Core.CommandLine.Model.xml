@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.CommandLine.Model</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.CommandLine.Model.ModelCommand`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.Model.ModelCommand`1.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="description"></param>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.Model.ModelCommand`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.CommandLine.Model.ModelCommand{`0}},System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="name"></param>
+            <param name="description"></param>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.Model.ModelCommand`1.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.Model.ModelCommand`1.BuildOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.CommandLine.Model.ModelCommand`1.OnHandleCommand(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.CommandLine.Model.NullModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.CommandLine.Model.OptionDescriptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.Model.OptionDescriptor.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.Model.OptionDescriptor.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.Model.OptionDescriptor.Order">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.Model.OptionDescriptor.IsRequired">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

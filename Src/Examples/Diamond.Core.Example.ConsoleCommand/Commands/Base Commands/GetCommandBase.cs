@@ -14,52 +14,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.CommandLine;
-using System.CommandLine.Invocation;
-using System.Threading.Tasks;
+using Diamond.Core.CommandLine.Model;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class GetCommandBase : Command
+	public abstract class GetCommandBase : ModelCommand<InvoiceNumber>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		public GetCommandBase(ILogger<GetCommandBase> logger)
-			: base("get", "Get an existing invoice item.")
+			: base(logger, "get", "Get an existing invoice item.")
 		{
-			this.Logger = logger;
-
-			this.AddOption(new Option<string>($"--{nameof(Invoice.Number).ToLower()}", "Invoice Number.")
-			{
-				IsRequired = true
-			});
-
-			this.Handler = CommandHandler.Create<Invoice>(async (p) =>
-			{
-				return await this.OnHandleCommand(p);
-			});
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<GetCommandBase> Logger { get; set; } = new NullLogger<GetCommandBase>();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="invoice"></param>
-		/// <returns></returns>
-		protected virtual Task<int> OnHandleCommand(Invoice invoice)
-		{
-			return Task.FromResult(0);
 		}
 	}
 }

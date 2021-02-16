@@ -6,8 +6,8 @@
 			"ImplementationType": "Diamond.Core.Example.CreateCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Http"
+				"Key": "Settings:CommandMode",
+				"Value": "Http"
 			}
 		},
 		{
@@ -16,8 +16,8 @@
 			"ImplementationType": "Diamond.Core.Example.UpdateCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Http"
+				"Key": "Settings:CommandMode",
+				"Value": "Http"
 			}
 		},
 		{
@@ -26,8 +26,8 @@
 			"ImplementationType": "Diamond.Core.Example.DeleteCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Http"
+				"Key": "Settings:CommandMode",
+				"Value": "Http"
 			}
 		},
 		{
@@ -36,8 +36,8 @@
 			"ImplementationType": "Diamond.Core.Example.ListCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Http"
+				"Key": "Settings:CommandMode",
+				"Value": "Http"
 			}
 		},
 		{
@@ -46,8 +46,8 @@
 			"ImplementationType": "Diamond.Core.Example.GetCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Http"
+				"Key": "Settings:CommandMode",
+				"Value": "Http"
 			}
 		}
 	]

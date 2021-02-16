@@ -6,8 +6,8 @@
 			"ImplementationType": "Diamond.Core.Example.CreateCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Direct"
+				"Key": "Settings:CommandMode",
+				"Value": "Direct"
 			}
 		},
 		{
@@ -16,8 +16,8 @@
 			"ImplementationType": "Diamond.Core.Example.UpdateCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Direct"
+				"Key": "Settings:CommandMode",
+				"Value": "Direct"
 			}
 		},
 		{
@@ -26,8 +26,8 @@
 			"ImplementationType": "Diamond.Core.Example.DeleteCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Direct"
+				"Key": "Settings:CommandMode",
+				"Value": "Direct"
 			}
 		},
 		{
@@ -36,8 +36,8 @@
 			"ImplementationType": "Diamond.Core.Example.ListCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Direct"
+				"Key": "Settings:CommandMode",
+				"Value": "Direct"
 			}
 		},
 		{
@@ -46,8 +46,8 @@
 			"ImplementationType": "Diamond.Core.Example.GetCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
-				"ConfigurationKey": "Settings:CommandMode",
-				"ConfigurationValue": "Direct"
+				"Key": "Settings:CommandMode",
+				"Value": "Direct"
 			}
 		}
 	]

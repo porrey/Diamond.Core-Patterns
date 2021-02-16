@@ -16,6 +16,7 @@
 //
 using System.Net.Http;
 using System.Threading.Tasks;
+using Diamond.Core.CommandLine.Model;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
@@ -45,7 +46,7 @@ namespace Diamond.Core.Example
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override async Task<int> OnHandleCommand()
+		protected override async Task<int> OnHandleCommand(NullModel item)
 		{
 			int returnValue = 0;
 

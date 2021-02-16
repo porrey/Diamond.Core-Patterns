@@ -14,41 +14,30 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.Threading.Tasks;
-using Diamond.Core.CommandLine;
-using Diamond.Core.Extensions.DependencyInjection;
-using Diamond.Core.Extensions.Hosting;
-using Microsoft.Extensions.Hosting;
-using Serilog;
+using System;
 
-//
-// See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-5.0
-// for details on host based applications.
-//
-
-namespace Diamond.Core.Example
+namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class Program
+	public interface IDependencyFactory
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="args"></param>
+		ServiceDescriptorConfiguration Configuration { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		Type ImplementationType { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sp"></param>
 		/// <returns></returns>
-		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
-							.AddRootCommand("Sample Application", args)
-							.UseSerilog((c, l) =>
-							{
-								l.ReadFrom.Configuration(c.Configuration);
-							})
-							.ConfigureServicesFolder("Services")
-							.UseConfiguredServices()
-							.UseStartup<ConsoleStartup>()
-							.UseConsoleLifetime()
-							.Build()
-							.RunWithExitCodeAsync();
+		object GetInstance(IServiceProvider sp);
 	}
 }

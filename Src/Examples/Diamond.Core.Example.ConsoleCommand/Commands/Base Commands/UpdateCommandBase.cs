@@ -14,67 +14,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.CommandLine;
-using System.CommandLine.Invocation;
-using System.Threading.Tasks;
+using Diamond.Core.CommandLine.Model;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class UpdateCommandBase : Command
+	public class UpdateCommandBase : ModelCommand<Invoice>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		public UpdateCommandBase(ILogger<UpdateCommandBase> logger)
-			: base("update", "Updates an invoice.")
+			: base(logger, "update", "Updates an invoice.")
 		{
-			this.Logger = logger;
-
-			this.AddOption(new Option<string>($"--{nameof(Invoice.Number).ToLower()}", "Invoice Number.")
-			{
-				IsRequired = true
-			});
-
-			this.AddOption(new Option<string>($"--{nameof(Invoice.Description).ToLower()}", "Invoice Description.")
-			{
-				IsRequired = true
-			});
-
-			this.AddOption(new Option<float>($"--{nameof(Invoice.Total).ToLower()}", "Invoice Total.")
-			{
-				IsRequired = true
-			});
-
-			this.AddOption(new Option<bool>($"--{nameof(Invoice.Paid).ToLower()}", "Indicates if the invoice has been paid or not.")
-			{
-				IsRequired = false
-			});
-
-			this.Handler = CommandHandler.Create<Invoice>(async (p) =>
-			{
-				return await this.OnHandleCommand(p);
-			});
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<UpdateCommandBase> Logger { get; set; } = new NullLogger<UpdateCommandBase>();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		protected virtual Task<int> OnHandleCommand(Invoice item)
-		{
-			return Task.FromResult(0);
 		}
 	}
 }

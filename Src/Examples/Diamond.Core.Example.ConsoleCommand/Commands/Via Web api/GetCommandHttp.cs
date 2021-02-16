@@ -46,7 +46,7 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="invoice"></param>
 		/// <returns></returns>
-		protected override async Task<int> OnHandleCommand(Invoice invoice)
+		protected override async Task<int> OnHandleCommand(InvoiceNumber invoice)
 		{
 			int returnValue = 0;
 

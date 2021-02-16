@@ -190,6 +190,28 @@
             <param name="implementationType"></param>
             <param name="propertyName"></param>
         </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.IDependencyFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.IDependencyFactory.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.IDependencyFactory.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.IDependencyFactory.GetInstance(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="sp"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.Alias">
             <summary>
             
@@ -210,12 +232,12 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.Condition.ConfigurationKey">
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Condition.Key">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.Condition.ConfigurationValue">
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Condition.Value">
             <summary>
             
             </summary>

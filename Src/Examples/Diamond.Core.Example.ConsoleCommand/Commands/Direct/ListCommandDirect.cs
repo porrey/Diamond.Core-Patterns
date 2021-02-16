@@ -17,6 +17,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Diamond.Core.CommandLine.Model;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
@@ -47,7 +48,7 @@ namespace Diamond.Core.Example
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		protected override async Task<int> OnHandleCommand()
+		protected override async Task<int> OnHandleCommand(NullModel item)
 		{
 			int returnValue = 0;
 
@@ -68,10 +69,10 @@ namespace Diamond.Core.Example
 			{
 				this.Logger.LogDebug($"There were {items.Count()} Invoice items retrieved.");
 
-				foreach (IInvoice item in items)
+				foreach (IInvoice invoice in items)
 				{
-					string paid = item.Paid ? "Yes" : "No";
-					this.Logger.LogInformation("[{id}] {number}, Description = '{description}', Total = {total}, Paid = {paid}", item.Id, item.Number, item.Description, item.Total.ToString("$#,##0.00"), item.Paid ? "Yes" : "No");
+					string paid = invoice.Paid ? "Yes" : "No";
+					this.Logger.LogInformation("[{id}] {number}, Description = '{description}', Total = {total}, Paid = {paid}", invoice.Id, invoice.Number, invoice.Description, invoice.Total.ToString("$#,##0.00"), invoice.Paid ? "Yes" : "No");
 				}
 			}
 			else
