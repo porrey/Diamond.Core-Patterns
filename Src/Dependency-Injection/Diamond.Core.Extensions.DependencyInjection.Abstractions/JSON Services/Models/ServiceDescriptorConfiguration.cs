@@ -47,6 +47,6 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
-		public IEnumerable<Property> Properties { get; set; }
+		public Dictionary<string, object> Properties { get; set; }
 	}
 }

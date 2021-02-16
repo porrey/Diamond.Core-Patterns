@@ -74,8 +74,5 @@ namespace Diamond.Core.Example
 
 			return returnValue;
 		}
-
-		public string Hello { get; set;  }
-		public float Total { get; set; }
 	}
 }

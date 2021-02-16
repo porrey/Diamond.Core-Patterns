@@ -48,17 +48,7 @@
 			"Condition": {
 				"ConfigurationKey": "Settings:CommandMode",
 				"ConfigurationValue": "Direct"
-			},
-			"Properties": [
-				{
-					"Name": "Hello",
-					"Value": "World"
-				},
-				{
-					"Name": "Total",
-					"Value": "ABCd1234.5"
-				}
-			]
+			}
 		}
 	]
 }

@@ -15,6 +15,7 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -81,12 +82,12 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				// Loop through each property in the configuration and attempt to assign
 				// it to the matching property on the instance.
 				//
-				foreach (Property property in this.Configuration.Properties)
+				foreach (KeyValuePair<string, object> property in this.Configuration.Properties)
 				{
 					//
 					// Check if this property exists on the instance.
 					//
-					PropertyInfo propertyInfo = propertyInfos.Where(t => t.Name.ToLower() == property.Name.ToLower()).SingleOrDefault();
+					PropertyInfo propertyInfo = propertyInfos.Where(t => t.Name.ToLower() == property.Key.ToLower()).SingleOrDefault();
 
 					if (propertyInfo != null)
 					{
@@ -111,7 +112,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 								//
 								// The property value assignment failed. Throw an exception.
 								//
-								throw new PropertyConversionException(this.ImplementationType, property.Name, property.Value);
+								throw new PropertyConversionException(this.ImplementationType, property.Key, property.Value);
 							}
 						}
 						else
@@ -119,7 +120,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							// The property is read-only. Throw an exception.
 							//
-							throw new PropertyIsReadOnlyException(this.ImplementationType, property.Name, property.Value);
+							throw new PropertyIsReadOnlyException(this.ImplementationType, property.Key, property.Value);
 						}
 					}
 					else
@@ -127,7 +128,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 						//
 						// The instance type did not have the current property. Throw an exception.
 						//
-						throw new PropertyNotFoundException(this.ImplementationType, property.Name);
+						throw new PropertyNotFoundException(this.ImplementationType, property.Key);
 					}
 				}
 			}

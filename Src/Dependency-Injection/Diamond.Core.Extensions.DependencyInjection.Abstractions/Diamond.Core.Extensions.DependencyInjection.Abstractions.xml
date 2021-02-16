@@ -254,21 +254,6 @@
             </summary>
             <param name="instance"></param>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.Property">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.Property.Name">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.Property.Value">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration">
             <summary>
             

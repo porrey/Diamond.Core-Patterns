@@ -127,7 +127,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 			string returnValue = item.ExtractTypeDefinition(typeSource);
 
 			//
-			// Use regex to replace aliases.
+			// Use regular expressions to replace aliases.
 			//
 			Regex regex = new Regex("<(\"[^\"]*\"|'[^']*'|[^'\">])*>");
 			returnValue = regex.Replace(returnValue, m =>
@@ -202,30 +202,48 @@ namespace Diamond.Core.Extensions.DependencyInjection
 					case "Scoped":
 						if (item.Properties == null)
 						{
+							//
+							// Standard definition.
+							//
 							returnValue = ServiceDescriptor.Scoped(serviceType, implementationType);
 						}
 						else
 						{
+							//
+							// Factory based definition.
+							//
 							returnValue = ServiceDescriptor.Scoped(serviceType, sp => (new DependencyFactory(implementationType, item)).GetInstance(sp));
 						}
 						break;
 					case "Singleton":
 						if (item.Properties == null)
 						{
+							//
+							// Standard definition.
+							//
 							returnValue = ServiceDescriptor.Singleton(serviceType, implementationType);
 						}
 						else
 						{
+							//
+							// Factory based definition.
+							//
 							returnValue = ServiceDescriptor.Singleton(serviceType, sp => (new DependencyFactory(implementationType, item)).GetInstance(sp));
 						}
 						break;
 					case "Transient":
 						if (item.Properties == null)
 						{
+							//
+							// Standard definition.
+							//
 							returnValue = ServiceDescriptor.Transient(serviceType, implementationType);
 						}
 						else
 						{
+							//
+							// Factory based definition.
+							//
 							returnValue = ServiceDescriptor.Transient(serviceType, sp => (new DependencyFactory(implementationType, item)).GetInstance(sp));
 						}
 						break;
