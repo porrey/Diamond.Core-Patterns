@@ -80,7 +80,8 @@ namespace Diamond.Core.Extensions.JsonServices
 
 					if (sd != null)
 					{
-						logger.LogDebug("Adding service descriptor from JSON configuration for '{serviceType}' implemented by '{implementationType}' of type '{lifetime}'.", sd.ServiceType.FullName, sd.ImplementationType.FullName, item.Lifetime);
+						string implementationType = sd.ImplementationType != null ? sd.ImplementationType.FullName : $"{nameof(DependencyFactory)}<{item.ImplementationType}>";
+						logger.LogDebug("Adding service descriptor from JSON configuration for '{serviceType}' implemented by '{implementationType}' of type '{lifetime}'.", sd.ServiceType.FullName, implementationType, item.Lifetime);
 						services.Add(sd);
 					}
 					else

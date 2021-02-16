@@ -166,6 +166,42 @@
             
             </summary>
         </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.DependencyBuilder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.DependencyBuilder.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.DependencyBuilder.Properties">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.JsonServices.DependencyBuilder.GetInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.JsonServices.Property">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.Property.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.Property.Value">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration">
             <summary>
             
@@ -187,6 +223,11 @@
             </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration.Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.JsonServices.ServiceDescriptorConfiguration.Properties">
             <summary>
             
             </summary>

@@ -184,13 +184,34 @@ namespace Diamond.Core.Extensions.JsonServices
 				switch (item.Lifetime)
 				{
 					case "Scoped":
-						returnValue = ServiceDescriptor.Scoped(serviceType, implementationType);
+						if (item.Properties == null)
+						{
+							returnValue = ServiceDescriptor.Scoped(serviceType, implementationType);
+						}
+						else
+						{
+							returnValue = ServiceDescriptor.Scoped(serviceType, _ => (new DependencyFactory(implementationType, item)).GetInstance());
+						}
 						break;
 					case "Singleton":
-						returnValue = ServiceDescriptor.Singleton(serviceType, implementationType);
+						if (item.Properties == null)
+						{
+							returnValue = ServiceDescriptor.Singleton(serviceType, implementationType);
+						}
+						else
+						{
+							returnValue = ServiceDescriptor.Singleton(serviceType, _ => (new DependencyFactory(implementationType, item)).GetInstance());
+						}
 						break;
 					case "Transient":
-						returnValue = ServiceDescriptor.Transient(serviceType, implementationType);
+						if (item.Properties == null)
+						{
+							returnValue = ServiceDescriptor.Transient(serviceType, implementationType);
+						}
+						else
+						{
+							returnValue = ServiceDescriptor.Transient(serviceType, _ => (new DependencyFactory(implementationType, item)).GetInstance());
+						}
 						break;
 				}
 			}

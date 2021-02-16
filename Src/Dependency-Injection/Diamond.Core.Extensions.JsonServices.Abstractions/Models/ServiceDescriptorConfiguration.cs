@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Extensions.JsonServices
@@ -42,5 +43,10 @@ namespace Diamond.Core.Extensions.JsonServices
 		/// 
 		/// </summary>
 		public Condition Condition { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public IEnumerable<Property> Properties { get; set; }
 	}
 }
