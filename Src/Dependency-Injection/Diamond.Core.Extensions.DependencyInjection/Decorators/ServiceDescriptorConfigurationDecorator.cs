@@ -97,6 +97,29 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="typeName"></param>
+		/// <returns></returns>
+		private static Type FindType(string typeName)
+		{
+			Type returnValue = null;
+
+			//
+			// Get the actual type definition. The type definition
+			// passed here can contain one or more aliases.
+			//
+			string actualTypeDefinition = TransformAlias(typeName);
+
+			//
+			// Get the type.
+			//
+			returnValue = Type.GetType(actualTypeDefinition, true);
+
+			return returnValue;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="typeSource"></param>
 		/// <returns></returns>
@@ -124,7 +147,17 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <returns></returns>
 		public static string TransformAlias(this ServiceDescriptorConfiguration item, TypeSource typeSource)
 		{
-			string returnValue = item.ExtractTypeDefinition(typeSource);
+			return TransformAlias(item.ExtractTypeDefinition(typeSource));
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		private static string TransformAlias(string value)
+		{
+			string returnValue = value;
 
 			//
 			// Use regular expressions to replace aliases.
@@ -246,6 +279,94 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							returnValue = ServiceDescriptor.Transient(serviceType, sp => (new DependencyFactory(implementationType, item)).GetInstance(sp));
 						}
+						break;
+				}
+			}
+
+			return returnValue;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public static ServiceDescriptor CreateDatabaseDescriptor(this DatabaseDescriptorConfiguration item)
+		{
+			ServiceDescriptor returnValue = null;
+
+			if (item.ShouldCreate())
+			{
+				//
+				// Get the service type.
+				//
+				Type serviceType = null;
+				Type implementationType = null;
+
+				try
+				{
+					serviceType = item.FindType(TypeSource.Service);
+					implementationType = item.FindType(TypeSource.Implemenation);
+				}
+				catch
+				{
+					throw new DbContextNotFoundException(item.Context);
+				}
+
+				//
+				// Get the factory type.
+				//
+				Type factoryType = null;
+
+				try
+				{
+					factoryType = FindType(item.Factory);
+				}
+				catch
+				{
+					throw new DbContextDependencyFactoryNotFoundException(item.Factory);
+				}
+
+				//
+				// Select the lifetime and create the descriptor.
+				//
+				switch (item.Lifetime)
+				{
+					case "Scoped":
+						//
+						// Factory based definition.
+						//
+						returnValue = ServiceDescriptor.Scoped(serviceType, (sp) =>
+						{
+							IConfiguration configuration = sp.GetService<IConfiguration>();
+							string connectionString = configuration[item.ConnectionString];
+							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
+							return dependencyFactory.GetInstance(sp, connectionString);
+						});
+						break;
+					case "Singleton":
+						//
+						// Factory based definition.
+						//
+						returnValue = ServiceDescriptor.Singleton(serviceType, (sp) =>
+						{
+							IConfiguration configuration = sp.GetService<IConfiguration>();
+							string connectionString = configuration[item.ConnectionString];
+							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
+							return dependencyFactory.GetInstance(sp, connectionString);
+						});
+						break;
+					case "Transient":
+						//
+						// Factory based definition.
+						//
+						returnValue = ServiceDescriptor.Transient(serviceType, (sp) =>
+						{
+							IConfiguration configuration = sp.GetService<IConfiguration>();
+							string connectionString = configuration[item.ConnectionString];
+							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
+							return dependencyFactory.GetInstance(sp, connectionString);
+						});
 						break;
 				}
 			}

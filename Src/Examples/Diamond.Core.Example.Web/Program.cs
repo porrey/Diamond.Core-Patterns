@@ -19,7 +19,6 @@ namespace Diamond.Core.Example
 					webBuilder.UseStartup<Startup>();
 				})
 				.UseConfiguredServices()
-				.UseConfiguredHostedServices()
 				.Build()
 				.Run();
 	}

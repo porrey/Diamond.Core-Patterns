@@ -4,6 +4,134 @@
         <name>Diamond.Core.Extensions.DependencyInjection</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.UseConfiguredServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.AddServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.AddAliases(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.AddHostedServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource.Service">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource.Implemenation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.AliasList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.Set(System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.Alias})">
+            <summary>
+            
+            </summary>
+            <param name="aliasList"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.FindType(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.FindType(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="typeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.ExtractTypeDefinition(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TransformAlias(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TypeSource)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <param name="typeSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.TransformAlias(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.ShouldCreate(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.CreateServiceDescriptor(Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.CreateDatabaseDescriptor(Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions">
             <summary>
             Extension methods for adding <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/>.
@@ -72,57 +200,154 @@
             /// <param name="folderPath"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser">
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.AliasNotFoundException">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser.#ctor">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.AliasNotFoundException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DbContextDependencyFactoryNotFoundException">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser.Parse(System.Int32,System.String)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DbContextDependencyFactoryNotFoundException.#ctor(System.String)">
             <summary>
             
             </summary>
-            <param name="baseIndex"></param>
-            <param name="json"></param>
+            <param name="factoryType"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DbContextNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DbContextNotFoundException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DuplicateAliasException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DuplicateAliasException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException.#ctor(System.Type,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException.#ctor(System.Type,System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyNotFoundException.#ctor(System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.Alias">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.TypeDefinition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.Context">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.ConnectionString">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.Factory">
+            
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.GetInstance(System.IServiceProvider,System.Object[])">
+            <summary>
+            
+            </summary>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Object)">
             <summary>
             
             </summary>
-        </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.#ctor(Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource)">
-            <summary>
-            Initializes a new instance with the specified source.
-            </summary>
-            <param name="source">The source settings.</param>
-        </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load">
-            <summary>
-            Load the files from the source folder.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load(System.IO.Stream)">
-            <summary>
-            Not currently implemented.
-            </summary>
-            <param name="stream">The stream used to load the files.</param>
-        </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
-            <summary>
-            Builds the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/> for this source.
-            </summary>
-            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</param>
-            <returns>A <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource"/></returns>
+            <param name="instance"></param>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider">
             <summary>
@@ -212,24 +437,57 @@
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions">
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.UseConfiguredServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser.#ctor">
             <summary>
             
             </summary>
-            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser.Parse(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="baseIndex"></param>
+            <param name="json"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.UseConfiguredHostedServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider">
             <summary>
             
             </summary>
-            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.#ctor(Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource)">
+            <summary>
+            Initializes a new instance with the specified source.
+            </summary>
+            <param name="source">The source settings.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load">
+            <summary>
+            Load the files from the source folder.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load(System.IO.Stream)">
+            <summary>
+            Not currently implemented.
+            </summary>
+            <param name="stream">The stream used to load the files.</param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+            <summary>
+            Builds the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/> for this source.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</param>
+            <returns>A <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource"/></returns>
         </member>
     </members>
 </doc>

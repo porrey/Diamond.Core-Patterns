@@ -37,6 +37,19 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <returns></returns>
 		public static IHostBuilder UseConfiguredServices(this IHostBuilder hostBuilder)
 		{
+			hostBuilder.AddAliases();
+			hostBuilder.AddServices();
+			hostBuilder.AddHostedServices();
+			return hostBuilder;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
+		/// <returns></returns>
+		public static IHostBuilder AddServices(this IHostBuilder hostBuilder)
+		{
 			return hostBuilder.ConfigureServices(services =>
 			{
 				//
@@ -55,14 +68,6 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
 				ServiceDescriptorConfigurationDecorator.Configuration = configuration;
-
-				//
-				// Get configured aliases.
-				//
-				IList<Alias> aliases = new List<Alias>();
-				configuration.Bind("aliases", aliases);
-				logger.LogDebug("There were {count} aliases found in JSON configuration file(s).", aliases.Count());
-				aliases.Set();
 
 				//
 				// Get all of the services defined in the configuration.
@@ -97,7 +102,43 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// </summary>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
 		/// <returns></returns>
-		public static IHostBuilder UseConfiguredHostedServices(this IHostBuilder hostBuilder)
+		public static IHostBuilder AddAliases(this IHostBuilder hostBuilder)
+		{
+			return hostBuilder.ConfigureServices(services =>
+			{
+				//
+				// Get the service provider.
+				//
+				ServiceProvider sp = services.BuildServiceProvider();
+
+				//
+				// Get a logger.
+				//
+				//
+				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
+
+				//
+				// Get the configuration.
+				//
+				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+				ServiceDescriptorConfigurationDecorator.Configuration = configuration;
+
+				//
+				// Get configured aliases.
+				//
+				IList<Alias> aliases = new List<Alias>();
+				configuration.Bind("aliases", aliases);
+				logger.LogDebug("There were {count} aliases found in JSON configuration file(s).", aliases.Count());
+				aliases.Set();
+			});
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
+		/// <returns></returns>
+		public static IHostBuilder AddHostedServices(this IHostBuilder hostBuilder)
 		{
 			return hostBuilder.ConfigureServices(services =>
 			{

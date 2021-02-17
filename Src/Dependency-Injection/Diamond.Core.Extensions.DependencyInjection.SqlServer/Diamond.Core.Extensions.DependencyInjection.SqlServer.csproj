@@ -7,7 +7,7 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Version>5.0.0-rc.7</Version>
 		<Authors>Daniel M Porrey</Authors>
-		<Description>This library provides the Diamond dependency injection extensions.</Description>
+		<Description>This library provides JSON file based dependency injection for SQL Server DbContext.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -28,27 +28,28 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-	  <DocumentationFile>Diamond.Core.Extensions.DependencyInjection.xml</DocumentationFile>
+	  <DocumentationFile>Diamond.Core.Extensions.DependencyInjection.SqlServer.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="Diamond.Core.Extensions.DependencyInjection.xml" />
+	  <None Remove="Diamond.Core.Extensions.DependencyInjection.SqlServer.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\..\Images\Diamond.Core.128x128.png">
-	    <Pack>True</Pack>
-	    <PackagePath></PackagePath>
-	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
 	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\Diamond.Core.128x128.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj" />
+    <ProjectReference Include="..\Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore\Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.csproj" />
+  </ItemGroup>
 
 </Project>

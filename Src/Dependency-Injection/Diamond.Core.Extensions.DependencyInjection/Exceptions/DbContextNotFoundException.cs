@@ -13,7 +13,7 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-//
+// 
 using System;
 
 namespace Diamond.Core.Extensions.DependencyInjection
@@ -21,23 +21,15 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface IDependencyFactory
+	public class DbContextNotFoundException : DependencyInjectionException
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		ServiceDescriptorConfiguration Configuration { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		Type ImplementationType { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sp"></param>
-		/// <returns></returns>
-		object GetInstance(IServiceProvider sp);
+		/// <param name="context"></param>
+		public DbContextNotFoundException(string context)
+			: base($"The DbContext '{context}' was not found.")
+		{
+		}
 	}
 }

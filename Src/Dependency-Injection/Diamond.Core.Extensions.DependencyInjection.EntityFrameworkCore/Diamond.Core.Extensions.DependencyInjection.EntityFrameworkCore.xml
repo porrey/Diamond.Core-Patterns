@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BuilderExtensions.UseConfiguredDatabaseServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DbContextFactoryException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DbContextFactoryException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="typeName"></param>
+        </member>
+    </members>
+</doc>

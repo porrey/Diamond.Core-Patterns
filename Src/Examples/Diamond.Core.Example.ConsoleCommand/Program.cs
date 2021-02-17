@@ -17,6 +17,7 @@
 using System.Threading.Tasks;
 using Diamond.Core.CommandLine;
 using Diamond.Core.Extensions.DependencyInjection;
+using Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore;
 using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -46,6 +47,7 @@ namespace Diamond.Core.Example
 							})
 							.ConfigureServicesFolder("Services")
 							.UseConfiguredServices()
+							.UseConfiguredDatabaseServices()
 							.UseStartup<ConsoleStartup>()
 							.UseConsoleLifetime()
 							.Build()

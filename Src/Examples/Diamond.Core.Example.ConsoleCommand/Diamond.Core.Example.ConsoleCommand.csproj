@@ -13,11 +13,17 @@
     <None Remove="appsettings.json" />
     <None Remove="Services\Command.Example.Services.Direct.json" />
     <None Remove="Services\Command.Example.Services.Http.json" />
+    <None Remove="Services\Databases.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Services\Databases.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Services\Command.Example.Services.Http.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -40,13 +46,13 @@
     <PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20574.7" />
     <PackageReference Include="System.CommandLine.Hosting" Version="0.3.0-alpha.20574.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine.Model\Diamond.Core.CommandLine.Model.csproj" />
     <ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine\Diamond.Core.CommandLine.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.SqlServer\Diamond.Core.Extensions.DependencyInjection.SqlServer.csproj" />
     <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />

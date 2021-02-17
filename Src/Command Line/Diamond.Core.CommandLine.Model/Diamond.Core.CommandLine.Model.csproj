@@ -27,7 +27,7 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
+	<PropertyGroup>
 	  <DocumentationFile>Diamond.Core.CommandLine.Model.xml</DocumentationFile>
 	</PropertyGroup>
 

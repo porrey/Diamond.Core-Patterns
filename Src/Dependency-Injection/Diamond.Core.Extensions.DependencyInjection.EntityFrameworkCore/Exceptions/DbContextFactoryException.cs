@@ -13,40 +13,21 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-//
-using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
-
+// 
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ServiceDescriptorConfiguration
+public class DbContextFactoryException : DependencyInjectionException
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ImplementationType { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public string Lifetime { get; set; } = ServiceLifetime.Scoped.ToString();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public string ServiceType { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Condition Condition { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Dictionary<string, object> Properties { get; set; }
+		/// <param name="typeName"></param>
+		public DbContextFactoryException(string typeName)
+			: base($"Could not create DbContext '{typeName}'.")
+		{
+		}
 	}
 }

@@ -1,0 +1,10 @@
+{
+	"databases": [
+		{
+			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"ConnectionString": "DatabaseOptions:SqlServer",
+			"Lifetime": "Scoped",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.SqlServer.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.SqlServer"
+		}
+	]
+}

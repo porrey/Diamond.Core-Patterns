@@ -82,7 +82,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 					// Add the results to the current list. This list collects all values
 					// across the multiple files.
 					//
-					foreach (var item in result)
+					foreach (KeyValuePair<string, string> item in result)
 					{
 						this.Data.Add(item);
 					}

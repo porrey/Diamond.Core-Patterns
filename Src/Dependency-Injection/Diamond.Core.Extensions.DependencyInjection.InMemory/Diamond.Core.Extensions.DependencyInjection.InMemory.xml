@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.DependencyInjection.InMemory</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.GetInstance(System.IServiceProvider,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="sp"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

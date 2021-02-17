@@ -53,9 +53,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public object GetInstance(IServiceProvider sp)
+		public object GetInstance(IServiceProvider sp, params object[] parameters)
 		{
-			object instance = ActivatorUtilities.CreateInstance(sp, this.ImplementationType);
+			object instance = ActivatorUtilities.CreateInstance(sp, this.ImplementationType, parameters);
 			this.AssignProperties(instance);
 			return instance;
 		}
