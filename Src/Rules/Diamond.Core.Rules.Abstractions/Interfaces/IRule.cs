@@ -16,11 +16,13 @@
 // 
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Rules {
+namespace Diamond.Core.Rules
+{
 	/// <summary>
 	/// Interface defining a generic rule.
 	/// </summary>
-	public interface IRule {
+	public interface IRule
+	{
 		/// <summary>
 		/// Group name to distinguish between different rule sets.
 		/// </summary>
@@ -32,7 +34,8 @@ namespace Diamond.Core.Rules {
 	/// </summary>
 	/// <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
 	/// <typeparam name="TResult">The object type of the result.</typeparam>
-	public interface IRule<TItem, TResult> : IRule {
+	public interface IRule<TItem, TResult> : IRule
+	{
 		/// <summary>
 		/// Validate entity based on the defined rule asynchronously.
 		/// </summary>
@@ -46,6 +49,7 @@ namespace Diamond.Core.Rules {
 	/// Interface defining a generic rule.
 	/// </summary>
 	/// <typeparam name="TItem">The type of item the rule is applied to.</typeparam>
-	public interface IRule<TItem> : IRule<TItem, IRuleResult> {
+	public interface IRule<TItem> : IRule<TItem, IRuleResult>
+	{
 	}
 }

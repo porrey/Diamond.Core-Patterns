@@ -17,12 +17,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Diamond.Core.Rules {
+namespace Diamond.Core.Rules
+{
 	/// <summary>
 	/// Defines a factory that can return all rules defined for a specific model
 	/// (by type) and optionally a group name.
 	/// </summary>
-	public interface IRulesFactory {
+	public interface IRulesFactory
+	{
 		/// <summary>
 		/// Get all model rule instances registered based on TInterface.
 		/// </summary>

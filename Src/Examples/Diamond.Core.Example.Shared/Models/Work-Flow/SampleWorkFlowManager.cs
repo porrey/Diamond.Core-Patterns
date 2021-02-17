@@ -19,7 +19,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
-	public class SampleWorkflowManager : LinearWorkflowManager
+	public class SampleWorkflowManager : LinearHaltWorkflowManager
 	{
 		public SampleWorkflowManager(ILogger<SampleWorkflowManager> logger, IWorkflowItemFactory workFlowItemFactory)
 			: base(workFlowItemFactory, WellKnown.Workflow.SampleWorkflow)

@@ -11,7 +11,7 @@
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static IReadOnlyRepository<TInterface> AsReadonly<TInterface>(this IWritableRepository<TInterface> item)
+		public static IReadOnlyRepository<TInterface> AsReadOnly<TInterface>(this IWritableRepository<TInterface> item)
 			where TInterface : IEntity
 		{
 			IReadOnlyRepository<TInterface> returnValue = item as IReadOnlyRepository<TInterface>;
@@ -49,7 +49,7 @@
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static IReadOnlyRepository<TInterface> AsReadonly<TInterface>(this IQueryableRepository<TInterface> item)
+		public static IReadOnlyRepository<TInterface> AsReadOnly<TInterface>(this IQueryableRepository<TInterface> item)
 			where TInterface : IEntity
 		{
 			IReadOnlyRepository<TInterface> returnValue = item as IReadOnlyRepository<TInterface>;
@@ -125,7 +125,7 @@
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static IReadOnlyRepository<TInterface> AsReadonly<TInterface>(this IRepository<TInterface> item)
+		public static IReadOnlyRepository<TInterface> AsReadOnly<TInterface>(this IRepository<TInterface> item)
 			where TInterface : IEntity
 		{
 			IReadOnlyRepository<TInterface> returnValue = item as IReadOnlyRepository<TInterface>;
@@ -182,7 +182,7 @@
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static bool IsReadonly<TInterface>(this IWritableRepository<TInterface> item)
+		public static bool IsReadOnly<TInterface>(this IWritableRepository<TInterface> item)
 			where TInterface : IEntity
 		{
 			return (item is IReadOnlyRepository<TInterface>);
@@ -206,7 +206,7 @@
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static bool IsReadonly<TInterface>(this IQueryableRepository<TInterface> item)
+		public static bool IsReadOnly<TInterface>(this IQueryableRepository<TInterface> item)
 			where TInterface : IEntity
 		{
 			return (item is IReadOnlyRepository<TInterface>);
@@ -254,7 +254,7 @@
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public static bool IsReadonly<TInterface>(this IRepository<TInterface> item)
+		public static bool IsReadOnly<TInterface>(this IRepository<TInterface> item)
 			where TInterface : IEntity
 		{
 			return (item is IReadOnlyRepository<TInterface>);

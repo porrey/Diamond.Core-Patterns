@@ -126,7 +126,7 @@ namespace Diamond.Core.AspNet.DoAction
 					using (ITryDisposable<IDoAction<TInputs, TResult>> disposable = new TryDisposable<IDoAction<TInputs, TResult>>(action))
 					{
 						//
-						// Perform the extra moodel validation step.
+						// Perform the extra model validation step.
 						//
 						(bool modelResult, string errorMessage) = await action.ValidateModel(inputs);
 

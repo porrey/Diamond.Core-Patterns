@@ -28,44 +28,25 @@ namespace Diamond.Core.Workflow
 	///  current step indicates it should not be executed it is skipped
 	///  and the work flow moves on to the next step.
 	/// </summary>
-	public class ConditionalWorkflowManager : IWorkflowManager
+	public class LinearCompleteWorkflowManager : IWorkflowManager
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public ConditionalWorkflowManager()
+		/// <param name="workFlowItemFactory"></param>
+		/// <param name="logger"></param>
+		public LinearCompleteWorkflowManager(IWorkflowItemFactory workFlowItemFactory, ILogger<LinearCompleteWorkflowManager> logger)
+			: this(workFlowItemFactory)
 		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="steps"></param>
-		public ConditionalWorkflowManager(IWorkflowItem[] steps)
-		{
-			this.Group = null;
-			this.Steps = steps;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="steps"></param>
-		/// <param name="group"></param>
-		public ConditionalWorkflowManager(IWorkflowItem[] steps, string group)
-		{
-			this.Group = group;
-			this.Steps = steps;
+			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="workFlowItemFactory"></param>
-		/// <param name="group"></param>
-		public ConditionalWorkflowManager(IWorkflowItemFactory workFlowItemFactory, string group)
+		public LinearCompleteWorkflowManager(IWorkflowItemFactory workFlowItemFactory)
 		{
-			this.Group = group;
 			this.WorkflowItemFactory = workFlowItemFactory;
 		}
 
@@ -119,7 +100,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<ConditionalWorkflowManager> Logger { get; set; } = new NullLogger<ConditionalWorkflowManager>();
+		public ILogger<LinearCompleteWorkflowManager> Logger { get; set; } = new NullLogger<LinearCompleteWorkflowManager>();
 
 		/// <summary>
 		/// 

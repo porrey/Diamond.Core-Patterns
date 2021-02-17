@@ -29,46 +29,53 @@
             
             </summary>
         </member>
+        <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.FailureMessage(Diamond.Core.Workflow.IContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.HasException(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.HasExitCode(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.GetException(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.GetExitCode(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.SetException(Diamond.Core.Workflow.IContext,System.Exception)">
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <param name="ex"></param>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.SetException(Diamond.Core.Workflow.IContext,System.Int32,System.Exception)">
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <param name="exitCode"></param>
             <param name="ex"></param>
         </member>
@@ -76,14 +83,14 @@
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <param name="message"></param>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.SetException(Diamond.Core.Workflow.IContext,System.Int32,System.String)">
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <param name="exitCode"></param>
             <param name="message"></param>
         </member>
@@ -91,7 +98,7 @@
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <param name="format"></param>
             <param name="args"></param>
         </member>
@@ -99,7 +106,7 @@
             <summary>
             
             </summary>
-            <param name="contextDecorator"></param>
+            <param name="context"></param>
             <param name="exitCode"></param>
             <param name="format"></param>
             <param name="args"></param>
@@ -272,77 +279,65 @@
             <param name="groupName"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Workflow.ConditionalWorkflowManager">
+        <member name="T:Diamond.Core.Workflow.LinearCompleteWorkflowManager">
             <summary>
              This workflow manager executes ALL steps in a work flow. If the
              current step indicates it should not be executed it is skipped
              and the work flow moves on to the next step.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.ConditionalWorkflowManager.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Workflow.ConditionalWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItem[])">
-            <summary>
-            
-            </summary>
-            <param name="steps"></param>
-        </member>
-        <member name="M:Diamond.Core.Workflow.ConditionalWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItem[],System.String)">
-            <summary>
-            
-            </summary>
-            <param name="steps"></param>
-            <param name="group"></param>
-        </member>
-        <member name="M:Diamond.Core.Workflow.ConditionalWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItemFactory,System.String)">
+        <member name="M:Diamond.Core.Workflow.LinearCompleteWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItemFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.LinearCompleteWorkflowManager})">
             <summary>
             
             </summary>
             <param name="workFlowItemFactory"></param>
-            <param name="group"></param>
+            <param name="logger"></param>
         </member>
-        <member name="P:Diamond.Core.Workflow.ConditionalWorkflowManager.WorkflowItemFactory">
+        <member name="M:Diamond.Core.Workflow.LinearCompleteWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItemFactory)">
+            <summary>
+            
+            </summary>
+            <param name="workFlowItemFactory"></param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.LinearCompleteWorkflowManager.WorkflowItemFactory">
             <summary>
             
             </summary>
         </member>
-        <member name="F:Diamond.Core.Workflow.ConditionalWorkflowManager._steps">
+        <member name="F:Diamond.Core.Workflow.LinearCompleteWorkflowManager._steps">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.ConditionalWorkflowManager.Steps">
+        <member name="P:Diamond.Core.Workflow.LinearCompleteWorkflowManager.Steps">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.ConditionalWorkflowManager.Logger">
+        <member name="P:Diamond.Core.Workflow.LinearCompleteWorkflowManager.Logger">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.ConditionalWorkflowManager.Group">
+        <member name="P:Diamond.Core.Workflow.LinearCompleteWorkflowManager.Group">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.ConditionalWorkflowManager.ExecuteWorkflowAsync(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.LinearCompleteWorkflowManager.ExecuteWorkflowAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.ConditionalWorkflowManager.LoadAsync">
+        <member name="M:Diamond.Core.Workflow.LinearCompleteWorkflowManager.LoadAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.ConditionalWorkflowManager.ExecuteStepAsync(Diamond.Core.Workflow.IWorkflowItem,Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.LinearCompleteWorkflowManager.ExecuteStepAsync(Diamond.Core.Workflow.IWorkflowItem,Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
@@ -350,62 +345,57 @@
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Workflow.LinearWorkflowManager">
+        <member name="T:Diamond.Core.Workflow.LinearHaltWorkflowManager">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.LinearWorkflowManager.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Workflow.LinearWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItemFactory,System.String)">
+        <member name="M:Diamond.Core.Workflow.LinearHaltWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItemFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.LinearHaltWorkflowManager})">
             <summary>
             
             </summary>
             <param name="workFlowItemFactory"></param>
-            <param name="group"></param>
+            <param name="logger"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.LinearWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItemFactory)">
+        <member name="M:Diamond.Core.Workflow.LinearHaltWorkflowManager.#ctor(Diamond.Core.Workflow.IWorkflowItemFactory)">
             <summary>
             
             </summary>
             <param name="workFlowItemFactory"></param>
         </member>
-        <member name="F:Diamond.Core.Workflow.LinearWorkflowManager._steps">
+        <member name="F:Diamond.Core.Workflow.LinearHaltWorkflowManager._steps">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.LinearWorkflowManager.WorkflowItemFactory">
+        <member name="P:Diamond.Core.Workflow.LinearHaltWorkflowManager.WorkflowItemFactory">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.LinearWorkflowManager.Logger">
+        <member name="P:Diamond.Core.Workflow.LinearHaltWorkflowManager.Logger">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.LinearWorkflowManager.Steps">
+        <member name="P:Diamond.Core.Workflow.LinearHaltWorkflowManager.Steps">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.LinearWorkflowManager.Group">
+        <member name="P:Diamond.Core.Workflow.LinearHaltWorkflowManager.Group">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.LinearWorkflowManager.ExecuteWorkflowAsync(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.LinearHaltWorkflowManager.ExecuteWorkflowAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.LinearWorkflowManager.ExecuteStepAsync(Diamond.Core.Workflow.IWorkflowItem,Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.LinearHaltWorkflowManager.ExecuteStepAsync(Diamond.Core.Workflow.IWorkflowItem,Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
@@ -413,23 +403,23 @@
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.LinearWorkflowManager.LoadAsync">
+        <member name="M:Diamond.Core.Workflow.LinearHaltWorkflowManager.LoadAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Diamond.Core.Workflow.LinearWorkflowManager.AlwaysExecuteStepIndex">
+        <member name="P:Diamond.Core.Workflow.LinearHaltWorkflowManager.AlwaysExecuteStepIndex">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.LinearWorkflowManager.HasAlwaysExecuteStep">
+        <member name="P:Diamond.Core.Workflow.LinearHaltWorkflowManager.HasAlwaysExecuteStep">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.LinearWorkflowManager.FinalStepOfWorkflow">
+        <member name="P:Diamond.Core.Workflow.LinearHaltWorkflowManager.FinalStepOfWorkflow">
             <summary>
             
             </summary>

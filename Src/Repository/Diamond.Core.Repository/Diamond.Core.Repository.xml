@@ -9,7 +9,7 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadonly``1(Diamond.Core.Repository.IWritableRepository{``0})">
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadOnly``1(Diamond.Core.Repository.IWritableRepository{``0})">
             <summary>
             
             </summary>
@@ -25,7 +25,7 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadonly``1(Diamond.Core.Repository.IQueryableRepository{``0})">
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadOnly``1(Diamond.Core.Repository.IQueryableRepository{``0})">
             <summary>
             
             </summary>
@@ -57,7 +57,7 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadonly``1(Diamond.Core.Repository.IRepository{``0})">
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.AsReadOnly``1(Diamond.Core.Repository.IRepository{``0})">
             <summary>
             
             </summary>
@@ -81,7 +81,7 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadonly``1(Diamond.Core.Repository.IWritableRepository{``0})">
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadOnly``1(Diamond.Core.Repository.IWritableRepository{``0})">
             <summary>
             
             </summary>
@@ -97,7 +97,7 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadonly``1(Diamond.Core.Repository.IQueryableRepository{``0})">
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadOnly``1(Diamond.Core.Repository.IQueryableRepository{``0})">
             <summary>
             
             </summary>
@@ -129,7 +129,7 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadonly``1(Diamond.Core.Repository.IRepository{``0})">
+        <member name="M:Diamond.Core.Repository.RepositoryDecorator.IsReadOnly``1(Diamond.Core.Repository.IRepository{``0})">
             <summary>
             
             </summary>

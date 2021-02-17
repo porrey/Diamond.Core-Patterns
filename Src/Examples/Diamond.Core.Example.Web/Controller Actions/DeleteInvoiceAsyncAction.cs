@@ -69,7 +69,7 @@ namespace Diamond.Core.Example
 			//
 			// Get the invoice.
 			//
-			IInvoice exisingItem = (await repository.AsReadonly().GetAsync(t => t.Number == invoiceNumber)).SingleOrDefault();
+			IInvoice exisingItem = (await repository.AsReadOnly().GetAsync(t => t.Number == invoiceNumber)).SingleOrDefault();
 
 			if (exisingItem != null)
 			{

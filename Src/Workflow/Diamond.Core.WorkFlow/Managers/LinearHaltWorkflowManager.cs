@@ -26,31 +26,24 @@ namespace Diamond.Core.Workflow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class LinearWorkflowManager : IWorkflowManager
+	public class LinearHaltWorkflowManager : IWorkflowManager
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public LinearWorkflowManager()
+		/// <param name="workFlowItemFactory"></param>
+		/// <param name="logger"></param>
+		public LinearHaltWorkflowManager(IWorkflowItemFactory workFlowItemFactory, ILogger<LinearHaltWorkflowManager> logger)
+			: this(workFlowItemFactory)
 		{
+			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="workFlowItemFactory"></param>
-		/// <param name="group"></param>
-		public LinearWorkflowManager(IWorkflowItemFactory workFlowItemFactory, string group)
-		{
-			this.Group = group;
-			this.WorkflowItemFactory = workFlowItemFactory;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="workFlowItemFactory"></param>
-		public LinearWorkflowManager(IWorkflowItemFactory workFlowItemFactory)
+		public LinearHaltWorkflowManager(IWorkflowItemFactory workFlowItemFactory)
 		{
 			this.WorkflowItemFactory = workFlowItemFactory;
 		}
@@ -68,7 +61,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual ILogger<LinearWorkflowManager> Logger { get; set; } = new NullLogger<LinearWorkflowManager>();
+		public virtual ILogger<LinearHaltWorkflowManager> Logger { get; set; } = new NullLogger<LinearHaltWorkflowManager>();
 
 		/// <summary>
 		/// 

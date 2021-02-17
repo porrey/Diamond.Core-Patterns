@@ -48,35 +48,63 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <returns></returns>
-		public static bool HasException(this IContext contextDecorator)
+		public static string FailureMessage(this IContext context)
 		{
-			return contextDecorator.Properties.ContainsKey(WellKnown.Context.Exception);
+			string returnValue = String.Empty;
+
+			if (context.HasException())
+			{
+				Exception ex = context.GetException();
+
+				while (ex.InnerException != null)
+				{
+					ex = ex.InnerException;
+				}
+
+				returnValue = ex.Message;
+			}
+			else
+			{
+				returnValue = "Unknown failure.";
+			}
+
+			return returnValue;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <returns></returns>
-		public static bool HasExitCode(this IContext contextDecorator)
+		public static bool HasException(this IContext context)
 		{
-			return contextDecorator.Properties.ContainsKey(WellKnown.Context.ExitCode);
+			return context.Properties.ContainsKey(WellKnown.Context.Exception);
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <returns></returns>
-		public static Exception GetException(this IContext contextDecorator)
+		public static bool HasExitCode(this IContext context)
+		{
+			return context.Properties.ContainsKey(WellKnown.Context.ExitCode);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		public static Exception GetException(this IContext context)
 		{
 			Exception returnValue = null;
 
-			if (contextDecorator.HasException())
+			if (context.HasException())
 			{
-				returnValue = contextDecorator.Properties.Get<Exception>(WellKnown.Context.Exception);
+				returnValue = context.Properties.Get<Exception>(WellKnown.Context.Exception);
 			}
 			else
 			{
@@ -89,15 +117,15 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <returns></returns>
-		public static int GetExitCode(this IContext contextDecorator)
+		public static int GetExitCode(this IContext context)
 		{
 			int returnValue = 0;
 
-			if (contextDecorator.HasExitCode())
+			if (context.HasExitCode())
 			{
-				returnValue = contextDecorator.Properties.Get<int>(WellKnown.Context.ExitCode);
+				returnValue = context.Properties.Get<int>(WellKnown.Context.ExitCode);
 			}
 			else
 			{
@@ -110,69 +138,69 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <param name="ex"></param>
-		public static void SetException(this IContext contextDecorator, Exception ex)
+		public static void SetException(this IContext context, Exception ex)
 		{
-			contextDecorator.Properties.Set(WellKnown.Context.Exception, ex);
+			context.Properties.Set(WellKnown.Context.Exception, ex);
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <param name="exitCode"></param>
 		/// <param name="ex"></param>
-		public static void SetException(this IContext contextDecorator, int exitCode, Exception ex)
+		public static void SetException(this IContext context, int exitCode, Exception ex)
 		{
-			contextDecorator.Properties.Set(WellKnown.Context.Exception, ex);
-			contextDecorator.Properties.Set(WellKnown.Context.ExitCode, exitCode);
+			context.Properties.Set(WellKnown.Context.Exception, ex);
+			context.Properties.Set(WellKnown.Context.ExitCode, exitCode);
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <param name="message"></param>
-		public static void SetException(this IContext contextDecorator, string message)
+		public static void SetException(this IContext context, string message)
 		{
-			contextDecorator.SetException(new Exception(message));
+			context.SetException(new Exception(message));
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <param name="exitCode"></param>
 		/// <param name="message"></param>
-		public static void SetException(this IContext contextDecorator, int exitCode, string message)
+		public static void SetException(this IContext context, int exitCode, string message)
 		{
-			contextDecorator.SetException(new Exception(message));
-			contextDecorator.Properties.Set(WellKnown.Context.ExitCode, exitCode);
+			context.SetException(new Exception(message));
+			context.Properties.Set(WellKnown.Context.ExitCode, exitCode);
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <param name="format"></param>
 		/// <param name="args"></param>
-		public static void SetException(this IContext contextDecorator, string format, params object[] args)
+		public static void SetException(this IContext context, string format, params object[] args)
 		{
-			contextDecorator.SetException(new Exception(String.Format(format, args)));
+			context.SetException(new Exception(String.Format(format, args)));
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="contextDecorator"></param>
+		/// <param name="context"></param>
 		/// <param name="exitCode"></param>
 		/// <param name="format"></param>
 		/// <param name="args"></param>
-		public static void SetException(this IContext contextDecorator, int exitCode, string format, params object[] args)
+		public static void SetException(this IContext context, int exitCode, string format, params object[] args)
 		{
-			contextDecorator.SetException(new Exception(String.Format(format, args)));
-			contextDecorator.Properties.Set(WellKnown.Context.ExitCode, exitCode);
+			context.SetException(new Exception(String.Format(format, args)));
+			context.Properties.Set(WellKnown.Context.ExitCode, exitCode);
 		}
 	}
 }
