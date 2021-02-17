@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Example
 {
-	public static class ServicesExtensions
+	public static class DatabaseServicesExtensions
 	{
 		public static IServiceCollection AddDatabaseConfiguration(this IServiceCollection services)
 		{
@@ -22,7 +22,7 @@ namespace Diamond.Core.Example
 				// Get the configuration and bind the object to the data.
 				//
 				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
-				configuration.Bind("DatabaseOptions", databaseOptions);
+				configuration.Bind(DatabaseOptions.Key, databaseOptions);
 
 				//
 				// Select the active database configuration.

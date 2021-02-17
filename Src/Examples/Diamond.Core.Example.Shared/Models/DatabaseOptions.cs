@@ -45,6 +45,8 @@ namespace Diamond.Core.Example
 	/// </summary>
 	public class DatabaseOptions
 	{
+		public const string Key = "DatabaseOptions";
+
 		/// <summary>
 		/// Specifies the currently active database.
 		/// </summary>

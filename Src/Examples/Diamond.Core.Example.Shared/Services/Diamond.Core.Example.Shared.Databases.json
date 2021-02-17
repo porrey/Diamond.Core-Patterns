@@ -1,0 +1,47 @@
+{
+	//
+	// Change the active database by setting the DatabaseOptions:ActiveDatabase property in appsettings.json.
+	//
+	"databases": [
+		{
+			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"ConnectionString": "DatabaseOptions:SqlServer",
+			"Lifetime": "Scoped",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.SqlServer.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.SqlServer",
+			"Condition": {
+				"Key": "DatabaseOptions:ActiveDatabase",
+				"Value": "SqlServer"
+			}
+		},
+		{
+			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"ConnectionString": "DatabaseOptions:SQLite",
+			"Lifetime": "Scoped",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.Sqlite.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.Sqlite",
+			"Condition": {
+				"Key": "DatabaseOptions:ActiveDatabase",
+				"Value": "SQLite"
+			}
+		},
+		{
+			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"ConnectionString": "DatabaseOptions:PostgreSQL",
+			"Lifetime": "Scoped",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.PostgreSQL.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.PostgreSQL",
+			"Condition": {
+				"Key": "DatabaseOptions:ActiveDatabase",
+				"Value": "PostgreSQL"
+			}
+		},
+		{
+			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"ConnectionString": "DatabaseOptions:InMemory",
+			"Lifetime": "Scoped",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.InMemory",
+			"Condition": {
+				"Key": "DatabaseOptions:ActiveDatabase",
+				"Value": "InMemory"
+			}
+		}
+	]
+}

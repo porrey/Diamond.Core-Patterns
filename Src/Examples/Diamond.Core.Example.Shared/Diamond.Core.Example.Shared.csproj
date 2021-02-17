@@ -8,11 +8,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Services\Services.Repository.json" />
+		<None Remove="Services\Diamond.Core.Example.Shared.Databases.json" />
+		<None Remove="Services\Diamond.Core.Example.Shared.Repository.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Services\Services.Repository.json">
+		<Content Include="Services\Diamond.Core.Example.Shared.Databases.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="Services\Diamond.Core.Example.Shared.Repository.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -21,17 +27,17 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.3" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.3" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.InMemory\Diamond.Core.Extensions.DependencyInjection.InMemory.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.PostgreSQL\Diamond.Core.Extensions.DependencyInjection.PostgreSQL.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Sqlite\Diamond.Core.Extensions.DependencyInjection.Sqlite.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.SqlServer\Diamond.Core.Extensions.DependencyInjection.SqlServer.csproj" />
 		<ProjectReference Include="..\..\Repository\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
 		<ProjectReference Include="..\..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
