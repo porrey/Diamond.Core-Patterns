@@ -4,6 +4,70 @@
         <name>Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.ImplementationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.GetInstance(System.IServiceProvider,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="sp"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.OnDbContextOptionsBuilder(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory`1.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory`1.GetInstance(System.IServiceProvider,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="sp"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory`1.OnDbContextOptionsBuilder(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{`0},System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <param name="parameters"></param>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BuilderExtensions">
             <summary>
             

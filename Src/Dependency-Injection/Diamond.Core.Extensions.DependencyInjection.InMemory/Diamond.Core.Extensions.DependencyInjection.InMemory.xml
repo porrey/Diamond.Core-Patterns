@@ -16,23 +16,31 @@
             <param name="implementationType"></param>
             <param name="configuration"></param>
         </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.Configuration">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.OnDbContextOptionsBuilder(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Object[])">
             <summary>
             
             </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.ImplementationType">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory.GetInstance(System.IServiceProvider,System.Object[])">
-            <summary>
-            
-            </summary>
-            <param name="sp"></param>
+            <param name="builder"></param>
             <param name="parameters"></param>
-            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory`1.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory`1.OnDbContextOptionsBuilder(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{`0},System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <param name="parameters"></param>
         </member>
     </members>
 </doc>

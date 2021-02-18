@@ -7,7 +7,8 @@ namespace Diamond.Core.Extensions.DependencyInjection.SqlServer
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DbContextDependencyFactory : BaseDbContextDependencyFactory
+	public class DbContextDependencyFactory<TContext> : BaseDbContextDependencyFactory<TContext>
+		where TContext : DbContext
 	{
 		/// <summary>
 		/// 
@@ -24,7 +25,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.SqlServer
 		/// </summary>
 		/// <param name="builder"></param>
 		/// <param name="parameters"></param>
-		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder builder, object[] parameters)
+		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder<TContext> builder, object[] parameters)
 		{
 			builder.UseSqlServer((string)parameters[0]);
 		}

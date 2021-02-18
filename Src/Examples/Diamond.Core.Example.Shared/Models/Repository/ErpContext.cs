@@ -26,6 +26,11 @@ namespace Diamond.Core.Example
 		{
 		}
 
+		public ErpContext(DbContextOptions<ErpContext> options)
+			: base(options)
+		{
+		}
+
 		public ErpContext(DbContextOptions options)
 			: base(options)
 		{

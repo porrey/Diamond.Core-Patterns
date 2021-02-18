@@ -22,8 +22,9 @@ namespace Diamond.Core.Example
 	public class SampleWorkflowManager : LinearHaltWorkflowManager
 	{
 		public SampleWorkflowManager(ILogger<SampleWorkflowManager> logger, IWorkflowItemFactory workFlowItemFactory)
-			: base(workFlowItemFactory, WellKnown.Workflow.SampleWorkflow)
+			: base(workFlowItemFactory)
 		{
+			this.Group = WellKnown.Workflow.SampleWorkflow;
 			logger.LogDebug($"An instance of {nameof(SampleWorkflowManager)} with group name '{this.Group}' was created.");
 		}
 	}

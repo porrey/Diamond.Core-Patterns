@@ -2,12 +2,13 @@
 using Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Diamond.Core.Extensions.DependencyInjection.SqlServer
+namespace Diamond.Core.Extensions.DependencyInjection.InMemory
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DbContextDependencyFactory : BaseDbContextDependencyFactory
+	public class DbContextDependencyFactory<TContext> : BaseDbContextDependencyFactory<TContext>
+		where TContext : DbContext
 	{
 		/// <summary>
 		/// 
@@ -24,9 +25,9 @@ namespace Diamond.Core.Extensions.DependencyInjection.SqlServer
 		/// </summary>
 		/// <param name="builder"></param>
 		/// <param name="parameters"></param>
-		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder builder, object[] parameters)
+		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder<TContext> builder, object[] parameters)
 		{
-			builder.UseSqlServer((string)parameters[0]);
+			builder.UseInMemoryDatabase((string)parameters[0]);
 		}
 	}
 }

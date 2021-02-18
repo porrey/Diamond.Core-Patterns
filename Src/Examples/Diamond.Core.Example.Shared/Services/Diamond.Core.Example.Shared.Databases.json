@@ -1,43 +1,52 @@
 {
 	//
+	// Aliases are global and can be used anywhere.
+	//
+	"aliases": [
+		{
+			"Key": "ErpContext",
+			"TypeDefinition": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared"
+		}
+	],
+	//
 	// Change the active database by setting the DatabaseOptions:ActiveDatabase property in appsettings.json.
 	//
 	"databases": [
 		{
-			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"Context": "<ErpContext>",
 			"ConnectionString": "DatabaseOptions:SqlServer",
 			"Lifetime": "Scoped",
-			"Factory": "Diamond.Core.Extensions.DependencyInjection.SqlServer.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.SqlServer",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.SqlServer.DbContextDependencyFactory`1[[<ErpContext>]], Diamond.Core.Extensions.DependencyInjection.SqlServer",
 			"Condition": {
 				"Key": "DatabaseOptions:ActiveDatabase",
 				"Value": "SqlServer"
 			}
 		},
 		{
-			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"Context": "<ErpContext>",
 			"ConnectionString": "DatabaseOptions:SQLite",
 			"Lifetime": "Scoped",
-			"Factory": "Diamond.Core.Extensions.DependencyInjection.Sqlite.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.Sqlite",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.Sqlite.DbContextDependencyFactory`1[[<ErpContext>]], Diamond.Core.Extensions.DependencyInjection.Sqlite",
 			"Condition": {
 				"Key": "DatabaseOptions:ActiveDatabase",
 				"Value": "SQLite"
 			}
 		},
 		{
-			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"Context": "<ErpContext>",
 			"ConnectionString": "DatabaseOptions:PostgreSQL",
 			"Lifetime": "Scoped",
-			"Factory": "Diamond.Core.Extensions.DependencyInjection.PostgreSQL.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.PostgreSQL",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.PostgreSQL.DbContextDependencyFactory`1[[<ErpContext>]], Diamond.Core.Extensions.DependencyInjection.PostgreSQL",
 			"Condition": {
 				"Key": "DatabaseOptions:ActiveDatabase",
 				"Value": "PostgreSQL"
 			}
 		},
 		{
-			"Context": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.Shared",
+			"Context": "<ErpContext>",
 			"ConnectionString": "DatabaseOptions:InMemory",
 			"Lifetime": "Scoped",
-			"Factory": "Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory, Diamond.Core.Extensions.DependencyInjection.InMemory",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.InMemory.DbContextDependencyFactory`1[[<ErpContext>]], Diamond.Core.Extensions.DependencyInjection.InMemory",
 			"Condition": {
 				"Key": "DatabaseOptions:ActiveDatabase",
 				"Value": "InMemory"
