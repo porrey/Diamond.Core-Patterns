@@ -350,6 +350,14 @@
             </summary>
             <param name="instance"></param>
         </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="properties"></param>
+            <param name="implementationType"></param>
+            <param name="instance"></param>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider">
             <summary>
             

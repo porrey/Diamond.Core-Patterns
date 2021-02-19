@@ -20,6 +20,11 @@
 			"Condition": {
 				"Key": "DatabaseOptions:ActiveDatabase",
 				"Value": "SqlServer"
+			},
+			"Properties": {
+				"EnableSensitiveDataLogging": true,
+				"EnableDetailedErrors": true,
+				"UseLoggerFactory": true
 			}
 		},
 		{

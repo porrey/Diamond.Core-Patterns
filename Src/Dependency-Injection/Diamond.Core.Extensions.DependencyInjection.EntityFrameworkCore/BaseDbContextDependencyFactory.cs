@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 {
@@ -33,6 +34,21 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 		/// <summary>
 		/// 
 		/// </summary>
+		public bool EnableDetailedErrors { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool EnableSensitiveDataLogging { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public bool UseLoggerFactory { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <param name="sp"></param>
 		/// <param name="parameters"></param>
 		/// <returns></returns>
@@ -44,6 +60,23 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 			{
 				DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
 				this.OnDbContextOptionsBuilder(builder, parameters);
+				builder.UseApplicationServiceProvider(sp);
+
+				if (this.EnableDetailedErrors)
+				{
+					builder.EnableDetailedErrors();
+				}
+
+				if (this.EnableSensitiveDataLogging)
+				{
+					builder.EnableSensitiveDataLogging();
+				}
+
+				if (this.UseLoggerFactory)
+				{
+					builder.UseLoggerFactory(sp.GetRequiredService<ILoggerFactory>());
+				}
+
 				context = (DbContext)ActivatorUtilities.CreateInstance(sp, this.ImplementationType, builder.Options);
 			}
 			catch
@@ -61,7 +94,6 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 		/// <param name="parameters"></param>
 		protected virtual void OnDbContextOptionsBuilder(DbContextOptionsBuilder builder, object[] parameters)
 		{
-
 		}
 	}
 }

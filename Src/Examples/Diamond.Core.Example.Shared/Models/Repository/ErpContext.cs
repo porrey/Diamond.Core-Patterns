@@ -16,6 +16,7 @@
 //
 using Diamond.Core.Repository.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
@@ -26,14 +27,16 @@ namespace Diamond.Core.Example
 		{
 		}
 
-		public ErpContext(DbContextOptions<ErpContext> options)
+		public ErpContext(ILogger<ErpContext> logger, DbContextOptions<ErpContext> options)
 			: base(options)
 		{
+			
 		}
 
-		public ErpContext(DbContextOptions options)
+		public ErpContext(ILogger<ErpContext> logger, DbContextOptions options)
 			: base(options)
 		{
+			
 		}
 
 		public DbSet<InvoiceEntity> Invoices { get; set; }

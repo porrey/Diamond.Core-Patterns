@@ -66,7 +66,18 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <param name="instance"></param>
 		protected virtual void AssignProperties(object instance)
 		{
-			if (this.Configuration.Properties.Any())
+			DependencyFactory.AssignProperties(this.Configuration.Properties, this.ImplementationType, instance);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="properties"></param>
+		/// <param name="implementationType"></param>
+		/// <param name="instance"></param>
+		public static void AssignProperties(IDictionary<string,object> properties, Type implementationType, object instance)
+		{
+			if (properties.Any())
 			{
 				//
 				// Get the instance type.
@@ -82,7 +93,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				// Loop through each property in the configuration and attempt to assign
 				// it to the matching property on the instance.
 				//
-				foreach (KeyValuePair<string, object> property in this.Configuration.Properties)
+				foreach (KeyValuePair<string, object> property in properties)
 				{
 					//
 					// Check if this property exists on the instance.
@@ -112,7 +123,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 								//
 								// The property value assignment failed. Throw an exception.
 								//
-								throw new PropertyConversionException(this.ImplementationType, property.Key, property.Value, ex);
+								throw new PropertyConversionException(implementationType, property.Key, property.Value, ex);
 							}
 						}
 						else
@@ -120,7 +131,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							// The property is read-only. Throw an exception.
 							//
-							throw new PropertyIsReadOnlyException(this.ImplementationType, property.Key, property.Value);
+							throw new PropertyIsReadOnlyException(implementationType, property.Key, property.Value);
 						}
 					}
 					else
@@ -128,7 +139,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 						//
 						// The instance type did not have the current property. Throw an exception.
 						//
-						throw new PropertyNotFoundException(this.ImplementationType, property.Key);
+						throw new PropertyNotFoundException(implementationType, property.Key);
 					}
 				}
 			}

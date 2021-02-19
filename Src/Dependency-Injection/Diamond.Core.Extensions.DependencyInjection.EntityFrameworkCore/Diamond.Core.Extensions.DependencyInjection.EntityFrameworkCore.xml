@@ -26,6 +26,21 @@
             
             </summary>
         </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.EnableDetailedErrors">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.EnableSensitiveDataLogging">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.UseLoggerFactory">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BaseDbContextDependencyFactory.GetInstance(System.IServiceProvider,System.Object[])">
             <summary>
             

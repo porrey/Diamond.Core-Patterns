@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 {
@@ -34,6 +35,23 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 			{
 				DbContextOptionsBuilder<TContext> builder = new DbContextOptionsBuilder<TContext>();
 				this.OnDbContextOptionsBuilder(builder, parameters);
+				builder.UseApplicationServiceProvider(sp);
+
+				if (this.EnableDetailedErrors)
+				{
+					builder.EnableDetailedErrors();
+				}
+
+				if (this.EnableSensitiveDataLogging)
+				{
+					builder.EnableSensitiveDataLogging();
+				}
+
+				if (this.UseLoggerFactory)
+				{
+					builder.UseLoggerFactory(sp.GetRequiredService<ILoggerFactory>());
+				}
+
 				context = (DbContext)ActivatorUtilities.CreateInstance(sp, this.ImplementationType, builder.Options);
 			}
 			catch

@@ -27,7 +27,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.SqlServer
 		/// <param name="parameters"></param>
 		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder<TContext> builder, object[] parameters)
 		{
-			builder.UseSqlServer((string)parameters[0]).EnableSensitiveDataLogging();
+			builder.UseSqlServer((string)parameters[0]);
 		}
 	}
 }

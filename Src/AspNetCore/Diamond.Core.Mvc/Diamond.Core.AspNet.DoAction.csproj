@@ -5,7 +5,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>5.0.0-rc.8</Version>
+		<Version>5.0.0-rc.9</Version>
 		<AssemblyVersion>5.0.0</AssemblyVersion>
 		<FileVersion>5.0.0</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>

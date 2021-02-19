@@ -341,6 +341,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							IConfiguration configuration = sp.GetService<IConfiguration>();
 							string connectionString = configuration[item.ConnectionString];
 							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
+							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
 							return dependencyFactory.GetInstance(sp, connectionString);
 						});
 						break;
@@ -353,6 +354,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							IConfiguration configuration = sp.GetService<IConfiguration>();
 							string connectionString = configuration[item.ConnectionString];
 							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
+							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
 							return dependencyFactory.GetInstance(sp, connectionString);
 						});
 						break;
@@ -365,6 +367,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							IConfiguration configuration = sp.GetService<IConfiguration>();
 							string connectionString = configuration[item.ConnectionString];
 							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
+							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
 							return dependencyFactory.GetInstance(sp, connectionString);
 						});
 						break;
