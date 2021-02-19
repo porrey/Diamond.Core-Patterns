@@ -40,6 +40,19 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="logger"></param>
+		/// <param name="context"></param>
+		/// <param name="modelFactory"></param>
+		public EntityFrameworkRepository(ILogger<EntityFrameworkRepository<TInterface, TEntity, TContext>> logger, TContext context, IEntityFactory<TInterface> modelFactory)
+		{
+			this.Logger = logger;
+			this.Context = context;
+			this.ModelFactory = modelFactory;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <param name="context"></param>
 		/// <param name="modelFactory"></param>
 		public EntityFrameworkRepository(TContext context, IEntityFactory<TInterface> modelFactory)
@@ -149,7 +162,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(UpdateAsync), typeof(TInterface).Name);
 
 			this.Context.Entry((TEntity)item).State = EntityState.Modified;
-			int result = await this.Context.SaveChangesAsync();
+			int result = await this.Context.SaveChangesAsync(true);
 			this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(UpdateAsync), result);
 			returnValue = (result == 1);
 
@@ -168,7 +181,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(AddAsync), typeof(TInterface).Name);
 
 			entity = this.MyDbSet(this.Context).Add((TEntity)item).Entity;
-			result = (await this.Context.SaveChangesAsync() == 1);
+			result = (await this.Context.SaveChangesAsync(true) == 1);
 			this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(AddAsync), result);
 
 			return (result, entity);
@@ -186,7 +199,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(DeleteAsync), typeof(TInterface).Name);
 
 			this.Context.Entry((TEntity)item).State = EntityState.Deleted;
-			int result = await this.Context.SaveChangesAsync();
+			int result = await this.Context.SaveChangesAsync(true);
 			this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(DeleteAsync), result);
 			returnValue = (result == 1);
 

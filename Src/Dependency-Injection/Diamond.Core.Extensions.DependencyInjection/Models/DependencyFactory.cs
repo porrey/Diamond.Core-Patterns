@@ -107,12 +107,12 @@ namespace Diamond.Core.Extensions.DependencyInjection
 								TypeConverter typeConverter = TypeDescriptor.GetConverter(propertyInfo.PropertyType);
 								propertyInfo.SetValue(instance, typeConverter.ConvertFrom(property.Value));
 							}
-							catch
+							catch (Exception ex)
 							{
 								//
 								// The property value assignment failed. Throw an exception.
 								//
-								throw new PropertyConversionException(this.ImplementationType, property.Key, property.Value);
+								throw new PropertyConversionException(this.ImplementationType, property.Key, property.Value, ex);
 							}
 						}
 						else

@@ -29,8 +29,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <param name="implementationType"></param>
 		/// <param name="propertyName"></param>
 		/// <param name="value"></param>
-		public PropertyConversionException(Type implementationType, string propertyName, object value)
-			: base($"The value '{value}' could not be set on property '{propertyName}' for type '{implementationType.FullName}'.")
+		/// <param name="innerException"></param>
+		public PropertyConversionException(Type implementationType, string propertyName, object value, Exception innerException)
+			: base($"Conversion failed while setting the value '{value}' on property '{propertyName}' for type '{implementationType.FullName}'.", innerException)
 		{
 		}
 	}

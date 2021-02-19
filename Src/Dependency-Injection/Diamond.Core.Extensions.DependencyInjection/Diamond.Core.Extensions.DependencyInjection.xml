@@ -249,13 +249,14 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException.#ctor(System.Type,System.String,System.Object)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException.#ctor(System.Type,System.String,System.Object,System.Exception)">
             <summary>
             
             </summary>
             <param name="implementationType"></param>
             <param name="propertyName"></param>
             <param name="value"></param>
+            <param name="innerException"></param>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException">
             <summary>

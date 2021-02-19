@@ -58,6 +58,14 @@
             <typeparam name="TEntity">The entity object type.</typeparam>
             <typeparam name="TContext">The Entity Framework database context.</typeparam>
         </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository{`0,`1,`2}},`2,Diamond.Core.Repository.IEntityFactory{`0})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="context"></param>
+            <param name="modelFactory"></param>
+        </member>
         <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.#ctor(`2,Diamond.Core.Repository.IEntityFactory{`0})">
             <summary>
             

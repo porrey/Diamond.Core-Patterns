@@ -29,7 +29,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <param name="implementationType"></param>
 		/// <param name="propertyName"></param>
 		public PropertyNotFoundException(Type implementationType, string propertyName)
-			: base($"A settable property named '{propertyName}' was not found on type '{implementationType.FullName}'.")
+			: base($"A property named '{propertyName}' was not found on type '{implementationType.FullName}'.")
 		{
 		}
 	}
