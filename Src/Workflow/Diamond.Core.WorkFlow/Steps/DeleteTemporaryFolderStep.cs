@@ -30,7 +30,64 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public override string Name => "Delete Temporary Folder";
+		/// <param name="temporaryFolderFactory"></param>
+		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory)
+		{
+			this.TemporaryFolderFactory = temporaryFolderFactory;
+			this.Name = this.GetType().Name;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="temporaryFolderFactory"></param>
+		/// <param name="logger"></param>
+		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger)
+			: this(temporaryFolderFactory)
+		{
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="temporaryFolderFactory"></param>
+		/// <param name="logger"></param>
+		/// <param name="name"></param>
+		/// <param name="group"></param>
+		/// <param name="ordinal"></param>
+		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger, string name, string group, int ordinal)
+			: this(temporaryFolderFactory, logger)
+		{
+			this.Name = name;
+			this.Group = group;
+			this.Ordinal = ordinal;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="temporaryFolderFactory"></param>
+		/// <param name="logger"></param>
+		/// <param name="name"></param>
+		/// <param name="group"></param>
+		/// <param name="ordinal"></param>
+		/// <param name="alwaysExecute"></param>
+		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger, string name, string group, int ordinal, bool alwaysExecute)
+			: this(temporaryFolderFactory, logger, name, group, ordinal)
+		{
+			this.AlwaysExecute = alwaysExecute;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public override string Name { get; set; } = "Delete Temporary Folder";
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ITemporaryFolderFactory TemporaryFolderFactory { get; set; }
 
 		/// <summary>
 		/// 

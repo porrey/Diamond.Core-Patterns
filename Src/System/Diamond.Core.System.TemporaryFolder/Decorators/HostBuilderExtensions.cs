@@ -14,28 +14,29 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Diamond.Core.System.TemporaryFolder
 {
 	/// <summary>
-	/// Provides a wrapper for creating and managing temporary folders. Concrete
-	/// classes should implement IDisposable (not required) to remove temporary
-	/// files and folders when the instance is no longer in use.
+	/// 
 	/// </summary>
-	public interface ITemporaryFolder : IDisposable
+	public static class HostBuilderExtensions
 	{
 		/// <summary>
-		/// Gets/sets a string format with two variables, {0} and {1}, where
-		/// the first place holder will be replaced with the temporary folder
-		/// path and the second place holder will be replaced with the temporary
-		/// folder name.
+		/// 
 		/// </summary>
-		string NamingFormat { get; set; }
+		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
+		/// <returns></returns>
+		public static IHostBuilder UseTemporaryFolderFactory(this IHostBuilder hostBuilder)
+		{
+			hostBuilder.ConfigureServices((c, s) =>
+			{
+				s.AddScoped<ITemporaryFolderFactory, TemporaryFolderFactory>();
+			});
 
-		/// <summary>
-		/// Gets the full path to the temporary folder that is created by this instance.
-		/// </summary>
-		string FullPath { get; }
+			return hostBuilder;
+		}
 	}
 }

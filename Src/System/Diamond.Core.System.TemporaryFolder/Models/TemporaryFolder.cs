@@ -95,10 +95,5 @@ namespace Diamond.Core.System.TemporaryFolder
 				//
 			}
 		}
-
-		/// <summary>
-		/// Gets a factory used for creating instance of this TemporaryFolder.
-		/// </summary>
-		public static ITemporaryFolderFactory Factory { get; } = new TemporaryFolderFactory();
 	}
 }

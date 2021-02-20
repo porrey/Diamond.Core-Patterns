@@ -29,7 +29,64 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public override string Name => "Create Temporary Folder";
+		/// <param name="temporaryFolderFactory"></param>
+		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory)
+		{
+			this.TemporaryFolderFactory = temporaryFolderFactory;
+			this.Name = this.GetType().Name;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="temporaryFolderFactory"></param>
+		/// <param name="logger"></param>
+		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger)
+			: this(temporaryFolderFactory)
+		{
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="temporaryFolderFactory"></param>
+		/// <param name="logger"></param>
+		/// <param name="name"></param>
+		/// <param name="group"></param>
+		/// <param name="ordinal"></param>
+		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger, string name, string group, int ordinal)
+			: this(temporaryFolderFactory, logger)
+		{
+			this.Name = name;
+			this.Group = group;
+			this.Ordinal = ordinal;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="temporaryFolderFactory"></param>
+		/// <param name="logger"></param>
+		/// <param name="name"></param>
+		/// <param name="group"></param>
+		/// <param name="ordinal"></param>
+		/// <param name="alwaysExecute"></param>
+		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger, string name, string group, int ordinal, bool alwaysExecute)
+			: this(temporaryFolderFactory, logger, name, group, ordinal)
+		{
+			this.AlwaysExecute = alwaysExecute;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public override string Name { get; set; } = "Create Temporary Folder";
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ITemporaryFolderFactory TemporaryFolderFactory { get; set; }
 
 		/// <summary>
 		/// 
@@ -40,7 +97,7 @@ namespace Diamond.Core.Workflow
 		{
 			bool returnValue = false;
 
-			ITemporaryFolder temporaryFolder = TemporaryFolder.Factory.Create("{0}DynaMailCmd.{1}");
+			ITemporaryFolder temporaryFolder = this.TemporaryFolderFactory.Create($"{{0}}{this.Name}.{{1}}");
 			this.Logger.LogDebug("Created temporary folder '{path}'.", temporaryFolder.FullPath);
 
 			if (Directory.Exists(temporaryFolder.FullPath))

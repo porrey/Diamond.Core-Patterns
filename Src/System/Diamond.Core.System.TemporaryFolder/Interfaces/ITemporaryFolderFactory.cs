@@ -14,28 +14,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System;
-
 namespace Diamond.Core.System.TemporaryFolder
 {
 	/// <summary>
-	/// Provides a wrapper for creating and managing temporary folders. Concrete
-	/// classes should implement IDisposable (not required) to remove temporary
-	/// files and folders when the instance is no longer in use.
+	/// Factory for creating instances of ITemporaryFolder.
 	/// </summary>
-	public interface ITemporaryFolder : IDisposable
+	public interface ITemporaryFolderFactory
 	{
 		/// <summary>
-		/// Gets/sets a string format with two variables, {0} and {1}, where
-		/// the first place holder will be replaced with the temporary folder
-		/// path and the second place holder will be replaced with the temporary
-		/// folder name.
+		/// Creates a default instance of ITemporaryFolder.
 		/// </summary>
-		string NamingFormat { get; set; }
+		/// <returns>An instance of ITemporaryFolder.</returns>
+		ITemporaryFolder Create();
 
 		/// <summary>
-		/// Gets the full path to the temporary folder that is created by this instance.
+		/// Creates a default instance of ITemporaryFolder using
+		/// the given name format.
 		/// </summary>
-		string FullPath { get; }
+		/// <param name="namingFormat">Specifies the naming format to
+		/// use with this new instance</param>
+		/// <returns>An instance of ITemporaryFolder.</returns>
+		ITemporaryFolder Create(string namingFormat);
 	}
 }

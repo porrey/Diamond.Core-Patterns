@@ -565,7 +565,46 @@
             
             </summary>
         </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory)">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem})">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+            <param name="logger"></param>
+            <param name="name"></param>
+            <param name="group"></param>
+            <param name="ordinal"></param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+            <param name="logger"></param>
+            <param name="name"></param>
+            <param name="group"></param>
+            <param name="ordinal"></param>
+            <param name="alwaysExecute"></param>
+        </member>
         <member name="P:Diamond.Core.Workflow.CreateTemporaryFolderStep.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.CreateTemporaryFolderStep.TemporaryFolderFactory">
             <summary>
             
             </summary>
@@ -582,7 +621,46 @@
             
             </summary>
         </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory)">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem})">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+            <param name="logger"></param>
+            <param name="name"></param>
+            <param name="group"></param>
+            <param name="ordinal"></param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="temporaryFolderFactory"></param>
+            <param name="logger"></param>
+            <param name="name"></param>
+            <param name="group"></param>
+            <param name="ordinal"></param>
+            <param name="alwaysExecute"></param>
+        </member>
         <member name="P:Diamond.Core.Workflow.DeleteTemporaryFolderStep.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.DeleteTemporaryFolderStep.TemporaryFolderFactory">
             <summary>
             
             </summary>

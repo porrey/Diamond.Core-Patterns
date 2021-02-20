@@ -4,6 +4,18 @@
         <name>Diamond.Core.System.TemporaryFolder</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.System.TemporaryFolder.HostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.System.TemporaryFolder.HostBuilderExtensions.UseTemporaryFolderFactory(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.System.TemporaryFolder.ITemporaryFolder">
             <summary>
             Provides a wrapper for creating and managing temporary folders. Concrete
@@ -85,11 +97,6 @@
         <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolder.OnDisposeManagedObjects">
             <summary>
             
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.System.TemporaryFolder.TemporaryFolder.Factory">
-            <summary>
-            Gets a factory used for creating instance of this TemporaryFolder.
             </summary>
         </member>
         <member name="T:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory">
