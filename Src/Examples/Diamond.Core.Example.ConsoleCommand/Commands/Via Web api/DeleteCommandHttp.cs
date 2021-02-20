@@ -14,8 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
@@ -50,7 +53,32 @@ namespace Diamond.Core.Example
 		{
 			int returnValue = 0;
 
-			await Task.Delay(1);
+			HttpClient client = this.HttpClientFactory.CreateClient(typeof(Invoice).Name);
+
+			using (HttpResponseMessage response = await client.DeleteAsync(invoice.Number))
+			{
+				string responseJson = await response.Content.ReadAsStringAsync();
+
+				if (response.IsSuccessStatusCode)
+				{
+					Invoice deletedInvoice = JsonSerializer.Deserialize<Invoice>(responseJson);
+					this.Logger.LogInformation($"Successfully deleted invoice: '{deletedInvoice}'.");
+				}
+				else
+				{
+					if (response.StatusCode == HttpStatusCode.NotFound)
+					{
+						this.Logger.LogWarning($"The invoice '{invoice.Number}' was not found.");
+					}
+					else
+					{
+						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(responseJson);
+						this.Logger.LogError($"Error while deleting invoice '{invoice.Number}': '{details.Detail}'.");
+					}
+
+					returnValue = 1;
+				}
+			}
 
 			return returnValue;
 		}

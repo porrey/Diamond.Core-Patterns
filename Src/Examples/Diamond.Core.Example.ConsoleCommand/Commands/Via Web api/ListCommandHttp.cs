@@ -15,11 +15,13 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Diamond.Core.CommandLine.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Diamond.Core.Example
 {
@@ -52,10 +54,6 @@ namespace Diamond.Core.Example
 		{
 			int returnValue = 0;
 
-#if DEBUG
-			await Task.Delay(3000);
-#endif
-
 			HttpClient client = this.HttpClientFactory.CreateClient(typeof(Invoice).Name);
 
 			using (HttpResponseMessage response = await client.GetAsync(""))
@@ -64,7 +62,7 @@ namespace Diamond.Core.Example
 
 				if (response.IsSuccessStatusCode)
 				{
-					IEnumerable<Invoice> invoices = JsonConvert.DeserializeObject<IEnumerable<Invoice>>(json);
+					IEnumerable<Invoice> invoices = JsonSerializer.Deserialize<IEnumerable<Invoice>>(json);
 
 					foreach (Invoice invoice in invoices)
 					{
@@ -73,7 +71,16 @@ namespace Diamond.Core.Example
 				}
 				else
 				{
-					this.Logger.LogError("Failed to get invoice list.");
+					if (response.StatusCode == HttpStatusCode.NotFound)
+					{
+						this.Logger.LogWarning("There are no invoices available in the system.");
+					}
+					else
+					{
+						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(json);
+						this.Logger.LogError($"Error while retrieving invoice list: '{details.Detail}'.");
+					}
+					returnValue = 1;
 				}
 			}
 

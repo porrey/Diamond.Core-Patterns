@@ -15,8 +15,11 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
@@ -32,11 +35,10 @@ namespace Diamond.Core.Example
 		/// <param name="logger"></param>
 		/// <param name="httpClientFactory"></param>
 		/// <param name="mapper"></param>
-		public UpdateCommandHttp(ILogger<UpdateCommandHttp> logger, IHttpClientFactory httpClientFactory, IMapper mapper)
+		public UpdateCommandHttp(ILogger<UpdateCommandHttp> logger, IHttpClientFactory httpClientFactory)
 			: base(logger)
 		{
 			this.HttpClientFactory = httpClientFactory;
-			this.Mapper = mapper;
 		}
 
 		/// <summary>
@@ -47,18 +49,36 @@ namespace Diamond.Core.Example
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IMapper Mapper { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="item"></param>
+		/// <param name=invoice"></param>
 		/// <returns></returns>
-		protected override async Task<int> OnHandleCommand(Invoice item)
+		protected override async Task<int> OnHandleCommand(Invoice invoice)
 		{
 			int returnValue = 0;
 
-			await Task.Delay(1);
+			HttpClient client = this.HttpClientFactory.CreateClient(typeof(Invoice).Name);
+
+			JsonPatchDocument<Invoice> patchDocument = new JsonPatchDocument<Invoice>();
+			string requestJson = JsonSerializer.Serialize(patchDocument);
+
+			using (StringContent content = new StringContent(requestJson, Encoding.UTF8, "application/json-patch+json"))
+			{
+				using (HttpResponseMessage response = await client.PatchAsync(invoice.Number, content))
+				{
+					string responseJson = await response.Content.ReadAsStringAsync();
+
+					if (response.IsSuccessStatusCode)
+					{
+						Invoice newInvoice = JsonSerializer.Deserialize<Invoice>(responseJson);
+						this.Logger.LogInformation($"Successfully updated invoice: '{newInvoice}'.");
+					}
+					else
+					{
+						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(responseJson);
+						this.Logger.LogError($"Error while updating invoice '{invoice.Number}': '{details.Detail}'.");
+						returnValue = 1;
+					}
+				}
+			}
 
 			return returnValue;
 		}

@@ -14,8 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
@@ -51,7 +54,30 @@ namespace Diamond.Core.Example
 			int returnValue = 0;
 
 			HttpClient client = this.HttpClientFactory.CreateClient(typeof(Invoice).Name);
-			string result = await client.GetStringAsync(invoice.Number);
+
+			using (HttpResponseMessage response = await client.GetAsync(invoice.Number))
+			{
+				string json = await response.Content.ReadAsStringAsync();
+
+				if (response.IsSuccessStatusCode)
+				{
+					Invoice retievedInvoice = JsonSerializer.Deserialize<Invoice>(json);
+					this.Logger.LogInformation(retievedInvoice.ToString());
+				}
+				else
+				{
+					if (response.StatusCode == HttpStatusCode.NotFound)
+					{
+						this.Logger.LogWarning($"The invoice '{invoice.Number}' was not found.");
+					}
+					else
+					{
+						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(json);
+						this.Logger.LogError($"Error while retrieving invoice list: '{details.Detail}'.");
+					}
+					returnValue = 1;
+				}
+			}
 
 			return returnValue;
 		}
