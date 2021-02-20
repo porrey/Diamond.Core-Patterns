@@ -31,7 +31,7 @@ namespace Diamond.Core.CommandLine
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
 		/// <param name="name">The name of the root command.</param>
 		/// <param name="args">The arguments passed to the application at the console prompt.</param>
-		/// <returns>A <see cref="IHostBuilder"/> instance used to configure and build the application.</returns>
+		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
 		public static IHostBuilder AddRootCommand(this IHostBuilder hostBuilder, string name, string[] args)
 		{
 			//

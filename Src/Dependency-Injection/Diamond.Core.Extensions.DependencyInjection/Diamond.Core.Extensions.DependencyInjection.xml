@@ -14,28 +14,28 @@
             
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.AddServices(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.AddAliases(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.JsonHostBuilderExtensions.AddHostedServices(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator">
             <summary>
@@ -198,7 +198,7 @@
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
             /// <param name="folderPath"></param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.AliasNotFoundException">
             <summary>
@@ -444,7 +444,7 @@
             
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileParser">
             <summary>

@@ -20,15 +20,15 @@ using Microsoft.Extensions.Hosting;
 namespace Diamond.Core.System.TemporaryFolder
 {
 	/// <summary>
-	/// 
+	/// <see cref="IHostBuilder" /> builder extensions.
 	/// </summary>
 	public static class HostBuilderExtensions
 	{
 		/// <summary>
-		/// 
+		/// Add the temporary folder factory to the IServiceCollection.
 		/// </summary>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns></returns>
+		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
 		public static IHostBuilder UseTemporaryFolderFactory(this IHostBuilder hostBuilder)
 		{
 			hostBuilder.ConfigureServices((c, s) =>

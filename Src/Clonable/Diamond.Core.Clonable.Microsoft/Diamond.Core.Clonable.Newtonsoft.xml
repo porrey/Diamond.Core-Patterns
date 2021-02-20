@@ -14,7 +14,7 @@
             
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="T:Diamond.Core.Clonable.NetCore.ObjectCloneFactory">
             <summary>

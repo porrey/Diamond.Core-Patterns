@@ -6,21 +6,26 @@
     <members>
         <member name="T:Diamond.Core.System.TemporaryFolder.HostBuilderExtensions">
             <summary>
-            
+            <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> builder extensions.
             </summary>
         </member>
         <member name="M:Diamond.Core.System.TemporaryFolder.HostBuilderExtensions.UseTemporaryFolderFactory(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
-            
+            Add the temporary folder factory to the IServiceCollection.
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="T:Diamond.Core.System.TemporaryFolder.ITemporaryFolder">
             <summary>
             Provides a wrapper for creating and managing temporary folders. Concrete
             classes should implement IDisposable (not required) to remove temporary
             files and folders when the instance is no longer in use.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.System.TemporaryFolder.ITemporaryFolder.Create">
+            <summary>
+            Creates the temporary folder.
             </summary>
         </member>
         <member name="P:Diamond.Core.System.TemporaryFolder.ITemporaryFolder.NamingFormat">
@@ -65,20 +70,38 @@
         </member>
         <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolder.#ctor">
             <summary>
-            Internally creates a default instance.
+            Creates a default instance.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolder.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.System.TemporaryFolder.TemporaryFolder})">
+            <summary>
+            Creates a default instance with the given <see cref="T:Microsoft.Extensions.Logging.ILogger"/>.
             </summary>
         </member>
         <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolder.#ctor(System.String)">
             <summary>
-            Internally creates an instance of ITemporaryFolder using
+            Creates an instance of ITemporaryFolder using
             the given name format.
             </summary>
             <param name="namingFormat">Specifies the naming format to
             use with this new instance</param>
         </member>
+        <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolder.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.System.TemporaryFolder.TemporaryFolder},System.String)">
+            <summary>
+            Internally creates an instance of ITemporaryFolder using
+            the given name format and <see cref="T:Microsoft.Extensions.Logging.ILogger"/>.
+            </summary>
+            <param name="logger"></param>
+            <param name="namingFormat"></param>
+        </member>
+        <member name="F:Diamond.Core.System.TemporaryFolder.TemporaryFolder.Logger">
+            <summary>
+            The <see cref="T:Microsoft.Extensions.Logging.ILogger"/> instance used for logging.
+            </summary>
+        </member>
         <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolder.Create">
             <summary>
-            
+            Creates the temporary folder.
             </summary>
         </member>
         <member name="P:Diamond.Core.System.TemporaryFolder.TemporaryFolder.FullPath">
@@ -96,7 +119,7 @@
         </member>
         <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolder.OnDisposeManagedObjects">
             <summary>
-            
+            Disposes managed objects.
             </summary>
         </member>
         <member name="T:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory">
@@ -104,9 +127,19 @@
             
             </summary>
         </member>
+        <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory})">
+            <summary>
+            Prevents instances of this class from being created externally.
+            </summary>
+        </member>
         <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory.#ctor">
             <summary>
             Prevents instances of this class from being created externally.
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory.Logger">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory.Create">

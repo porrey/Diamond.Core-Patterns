@@ -26,6 +26,11 @@ namespace Diamond.Core.System.TemporaryFolder
 	public interface ITemporaryFolder : IDisposable
 	{
 		/// <summary>
+		/// Creates the temporary folder.
+		/// </summary>
+		void Create();
+
+		/// <summary>
 		/// Gets/sets a string format with two variables, {0} and {1}, where
 		/// the first place holder will be replaced with the temporary folder
 		/// path and the second place holder will be replaced with the temporary

@@ -31,7 +31,7 @@ namespace Diamond.Core.Extensions.Hosting
 		/// </summary>
 		/// <typeparam name="TStartup"></typeparam>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns></returns>
+		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
 		public static IHostBuilder UseStartup<TStartup>(this IHostBuilder hostBuilder)
 			where TStartup : IStartup, new()
 		{
@@ -87,7 +87,7 @@ namespace Diamond.Core.Extensions.Hosting
 		/// <typeparam name="TStartup"></typeparam>
 		/// <typeparam name="TContainer"></typeparam>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns></returns>
+		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
 		public static IHostBuilder UseStartup<TStartup, TContainer>(this IHostBuilder hostBuilder)
 			where TStartup : IStartup, new()
 		{

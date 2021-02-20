@@ -14,6 +14,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+
 namespace Diamond.Core.System.TemporaryFolder
 {
 	/// <summary>
@@ -24,9 +27,22 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <summary>
 		/// Prevents instances of this class from being created externally.
 		/// </summary>
-		internal TemporaryFolderFactory()
+		public TemporaryFolderFactory(ILogger<TemporaryFolderFactory> logger)
+		{
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// Prevents instances of this class from being created externally.
+		/// </summary>
+		public TemporaryFolderFactory()
 		{
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ILogger<TemporaryFolderFactory> Logger = new NullLogger<TemporaryFolderFactory>();
 
 		/// <summary>
 		/// Creates a default instance of ITemporaryFolder.
@@ -34,7 +50,13 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <returns>An instance of ITemporaryFolder.</returns>
 		public ITemporaryFolder Create()
 		{
-			return new TemporaryFolder();
+			ITemporaryFolder returnValue = null;
+
+			this.Logger.LogDebug("Creating temporary folder.");
+			returnValue = new TemporaryFolder();
+			this.Logger.LogDebug("Created temporary folder '{folder}'.", returnValue.FullPath);
+
+			return returnValue;
 		}
 
 		/// <summary>
@@ -46,7 +68,13 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <returns>An instance of ITemporaryFolder.</returns>
 		public ITemporaryFolder Create(string namingFormat)
 		{
-			return new TemporaryFolder(namingFormat);
+			ITemporaryFolder returnValue = null;
+
+			this.Logger.LogDebug("Creating temporary folder.");
+			returnValue = new TemporaryFolder(namingFormat);
+			this.Logger.LogDebug("Created temporary folder '{folder}'.", returnValue.FullPath);
+
+			return returnValue;
 		}
 	}
 }

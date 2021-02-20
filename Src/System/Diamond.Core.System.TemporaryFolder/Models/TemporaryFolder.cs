@@ -16,6 +16,8 @@
 // 
 using System;
 using System.IO;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.System.TemporaryFolder
 {
@@ -27,30 +29,58 @@ namespace Diamond.Core.System.TemporaryFolder
 	public class TemporaryFolder : DisposableObject, ITemporaryFolder
 	{
 		/// <summary>
-		/// Internally creates a default instance.
+		/// Creates a default instance.
 		/// </summary>
-		internal TemporaryFolder()
+		public TemporaryFolder()
 		{
 			this.AssertWhenNotDisposed = false;
 			this.Create();
 		}
 
 		/// <summary>
-		/// Internally creates an instance of ITemporaryFolder using
+		/// Creates a default instance with the given <see cref="ILogger"/>.
+		/// </summary>
+		public TemporaryFolder(ILogger<TemporaryFolder> logger)
+			: this()
+		{
+			this.Logger = logger;
+			this.AssertWhenNotDisposed = false;
+			this.Create();
+		}
+
+		/// <summary>
+		/// Creates an instance of ITemporaryFolder using
 		/// the given name format.
 		/// </summary>
 		/// <param name="namingFormat">Specifies the naming format to
 		/// use with this new instance</param>
-		internal TemporaryFolder(string namingFormat)
+		public TemporaryFolder(string namingFormat)
 			: this()
 		{
 			this.NamingFormat = namingFormat;
 		}
 
 		/// <summary>
-		/// 
+		/// Internally creates an instance of ITemporaryFolder using
+		/// the given name format and <see cref="ILogger"/>.
 		/// </summary>
-		protected virtual void Create()
+		/// <param name="logger"></param>
+		/// <param name="namingFormat"></param>
+		public TemporaryFolder(ILogger<TemporaryFolder> logger, string namingFormat)
+			: this(logger)
+		{
+			this.NamingFormat = namingFormat;
+		}
+
+		/// <summary>
+		/// The <see cref="ILogger"/> instance used for logging.
+		/// </summary>
+		protected ILogger<TemporaryFolder> Logger = new NullLogger<TemporaryFolder>();
+
+		/// <summary>
+		/// Creates the temporary folder.
+		/// </summary>
+		public virtual void Create()
 		{
 			this.FullPath = String.Format(this.NamingFormat, Path.GetTempPath(), Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
 
@@ -63,7 +93,7 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <summary>
 		/// Gets the full path to the temporary folder that is created by this instance.
 		/// </summary>
-		public string FullPath { get; set; }
+		public virtual string FullPath { get; set; }
 
 		/// <summary>
 		/// Gets/sets a string format with two variables, {0} and {1}, where
@@ -71,28 +101,32 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// path and the second place holder will be replaced with the temporary
 		/// folder name. The default is "{0}{1}".
 		/// </summary>
-		public string NamingFormat { get; set; } = "{0}{1}";
+		public virtual string NamingFormat { get; set; } = "{0}{1}";
 
 		/// <summary>
-		/// 
+		/// Disposes managed objects.
 		/// </summary>
 		protected override void OnDisposeManagedObjects()
 		{
 			try
 			{
+				this.Logger.LogDebug("Attempting to delete temporary folder '{path}'.", this.FullPath);
+
 				if (Directory.Exists(this.FullPath))
 				{
 					//
 					// Delete the folder and everything in it
 					//
 					Directory.Delete(this.FullPath, true);
+					this.Logger.LogDebug("The temporary folder {path}' and it's contents ' were successfully deleted.", this.FullPath);
 				}
 			}
-			catch
+			catch(Exception ex)
 			{
 				//
 				// Not a big deal if this fails...
 				//
+				this.Logger.LogError(ex, "OnDisposeManagedObjects() failed to remove the temporary folder '{path}',", this.FullPath);
 			}
 		}
 	}

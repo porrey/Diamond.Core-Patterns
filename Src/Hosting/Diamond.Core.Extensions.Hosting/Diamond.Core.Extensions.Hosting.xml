@@ -15,7 +15,7 @@
             </summary>
             <typeparam name="TStartup"></typeparam>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="M:Diamond.Core.Extensions.Hosting.HostBuilderExtensions.UseStartup``2(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
@@ -24,7 +24,7 @@
             <typeparam name="TStartup"></typeparam>
             <typeparam name="TContainer"></typeparam>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
-            <returns></returns>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
         </member>
         <member name="M:Diamond.Core.Extensions.Hosting.HostBuilderExtensions.BuildAndRunWithExitCodeAsync(Microsoft.Extensions.Hosting.IHostBuilder,System.Threading.CancellationToken)">
             <summary>

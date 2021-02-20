@@ -28,7 +28,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// </summary>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
 		/// /// <param name="folderPath"></param>
-		/// <returns></returns>
+		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
 		public static IHostBuilder ConfigureServicesFolder(this IHostBuilder hostBuilder, string folderPath)
 		{
 			return hostBuilder.ConfigureAppConfiguration(config =>
