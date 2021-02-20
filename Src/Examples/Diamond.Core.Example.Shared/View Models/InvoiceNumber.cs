@@ -15,13 +15,15 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using Diamond.Core.Clonable;
 
 namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// Contains the details of an invoice.
 	/// </summary>
-	public class InvoiceNumber
+	public class InvoiceNumber : CloneableObject
 	{
 		/// <summary>
 		/// The unique invoice number.
@@ -30,6 +32,7 @@ namespace Diamond.Core.Example
 		[MaxLength(30)]
 		[RegularExpression("INV[a-zA-Z0-9]*")]
 		[Display(Order = 0, ShortName = "Number", Description = "The unique invoice number.")]
+		[JsonPropertyName("number")]
 		public string Number { get; set; }
 	}
 }

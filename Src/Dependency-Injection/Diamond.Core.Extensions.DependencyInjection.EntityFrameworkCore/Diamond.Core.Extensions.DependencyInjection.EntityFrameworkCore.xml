@@ -83,12 +83,12 @@
             <param name="builder"></param>
             <param name="parameters"></param>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BuilderExtensions">
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.HostBuilderExtensions">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.BuilderExtensions.UseConfiguredDatabaseServices(Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.HostBuilderExtensions.UseConfiguredDatabaseServices(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             
             </summary>

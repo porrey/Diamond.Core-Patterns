@@ -14,15 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-
-using Diamond.Core.System;
+using Diamond.Core.Clonable;
 
 namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class Entity : Cloneable, IEntity
+	public abstract class Entity : CloneableObject, IEntity
 	{
 	}
 

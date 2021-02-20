@@ -196,10 +196,10 @@
             Retrieves invoice information from the ERP system.
             </summary>y
         </member>
-        <member name="M:Diamond.Core.Example.InvoicesController.#ctor(Diamond.Core.AspNet.DoAction.IDoActionFactory)">
+        <member name="M:Diamond.Core.Example.InvoicesController.#ctor(Diamond.Core.AspNetCore.DoAction.IDoActionFactory)">
             <summary>
             Creates an instance of <see cref="T:Diamond.Core.Example.InvoicesController"/> with a dependency
-            on <see cref="T:Diamond.Core.AspNet.DoAction.IDoActionFactory"/>.
+            on <see cref="T:Diamond.Core.AspNetCore.DoAction.IDoActionFactory"/>.
             </summary>
             <param name="doActionFactory"></param>
         </member>

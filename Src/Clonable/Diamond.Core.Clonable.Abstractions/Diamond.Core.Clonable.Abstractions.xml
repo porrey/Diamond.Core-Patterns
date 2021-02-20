@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Clonable.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Clonable.DiamondClonableException">
+            <summary>
+            This is an abstract class the defines the base object for all
+            exceptions in the Diamond.Core.Repositry library. This allows exceptions
+            specific to this library to be caught separately than other exceptions.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.DiamondClonableException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Clonable.DiamondClonableException"/> class.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.DiamondClonableException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Clonable.DiamondClonableException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Diamond.Core.Clonable.DiamondClonableException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Clonable.DiamondClonableException"/> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference
+            if no inner exception is specified.</param>
+        </member>
+        <member name="M:Diamond.Core.Clonable.DiamondClonableException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Clonable.DiamondClonableException"/> class with serialized data.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
+            object data about the exception being thrown.</param>
+            <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
+            about the source or destination.</param>
+        </member>
+        <member name="T:Diamond.Core.Clonable.IObjectCloneFactory">
+            <summary>
+            Defines an interface for a factory that can clone objects.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.IObjectCloneFactory.CloneInstance(System.ICloneable)">
+            <summary>
+            Creates a deep clone of an object.
+            </summary>
+            <param name="instance">The object to clone.</param>
+            <returns>The new object that s a deep clone of instance.</returns>
+        </member>
+        <member name="M:Diamond.Core.Clonable.IObjectCloneFactory.CloneInstance``1(``0)">
+            <summary>
+            Creates a deep clone of an object.
+            </summary>
+            <typeparam name="T">The type of the instance to clone.</typeparam>
+            <param name="instance">The object to clone.</param>
+            <returns>The new object that s a deep clone of instance.</returns>
+        </member>
+    </members>
+</doc>

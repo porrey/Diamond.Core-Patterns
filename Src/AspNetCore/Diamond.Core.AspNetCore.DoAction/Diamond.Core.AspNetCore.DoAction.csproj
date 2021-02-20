@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+		<Product>Diamond.Core Patterns Library</Product>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Version>5.0.1</Version>
+		<AssemblyVersion>5.0.1</AssemblyVersion>
+		<FileVersion>5.0.1</FileVersion>
+		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Description>Provides the Do pattern execution for ASP.NET Core MVC core projects.</Description>
+		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
+		<Authors>Daniel M Porrey</Authors>
+		<Company>Daniel M Porrey</Company>
+		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<PackageIconUrl></PackageIconUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+	  <DocumentationFile>Diamond.Core.AspNetCore.DoAction.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Models\Error.cs" />
+	  <Compile Remove="Models\FailedRequest.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Diamond.Core.AspNetCore.DoAction.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="TryDisposable" Version="1.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Diamond.Core.AspNetCore.DoAction.Abstractions\Diamond.Core.AspNetCore.DoAction.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>

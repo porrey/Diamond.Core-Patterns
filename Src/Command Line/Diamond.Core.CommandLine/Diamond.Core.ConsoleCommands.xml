@@ -4,12 +4,12 @@
         <name>Diamond.Core.CommandLine</name>
     </assembly>
     <members>
-        <member name="T:Diamond.Core.CommandLine.ServicesExtensions">
+        <member name="T:Diamond.Core.CommandLine.HostBuilderExtensions">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.CommandLine.ServicesExtensions.AddRootCommand(Microsoft.Extensions.Hosting.IHostBuilder,System.String,System.String[])">
+        <member name="M:Diamond.Core.CommandLine.HostBuilderExtensions.AddRootCommand(Microsoft.Extensions.Hosting.IHostBuilder,System.String,System.String[])">
             <summary>
             Create a root command object that wraps a host builder. The host builder
             is create using defaults.

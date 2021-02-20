@@ -53,6 +53,8 @@ namespace Diamond.Core.Example
 		protected override async Task<int> OnHandleCommand(NullModel item)
 		{
 			int returnValue = 0;
+			
+			await Task.Delay(3000);
 
 			HttpClient client = this.HttpClientFactory.CreateClient(typeof(Invoice).Name);
 

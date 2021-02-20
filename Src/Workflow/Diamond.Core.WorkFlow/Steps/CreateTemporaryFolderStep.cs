@@ -16,7 +16,7 @@
 // 
 using System.IO;
 using System.Threading.Tasks;
-using Diamond.Core.System;
+using Diamond.Core.System.TemporaryFolder;
 using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Workflow

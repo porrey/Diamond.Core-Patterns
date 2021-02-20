@@ -1,8 +1,8 @@
 {
 	"services": [
 		{
-			"ServiceType": "Diamond.Core.AspNet.DoAction.IDoActionFactory, Diamond.Core.AspNet.DoAction.Abstractions",
-			"ImplementationType": "Diamond.Core.AspNet.DoAction.DoActionFactory, Diamond.Core.AspNet.DoAction",
+			"ServiceType": "Diamond.Core.AspNetCore.DoAction.IDoActionFactory, Diamond.Core.AspNetCore.DoAction.Abstractions",
+			"ImplementationType": "Diamond.Core.AspNetCore.DoAction.DoActionFactory, Diamond.Core.AspNetCore.DoAction",
 			"Lifetime": "Scoped"
 		}
 	]

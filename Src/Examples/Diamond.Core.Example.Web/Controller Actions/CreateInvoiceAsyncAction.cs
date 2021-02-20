@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using Diamond.Core.AspNet.DoAction;
+using Diamond.Core.AspNetCore.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 

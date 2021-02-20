@@ -15,6 +15,7 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Diamond.Core.Example
 {
@@ -29,6 +30,7 @@ namespace Diamond.Core.Example
 		[Required]
 		[MaxLength(100)]
 		[Display(Order = 1, ShortName = "Description", Description = "A description of invoice.")]
+		[JsonPropertyName("description")]
 		public string Description { get; set; }
 
 		/// <summary>
@@ -37,12 +39,14 @@ namespace Diamond.Core.Example
 		[Required]
 		[Range(0, float.MaxValue)]
 		[Display(Order = 2, ShortName = "Total", Description = "The total dollar amount of the invoice.")]
+		[JsonPropertyName("total")]
 		public float Total { get; set; }
 
 		/// <summary>
 		/// Indicates if the invoice has been paid or not.
 		/// </summary>
 		[Display(Order = 3, ShortName = "Paid", Description = "Indicates if the invoice has been paid or not.")]
+		[JsonPropertyName("paid")]
 		public bool Paid { get; set; }
 
 		public override string ToString()

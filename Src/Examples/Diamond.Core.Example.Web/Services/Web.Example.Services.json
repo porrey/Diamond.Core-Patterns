@@ -5,7 +5,7 @@
 	"aliases": [
 		{
 			"Key": "IDoAction",
-			"TypeDefinition": "Diamond.Core.AspNet.DoAction.IDoAction, Diamond.Core.AspNet.DoAction.Abstractions"
+			"TypeDefinition": "Diamond.Core.AspNetCore.DoAction.IDoAction, Diamond.Core.AspNetCore.DoAction.Abstractions"
 		}
 	],
 	//

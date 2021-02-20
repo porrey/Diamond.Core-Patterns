@@ -17,8 +17,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Diamond.Core.AspNet.DoAction;
-using Diamond.Core.AspNet.Swagger;
+using Diamond.Core.AspNetCore.DoAction;
+using Diamond.Core.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;

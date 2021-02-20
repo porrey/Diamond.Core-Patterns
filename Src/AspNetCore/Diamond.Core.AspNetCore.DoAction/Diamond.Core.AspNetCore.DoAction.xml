@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.AspNetCore.DoAction</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DoAction`2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DoAction.DoAction{`0,`1}})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoAction`2.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoAction`2.ActionKey">
+            <summary>
+            As a best practice, the name of this class should match the controller
+            method name with the word "Action" appended to the end. The DoActionController
+            uses [CallerMemberName] as the action key by default.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.ExecuteActionAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.OnExecuteActionAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.ValidateModel(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionController">
+            <summary>
+            Provides the base class for a "Do Action" controller where the action
+            of the controller method is delegated to a DoAction handler that is
+            registered in the container using the name of the controller method.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionController.#ctor(Diamond.Core.AspNetCore.DoAction.IDoActionFactory)">
+            <summary>
+            Initializes an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionController"/> with
+            an instance of the <see cref="T:Diamond.Core.AspNetCore.DoAction.IDoActionFactory"/>.
+            </summary>
+            <param name="doActionFactory">An instance of the <see cref="T:Diamond.Core.AspNetCore.DoAction.IDoActionFactory"/>.</param>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionController.#ctor(Diamond.Core.AspNetCore.DoAction.IDoActionFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DoAction.DoActionController})">
+            <summary>
+            Initializes an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionController"/> with
+            an instance of the <see cref="T:Diamond.Core.AspNetCore.DoAction.IDoActionFactory"/> and the <see cref="T:Microsoft.Extensions.Logging.ILogger"/>.
+            </summary>
+            <param name="doActionFactory"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionController.Logger">
+            <summary>
+            Gets/sets the instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/> that
+            will listen for logs events originating from this instance.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionController.DoActionFactory">
+            <summary>
+            Gets/sets an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.IDoActionFactory"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionController.Do``1(System.String)">
+            <summary>
+            Executes the controller method without any parameters.
+            </summary>
+            <typeparam name="TResult">The type of object returned by the action.</typeparam>
+            <param name="actionKey">The name of the action retrieved from the container.</param>
+            <returns>An ActionResult encapsulating the expected return type.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionController.Do``2(``0,System.String)">
+            <summary>
+            Executes the controller method without the given parameter.
+            </summary>
+            <typeparam name="TInputs"></typeparam>
+            <typeparam name="TResult">The type of object returned by the action.</typeparam>
+            <param name="actionKey">The name of the action retrieved from the container.</param>
+            <param name="inputs">The input parameter for the action.</param>
+            <returns>An ActionResult encapsulating the expected return type.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionController.LogMethodCall(System.String)">
+            <summary>
+            Logs a method call.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionController.OnCreateProblemDetail(Microsoft.AspNetCore.Mvc.ProblemDetails)">
+            <summary>
+            Provides the overriding class the opportunity to edit or change the problems
+            details before they are returned to the client.
+            </summary>
+            <param name="problemDetails">The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that will be returned to the client.</param>
+            <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/>.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionNotFoundException.#ctor(System.Type,System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="tinputs"></param>
+            <param name="tresult"></param>
+            <param name="actionKey"></param>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionFactory">
+            <summary>
+            Defines a generic repository factory that can be used to retrieve
+            an object that implements IDecorator[TItem, TResult] from the container.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionFactory.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionFactory.ServiceProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionFactory.GetAsync``2(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TInputs"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="actionKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.ControllerActionResult`1">
+            <summary>
+            Contains the result of a controller action.
+            </summary>
+            <typeparam name="TResult">The type of the inner object.</typeparam>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.ControllerActionResult`1.ResultDetails">
+            <summary>
+            The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that is returned to the caller
+            if the result is not a 200.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.ControllerActionResult`1.Result">
+            <summary>
+            The resulting object instance if the action was successful.
+            </summary>
+        </member>
+    </members>
+</doc>

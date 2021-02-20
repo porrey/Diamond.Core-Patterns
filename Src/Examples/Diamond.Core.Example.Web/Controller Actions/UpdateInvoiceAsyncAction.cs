@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Diamond.Core.AspNet.DoAction;
+using Diamond.Core.AspNetCore.DoAction;
 using Diamond.Core.Repository;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.Extensions.Logging;

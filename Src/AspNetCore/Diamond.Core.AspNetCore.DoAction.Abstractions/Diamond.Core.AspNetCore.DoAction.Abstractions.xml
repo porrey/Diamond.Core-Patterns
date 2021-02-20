@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.AspNetCore.DoAction.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.Ok">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.Created">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.NoContent">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.BadRequest(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.NotFound(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.NotImplemented(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.InternalServerError(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="extensions"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException">
+            <summary>
+            This is an abstract class the defines the base object for all
+            exceptions in the Diamond.Core.Repositry library. This allows exceptions
+            specific to this library to be caught separately than other exceptions.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException"/> class.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException"/> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference
+            if no inner exception is specified.</param>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException"/> class with serialized data.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
+            object data about the exception being thrown.</param>
+            <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
+            about the source or destination.</param>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.IControllerActionResult`1">
+            <summary>
+            Contains the result of a controller action.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.IControllerActionResult`1.ResultDetails">
+            <summary>
+            The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that is returned to the caller
+            if the result is not a 200.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.IControllerActionResult`1.Result">
+            <summary>
+            The resulting object instance if the action was successful.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.IDoAction">
+            <summary>
+            Defines a generic decorator.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.IDoAction.ActionKey">
+            <summary>
+            Gets/sets the unique name for this action.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.IDoAction`2">
+            <summary>
+            Defines a decorator that can has wraps TItem and
+            returns TResult.
+            </summary>
+            <typeparam name="TInputs">The instance type being decorated.</typeparam>
+            <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.IDoAction`2.ValidateModel(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.IDoAction`2.ExecuteActionAsync(`0)">
+            <summary>
+            Executes the action.
+            </summary>
+            <param name="item">The instance of the item being decorated.</param>
+            <returns>The defined result of the action.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.IDoActionFactory">
+            <summary>
+            Defines a factory to create/retrieve decorator instances.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.IDoActionFactory.GetAsync``2(System.String)">
+            <summary>
+            Gets the specific action by type and action key.
+            </summary>
+            <typeparam name="TInputs">The inputs required for the action handler.</typeparam>
+            <typeparam name="TResult">The type of the result returned by the action.</typeparam>
+            <param name="actionKey">The unique name of the action.</param>
+            <returns>The result of the action.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Clonable.Microsoft</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Clonable.NetCore.HostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.NetCore.HostBuilderExtensions.UseObjectCloning(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Clonable.NetCore.ObjectCloneFactory">
+            <summary>
+            Implements IObjectCloneFactory using Newtonsoft JSON.Net.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.NetCore.ObjectCloneFactory.CloneInstance(System.ICloneable)">
+            <summary>
+            Creates a deep clone of an object.
+            </summary>
+            <param name="instance">The object to clone.</param>
+            <returns>The new object that s a deep clone of instance.</returns>
+        </member>
+        <member name="M:Diamond.Core.Clonable.NetCore.ObjectCloneFactory.CloneInstance``1(``0)">
+            <summary>
+            Creates a deep clone of an object.
+            </summary>
+            <typeparam name="T">The type of the instance to clone.</typeparam>
+            <param name="instance">The object to clone.</param>
+            <returns>The new object that s a deep clone of instance.</returns>
+        </member>
+    </members>
+</doc>

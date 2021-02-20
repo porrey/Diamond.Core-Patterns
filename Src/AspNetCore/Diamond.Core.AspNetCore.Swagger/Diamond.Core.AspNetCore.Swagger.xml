@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.AspNetCore.Swagger</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.AspNetCore.Swagger.Extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.Extensions.LoadXmlCommentFiles(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions,System.IO.DirectoryInfo)">
+            <summary>
+            Load any XML comment files found in the folder ./XmlDocs this
+            are to be used for Swagger documentation.
+            </summary>
+            <param name="config"></param>
+            <param name="dir"></param>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.Swagger.JsonPatchDefaultExample">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDefaultExample.GetExamples">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDefaultExample.OnGetExamples">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="swaggerDoc"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.RemoveSchema(Microsoft.OpenApi.Models.OpenApiDocument,System.String)">
+            <summary>
+            Removes items where the key passed matches any part of the schema key.
+            </summary>
+            <param name="swaggerDoc">A reference to the Swagger document.</param>
+            <param name="key">The key or partial key to match.</param>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.AddJsonPatchTypes(Microsoft.OpenApi.Models.OpenApiDocument)">
+            <summary>
+            Adds the JSON patch definitions.
+            </summary>
+            <param name="swaggerDoc">A reference to the Swagger document.</param>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.Swagger.StandardOperationFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.StandardOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.Swagger.UnsupportedMediaTypeFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Swagger.UnsupportedMediaTypeFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.Swagger.Operation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.Swagger.Operation.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.Swagger.Operation.Path">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.Swagger.Operation.Op">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

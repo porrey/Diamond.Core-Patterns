@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.System.Text</name>
+    </assembly>
+    <members>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Extensions for the <see cref="T:System.String"/> type.
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.Limit(System.String,System.Int32)">
+            <summary>
+            Limits a string to the given length by truncating characters. If
+            the string is less than the given length, the string is unmodified.
+            </summary>
+            <param name="text">The string to be truncated.</param>
+            <param name="maxLength">The maximum length in characters of the string.</param>
+            <returns>A new string that is no longer than maxLength in characters.</returns>
+        </member>
+    </members>
+</doc>

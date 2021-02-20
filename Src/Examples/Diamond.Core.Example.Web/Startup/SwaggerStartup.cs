@@ -16,7 +16,7 @@
 //
 using System;
 using System.IO;
-using Diamond.Core.AspNet.Swagger;
+using Diamond.Core.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

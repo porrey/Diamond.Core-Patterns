@@ -2,9 +2,9 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<Version>5.0.0</Version>
-		<FileVersion>5.0.0</FileVersion>
-		<AssemblyVersion>5.0.0</AssemblyVersion>
+		<Version>5.0.1</Version>
+		<FileVersion>5.0.1</FileVersion>
+		<AssemblyVersion>5.0.1</AssemblyVersion>
 		<AssemblyName>WebExample</AssemblyName>
 	</PropertyGroup>
 
@@ -27,33 +27,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection"
-						  Version="8.1.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson"
-						  Version="5.0.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning"
-						  Version="5.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore"
-						  Version="6.0.7" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters"
-						  Version="6.1.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen"
-						  Version="6.0.7" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI"
-						  Version="6.0.7" />
-		<PackageReference Include="Serilog.Extensions.Hosting"
-						  Version="4.0.0" />
-		<PackageReference Include="Serilog.Settings.AppSettings"
-						  Version="2.2.2" />
-		<PackageReference Include="Serilog.Settings.Configuration"
-						  Version="3.1.0" />
-		<PackageReference Include="Serilog.Sinks.Console"
-						  Version="3.1.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="6.1.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.0.7" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.0.7" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="4.0.0" />
+		<PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNet.Swagger\Diamond.Core.AspNet.Swagger.csproj" />
-		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.Mvc\Diamond.Core.AspNet.DoAction.csproj" />
+		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNetCore.DoAction\Diamond.Core.AspNetCore.DoAction.csproj" />
+		<ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNetCore.Swagger\Diamond.Core.AspNetCore.Swagger.csproj" />
 		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
 	</ItemGroup>
