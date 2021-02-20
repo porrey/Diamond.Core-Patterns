@@ -21,21 +21,6 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// Contains the details of an invoice.
 	/// </summary>
-	public class InvoiceNumber
-	{
-		/// <summary>
-		/// The unique invoice number.
-		/// </summary>
-		[Required]
-		[MaxLength(30)]
-		[RegularExpression("INV[a-zA-Z0-9]*")]
-		[Display(Order = 0, ShortName = "Number", Description = "The unique invoice number.")]
-		public string Number { get; set; }
-	}
-
-	/// <summary>
-	/// Contains the details of an invoice.
-	/// </summary>
 	public class Invoice : InvoiceNumber
 	{
 		/// <summary>
@@ -59,5 +44,11 @@ namespace Diamond.Core.Example
 		/// </summary>
 		[Display(Order = 3, ShortName = "Paid", Description = "Indicates if the invoice has been paid or not.")]
 		public bool Paid { get; set; }
+
+		public override string ToString()
+		{
+			string status = this.Paid ? "Paid" : "Not Paid";
+			return $"{this.Number}: '{this.Description}', {this.Total:$#,##0.00} [{status}]";
+		}
 	}
 }

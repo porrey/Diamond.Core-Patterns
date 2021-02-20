@@ -14,10 +14,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Diamond.Core.CommandLine.Model;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Diamond.Core.Example
 {
@@ -50,7 +52,30 @@ namespace Diamond.Core.Example
 		{
 			int returnValue = 0;
 
-			await Task.Delay(1);
+#if DEBUG
+			await Task.Delay(3000);
+#endif
+
+			HttpClient client = this.HttpClientFactory.CreateClient(typeof(Invoice).Name);
+
+			using (HttpResponseMessage response = await client.GetAsync(""))
+			{
+				string json = await response.Content.ReadAsStringAsync();
+
+				if (response.IsSuccessStatusCode)
+				{
+					IEnumerable<Invoice> invoices = JsonConvert.DeserializeObject<IEnumerable<Invoice>>(json);
+
+					foreach (Invoice invoice in invoices)
+					{
+						this.Logger.LogInformation(invoice.ToString());
+					}
+				}
+				else
+				{
+					this.Logger.LogError("Failed to get invoice list.");
+				}
+			}
 
 			return returnValue;
 		}

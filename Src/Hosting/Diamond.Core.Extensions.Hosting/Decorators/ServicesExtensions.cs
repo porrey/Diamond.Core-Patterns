@@ -50,15 +50,15 @@ namespace Diamond.Core.Extensions.Hosting
 					//
 					//
 					//
-					if (startup is IStartupConfiguration startupConfiguration)
-					{
-						startupConfiguration.Configuration = context.Configuration;
-					}
+					startupAppConfiguration.ConfigureAppConfiguration(builder);
 
 					//
 					//
 					//
-					startupAppConfiguration.ConfigureAppConfiguration(builder);
+					if (startup is IStartupConfiguration startupConfiguration)
+					{
+						startupConfiguration.Configuration = context.Configuration;
+					}
 				});
 			}
 

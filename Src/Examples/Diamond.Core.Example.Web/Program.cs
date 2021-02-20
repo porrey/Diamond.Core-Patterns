@@ -1,6 +1,8 @@
 using Diamond.Core.Extensions.DependencyInjection;
+using Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Diamond.Core.Example
 {
@@ -14,11 +16,16 @@ namespace Diamond.Core.Example
 		/// <param name="args"></param>
 		static void Main(string[] args) =>
 			Host.CreateDefaultBuilder(args)
+				.UseSerilog((c, l) =>
+				{
+					l.ReadFrom.Configuration(c.Configuration);
+				})
 				.ConfigureServicesFolder("Services")
 				.ConfigureWebHostDefaults(webBuilder => {
 					webBuilder.UseStartup<Startup>();
 				})
 				.UseConfiguredServices()
+				.UseConfiguredDatabaseServices()
 				.Build()
 				.Run();
 	}

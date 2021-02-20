@@ -1,7 +1,4 @@
-﻿using System;
-using Diamond.Core.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-//
+﻿//
 // Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
@@ -17,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System;
+using Diamond.Core.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -62,11 +62,10 @@ namespace Diamond.Core.Example
 			services.AddAutoMapper(typeof(MappingProfile));
 			services.AddDatabaseConfiguration();
 
-			services.AddHttpClient(typeof(Invoice).Name, c =>
+			services.AddHttpClient(typeof(Invoice).Name, (s, c) =>
 			{
-				//http://localhost:50481/invoices
-				//c.BaseAddress = new Uri(Configuration["Settings:Invoice:BaseUri"]);
-				c.BaseAddress = new Uri("http://localhost:50481/invoices");
+				IConfiguration configuration = s.GetRequiredService<IConfiguration>();
+				c.BaseAddress = new Uri(configuration[$"Settings:{typeof(Invoice).Name}:BaseUri"]);
 				c.DefaultRequestHeaders.Add("Accept", "application/json");
 			});
 		}

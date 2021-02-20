@@ -1,55 +1,64 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>CommandConsoleExample</AssemblyName>
-    <Version>5.0.0</Version>
-    <FileVersion>5.0.0</FileVersion>
-    <AssemblyVersion>5.0.0</AssemblyVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>CommandConsoleExample</AssemblyName>
+		<Version>5.0.0</Version>
+		<FileVersion>5.0.0</FileVersion>
+		<AssemblyVersion>5.0.0</AssemblyVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="appsettings.json" />
-    <None Remove="Services\Diamond.Core.Example.ConsoleCommand.Direct.json" />
-    <None Remove="Services\Diamond.Core.Example.ConsoleCommand.Http.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="appsettings.json" />
+		<None Remove="Services\Diamond.Core.Example.ConsoleCommand.Direct.json" />
+		<None Remove="Services\Diamond.Core.Example.ConsoleCommand.Http.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Services\Diamond.Core.Example.ConsoleCommand.Http.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Services\Diamond.Core.Example.ConsoleCommand.Direct.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Services\Diamond.Core.Example.ConsoleCommand.Http.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="Services\Diamond.Core.Example.ConsoleCommand.Direct.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup>
-	  <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Serilog.Extensions.Hosting" Version="4.0.0" />
-    <PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="System.CommandLine.Hosting" Version="0.3.0-alpha.20574.7" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection"
+						  Version="8.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting"
+						  Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http"
+						  Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions"
+						  Version="5.0.0" />
+		<PackageReference Include="Serilog.Extensions.Hosting"
+						  Version="4.0.0" />
+		<PackageReference Include="Serilog.Settings.AppSettings"
+						  Version="2.2.2" />
+		<PackageReference Include="Serilog.Settings.Configuration"
+						  Version="3.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console"
+						  Version="3.1.1" />
+		<PackageReference Include="System.CommandLine.Hosting"
+						  Version="0.3.0-alpha.20574.7" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine.Model\Diamond.Core.CommandLine.Model.csproj" />
-    <ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine\Diamond.Core.CommandLine.csproj" />
-    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
-    <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
-    <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
-    <ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine.Model\Diamond.Core.CommandLine.Model.csproj" />
+		<ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine\Diamond.Core.CommandLine.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
+		<ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
+		<ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
+	</ItemGroup>
 
 </Project>

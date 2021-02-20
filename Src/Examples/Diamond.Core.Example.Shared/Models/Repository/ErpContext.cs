@@ -30,24 +30,20 @@ namespace Diamond.Core.Example
 		public ErpContext(ILogger<ErpContext> logger, DbContextOptions<ErpContext> options)
 			: base(options)
 		{
-			
+			this.Logger = logger;
 		}
 
-		public ErpContext(ILogger<ErpContext> logger, DbContextOptions options)
-			: base(options)
-		{
-			
-		}
-
+		protected ILogger<ErpContext> Logger { get; set; }
 		public DbSet<InvoiceEntity> Invoices { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			this.Logger.LogDebug($"OnModelCreating() called in {nameof(ErpContext)}");
+
 			//
 			// Invoice number must be unique.
 			//
 			modelBuilder.Entity<InvoiceEntity>().HasIndex(p => p.Number).IsUnique();
-
 			base.OnModelCreating(modelBuilder);
 		}
 	}

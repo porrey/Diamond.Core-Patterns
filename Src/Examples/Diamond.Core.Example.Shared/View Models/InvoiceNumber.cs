@@ -14,35 +14,22 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
-using Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
-namespace Diamond.Core.Extensions.DependencyInjection.SqlServer
+namespace Diamond.Core.Example
 {
 	/// <summary>
-	/// 
+	/// Contains the details of an invoice.
 	/// </summary>
-	public class DbContextDependencyFactory : BaseDbContextDependencyFactory
+	public class InvoiceNumber
 	{
 		/// <summary>
-		/// 
+		/// The unique invoice number.
 		/// </summary>
-		/// <param name="implementationType"></param>
-		/// <param name="configuration"></param>
-		public DbContextDependencyFactory(Type implementationType, ServiceDescriptorConfiguration configuration)
-			: base(implementationType, configuration)
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="builder"></param>
-		/// <param name="parameters"></param>
-		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder builder, object[] parameters)
-		{
-			builder.UseSqlServer((string)parameters[0]);
-		}
+		[Required]
+		[MaxLength(30)]
+		[RegularExpression("INV[a-zA-Z0-9]*")]
+		[Display(Order = 0, ShortName = "Number", Description = "The unique invoice number.")]
+		public string Number { get; set; }
 	}
 }

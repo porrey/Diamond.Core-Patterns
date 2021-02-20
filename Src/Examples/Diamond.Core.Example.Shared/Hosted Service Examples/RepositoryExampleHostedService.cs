@@ -90,7 +90,7 @@ namespace Diamond.Core.Example
 								//
 								model.Total = rnd.Next(10, 10000);
 								model.Number = $"INV{rnd.Next(1, 2000000):0000000}";
-								model.Description = $"Invoice {i}.";
+								model.Description = $"Shipment Invoice {i}";
 
 								//
 								// Add the new item to the database.
