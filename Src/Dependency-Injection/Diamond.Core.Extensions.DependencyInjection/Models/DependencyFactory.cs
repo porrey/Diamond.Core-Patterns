@@ -75,9 +75,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <param name="properties"></param>
 		/// <param name="implementationType"></param>
 		/// <param name="instance"></param>
-		public static void AssignProperties(IDictionary<string,object> properties, Type implementationType, object instance)
+		public static void AssignProperties(IDictionary<string, object> properties, Type implementationType, object instance)
 		{
-			if (properties.Any())
+			if (properties != null && properties.Any())
 			{
 				//
 				// Get the instance type.
