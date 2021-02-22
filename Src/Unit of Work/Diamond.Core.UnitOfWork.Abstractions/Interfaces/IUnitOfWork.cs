@@ -24,9 +24,9 @@ namespace Diamond.Core.UnitOfWork
 	public interface IUnitOfWork
 	{
 		/// <summary>
-		/// A unique key to distinguish similar unit of works instances.
+		/// A unique name to distinguish similar unit of work instances.
 		/// </summary>
-		string Key { get; }
+		string Name { get; }
 	}
 
 	/// <summary>

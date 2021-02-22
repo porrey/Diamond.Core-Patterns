@@ -121,9 +121,10 @@ namespace Diamond.Core.CommandLine.Model
 					//
 					OptionDescriptor optionDescriptor = new OptionDescriptor()
 					{
-						Name = display?.ShortName != null ? (display?.Name) ?? (display?.ShortName) : property.Name,
+						Name = (display?.Name) ?? property.Name,
+						Alias = (display?.ShortName) ?? property.Name[..1].ToLower(),
 						Description = (display?.Description) ?? property.Name,
-						Order = display != null ? display.Order : 0,
+						Order = (display?.Order) ?? 0,
 						IsRequired = isRequired
 					};
 
@@ -140,7 +141,8 @@ namespace Diamond.Core.CommandLine.Model
 			foreach (var item in items.OrderBy(t => t.Order))
 			{
 				this.Logger.LogDebug("Adding {type} option '--{optionName}' to the '{commandName}' command [Description ='{description}'].", item.IsRequired ? "required" : "optional", item.Name, this.Name, item.Description);
-				this.AddOption(new Option<string>($"--{item.Name.ToLower()}", item.Description)
+
+				this.AddOption(new Option<string>(aliases: new string[] { $"--{item.Name.ToLower()}", $"-{item.Alias.ToLower()}" }, description: item.Description)
 				{
 					IsRequired = item.IsRequired
 				});

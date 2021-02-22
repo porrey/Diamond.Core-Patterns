@@ -29,6 +29,11 @@ namespace Diamond.Core.CommandLine.Model
 		/// <summary>
 		/// 
 		/// </summary>
+		public string Alias { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>

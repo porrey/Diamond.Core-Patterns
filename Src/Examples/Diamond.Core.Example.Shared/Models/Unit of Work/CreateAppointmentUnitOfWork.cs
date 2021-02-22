@@ -28,7 +28,7 @@ namespace Diamond.Core.Example
 			this.Logger = logger;
 		}
 
-		public string Key => WellKnown.UnitOfWork.CreateAppointment;
+		public string Name => WellKnown.UnitOfWork.CreateAppointment;
 		protected ILogger<CreateAppointmentUnitOfWork> Logger { get; set; }
 
 		public Task<(bool, IAppointment)> CommitAsync((IPerson Person, DateTime AppointmentTime) item)

@@ -82,7 +82,7 @@ namespace Diamond.Core.UnitOfWork
 			// type IDecorator<TItem>.
 			//
 			IEnumerable<IUnitOfWork> items = this.ServiceProvider.GetService<IEnumerable<IUnitOfWork>>();
-			IEnumerable<IUnitOfWork> keyItems = items.Where(t => t.Key == name);
+			IEnumerable<IUnitOfWork> keyItems = items.Where(t => t.Name == name);
 			this.Logger.LogDebug("{count} match items of the target type were found.", keyItems.Count());
 
 			//

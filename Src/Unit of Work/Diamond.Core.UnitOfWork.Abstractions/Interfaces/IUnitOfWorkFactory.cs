@@ -29,8 +29,8 @@ namespace Diamond.Core.UnitOfWork
 		/// <typeparam name="TResult">The type of the result returned by the unit of work execution.</typeparam>
 		/// <typeparam name="TSourceItem">The type of the input or parameter passed to the execution
 		/// of the unit of work.</typeparam>
-		/// <param name="key">A unique key to distinguish this unit of work from other similar definitions.</param>
+		/// <param name="name">A unique name to distinguish this unit of work from other similar definitions.</param>
 		/// <returns>The result of the execution as type TResult.</returns>
-		Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string key);
+		Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name);
 	}
 }

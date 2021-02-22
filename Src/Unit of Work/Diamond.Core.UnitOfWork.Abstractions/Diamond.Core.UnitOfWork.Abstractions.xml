@@ -9,9 +9,9 @@
             Defines a generic unit of work.
             </summary>
         </member>
-        <member name="P:Diamond.Core.UnitOfWork.IUnitOfWork.Key">
+        <member name="P:Diamond.Core.UnitOfWork.IUnitOfWork.Name">
             <summary>
-            A unique key to distinguish similar unit of works instances.
+            A unique name to distinguish similar unit of work instances.
             </summary>
         </member>
         <member name="T:Diamond.Core.UnitOfWork.IUnitOfWork`2">
@@ -40,7 +40,7 @@
             <typeparam name="TResult">The type of the result returned by the unit of work execution.</typeparam>
             <typeparam name="TSourceItem">The type of the input or parameter passed to the execution
             of the unit of work.</typeparam>
-            <param name="key">A unique key to distinguish this unit of work from other similar definitions.</param>
+            <param name="name">A unique name to distinguish this unit of work from other similar definitions.</param>
             <returns>The result of the execution as type TResult.</returns>
         </member>
     </members>
