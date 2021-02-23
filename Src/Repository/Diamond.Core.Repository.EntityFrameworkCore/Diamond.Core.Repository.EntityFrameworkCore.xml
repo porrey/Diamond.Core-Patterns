@@ -119,6 +119,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetQueryableAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetQueryableAsync(Diamond.Core.Repository.IRepositoryContext)">
             <summary>
             
@@ -151,7 +157,7 @@
             <summary>
             
             </summary>
-            <param name="repositoryContext"></param>
+            <param name="context"></param>
             <param name="item"></param>
             <returns></returns>
         </member>
@@ -159,7 +165,7 @@
             <summary>
             
             </summary>
-            <param name="repositoryContext"></param>
+            <param name="context"></param>
             <param name="item"></param>
             <returns></returns>
         </member>
@@ -167,7 +173,7 @@
             <summary>
             
             </summary>
-            <param name="repositoryContext"></param>
+            <param name="context"></param>
             <param name="item"></param>
             <returns></returns>
         </member>

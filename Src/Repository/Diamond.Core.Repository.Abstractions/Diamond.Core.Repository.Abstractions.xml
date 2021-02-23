@@ -85,6 +85,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetQueryableAsync">
+            <summary>
+            Gets a <see cref="T:System.Linq.IQueryable"/> of type TInterface using the current context.
+            </summary>
+            <returns>Returns an <see cref="T:System.Linq.IQueryable"/> of type TInterface.</returns>
+        </member>
         <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetQueryableAsync(Diamond.Core.Repository.IRepositoryContext)">
             <summary>
             Gets a <see cref="T:System.Linq.IQueryable"/> of type TInterface using the specified context.
