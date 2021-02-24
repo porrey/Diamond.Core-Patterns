@@ -119,13 +119,32 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetContext">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetQueryableAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetQueryable">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetQueryableAsync(Diamond.Core.Repository.IRepositoryContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.GetQueryable(Diamond.Core.Repository.IRepositoryContext)">
             <summary>
             
             </summary>
@@ -153,28 +172,31 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <param name="item"></param>
+            <param name="commit"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <param name="item"></param>
+            <param name="commit"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.DeleteAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.DeleteAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <param name="item"></param>
+            <param name="commit"></param>
             <returns></returns>
         </member>
     </members>

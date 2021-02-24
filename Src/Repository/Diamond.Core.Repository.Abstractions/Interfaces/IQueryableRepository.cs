@@ -34,10 +34,23 @@ namespace Diamond.Core.Repository
 		Task<IRepositoryContext> GetContextAsync();
 
 		/// <summary>
+		/// Gets an active context that can be used for subsequent queries. This context
+		/// can be shared among repositories for the same underlying data store (database).
+		/// </summary>
+		/// <returns></returns>
+		IRepositoryContext GetContext();
+
+		/// <summary>
 		/// Gets a <see cref="IQueryable"/> of type TInterface using the current context.
 		/// </summary>
 		/// <returns>Returns an <see cref="IQueryable"/> of type TInterface.</returns>
 		Task<IQueryable<TInterface>> GetQueryableAsync();
+
+		/// <summary>
+		/// Gets a <see cref="IQueryable"/> of type TInterface using the current context.
+		/// </summary>
+		/// <returns>Returns an <see cref="IQueryable"/> of type TInterface.</returns>
+		IQueryable<TInterface> GetQueryable();
 
 		/// <summary>
 		/// Gets a <see cref="IQueryable"/> of type TInterface using the specified context.
@@ -45,5 +58,12 @@ namespace Diamond.Core.Repository
 		/// <param name="context">A context retrieved from a all to GetContextAsync().</param>
 		/// <returns>Returns an <see cref="IQueryable"/> of type TInterface.</returns>
 		Task<IQueryable<TInterface>> GetQueryableAsync(IRepositoryContext context);
+
+		/// <summary>
+		/// Gets a <see cref="IQueryable"/> of type TInterface using the specified context.
+		/// </summary>
+		/// <param name="context">A context retrieved from a all to GetContextAsync().</param>
+		/// <returns>Returns an <see cref="IQueryable"/> of type TInterface.</returns>
+		IQueryable<TInterface> GetQueryable(IRepositoryContext context);
 	}
 }

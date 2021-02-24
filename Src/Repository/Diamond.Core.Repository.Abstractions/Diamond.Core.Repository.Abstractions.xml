@@ -85,13 +85,33 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetContext">
+            <summary>
+            Gets an active context that can be used for subsequent queries. This context
+            can be shared among repositories for the same underlying data store (database).
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetQueryableAsync">
             <summary>
             Gets a <see cref="T:System.Linq.IQueryable"/> of type TInterface using the current context.
             </summary>
             <returns>Returns an <see cref="T:System.Linq.IQueryable"/> of type TInterface.</returns>
         </member>
+        <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetQueryable">
+            <summary>
+            Gets a <see cref="T:System.Linq.IQueryable"/> of type TInterface using the current context.
+            </summary>
+            <returns>Returns an <see cref="T:System.Linq.IQueryable"/> of type TInterface.</returns>
+        </member>
         <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetQueryableAsync(Diamond.Core.Repository.IRepositoryContext)">
+            <summary>
+            Gets a <see cref="T:System.Linq.IQueryable"/> of type TInterface using the specified context.
+            </summary>
+            <param name="context">A context retrieved from a all to GetContextAsync().</param>
+            <returns>Returns an <see cref="T:System.Linq.IQueryable"/> of type TInterface.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IQueryableRepository`1.GetQueryable(Diamond.Core.Repository.IRepositoryContext)">
             <summary>
             Gets a <see cref="T:System.Linq.IQueryable"/> of type TInterface using the specified context.
             </summary>
@@ -255,32 +275,35 @@
             <param name="entity">An instance of an existing entity.</param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.IWritableRepository`1.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             Adds a new entity to the data store using the specified repository
             context.
             </summary>
             <param name="repositoryContext">An existing repository context to use for the transaction.</param>
             <param name="entity">An instance of a new entity.</param>
+            <param name="commit">Specifies if the item should be saved to the database or not.</param>
             <returns>Returns the updated entity (if the data store changed
             or added data)</returns>
         </member>
-        <member name="M:Diamond.Core.Repository.IWritableRepository`1.DeleteAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.DeleteAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             Deletes the specified entity from the data store using the
             specified repository context.
             </summary>
             <param name="repositoryContext"></param>
             <param name="entity">An instance of an existing entity.</param>
+            <param name="commit">Specifies if the item should be saved to the database or not.</param>
             <returns>Returns true if successful; false otherwise.</returns>
         </member>
-        <member name="M:Diamond.Core.Repository.IWritableRepository`1.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0)">
+        <member name="M:Diamond.Core.Repository.IWritableRepository`1.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             Updates an existing entity in the data store using the specified
             repository context.
             </summary>
             <param name="repositoryContext"></param>
             <param name="entity">An instance of an existing entity.</param>
+            <param name="commit">Specifies if the item should be saved to the database or not.</param>
             <returns>Returns true if successful; false otherwise.</returns>
         </member>
     </members>
