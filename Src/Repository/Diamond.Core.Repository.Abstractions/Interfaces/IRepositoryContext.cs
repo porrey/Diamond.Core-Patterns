@@ -35,12 +35,12 @@ namespace Diamond.Core.Repository
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		Task<bool> EnsureCreated();
+		Task<bool> EnsureCreatedAsync();
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		Task<bool> EnsureDeleted();
+		Task<bool> EnsureDeletedAsync();
 	}
 }

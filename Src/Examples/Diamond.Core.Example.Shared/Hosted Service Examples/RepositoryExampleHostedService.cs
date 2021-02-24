@@ -69,7 +69,7 @@ namespace Diamond.Core.Example
 				//
 				using (IRepositoryContext db = await repository.AsQueryable().GetContextAsync())
 				{
-					if (await db.EnsureCreated())
+					if (await db.EnsureCreatedAsync())
 					{
 						if (!(await repository.AsReadOnly().GetAllAsync()).Any())
 						{

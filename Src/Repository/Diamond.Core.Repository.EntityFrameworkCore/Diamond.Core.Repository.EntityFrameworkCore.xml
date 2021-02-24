@@ -37,13 +37,13 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureCreated">
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureCreatedAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureDeleted">
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.EnsureDeletedAsync">
             <summary>
             
             </summary>

@@ -30,7 +30,7 @@ namespace Diamond.Core.Workflow
 		/// <param name="stepName"></param>
 		/// <param name="stepNumber"></param>
 		public WorkflowFailureException(Exception innerException, string stepName, int stepNumber)
-			: base($"The work flow failure at the step '{stepName}' [{stepNumber}]. See the inner exception for details.", innerException)
+			: base($"The work flow failed at step '{stepName}' [{stepNumber}]. See the inner exception for details.", innerException)
 		{
 		}
 	}

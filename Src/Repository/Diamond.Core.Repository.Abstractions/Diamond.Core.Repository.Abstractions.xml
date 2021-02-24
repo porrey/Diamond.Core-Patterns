@@ -165,13 +165,13 @@
             </summary>
             <returns>Returns the number of items affected by the save operation.</returns>
         </member>
-        <member name="M:Diamond.Core.Repository.IRepositoryContext.EnsureCreated">
+        <member name="M:Diamond.Core.Repository.IRepositoryContext.EnsureCreatedAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.IRepositoryContext.EnsureDeleted">
+        <member name="M:Diamond.Core.Repository.IRepositoryContext.EnsureDeletedAsync">
             <summary>
             
             </summary>

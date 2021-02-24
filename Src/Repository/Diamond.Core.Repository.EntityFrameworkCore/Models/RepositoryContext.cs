@@ -56,7 +56,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public virtual Task<bool> EnsureCreated()
+		public virtual Task<bool> EnsureCreatedAsync()
 		{
 			return this.Database.EnsureCreatedAsync();
 		}
@@ -65,7 +65,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public virtual Task<bool> EnsureDeleted()
+		public virtual Task<bool> EnsureDeletedAsync()
 		{
 			return this.Database.EnsureDeletedAsync();
 		}
