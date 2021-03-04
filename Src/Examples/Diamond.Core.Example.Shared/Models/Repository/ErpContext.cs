@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Repository.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -27,13 +28,14 @@ namespace Diamond.Core.Example
 		{
 		}
 
-		public ErpContext(ILogger<ErpContext> logger, DbContextOptions<ErpContext> options)
+		public ErpContext(DbContextOptions<ErpContext> options)
 			: base(options)
 		{
-			this.Logger = logger;
 		}
 
+		[Dependency]
 		protected ILogger<ErpContext> Logger { get; set; }
+
 		public DbSet<InvoiceEntity> Invoices { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

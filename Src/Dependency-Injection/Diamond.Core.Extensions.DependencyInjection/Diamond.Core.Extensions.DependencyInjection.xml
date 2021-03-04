@@ -233,6 +233,19 @@
             </summary>
             <param name="context"></param>
         </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyNotFoundException.#ctor(System.Type,System.String,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
+            <param name="dependencyType"></param>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DuplicateAliasException">
             <summary>
             
@@ -270,6 +283,13 @@
             <param name="implementationType"></param>
             <param name="propertyName"></param>
             <param name="value"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException.#ctor(System.Type,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="propertyName"></param>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.PropertyNotFoundException">
             <summary>
@@ -316,17 +336,54 @@
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.Factory">
             
         </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.Required">
+            <summary>
+            Throw an exception if the property type is not in the container.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.OverrideValue">
+            <summary>
+            If the property is already set, override the
+            value with the container value.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.GetDependencyProperties(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.SetDependencyProperties(System.IServiceProvider,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo},System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="dependencyProperties"></param>
+            <param name="instance"></param>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyFactory">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo})">
             <summary>
             
             </summary>
             <param name="implementationType"></param>
             <param name="configuration"></param>
+            <param name="dependencyProperties"></param>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ImplementationType">
             <summary>
@@ -334,6 +391,11 @@
             </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.DependencyProperties">
             <summary>
             
             </summary>
@@ -357,6 +419,21 @@
             <param name="properties"></param>
             <param name="implementationType"></param>
             <param name="instance"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyInfo.PropertyInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyInfo.DependencyAttribute">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DiamondServiceProvider">
             <summary>

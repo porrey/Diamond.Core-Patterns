@@ -17,6 +17,7 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
+using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

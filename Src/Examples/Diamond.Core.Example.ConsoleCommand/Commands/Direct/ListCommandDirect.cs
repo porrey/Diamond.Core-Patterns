@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Diamond.Core.CommandLine.Model;
+using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
@@ -42,6 +43,7 @@ namespace Diamond.Core.Example
 		/// <summary>
 		/// 
 		/// </summary>
+		[Dependency(OverrideValue = false, Required = true)]
 		protected IRepositoryFactory RepositoryFactory { get; set; }
 
 		/// <summary>

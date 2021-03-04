@@ -33,10 +33,12 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// </summary>
 		/// <param name="implementationType"></param>
 		/// <param name="configuration"></param>
-		public DependencyFactory(Type implementationType, ServiceDescriptorConfiguration configuration)
+		/// <param name="dependencyProperties"></param>
+		public DependencyFactory(Type implementationType, ServiceDescriptorConfiguration configuration, IEnumerable<DependencyInfo> dependencyProperties)
 		{
 			this.ImplementationType = implementationType;
 			this.Configuration = configuration;
+			this.DependencyProperties = dependencyProperties;
 		}
 
 		/// <summary>
@@ -52,11 +54,17 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
+		public IEnumerable<DependencyInfo> DependencyProperties { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <returns></returns>
 		public object GetInstance(IServiceProvider sp, params object[] parameters)
 		{
 			object instance = ActivatorUtilities.CreateInstance(sp, this.ImplementationType, parameters);
 			this.AssignProperties(instance);
+			DependencyAttribute.SetDependencyProperties(sp, this.DependencyProperties, instance);
 			return instance;
 		}
 

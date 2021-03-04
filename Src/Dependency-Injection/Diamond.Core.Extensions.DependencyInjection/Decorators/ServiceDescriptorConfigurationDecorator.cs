@@ -228,12 +228,17 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				Type implementationType = item.FindType(TypeSource.Implemenation);
 
 				//
+				// Check if the implementation type has any dependency properties.
+				//
+				IEnumerable<DependencyInfo> dependencyProperties = DependencyAttribute.GetDependencyProperties(implementationType);
+
+				//
 				// Select the lifetime and create the descriptor.
 				//
 				switch (item.Lifetime)
 				{
 					case "Scoped":
-						if (item.Properties == null)
+						if (item.Properties == null && !dependencyProperties.Any())
 						{
 							//
 							// Standard definition.
@@ -245,11 +250,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							// Factory based definition.
 							//
-							returnValue = ServiceDescriptor.Scoped(serviceType, sp => (new DependencyFactory(implementationType, item)).GetInstance(sp));
+							returnValue = ServiceDescriptor.Scoped(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp));
 						}
 						break;
 					case "Singleton":
-						if (item.Properties == null)
+						if (item.Properties == null && !dependencyProperties.Any())
 						{
 							//
 							// Standard definition.
@@ -261,11 +266,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							// Factory based definition.
 							//
-							returnValue = ServiceDescriptor.Singleton(serviceType, sp => (new DependencyFactory(implementationType, item)).GetInstance(sp));
+							returnValue = ServiceDescriptor.Singleton(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp));
 						}
 						break;
 					case "Transient":
-						if (item.Properties == null)
+						if (item.Properties == null && !dependencyProperties.Any())
 						{
 							//
 							// Standard definition.
@@ -277,7 +282,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							// Factory based definition.
 							//
-							returnValue = ServiceDescriptor.Transient(serviceType, sp => (new DependencyFactory(implementationType, item)).GetInstance(sp));
+							returnValue = ServiceDescriptor.Transient(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp));
 						}
 						break;
 				}
@@ -302,11 +307,13 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				Type serviceType = null;
 				Type implementationType = null;
+				IEnumerable<DependencyInfo> dependenctProperties = new DependencyInfo[0];
 
 				try
 				{
 					serviceType = item.FindType(TypeSource.Service);
 					implementationType = item.FindType(TypeSource.Implemenation);
+					dependenctProperties = DependencyAttribute.GetDependencyProperties(implementationType);
 				}
 				catch
 				{
@@ -342,7 +349,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							string connectionString = configuration[item.ConnectionString];
 							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
 							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
-							return dependencyFactory.GetInstance(sp, connectionString);
+							object instance = dependencyFactory.GetInstance(sp, connectionString);
+							DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
+							return instance;
 						});
 						break;
 					case "Singleton":
@@ -355,7 +364,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							string connectionString = configuration[item.ConnectionString];
 							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
 							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
-							return dependencyFactory.GetInstance(sp, connectionString);
+							object instance = dependencyFactory.GetInstance(sp, connectionString);
+							DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
+							return instance;
 						});
 						break;
 					case "Transient":
@@ -368,7 +379,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							string connectionString = configuration[item.ConnectionString];
 							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
 							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
-							return dependencyFactory.GetInstance(sp, connectionString);
+							object instance = dependencyFactory.GetInstance(sp, connectionString);
+							DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
+							return instance;
 						});
 						break;
 				}

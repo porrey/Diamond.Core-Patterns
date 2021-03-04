@@ -21,26 +21,16 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	/// <summary>
 	/// 
 	/// </summary>
-	public class PropertyIsReadOnlyException : DependencyInjectionException
+	public class DependencyNotFoundException : DependencyInjectionException
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="implementationType"></param>
 		/// <param name="propertyName"></param>
-		/// <param name="value"></param>
-		public PropertyIsReadOnlyException(Type implementationType, string propertyName, object value)
-			: base($"The value '{value}' could not be set on the read-only property '{propertyName}' for type '{implementationType.FullName}'.")
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="implementationType"></param>
-		/// <param name="propertyName"></param>
-		public PropertyIsReadOnlyException(Type implementationType, string propertyName)
-			: base($"A value for the read-only property '{propertyName}' for type '{implementationType.FullName}' could not be set.")
+		/// <param name="dependencyType"></param>
+		public DependencyNotFoundException(Type implementationType, string propertyName, Type dependencyType)
+			: base($"The dependency '{dependencyType.FullName}' for property '{propertyName}' on type '{implementationType.FullName}' was not found.")
 		{
 		}
 	}
