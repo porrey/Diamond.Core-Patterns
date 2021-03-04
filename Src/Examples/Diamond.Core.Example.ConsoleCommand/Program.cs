@@ -43,14 +43,11 @@ namespace Diamond.Core.Example
 		/// <returns></returns>
 		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
 							.AddRootCommand("Sample Application", args)
-							.UseSerilog((c, l) =>
-							{
-								l.ReadFrom.Configuration(c.Configuration);
-							})
+							.UseStartup<ConsoleStartup>()
+							.UseSerilog()
 							.ConfigureServicesFolder("Services")
 							.UseConfiguredServices()
 							.UseConfiguredDatabaseServices()
-							.UseStartup<ConsoleStartup>()
 							.UseObjectCloning()
 							.UseTemporaryFolderFactory()
 							.UseConsoleLifetime()

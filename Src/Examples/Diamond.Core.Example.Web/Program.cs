@@ -9,19 +9,18 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class Program {
+	public class Program
+	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="args"></param>
 		static void Main(string[] args) =>
 			Host.CreateDefaultBuilder(args)
-				.UseSerilog((c, l) =>
-				{
-					l.ReadFrom.Configuration(c.Configuration);
-				})
+				.UseSerilog()
 				.ConfigureServicesFolder("Services")
-				.ConfigureWebHostDefaults(webBuilder => {
+				.ConfigureWebHostDefaults(webBuilder =>
+				{
 					webBuilder.UseStartup<Startup>();
 				})
 				.UseConfiguredServices()

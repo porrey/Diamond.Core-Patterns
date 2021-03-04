@@ -18,6 +18,7 @@ using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Repository.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
@@ -34,7 +35,7 @@ namespace Diamond.Core.Example
 		}
 
 		[Dependency]
-		protected ILogger<ErpContext> Logger { get; set; }
+		protected ILogger<ErpContext> Logger { get; set; } = new NullLogger<ErpContext>();
 
 		public DbSet<InvoiceEntity> Invoices { get; set; }
 

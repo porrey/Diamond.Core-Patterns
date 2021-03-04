@@ -19,6 +19,7 @@ using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Diamond.Core.Example
 {
@@ -39,6 +40,17 @@ namespace Diamond.Core.Example
 		/// <param name="builder"></param>
 		public void ConfigureAppConfiguration(IConfigurationBuilder builder)
 		{
+			//
+			// Build the configuration so Serilog can read from it.
+			//
+			IConfigurationRoot configuration = builder.Build();
+
+			//
+			// Create a logger from the configuration.
+			//
+			Log.Logger = new LoggerConfiguration()
+					  .ReadFrom.Configuration(configuration)
+					  .CreateLogger();
 		}
 
 		/// <summary>
