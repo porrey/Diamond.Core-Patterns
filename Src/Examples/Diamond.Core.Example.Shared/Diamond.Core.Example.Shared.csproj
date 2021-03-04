@@ -14,9 +14,9 @@
 
 	<ItemGroup>
 		<Content Include="Services\Diamond.Core.Example.Shared.Databases.json">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Services\Diamond.Core.Example.Shared.Repository.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
