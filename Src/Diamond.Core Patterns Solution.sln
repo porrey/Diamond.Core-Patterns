@@ -35,8 +35,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Specification.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Decorator", "Decorator", "{96401A54-54C5-4347-93A5-BA78E4CCDFED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Console", "Examples\Diamond.Core.Example.Console\Diamond.Core.Example.Console.csproj", "{720DF8F4-BBF8-43DB-8536-D52FF900C71B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Web", "Examples\Diamond.Core.Example.Web\Diamond.Core.Example.Web.csproj", "{128AD3CF-112F-499D-BF20-27C3B99305D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{622BD90A-E4AC-46BB-A254-9866D202C607}"
@@ -113,6 +111,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.System.Tempora
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Clonable.Microsoft", "Clonable\Diamond.Core.Clonable.Microsoft\Diamond.Core.Clonable.Microsoft.csproj", "{5FC11951-C745-407C-921C-13C3E003B23B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection.Cosmos", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Cosmos\Diamond.Core.Extensions.DependencyInjection.Cosmos.csproj", "{76B785A4-ADEA-4AEA-B58A-549F5D2EFCD3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection.MySql", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.MySql\Diamond.Core.Extensions.DependencyInjection.MySql.csproj", "{ACA35047-0612-4C59-A11B-4B0699B18A45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Extensions.DependencyInjection.Oracle", "Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Oracle\Diamond.Core.Extensions.DependencyInjection.Oracle.csproj", "{1FF62A7E-D750-462C-A20F-A38563BE389D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.BasicConsole", "Examples\Diamond.Core.Example.BasicConsole\Diamond.Core.Example.BasicConsole.csproj", "{4B1787A6-A52A-4898-B2FE-A840D33F10AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,10 +165,6 @@ Global
 		{C72CFD4A-A948-49DD-98FB-DEFB36E33157}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C72CFD4A-A948-49DD-98FB-DEFB36E33157}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C72CFD4A-A948-49DD-98FB-DEFB36E33157}.Release|Any CPU.Build.0 = Release|Any CPU
-		{720DF8F4-BBF8-43DB-8536-D52FF900C71B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{720DF8F4-BBF8-43DB-8536-D52FF900C71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{720DF8F4-BBF8-43DB-8536-D52FF900C71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{720DF8F4-BBF8-43DB-8536-D52FF900C71B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{128AD3CF-112F-499D-BF20-27C3B99305D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{128AD3CF-112F-499D-BF20-27C3B99305D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{128AD3CF-112F-499D-BF20-27C3B99305D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -287,6 +289,22 @@ Global
 		{5FC11951-C745-407C-921C-13C3E003B23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FC11951-C745-407C-921C-13C3E003B23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FC11951-C745-407C-921C-13C3E003B23B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76B785A4-ADEA-4AEA-B58A-549F5D2EFCD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B785A4-ADEA-4AEA-B58A-549F5D2EFCD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B785A4-ADEA-4AEA-B58A-549F5D2EFCD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B785A4-ADEA-4AEA-B58A-549F5D2EFCD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA35047-0612-4C59-A11B-4B0699B18A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA35047-0612-4C59-A11B-4B0699B18A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA35047-0612-4C59-A11B-4B0699B18A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA35047-0612-4C59-A11B-4B0699B18A45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF62A7E-D750-462C-A20F-A38563BE389D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF62A7E-D750-462C-A20F-A38563BE389D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF62A7E-D750-462C-A20F-A38563BE389D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF62A7E-D750-462C-A20F-A38563BE389D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B1787A6-A52A-4898-B2FE-A840D33F10AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B1787A6-A52A-4898-B2FE-A840D33F10AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B1787A6-A52A-4898-B2FE-A840D33F10AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B1787A6-A52A-4898-B2FE-A840D33F10AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -301,7 +319,6 @@ Global
 		{DDBF0AAF-D83C-405F-A9B7-8661689B2491} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 		{8193E54B-CEBD-4C7A-A0CE-8647C5014387} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 		{C72CFD4A-A948-49DD-98FB-DEFB36E33157} = {A289C427-A10A-4C63-B3BC-2A38147F9943}
-		{720DF8F4-BBF8-43DB-8536-D52FF900C71B} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{128AD3CF-112F-499D-BF20-27C3B99305D1} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{DE13D2E8-6AFB-4866-957E-92271A085D76} = {622BD90A-E4AC-46BB-A254-9866D202C607}
 		{64A253C6-BB9D-4D3A-AB3E-7B19ABAB98C9} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
@@ -333,6 +350,10 @@ Global
 		{805CA2B5-1558-41F6-A02E-997C055DF27B} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
 		{3AE34FA1-893B-4CE6-8CE3-17949AB8CB76} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
 		{5FC11951-C745-407C-921C-13C3E003B23B} = {DEF450D2-A1C3-4B74-8E91-35112978E9A4}
+		{76B785A4-ADEA-4AEA-B58A-549F5D2EFCD3} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
+		{ACA35047-0612-4C59-A11B-4B0699B18A45} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
+		{1FF62A7E-D750-462C-A20F-A38563BE389D} = {AE576974-2F85-47D3-B00C-5FC577E3F321}
+		{4B1787A6-A52A-4898-B2FE-A840D33F10AB} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

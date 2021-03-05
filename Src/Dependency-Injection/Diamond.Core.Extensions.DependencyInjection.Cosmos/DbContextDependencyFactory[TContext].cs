@@ -14,35 +14,36 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-namespace Diamond.Core.Extensions.DependencyInjection
+using System;
+using Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
+namespace Diamond.Core.Extensions.DependencyInjection.Cosmos
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DatabaseDescriptorConfiguration : ServiceDescriptorConfiguration
+	public class DbContextDependencyFactory<TContext> : BaseDbContextDependencyFactory<TContext>
+		where TContext : DbContext
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Context
+		/// <param name="implementationType"></param>
+		/// <param name="configuration"></param>
+		public DbContextDependencyFactory(Type implementationType, ServiceDescriptorConfiguration configuration)
+			: base(implementationType, configuration)
 		{
-			get
-			{
-				return this.ImplementationType;
-			}
-			set
-			{
-				this.ImplementationType = value;
-				this.ServiceType = value;
-			}
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ConnectionString { get; set; }
-
-		///
-		public string Factory { get; set; }
+		/// <param name="builder"></param>
+		/// <param name="parameters"></param>
+		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder<TContext> builder, object[] parameters)
+		{
+			builder.UseCosmos((string)parameters[0], (string)parameters[1]);
+		}
 	}
 }

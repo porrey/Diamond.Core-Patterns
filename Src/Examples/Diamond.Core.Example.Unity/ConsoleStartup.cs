@@ -19,7 +19,6 @@ using Diamond.Core.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using UnityBuilder = Unity.Microsoft.DependencyInjection.ServiceProviderExtensions;
 
 namespace Diamond.Core.Example
 {
@@ -52,17 +51,10 @@ namespace Diamond.Core.Example
 			services.AddSingleton<IEntityFactory<IInvoice>, InvoiceEntityFactory>();
 			services.AddTransient<IRepository<IInvoice>, InvoiceRepository>();
 
-			//
-			// Get the configuration.
-			//
-			IConfiguration configuration = UnityBuilder.BuildServiceProvider(services).GetRequiredService<IConfiguration>();
-
-			services.AddDbContext<ErpContext>(options =>
+			services.AddDbContext<ErpContext>((sp, options) =>
 			{
-				options.UseInMemoryDatabase(configuration["ErpDatabase:InMemory"]);
-				//options.UseNpgsql(configuration["ErpDatabase:PostgreSQL"]);
-				//options.UseSqlite(configuration["ErpDatabase:SQLite"]);
-				//options.UseSqlServer(configuration["ErpDatabase:SqlServer"]);
+				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+				options.UseInMemoryDatabase(configuration["ConnectionStrings:ERP"]);
 			});
 
 			services.AddHostedService<RepositoryExampleHostedService>();

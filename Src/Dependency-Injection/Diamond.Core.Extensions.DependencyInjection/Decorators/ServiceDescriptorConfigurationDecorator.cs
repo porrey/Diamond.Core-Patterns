@@ -233,58 +233,26 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				IEnumerable<DependencyInfo> dependencyProperties = DependencyAttribute.GetDependencyProperties(implementationType);
 
 				//
-				// Select the lifetime and create the descriptor.
+				// Select the lifetime.
 				//
-				switch (item.Lifetime)
+				ServiceLifetime lifetime = item.Lifetime == "Scoped" ? ServiceLifetime.Scoped : item.Lifetime == "Singleton" ? ServiceLifetime.Singleton : ServiceLifetime.Transient;
+
+				//
+				// Create the descriptor.
+				//
+				if (item.Properties == null && !dependencyProperties.Any())
 				{
-					case "Scoped":
-						if (item.Properties == null && !dependencyProperties.Any())
-						{
-							//
-							// Standard definition.
-							//
-							returnValue = ServiceDescriptor.Scoped(serviceType, implementationType);
-						}
-						else
-						{
-							//
-							// Factory based definition.
-							//
-							returnValue = ServiceDescriptor.Scoped(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp));
-						}
-						break;
-					case "Singleton":
-						if (item.Properties == null && !dependencyProperties.Any())
-						{
-							//
-							// Standard definition.
-							//
-							returnValue = ServiceDescriptor.Singleton(serviceType, implementationType);
-						}
-						else
-						{
-							//
-							// Factory based definition.
-							//
-							returnValue = ServiceDescriptor.Singleton(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp));
-						}
-						break;
-					case "Transient":
-						if (item.Properties == null && !dependencyProperties.Any())
-						{
-							//
-							// Standard definition.
-							//
-							returnValue = ServiceDescriptor.Transient(serviceType, implementationType);
-						}
-						else
-						{
-							//
-							// Factory based definition.
-							//
-							returnValue = ServiceDescriptor.Transient(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp));
-						}
-						break;
+					//
+					// Standard definition.
+					//
+					returnValue = ServiceDescriptor.Describe(serviceType, implementationType, lifetime);
+				}
+				else
+				{
+					//
+					// Factory based definition.
+					//
+					returnValue = ServiceDescriptor.Describe(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp), lifetime);
 				}
 			}
 
@@ -335,56 +303,33 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				}
 
 				//
-				// Select the lifetime and create the descriptor.
+				// Create the service descriptor.
 				//
-				switch (item.Lifetime)
+				returnValue = ServiceDescriptor.Describe(serviceType, (sp) =>
 				{
-					case "Scoped":
-						//
-						// Factory based definition.
-						//
-						returnValue = ServiceDescriptor.Scoped(serviceType, (sp) =>
-						{
-							IConfiguration configuration = sp.GetService<IConfiguration>();
-							string connectionString = configuration[item.ConnectionString];
-							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
-							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
-							object instance = dependencyFactory.GetInstance(sp, connectionString);
-							DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
-							return instance;
-						});
-						break;
-					case "Singleton":
-						//
-						// Factory based definition.
-						//
-						returnValue = ServiceDescriptor.Singleton(serviceType, (sp) =>
-						{
-							IConfiguration configuration = sp.GetService<IConfiguration>();
-							string connectionString = configuration[item.ConnectionString];
-							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
-							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
-							object instance = dependencyFactory.GetInstance(sp, connectionString);
-							DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
-							return instance;
-						});
-						break;
-					case "Transient":
-						//
-						// Factory based definition.
-						//
-						returnValue = ServiceDescriptor.Transient(serviceType, (sp) =>
-						{
-							IConfiguration configuration = sp.GetService<IConfiguration>();
-							string connectionString = configuration[item.ConnectionString];
-							IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
-							DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
-							object instance = dependencyFactory.GetInstance(sp, connectionString);
-							DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
-							return instance;
-						});
-						break;
-				}
+					//
+					// Get the connection string.
+					//
+					IConfiguration configuration = sp.GetService<IConfiguration>();
+					string connectionString = configuration[item.ConnectionString];
+
+					//
+					// Get the dependency factory and assign the properties.
+					//
+					IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
+					DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
+					
+					//
+					// Create the context and set the dependencies.
+					//
+					object instance = dependencyFactory.GetInstance(sp, connectionString);
+					DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
+
+					//
+					// Return the context instance.
+					//
+					return instance;
+				}, item.Lifetime == "Scoped" ? ServiceLifetime.Scoped : item.Lifetime == "Singleton" ? ServiceLifetime.Singleton : ServiceLifetime.Transient);
 			}
 
 			return returnValue;
