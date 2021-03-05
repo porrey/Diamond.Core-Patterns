@@ -21,6 +21,9 @@
 				"Key": "DatabaseOptions:ActiveDatabase",
 				"Value": "SqlServer"
 			},
+			//
+			// Note: Properties are applied to the DbContextDependencyFactory and not the DbContext.
+			//
 			"Properties": {
 				"EnableSensitiveDataLogging": true,
 				"EnableDetailedErrors": true,
