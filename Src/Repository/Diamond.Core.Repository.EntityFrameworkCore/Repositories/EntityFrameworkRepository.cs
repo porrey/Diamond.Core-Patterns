@@ -32,7 +32,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 	/// <typeparam name="TInterface">The interface type that the entity implements.</typeparam>
 	/// <typeparam name="TEntity">The entity object type.</typeparam>
 	/// <typeparam name="TContext">The Entity Framework database context.</typeparam>
-	public abstract class EntityFrameworkRepository<TInterface, TEntity, TContext> : IWritableRepository<TInterface>, IQueryableRepository<TInterface>, IReadOnlyRepository<TInterface>
+	public abstract class EntityFrameworkRepository<TInterface, TEntity, TContext> : DisposableObject, IWritableRepository<TInterface>, IQueryableRepository<TInterface>, IReadOnlyRepository<TInterface>
 		where TEntity : class, TInterface, new()
 		where TInterface : IEntity
 		where TContext : DbContext, IRepositoryContext
@@ -143,7 +143,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <returns></returns>
 		public virtual Task<IQueryable<TInterface>> GetQueryableAsync()
 		{
-			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(GetQueryableAsync), typeof(TInterface).Name);			
+			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(GetQueryableAsync), typeof(TInterface).Name);
 			return Task.FromResult(this.GetQueryable());
 		}
 
@@ -255,7 +255,6 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			return (result, entity);
 		}
 
-
 		/// <summary>
 		/// 
 		/// </summary>
@@ -319,6 +318,21 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			returnValue = (result == 1);
 
 			return returnValue;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected override void OnDisposeManagedObjects()
+		{
+			this.Logger.LogDebug($"Disposed {nameof(EntityFrameworkRepository<TInterface, TEntity, TContext>)}");
+
+			if (this.Context != null)
+			{
+				this.Context.Dispose();
+			}
+
+			base.OnDisposeManagedObjects();
 		}
 	}
 }

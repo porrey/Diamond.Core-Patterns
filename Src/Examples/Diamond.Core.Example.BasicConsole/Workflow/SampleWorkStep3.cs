@@ -45,17 +45,28 @@ namespace Diamond.Core.Example.BasicConsole
 
 		public override async Task<bool> OnShouldExecuteAsync(IContext context)
 		{
+			bool returnValue = false;
+
 			//
 			// Get a repository for IEmployeeEntity.
 			//
 			IQueryableRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetQueryableAsync<IEmployeeEntity>();
 
 			//
-			// Get the context.
+			// Get the context. This can be disposed because it is defined as transient
+			// in the container.
 			//
-			IRepositoryContext db = await repository.GetContextAsync();
+			using (IRepositoryContext db = await repository.GetContextAsync())
+			{
+				returnValue = await db.CanConnectAsync();
+			}
 
-			return await db.CanConnectAsync();
+			//
+			// Since we are using transient lifetimes, we need to dispose.
+			//
+			repository.TryDispose();
+
+			return returnValue;
 		}
 
 		protected override async Task<bool> OnExecuteStepAsync(IContext context)

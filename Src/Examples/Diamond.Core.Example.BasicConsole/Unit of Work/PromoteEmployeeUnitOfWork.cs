@@ -62,6 +62,11 @@ namespace Diamond.Core.Example.BasicConsole
 				throw new Exception($"An employee with ID {item.EmployeeId} does not exist.");
 			}
 
+			//
+			// Since we are using transient lifetimes, we need to dispose.
+			//
+			repository.TryDispose();
+
 			return (returnValue, updatedEmployee);
 		}
 	}

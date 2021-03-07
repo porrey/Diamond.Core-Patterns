@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Diamond.Core.Repository;
@@ -60,6 +61,11 @@ namespace Diamond.Core.Example.BasicConsole
 			{
 				this.Logger.LogInformation($"{employee}");
 			}
+
+			//
+			// Since we are using transient lifetimes, we need to dispose.
+			//
+			repository.TryDispose();
 
 			returnValue = true;
 

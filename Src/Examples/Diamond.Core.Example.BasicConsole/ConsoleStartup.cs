@@ -60,48 +60,48 @@ namespace Diamond.Core.Example.BasicConsole
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//
-			// Add the database context.
+			// Add the database context using a transient lifetime.
 			//
 			services.AddDbContext<SampleContext>((sp, options) =>
 			{
 				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
 				options.UseSqlServer(configuration["ConnectionStrings:Sample"]);
-			});
+			}, ServiceLifetime.Transient);
 
 			//
 			// Add database items.
 			//
 			services.AddScoped<IRepositoryFactory, RepositoryFactory>();
 			services.AddScoped<IEntityFactory<IEmployeeEntity>, EmployeeEntityFactory>();
-			services.AddScoped<IRepository<IEmployeeEntity>, EmployeeRepository>();
+			services.AddTransient<IRepository<IEmployeeEntity>, EmployeeRepository>();
 
 			services.AddScoped<ISpecificationFactory, SpecificationFactory>();
-			services.AddScoped<ISpecification, GetActiveEmployeeIdListSpecification>();
-			services.AddScoped<ISpecification, GetEmployeeDetailsSpecification>();
+			services.AddTransient<ISpecification, GetActiveEmployeeIdListSpecification>();
+			services.AddTransient<ISpecification, GetEmployeeDetailsSpecification>();
 
 			services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
-			services.AddScoped<IUnitOfWork, CreateEmployeeUnitOfWork>();
-			services.AddScoped<IUnitOfWork, PromoteEmployeeUnitOfWork>();
+			services.AddTransient<IUnitOfWork, CreateEmployeeUnitOfWork>();
+			services.AddTransient<IUnitOfWork, PromoteEmployeeUnitOfWork>();
 
 			services.AddScoped<IRulesFactory, RulesFactory>();
-			services.AddScoped<IRule, MnimumEmploymentRule>();
-			services.AddScoped<IRule, GoodStandingRule>();
-			services.AddScoped<IRule, PreviousPromotionRule>();
+			services.AddTransient<IRule, MnimumEmploymentRule>();
+			services.AddTransient<IRule, GoodStandingRule>();
+			services.AddTransient<IRule, PreviousPromotionRule>();
 
 			services.AddScoped<IDecoratorFactory, DecoratorFactory>();
-			services.AddScoped<IDecorator, EmployeePromotionDecorator>();
+			services.AddTransient<IDecorator, EmployeePromotionDecorator>();
 
 			//
 			// Add the sample work flow manager and work flow steps.
 			//
 			services.AddScoped<IWorkflowManagerFactory, WorkflowManagerFactory>()
 					.AddScoped<IWorkflowItemFactory, WorkflowItemFactory>()
-					.AddScoped<IWorkflowManager, SampleWorkflowManager>()
-					.AddScoped<IWorkflowItem, SampleWorkStep1>()
-					.AddScoped<IWorkflowItem, SampleWorkStep2>()
-					.AddScoped<IWorkflowItem, SampleWorkStep3>()
-					.AddScoped<IWorkflowItem, SampleWorkStep4>()
-					.AddScoped<IWorkflowItem, SampleWorkStep5>();
+					.AddTransient<IWorkflowManager, SampleWorkflowManager>()
+					.AddTransient<IWorkflowItem, SampleWorkStep1>()
+					.AddTransient<IWorkflowItem, SampleWorkStep2>()
+					.AddTransient<IWorkflowItem, SampleWorkStep3>()
+					.AddTransient<IWorkflowItem, SampleWorkStep4>()
+					.AddTransient<IWorkflowItem, SampleWorkStep5>();
 
 			//
 			// Add the hosted service.

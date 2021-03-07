@@ -21,6 +21,24 @@
             </summary>
             <param name="options"></param>
         </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext{`0}},Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext{`0}})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.Logger">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.SaveAsync">
             <summary>
             
@@ -204,6 +222,11 @@
             <param name="item"></param>
             <param name="commit"></param>
             <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.OnDisposeManagedObjects">
+            <summary>
+            
+            </summary>
         </member>
     </members>
 </doc>

@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -75,31 +76,30 @@ namespace Diamond.Core.Example.BasicConsole
 					//
 					IEmployeeEntity employee = await employeeDetailsSpecification.ExecuteSelectionAsync(activeEmployeeId);
 
-					try
-					{
-						//
-						// Attempt to promote the employee.
-						//
-						(bool promotionResult, IEmployeeEntity updatedEmployee, string message) = await decorator.TakeActionAsync(employee);
+					//
+					// Attempt to promote the employee.
+					//
+					(bool promotionResult, IEmployeeEntity updatedEmployee, string message) = await decorator.TakeActionAsync(employee);
 
-						//
-						// Check the result.
-						//
-						if (promotionResult)
-						{
-							this.Logger.LogInformation("The employee {firstName} {lastName} was promoted from {previousTitle} to {newTitle} with a salary increase from {previousSalary} to {newSalary}.",
-														employee.FirstName, employee.LastName, employee.JobTitle, updatedEmployee.JobTitle, employee.Compensation.ToString("$#,###"), updatedEmployee.Compensation.ToString("$#,###"));
-						}
-						else
-						{
-							this.Logger.LogInformation("The employee {firstName} {lastName} was not eligible for a promotion: '{message}'.", employee.FirstName, employee.LastName, message);
-						}
+					//
+					// Check the result.
+					//
+					if (promotionResult)
+					{
+						this.Logger.LogInformation("The employee {firstName} {lastName} was promoted from {previousTitle} to {newTitle} with a salary increase from {previousSalary} to {newSalary}.",
+													employee.FirstName, employee.LastName, employee.JobTitle, updatedEmployee.JobTitle, employee.Compensation.ToString("$#,###"), updatedEmployee.Compensation.ToString("$#,###"));
 					}
-					catch
+					else
 					{
-
+						this.Logger.LogInformation("The employee {firstName} {lastName} was not eligible for a promotion: '{message}'.", employee.FirstName, employee.LastName, message);
 					}
 				}
+
+				//
+				// Since we are using transient lifetimes, we need to dispose.
+				//
+				employeeDetailsSpecification.TryDispose();
+				decorator.TryDispose();
 
 				returnValue = true;
 			}
@@ -108,6 +108,11 @@ namespace Diamond.Core.Example.BasicConsole
 				this.Logger.LogWarning("There are no active employees in the company.");
 				returnValue = true;
 			}
+
+			//
+			// Since we are using transient lifetimes, we need to dispose.
+			//
+			activeEmployeeSpecification.TryDispose();
 
 			return returnValue;
 		}

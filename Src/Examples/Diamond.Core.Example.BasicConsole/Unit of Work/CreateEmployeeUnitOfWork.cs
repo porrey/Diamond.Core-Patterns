@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Diamond.Core.Repository;
 using Diamond.Core.UnitOfWork;
 
@@ -47,6 +48,11 @@ namespace Diamond.Core.Example.BasicConsole
 				result = true;
 				employeeId = null;
 			}
+
+			//
+			// Since we are using transient lifetimes, we need to dispose.
+			//
+			repository.TryDispose();
 
 			return (result, employeeId);
 		}

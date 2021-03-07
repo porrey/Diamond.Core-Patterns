@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System;
 using System.Threading.Tasks;
 using Diamond.Core.Repository;
 using Diamond.Core.Workflow;
@@ -47,29 +48,36 @@ namespace Diamond.Core.Example.BasicConsole
 			IQueryableRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetQueryableAsync<IEmployeeEntity>();
 
 			//
-			// Get the context.
+			// Get the context. This can be disposed because it is defined as transient
+			// in the container.
 			//
-			IRepositoryContext db = await repository.GetContextAsync();
+			using (IRepositoryContext db = await repository.GetContextAsync())
+			{
+				//
+				// Delete the database
+				//
+				this.Logger.LogInformation("Deleting existing database.");
+				await db.EnsureDeletedAsync();
+
+				//
+				// Create the database
+				//
+				this.Logger.LogInformation($"Creating new empty database.");
+				if (await db.EnsureCreatedAsync())
+				{
+					returnValue = true;
+					this.Logger.LogInformation("Database was successfully created.");
+				}
+				else
+				{
+					await this.StepFailedAsync(context, "Failed to create new database.");
+				}
+			}
 
 			//
-			// Delete the database
+			// Since we are using transient lifetimes, we need to dispose.
 			//
-			this.Logger.LogInformation("Deleting existing database.");
-			await db.EnsureDeletedAsync();
-
-			//
-			// Create the database
-			//
-			this.Logger.LogInformation($"Creating new empty database.");
-			if (await db.EnsureCreatedAsync())
-			{
-				returnValue = true;
-				this.Logger.LogInformation("Database was successfully created.");
-			}
-			else
-			{
-				await this.StepFailedAsync(context, "Failed to create new database.");
-			}
+			repository.TryDispose();
 
 			return returnValue;
 		}

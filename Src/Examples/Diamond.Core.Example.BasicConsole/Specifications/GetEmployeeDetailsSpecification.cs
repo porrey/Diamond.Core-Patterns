@@ -24,12 +24,17 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Get a repository for IEmployeeEntity.
 			//
-			IReadOnlyRepository<IEmployeeEntity> repostory = await this.RepositoryFactory.GetReadOnlyAsync<IEmployeeEntity>();
+			IReadOnlyRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetReadOnlyAsync<IEmployeeEntity>();
 
 			//
 			// Get all active employees ID's.
 			//
-			returnValue = (await repostory.GetAsync(t => t.Id == employeeId)).SingleOrDefault();
+			returnValue = (await repository.GetAsync(t => t.Id == employeeId)).SingleOrDefault();
+
+			//
+			// Since we are using transient lifetimes, we need to dispose.
+			//
+			repository.TryDispose();
 
 			return returnValue;
 		}

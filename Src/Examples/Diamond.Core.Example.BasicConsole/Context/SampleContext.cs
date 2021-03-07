@@ -14,28 +14,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Repository.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example.BasicConsole
 {
 	public class SampleContext : RepositoryContext<SampleContext>
 	{
-		public SampleContext()
-			: base()
+		public SampleContext(ILogger<SampleContext> logger, DbContextOptions<SampleContext> options)
+			: base(logger, options)
 		{
+			logger.LogDebug($"Created {nameof(SampleContext)}.");
 		}
-
-		public SampleContext(DbContextOptions<SampleContext> options)
-			: base(options)
-		{
-		}
-
-		[Dependency]
-		protected ILogger<SampleContext> Logger { get; set; } = new NullLogger<SampleContext>();
 
 		public DbSet<EmployeeEntity> Employees { get; set; }
 

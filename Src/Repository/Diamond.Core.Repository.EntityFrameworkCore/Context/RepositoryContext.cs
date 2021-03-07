@@ -16,6 +16,7 @@
 // 
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Repository.EntityFrameworkCore
 {
@@ -42,6 +43,32 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			: base(options)
 		{
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
+		/// <param name="options"></param>
+		public RepositoryContext(ILogger<RepositoryContext<TContext>> logger, DbContextOptions options)
+			: base(options)
+		{
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
+		public RepositoryContext(ILogger<RepositoryContext<TContext>> logger)
+			: base()
+		{
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ILogger<RepositoryContext<TContext>> Logger { get; set; }
 
 		/// <summary>
 		/// 
