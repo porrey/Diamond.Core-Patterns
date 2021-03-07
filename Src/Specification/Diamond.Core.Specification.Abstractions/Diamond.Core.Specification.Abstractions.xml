@@ -20,7 +20,7 @@
             </summary>
             <typeparam name="TResult">The return type of the specification action.</typeparam>
         </member>
-        <member name="M:Diamond.Core.Specification.ISpecification`1.ExecuteQueryAsync">
+        <member name="M:Diamond.Core.Specification.ISpecification`1.ExecuteSelectionAsync">
             <summary>
             Executes the specification.
             </summary>

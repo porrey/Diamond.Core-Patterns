@@ -4,9 +4,9 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net5.0</TargetFramework>
 		<AssemblyName>CommandConsoleExample</AssemblyName>
-		<Version>5.0.1</Version>
-		<FileVersion>5.0.1</FileVersion>
-		<AssemblyVersion>5.0.1</AssemblyVersion>
+		<Version>5.0.5</Version>
+		<FileVersion>5.0.5</FileVersion>
+		<AssemblyVersion>5.0.5</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

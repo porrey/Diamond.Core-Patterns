@@ -26,7 +26,7 @@ namespace Diamond.Core.Specification
 		/// <summary>
 		/// 
 		/// </summary>
-		string Name { get; set; }
+		string Name { get; }
 	}
 
 	/// <summary>
@@ -39,7 +39,7 @@ namespace Diamond.Core.Specification
 		/// Executes the specification.
 		/// </summary>
 		/// <returns>Returns the result as a instance of type TResult.</returns>
-		Task<TResult> ExecuteQueryAsync();
+		Task<TResult> ExecuteSelectionAsync();
 	}
 
 	/// <summary>

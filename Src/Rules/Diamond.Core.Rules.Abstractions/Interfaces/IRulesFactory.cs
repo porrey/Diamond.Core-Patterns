@@ -48,5 +48,22 @@ namespace Diamond.Core.Rules
 		/// </summary>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
 		Task<IEnumerable<IRule<TInterface, TResult>>> GetAllAsync<TInterface, TResult>(string group);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TItem"></typeparam>
+		/// <param name="group"></param>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		Task<string> EvaluateAsync<TItem>(string group, TItem item);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TItem"></typeparam>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		Task<string> EvaluateAsync<TItem>(TItem item);
 	}
 }

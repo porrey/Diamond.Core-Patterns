@@ -109,7 +109,17 @@ namespace Diamond.Core.Workflow
 		/// <returns></returns>
 		public virtual bool ShouldExecute(IContext context)
 		{
-			return true;
+			return this.OnShouldExecuteAsync(context).Result;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		public virtual Task<bool> OnShouldExecuteAsync(IContext context)
+		{
+			return Task.FromResult(true);
 		}
 
 		/// <summary>

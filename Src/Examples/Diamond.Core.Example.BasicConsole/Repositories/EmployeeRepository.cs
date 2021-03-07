@@ -14,18 +14,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using Diamond.Core.Workflow;
-using Microsoft.Extensions.Logging;
+using Diamond.Core.Repository;
+using Diamond.Core.Repository.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace Diamond.Core.Example
+namespace Diamond.Core.Example.BasicConsole
 {
-	public class SampleWorkflowManager : LinearHaltWorkflowManager
+	public class EmployeeRepository : EntityFrameworkRepository<IEmployeeEntity, EmployeeEntity, SampleContext>
 	{
-		public SampleWorkflowManager(ILogger<SampleWorkflowManager> logger, IWorkflowItemFactory workFlowItemFactory)
-			: base(workFlowItemFactory)
+		public EmployeeRepository(SampleContext context, IEntityFactory<IEmployeeEntity> modelFactory)
+			: base(context, modelFactory)
 		{
-			this.Group = WellKnown.Workflow.SampleWorkflow;
-			logger.LogDebug($"An instance of {nameof(SampleWorkflowManager)} with group name '{this.Group}' was created.");
 		}
+
+		protected override DbSet<EmployeeEntity> MyDbSet(SampleContext context) => context.Employees;
 	}
 }

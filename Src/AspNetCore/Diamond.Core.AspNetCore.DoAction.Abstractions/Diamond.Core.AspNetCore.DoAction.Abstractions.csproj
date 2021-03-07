@@ -5,9 +5,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>5.0.1</Version>
-		<FileVersion>5.0.1</FileVersion>
-		<AssemblyVersion>5.0.1</AssemblyVersion>
+		<Version>5.0.5</Version>
+		<FileVersion>5.0.5</FileVersion>
+		<AssemblyVersion>5.0.5</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>Provides abstractions for Do pattern execution for ASP.NET Core MVC core projects.</Description>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>

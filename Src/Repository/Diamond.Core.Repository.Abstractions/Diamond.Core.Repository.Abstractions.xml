@@ -177,6 +177,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Repository.IRepositoryContext.CanConnectAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Repository.IRepositoryFactory">
             <summary>
             Defines a factory to create/retrieve model repositories.

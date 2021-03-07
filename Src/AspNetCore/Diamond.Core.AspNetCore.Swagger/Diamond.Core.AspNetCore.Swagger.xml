@@ -85,22 +85,25 @@
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.Operation">
             <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.AspNetCore.Swagger.Operation.Value">
-            <summary>
-            
+            Represents a JSON patch operation.
             </summary>
         </member>
         <member name="P:Diamond.Core.AspNetCore.Swagger.Operation.Path">
             <summary>
-            
+            JSON Pointer (IETF RFC 6901) defines a string format for identifying a specific value within a
+            JSON document. It is used by all operations in JSON Patch to specify the part of the document
+            to operate on.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.Swagger.Operation.Value">
+            <summary>
+            Get/sets the value applied in the operation.
             </summary>
         </member>
         <member name="P:Diamond.Core.AspNetCore.Swagger.Operation.Op">
             <summary>
-            
+            Gets  or sets the operation to perform. The value can be one of the following: Add, Remove, Replace, Copy,
+            Move or Test.
             </summary>
         </member>
     </members>

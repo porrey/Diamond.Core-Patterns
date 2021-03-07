@@ -69,5 +69,14 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		{
 			return this.Database.EnsureDeletedAsync();
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public virtual Task<bool> CanConnectAsync()
+		{
+			return this.Database.CanConnectAsync();
+		}
 	}
 }

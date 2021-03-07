@@ -14,28 +14,23 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.Threading.Tasks;
 using Diamond.Core.Workflow;
 using Microsoft.Extensions.Logging;
 
-namespace Diamond.Core.Example
+namespace Diamond.Core.Example.BasicConsole
 {
-	public class SampleWorkStep1 : WorkflowItem
+	/// <summary>
+	/// In a linear complete workflow, all steps are executed regardless
+	/// if any previous step has failed. A step can indicate if it
+	/// should be executed or not by overriding ShouldExecute().
+	/// </summary>
+	public class SampleWorkflowManager : LinearCompleteWorkflowManager
 	{
-		public override string Name => $"Sample Step {this.Ordinal}";
-		public override string Group { get => WellKnown.Workflow.SampleWorkflow; set => base.Group = value; }
-		public override int Ordinal { get => 1; set => base.Ordinal = value; }
-
-		protected override Task<bool> OnExecuteStepAsync(IContext context)
+		public SampleWorkflowManager(ILogger<SampleWorkflowManager> logger, IWorkflowItemFactory workFlowItemFactory)
+			: base(workFlowItemFactory)
 		{
-			this.Logger.LogDebug($"Running '{nameof(OnExecuteStepAsync)}' on step [{this.Ordinal}] {this.Group}/{this.Name}.");
-			return Task.FromResult(true);
-		}
-
-		protected override Task<bool> OnPrepareForExecutionAsync(IContext context)
-		{
-			this.Logger.LogDebug($"Running '{nameof(OnPrepareForExecutionAsync)}' on step [{this.Ordinal}] {this.Group}/{this.Name}.");
-			return Task.FromResult(true);
+			this.Group = WellKnown.Workflow.SampleWorkflow;
+			logger.LogDebug($"An instance of {nameof(SampleWorkflowManager)} with group name '{this.Group}' was created.");
 		}
 	}
 }

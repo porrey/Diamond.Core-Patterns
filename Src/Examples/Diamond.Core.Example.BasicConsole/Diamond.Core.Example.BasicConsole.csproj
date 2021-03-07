@@ -3,32 +3,55 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>5.0.1</Version>
-    <FileVersion>5.0.1</FileVersion>
-    <AssemblyVersion>5.0.1</AssemblyVersion>
+    <Version>5.0.5</Version>
+    <FileVersion>5.0.5</FileVersion>
+    <AssemblyVersion>5.0.5</AssemblyVersion>
     <AssemblyName>ConsoleExample</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="Data\Names.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator></Generator>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+	  <PackageReference Include="Serilog.Extensions.Hosting" Version="4.1.2" />
+	  <PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
+	  <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+	  <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+	  <PackageReference Include="System.CommandLine.Hosting" Version="0.3.0-alpha.20574.7" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable.Newtonsoft\Diamond.Core.Clonable.Newtonsoft.csproj" />
+    <ProjectReference Include="..\..\Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
-    <ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
+    <ProjectReference Include="..\..\Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj" />
+    <ProjectReference Include="..\..\Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj" />
+    <ProjectReference Include="..\..\Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj" />
+    <ProjectReference Include="..\..\Workflow\Diamond.Core.WorkFlow\Diamond.Core.Workflow.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>

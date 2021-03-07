@@ -42,5 +42,11 @@ namespace Diamond.Core.Repository
 		/// </summary>
 		/// <returns></returns>
 		Task<bool> EnsureDeletedAsync();
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		Task<bool> CanConnectAsync();
 	}
 }

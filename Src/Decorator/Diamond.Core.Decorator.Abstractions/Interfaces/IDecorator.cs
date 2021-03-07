@@ -26,7 +26,7 @@ namespace Diamond.Core.Decorator
 		/// <summary>
 		/// 
 		/// </summary>
-		string Name { get; set; }
+		string Name { get; }
 	}
 
 	/// <summary>

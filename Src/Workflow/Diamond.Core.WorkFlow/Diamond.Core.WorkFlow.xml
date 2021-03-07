@@ -525,6 +525,13 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItem.ExecuteStepAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             

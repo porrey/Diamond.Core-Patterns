@@ -82,6 +82,23 @@
             <typeparam name="TResult">The type of the model being validated.</typeparam>
             <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
         </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.EvaluateAsync``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="group"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.EvaluateAsync``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Rules.Rule`1">
             <summary>
             

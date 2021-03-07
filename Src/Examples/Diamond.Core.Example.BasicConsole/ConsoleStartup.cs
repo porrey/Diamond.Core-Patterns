@@ -14,16 +14,44 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Diamond.Core.Decorator;
 using Diamond.Core.Extensions.Hosting;
+using Diamond.Core.Repository;
+using Diamond.Core.Rules;
+using Diamond.Core.Specification;
+using Diamond.Core.UnitOfWork;
+using Diamond.Core.Workflow;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
-namespace Diamond.Core.Example
+namespace Diamond.Core.Example.BasicConsole
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ConsoleStartup : IStartupConfigureServices
+	public class ConsoleStartup : IStartupConfigureServices, IStartupAppConfiguration
 	{
+		/// <summary>
+		/// Called to configure additional settings.
+		/// </summary>
+		/// <param name="builder"></param>
+		public void ConfigureAppConfiguration(IConfigurationBuilder builder)
+		{
+			//
+			// Build the configuration so Serilog can read from it.
+			//
+			IConfigurationRoot configuration = builder.Build();
+
+			//
+			// Create a logger from the configuration.
+			//
+			Log.Logger = new LoggerConfiguration()
+					  .ReadFrom.Configuration(configuration)
+					  .CreateLogger();
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -32,24 +60,53 @@ namespace Diamond.Core.Example
 		public void ConfigureServices(IServiceCollection services)
 		{
 			//
-			// Add the Diamond Core dependencies needed for the examples.
+			// Add the database context.
 			//
-			services.AddWorkflowExampleDependencies();
-			services.AddSpecificationExampleDependencies();
-			services.AddRulesExampleDependencies();
-			services.AddDecoratorExampleDependencies();
-			services.AddUnitOfWorkExampleDependencies();
-			services.AddRepositoryExampleDependencies();
+			services.AddDbContext<SampleContext>((sp, options) =>
+			{
+				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+				options.UseSqlServer(configuration["ConnectionStrings:Sample"]);
+			});
 
 			//
-			// Add the example application services.
+			// Add database items.
 			//
-			services.AddHostedService<WorkflowExampleHostedService>();
-			services.AddHostedService<SpecificationExampleHostedService>();
-			services.AddHostedService<RulesExampleHostedService>();
-			services.AddHostedService<DecoratorExampleHostedService>();
-			services.AddHostedService<UnitOfWorkExampleHostedService>();
-			services.AddHostedService<RepositoryExampleHostedService>();
+			services.AddScoped<IRepositoryFactory, RepositoryFactory>();
+			services.AddScoped<IEntityFactory<IEmployeeEntity>, EmployeeEntityFactory>();
+			services.AddScoped<IRepository<IEmployeeEntity>, EmployeeRepository>();
+
+			services.AddScoped<ISpecificationFactory, SpecificationFactory>();
+			services.AddScoped<ISpecification, GetActiveEmployeeIdListSpecification>();
+			services.AddScoped<ISpecification, GetEmployeeDetailsSpecification>();
+
+			services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+			services.AddScoped<IUnitOfWork, CreateEmployeeUnitOfWork>();
+			services.AddScoped<IUnitOfWork, PromoteEmployeeUnitOfWork>();
+
+			services.AddScoped<IRulesFactory, RulesFactory>();
+			services.AddScoped<IRule, MnimumEmploymentRule>();
+			services.AddScoped<IRule, GoodStandingRule>();
+			services.AddScoped<IRule, PreviousPromotionRule>();
+
+			services.AddScoped<IDecoratorFactory, DecoratorFactory>();
+			services.AddScoped<IDecorator, EmployeePromotionDecorator>();
+
+			//
+			// Add the sample work flow manager and work flow steps.
+			//
+			services.AddScoped<IWorkflowManagerFactory, WorkflowManagerFactory>()
+					.AddScoped<IWorkflowItemFactory, WorkflowItemFactory>()
+					.AddScoped<IWorkflowManager, SampleWorkflowManager>()
+					.AddScoped<IWorkflowItem, SampleWorkStep1>()
+					.AddScoped<IWorkflowItem, SampleWorkStep2>()
+					.AddScoped<IWorkflowItem, SampleWorkStep3>()
+					.AddScoped<IWorkflowItem, SampleWorkStep4>()
+					.AddScoped<IWorkflowItem, SampleWorkStep5>();
+
+			//
+			// Add the hosted service.
+			//
+			services.AddHostedService<BasicExampleHostedService>();
 		}
 	}
 }

@@ -80,5 +80,22 @@
             </summary>
             <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
         </member>
+        <member name="M:Diamond.Core.Rules.IRulesFactory.EvaluateAsync``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="group"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.IRulesFactory.EvaluateAsync``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

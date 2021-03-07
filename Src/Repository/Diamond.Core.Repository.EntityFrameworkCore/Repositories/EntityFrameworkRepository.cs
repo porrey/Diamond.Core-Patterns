@@ -232,18 +232,50 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="item"></param>
 		/// <param name="commit"></param>
 		/// <returns></returns>
+		public virtual async Task<(bool, TInterface)> AddAsync(IRepositoryContext context, TInterface item, bool commit = true)
+		{
+			(bool result, TInterface entity) = (false, default);
+
+			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(AddAsync), typeof(TInterface).Name);
+			entity = this.MyDbSet(((TContext)context)).Add((TEntity)item).Entity;
+
+			if (commit)
+			{
+				result = (await ((TContext)context).SaveChangesAsync(true) == 1);
+				((TContext)context).ChangeTracker.Clear();
+				this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(AddAsync), result);
+			}
+			else
+			{
+				entity = item;
+				result = true;
+				this.Logger.LogDebug("{method}: Record marked for addition.", nameof(UpdateAsync), result);
+			}
+
+			return (result, entity);
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="item"></param>
+		/// <param name="commit"></param>
+		/// <returns></returns>
 		public virtual async Task<bool> UpdateAsync(IRepositoryContext context, TInterface item, bool commit = true)
 		{
 			bool returnValue = false;
 
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(UpdateAsync), typeof(TInterface).Name);
 
-			this.Context.Entry((TEntity)item).State = EntityState.Modified;
+			((TContext)context).Entry((TEntity)item).State = EntityState.Modified;
 			int result = 0;
 
 			if (commit)
 			{
-				result = await ((TContext)context).SaveChangesAsync(true);
+				result = await ((TContext)context).SaveChangesAsync(false);
+				((TContext)context).ChangeTracker.Clear();
 				this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(UpdateAsync), result);
 			}
 			else
@@ -264,46 +296,18 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="item"></param>
 		/// <param name="commit"></param>
 		/// <returns></returns>
-		public virtual async Task<(bool, TInterface)> AddAsync(IRepositoryContext context, TInterface item, bool commit = true)
-		{
-			(bool result, TInterface entity) = (false, default);
-
-			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(AddAsync), typeof(TInterface).Name);
-			entity = this.MyDbSet(this.Context).Add((TEntity)item).Entity;
-
-			if (commit)
-			{
-				result = (await ((TContext)context).SaveChangesAsync(true) == 1);
-				this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(AddAsync), result);
-			}
-			else
-			{
-				entity = item;
-				result = true;
-				this.Logger.LogDebug("{method}: Record marked for addition.", nameof(UpdateAsync), result);
-			}
-
-			return (result, entity);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="context"></param>
-		/// <param name="item"></param>
-		/// <param name="commit"></param>
-		/// <returns></returns>
 		public virtual async Task<bool> DeleteAsync(IRepositoryContext context, TInterface item, bool commit = true)
 		{
 			bool returnValue = false;
 
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(DeleteAsync), typeof(TInterface).Name);
-			this.Context.Entry((TEntity)item).State = EntityState.Deleted;
+			((TContext)context).Entry((TEntity)item).State = EntityState.Deleted;
 			int result = 0;
 
 			if (commit)
 			{
 				result = await ((TContext)context).SaveChangesAsync(true);
+				((TContext)context).ChangeTracker.Clear();
 				this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(DeleteAsync), result);
 			}
 			else

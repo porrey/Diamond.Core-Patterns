@@ -26,7 +26,7 @@ namespace Diamond.Core.Rules
 		/// <summary>
 		/// Group name to distinguish between different rule sets.
 		/// </summary>
-		string Group { get; set; }
+		string Group { get; }
 	}
 
 	/// <summary>

@@ -4,16 +4,6 @@
         <name>Diamond.Core.Repository.EntityFrameworkCore</name>
     </assembly>
     <members>
-        <member name="T:Diamond.Core.Repository.EntityFrameworkCore.InvalidContextException">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.InvalidContextException.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1">
             <summary>
             
@@ -48,6 +38,22 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.RepositoryContext`1.CanConnectAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.EntityFrameworkCore.InvalidContextException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.InvalidContextException.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3">
             <summary>
@@ -172,7 +178,7 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             
             </summary>
@@ -181,7 +187,7 @@
             <param name="commit"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.AddAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
+        <member name="M:Diamond.Core.Repository.EntityFrameworkCore.EntityFrameworkRepository`3.UpdateAsync(Diamond.Core.Repository.IRepositoryContext,`0,System.Boolean)">
             <summary>
             
             </summary>

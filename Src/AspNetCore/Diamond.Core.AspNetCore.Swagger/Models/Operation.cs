@@ -19,24 +19,27 @@ using Newtonsoft.Json;
 namespace Diamond.Core.AspNetCore.Swagger
 {
 	/// <summary>
-	/// 
+	/// Represents a JSON patch operation.
 	/// </summary>
 	public class Operation
 	{
 		/// <summary>
-		/// 
-		/// </summary>
-		[JsonProperty("value")]
-		public object Value { get; set; }
-
-		/// <summary>
-		/// 
+		/// JSON Pointer (IETF RFC 6901) defines a string format for identifying a specific value within a
+		/// JSON document. It is used by all operations in JSON Patch to specify the part of the document
+		/// to operate on.
 		/// </summary>
 		[JsonProperty("path")]
 		public string Path { get; set; }
 
 		/// <summary>
-		/// 
+		/// Get/sets the value applied in the operation.
+		/// </summary>
+		[JsonProperty("value")]
+		public object Value { get; set; }
+
+		/// <summary>
+		/// Gets  or sets the operation to perform. The value can be one of the following: Add, Remove, Replace, Copy,
+		/// Move or Test.
 		/// </summary>
 		[JsonProperty("op")]
 		public string Op { get; set; }

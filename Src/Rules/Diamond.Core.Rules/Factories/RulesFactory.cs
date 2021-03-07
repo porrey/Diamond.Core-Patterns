@@ -20,6 +20,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Rules
 {
@@ -58,7 +59,7 @@ namespace Diamond.Core.Rules
 		/// <summary>
 		/// Gets/sets a reference to the <see cref="ILogger"/> for this object.
 		/// </summary>
-		public ILogger<RulesFactory> Logger { get; set; }
+		public ILogger<RulesFactory> Logger { get; set; } = new NullLogger<RulesFactory>();
 
 		/// <summary>
 		/// Get all model rule instances registered based on TInterface.
@@ -185,6 +186,50 @@ namespace Diamond.Core.Rules
 			}
 
 			return Task.FromResult<IEnumerable<IRule<TItem, TResult>>>(returnValue);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TItem"></typeparam>
+		/// <param name="group"></param>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public async Task<string> EvaluateAsync<TItem>(string group, TItem item)
+		{
+			string returnValue = String.Empty;
+
+			this.Logger.LogDebug("Retrieving rules to validate shipment.");
+			IEnumerable<IRule<TItem>> rules = await this.GetAllAsync<TItem>(group);
+
+			//
+			// Execute the specification to get the list of qualified widgets.
+			//
+			this.Logger.LogDebug("Executing rules on shipment.");
+			IEnumerable<IRuleResult> results = rules.Select(t => t.ValidateAsync(item).Result);
+
+			//
+			// Compile a list of messages.
+			//
+			IEnumerable<IRuleResult> messages = results.Where(t => !t.Passed);
+
+			//
+			// Join the errors into a single string.
+			//
+			returnValue = string.Join(" ", messages.Select(t => t.ErrorMessage));
+
+			return returnValue;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TItem"></typeparam>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public Task<string> EvaluateAsync<TItem>(TItem item)
+		{
+			return this.EvaluateAsync(null, item);
 		}
 	}
 }
