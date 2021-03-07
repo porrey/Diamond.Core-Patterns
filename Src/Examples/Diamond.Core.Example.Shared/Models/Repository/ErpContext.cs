@@ -14,11 +14,9 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Repository.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Example
 {
@@ -29,19 +27,17 @@ namespace Diamond.Core.Example
 		{
 		}
 
-		public ErpContext(DbContextOptions<ErpContext> options)
-			: base(options)
+		public ErpContext(ILogger<ErpContext> logger, DbContextOptions<ErpContext> options)
+			: base(logger, options)
 		{
+			logger.LogDebug("Created {context}.", nameof(ErpContext));
 		}
-
-		[Dependency]
-		protected ILogger<ErpContext> Logger { get; set; } = new NullLogger<ErpContext>();
 
 		public DbSet<InvoiceEntity> Invoices { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			this.Logger.LogDebug($"OnModelCreating() called in {nameof(ErpContext)}");
+			this.Logger.LogDebug("OnModelCreating() called in {context}", nameof(ErpContext));
 
 			//
 			// Invoice number must be unique.

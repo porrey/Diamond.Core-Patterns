@@ -25,14 +25,14 @@ namespace Diamond.Core.Example.BasicConsole
 		public SampleContext(ILogger<SampleContext> logger, DbContextOptions<SampleContext> options)
 			: base(logger, options)
 		{
-			logger.LogDebug($"Created {nameof(SampleContext)}.");
+			logger.LogDebug("Created {context}.", nameof(SampleContext));
 		}
 
 		public DbSet<EmployeeEntity> Employees { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			this.Logger.LogDebug($"OnModelCreating() called in {nameof(SampleContext)}");
+			this.Logger.LogDebug("OnModelCreating() called in {context}", nameof(SampleContext));
 
 			//
 			// Invoice number must be unique.

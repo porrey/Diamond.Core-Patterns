@@ -65,7 +65,7 @@ namespace Diamond.Core.Example.BasicConsole
 			services.AddDbContext<SampleContext>((sp, options) =>
 			{
 				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
-				options.UseSqlServer(configuration["ConnectionStrings:Sample"]);
+				options.UseSqlite(configuration["ConnectionStrings:Sample"]);
 			}, ServiceLifetime.Transient);
 
 			//
