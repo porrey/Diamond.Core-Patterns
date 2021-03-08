@@ -34,7 +34,7 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Since we are using transient lifetimes, we need to dispose.
 			//
-			repository.TryDispose();
+			await repository.TryDisposeAsync();
 
 			return returnValue;
 		}

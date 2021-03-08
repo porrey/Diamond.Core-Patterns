@@ -45,7 +45,7 @@ namespace Diamond.Core.Example.BasicConsole
 
 			//
 			// Get a repository for IEmployeeEntity.
-			//
+			//(
 			IReadOnlyRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetReadOnlyAsync<IEmployeeEntity>();
 
 			//
@@ -65,7 +65,7 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Since we are using transient lifetimes, we need to dispose.
 			//
-			repository.TryDispose();
+			await repository.TryDisposeAsync();
 
 			returnValue = true;
 

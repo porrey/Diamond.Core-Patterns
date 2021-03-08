@@ -98,8 +98,8 @@ namespace Diamond.Core.Example.BasicConsole
 				//
 				// Since we are using transient lifetimes, we need to dispose.
 				//
-				employeeDetailsSpecification.TryDispose();
-				decorator.TryDispose();
+				await employeeDetailsSpecification.TryDisposeAsync();
+				await decorator.TryDisposeAsync();
 
 				returnValue = true;
 			}
@@ -112,7 +112,7 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Since we are using transient lifetimes, we need to dispose.
 			//
-			activeEmployeeSpecification.TryDispose();
+			await activeEmployeeSpecification.TryDisposeAsync();
 
 			return returnValue;
 		}
