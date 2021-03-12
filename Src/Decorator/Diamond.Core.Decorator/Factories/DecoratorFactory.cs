@@ -68,6 +68,7 @@ namespace Diamond.Core.Decorator
 		/// <param name="name"></param>
 		/// <returns></returns>
 		public Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name)
+			where TDecoratedItem : class
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
 
@@ -102,6 +103,40 @@ namespace Diamond.Core.Decorator
 			}
 
 			return Task.FromResult(returnValue);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TDecoratedItem"></typeparam>
+		/// <typeparam name="TResult"></typeparam>
+		/// <param name="name"></param>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item)
+			where TDecoratedItem : class
+		{
+			IDecorator<TDecoratedItem, TResult> returnValue = null;
+
+			//
+			// Check the parameter.
+			//
+			if (item == null)
+			{
+				throw new ArgumentNullException(nameof(item));
+			}
+
+			//
+			// Get the decorator.
+			//
+			returnValue = await this.GetAsync<TDecoratedItem, TResult>(name);
+
+			//
+			// Set the instance.
+			//
+			returnValue.Item = item;
+
+			return returnValue;
 		}
 	}
 }

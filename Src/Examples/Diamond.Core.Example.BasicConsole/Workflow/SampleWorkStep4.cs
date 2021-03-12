@@ -62,11 +62,6 @@ namespace Diamond.Core.Example.BasicConsole
 				ISpecification<int, IEmployeeEntity> employeeDetailsSpecification = await this.SpecificationFactory.GetAsync<int, IEmployeeEntity>(WellKnown.Specifcation.GetEmployeeDetails);
 
 				//
-				// Get the promotion decorator.
-				//
-				IDecorator<IEmployeeEntity, (bool, IEmployeeEntity, string)> decorator = await this.DecoratorFactory.GetAsync<IEmployeeEntity, (bool, IEmployeeEntity, string)>(WellKnown.Decorator.EmployeePromotion);
-
-				//
 				// Promote all eligible employees.
 				//
 				foreach (int activeEmployeeId in activeEmployees)
@@ -77,9 +72,14 @@ namespace Diamond.Core.Example.BasicConsole
 					IEmployeeEntity employee = await employeeDetailsSpecification.ExecuteSelectionAsync(activeEmployeeId);
 
 					//
+					// Get the promotion decorator.
+					//
+					IDecorator<IEmployeeEntity, (bool, IEmployeeEntity, string)> decorator = await this.DecoratorFactory.GetAsync<IEmployeeEntity, (bool, IEmployeeEntity, string)>(WellKnown.Decorator.EmployeePromotion, employee);
+
+					//
 					// Attempt to promote the employee.
 					//
-					(bool promotionResult, IEmployeeEntity updatedEmployee, string message) = await decorator.TakeActionAsync(employee);
+					(bool promotionResult, IEmployeeEntity updatedEmployee, string message) = await decorator.TakeActionAsync();
 
 					//
 					// Check the result.
@@ -93,13 +93,17 @@ namespace Diamond.Core.Example.BasicConsole
 					{
 						this.Logger.LogInformation("The employee {firstName} {lastName} was not eligible for a promotion: '{message}'.", employee.FirstName, employee.LastName, message);
 					}
+
+					//
+					// Dispose the decorator.
+					//
+					await decorator.TryDisposeAsync();
 				}
 
 				//
 				// Since we are using transient lifetimes, we need to dispose.
 				//
 				await employeeDetailsSpecification.TryDisposeAsync();
-				await decorator.TryDisposeAsync();
 
 				returnValue = true;
 			}

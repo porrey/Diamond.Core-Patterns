@@ -3,22 +3,24 @@ using System.Threading.Tasks;
 using Diamond.Core.Decorator;
 using Diamond.Core.Rules;
 using Diamond.Core.UnitOfWork;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example.BasicConsole
 {
-	public class EmployeePromotionDecorator : IDecorator<IEmployeeEntity, (bool, IEmployeeEntity, string)>
+	public class EmployeePromotionDecorator : DecoratorTemplate<IEmployeeEntity, (bool, IEmployeeEntity, string)>
 	{
-		public EmployeePromotionDecorator(IUnitOfWorkFactory unitOfWorkFactory, IRulesFactory rulesFactory)
+		public EmployeePromotionDecorator(ILogger<EmployeePromotionDecorator> logger, IUnitOfWorkFactory unitOfWorkFactory, IRulesFactory rulesFactory)
+			: base(logger)
 		{
 			this.UnitOfWorkFactory = unitOfWorkFactory;
 			this.RulesFactory = rulesFactory;
 		}
 
-		public string Name => "EmployeePromotion";
+		public override string Name => "EmployeePromotion";
 		protected IUnitOfWorkFactory UnitOfWorkFactory { get; set; }
 		protected IRulesFactory RulesFactory { get; set; }
 
-		public async Task<(bool, IEmployeeEntity, string)> TakeActionAsync(IEmployeeEntity item)
+		protected override async Task<(bool, IEmployeeEntity, string)> OnTakeActionAsync(IEmployeeEntity item)
 		{
 			//
 			// Clone the employee to preserve the previous data.

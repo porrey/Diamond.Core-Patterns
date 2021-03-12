@@ -8,9 +8,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides a basic implementation of the decorator factory.</Description>
-		<Version>5.0.5</Version>
-		<FileVersion>5.0.5</FileVersion>
-		<AssemblyVersion>5.0.5</AssemblyVersion>
+		<Version>5.0.6</Version>
+		<FileVersion>5.0.6</FileVersion>
+		<AssemblyVersion>5.0.6</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -43,6 +43,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="System.DisposableObject" Version="1.4.1" />
 		<PackageReference Include="TryDisposable" Version="1.4.0" />
 	</ItemGroup>
 

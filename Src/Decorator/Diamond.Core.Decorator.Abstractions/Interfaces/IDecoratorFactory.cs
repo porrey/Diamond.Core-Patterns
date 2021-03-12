@@ -30,6 +30,18 @@ namespace Diamond.Core.Decorator
 		/// <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
 		/// <param name="name">The unique name of the decorator.</param>
 		/// <returns>The result of the decorator action.</returns>
-		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name);
+		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name)
+			where TDecoratedItem : class;
+
+		/// <summary>
+		/// Gets the specific decorator by type and name.
+		/// </summary>
+		/// <typeparam name="TDecoratedItem">The type of object being decorated.</typeparam>
+		/// <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
+		/// <param name="name">The unique name of the decorator.</param>
+		/// <param name="item">The instance of the item being decorated.</param>
+		/// <returns>The result of the decorator action.</returns>
+		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item)
+			where TDecoratedItem : class;
 	}
 }

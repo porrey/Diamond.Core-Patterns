@@ -4,6 +4,86 @@
         <name>Diamond.Core.Decorator</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Decorator.DecoratorTemplate`2">
+            <summary>
+            Provide a template from which other decorators can be derived. This is a stateful
+            object and should be defined as transient in containers.
+            </summary>
+            <typeparam name="TDecoratedItem"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.#ctor">
+            <summary>
+            Creates a default instance of <see cref="T:Diamond.Core.Decorator.DecoratorTemplate`2"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Decorator.DecoratorTemplate{`0,`1}})">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Decorator.DecoratorTemplate`2"/> with
+            the given logger instance.
+            </summary>
+            <param name="logger">An instance of the logger.</param>
+        </member>
+        <member name="P:Diamond.Core.Decorator.DecoratorTemplate`2.Logger">
+            <summary>
+            An instance if a logger specific to this instance.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Decorator.DecoratorTemplate`2.Item">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Decorator.DecoratorTemplate`2.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.TakeActionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.TakeActionAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.OnTakeActionAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.OnDisposeManagedObjects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Decorator.DecoratedItemInstanceAlreadySetException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratedItemInstanceAlreadySetException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Decorator.DecoratedItemInstanceNotSetException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratedItemInstanceNotSetException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Diamond.Core.Decorator.DecoratorNotFoundException`2">
             <summary>
             
@@ -58,6 +138,16 @@
             <typeparam name="TDecoratedItem"></typeparam>
             <typeparam name="TResult"></typeparam>
             <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Decorator.DecoratorFactory.GetAsync``2(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TDecoratedItem"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="name"></param>
+            <param name="item"></param>
             <returns></returns>
         </member>
     </members>

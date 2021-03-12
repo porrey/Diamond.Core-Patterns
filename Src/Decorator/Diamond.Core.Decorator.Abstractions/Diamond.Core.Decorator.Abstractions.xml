@@ -22,6 +22,17 @@
             <typeparam name="TDecoratedItem">The instance type being decorated.</typeparam>
             <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
         </member>
+        <member name="P:Diamond.Core.Decorator.IDecorator`2.Item">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Decorator.IDecorator`2.TakeActionAsync">
+            <summary>
+            Executes the decorator action.
+            </summary>
+            <returns>The defined result of the action.</returns>
+        </member>
         <member name="M:Diamond.Core.Decorator.IDecorator`2.TakeActionAsync(`0)">
             <summary>
             Executes the decorator action.
@@ -41,6 +52,16 @@
             <typeparam name="TDecoratedItem">The type of object being decorated.</typeparam>
             <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
             <param name="name">The unique name of the decorator.</param>
+            <returns>The result of the decorator action.</returns>
+        </member>
+        <member name="M:Diamond.Core.Decorator.IDecoratorFactory.GetAsync``2(System.String,``0)">
+            <summary>
+            Gets the specific decorator by type and name.
+            </summary>
+            <typeparam name="TDecoratedItem">The type of object being decorated.</typeparam>
+            <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
+            <param name="name">The unique name of the decorator.</param>
+            <param name="item">The instance of the item being decorated.</param>
             <returns>The result of the decorator action.</returns>
         </member>
     </members>
