@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Wpf.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Wpf.IMainWindow">
+            <summary>
+            Used to distinguish the main (startup) window
+            from all other windows.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Wpf.IWindow">
+            <summary>
+            Used to place Window object in the container.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Wpf.IWindow.Show">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

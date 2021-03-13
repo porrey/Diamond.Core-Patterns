@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Wpf</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Wpf.HostedApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Wpf.HostedApplication.ApplicationHost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Wpf.HostedApplication.CancellationToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnStartup(System.Windows.StartupEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnBeginStartup(System.Windows.StartupEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnCompletedStartup(System.Windows.StartupEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnCreateHost">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnGetStartupWindow(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureHostConfiguration(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="configurationBuilder"></param>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureAppConfiguration(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostContext"></param>
+            <param name="configurationBuilder"></param>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureLogging(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Logging.ILoggingBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder"></param>
+            <param name="loggingBuilder"></param>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="hostContext"></param>
+            <param name="services"></param>
+        </member>
+        <member name="T:Diamond.Core.Wpf.HostedApplication`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TContainerBuilder"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication`1.OnCreateHost">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication`1.OnConfigureContainer(Microsoft.Extensions.Hosting.HostBuilderContext,`0)">
+            <summary>
+            
+            </summary>
+            <param name="hostContext"></param>
+            <param name="container"></param>
+        </member>
+    </members>
+</doc>

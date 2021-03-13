@@ -1,0 +1,8 @@
+﻿<diamond:HostedApplication  x:Class="Diamond.Core.Example.Wpf.App"
+							xmlns:diamond="clr-namespace:Diamond.Core.Wpf;assembly=Diamond.Core.Wpf"
+							xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+							xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Application.Resources>
+
+	</Application.Resources>
+</diamond:HostedApplication>

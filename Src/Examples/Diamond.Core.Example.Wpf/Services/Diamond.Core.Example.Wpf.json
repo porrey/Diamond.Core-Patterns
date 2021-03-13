@@ -1,0 +1,27 @@
+{
+  "services": [
+    {
+      //
+      // IMainWindow is used for the startup window.
+      //
+      "ServiceType": "Diamond.Core.Wpf.IMainWindow, Diamond.Core.Wpf.Abstractions",
+      "ImplementationType": "Diamond.Core.Example.Wpf.MainWindow, Diamond.Core.Example.Wpf",
+      "Lifetime": "Singleton"
+    },
+    {
+      "ServiceType": "Diamond.Core.Example.Wpf.IMainViewModel, Diamond.Core.Example.Wpf",
+      "ImplementationType": "Diamond.Core.Example.Wpf.MainViewModel, Diamond.Core.Example.Wpf",
+      "Lifetime": "Singleton"
+    },
+    {
+      "ServiceType": "Microsoft.Extensions.Hosting.IHostedService, Microsoft.Extensions.Hosting.Abstractions",
+      "ImplementationType": "Diamond.Core.Example.Wpf.BackgroundProcess, Diamond.Core.Example.Wpf",
+      "Lifetime": "Singleton"
+    },
+    {
+      "ServiceType": "Diamond.Core.Example.Wpf.ISimpleBus, Diamond.Core.Example.Wpf",
+      "ImplementationType": "Diamond.Core.Example.Wpf.SimpleBus, Diamond.Core.Example.Wpf",
+      "Lifetime": "Singleton"
+    }
+  ]
+}
