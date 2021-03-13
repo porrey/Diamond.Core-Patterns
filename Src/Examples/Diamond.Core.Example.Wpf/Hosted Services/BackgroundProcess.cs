@@ -15,7 +15,7 @@ namespace Diamond.Core.Example.Wpf
 
 		public Task StartAsync(CancellationToken cancellationToken)
 		{
-			int counter = 9997;
+			int counter = 0;
 
 			return Task.Factory.StartNew(async () =>
 			{

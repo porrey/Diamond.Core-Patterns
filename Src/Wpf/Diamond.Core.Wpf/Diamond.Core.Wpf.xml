@@ -48,6 +48,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureHost(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="hostBuilder"></param>
+            <returns></returns>
+        </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnGetStartupWindow(System.IServiceProvider)">
             <summary>
             

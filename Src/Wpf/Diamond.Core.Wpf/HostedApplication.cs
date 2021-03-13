@@ -90,25 +90,36 @@ namespace Diamond.Core.Wpf
 		/// <returns></returns>
 		protected virtual IHost OnCreateHost()
 		{
-			return Host.CreateDefaultBuilder()
-					.ConfigureHostConfiguration((configurationBuilder) =>
-					{
-						this.OnConfigureHostConfiguration(configurationBuilder);
-					})
-					.ConfigureAppConfiguration((hostContext, configurationBuilder) =>
-					{
-						this.OnConfigureAppConfiguration(hostContext, configurationBuilder);
-					})
-					.ConfigureLogging((hostContext, loggingBuilder) =>
-					{
-						this.OnConfigureLogging(hostContext, loggingBuilder);
-					})
-					.ConfigureServices((hostContext, services) =>
-					{
-						this.OnConfigureServices(hostContext, services);
-					})
-					.UseConfiguredServices()
-					.Build();
+			IHostBuilder hostBuilder = Host.CreateDefaultBuilder()
+										.ConfigureHostConfiguration((configurationBuilder) =>
+										{
+											this.OnConfigureHostConfiguration(configurationBuilder);
+										})
+										.ConfigureAppConfiguration((hostContext, configurationBuilder) =>
+										{
+											this.OnConfigureAppConfiguration(hostContext, configurationBuilder);
+										})
+										.ConfigureLogging((hostContext, loggingBuilder) =>
+										{
+											this.OnConfigureLogging(hostContext, loggingBuilder);
+										})
+										.ConfigureServices((hostContext, services) =>
+										{
+											this.OnConfigureServices(hostContext, services);
+										})
+										.UseConfiguredServices();
+
+			return this.OnConfigureHost(hostBuilder).Build();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="hostBuilder"></param>
+		/// <returns></returns>
+		protected virtual IHostBuilder OnConfigureHost(IHostBuilder hostBuilder)
+		{
+			return hostBuilder;
 		}
 
 		/// <summary>
