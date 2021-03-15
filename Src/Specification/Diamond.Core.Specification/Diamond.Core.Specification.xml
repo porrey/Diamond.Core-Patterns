@@ -80,6 +80,22 @@
             </summary>
             <typeparam name="TResult"></typeparam>
         </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationTemplate{`0}})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Specification.SpecificationTemplate`1.Logger">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Diamond.Core.Specification.SpecificationTemplate`1.Name">
             <summary>
             
@@ -103,6 +119,22 @@
             </summary>
             <typeparam name="TParameter"></typeparam>
             <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationTemplate{`0,`1}})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`2.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Specification.SpecificationTemplate`2.Logger">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:Diamond.Core.Specification.SpecificationTemplate`2.Name">
             <summary>

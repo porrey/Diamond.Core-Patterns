@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Specification
 {
@@ -9,6 +11,27 @@ namespace Diamond.Core.Specification
 	/// <typeparam name="TResult"></typeparam>
 	public abstract class SpecificationTemplate<TResult> : ISpecification<TResult>
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
+		public SpecificationTemplate(ILogger<SpecificationTemplate<TResult>> logger)
+		{
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public SpecificationTemplate()
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ILogger<SpecificationTemplate<TResult>> Logger { get; set; } = new NullLogger<SpecificationTemplate<TResult>>();
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -40,6 +63,27 @@ namespace Diamond.Core.Specification
 	/// <typeparam name="TResult"></typeparam>
 	public abstract class SpecificationTemplate<TParameter, TResult> : ISpecification<TParameter, TResult>
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
+		public SpecificationTemplate(ILogger<SpecificationTemplate<TParameter, TResult>> logger)
+		{
+			this.Logger = logger;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public SpecificationTemplate()
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ILogger<SpecificationTemplate<TParameter, TResult>> Logger { get; set; } = new NullLogger<SpecificationTemplate<TParameter, TResult>>();
+
 		/// <summary>
 		/// 
 		/// </summary>
