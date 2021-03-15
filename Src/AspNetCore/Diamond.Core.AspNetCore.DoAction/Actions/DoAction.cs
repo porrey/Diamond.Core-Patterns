@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
@@ -22,13 +23,30 @@ namespace Diamond.Core.AspNetCore.DoAction
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DoAction<TInputs, TResult> : IDoAction<TInputs, TResult>
+	[Obsolete("Use DoActionTemplate instead.")]
+	public class DoAction<TInputs, TResult> : DoActionTemplate<TInputs, TResult>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="logger"></param>
 		public DoAction(ILogger<DoAction<TInputs, TResult>> logger)
+			: base(logger)
+		{
+			this.Logger = logger;
+		}
+	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	public class DoActionTemplate<TInputs, TResult> : IDoAction<TInputs, TResult>
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
+		public DoActionTemplate(ILogger<DoActionTemplate<TInputs, TResult>> logger)
 		{
 			this.Logger = logger;
 		}
@@ -36,7 +54,14 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <summary>
 		/// 
 		/// </summary>
-		protected virtual ILogger<DoAction<TInputs, TResult>> Logger { get; set; }
+		public DoActionTemplate()
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected virtual ILogger<DoActionTemplate<TInputs, TResult>> Logger { get; set; }
 
 		/// <summary>
 		/// As a best practice, the name of this class should match the controller

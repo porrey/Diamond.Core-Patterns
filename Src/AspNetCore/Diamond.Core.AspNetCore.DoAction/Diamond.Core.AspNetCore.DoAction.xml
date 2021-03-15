@@ -15,33 +15,49 @@
             </summary>
             <param name="logger"></param>
         </member>
-        <member name="P:Diamond.Core.AspNetCore.DoAction.DoAction`2.Logger">
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.AspNetCore.DoAction.DoAction`2.ActionKey">
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DoAction.DoActionTemplate{`0,`1}})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.ActionKey">
             <summary>
             As a best practice, the name of this class should match the controller
             method name with the word "Action" appended to the end. The DoActionController
             uses [CallerMemberName] as the action key by default.
             </summary>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.ExecuteActionAsync(`0)">
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.ExecuteActionAsync(`0)">
             <summary>
             
             </summary>
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.OnExecuteActionAsync(`0)">
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.OnExecuteActionAsync(`0)">
             <summary>
             
             </summary>
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.ValidateModel(`0)">
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.ValidateModel(`0)">
             <summary>
             
             </summary>

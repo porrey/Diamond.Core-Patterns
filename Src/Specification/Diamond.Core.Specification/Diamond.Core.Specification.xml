@@ -74,5 +74,41 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="T:Diamond.Core.Specification.Specifications.SpecificationTemplate`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Specification.Specifications.SpecificationTemplate`1.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.Specifications.SpecificationTemplate`1.ExecuteSelectionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Specification.Specifications.SpecificationTemplate`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TParameter"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Specification.Specifications.SpecificationTemplate`2.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.Specifications.SpecificationTemplate`2.ExecuteSelectionAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="inputs"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
