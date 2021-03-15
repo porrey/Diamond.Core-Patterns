@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Diamond.Core.Specification.Specifications
+namespace Diamond.Core.Specification
 {
 	/// <summary>
 	/// 
