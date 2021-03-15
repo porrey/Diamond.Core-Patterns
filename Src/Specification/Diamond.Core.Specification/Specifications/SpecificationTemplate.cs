@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Diamond.Core.Specification
 {
@@ -17,7 +18,19 @@ namespace Diamond.Core.Specification
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public abstract Task<TResult> ExecuteSelectionAsync();
+		public virtual Task<TResult> ExecuteSelectionAsync()
+		{
+			return this.OnExecuteSelectionAsync();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		protected virtual Task<TResult> OnExecuteSelectionAsync()
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	/// <summary>
@@ -37,6 +50,18 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <param name="inputs"></param>
 		/// <returns></returns>
-		public abstract Task<TResult> ExecuteSelectionAsync(TParameter inputs);
+		public virtual Task<TResult> ExecuteSelectionAsync(TParameter inputs)
+		{
+			return this.OnExecuteSelectionAsync(inputs);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		protected virtual Task<TResult> OnExecuteSelectionAsync(TParameter input)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

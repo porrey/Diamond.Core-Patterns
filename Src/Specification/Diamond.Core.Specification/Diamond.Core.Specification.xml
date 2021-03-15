@@ -91,6 +91,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.OnExecuteSelectionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Specification.SpecificationTemplate`2">
             <summary>
             
@@ -108,6 +114,12 @@
             
             </summary>
             <param name="inputs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`2.OnExecuteSelectionAsync(`0)">
+            <summary>
+            
+            </summary>
             <returns></returns>
         </member>
     </members>
