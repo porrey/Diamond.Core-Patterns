@@ -25,12 +25,14 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Diamond.Core.Specification
 {
 	/// <summary>
-	/// 
+	/// Provides a factory that can be used to retrieve a specific instance of
+	/// <see cref="ISpecification"/> from a container. The scope is always 
+	/// controlled by the registration of the specification into the container.
 	/// </summary>
 	public class SpecificationFactory : ISpecificationFactory
 	{
 		/// <summary>
-		/// 
+		/// Creates an instance of <see cref="SpecificationFactory"/> using the specified <see cref="IServiceProvider"/>.
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		public SpecificationFactory(IServiceProvider serviceProvider)
@@ -39,23 +41,25 @@ namespace Diamond.Core.Specification
 		}
 
 		/// <summary>
-		/// 
+		/// Creates an instance of <see cref="SpecificationFactory"/> using the specified <see cref="IServiceProvider"/>
+		/// and logger.
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
-		public SpecificationFactory(IServiceProvider serviceProvider, ILogger<SpecificationFactory> logger)
+		public SpecificationFactory(ILogger<SpecificationFactory> logger, IServiceProvider serviceProvider)
 		{
 			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
 
 		/// <summary>
-		/// 
+		/// Gets/sets the instance of the logger used by the factory. The default is a null logger.
 		/// </summary>
 		public ILogger<SpecificationFactory> Logger { get; set; } = new NullLogger<SpecificationFactory>();
 
 		/// <summary>
-		/// 
+		/// Gets/sets the <see cref="IServiceProvider"/> used by the factory to retrieve 
+		/// the specification instances.
 		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 

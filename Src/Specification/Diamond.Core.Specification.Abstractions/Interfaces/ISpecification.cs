@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System.Threading.Tasks;
-
 namespace Diamond.Core.Specification
 {
 	/// <summary>
@@ -24,38 +22,9 @@ namespace Diamond.Core.Specification
 	public interface ISpecification
 	{
 		/// <summary>
-		/// 
+		/// Gets a unique name to distinguish this specification from others. The factory can
+		/// use this name when retrieving a specification.
 		/// </summary>
 		string Name { get; }
-	}
-
-	/// <summary>
-	/// Defines a specification that does not require inputs and returns a result of type TResult.
-	/// </summary>
-	/// <typeparam name="TResult">The return type of the specification action.</typeparam>
-	public interface ISpecification<TResult> : ISpecification
-	{
-		/// <summary>
-		/// Executes the specification.
-		/// </summary>
-		/// <returns>Returns the result as a instance of type TResult.</returns>
-		Task<TResult> ExecuteSelectionAsync();
-	}
-
-	/// <summary>
-	/// Defines a specification that requires input of type TParameter (filter) and returns
-	/// a result of type TResult.
-	/// </summary>
-	/// <typeparam name="TParameter">The type of the filter applied to the execution of the 
-	/// specification execution.</typeparam>
-	/// <typeparam name="TResult">The return type of the specification action.</typeparam>
-	public interface ISpecification<TParameter, TResult> : ISpecification
-	{
-		/// <summary>
-		/// Executes the specification.
-		/// </summary>
-		/// <param name="inputs">The filter to apply to the execution of the specification.</param>
-		/// <returns>Returns the result as a instance of type TResult.</returns>
-		Task<TResult> ExecuteSelectionAsync(TParameter inputs);
 	}
 }

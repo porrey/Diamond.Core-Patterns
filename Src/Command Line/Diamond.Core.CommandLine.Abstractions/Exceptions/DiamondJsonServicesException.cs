@@ -22,7 +22,7 @@ namespace Diamond.Core.CommandLine
 {
 	/// <summary>
 	/// This is an abstract class the defines the base object for all
-	/// exceptions in the Diamond.Core.Repositry library. This allows exceptions
+	/// exceptions in the Diamond.Core.CommandLine library. This allows exceptions
 	/// specific to this library to be caught separately than other exceptions.
 	/// </summary>
 	public abstract class DiamondCommandLineException : DiamondCoreException

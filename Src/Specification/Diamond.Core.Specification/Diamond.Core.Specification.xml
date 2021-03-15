@@ -4,24 +4,12 @@
         <name>Diamond.Core.Specification</name>
     </assembly>
     <members>
-        <member name="T:Diamond.Core.Specification.SpecificationNotFoundException`1">
-            <summary>
-            
-            </summary>
-            <typeparam name="TResult"></typeparam>
-        </member>
-        <member name="M:Diamond.Core.Specification.SpecificationNotFoundException`1.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="name"></param>
-        </member>
         <member name="T:Diamond.Core.Specification.SpecificationNotFoundException`2">
             <summary>
-            
+            An exception indicating that an <see cref="T:Diamond.Core.Specification.SpecificationNotFoundException`2" /> was not found.
             </summary>
-            <typeparam name="TParameter"></typeparam>
-            <typeparam name="TResult"></typeparam>
+            <typeparam name="TParameter">The required input type for the specification that was not found.</typeparam>
+            <typeparam name="TResult">The expected result of the specification that was not found.</typeparam>
         </member>
         <member name="M:Diamond.Core.Specification.SpecificationNotFoundException`2.#ctor(System.String)">
             <summary>
@@ -29,32 +17,48 @@
             </summary>
             <param name="name"></param>
         </member>
+        <member name="T:Diamond.Core.Specification.SpecificationNotFoundException`1">
+            <summary>
+            An exception indicating that an <see cref="T:Diamond.Core.Specification.SpecificationNotFoundException`1" /> was not found.
+            </summary>
+            <typeparam name="TResult">The expected result of the specification that was not found.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationNotFoundException`1.#ctor(System.String)">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Specification.SpecificationNotFoundException`1"/> with the given specification name.
+            </summary>
+            <param name="name"></param>
+        </member>
         <member name="T:Diamond.Core.Specification.SpecificationFactory">
             <summary>
-            
+            Provides a factory that can be used to retrieve a specific instance of
+            <see cref="T:Diamond.Core.Specification.ISpecification"/> from a container. The scope is always 
+            controlled by the registration of the specification into the container.
             </summary>
         </member>
         <member name="M:Diamond.Core.Specification.SpecificationFactory.#ctor(System.IServiceProvider)">
             <summary>
-            
+            Creates an instance of <see cref="T:Diamond.Core.Specification.SpecificationFactory"/> using the specified <see cref="T:System.IServiceProvider"/>.
             </summary>
             <param name="serviceProvider"></param>
         </member>
-        <member name="M:Diamond.Core.Specification.SpecificationFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationFactory})">
+        <member name="M:Diamond.Core.Specification.SpecificationFactory.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationFactory},System.IServiceProvider)">
             <summary>
-            
+            Creates an instance of <see cref="T:Diamond.Core.Specification.SpecificationFactory"/> using the specified <see cref="T:System.IServiceProvider"/>
+            and logger.
             </summary>
             <param name="serviceProvider"></param>
             <param name="logger"></param>
         </member>
         <member name="P:Diamond.Core.Specification.SpecificationFactory.Logger">
             <summary>
-            
+            Gets/sets the instance of the logger used by the factory. The default is a null logger.
             </summary>
         </member>
         <member name="P:Diamond.Core.Specification.SpecificationFactory.ServiceProvider">
             <summary>
-            
+            Gets/sets the <see cref="T:System.IServiceProvider"/> used by the factory to retrieve 
+            the specification instances.
             </summary>
         </member>
         <member name="M:Diamond.Core.Specification.SpecificationFactory.GetAsync``1(System.String)">
@@ -74,85 +78,97 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Specification.SpecificationTemplate`1">
+        <member name="T:Diamond.Core.Specification.SpecificationTemplate">
             <summary>
-            
-            </summary>
-            <typeparam name="TResult"></typeparam>
-        </member>
-        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationTemplate{`0}})">
-            <summary>
-            
-            </summary>
-            <param name="logger"></param>
-        </member>
-        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.#ctor">
-            <summary>
-            
+            Provides the template for an <see cref="T:Diamond.Core.Specification.ISpecification"/> object.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Specification.SpecificationTemplate`1.Logger">
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationTemplate})">
             <summary>
-            
+            Creates an instance of <see cref="T:Diamond.Core.Specification.SpecificationTemplate"/> with the specified logger.
+            </summary>
+            <param name="logger">In instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/> used for logging.</param>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate.#ctor">
+            <summary>
+            Creates a default instance of <see cref="T:Diamond.Core.Specification.SpecificationTemplate"/>.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Specification.SpecificationTemplate`1.Name">
+        <member name="P:Diamond.Core.Specification.SpecificationTemplate.Logger">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.ExecuteSelectionAsync">
+        <member name="P:Diamond.Core.Specification.SpecificationTemplate.Name">
             <summary>
-            
+            Gets the name used to uniquely identify this specification in a container. The name can be used by
+            the factory when two or more specification shave the name signature/pattern. The default value is the
+            name of the class with the term 'Specification' removed.
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.OnExecuteSelectionAsync">
-            <summary>
-            
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Diamond.Core.Specification.SpecificationTemplate`2">
             <summary>
-            
+            Provides the template for an object that implements <see cref="T:Diamond.Core.Specification.ISpecification`2"/>.
             </summary>
-            <typeparam name="TParameter"></typeparam>
-            <typeparam name="TResult"></typeparam>
+            <typeparam name="TParameter">The type of input(s) required for the selection.</typeparam>
+            <typeparam name="TResult">The type of the result when the selection executes.</typeparam>
         </member>
         <member name="M:Diamond.Core.Specification.SpecificationTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationTemplate{`0,`1}})">
             <summary>
-            
+            Creates an instance of <see cref="T:Diamond.Core.Specification.SpecificationTemplate`2"/> with the specified logger.
             </summary>
             <param name="logger"></param>
         </member>
         <member name="M:Diamond.Core.Specification.SpecificationTemplate`2.#ctor">
             <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Specification.SpecificationTemplate`2.Logger">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Specification.SpecificationTemplate`2.Name">
-            <summary>
-            
+            Creates a default instance of <see cref="T:Diamond.Core.Specification.SpecificationTemplate`2"/>.
             </summary>
         </member>
         <member name="M:Diamond.Core.Specification.SpecificationTemplate`2.ExecuteSelectionAsync(`0)">
             <summary>
-            
+            Executes the selection by the specification design. The default implementation
+            calls OnExecuteSelectionAsync().
             </summary>
-            <param name="inputs"></param>
-            <returns></returns>
+            <param name="inputs">Specifies the inputs used as the selection criteria. To specify more
+            than one value, use a Tuple for TParameter.</param>
+            <returns>Returns the result of the selection as type TResult.</returns>
         </member>
         <member name="M:Diamond.Core.Specification.SpecificationTemplate`2.OnExecuteSelectionAsync(`0)">
             <summary>
-            
+            Override in the concrete class to perform the selection.
             </summary>
-            <returns></returns>
+            <param name="input"></param>
+            <returns>Returns the result of the selection as type TResult.</returns>
+        </member>
+        <member name="T:Diamond.Core.Specification.SpecificationTemplate`1">
+            <summary>
+            Provides the template for an object that implements <see cref="T:Diamond.Core.Specification.ISpecification`1"/>.
+            </summary>
+            <typeparam name="TResult">The type of the result when the selection executes.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Specification.SpecificationTemplate{`0}})">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Specification.SpecificationTemplate`1"/> with the specified logger.
+            </summary>
+            <param name="logger">In instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/> used for logging.</param>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.#ctor">
+            <summary>
+            Creates a default instance of <see cref="T:Diamond.Core.Specification.SpecificationTemplate`1"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.ExecuteSelectionAsync">
+            <summary>
+            Executes the selection by the specification design. The default implementation
+            calls OnExecuteSelectionAsync().
+            </summary>
+            <returns>Returns the result of the selection as type TResult.</returns>
+        </member>
+        <member name="M:Diamond.Core.Specification.SpecificationTemplate`1.OnExecuteSelectionAsync">
+            <summary>
+            Override in the concrete class to perform the selection.
+            </summary>
+            <returns>Returns the result of the selection as type TResult.</returns>
         </member>
     </members>
 </doc>

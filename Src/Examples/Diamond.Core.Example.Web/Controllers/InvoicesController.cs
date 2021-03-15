@@ -61,7 +61,6 @@ namespace Diamond.Core.Example
 		[Consumes("application/json", "application/xml")]
 		public Task<ActionResult<Invoice>> GetInvoiceAsync(string invoiceNumber)
 		{
-			this.LogMethodCall();
 			return this.Do<string, Invoice>(invoiceNumber);
 		}
 
@@ -77,7 +76,6 @@ namespace Diamond.Core.Example
 		[Consumes("application/json", "application/xml")]
 		public Task<ActionResult<IEnumerable<Invoice>>> GetAllInvoicesAsync()
 		{
-			this.LogMethodCall();
 			return this.Do<IEnumerable<Invoice>>();
 		}
 
@@ -94,7 +92,6 @@ namespace Diamond.Core.Example
 		[Consumes("application/json", "application/xml")]
 		public Task<ActionResult<Invoice>> CreateInvoiceAsync([FromBody] Invoice item)
 		{
-			this.LogMethodCall();
 			return this.Do<Invoice, Invoice>(item);
 		}
 
@@ -114,7 +111,6 @@ namespace Diamond.Core.Example
 		[Consumes("application/json", "application/xml")]
 		public Task<ActionResult<Invoice>> MarkInvoicePaidAsync(string invoiceNumber, bool paid)
 		{
-			this.LogMethodCall();
 			return this.Do<(string, bool), Invoice>((invoiceNumber, paid));
 		}
 
@@ -131,7 +127,6 @@ namespace Diamond.Core.Example
 		[SwaggerRequestExample(typeof(Operation), typeof(JsonPatchDefaultExample))]
 		public Task<ActionResult<Invoice>> UpdateInvoiceAsync(string invoiceNumber, [FromBody] JsonPatchDocument<Invoice> item)
 		{
-			this.LogMethodCall();
 			return this.Do<(string, JsonPatchDocument<Invoice>), Invoice>((invoiceNumber, item));
 		}
 
@@ -148,7 +143,6 @@ namespace Diamond.Core.Example
 		[Consumes("application/json", "application/xml")]
 		public Task<ActionResult<Invoice>> DeleteInvoiceAsync(string invoiceNumber)
 		{
-			this.LogMethodCall();
 			return this.Do<string, Invoice>(invoiceNumber);
 		}
 

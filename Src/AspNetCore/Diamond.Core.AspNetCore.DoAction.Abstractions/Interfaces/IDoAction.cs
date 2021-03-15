@@ -38,17 +38,22 @@ namespace Diamond.Core.AspNetCore.DoAction
 	public interface IDoAction<TInputs, TResult> : IDoAction
 	{
 		/// <summary>
-		/// 
+		/// Performs a validation of the action inputs prior to the execution. If the methods returns false, the
+		/// string will contain a list of error messages.
 		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
+		/// <param name="item">The inputs passed to the controller method.</param>
+		/// <returns>Returns true if the model was validated successfully, and false otherwise. The string type will
+		/// contain one or more error messages concatenated in a single string.</returns>
 		Task<(bool, string)> ValidateModel(TInputs item);
 
 		/// <summary>
-		/// Executes the action.
+		/// Executes the controller method action returning the result or an error with an HTTP status code. The default
+		/// implementation calls the OnExecuteActionAsync() method.
 		/// </summary>
-		/// <param name="item">The instance of the item being decorated.</param>
-		/// <returns>The defined result of the action.</returns>
+		/// <param name="item">The inputs passed to the controller method. To support multiple
+		/// parameters use a Tuple.</param>
+		/// <returns>A <see cref="IControllerActionResult{TResult}"/> instance that contains the desired
+		/// result with an HTTP status of 2xx or an error and the appropriate HTTP error status code.</returns>
 		Task<IControllerActionResult<TResult>> ExecuteActionAsync(TInputs item);
 	}
 }

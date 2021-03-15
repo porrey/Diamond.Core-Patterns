@@ -4,70 +4,82 @@
         <name>Diamond.Core.AspNetCore.DoAction</name>
     </assembly>
     <members>
-        <member name="T:Diamond.Core.AspNetCore.DoAction.DoAction`2">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DoAction.DoAction{`0,`1}})">
-            <summary>
-            
-            </summary>
-            <param name="logger"></param>
-        </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2">
             <summary>
-            
+            A template class for implementing a controller "Do Action". A method within
+            a controller is delegated to this handler.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DoAction.DoActionTemplate{`0,`1}})">
             <summary>
-            
+            Create an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2"/> with the
+            specified logger instance.
             </summary>
-            <param name="logger"></param>
+            <param name="logger">The logger instance used by this object.</param>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.#ctor">
             <summary>
-            
+            Create a default instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2"/>.
             </summary>
         </member>
         <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.Logger">
             <summary>
-            
+            Gets/sets the instance of the logger used by the factory. The default is a null logger.
             </summary>
         </member>
         <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.ActionKey">
             <summary>
-            As a best practice, the name of this class should match the controller
-            method name with the word "Action" appended to the end. The DoActionController
-            uses [CallerMemberName] as the action key by default.
+            Gets the unique key that identifies this action. As a best practice, the name
+            of this class should match the controller method name with the word "Action" 
+            appended to the end. The DoActionController uses [CallerMemberName] when calling the
+            factory to retrieve the action. The controller will automatically remove the "Action"
+            term and matches it to this property. The default implementation of this property returns
+            the name of the class without the "action" term..
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.ExecuteActionAsync(`0)">
             <summary>
-            
+            Executes the controller method action returning the result or an error with an HTTP status code. The default
+            implementation calls the OnExecuteActionAsync() method.
             </summary>
-            <param name="item"></param>
-            <returns></returns>
+            <param name="item">The inputs passed to the controller method. To support multiple
+            parameters use a Tuple.</param>
+            <returns>A <see cref="T:Diamond.Core.AspNetCore.DoAction.IControllerActionResult`1"/> instance that contains the desired
+            result with an HTTP status of 2xx or an error and the appropriate HTTP error status code.</returns>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.OnExecuteActionAsync(`0)">
             <summary>
-            
+            Executes the controller method action returning the result or an error with an HTTP status code. Override this
+            method to perform the action.
             </summary>
             <param name="item"></param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2.ValidateModel(`0)">
             <summary>
-            
+            Performs a validation of the action inputs prior to the execution. If the methods returns false, the
+            string will contain a list of error messages.
             </summary>
-            <param name="item"></param>
-            <returns></returns>
+            <param name="item">The inputs passed to the controller method.</param>
+            <returns>Returns true if the model was validated successfully, and false otherwise. The string type will
+            contain one or more error messages concatenated in a single string.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.DoAction`2">
+            <summary>
+            This class has been deprecated and should not be used. The <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2"/>
+            class should be used instead.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DoAction.DoAction{`0,`1}})">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.DoAction`2"/> with the specified logger instance.
+            </summary>
+            <param name="logger">An instance of a logger.</param>
         </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionController">
             <summary>
-            Provides the base class for a "Do Action" controller where the action
-            of the controller method is delegated to a DoAction handler that is
+            Provides a base class for a "Do Action" controller where the action
+            of the controller method is delegated to a "Do Action" handler that is
             registered in the container using the name of the controller method.
             </summary>
         </member>
@@ -131,21 +143,23 @@
         </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionNotFoundException">
             <summary>
-            
+            An exception indicating that a specified DoAction was not configured. This
+            usually results in an HTTP 501 status.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionNotFoundException.#ctor(System.Type,System.Type,System.String)">
             <summary>
-            
+            Creates an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionNotFoundException"/> specifying the
+            input type, the result type and the unique action key.
             </summary>
-            <param name="tinputs"></param>
-            <param name="tresult"></param>
-            <param name="actionKey"></param>
+            <param name="tinputs">The type of inputs for the missing DoAction.</param>
+            <param name="tresult">The result type of the missing DoAction.</param>
+            <param name="actionKey">The unique key used to locate the DoAction in the container.</param>
         </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionFactory">
             <summary>
-            Defines a generic repository factory that can be used to retrieve
-            an object that implements IDecorator[TItem, TResult] from the container.
+            A factory that can be used to retrieve a specific <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2"/>
+            from a container.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionFactory.#ctor(System.IServiceProvider)">
@@ -156,26 +170,27 @@
         </member>
         <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionFactory.Logger">
             <summary>
-            
+            Gets/sets the instance of the logger used by the factory. The default is a null logger.
             </summary>
         </member>
         <member name="P:Diamond.Core.AspNetCore.DoAction.DoActionFactory.ServiceProvider">
             <summary>
-            
+            Gets/sets the <see cref="T:System.IServiceProvider"/> used by the factory to retrieve 
+            the specification instances.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionFactory.GetAsync``2(System.String)">
             <summary>
-            
+            Gets an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.IDoAction`2"/> from the container.
             </summary>
-            <typeparam name="TInputs"></typeparam>
-            <typeparam name="TResult"></typeparam>
-            <param name="actionKey"></param>
+            <typeparam name="TInputs">The type of input defined by the action.</typeparam>
+            <typeparam name="TResult">The result type defined by the action.</typeparam>
+            <param name="actionKey">A unique key used to identify a specific action.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.ControllerActionResult`1">
             <summary>
-            Contains the result of a controller action.
+            Contains the result of a controller <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2"/>.
             </summary>
             <typeparam name="TResult">The type of the inner object.</typeparam>
         </member>

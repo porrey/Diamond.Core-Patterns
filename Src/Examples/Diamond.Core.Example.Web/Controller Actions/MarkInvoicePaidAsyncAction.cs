@@ -26,7 +26,7 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class MarkInvoicePaidAsyncAction : DoAction<(string InvoiceNumber, bool Paid), Invoice>
+	public class MarkInvoicePaidAsyncAction : DoActionTemplate<(string InvoiceNumber, bool Paid), Invoice>
 	{
 		/// <summary>
 		/// 

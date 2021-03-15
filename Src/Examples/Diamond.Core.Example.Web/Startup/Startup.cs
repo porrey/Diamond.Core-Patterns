@@ -52,7 +52,8 @@ namespace Diamond.Core.Example
 			//
 			// Add the required services
 			//
-			services.AddMyMvc()
+			services.AddMyLogging(this.Configuration)
+					.AddMyMvc()
 					.AddMySwagger(this.Configuration)
 					.AddMyVersioning()
 					.AddMyAutoMapper();

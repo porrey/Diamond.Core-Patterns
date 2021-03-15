@@ -14,25 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace Diamond.Core.AspNetCore.DoAction
+namespace Diamond.Core.Specification
 {
 	/// <summary>
-	/// Contains the result of a controller <see cref="DoActionTemplate{TInputs, TResult}"/>.
+	/// Defines a specification that selects objects without any inputs.
 	/// </summary>
-	/// <typeparam name="TResult">The type of the inner object.</typeparam>
-	public class ControllerActionResult<TResult> : IControllerActionResult<TResult>
+	/// <typeparam name="TResult">The type of the result when the selection executes.</typeparam>
+	public interface ISpecification<TResult> : ISpecification
 	{
 		/// <summary>
-		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
-		/// if the result is not a 200.
+		/// Executes the selection by the specification design.
 		/// </summary>
-		public ProblemDetails ResultDetails { get; set; }
-
-		/// <summary>
-		/// The resulting object instance if the action was successful.
-		/// </summary>
-		public TResult Result { get; set; }
+		/// <returns>Returns the result as a instance of type TResult.</returns>
+		Task<TResult> ExecuteSelectionAsync();
 	}
 }

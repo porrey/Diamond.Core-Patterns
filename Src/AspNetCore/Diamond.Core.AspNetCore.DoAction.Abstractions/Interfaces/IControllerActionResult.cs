@@ -26,7 +26,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 	{
 		/// <summary>
 		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
-		/// if the result is not a 200.
+		/// if the result is not 2xx.
 		/// </summary>
 		ProblemDetails ResultDetails { get; set; }
 

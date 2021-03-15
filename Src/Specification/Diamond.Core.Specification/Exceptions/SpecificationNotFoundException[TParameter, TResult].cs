@@ -13,26 +13,23 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-// 
-using Microsoft.AspNetCore.Mvc;
-
-namespace Diamond.Core.AspNetCore.DoAction
+//
+namespace Diamond.Core.Specification
 {
 	/// <summary>
-	/// Contains the result of a controller <see cref="DoActionTemplate{TInputs, TResult}"/>.
+	/// An exception indicating that an <see cref="SpecificationNotFoundException{TParameter, TResult}" /> was not found.
 	/// </summary>
-	/// <typeparam name="TResult">The type of the inner object.</typeparam>
-	public class ControllerActionResult<TResult> : IControllerActionResult<TResult>
+	/// <typeparam name="TParameter">The required input type for the specification that was not found.</typeparam>
+	/// <typeparam name="TResult">The expected result of the specification that was not found.</typeparam>
+	public class SpecificationNotFoundException<TParameter, TResult> : DiamondSpecificationException
 	{
 		/// <summary>
-		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
-		/// if the result is not a 200.
+		/// 
 		/// </summary>
-		public ProblemDetails ResultDetails { get; set; }
-
-		/// <summary>
-		/// The resulting object instance if the action was successful.
-		/// </summary>
-		public TResult Result { get; set; }
+		/// <param name="name"></param>
+		public SpecificationNotFoundException(string name)
+			: base($"A Specification of type 'ISpeciification<{typeof(TParameter).Name}, {typeof(TResult).Name}>' with name '{name}' has not been configured.")
+		{
+		}
 	}
 }

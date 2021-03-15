@@ -25,8 +25,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Diamond.Core.AspNetCore.DoAction
 {
 	/// <summary>
-	/// Defines a generic repository factory that can be used to retrieve
-	/// an object that implements IDecorator[TItem, TResult] from the container.
+	/// A factory that can be used to retrieve a specific <see cref="DoActionTemplate{TInputs, TResult}"/>
+	/// from a container.
 	/// </summary>
 	public class DoActionFactory : IDoActionFactory
 	{
@@ -40,21 +40,22 @@ namespace Diamond.Core.AspNetCore.DoAction
 		}
 
 		/// <summary>
-		/// 
+		/// Gets/sets the instance of the logger used by the factory. The default is a null logger.
 		/// </summary>
 		public ILogger<DoActionFactory> Logger { get; set; } = new NullLogger<DoActionFactory>();
 
 		/// <summary>
-		/// 
+		/// Gets/sets the <see cref="IServiceProvider"/> used by the factory to retrieve 
+		/// the specification instances.
 		/// </summary>
 		protected IServiceProvider ServiceProvider { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets an instance of <see cref="IDoAction{TInputs, TResult}"/> from the container.
 		/// </summary>
-		/// <typeparam name="TInputs"></typeparam>
-		/// <typeparam name="TResult"></typeparam>
-		/// <param name="actionKey"></param>
+		/// <typeparam name="TInputs">The type of input defined by the action.</typeparam>
+		/// <typeparam name="TResult">The result type defined by the action.</typeparam>
+		/// <param name="actionKey">A unique key used to identify a specific action.</param>
 		/// <returns></returns>
 		public Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string actionKey)
 		{

@@ -290,6 +290,19 @@
             <param name="services"></param>
             <returns></returns>
         </member>
+        <member name="T:Diamond.Core.Example.LoggingStartup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.LoggingStartup.AddMyLogging(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Example.MvcStartup">
             <summary>
             

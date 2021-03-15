@@ -20,8 +20,7 @@ using System.Runtime.Serialization;
 namespace Diamond.Core.Abstractions
 {
 	/// <summary>
-	/// This is an abstract class the defines the base object for all
-	/// exceptions in the Diamond.Core library. This allows exceptions
+	/// This the base or all exceptions in the Diamond.Core library. This allows exceptions
 	/// specific to this library to be caught separately than other exceptions.
 	/// </summary>
 	public class DiamondCoreException : Exception

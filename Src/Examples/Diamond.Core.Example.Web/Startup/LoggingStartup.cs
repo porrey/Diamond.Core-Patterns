@@ -13,26 +13,37 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-// 
-using Microsoft.AspNetCore.Mvc;
+//
+//using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
-namespace Diamond.Core.AspNetCore.DoAction
+namespace Diamond.Core.Example
 {
 	/// <summary>
-	/// Contains the result of a controller <see cref="DoActionTemplate{TInputs, TResult}"/>.
+	/// 
 	/// </summary>
-	/// <typeparam name="TResult">The type of the inner object.</typeparam>
-	public class ControllerActionResult<TResult> : IControllerActionResult<TResult>
+	public static class LoggingStartup
 	{
 		/// <summary>
-		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
-		/// if the result is not a 200.
+		/// 
 		/// </summary>
-		public ProblemDetails ResultDetails { get; set; }
+		/// <param name="services"></param>
+		/// <param name="configuration"></param>
+		/// <returns></returns>
+		public static IServiceCollection AddMyLogging(this IServiceCollection services, IConfiguration configuration)
+		{
+			//
+			// Configure the logger.
+			//
+			Log.Logger = new LoggerConfiguration()
+								.ReadFrom.Configuration(configuration)
+								.CreateLogger();
 
-		/// <summary>
-		/// The resulting object instance if the action was successful.
-		/// </summary>
-		public TResult Result { get; set; }
+			Log.Logger.Information("Loaded logging from application settings.");
+
+			return services;
+		}
 	}
 }

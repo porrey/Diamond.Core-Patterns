@@ -19,12 +19,14 @@ using System.Threading.Tasks;
 namespace Diamond.Core.Specification
 {
 	/// <summary>
-	/// Defines a factory to create/retrieve a specification.
+	/// Defines a factory that can be used to retrieve a specific instance of
+	/// <see cref="ISpecification"/> from a container. The scope is always 
+	/// controlled by the registration of the specification into the container.
 	/// </summary>
 	public interface ISpecificationFactory
 	{
 		/// <summary>
-		/// Gets a specification with the return type TResult and has the given name.
+		/// Gets a specification with the given name return type TResult.
 		/// </summary>
 		/// <typeparam name="TResult">The return type of the specification result.</typeparam>
 		/// <param name="name"></param>
@@ -32,8 +34,8 @@ namespace Diamond.Core.Specification
 		Task<ISpecification<TResult>> GetAsync<TResult>(string name);
 
 		/// <summary>
-		/// Gets a specification that takes TParameter as the filter and returns
-		/// the type TResult with the given name.
+		/// Gets a specification with the given name that takes TParameter as inputs and returns
+		/// the type TResult.
 		/// </summary>
 		/// <typeparam name="TParameter">The type of the filter used in the specification.</typeparam>
 		/// <typeparam name="TResult">The return type of the specification result.</typeparam>

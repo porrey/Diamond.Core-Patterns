@@ -19,16 +19,18 @@ using System;
 namespace Diamond.Core.AspNetCore.DoAction
 {
 	/// <summary>
-	/// 
+	/// An exception indicating that a specified DoAction was not configured. This
+	/// usually results in an HTTP 501 status.
 	/// </summary>
 	public class DoActionNotFoundException : DiamondDoActionException
 	{
 		/// <summary>
-		/// 
+		/// Creates an instance of <see cref="DoActionNotFoundException"/> specifying the
+		/// input type, the result type and the unique action key.
 		/// </summary>
-		/// <param name="tinputs"></param>
-		/// <param name="tresult"></param>
-		/// <param name="actionKey"></param>
+		/// <param name="tinputs">The type of inputs for the missing DoAction.</param>
+		/// <param name="tresult">The result type of the missing DoAction.</param>
+		/// <param name="actionKey">The unique key used to locate the DoAction in the container.</param>
 		public DoActionNotFoundException(Type tinputs, Type tresult, string actionKey)
 			: base($"A do action of type 'IDoAction<{tinputs.Name}, {tresult.Name}>' named '{actionKey}' has not been configured.")
 		{

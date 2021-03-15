@@ -25,8 +25,8 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Diamond.Core.AspNetCore.DoAction
 {
 	/// <summary>
-	/// Provides the base class for a "Do Action" controller where the action
-	/// of the controller method is delegated to a DoAction handler that is
+	/// Provides a base class for a "Do Action" controller where the action
+	/// of the controller method is delegated to a "Do Action" handler that is
 	/// registered in the container using the name of the controller method.
 	/// </summary>
 	public abstract class DoActionController
@@ -91,6 +91,11 @@ namespace Diamond.Core.AspNetCore.DoAction
 
 			try
 			{
+				//
+				// Log the method call.
+				//
+				this.LogMethodCall();
+
 				//
 				// Get the IDoAction
 				//

@@ -4,6 +4,42 @@
         <name>Diamond.Core.Specification.Abstractions</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Specification.DiamondSpecificationException">
+            <summary>
+            This is an abstract class the defines the base object for all
+            exceptions in the Diamond.Core.Repositry library. This allows exceptions
+            specific to this library to be caught separately than other exceptions.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.DiamondSpecificationException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Specification.DiamondSpecificationException"/> class.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.DiamondSpecificationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Specification.DiamondSpecificationException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Diamond.Core.Specification.DiamondSpecificationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Specification.DiamondSpecificationException"/> class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference
+            if no inner exception is specified.</param>
+        </member>
+        <member name="M:Diamond.Core.Specification.DiamondSpecificationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Specification.DiamondSpecificationException"/> class with serialized data.
+            </summary>
+            <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
+            object data about the exception being thrown.</param>
+            <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
+            about the source or destination.</param>
+        </member>
         <member name="T:Diamond.Core.Specification.ISpecification">
             <summary>
             Defines a generic specification.
@@ -11,45 +47,20 @@
         </member>
         <member name="P:Diamond.Core.Specification.ISpecification.Name">
             <summary>
-            
+            Gets a unique name to distinguish this specification from others. The factory can
+            use this name when retrieving a specification.
             </summary>
-        </member>
-        <member name="T:Diamond.Core.Specification.ISpecification`1">
-            <summary>
-            Defines a specification that does not require inputs and returns a result of type TResult.
-            </summary>
-            <typeparam name="TResult">The return type of the specification action.</typeparam>
-        </member>
-        <member name="M:Diamond.Core.Specification.ISpecification`1.ExecuteSelectionAsync">
-            <summary>
-            Executes the specification.
-            </summary>
-            <returns>Returns the result as a instance of type TResult.</returns>
-        </member>
-        <member name="T:Diamond.Core.Specification.ISpecification`2">
-            <summary>
-            Defines a specification that requires input of type TParameter (filter) and returns
-            a result of type TResult.
-            </summary>
-            <typeparam name="TParameter">The type of the filter applied to the execution of the 
-            specification execution.</typeparam>
-            <typeparam name="TResult">The return type of the specification action.</typeparam>
-        </member>
-        <member name="M:Diamond.Core.Specification.ISpecification`2.ExecuteSelectionAsync(`0)">
-            <summary>
-            Executes the specification.
-            </summary>
-            <param name="inputs">The filter to apply to the execution of the specification.</param>
-            <returns>Returns the result as a instance of type TResult.</returns>
         </member>
         <member name="T:Diamond.Core.Specification.ISpecificationFactory">
             <summary>
-            Defines a factory to create/retrieve a specification.
+            Defines a factory that can be used to retrieve a specific instance of
+            <see cref="T:Diamond.Core.Specification.ISpecification"/> from a container. The scope is always 
+            controlled by the registration of the specification into the container.
             </summary>
         </member>
         <member name="M:Diamond.Core.Specification.ISpecificationFactory.GetAsync``1(System.String)">
             <summary>
-            Gets a specification with the return type TResult and has the given name.
+            Gets a specification with the given name return type TResult.
             </summary>
             <typeparam name="TResult">The return type of the specification result.</typeparam>
             <param name="name"></param>
@@ -57,13 +68,40 @@
         </member>
         <member name="M:Diamond.Core.Specification.ISpecificationFactory.GetAsync``2(System.String)">
             <summary>
-            Gets a specification that takes TParameter as the filter and returns
-            the type TResult with the given name.
+            Gets a specification with the given name that takes TParameter as inputs and returns
+            the type TResult.
             </summary>
             <typeparam name="TParameter">The type of the filter used in the specification.</typeparam>
             <typeparam name="TResult">The return type of the specification result.</typeparam>
             <param name="name"></param>
             <returns>An instance of the requested specification.</returns>
+        </member>
+        <member name="T:Diamond.Core.Specification.ISpecification`2">
+            <summary>
+            Defines a specification that takes input(s) of type TParameter and returns a selection of type TResult.
+            </summary>
+            <typeparam name="TParameter">The type of input(s) required for the selection.</typeparam>
+            <typeparam name="TResult">The type of the result when the selection executes.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.ISpecification`2.ExecuteSelectionAsync(`0)">
+            <summary>
+            Executes the selection by the specification design.
+            </summary>
+            <param name="inputs">Specifies the inputs used as the selection criteria. To specify more
+            than one value, use a Tuple for TParameter.</param>
+            <returns>Returns the result of the selection as type TResult.</returns>
+        </member>
+        <member name="T:Diamond.Core.Specification.ISpecification`1">
+            <summary>
+            Defines a specification that selects objects without any inputs.
+            </summary>
+            <typeparam name="TResult">The type of the result when the selection executes.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.Specification.ISpecification`1.ExecuteSelectionAsync">
+            <summary>
+            Executes the selection by the specification design.
+            </summary>
+            <returns>Returns the result as a instance of type TResult.</returns>
         </member>
     </members>
 </doc>

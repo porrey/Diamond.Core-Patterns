@@ -22,8 +22,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
 	/// This is an abstract class the defines the base object for all
-	/// exceptions in the Diamond.Core.Repositry library. This allows exceptions
-	/// specific to this library to be caught separately than other exceptions.
+	/// exceptions in the Diamond.Core.Extensions.DependencyInjection library.
+	/// This allows exceptions specific to this library to be caught separately
+	/// than other exceptions.
 	/// </summary>
 	public abstract class DependencyInjectionException : DiamondCoreException
 	{

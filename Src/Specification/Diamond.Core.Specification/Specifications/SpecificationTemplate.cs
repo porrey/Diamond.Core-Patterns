@@ -1,27 +1,24 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Specification
 {
 	/// <summary>
-	/// 
+	/// Provides the template for an <see cref="ISpecification"/> object.
 	/// </summary>
-	/// <typeparam name="TResult"></typeparam>
-	public abstract class SpecificationTemplate<TResult> : ISpecification<TResult>
+	public abstract class SpecificationTemplate : ISpecification
 	{
 		/// <summary>
-		/// 
+		/// Creates an instance of <see cref="SpecificationTemplate"/> with the specified logger.
 		/// </summary>
-		/// <param name="logger"></param>
-		public SpecificationTemplate(ILogger<SpecificationTemplate<TResult>> logger)
+		/// <param name="logger">In instance of <see cref="ILogger{SpecificationTemplate}"/> used for logging.</param>
+		public SpecificationTemplate(ILogger<SpecificationTemplate> logger)
 		{
 			this.Logger = logger;
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a default instance of <see cref="SpecificationTemplate"/>.
 		/// </summary>
 		public SpecificationTemplate()
 		{
@@ -30,82 +27,13 @@ namespace Diamond.Core.Specification
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<SpecificationTemplate<TResult>> Logger { get; set; } = new NullLogger<SpecificationTemplate<TResult>>();
+		protected ILogger<SpecificationTemplate> Logger { get; set; } = new NullLogger<SpecificationTemplate>();
 
 		/// <summary>
-		/// 
+		/// Gets the name used to uniquely identify this specification in a container. The name can be used by
+		/// the factory when two or more specification shave the name signature/pattern. The default value is the
+		/// name of the class with the term 'Specification' removed.
 		/// </summary>
 		public virtual string Name => this.GetType().Name.Replace("Specification", "");
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		public virtual Task<TResult> ExecuteSelectionAsync()
-		{
-			return this.OnExecuteSelectionAsync();
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		protected virtual Task<TResult> OnExecuteSelectionAsync()
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <typeparam name="TParameter"></typeparam>
-	/// <typeparam name="TResult"></typeparam>
-	public abstract class SpecificationTemplate<TParameter, TResult> : ISpecification<TParameter, TResult>
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="logger"></param>
-		public SpecificationTemplate(ILogger<SpecificationTemplate<TParameter, TResult>> logger)
-		{
-			this.Logger = logger;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public SpecificationTemplate()
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected ILogger<SpecificationTemplate<TParameter, TResult>> Logger { get; set; } = new NullLogger<SpecificationTemplate<TParameter, TResult>>();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual string Name => this.GetType().Name.Replace("Specification", "");
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="inputs"></param>
-		/// <returns></returns>
-		public virtual Task<TResult> ExecuteSelectionAsync(TParameter inputs)
-		{
-			return this.OnExecuteSelectionAsync(inputs);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		protected virtual Task<TResult> OnExecuteSelectionAsync(TParameter input)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

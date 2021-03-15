@@ -13,26 +13,27 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
-// 
-using Microsoft.AspNetCore.Mvc;
+//
+using System;
+using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.AspNetCore.DoAction
 {
 	/// <summary>
-	/// Contains the result of a controller <see cref="DoActionTemplate{TInputs, TResult}"/>.
+	/// This class has been deprecated and should not be used. The <see cref="DoActionTemplate{TInputs, TResult}"/>
+	/// class should be used instead.
 	/// </summary>
-	/// <typeparam name="TResult">The type of the inner object.</typeparam>
-	public class ControllerActionResult<TResult> : IControllerActionResult<TResult>
+	[Obsolete("Use DoActionTemplate instead.")]
+	public class DoAction<TInputs, TResult> : DoActionTemplate<TInputs, TResult>
 	{
 		/// <summary>
-		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
-		/// if the result is not a 200.
+		/// Creates an instance of <see cref="DoAction{TInputs, TResult}"/> with the specified logger instance.
 		/// </summary>
-		public ProblemDetails ResultDetails { get; set; }
-
-		/// <summary>
-		/// The resulting object instance if the action was successful.
-		/// </summary>
-		public TResult Result { get; set; }
+		/// <param name="logger">An instance of a logger.</param>
+		public DoAction(ILogger<DoAction<TInputs, TResult>> logger)
+			: base(logger)
+		{
+			this.Logger = logger;
+		}
 	}
 }

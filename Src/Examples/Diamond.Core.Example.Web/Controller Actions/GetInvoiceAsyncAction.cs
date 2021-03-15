@@ -27,7 +27,7 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GetInvoiceAsyncAction : DoAction<string, Invoice>
+	public class GetInvoiceAsyncAction : DoActionTemplate<string, Invoice>
 	{
 		/// <summary>
 		/// 

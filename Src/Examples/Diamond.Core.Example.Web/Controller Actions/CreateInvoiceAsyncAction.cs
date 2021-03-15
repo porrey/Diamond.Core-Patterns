@@ -9,7 +9,7 @@ namespace Diamond.Core.Example
 	/// <summary>
 	/// 
 	/// </summary>
-	public class CreateInvoiceAsyncAction : DoAction<Invoice, Invoice>
+	public class CreateInvoiceAsyncAction : DoActionTemplate<Invoice, Invoice>
 	{
 		/// <summary>
 		/// 

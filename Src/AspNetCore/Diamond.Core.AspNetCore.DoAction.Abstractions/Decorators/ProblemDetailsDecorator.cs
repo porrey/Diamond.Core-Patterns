@@ -20,51 +20,67 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Diamond.Core.AspNetCore.DoAction {
+namespace Diamond.Core.AspNetCore.DoAction
+{
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class DoActionResult {
+	public static class DoActionResult
+	{
 		/// <summary>
-		/// 
+		/// Creates a response with an HTTP Status Code of 200.
 		/// </summary>
 		/// <returns></returns>
-		public static ProblemDetails Ok() {
-			return new ProblemDetails {
+		public static ProblemDetails Ok()
+		{
+			return new ProblemDetails
+			{
 				Status = StatusCodes.Status200OK
 			};
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a response with an HTTP Status Code of 201.
 		/// </summary>
 		/// <returns></returns>
-		public static ProblemDetails Created() {
-			return new ProblemDetails {
+		public static ProblemDetails Created()
+		{
+			return new ProblemDetails
+			{
 				Status = StatusCodes.Status201Created
 			};
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a response with an HTTP Status Code of 204.
 		/// </summary>
 		/// <returns></returns>
-		public static ProblemDetails NoContent() {
-			return new ProblemDetails {
+		public static ProblemDetails NoContent()
+		{
+			return new ProblemDetails
+			{
 				Status = StatusCodes.Status204NoContent
 			};
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a response with an HTTP Status Code of 400 (Bad Request).
 		/// </summary>
-		/// <param name="detail"></param>
-		/// <param name="instance"></param>
-		/// <param name="title"></param>
-		/// <param name="extensions"></param>
-		/// <returns></returns>
-		public static ProblemDetails BadRequest(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
-			ProblemDetails returnValue = new ProblemDetails {
+		/// <param name="detail">A human-readable explanation specific to this occurrence of the problem.</param>
+		/// <param name="instance">A URI reference that identifies the specific occurrence of the problem.
+		/// It may or may not yield further information if dereferenced.</param>
+		/// <param name="title">A short, human-readable summary of the problem type. It SHOULD NOT change from
+		/// occurrence to occurrence of the problem, except for purposes of localization(e.g.,
+		/// using proactive content negotiation; see[RFC7231], Section 3.4).</param>
+		/// <param name="extensions">Gets the System.Collections.Generic.IDictionary`2 for extension members.
+		/// Problem type definitions MAY extend the problem details object with additional
+		/// members. Extension members appear in the same namespace as other members of a
+		/// problem type.</param>
+		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
+		public static ProblemDetails BadRequest(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		{
+			ProblemDetails returnValue = new ProblemDetails
+			{
 				Status = StatusCodes.Status400BadRequest,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Bad Request",
@@ -72,8 +88,10 @@ namespace Diamond.Core.AspNetCore.DoAction {
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any()) {
-				foreach (var item in extensions) {
+			if (extensions != null && extensions.Any())
+			{
+				foreach (var item in extensions)
+				{
 					returnValue.Extensions.Add(item);
 				}
 			}
@@ -82,24 +100,34 @@ namespace Diamond.Core.AspNetCore.DoAction {
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a response with an HTTP Status Code of 404 (Not Found).
 		/// </summary>
-		/// <param name="detail"></param>
-		/// <param name="instance"></param>
-		/// <param name="title"></param>
-		/// <param name="extensions"></param>
-		/// <returns></returns>
-		public static ProblemDetails NotFound(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
-			ProblemDetails returnValue = new ProblemDetails {
-				Status = StatusCodes.Status400BadRequest,
+		/// <param name="detail">A human-readable explanation specific to this occurrence of the problem.</param>
+		/// <param name="instance">A URI reference that identifies the specific occurrence of the problem.
+		/// It may or may not yield further information if dereferenced.</param>
+		/// <param name="title">A short, human-readable summary of the problem type. It SHOULD NOT change from
+		/// occurrence to occurrence of the problem, except for purposes of localization(e.g.,
+		/// using proactive content negotiation; see[RFC7231], Section 3.4).</param>
+		/// <param name="extensions">Gets the System.Collections.Generic.IDictionary`2 for extension members.
+		/// Problem type definitions MAY extend the problem details object with additional
+		/// members. Extension members appear in the same namespace as other members of a
+		/// problem type.</param>
+		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
+		public static ProblemDetails NotFound(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		{
+			ProblemDetails returnValue = new ProblemDetails
+			{
+				Status = StatusCodes.Status404NotFound,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Not Found",
 				Detail = detail,
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any()) {
-				foreach (var item in extensions) {
+			if (extensions != null && extensions.Any())
+			{
+				foreach (var item in extensions)
+				{
 					returnValue.Extensions.Add(item);
 				}
 			}
@@ -108,15 +136,23 @@ namespace Diamond.Core.AspNetCore.DoAction {
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a response with an HTTP Status Code of 501 (Not Implemented).
 		/// </summary>
-		/// <param name="detail"></param>
-		/// <param name="instance"></param>
-		/// <param name="title"></param>
-		/// <param name="extensions"></param>
-		/// <returns></returns>
-		public static ProblemDetails NotImplemented(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
-			ProblemDetails returnValue = new ProblemDetails {
+		/// <param name="detail">A human-readable explanation specific to this occurrence of the problem.</param>
+		/// <param name="instance">A URI reference that identifies the specific occurrence of the problem.
+		/// It may or may not yield further information if dereferenced.</param>
+		/// <param name="title">A short, human-readable summary of the problem type. It SHOULD NOT change from
+		/// occurrence to occurrence of the problem, except for purposes of localization(e.g.,
+		/// using proactive content negotiation; see[RFC7231], Section 3.4).</param>
+		/// <param name="extensions">Gets the System.Collections.Generic.IDictionary`2 for extension members.
+		/// Problem type definitions MAY extend the problem details object with additional
+		/// members. Extension members appear in the same namespace as other members of a
+		/// problem type.</param>
+		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
+		public static ProblemDetails NotImplemented(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		{
+			ProblemDetails returnValue = new ProblemDetails
+			{
 				Status = StatusCodes.Status501NotImplemented,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.6.2",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Not Implemented",
@@ -124,8 +160,10 @@ namespace Diamond.Core.AspNetCore.DoAction {
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any()) {
-				foreach (var item in extensions) {
+			if (extensions != null && extensions.Any())
+			{
+				foreach (var item in extensions)
+				{
 					returnValue.Extensions.Add(item);
 				}
 			}
@@ -134,15 +172,23 @@ namespace Diamond.Core.AspNetCore.DoAction {
 		}
 
 		/// <summary>
-		/// 
+		/// Creates a response with an HTTP Status Code of 500 (Internal Server Error).
 		/// </summary>
-		/// <param name="detail"></param>
-		/// <param name="instance"></param>
-		/// <param name="title"></param>
-		/// <param name="extensions"></param>
-		/// <returns></returns>
-		public static ProblemDetails InternalServerError(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null) {
-			ProblemDetails returnValue = new ProblemDetails {
+		/// <param name="detail">A human-readable explanation specific to this occurrence of the problem.</param>
+		/// <param name="instance">A URI reference that identifies the specific occurrence of the problem.
+		/// It may or may not yield further information if dereferenced.</param>
+		/// <param name="title">A short, human-readable summary of the problem type. It SHOULD NOT change from
+		/// occurrence to occurrence of the problem, except for purposes of localization(e.g.,
+		/// using proactive content negotiation; see[RFC7231], Section 3.4).</param>
+		/// <param name="extensions">Gets the System.Collections.Generic.IDictionary`2 for extension members.
+		/// Problem type definitions MAY extend the problem details object with additional
+		/// members. Extension members appear in the same namespace as other members of a
+		/// problem type.</param>
+		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
+		public static ProblemDetails InternalServerError(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
+		{
+			ProblemDetails returnValue = new ProblemDetails
+			{
 				Status = StatusCodes.Status500InternalServerError,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",
 				Title = !String.IsNullOrWhiteSpace(title) ? title : "Internal Server Error",
@@ -150,8 +196,10 @@ namespace Diamond.Core.AspNetCore.DoAction {
 				Instance = instance
 			};
 
-			if (extensions != null && extensions.Any()) {
-				foreach (var item in extensions) {
+			if (extensions != null && extensions.Any())
+			{
+				foreach (var item in extensions)
+				{
 					returnValue.Extensions.Add(item);
 				}
 			}
