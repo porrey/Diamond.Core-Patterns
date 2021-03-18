@@ -30,10 +30,10 @@ namespace Diamond.Core.AspNetCore.Swagger
 	public class UnsupportedMediaTypeFilter : IOperationFilter
 	{
 		/// <summary>
-		/// 
+		/// Adds a Swagger documentation description for HTTP status 415 to all POST and PUT methods.
 		/// </summary>
-		/// <param name="operation"></param>
-		/// <param name="context"></param>
+		/// <param name="operation">A reference to the <see cref="OpenApiOperation"/>.</param>
+		/// <param name="context">A reference to the <see cref="OperationFilterContext"/>.</param>
 		public void Apply(OpenApiOperation operation, OperationFilterContext context)
 		{
 			//

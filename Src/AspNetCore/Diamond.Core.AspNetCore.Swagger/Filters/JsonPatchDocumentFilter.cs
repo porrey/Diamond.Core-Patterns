@@ -23,15 +23,15 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace Diamond.Core.AspNetCore.Swagger
 {
 	/// <summary>
-	/// 
+	/// Fixes up the Swagger documentation for patch methods.
 	/// </summary>
 	public class JsonPatchDocumentFilter : IDocumentFilter
 	{
 		/// <summary>
-		/// 
+		/// Applies the filter.
 		/// </summary>
-		/// <param name="swaggerDoc"></param>
-		/// <param name="context"></param>
+		/// <param name="swaggerDoc">A reference to the Swagger document.</param>
+		/// <param name="context">A reference to the Swagger document context.</param>
 		public virtual void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
 		{
 			//

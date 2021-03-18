@@ -6,8 +6,8 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>5.0.6</Version>
-		<AssemblyVersion>5.0.6</AssemblyVersion>
+		<Version>5.0.7</Version>
+		<AssemblyVersion>5.0.7</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Authors>Daniel M. Porrey</Authors>
@@ -16,7 +16,7 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>5.0.6</FileVersion>
+		<FileVersion>5.0.7</FileVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl></PackageIconUrl>

@@ -19,23 +19,23 @@ using Swashbuckle.AspNetCore.Filters;
 namespace Diamond.Core.AspNetCore.Swagger
 {
 	/// <summary>
-	/// 
+	/// Provides a default patch example for Swagger documentation.
 	/// </summary>
 	public class JsonPatchDefaultExample : IExamplesProvider<Operation[]>
 	{
 		/// <summary>
-		/// 
+		/// Gets a list of operations.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>An array of <see cref="Operation"/> objects to be used as examples.</returns>
 		public virtual Operation[] GetExamples()
 		{
 			return this.OnGetExamples();
 		}
 
 		/// <summary>
-		/// 
+		/// Provides a default implementation that can be overridden.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>An array of <see cref="Operation"/> objects to be used as examples.</returns>
 		protected Operation[] OnGetExamples()
 		{
 			return (Operation[])new[]

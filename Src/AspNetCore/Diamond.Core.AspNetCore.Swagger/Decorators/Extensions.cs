@@ -21,7 +21,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace Diamond.Core.AspNetCore.Swagger
 {
 	/// <summary>
-	/// 
+	/// Provides extensions to support Swagger documentation.
 	/// </summary>
 	public static class Extensions
 	{

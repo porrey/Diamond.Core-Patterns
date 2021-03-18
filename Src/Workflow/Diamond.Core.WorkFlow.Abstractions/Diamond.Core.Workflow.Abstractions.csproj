@@ -8,9 +8,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides abstractions for the workflow pattern.</Description>
-		<Version>5.0.5</Version>
-		<FileVersion>5.0.5</FileVersion>
-		<AssemblyVersion>5.0.5</AssemblyVersion>
+		<Version>5.0.7</Version>
+		<FileVersion>5.0.7</FileVersion>
+		<AssemblyVersion>5.0.7</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>

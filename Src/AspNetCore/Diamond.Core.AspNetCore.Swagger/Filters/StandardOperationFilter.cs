@@ -21,15 +21,16 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace Diamond.Core.AspNetCore.Swagger
 {
 	/// <summary>
-	/// 
+	/// Adds Swagger documentation response descriptions for standard 
+	/// HTTP status codes such as 406, 500 and 50q to all methods.
 	/// </summary>
 	public class StandardOperationFilter : IOperationFilter
 	{
 		/// <summary>
-		/// 
+		/// Applies the response description to a given method.
 		/// </summary>
-		/// <param name="operation"></param>
-		/// <param name="context"></param>
+		/// <param name="operation">A reference to the <see cref="OpenApiOperation"/>.</param>
+		/// <param name="context">A reference to the <see cref="OperationFilterContext"/>.</param>
 		public void Apply(OpenApiOperation operation, OperationFilterContext context)
 		{
 			if (operation.Responses.ContainsKey($"{StatusCodes.Status406NotAcceptable}"))

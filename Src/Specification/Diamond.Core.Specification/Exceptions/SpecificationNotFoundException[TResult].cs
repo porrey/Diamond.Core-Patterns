@@ -27,7 +27,7 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <param name="name"></param>
 		public SpecificationNotFoundException(string name)
-			: base($"A Specification of type 'ISpeciification<{typeof(TResult).Name}>' with name '{name}' has not been configured.")
+			: base($"A Specification of type 'ISpecification<{typeof(TResult).Name}>' with name '{name}' has not been configured.")
 		{
 		}
 	}
