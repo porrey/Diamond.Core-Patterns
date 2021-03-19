@@ -6,7 +6,7 @@
     <members>
         <member name="T:Diamond.Core.AspNetCore.Swagger.Extensions">
             <summary>
-            
+            Provides extensions to support Swagger documentation.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.Swagger.Extensions.LoadXmlCommentFiles(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions,System.IO.DirectoryInfo)">
@@ -19,32 +19,32 @@
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.JsonPatchDefaultExample">
             <summary>
-            
+            Provides a default patch example for Swagger documentation.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDefaultExample.GetExamples">
             <summary>
-            
+            Gets a list of operations.
             </summary>
-            <returns></returns>
+            <returns>An array of <see cref="T:Diamond.Core.AspNetCore.Swagger.Operation"/> objects to be used as examples.</returns>
         </member>
         <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDefaultExample.OnGetExamples">
             <summary>
-            
+            Provides a default implementation that can be overridden.
             </summary>
-            <returns></returns>
+            <returns>An array of <see cref="T:Diamond.Core.AspNetCore.Swagger.Operation"/> objects to be used as examples.</returns>
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter">
             <summary>
-            
+            Fixes up the Swagger documentation for patch methods.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
             <summary>
-            
+            Applies the filter.
             </summary>
-            <param name="swaggerDoc"></param>
-            <param name="context"></param>
+            <param name="swaggerDoc">A reference to the Swagger document.</param>
+            <param name="context">A reference to the Swagger document context.</param>
         </member>
         <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.RemoveSchema(Microsoft.OpenApi.Models.OpenApiDocument,System.String)">
             <summary>
@@ -61,15 +61,16 @@
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.StandardOperationFilter">
             <summary>
-            
+            Adds Swagger documentation response descriptions for standard 
+            HTTP status codes such as 406, 500 and 50q to all methods.
             </summary>
         </member>
         <member name="M:Diamond.Core.AspNetCore.Swagger.StandardOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
             <summary>
-            
+            Applies the response description to a given method.
             </summary>
-            <param name="operation"></param>
-            <param name="context"></param>
+            <param name="operation">A reference to the <see cref="T:Microsoft.OpenApi.Models.OpenApiOperation"/>.</param>
+            <param name="context">A reference to the <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext"/>.</param>
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.UnsupportedMediaTypeFilter">
             <summary>
@@ -78,10 +79,10 @@
         </member>
         <member name="M:Diamond.Core.AspNetCore.Swagger.UnsupportedMediaTypeFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
             <summary>
-            
+            Adds a Swagger documentation description for HTTP status 415 to all POST and PUT methods.
             </summary>
-            <param name="operation"></param>
-            <param name="context"></param>
+            <param name="operation">A reference to the <see cref="T:Microsoft.OpenApi.Models.OpenApiOperation"/>.</param>
+            <param name="context">A reference to the <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext"/>.</param>
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.Operation">
             <summary>

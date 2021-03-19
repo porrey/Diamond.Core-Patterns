@@ -1,7 +1,7 @@
 ﻿namespace Diamond.Core.Wpf
 {
 	/// <summary>
-	/// Used to place Window object in the container.
+	/// Used to place Window objects (views) in the container.
 	/// </summary>
 	public interface IWindow
 	{
