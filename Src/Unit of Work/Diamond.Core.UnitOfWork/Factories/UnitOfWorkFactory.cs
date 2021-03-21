@@ -45,20 +45,20 @@ namespace Diamond.Core.UnitOfWork
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
 		public UnitOfWorkFactory(IServiceProvider serviceProvider, ILogger<UnitOfWorkFactory> logger)
+			: this(serviceProvider)
 		{
-			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<UnitOfWorkFactory> Logger { get; set; } = new NullLogger<UnitOfWorkFactory>();
+		public virtual ILogger<UnitOfWorkFactory> Logger { get; set; } = new NullLogger<UnitOfWorkFactory>();
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IServiceProvider ServiceProvider { get; set; }
+		protected virtual IServiceProvider ServiceProvider { get; set; }
 
 		/// <summary>
 		/// 
@@ -67,7 +67,7 @@ namespace Diamond.Core.UnitOfWork
 		/// <typeparam name="TSourceItem"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name)
+		public virtual Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name)
 		{
 			IUnitOfWork<TResult, TSourceItem> returnValue = null;
 

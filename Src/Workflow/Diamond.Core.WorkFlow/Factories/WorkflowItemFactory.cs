@@ -44,27 +44,27 @@ namespace Diamond.Core.Workflow
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
 		public WorkflowItemFactory(IServiceProvider serviceProvider, ILogger<WorkflowItemFactory> logger)
+			: this(serviceProvider)
 		{
-			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IServiceProvider ServiceProvider { get; set; }
+		protected virtual IServiceProvider ServiceProvider { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<WorkflowItemFactory> Logger { get; set; } = new NullLogger<WorkflowItemFactory>();
+		public virtual ILogger<WorkflowItemFactory> Logger { get; set; } = new NullLogger<WorkflowItemFactory>();
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="groupName"></param>
 		/// <returns></returns>
-		public Task<IEnumerable<IWorkflowItem>> GetItemsAsync(string groupName)
+		public virtual Task<IEnumerable<IWorkflowItem>> GetItemsAsync(string groupName)
 		{
 			IList<IWorkflowItem> returnValue = new List<IWorkflowItem>();
 

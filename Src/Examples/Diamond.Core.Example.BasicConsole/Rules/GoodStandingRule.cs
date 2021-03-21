@@ -6,13 +6,16 @@ namespace Diamond.Core.Example.BasicConsole
 	/// <summary>
 	/// The employee must not have any recent warnings.
 	/// </summary>
-	public class GoodStandingRule : IRule<IEmployeeEntity>
+	public class GoodStandingRule : RuleTemplate<IEmployeeEntity>
 	{
-		public string Group => WellKnown.Rules.EmployeePromotion;
-
-		public Task<IRuleResult> ValidateAsync(IEmployeeEntity item)
+		public GoodStandingRule()
+			: base(WellKnown.Rules.EmployeePromotion)
 		{
-			IRuleResult returnValue = new RuleResult();
+		}
+
+		protected override Task<IRuleResult> OnValidateAsync(IEmployeeEntity item)
+		{
+			IRuleResult returnValue = new RuleResultTemplate();
 
 			if (!item.RecentWarnings)
 			{

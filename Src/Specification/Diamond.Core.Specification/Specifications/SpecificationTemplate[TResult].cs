@@ -15,7 +15,7 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <param name="logger">In instance of <see cref="ILogger{SpecificationTemplate}"/> used for logging.</param>
 		public SpecificationTemplate(ILogger<SpecificationTemplate<TResult>> logger)
-			:base(logger)
+			: base(logger)
 		{
 		}
 
@@ -23,6 +23,7 @@ namespace Diamond.Core.Specification
 		/// Creates a default instance of <see cref="SpecificationTemplate{TResult}"/>.
 		/// </summary>
 		public SpecificationTemplate()
+			: base()
 		{
 		}
 

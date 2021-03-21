@@ -7,13 +7,16 @@ namespace Diamond.Core.Example.BasicConsole
 	/// <summary>
 	/// The employee must have been with the company at least 30 days.
 	/// </summary>
-	public class MnimumEmploymentRule : IRule<IEmployeeEntity>
+	public class MnimumEmploymentRule : RuleTemplate<IEmployeeEntity>
 	{
-		public string Group => WellKnown.Rules.EmployeePromotion;
-
-		public Task<IRuleResult> ValidateAsync(IEmployeeEntity item)
+		public MnimumEmploymentRule()
+			: base(WellKnown.Rules.EmployeePromotion)
 		{
-			IRuleResult returnValue = new RuleResult();
+		}
+
+		protected override Task<IRuleResult> OnValidateAsync(IEmployeeEntity item)
+		{
+			IRuleResult returnValue = new RuleResultTemplate();
 
 			if (DateTime.Now.Subtract(item.StartDate).TotalDays >= 30)
 			{

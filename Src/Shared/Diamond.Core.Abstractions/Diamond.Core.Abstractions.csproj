@@ -3,9 +3,9 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
 		<Product>Diamond.Core Patterns Library</Product>
-		<Version>5.0.8</Version>
-		<FileVersion>5.0.8</FileVersion>
-		<AssemblyVersion>5.0.8</AssemblyVersion>
+		<Version>5.0.9</Version>
+		<FileVersion>5.0.9</FileVersion>
+		<AssemblyVersion>5.0.9</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>

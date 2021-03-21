@@ -211,6 +211,17 @@
             <typeparam name="TInterface"></typeparam>
             <typeparam name="TEntity"></typeparam>
         </member>
+        <member name="M:Diamond.Core.Repository.EntityFactory`2.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.EntityFactory`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Repository.EntityFactory{`0,`1}})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
         <member name="P:Diamond.Core.Repository.EntityFactory`2.Logger">
             <summary>
             

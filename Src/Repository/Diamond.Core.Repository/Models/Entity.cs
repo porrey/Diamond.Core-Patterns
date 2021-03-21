@@ -24,16 +24,4 @@ namespace Diamond.Core.Repository
 	public abstract class Entity : CloneableObject, IEntity
 	{
 	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <typeparam name="T"></typeparam>
-	public class Entity<T> : Entity, IEntity<T>
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual T Id { get; set; }
-	}
 }

@@ -553,18 +553,18 @@
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.ToString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItem.StepFailedAsync(Diamond.Core.Workflow.IContext,System.String)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.ToString">
+            <summary>
+            
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Workflow.CreateTemporaryFolderStep">

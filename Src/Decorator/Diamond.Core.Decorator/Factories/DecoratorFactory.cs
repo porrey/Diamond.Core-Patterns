@@ -45,20 +45,20 @@ namespace Diamond.Core.Decorator
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
 		public DecoratorFactory(IServiceProvider serviceProvider, ILogger<DecoratorFactory> logger)
+			: this(serviceProvider)
 		{
-			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<DecoratorFactory> Logger { get; set; } = new NullLogger<DecoratorFactory>();
+		public virtual ILogger<DecoratorFactory> Logger { get; set; } = new NullLogger<DecoratorFactory>();
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IServiceProvider ServiceProvider { get; set; }
+		protected virtual IServiceProvider ServiceProvider { get; set; }
 
 		/// <summary>
 		/// 
@@ -67,7 +67,7 @@ namespace Diamond.Core.Decorator
 		/// <typeparam name="TResult"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name)
+		public virtual Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name)
 			where TDecoratedItem : class
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
@@ -113,7 +113,7 @@ namespace Diamond.Core.Decorator
 		/// <param name="name"></param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item)
+		public virtual async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item)
 			where TDecoratedItem : class
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Decorator
 {
@@ -20,6 +21,7 @@ namespace Diamond.Core.Decorator
 		/// </summary>
 		public DecoratorTemplate()
 		{
+			this.Name = this.GetType().Name.Replace("Decorator", "");
 		}
 
 		/// <summary>
@@ -28,6 +30,7 @@ namespace Diamond.Core.Decorator
 		/// </summary>
 		/// <param name="logger">An instance of the logger.</param>
 		public DecoratorTemplate(ILogger<DecoratorTemplate<TDecoratedItem, TResult>> logger)
+			: this()
 		{
 			this.Logger = logger;
 		}
@@ -35,7 +38,7 @@ namespace Diamond.Core.Decorator
 		/// <summary>
 		/// An instance if a logger specific to this instance.
 		/// </summary>
-		protected ILogger<DecoratorTemplate<TDecoratedItem, TResult>> Logger { get; set; }
+		protected virtual ILogger<DecoratorTemplate<TDecoratedItem, TResult>> Logger { get; set; } = new NullLogger<DecoratorTemplate<TDecoratedItem, TResult>>();
 
 		/// <summary>
 		/// 

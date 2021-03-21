@@ -47,21 +47,21 @@ namespace Diamond.Core.Specification
 		/// <param name="serviceProvider"></param>
 		/// <param name="logger"></param>
 		public SpecificationFactory(ILogger<SpecificationFactory> logger, IServiceProvider serviceProvider)
+			: this(serviceProvider)
 		{
-			this.ServiceProvider = serviceProvider;
 			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// Gets/sets the instance of the logger used by the factory. The default is a null logger.
 		/// </summary>
-		public ILogger<SpecificationFactory> Logger { get; set; } = new NullLogger<SpecificationFactory>();
+		public virtual ILogger<SpecificationFactory> Logger { get; set; } = new NullLogger<SpecificationFactory>();
 
 		/// <summary>
 		/// Gets/sets the <see cref="IServiceProvider"/> used by the factory to retrieve 
 		/// the specification instances.
 		/// </summary>
-		protected IServiceProvider ServiceProvider { get; set; }
+		protected virtual IServiceProvider ServiceProvider { get; set; }
 
 		/// <summary>
 		/// 
@@ -69,7 +69,7 @@ namespace Diamond.Core.Specification
 		/// <typeparam name="TResult"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<ISpecification<TResult>> GetAsync<TResult>(string name)
+		public virtual Task<ISpecification<TResult>> GetAsync<TResult>(string name)
 		{
 			ISpecification<TResult> returnValue = null;
 
@@ -118,7 +118,7 @@ namespace Diamond.Core.Specification
 		/// <typeparam name="TResult"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string name)
+		public virtual Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string name)
 		{
 			ISpecification<TParameter, TResult> returnValue = null;
 

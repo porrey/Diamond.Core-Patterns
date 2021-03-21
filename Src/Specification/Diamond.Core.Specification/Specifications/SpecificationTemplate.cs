@@ -13,6 +13,7 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <param name="logger">In instance of <see cref="ILogger{SpecificationTemplate}"/> used for logging.</param>
 		public SpecificationTemplate(ILogger<SpecificationTemplate> logger)
+			: this()
 		{
 			this.Logger = logger;
 		}
@@ -22,18 +23,19 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		public SpecificationTemplate()
 		{
+			this.Name = this.GetType().Name.Replace("Specification", "");
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<SpecificationTemplate> Logger { get; set; } = new NullLogger<SpecificationTemplate>();
+		protected virtual ILogger<SpecificationTemplate> Logger { get; set; } = new NullLogger<SpecificationTemplate>();
 
 		/// <summary>
 		/// Gets the name used to uniquely identify this specification in a container. The name can be used by
 		/// the factory when two or more specification shave the name signature/pattern. The default value is the
 		/// name of the class with the term 'Specification' removed.
 		/// </summary>
-		public virtual string Name => this.GetType().Name.Replace("Specification", "");
+		public virtual string Name { get; set; }
 	}
 }

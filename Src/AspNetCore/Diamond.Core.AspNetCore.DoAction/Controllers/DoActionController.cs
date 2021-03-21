@@ -49,8 +49,8 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <param name="doActionFactory"></param>
 		/// <param name="logger"></param>
 		public DoActionController(IDoActionFactory doActionFactory, ILogger<DoActionController> logger)
+			: this(doActionFactory)
 		{
-			this.DoActionFactory = doActionFactory;
 			this.Logger = logger;
 		}
 

@@ -99,23 +99,25 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Rules.Rule`1">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
-        </member>
-        <member name="P:Diamond.Core.Rules.Rule`1.Group">
+        <member name="T:Diamond.Core.Rules.RuleResult">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Rules.Rule`1.ValidateAsync(`0)">
+        <member name="T:Diamond.Core.Rules.RuleResultTemplate">
             <summary>
             
             </summary>
-            <param name="item"></param>
-            <returns></returns>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResultTemplate.Passed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResultTemplate.ErrorMessage">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Diamond.Core.Rules.Rule`2">
             <summary>
@@ -124,32 +126,84 @@
             <typeparam name="TItem"></typeparam>
             <typeparam name="TResult"></typeparam>
         </member>
-        <member name="P:Diamond.Core.Rules.Rule`2.Group">
+        <member name="T:Diamond.Core.Rules.RuleTemplate`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Rules.Rule`2.ValidateAsync(`0)">
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="group"></param>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleTemplate`2.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.ValidateAsync(`0)">
             <summary>
             
             </summary>
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Rules.RuleResult">
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.OnValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.Rule`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="T:Diamond.Core.Rules.RuleTemplate`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Rules.RuleResult.Passed">
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="group"></param>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleTemplate`1.Group">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Rules.RuleResult.ErrorMessage">
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.ValidateAsync(`0)">
             <summary>
             
             </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.OnValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

@@ -14,53 +14,67 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
+using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 
-namespace Diamond.Core.Repository
+namespace Diamond.Core.Rules
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	/// <typeparam name="TInterface"></typeparam>
-	/// <typeparam name="TEntity"></typeparam>
-	public class EntityFactory<TInterface, TEntity> : IEntityFactory<TInterface>
-		where TEntity : TInterface, new()
-		where TInterface : IEntity
+	/// <typeparam name="TItem"></typeparam>
+	/// <typeparam name="TResult"></typeparam>
+	[Obsolete("Use RuleTemplate instead.")]
+	public abstract class Rule<TItem, TResult> : RuleTemplate<TItem, TResult>
+	{
+	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="TItem"></typeparam>
+	/// <typeparam name="TResult"></typeparam>
+	public abstract class RuleTemplate<TItem, TResult> : IRule<TItem, TResult>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public EntityFactory()
+		public RuleTemplate()
 		{
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="logger"></param>
-		public EntityFactory(ILogger<EntityFactory<TInterface, TEntity>> logger)
+		/// <param name="group"></param>
+		public RuleTemplate(string group)
 		{
-			this.Logger = logger;
+			this.Group = group;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual ILogger<EntityFactory<TInterface, TEntity>> Logger { get; set; } = new NullLogger<EntityFactory<TInterface, TEntity>>();
+		public virtual string Group { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual Task<TInterface> CreateAsync()
+		public virtual Task<TResult> ValidateAsync(TItem item)
 		{
-			TEntity returnValue = new TEntity();
+			return this.OnValidateAsync(item);
+		}
 
-			this.Logger.LogDebug("Model factory is creating instance of model type '{name}'.", typeof(TEntity).Name);
-
-			return Task.FromResult<TInterface>(returnValue);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		protected virtual Task<TResult> OnValidateAsync(TItem item)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

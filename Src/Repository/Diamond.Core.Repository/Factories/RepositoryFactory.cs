@@ -52,19 +52,19 @@ namespace Diamond.Core.Repository
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IServiceProvider ServiceProvider { get; set; }
+		protected virtual IServiceProvider ServiceProvider { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<RepositoryFactory> Logger { get; set; } = new NullLogger<RepositoryFactory>();
+		public virtual ILogger<RepositoryFactory> Logger { get; set; } = new NullLogger<RepositoryFactory>();
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity
+		public virtual Task<IRepository<TInterface>> GetAsync<TInterface>() where TInterface : IEntity
 		{
 			return this.GetAsync<TInterface>(null);
 		}
@@ -75,7 +75,7 @@ namespace Diamond.Core.Repository
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public Task<IRepository<TInterface>> GetAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual Task<IRepository<TInterface>> GetAsync<TInterface>(string name) where TInterface : IEntity
 		{
 			IRepository<TInterface> returnValue = null;
 
@@ -113,7 +113,7 @@ namespace Diamond.Core.Repository
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity
+		public virtual Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>() where TInterface : IEntity
 		{
 			return this.GetReadOnlyAsync<TInterface>(null);
 		}
@@ -124,7 +124,7 @@ namespace Diamond.Core.Repository
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name) where TInterface : IEntity
 		{
 			IReadOnlyRepository<TInterface> returnValue = null;
 
@@ -159,7 +159,7 @@ namespace Diamond.Core.Repository
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity
+		public virtual Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>() where TInterface : IEntity
 		{
 			return this.GetWritableAsync<TInterface>(null);
 		}
@@ -170,7 +170,7 @@ namespace Diamond.Core.Repository
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name) where TInterface : IEntity
 		{
 			IWritableRepository<TInterface> returnValue = null;
 
@@ -205,7 +205,7 @@ namespace Diamond.Core.Repository
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
 		/// <returns></returns>
-		public Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity
+		public virtual Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>() where TInterface : IEntity
 		{
 			return this.GetQueryableAsync<TInterface>(null);
 		}
@@ -216,7 +216,7 @@ namespace Diamond.Core.Repository
 		/// <typeparam name="TInterface"></typeparam>
 		/// <param name="name"></param>
 		/// <returns></returns>
-		public async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name) where TInterface : IEntity
 		{
 			IQueryableRepository<TInterface> returnValue = null;
 

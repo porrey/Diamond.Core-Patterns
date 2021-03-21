@@ -45,6 +45,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="modelFactory"></param>
 		public EntityFrameworkRepository(ILogger<EntityFrameworkRepository<TInterface, TEntity, TContext>> logger, TContext context, IEntityFactory<TInterface> modelFactory)
 		{
+			this.Name = this.GetType().Name.Replace("Repository", "");
 			this.Logger = logger;
 			this.Context = context;
 			this.ModelFactory = modelFactory;
@@ -57,6 +58,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="modelFactory"></param>
 		public EntityFrameworkRepository(TContext context, IEntityFactory<TInterface> modelFactory)
 		{
+			this.Name = this.GetType().Name.Replace("Repository", "");
 			this.Context = context;
 			this.ModelFactory = modelFactory;
 		}

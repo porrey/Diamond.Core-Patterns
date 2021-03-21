@@ -15,30 +15,64 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 using System;
+using System.Threading.Tasks;
 
 namespace Diamond.Core.Rules
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	[Obsolete("Use RuleResultTemplate instead.")]
-	public class RuleResult : RuleResultTemplate
+	/// <typeparam name="TItem"></typeparam>
+	[Obsolete("Use RuleTemplate instead.")]
+	public abstract class Rule<TItem> : RuleTemplate<TItem>
 	{
 	}
 
 	/// <summary>
 	/// 
 	/// </summary>
-	public class RuleResultTemplate : IRuleResult
+	/// <typeparam name="TItem"></typeparam>
+	public abstract class RuleTemplate<TItem> : IRule<TItem>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool Passed { get; set; }
+		public RuleTemplate()
+		{
+		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ErrorMessage { get; set; }
+		/// <param name="group"></param>
+		public RuleTemplate(string group)
+		{
+			this.Group = group;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual string Group { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		public virtual Task<IRuleResult> ValidateAsync(TItem item)
+		{
+			return this.OnValidateAsync(item);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		protected virtual Task<IRuleResult> OnValidateAsync(TItem item)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

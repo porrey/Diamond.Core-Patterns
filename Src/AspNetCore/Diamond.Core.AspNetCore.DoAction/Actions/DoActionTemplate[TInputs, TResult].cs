@@ -16,6 +16,7 @@
 //
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.AspNetCore.DoAction
 {
@@ -31,6 +32,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// </summary>
 		/// <param name="logger">The logger instance used by this object.</param>
 		public DoActionTemplate(ILogger<DoActionTemplate<TInputs, TResult>> logger)
+			: this()
 		{
 			this.Logger = logger;
 		}
@@ -40,12 +42,13 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// </summary>
 		public DoActionTemplate()
 		{
+			this.ActionKey = this.GetType().Name.Replace("Action", "");
 		}
 
 		/// <summary>
 		/// Gets/sets the instance of the logger used by the factory. The default is a null logger.
 		/// </summary>
-		protected virtual ILogger<DoActionTemplate<TInputs, TResult>> Logger { get; set; }
+		protected virtual ILogger<DoActionTemplate<TInputs, TResult>> Logger { get; set; } = new NullLogger<DoActionTemplate<TInputs, TResult>>();
 
 		/// <summary>
 		/// Gets the unique key that identifies this action. As a best practice, the name
@@ -55,7 +58,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// term and matches it to this property. The default implementation of this property returns
 		/// the name of the class without the "action" term..
 		/// </summary>
-		public virtual string ActionKey => this.GetType().Name.Replace("Action", "");
+		public virtual string ActionKey { get; set; }
 
 		/// <summary>
 		/// Executes the controller method action returning the result or an error with an HTTP status code. The default

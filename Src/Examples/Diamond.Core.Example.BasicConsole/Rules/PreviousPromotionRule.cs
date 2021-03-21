@@ -7,13 +7,16 @@ namespace Diamond.Core.Example.BasicConsole
 	/// <summary>
 	/// The employee not have been promoted with 60 days.
 	/// </summary>
-	public class PreviousPromotionRule : IRule<IEmployeeEntity>
+	public class PreviousPromotionRule : RuleTemplate<IEmployeeEntity>
 	{
-		public string Group => WellKnown.Rules.EmployeePromotion;
-
-		public Task<IRuleResult> ValidateAsync(IEmployeeEntity item)
+		public PreviousPromotionRule()
+			: base(WellKnown.Rules.EmployeePromotion)
 		{
-			IRuleResult returnValue = new RuleResult();
+		}
+
+		protected override Task<IRuleResult> OnValidateAsync(IEmployeeEntity item)
+		{
+			IRuleResult returnValue = new RuleResultTemplate();
 
 			if (!item.LastPromtion.HasValue || (item.LastPromtion.HasValue && DateTime.Now.Subtract(item.LastPromtion.Value).TotalDays > 60))
 			{

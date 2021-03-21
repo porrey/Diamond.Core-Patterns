@@ -19,13 +19,16 @@ using Diamond.Core.Rules;
 
 namespace Diamond.Core.Example
 {
-	public class DeliveryAddressRule : IRule<IShipmentModel>
+	public class DeliveryAddressRule : RuleTemplate<IShipmentModel>
 	{
-		public string Group { get; set; } = WellKnown.Rules.Shipment;
-
-		public Task<IRuleResult> ValidateAsync(IShipmentModel item)
+		public DeliveryAddressRule()
+			: base(WellKnown.Rules.Shipment)
 		{
-			IRuleResult returnValue = new RuleResult();
+		}
+
+		protected override Task<IRuleResult> OnValidateAsync(IShipmentModel item)
+		{
+			IRuleResult returnValue = new RuleResultTemplate();
 
 			if (!string.IsNullOrWhiteSpace(item.DeliveryAddress))
 			{

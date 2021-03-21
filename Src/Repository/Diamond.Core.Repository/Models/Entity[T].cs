@@ -14,46 +14,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System.Threading.Tasks;
+using Diamond.Core.Clonable;
 
-namespace Diamond.Core.Rules
+namespace Diamond.Core.Repository
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	/// <typeparam name="TItem"></typeparam>
-	public abstract class Rule<TItem> : IRule<TItem>
+	/// <typeparam name="T"></typeparam>
+	public class Entity<T> : Entity, IEntity<T>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Group { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		public abstract Task<IRuleResult> ValidateAsync(TItem item);
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <typeparam name="TItem"></typeparam>
-	/// <typeparam name="TResult"></typeparam>
-	public abstract class Rule<TItem, TResult> : IRule<TItem, TResult>
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		public string Group { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		public abstract Task<TResult> ValidateAsync(TItem item);
+		public virtual T Id { get; set; }
 	}
 }

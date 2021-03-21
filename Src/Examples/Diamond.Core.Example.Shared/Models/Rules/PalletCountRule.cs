@@ -19,13 +19,16 @@ using Diamond.Core.Rules;
 
 namespace Diamond.Core.Example
 {
-	public class PalletCountRule : IRule<IShipmentModel>
+	public class PalletCountRule : RuleTemplate<IShipmentModel>
 	{
-		public string Group { get; set; } = WellKnown.Rules.Shipment;
-
-		public Task<IRuleResult> ValidateAsync(IShipmentModel item)
+		public PalletCountRule()
+			: base(WellKnown.Rules.Shipment)
 		{
-			IRuleResult returnValue = new RuleResult();
+		}
+
+		protected override Task<IRuleResult> OnValidateAsync(IShipmentModel item)
+		{
+			IRuleResult returnValue = new RuleResultTemplate();
 
 			if (item.PalletCount > 0)
 			{

@@ -55,5 +55,63 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.UnitOfWork.UnitOfWorkTemplate})">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate"/> with the specified logger.
+            </summary>
+            <param name="logger">In instance of <see cref="T:Microsoft.Extensions.Logging.ILogger"/> used for logging.</param>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkTemplate.#ctor">
+            <summary>
+            Creates a default instance of <see cref="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.UnitOfWork.UnitOfWorkTemplate.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.UnitOfWork.UnitOfWorkTemplate.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <typeparam name="TSourceItem"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.UnitOfWork.UnitOfWorkTemplate{`0,`1}})">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2"/> with the specified logger.
+            </summary>
+            <param name="logger">In instance of <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/> used for logging.</param>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2.#ctor">
+            <summary>
+            Creates a default instance of <see cref="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2.CommitAsync(`1)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2.OnCommitAsync(`1)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

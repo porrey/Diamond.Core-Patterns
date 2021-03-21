@@ -30,7 +30,7 @@ namespace Diamond.Core.Workflow
 		/// </summary>
 		public WorkflowItem()
 		{
-			this.Name = this.GetType().Name;
+			this.Name = this.GetType().Name.Replace("Step", "");
 		}
 
 		/// <summary>
@@ -38,6 +38,7 @@ namespace Diamond.Core.Workflow
 		/// </summary>
 		/// <param name="logger"></param>
 		public WorkflowItem(ILogger<WorkflowItem> logger)
+			: this()
 		{
 			this.Logger = logger;
 		}
@@ -95,12 +96,12 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public double Weight { get; set; } = 1;
+		public virtual double Weight { get; set; } = 1;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<WorkflowItem> Logger { get; set; } = new NullLogger<WorkflowItem>();
+		public virtual ILogger<WorkflowItem> Logger { get; set; } = new NullLogger<WorkflowItem>();
 
 		/// <summary>
 		/// 
@@ -166,23 +167,23 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="message"></param>
 		/// <returns></returns>
-		public override string ToString()
+		protected virtual Task StepFailedAsync(IContext context, string message)
 		{
-			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";
+			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(StepFailedAsync)}");
+			context.SetException(message);
+			return Task.FromResult(0);
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
-		/// <param name="message"></param>
 		/// <returns></returns>
-		protected Task StepFailedAsync(IContext context, string message)
+		public override string ToString()
 		{
-			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(StepFailedAsync)}");
-			context.SetException(message);
-			return Task.FromResult(0);
+			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";
 		}
 	}
 }

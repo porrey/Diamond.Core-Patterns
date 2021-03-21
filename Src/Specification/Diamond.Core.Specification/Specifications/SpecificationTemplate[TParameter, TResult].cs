@@ -16,14 +16,15 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <param name="logger"></param>
 		public SpecificationTemplate(ILogger<SpecificationTemplate<TParameter, TResult>> logger)
+			: base(logger)
 		{
-			this.Logger = logger;
 		}
 
 		/// <summary>
 		/// Creates a default instance of <see cref="SpecificationTemplate{TParameter, TResult}"/>.
 		/// </summary>
 		public SpecificationTemplate()
+			: base()
 		{
 		}
 

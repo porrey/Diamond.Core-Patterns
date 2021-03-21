@@ -10,9 +10,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
 		<Description>This library provides object cloning using Newtonsoft JSON.Net.</Description>
-		<Version>5.0.8</Version>
-		<FileVersion>5.0.8</FileVersion>
-		<AssemblyVersion>5.0.8</AssemblyVersion>
+		<Version>5.0.9</Version>
+		<FileVersion>5.0.9</FileVersion>
+		<AssemblyVersion>5.0.9</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
