@@ -19,10 +19,11 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Diamond.Core.AspNetCore
+namespace Diamond.Core.AspNetCore.Rfc7807
 {
 	/// <summary>
-	/// /rfc7807
+	/// Updates the default problem details object returned from the model validation to
+	/// conform with RFC 7807.
 	/// </summary>
 	public class Rfc7807ModelValidationConversionAttribute : ActionFilterAttribute
 	{

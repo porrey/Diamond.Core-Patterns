@@ -75,6 +75,22 @@
             problem type.</param>
             <returns>Returns the newly created <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> instance with the provided details.</returns>
         </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.PayloadTooLarge(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Creates a response with an HTTP Status Code of 413 (Payload Too Large).
+            </summary>
+            <param name="detail">A human-readable explanation specific to this occurrence of the problem.</param>
+            <param name="instance">A URI reference that identifies the specific occurrence of the problem.
+            It may or may not yield further information if dereferenced.</param>
+            <param name="title">A short, human-readable summary of the problem type. It SHOULD NOT change from
+            occurrence to occurrence of the problem, except for purposes of localization(e.g.,
+            using proactive content negotiation; see[RFC7231], Section 3.4).</param>
+            <param name="extensions">Gets the System.Collections.Generic.IDictionary`2 for extension members.
+            Problem type definitions MAY extend the problem details object with additional
+            members. Extension members appear in the same namespace as other members of a
+            problem type.</param>
+            <returns>Returns the newly created <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> instance with the provided details.</returns>
+        </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.InternalServerError(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
             Creates a response with an HTTP Status Code of 500 (Internal Server Error).
@@ -90,6 +106,18 @@
             members. Extension members appear in the same namespace as other members of a
             problem type.</param>
             <returns>Returns the newly created <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> instance with the provided details.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionResult.FromStatusCode(System.Int32,System.String,System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="statusCode"></param>
+            <param name="detail"></param>
+            <param name="instance"></param>
+            <param name="title"></param>
+            <param name="type"></param>
+            <param name="extensions"></param>
+            <returns></returns>
         </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.DiamondDoActionException">
             <summary>
