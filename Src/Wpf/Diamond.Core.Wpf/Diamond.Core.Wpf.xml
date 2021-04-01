@@ -6,107 +6,119 @@
     <members>
         <member name="T:Diamond.Core.Wpf.HostedApplication">
             <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Wpf.HostedApplication.ApplicationHost">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Wpf.HostedApplication.CancellationToken">
-            <summary>
-            
+            Encapsulates a Windows Presentation Foundation application that
+            using the hosting model.
             </summary>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.#ctor">
             <summary>
-            
+            Creates a default instance of <see cref="T:Diamond.Core.Wpf.HostedApplication"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Wpf.HostedApplication.ApplicationHost">
+            <summary>
+            Gets/sets the <see cref="T:Microsoft.Extensions.Hosting.Host"/> instance.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Wpf.HostedApplication.CancellationToken">
+            <summary>
+            Signals to a <see cref="P:Diamond.Core.Wpf.HostedApplication.CancellationToken"/> that it should be canceled.
             </summary>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnStartup(System.Windows.StartupEventArgs)">
             <summary>
-            
+            The application startup event.
             </summary>
-            <param name="e"></param>
+            <param name="e">A <see cref="T:System.Windows.StartupEventArgs"/> that contains the event data.</param>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnBeginStartup(System.Windows.StartupEventArgs)">
             <summary>
-            
+            Called at the beginning of the application startup process.
             </summary>
-            <param name="e"></param>
+            <param name="e">A <see cref="T:System.Windows.StartupEventArgs"/> that contains the event data.</param>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnCompletedStartup(System.Windows.StartupEventArgs)">
             <summary>
-            
+            Called at the end of the application startup process.
             </summary>
-            <param name="e"></param>
+            <param name="e">A <see cref="T:System.Windows.StartupEventArgs"/> that contains the event data.</param>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnCreateHost">
             <summary>
-            
+            Called to create and build the <see cref="T:Microsoft.Extensions.Hosting.Host"/> instance. Override
+            this method to replace or customize the host creation. The default
+            implementation calls the internal methods during host creation.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureHost(Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
-            
+            This method is called just prior to the build method so the host can be 
+            modified before being built.
             </summary>
-            <param name="hostBuilder"></param>
-            <returns></returns>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance being constructed.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> that can be used for chaining calls.</returns>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnGetStartupWindow(System.IServiceProvider)">
             <summary>
-            
+            This method is called to get the startup view. The default implementation retrieves
+            the IMainWindow registered in the container. Override this method to provide a
+            custom view.
             </summary>
-            <param name="serviceProvider"></param>
-            <returns></returns>
+            <param name="serviceProvider">An instance of <see cref="T:System.IServiceProvider"/>.</param>
+            <returns>Returns an IWindow instance that will be used as the first or primary view.</returns>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureHostConfiguration(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
             <summary>
-            
+            Set up the configuration for the builder itself. This will be used to initialize
+            the <see cref="T:Microsoft.Extensions.Hosting.IHostEnvironment"/> for use later in the build
+            process. This can be called multiple times and the results will be additive.
             </summary>
-            <param name="configurationBuilder"></param>
+            <param name="configurationBuilder">The instance of <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> used during host creation.</param>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureAppConfiguration(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Configuration.IConfigurationBuilder)">
             <summary>
-            
+            Sets up the configuration for the remainder of the build process and application.
             </summary>
-            <param name="hostContext"></param>
-            <param name="configurationBuilder"></param>
+            <param name="hostContext">The instance of <see cref="T:Microsoft.Extensions.Hosting.HostBuilderContext"/> used in the build process.</param>
+            <param name="configurationBuilder">The instance of <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> used in the build process.</param>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureLogging(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.Logging.ILoggingBuilder)">
             <summary>
-            
+            Setup the logging configuration during the host build process.
             </summary>
-            <param name="hostBuilder"></param>
-            <param name="loggingBuilder"></param>
+            <param name="hostBuilder">The instance of <see cref="T:Microsoft.Extensions.Hosting.HostBuilderContext"/> used in the build process.</param>
+            <param name="loggingBuilder">The instance of <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder"/> used in the build process.</param>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication.OnConfigureServices(Microsoft.Extensions.Hosting.HostBuilderContext,Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            
+            Setup services during the host build process.
             </summary>
-            <param name="hostContext"></param>
-            <param name="services"></param>
+            <param name="hostContext">The instance of <see cref="T:Microsoft.Extensions.Hosting.HostBuilderContext"/> used in the build process.</param>
+            <param name="services">The instance of <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> used in the build process.</param>
         </member>
         <member name="T:Diamond.Core.Wpf.HostedApplication`1">
             <summary>
-            
+            Encapsulates a Windows Presentation Foundation application that
+            using the hosting model and a custom container.
             </summary>
             <typeparam name="TContainerBuilder"></typeparam>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication`1.OnCreateHost">
             <summary>
-            
+            Called to create and build the <see cref="T:Microsoft.Extensions.Hosting.Host"/> instance. Override
+            this method to replace or customize the host creation. The default
+            implementation calls the internal methods during host creation including
+            a call to setup the custom container.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Wpf.HostedApplication`1.OnConfigureContainer(Microsoft.Extensions.Hosting.HostBuilderContext,`0)">
             <summary>
-            
+            Setup a custom container during the host build process.
             </summary>
-            <param name="hostContext"></param>
-            <param name="container"></param>
+            <param name="hostContext">The instance of <see cref="T:Microsoft.Extensions.Hosting.HostBuilderContext"/> used in the build process.</param>
+            <param name="container">An instance of the customer container of type TContainerBuilder.</param>
         </member>
     </members>
 </doc>

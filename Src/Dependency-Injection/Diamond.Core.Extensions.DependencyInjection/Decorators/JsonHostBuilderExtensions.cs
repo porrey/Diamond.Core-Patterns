@@ -164,7 +164,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				IList<ServiceDescriptorConfiguration> hostedItems = new List<ServiceDescriptorConfiguration>();
 				configuration.Bind("hostedServices", hostedItems);
 
-				foreach (var hostedItem in hostedItems)
+				foreach (ServiceDescriptorConfiguration hostedItem in hostedItems)
 				{
 					logger.LogDebug("Add hosted service '{hostedItem}'.", hostedItem.ImplementationType);
 					Type implementationType = Type.GetType(hostedItem.ImplementationType, true);

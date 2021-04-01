@@ -19,6 +19,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Diamond.Core.Workflow;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -26,45 +27,50 @@ namespace Diamond.Core.Example.BasicConsole
 {
 	public class BasicExampleHostedService : IHostedService
 	{
-		public BasicExampleHostedService(ILogger<BasicExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IWorkflowManagerFactory workFlowManagerFactory)
+		public BasicExampleHostedService(ILogger<BasicExampleHostedService> logger, IHostApplicationLifetime appLifetime, IConfiguration configuration, IServiceScopeFactory serviceScopeFactory)
 		{
-			Logger = logger;
-			HostApplicationLifetime = appLifetime;
-			Configuration = configuration;
-			WorkFlowManagerFactory = workFlowManagerFactory;
+			this.Logger = logger;
+			this.HostApplicationLifetime = appLifetime;
+			this.Configuration = configuration;
+			this.ServiceScopeFactory = serviceScopeFactory;
 		}
 
 		protected int ExitCode { get; set; }
 		protected ILogger<BasicExampleHostedService> Logger { get; set; }
 		protected IHostApplicationLifetime HostApplicationLifetime { get; set; }
 		protected IConfiguration Configuration { get; set; }
-		protected IWorkflowManagerFactory WorkFlowManagerFactory { get; set; }
+		protected IServiceScopeFactory ServiceScopeFactory { get; set; }
 
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
-			Logger.LogInformation($"Starting {nameof(BasicExampleHostedService)} service.");
+			this.Logger.LogInformation($"Starting {nameof(BasicExampleHostedService)} service.");
 
 			try
 			{
-				Logger.LogInformation($"Retrieving work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
-				IWorkflowManager workflowManager = await WorkFlowManagerFactory.GetAsync(WellKnown.Workflow.SampleWorkflow);
+				using (IServiceScope scope = this.ServiceScopeFactory.CreateScope())
+				{
+					IWorkflowManagerFactory factory = scope.ServiceProvider.GetService<IWorkflowManagerFactory>();
 
-				Logger.LogInformation($"Executing work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
-				if (await workflowManager.ExecuteWorkflowAsync(new WorkflowContext()))
-				{
-					Logger.LogInformation("Work flow execution was successful.");
-					ExitCode = 0;
-				}
-				else
-				{
-					Logger.LogError("Work flow execution failed.");
-					ExitCode = 1;
+					this.Logger.LogInformation($"Retrieving work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
+					IWorkflowManager workflowManager = await factory.GetAsync(WellKnown.Workflow.SampleWorkflow);
+
+					this.Logger.LogInformation($"Executing work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
+					if (await workflowManager.ExecuteWorkflowAsync(new WorkflowContext()))
+					{
+						this.Logger.LogInformation("Work flow execution was successful.");
+						this.ExitCode = 0;
+					}
+					else
+					{
+						this.Logger.LogError("Work flow execution failed.");
+						this.ExitCode = 1;
+					}
 				}
 			}
 			catch (Exception ex)
 			{
-				Logger.LogError(ex, $"Exception while executing work flow '{WellKnown.Workflow.SampleWorkflow}'.");
-				ExitCode = 2;
+				this.Logger.LogError(ex, $"Exception while executing work flow '{WellKnown.Workflow.SampleWorkflow}'.");
+				this.ExitCode = 2;
 			}
 			finally
 			{
@@ -74,12 +80,12 @@ namespace Diamond.Core.Example.BasicConsole
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			Logger.LogDebug($"Exiting service {nameof(BasicExampleHostedService)} with return code: {ExitCode}");
+			this.Logger.LogDebug($"Exiting service {nameof(BasicExampleHostedService)} with return code: {this.ExitCode}");
 
 			//
 			// Exit code.
 			//
-			Environment.ExitCode = ExitCode;
+			Environment.ExitCode = this.ExitCode;
 			return Task.CompletedTask;
 		}
 	}

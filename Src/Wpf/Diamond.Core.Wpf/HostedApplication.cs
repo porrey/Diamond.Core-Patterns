@@ -163,7 +163,7 @@ namespace Diamond.Core.Wpf
 		/// <summary>
 		/// Setup the logging configuration during the host build process.
 		/// </summary>
-		/// <param name="hostContext">The instance of <see cref="HostBuilderContext"/> used in the build process.</param>
+		/// <param name="hostBuilder">The instance of <see cref="HostBuilderContext"/> used in the build process.</param>
 		/// <param name="loggingBuilder">The instance of <see cref="ILoggingBuilder"/> used in the build process.</param>
 		protected virtual void OnConfigureLogging(HostBuilderContext hostBuilder, ILoggingBuilder loggingBuilder)
 		{

@@ -12,7 +12,7 @@
         </member>
         <member name="T:Diamond.Core.Wpf.IWindow">
             <summary>
-            Used to place Window object in the container.
+            Used to place Window objects (views) in the container.
             </summary>
         </member>
         <member name="M:Diamond.Core.Wpf.IWindow.Show">
