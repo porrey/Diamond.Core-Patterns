@@ -29,7 +29,7 @@ namespace Diamond.Core.Example
 		/// </summary>
 		[Required]
 		[MaxLength(100)]
-		[Display(Order = 1, ShortName = "Description", Description = "A description of invoice.")]
+		[Display(Order = 1, Name = "description", ShortName = "d", Description = "A description of invoice.")]
 		[JsonPropertyName("description")]
 		public string Description { get; set; }
 
@@ -38,14 +38,14 @@ namespace Diamond.Core.Example
 		/// </summary>
 		[Required]
 		[Range(0, float.MaxValue)]
-		[Display(Order = 2, ShortName = "Total", Description = "The total dollar amount of the invoice.")]
+		[Display(Order = 2, Name = "total", ShortName = "t", Description = "The total dollar amount of the invoice.")]
 		[JsonPropertyName("total")]
 		public float Total { get; set; }
 
 		/// <summary>
 		/// Indicates if the invoice has been paid or not.
 		/// </summary>
-		[Display(Order = 3, ShortName = "Paid", Description = "Indicates if the invoice has been paid or not.")]
+		[Display(Order = 3, Name = "paid", ShortName = "p", Description = "Indicates if the invoice has been paid or not.")]
 		[JsonPropertyName("paid")]
 		public bool Paid { get; set; }
 

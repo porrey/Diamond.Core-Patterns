@@ -119,10 +119,13 @@ namespace Diamond.Core.CommandLine.Model
 					//
 					// Create the option descriptor.
 					//
+					Func<string, string> s2 = (string n) => { return n[..2] == "--" ? n : $"--{n}"; };
+					Func<string, string> s1 = (string n) => { return n[..1] == "-" ? n : $"-{n}"; };
+
 					OptionDescriptor optionDescriptor = new OptionDescriptor()
 					{
-						Name = (display?.Name) ?? property.Name,
-						Alias = (display?.ShortName) ?? property.Name[..1].ToLower(),
+						Name = s2((display?.Name) ?? property.Name).ToLower(),
+						Alias = s1((display?.ShortName) ?? property.Name[..1].ToLower()),
 						Description = (display?.Description) ?? property.Name,
 						Order = (display?.Order) ?? 0,
 						IsRequired = isRequired
@@ -138,11 +141,11 @@ namespace Diamond.Core.CommandLine.Model
 			//
 			// Add the options to this command is sorted order.
 			//
-			foreach (var item in items.OrderBy(t => t.Order))
+			foreach (OptionDescriptor item in items.OrderBy(t => t.Order))
 			{
-				this.Logger.LogDebug("Adding {type} option '--{optionName}' to the '{commandName}' command [Description ='{description}'].", item.IsRequired ? "required" : "optional", item.Name, this.Name, item.Description);
+				this.Logger.LogDebug("Adding {type} option '{optionName}' to the '{commandName}' command [Description ='{description}'].", item.IsRequired ? "required" : "optional", item.Name, this.Name, item.Description);
 
-				this.AddOption(new Option<string>(aliases: new string[] { $"--{item.Name.ToLower()}", $"-{item.Alias.ToLower()}" }, description: item.Description)
+				this.AddOption(new Option<string>(aliases: new string[] { $"{item.Name}", $"{item.Alias}" }, description: item.Description)
 				{
 					IsRequired = item.IsRequired
 				});

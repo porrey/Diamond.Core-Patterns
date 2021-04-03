@@ -31,7 +31,7 @@ namespace Diamond.Core.Example
 		[Required]
 		[MaxLength(30)]
 		[RegularExpression("INV[a-zA-Z0-9]*")]
-		[Display(Order = 0, ShortName = "Number", Description = "The unique invoice number.")]
+		[Display(Order = 0, Name = "number", ShortName = "n", Description = "The unique invoice number.")]
 		[JsonPropertyName("number")]
 		public string Number { get; set; }
 	}
