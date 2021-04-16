@@ -91,7 +91,7 @@ namespace Diamond.Core.Rules
 			//
 			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
-			if (!String.IsNullOrEmpty(group))
+			if (!string.IsNullOrEmpty(group))
 			{
 				items = items.Where(t => t.Group == group);
 			}
@@ -108,7 +108,7 @@ namespace Diamond.Core.Rules
 			}
 			else
 			{
-				if (!String.IsNullOrWhiteSpace(group))
+				if (!string.IsNullOrWhiteSpace(group))
 				{
 					throw new RulesNotFoundException<TItem>(group);
 				}
@@ -197,10 +197,10 @@ namespace Diamond.Core.Rules
 		/// <returns></returns>
 		public virtual async Task<string> EvaluateAsync<TItem>(string group, TItem item)
 		{
-			string returnValue = String.Empty;
+			string returnValue = string.Empty;
 
 			this.Logger.LogDebug("Retrieving rules to validate shipment.");
-			IEnumerable<IRule<TItem>> rules = await this.GetAllAsync<TItem>(group);
+			IEnumerable<IRule<TItem, IRuleResult>> rules = await this.GetAllAsync<TItem, IRuleResult>(group);
 
 			//
 			// Execute the specification to get the list of qualified widgets.

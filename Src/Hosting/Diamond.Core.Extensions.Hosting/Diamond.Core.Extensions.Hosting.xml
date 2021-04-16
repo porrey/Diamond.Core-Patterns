@@ -43,24 +43,24 @@
             <param name="cancellationToken">The token to trigger shutdown.</param>
             <returns>Returns the exit code set in the environment.</returns>
         </member>
-        <member name="T:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate">
+        <member name="T:Diamond.Core.Extensions.Hosting.HostedServiceTemplate">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime)">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime)">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate})">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Extensions.Hosting.HostedServiceTemplate})">
             <summary>
             
             </summary>
             <param name="logger"></param>
             <param name="hostApplicationLifetime"></param>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate},Microsoft.Extensions.DependencyInjection.IServiceScopeFactory)">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Extensions.Hosting.HostedServiceTemplate},Microsoft.Extensions.DependencyInjection.IServiceScopeFactory)">
             <summary>
             
             </summary>
@@ -68,75 +68,75 @@
             <param name="hostApplicationLifetime"></param>
             <param name="serviceScopeFactory"></param>
         </member>
-        <member name="P:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.HostApplicationLifetime">
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.HostApplicationLifetime">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.Logger">
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.Logger">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.ServiceScopeFactory">
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.ServiceScopeFactory">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.CancellationToken">
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.CancellationToken">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.StartAsync(System.Threading.CancellationToken)">
-            <summary>
-            
-            </summary>
-            <param name="cancellationToken"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.OnBeginStartAsync">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.OnCompletedStartAsync">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.StopAsync(System.Threading.CancellationToken)">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.StartAsync(System.Threading.CancellationToken)">
             <summary>
             
             </summary>
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.OnBeginStopAsync">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnBeginStartAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.OnCompletedStopAsync">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnCompletedStartAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.OnStopped">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnBeginStopAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnCompletedStopAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnStopped">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.OnStopping">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnStopping">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.Hosting.Models.HostedServiceTemplate.OnStarted">
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnStarted">
             <summary>
             
             </summary>
