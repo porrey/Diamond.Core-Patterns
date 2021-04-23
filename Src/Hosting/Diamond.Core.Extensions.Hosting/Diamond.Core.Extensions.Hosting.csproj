@@ -5,9 +5,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>5.0.10</Version>
-		<FileVersion>5.0.10</FileVersion>
-		<AssemblyVersion>5.0.10</AssemblyVersion>
+		<Version>5.0.11</Version>
+		<FileVersion>5.0.11</FileVersion>
+		<AssemblyVersion>5.0.11</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides the Diamond hosting extensions.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
