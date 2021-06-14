@@ -164,7 +164,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 									result.ResultDetails.Instance = HttpContext.Request.Path;
 								}
 
-								returnValue = this.BadRequest(this.OnCreateProblemDetail(result.ResultDetails));
+								returnValue = this.StatusCode(result.ResultDetails.Status.Value, this.OnCreateProblemDetail(result.ResultDetails));
 							}
 						}
 						else

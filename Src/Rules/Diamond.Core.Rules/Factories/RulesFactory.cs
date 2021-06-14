@@ -154,7 +154,7 @@ namespace Diamond.Core.Rules
 			//
 			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
-			if (!String.IsNullOrEmpty(group))
+			if (!string.IsNullOrEmpty(group))
 			{
 				items = items.Where(t => t.Group == group);
 			}
@@ -175,7 +175,7 @@ namespace Diamond.Core.Rules
 			{
 				this.Logger.LogDebug("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...", group);
 
-				if (!String.IsNullOrWhiteSpace(group))
+				if (!string.IsNullOrWhiteSpace(group))
 				{
 					throw new RulesNotFoundException<TItem>(group);
 				}
