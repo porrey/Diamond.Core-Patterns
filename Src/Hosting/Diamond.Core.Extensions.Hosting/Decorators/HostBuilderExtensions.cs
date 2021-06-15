@@ -26,6 +26,55 @@ namespace Diamond.Core.Extensions.Hosting
 	/// </summary>
 	public static class HostBuilderExtensions
 	{
+		private static (IStartup, IHostBuilder) InternalUseStartup<TStartup>(this IHostBuilder hostBuilder)
+			where TStartup : IStartup, new()
+		{
+			//
+			// Create the startup instance.
+			//
+			IStartup startup = new TStartup();
+
+			//
+			// Check if TStartup implements IStartupAppConfiguration.
+			//
+			if (startup is IStartupAppConfiguration startupAppConfiguration)
+			{
+				hostBuilder.ConfigureAppConfiguration((context, builder) =>
+				{
+					//
+					// Check if TStartup implements IStartupConfiguration.
+					//
+					if (startup is IStartupConfiguration startupConfiguration)
+					{
+						startupConfiguration.Configuration = context.Configuration;
+					}
+
+					//
+					// Call ConfigureAppConfiguration on TStartup
+					//
+					startupAppConfiguration.ConfigureAppConfiguration(builder);
+				});
+			}
+
+			//
+			// Check if TStartup implements IStartupConfigureLogging.
+			//
+			if (startup is IStartupConfigureLogging startupConfigureLogging)
+			{
+				hostBuilder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
+			}
+
+			//
+			// Check if TStartup implements IStartupConfigureServices.
+			//
+			if (startup is IStartupConfigureServices startupConfigureServices)
+			{
+				hostBuilder.ConfigureServices(services => startupConfigureServices.ConfigureServices(services));
+			}
+
+			return (startup, hostBuilder);
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -35,50 +84,8 @@ namespace Diamond.Core.Extensions.Hosting
 		public static IHostBuilder UseStartup<TStartup>(this IHostBuilder hostBuilder)
 			where TStartup : IStartup, new()
 		{
-			//
-			//
-			//
-			IStartup startup = new TStartup();
-
-			//
-			//
-			//
-			if (startup is IStartupAppConfiguration startupAppConfiguration)
-			{
-				hostBuilder.ConfigureAppConfiguration((context, builder) =>
-				{
-					//
-					//
-					//
-					startupAppConfiguration.ConfigureAppConfiguration(builder);
-
-					//
-					//
-					//
-					if (startup is IStartupConfiguration startupConfiguration)
-					{
-						startupConfiguration.Configuration = context.Configuration;
-					}
-				});
-			}
-
-			//
-			//
-			//
-			if (startup is IStartupConfigureLogging startupConfigureLogging)
-			{
-				hostBuilder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
-			}
-
-			//
-			//
-			//
-			if (startup is IStartupConfigureServices startupConfigureServices)
-			{
-				hostBuilder.ConfigureServices(services => startupConfigureServices.ConfigureServices(services));
-			}
-
-			return hostBuilder;
+			(IStartup startup, IHostBuilder newHostBuilder) = hostBuilder.InternalUseStartup<TStartup>();
+			return newHostBuilder;
 		}
 
 		/// <summary>
@@ -91,58 +98,17 @@ namespace Diamond.Core.Extensions.Hosting
 		public static IHostBuilder UseStartup<TStartup, TContainer>(this IHostBuilder hostBuilder)
 			where TStartup : IStartup, new()
 		{
-			//
-			//
-			//
-			IStartup startup = new TStartup();
+			(IStartup startup, IHostBuilder newHostBuilder) = hostBuilder.InternalUseStartup<TStartup>();
 
 			//
-			//
-			//
-			if (startup is IStartupAppConfiguration startupAppConfiguration)
-			{
-				hostBuilder.ConfigureAppConfiguration((context, builder) =>
-				{
-					//
-					//
-					//
-					if (startup is IStartupConfiguration startupConfiguration)
-					{
-						startupConfiguration.Configuration = context.Configuration;
-					}
-
-					//
-					//
-					//
-					startupAppConfiguration.ConfigureAppConfiguration(builder);
-				});
-			}
-
-			//
-			//
-			//
-			if (startup is IStartupConfigureLogging startupConfigureLogging)
-			{
-				hostBuilder.ConfigureLogging(builder => startupConfigureLogging.ConfigureLogging(builder));
-			}
-
-			//
-			//
-			//
-			if (startup is IStartupConfigureServices startupConfigureServices)
-			{
-				hostBuilder.ConfigureServices(services => startupConfigureServices.ConfigureServices(services));
-			}
-
-			//
-			//
+			// Check if startup implements IStartupConfigureContainer.
 			//
 			if (startup is IStartupConfigureContainer startupConfigureContainer)
 			{
-				hostBuilder.ConfigureContainer<TContainer>(container => startupConfigureContainer.ConfigureContainer<TContainer>(container));
+				newHostBuilder.ConfigureContainer<TContainer>(container => startupConfigureContainer.ConfigureContainer<TContainer>(container));
 			}
 
-			return hostBuilder;
+			return newHostBuilder;
 		}
 
 		/// <summary>
