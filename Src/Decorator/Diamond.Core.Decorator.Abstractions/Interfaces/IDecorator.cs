@@ -36,7 +36,6 @@ namespace Diamond.Core.Decorator
 	/// <typeparam name="TDecoratedItem">The instance type being decorated.</typeparam>
 	/// <typeparam name="TResult">The result of the decorator TakeActionAsync method.</typeparam>
 	public interface IDecorator<TDecoratedItem, TResult> : IDecorator
-		where TDecoratedItem : class
 	{
 		/// <summary>
 		/// 

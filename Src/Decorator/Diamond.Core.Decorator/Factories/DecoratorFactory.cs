@@ -68,7 +68,6 @@ namespace Diamond.Core.Decorator
 		/// <param name="name"></param>
 		/// <returns></returns>
 		public virtual Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name)
-			where TDecoratedItem : class
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
 
@@ -114,7 +113,6 @@ namespace Diamond.Core.Decorator
 		/// <param name="item"></param>
 		/// <returns></returns>
 		public virtual async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item)
-			where TDecoratedItem : class
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -12,7 +13,6 @@ namespace Diamond.Core.Decorator
 	/// <typeparam name="TDecoratedItem"></typeparam>
 	/// <typeparam name="TResult"></typeparam>
 	public abstract class DecoratorTemplate<TDecoratedItem, TResult> : DisposableObject, IDecorator<TDecoratedItem, TResult>
-		where TDecoratedItem : class
 	{
 		private TDecoratedItem _item = default;
 
@@ -51,13 +51,14 @@ namespace Diamond.Core.Decorator
 			}
 			set
 			{
-				if (_item == null)
+				
+				if (EqualityComparer<TDecoratedItem>.Default.Equals(_item, default(TDecoratedItem)))
 				{
 					_item = value;
 				}
 				else
 				{
-					if (value != null)
+					if (EqualityComparer<TDecoratedItem>.Default.Equals(value, default(TDecoratedItem)))
 					{
 						throw new DecoratedItemInstanceAlreadySetException();
 					}
@@ -76,7 +77,7 @@ namespace Diamond.Core.Decorator
 		/// <returns></returns>
 		public virtual Task<TResult> TakeActionAsync()
 		{
-			if (this.Item == null)
+			if (EqualityComparer<TDecoratedItem>.Default.Equals(this.Item, default(TDecoratedItem)))
 			{
 				throw new DecoratedItemInstanceNotSetException();
 			}
@@ -91,7 +92,7 @@ namespace Diamond.Core.Decorator
 		/// <returns></returns>
 		public virtual Task<TResult> TakeActionAsync(TDecoratedItem item)
 		{
-			if (this.Item == null)
+			if (EqualityComparer<TDecoratedItem>.Default.Equals(this.Item, default(TDecoratedItem)))
 			{
 				this.Item = item;
 			}
@@ -119,7 +120,7 @@ namespace Diamond.Core.Decorator
 		protected override void OnDisposeManagedObjects()
 		{
 			this.Logger.LogDebug("{instance}[{item}] disposed.", this.GetType().Name, this.Item?.ToString());
-			this.Item = null;
+			this.Item = default;
 			GC.SuppressFinalize(this);
 		}
 	}
