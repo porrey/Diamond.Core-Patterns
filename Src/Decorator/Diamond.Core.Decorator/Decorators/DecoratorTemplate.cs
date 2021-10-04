@@ -51,14 +51,16 @@ namespace Diamond.Core.Decorator
 			}
 			set
 			{
-				
-				if (EqualityComparer<TDecoratedItem>.Default.Equals(_item, default(TDecoratedItem)))
+				//
+				// Only allow the item to be set when the instance value is not set.
+				//
+				if (EqualityComparer<TDecoratedItem>.Default.Equals(_item, default))
 				{
 					_item = value;
 				}
 				else
 				{
-					if (EqualityComparer<TDecoratedItem>.Default.Equals(value, default(TDecoratedItem)))
+					if (!EqualityComparer<TDecoratedItem>.Default.Equals(value, default))
 					{
 						throw new DecoratedItemInstanceAlreadySetException();
 					}
@@ -77,7 +79,7 @@ namespace Diamond.Core.Decorator
 		/// <returns></returns>
 		public virtual Task<TResult> TakeActionAsync()
 		{
-			if (EqualityComparer<TDecoratedItem>.Default.Equals(this.Item, default(TDecoratedItem)))
+			if (EqualityComparer<TDecoratedItem>.Default.Equals(this.Item, default))
 			{
 				throw new DecoratedItemInstanceNotSetException();
 			}
@@ -92,7 +94,7 @@ namespace Diamond.Core.Decorator
 		/// <returns></returns>
 		public virtual Task<TResult> TakeActionAsync(TDecoratedItem item)
 		{
-			if (EqualityComparer<TDecoratedItem>.Default.Equals(this.Item, default(TDecoratedItem)))
+			if (EqualityComparer<TDecoratedItem>.Default.Equals(this.Item, default))
 			{
 				this.Item = item;
 			}
