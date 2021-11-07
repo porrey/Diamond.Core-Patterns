@@ -2,13 +2,13 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<Version>5.0.9</Version>
-		<FileVersion>5.0.9</FileVersion>
-		<AssemblyVersion>5.0.9</AssemblyVersion>
+		<Version>5.0.10</Version>
+		<FileVersion>5.0.10</FileVersion>
+		<AssemblyVersion>5.0.10</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<Product>Diamond Pattern Library - Rules Pattern</Product>
 		<Description>This library provides abstractions for the Rules pattern.</Description>
-		<Copyright>Copyright © Daniel Porrey 2017-2020</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2017-2021</Copyright>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>

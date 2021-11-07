@@ -16,6 +16,8 @@
 // 
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Rules
 {
@@ -41,6 +43,15 @@ namespace Diamond.Core.Rules
 		/// </summary>
 		public RuleTemplate()
 		{
+			this.Logger = new NullLogger<RuleTemplate<TItem, TResult>>();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public RuleTemplate(ILogger<RuleTemplate<TItem, TResult>> logger)
+		{
+			this.Logger = logger;
 		}
 
 		/// <summary>
@@ -49,8 +60,25 @@ namespace Diamond.Core.Rules
 		/// <param name="group"></param>
 		public RuleTemplate(string group)
 		{
+			this.Logger = new NullLogger<RuleTemplate<TItem, TResult>>();
 			this.Group = group;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logger"></param>
+		/// <param name="group"></param>
+		public RuleTemplate(ILogger<RuleTemplate<TItem, TResult>> logger, string group)
+		{
+			this.Logger = logger;
+			this.Group = group;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ILogger<RuleTemplate<TItem, TResult>> Logger { get; set; }
 
 		/// <summary>
 		/// 
