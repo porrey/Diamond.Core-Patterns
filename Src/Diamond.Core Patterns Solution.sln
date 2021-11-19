@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.352
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Decorator", "Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj", "{33C88E6C-2FBA-4999-A989-061804C71BEC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.UnitOfWork", "Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj", "{DFDBC1A2-4689-456A-83F1-60987CA888D6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Workflow", "Workflow\Diamond.Core.WorkFlow\Diamond.Core.Workflow.csproj", "{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Abstractions", "Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj", "{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Specification", "Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj", "{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}"
 EndProject
@@ -127,7 +125,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Wpf.Abstractio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.Wpf", "Examples\Diamond.Core.Example.Wpf\Diamond.Core.Example.Wpf.csproj", "{E2C5829E-DB63-42B6-B218-7202FEEB05BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.AspNetCore.Rfc7807", "AspNetCore\Diamond.Core.AspNetCore.Rfc7807\Diamond.Core.AspNetCore.Rfc7807.csproj", "{2BB9F81B-273B-49DB-BD5E-130B644EAE60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNetCore.Rfc7807", "AspNetCore\Diamond.Core.AspNetCore.Rfc7807\Diamond.Core.AspNetCore.Rfc7807.csproj", "{2BB9F81B-273B-49DB-BD5E-130B644EAE60}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Abstractions", "Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj", "{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,10 +147,6 @@ Global
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5800ABE8-CFB3-4B25-BA32-611A1BEBD40E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85F7F8B5-4576-44FE-9F04-765C4E39AF3C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41ED848D-3A1F-45E2-9F0F-53C5E9B3E098}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -331,6 +327,10 @@ Global
 		{2BB9F81B-273B-49DB-BD5E-130B644EAE60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BB9F81B-273B-49DB-BD5E-130B644EAE60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BB9F81B-273B-49DB-BD5E-130B644EAE60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

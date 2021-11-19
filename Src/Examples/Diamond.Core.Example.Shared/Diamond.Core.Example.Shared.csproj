@@ -1,54 +1,47 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<Version>5.0.9</Version>
-		<FileVersion>5.0.9</FileVersion>
-		<AssemblyVersion>5.0.9</AssemblyVersion>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Services\Diamond.Core.Example.Shared.Databases.json" />
-		<None Remove="Services\Diamond.Core.Example.Shared.Repository.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="Services\Diamond.Core.Example.Shared.Databases.json">
-		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-		<Content Include="Services\Diamond.Core.Example.Shared.Repository.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable.Newtonsoft\Diamond.Core.Clonable.Newtonsoft.csproj" />
-		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable\Diamond.Core.Clonable.csproj" />
-		<ProjectReference Include="..\..\Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj" />
-		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.InMemory\Diamond.Core.Extensions.DependencyInjection.InMemory.csproj" />
-		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.PostgreSQL\Diamond.Core.Extensions.DependencyInjection.PostgreSQL.csproj" />
-		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Sqlite\Diamond.Core.Extensions.DependencyInjection.Sqlite.csproj" />
-		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.SqlServer\Diamond.Core.Extensions.DependencyInjection.SqlServer.csproj" />
-		<ProjectReference Include="..\..\Repository\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
-		<ProjectReference Include="..\..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
-		<ProjectReference Include="..\..\Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj" />
-		<ProjectReference Include="..\..\Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj" />
-		<ProjectReference Include="..\..\Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj" />
-		<ProjectReference Include="..\..\Workflow\Diamond.Core.Workflow\Diamond.Core.Workflow.csproj" />
-	</ItemGroup>
-
-
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <Version>5.1.0</Version>
+    <FileVersion>5.1.0</FileVersion>
+    <AssemblyVersion>5.1.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Services\Diamond.Core.Example.Shared.Databases.json" />
+    <None Remove="Services\Diamond.Core.Example.Shared.Repository.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Services\Diamond.Core.Example.Shared.Databases.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Services\Diamond.Core.Example.Shared.Repository.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable.Newtonsoft\Diamond.Core.Clonable.Newtonsoft.csproj" />
+    <ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable\Diamond.Core.Clonable.csproj" />
+    <ProjectReference Include="..\..\Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.InMemory\Diamond.Core.Extensions.DependencyInjection.InMemory.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.PostgreSQL\Diamond.Core.Extensions.DependencyInjection.PostgreSQL.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.Sqlite\Diamond.Core.Extensions.DependencyInjection.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.SqlServer\Diamond.Core.Extensions.DependencyInjection.SqlServer.csproj" />
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
+    <ProjectReference Include="..\..\Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj" />
+    <ProjectReference Include="..\..\Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj" />
+    <ProjectReference Include="..\..\Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj" />
+    <ProjectReference Include="..\..\Workflow\Diamond.Core.Workflow\Diamond.Core.Workflow.csproj" />
+  </ItemGroup>
 </Project>

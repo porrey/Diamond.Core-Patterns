@@ -1,36 +1,30 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Broadcast.ico</ApplicationIcon>
+    <Version>5.1.0</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Assets\broadcast.png" />
     <None Remove="broadcast.png" />
     <None Remove="Services\Diamond.Core.Example.Wpf.json" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="Services\Diamond.Core.Example.Wpf.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="System.DisposableObject" Version="1.4.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\Wpf\Diamond.Core.Wpf\Diamond.Core.Wpf.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Assets\broadcast.png" />
     <Resource Include="broadcast.png" />
   </ItemGroup>
-
 </Project>

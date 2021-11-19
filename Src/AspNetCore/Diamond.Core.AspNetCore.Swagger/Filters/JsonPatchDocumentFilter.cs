@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2021, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2022, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -67,13 +67,16 @@ namespace Diamond.Core.AspNetCore.Swagger
 						{
 							foreach (KeyValuePair<string, OpenApiMediaType> item in bodyItems)
 							{
-								if (item.Value.Schema.Reference.ReferenceV2.Contains("JsonPatchDocument") ||
-									item.Value.Schema.Reference.ReferenceV3.Contains("JsonPatchDocument"))
+								if (item.Value.Schema.Reference != null)
 								{
-									item.Value.Schema = new OpenApiSchema
+									if (item.Value.Schema.Reference.ReferenceV2.Contains("JsonPatchDocument") ||
+										item.Value.Schema.Reference.ReferenceV3.Contains("JsonPatchDocument"))
 									{
-										Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "JsonPatchDocument" }
-									};
+										item.Value.Schema = new OpenApiSchema
+										{
+											Reference = new OpenApiReference { Type = ReferenceType.Schema, Id = "JsonPatchDocument" }
+										};
+									}
 								}
 							}
 						}

@@ -1,16 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
 		<Product>Diamond.Core Patterns Library</Product>
-		<Version>5.0.9</Version>
-		<FileVersion>5.0.9</FileVersion>
-		<AssemblyVersion>5.0.9</AssemblyVersion>
+		<Version>5.1.0</Version>
+		<FileVersion>5.1.0</FileVersion>
+		<AssemblyVersion>5.1.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
-		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -26,34 +25,19 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-	</PropertyGroup>
-
-	<PropertyGroup>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DocumentationFile>Diamond.Core.Abstractions.xml</DocumentationFile>
-		<OutputPath></OutputPath>
 	</PropertyGroup>
-
 	<ItemGroup>
-	  <Compile Remove="Command\**" />
-	  <EmbeddedResource Remove="Command\**" />
-	  <None Remove="Command\**" />
+	  <None Include="..\..\..\Images\Diamond.Core.128x128.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
-
 	<ItemGroup>
-	  <None Remove="Diamond.Core.Abstractions.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	</ItemGroup>
 </Project>

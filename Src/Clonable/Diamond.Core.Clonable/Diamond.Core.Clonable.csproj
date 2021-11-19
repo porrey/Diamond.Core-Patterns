@@ -1,58 +1,55 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageLicenseUrl></PackageLicenseUrl>
-		<Authors>Daniel M. Porrey</Authors>
-		<Company>Daniel M. Porrey</Company>
-		<Product>Diamond.Core Patterns Library</Product>
-		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
-		<Description>This library provides object cloning.</Description>
-		<Version>5.0.9</Version>
-		<FileVersion>5.0.9</FileVersion>
-		<AssemblyVersion>5.0.9</AssemblyVersion>
-		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
-		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageIconUrl></PackageIconUrl>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
-	  <DocumentationFile>Diamond.Core.Clonable.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <None Remove="Diamond.Core.Clonable.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\Diamond.Core.Clonable.Abstractions\Diamond.Core.Clonable.Abstractions.csproj" />
-	</ItemGroup>
-
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>
+    </PackageLicenseUrl>
+    <Authors>Daniel M. Porrey</Authors>
+    <Company>Daniel M. Porrey</Company>
+    <Product>Diamond.Core Patterns Library</Product>
+    <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
+    <Description>This library provides object cloning.</Description>
+    <Version>5.1.0</Version>
+    <FileVersion>5.1.0</FileVersion>
+    <AssemblyVersion>5.1.0</AssemblyVersion>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>Diamond.Core.128x128.png</PackageIcon>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
+    <DocumentationFile>Diamond.Core.Clonable.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Diamond.Core.Clonable.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\Diamond.Core.128x128.png">
+      <Pack>True</Pack>
+      <PackagePath>
+      </PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
+    <ProjectReference Include="..\Diamond.Core.Clonable.Abstractions\Diamond.Core.Clonable.Abstractions.csproj" />
+  </ItemGroup>
 </Project>

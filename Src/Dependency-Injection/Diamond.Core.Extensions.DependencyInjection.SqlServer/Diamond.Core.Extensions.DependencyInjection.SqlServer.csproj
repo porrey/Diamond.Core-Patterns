@@ -1,55 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<Product>Diamond.Core Patterns Library</Product>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>5.0.9</Version>
-		<Authors>Daniel M Porrey</Authors>
-		<Description>This library provides JSON file based dependency injection for SQL Server DbContext.</Description>
-		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
-		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<FileVersion>5.0.9</FileVersion>
-		<AssemblyVersion>5.0.9</AssemblyVersion>
-		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
-		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageIconUrl></PackageIconUrl>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-	</PropertyGroup>
-
-	<PropertyGroup>
-	  <DocumentationFile>Diamond.Core.Extensions.DependencyInjection.SqlServer.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <None Remove="Diamond.Core.Extensions.DependencyInjection.SqlServer.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
-	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-	</ItemGroup>
-
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <Product>Diamond.Core Patterns Library</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>5.1.0</Version>
+    <Authors>Daniel M Porrey</Authors>
+    <Description>This library provides JSON file based dependency injection for SQL Server DbContext.</Description>
+    <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <FileVersion>5.1.0</FileVersion>
+    <AssemblyVersion>5.1.0</AssemblyVersion>
+    <PackageIcon>Diamond.Core.128x128.png</PackageIcon>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DocumentationFile>Diamond.Core.Extensions.DependencyInjection.SqlServer.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Diamond.Core.Extensions.DependencyInjection.SqlServer.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Images\Diamond.Core.128x128.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>
+      </PackagePath>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Core.Extensions.DependencyInjection.Abstractions\Diamond.Core.Extensions.DependencyInjection.Abstractions.csproj" />
     <ProjectReference Include="..\Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore\Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.csproj" />
   </ItemGroup>
-
 </Project>

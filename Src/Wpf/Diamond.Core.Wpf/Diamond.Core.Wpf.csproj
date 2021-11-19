@@ -1,25 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	
 	<PropertyGroup>
 		<TargetFramework>net5.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>5.0.9</Version>
-		<AssemblyVersion>5.0.9</AssemblyVersion>
+		<Version>5.1.0</Version>
+		<AssemblyVersion>5.1.0</AssemblyVersion>
+		<FileVersion>5.1.0</FileVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-		<Copyright>Copyright © Daniel Porrey 2019-2021</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
 		<Authors>Daniel M. Porrey</Authors>
 		<Company>Daniel M. Porrey</Company>
 		<Description>This library provides hosting and dependency injection support for WPF applications.</Description>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>5.0.9</FileVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
-		<PackageIconUrl></PackageIconUrl>
+		<PackageIconUrl>
+		</PackageIconUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -28,33 +28,28 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
-	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DocumentationFile>Diamond.Core.Wpf.xml</DocumentationFile>
+		<DocumentationFile>Diamond.Core.Wpf.xml</DocumentationFile>
 	</PropertyGroup>
-	
 	<ItemGroup>
-	  <None Remove="Diamond.Core.Wpf.xml" />
+		<None Remove="Diamond.Core.Wpf.xml" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-
 	<ItemGroup>
 		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
 			<Pack>True</Pack>
-			<PackagePath></PackagePath>
+			<PackagePath>
+			</PackagePath>
 		</None>
 	</ItemGroup>
-
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
-	  <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
-	  <ProjectReference Include="..\Diamond.Core.Wpf.Abstractions\Diamond.Core.Wpf.Abstractions.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
+		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Core.Wpf.Abstractions\Diamond.Core.Wpf.Abstractions.csproj" />
 	</ItemGroup>
-
 </Project>
