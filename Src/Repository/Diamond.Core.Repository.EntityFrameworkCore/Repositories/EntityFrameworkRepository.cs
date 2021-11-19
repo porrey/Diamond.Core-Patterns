@@ -251,7 +251,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			{
 				entity = item;
 				result = true;
-				this.Logger.LogDebug("{method}: Record marked for addition.", nameof(UpdateAsync), result);
+				this.Logger.LogDebug("{method}: Record marked for addition.", nameof(UpdateAsync));
 			}
 
 			return (result, entity);
@@ -282,7 +282,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			else
 			{
 				result = 1;
-				this.Logger.LogDebug("{method}: Record marked for update.", nameof(UpdateAsync), result);
+				this.Logger.LogDebug("{method}: Record marked for update.", nameof(UpdateAsync));
 			}
 
 			returnValue = (result == 1);
@@ -314,7 +314,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 			else
 			{
 				result = 1;
-				this.Logger.LogDebug("{method}: Records marked for deletion.", nameof(UpdateAsync), result);
+				this.Logger.LogDebug("{method}: Records marked for deletion.", nameof(UpdateAsync));
 			}
 
 			returnValue = (result == 1);
