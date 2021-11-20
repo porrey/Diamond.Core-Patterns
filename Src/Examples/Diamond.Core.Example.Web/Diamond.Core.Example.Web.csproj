@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Version>5.1.0</Version>
-    <FileVersion>5.1.0</FileVersion>
-    <AssemblyVersion>5.1.0</AssemblyVersion>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>6.0.0</Version>
+    <FileVersion>6.0.0</FileVersion>
+    <AssemblyVersion>6.0.0</AssemblyVersion>
     <AssemblyName>WebExample</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
@@ -23,7 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
@@ -38,6 +38,7 @@
     <ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNetCore.DoAction\Diamond.Core.AspNetCore.DoAction.csproj" />
     <ProjectReference Include="..\..\AspNetCore\Diamond.Core.AspNetCore.Swagger\Diamond.Core.AspNetCore.Swagger.csproj" />
     <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
     <ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>

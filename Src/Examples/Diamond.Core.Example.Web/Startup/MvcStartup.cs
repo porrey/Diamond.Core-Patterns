@@ -58,7 +58,7 @@ namespace Diamond.Core.Example
 				// Do not require.
 				//
 				config.RequireHttpsPermanent = false;
-			}).SetCompatibilityVersion(CompatibilityVersion.Latest);
+			});
 
 			//
 			// Add controllers.
