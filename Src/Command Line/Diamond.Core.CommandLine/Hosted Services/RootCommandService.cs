@@ -17,6 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
+using System.CommandLine.Builder;
+using System.CommandLine.Parsing;
+using System.CommandLine.Hosting;
+using System.CommandLine.Rendering;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -80,12 +84,12 @@ namespace Diamond.Core.CommandLine
 			// a scope to get access to scoped services.
 			//
 			this.Scope = this.ServiceScopeFactory.CreateScope();
-			
+
 			//
 			// Get any commands configured.
 			//
 			IEnumerable<ICommand> commands = this.Scope.ServiceProvider.GetRequiredService<IEnumerable<ICommand>>();
-			this.Logger.LogDebug($"Found {commands.Count()} ICommand objects registered.");
+			this.Logger.LogDebug("Found {count} ICommand objects registered.", commands.Count());
 
 			//
 			// There should be at least one command.
@@ -99,7 +103,7 @@ namespace Diamond.Core.CommandLine
 				{
 					if (cmd is Command c)
 					{
-						this.Logger.LogDebug($"Adding '{c.Name}' command to Root Command.");
+						this.Logger.LogDebug("Adding '{name}' command to Root Command.", c.Name);
 						((RootCommand)this.RootCommand).AddCommand(c);
 					}
 				}
@@ -135,27 +139,33 @@ namespace Diamond.Core.CommandLine
 			// Start this as a new Task so the remainder of the application
 			// can continue to execute,
 			//
-			Task.Factory.StartNew(async () =>
-			{
-				try
-				{
-					this.Logger.LogDebug("OnStarted has been called on Root Command Service.");
-					this.Logger.LogDebug("Executing InvokeAsync on Root Command.");
-					int result = await ((RootCommand)this.RootCommand).InvokeAsync(this.RootCommand.Args);
-					this.Logger.LogDebug("Root Command returned integer value of {result}.", result);
-					this.Logger.LogDebug("Setting Environment.ExitCode to {result}.", result);
-					Environment.ExitCode = result;
-				}
-				catch (Exception ex)
-				{
-					this.Logger.LogError(ex, "Caught exception in RootCommandService.OnStarted().");
-				}
-				finally
-				{
-					this.Logger.LogDebug($"Calling StopApplication() on IHostApplicationLifetime.");
-					this.HostApplicationLifetime.StopApplication();
-				}
-			});
+			_ = Task.Factory.StartNew(async () =>
+			  {
+				  try
+				  {
+					  this.Logger.LogDebug("OnStarted has been called on Root Command Service.");
+					  this.Logger.LogDebug("Executing InvokeAsync on Root Command.");
+
+					  int result = await new CommandLineBuilder((RootCommand)this.RootCommand)
+												   .UseDefaults()
+												   .UseAnsiTerminalWhenAvailable()
+												   .Build()
+												   .InvokeAsync(this.RootCommand.Args);
+
+					  this.Logger.LogDebug("Root Command returned integer value of {result}.", result);
+					  this.Logger.LogDebug("Setting Environment.ExitCode to {result}.", result);
+					  Environment.ExitCode = result;
+				  }
+				  catch (Exception ex)
+				  {
+					  this.Logger.LogError(ex, "Caught exception in RootCommandService.OnStarted().");
+				  }
+				  finally
+				  {
+					  this.Logger.LogDebug("Calling StopApplication() on IHostApplicationLifetime.");
+					  this.HostApplicationLifetime.StopApplication();
+				  }
+			  });
 		}
 
 		private void OnStopping()

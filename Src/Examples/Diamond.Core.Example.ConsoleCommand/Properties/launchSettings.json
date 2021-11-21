@@ -2,7 +2,7 @@
   "profiles": {
     "Diamond.Core.Example.Command.Console": {
       "commandName": "Project",
-      "commandLineArgs": "create -h",
+      "commandLineArgs": "list",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

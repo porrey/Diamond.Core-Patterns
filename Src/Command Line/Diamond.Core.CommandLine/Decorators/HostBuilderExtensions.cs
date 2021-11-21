@@ -38,7 +38,7 @@ namespace Diamond.Core.CommandLine
 			// Create the root command/service for this application. Only
 			// one instance is needed.
 			//
-			InternalRootCommand rootCommand = new InternalRootCommand(name, args);
+			InternalRootCommand rootCommand = new(name, args);
 
 			//
 			// Add the root command to the services.
