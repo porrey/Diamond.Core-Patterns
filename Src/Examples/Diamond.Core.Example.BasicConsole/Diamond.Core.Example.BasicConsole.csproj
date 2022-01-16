@@ -2,9 +2,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>6.0.0</Version>
-    <FileVersion>6.0.0</FileVersion>
-    <AssemblyVersion>6.0.0</AssemblyVersion>
+    <Version>6.0.2</Version>
+    <FileVersion>6.0.2</FileVersion>
+    <AssemblyVersion>6.0.2</AssemblyVersion>
     <AssemblyName>ConsoleExample</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
@@ -22,8 +22,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />

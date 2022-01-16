@@ -206,12 +206,12 @@ namespace Diamond.Core.Rules
 			// Execute the specification to get the list of qualified widgets.
 			//
 			this.Logger.LogDebug("Executing rules on shipment.");
-			IEnumerable<IRuleResult> results = rules.Select(t => t.ValidateAsync(item).Result);
+			IEnumerable<IRuleResult> results = rules.Select(t => t.ValidateAsync(item).Result).ToArray();
 
 			//
 			// Compile a list of messages.
 			//
-			IEnumerable<IRuleResult> messages = results.Where(t => !t.Passed);
+			IEnumerable<IRuleResult> messages = results.Where(t => !t.Passed).ToArray();
 
 			//
 			// Join the errors into a single string.
