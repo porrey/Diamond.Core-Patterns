@@ -129,6 +129,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNetCore.Rfc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Abstractions", "Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj", "{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AspNetCore.DataTables", "AspNetCore\Diamond.Core.AspNetCore.DataTables\Diamond.Core.AspNetCore.DataTables.csproj", "{13708766-ADC6-444A-ACC1-27E37B72B37C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -331,6 +333,10 @@ Global
 		{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBBD44DD-7932-45E2-B36D-5A0EF72AC377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13708766-ADC6-444A-ACC1-27E37B72B37C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13708766-ADC6-444A-ACC1-27E37B72B37C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13708766-ADC6-444A-ACC1-27E37B72B37C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13708766-ADC6-444A-ACC1-27E37B72B37C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -384,6 +390,7 @@ Global
 		{2599FDE6-589D-4BDD-B243-BF5735810EDF} = {9E1565B0-919B-4D20-B908-C679F13D747A}
 		{E2C5829E-DB63-42B6-B218-7202FEEB05BE} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{2BB9F81B-273B-49DB-BD5E-130B644EAE60} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
+		{13708766-ADC6-444A-ACC1-27E37B72B37C} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}
