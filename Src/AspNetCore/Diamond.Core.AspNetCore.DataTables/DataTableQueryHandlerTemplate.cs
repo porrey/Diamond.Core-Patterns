@@ -50,7 +50,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 			//
 			IEnumerable<TEntity> items = repository.GetQueryable()
 												   .ApplyOrdering(request)
-												   .Where(preFilterExpression.And(filterExpression).And(searchExpression))
+												   .Where((preFilterExpression).And(filterExpression).And(searchExpression))
 												   .FinalizeQuery(request);
 
 			//
