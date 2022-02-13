@@ -151,7 +151,11 @@ namespace Diamond.Core.AspNetCore.DataTables
 					if (handler != null)
 					{
 						Expression<Func<TEntity, bool>> filterExpression = handler.ApplySearchFilterAsync(SearchType.GlobalSearch, request.Search.Value).Result;
-						returnValue = returnValue.Or(filterExpression);
+
+						if (filterExpression != null)
+						{
+							returnValue = returnValue.Or(filterExpression);
+						}
 					}
 				}
 			}
@@ -194,7 +198,11 @@ namespace Diamond.Core.AspNetCore.DataTables
 						if (handler != null)
 						{
 							Expression<Func<TEntity, bool>> filterExpression = handler.ApplySearchFilterAsync(SearchType.Column, item.Search.Value).Result;
-							returnValue = returnValue.And(filterExpression);
+
+							if (filterExpression != null)
+							{
+								returnValue = returnValue.And(filterExpression);
+							}
 						}
 					}
 				}

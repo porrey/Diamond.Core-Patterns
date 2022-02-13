@@ -40,31 +40,41 @@ namespace Diamond.Core.AspNetCore.DataTables
 		protected virtual ISearchHandlerFactory<TEntity> SearchHandlerFactory { get; set; }
 		protected virtual IMapper Mapper { get; set; }
 
-		public virtual async Task<IControllerActionResult<DataTableResult<TViewModel>>> ExecuteQueryAsync(TRequest request, Expression<Func<TEntity, bool>> preFilterExpression)
+		public virtual async Task<IControllerActionResult<DataTableResult<TViewModel>>> ExecuteQueryAsync(TRequest request, Expression<Func<TEntity, bool>> initialExpression)
 		{
 			ControllerActionResult<DataTableResult<TViewModel>> returnValue = new();
 
-			this.OnRequestStarted(request);
+			request = this.OnRequestStarted(request);
 
 			//
 			// Get the repository.
 			//
-			IQueryableRepository<TEntity> repository = await this.RepositoryFactory.GetQueryableAsync<TEntity>();
+			this.Logger.LogDebug("Retrieving repository for '{type}'.", typeof(TEntity).Name);
+			IQueryableRepository <TEntity> repository = await this.RepositoryFactory.GetQueryableAsync<TEntity>();
 
 			//
 			// Get the filter expression.
 			//
+			this.Logger.LogDebug("Retrieving column filter expression.");
 			Expression<Func<TEntity, bool>> filterExpression = this.OnGetFilterExpression(request);
 
 			//
 			// Get the search expression.
 			//
+			this.Logger.LogDebug("Retrieving global search expression.");
 			Expression<Func<TEntity, bool>> searchExpression = this.OnGetSearchExpression(request);
+
+			//
+			// Get the final expression.
+			//
+			this.Logger.LogDebug("Retrieving global search expression.");
+			Expression<Func<TEntity, bool>> finalExpression = this.OnBuildExpression(initialExpression, filterExpression, searchExpression);
 
 			//
 			// Execute a query
 			//
-			IEnumerable<TEntity> items = this.OnExecuteQuery(request, preFilterExpression, filterExpression, searchExpression, repository);
+			this.Logger.LogDebug("Executing query.");
+			IEnumerable<TEntity> items = this.OnExecuteQuery(request, finalExpression, repository);
 
 			//
 			// Set the grid properties.
@@ -75,10 +85,15 @@ namespace Diamond.Core.AspNetCore.DataTables
 				Data = this.Mapper.Map<IEnumerable<TEntity>, IEnumerable<TViewModel>>(items).ToArray(),
 				Draw = request != null ? request.Draw : 1,
 				RecordsFiltered = items.Count(),
-				RecordsTotal = repository.GetQueryable().Where(preFilterExpression.And(filterExpression)).Count()
+				RecordsTotal = repository.GetQueryable().Where(initialExpression.And(filterExpression).And(searchExpression)).Count()
 			};
 
 			return this.OnRequestCompleted(request, returnValue);
+		}
+
+		protected virtual TRequest OnRequestStarted(TRequest request)
+		{
+			return request;
 		}
 
 		protected virtual Expression<Func<TEntity, bool>> OnGetFilterExpression(TRequest request)
@@ -91,18 +106,17 @@ namespace Diamond.Core.AspNetCore.DataTables
 			return request.ApplySearch<TEntity, TViewModel>(this.SearchHandlerFactory);
 		}
 
-		protected virtual IEnumerable<TEntity> OnExecuteQuery(TRequest request, Expression<Func<TEntity, bool>> preFilterExpression, Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, bool>> searchExpression, IQueryableRepository<TEntity> repository)
+		protected virtual Expression<Func<TEntity, bool>> OnBuildExpression(Expression<Func<TEntity, bool>> initialExpression, Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, bool>> searchExpression)
+		{
+			return initialExpression.And(filterExpression).And(searchExpression);
+		}
+
+		protected virtual IEnumerable<TEntity> OnExecuteQuery(TRequest request, Expression<Func<TEntity, bool>> expression , IQueryableRepository<TEntity> repository)
 		{
 			return repository.GetQueryable()
 							 .ApplyOrdering(request)
-							 .Where(preFilterExpression).AsQueryable()
-							 .Where(filterExpression).AsQueryable()
-							 .Where(searchExpression)
+							 .Where(expression)
 							 .FinalizeQuery(request);
-		}
-
-		protected virtual void OnRequestStarted(TRequest request)
-		{
 		}
 
 		protected virtual ControllerActionResult<DataTableResult<TViewModel>> OnRequestCompleted(TRequest request, ControllerActionResult<DataTableResult<TViewModel>> result)

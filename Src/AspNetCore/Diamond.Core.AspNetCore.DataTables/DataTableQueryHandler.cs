@@ -15,11 +15,10 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using AutoMapper;
-using Diamond.Core.AspNetCore.DataTables;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
-namespace Lsc.Logistics.BookPortal
+namespace Diamond.Core.AspNetCore.DataTables
 {
 	/// <summary>
 	/// This class can be used directly by an application that is using the base
