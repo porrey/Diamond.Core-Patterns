@@ -34,22 +34,12 @@ namespace Diamond.Core.AspNetCore.DataTables
 		[Consumes("application/x-www-form-urlencoded")]
 		public virtual Task<ActionResult<DataTableResult<TViewModel>>> DataTableAsync([FromForm] IFormCollection request)
 		{
-			return this.OnDataTableAsync(request);
-		}
-
-		protected virtual Task<ActionResult<DataTableResult<TViewModel>>> OnDataTableAsync([FromForm] IFormCollection request)
-		{
 			return this.Do<IFormCollection, DataTableResult<TViewModel>>(request);
 		}
 
 		[HttpPost("data")]
 		[Consumes("application/json")]
 		public virtual Task<ActionResult<DataTableResult<TViewModel>>> DataTableAsync([FromBody] TRequest request)
-		{
-			return this.OnDataTableAsync(request);
-		}
-
-		protected virtual Task<ActionResult<DataTableResult<TViewModel>>> OnDataTableAsync([FromBody] TRequest request)
 		{
 			return this.Do<TRequest, DataTableResult<TViewModel>>(request);
 		}
