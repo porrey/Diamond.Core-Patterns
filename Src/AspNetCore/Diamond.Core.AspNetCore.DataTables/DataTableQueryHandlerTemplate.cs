@@ -1,4 +1,20 @@
-﻿using System.Linq.Expressions;
+﻿//
+// Copyright(C) 2019-2022, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+//
+using System.Linq.Expressions;
 using AutoMapper;
 using Diamond.Core.AspNetCore.DoAction;
 using Diamond.Core.Repository;
@@ -19,12 +35,12 @@ namespace Diamond.Core.AspNetCore.DataTables
 			this.Mapper = mapper;
 		}
 
-		protected ILogger<DataTableQueryHandlerTemplate<TEntity, TViewModel, TRequest>> Logger { get; set; }
-		protected IRepositoryFactory RepositoryFactory { get; set; }
-		protected ISearchHandlerFactory<TEntity> SearchHandlerFactory { get; set; }
-		protected IMapper Mapper { get; set; }
+		protected virtual ILogger<DataTableQueryHandlerTemplate<TEntity, TViewModel, TRequest>> Logger { get; set; }
+		protected virtual IRepositoryFactory RepositoryFactory { get; set; }
+		protected virtual ISearchHandlerFactory<TEntity> SearchHandlerFactory { get; set; }
+		protected virtual IMapper Mapper { get; set; }
 
-		public async Task<IControllerActionResult<DataTableResult<TViewModel>>> ExecuteQueryAsync(TRequest request, Expression<Func<TEntity, bool>> preFilterExpression)
+		public virtual async Task<IControllerActionResult<DataTableResult<TViewModel>>> ExecuteQueryAsync(TRequest request, Expression<Func<TEntity, bool>> preFilterExpression)
 		{
 			ControllerActionResult<DataTableResult<TViewModel>> returnValue = new();
 
@@ -38,20 +54,17 @@ namespace Diamond.Core.AspNetCore.DataTables
 			//
 			// Get the filter expression.
 			//
-			Expression<Func<TEntity, bool>> filterExpression = request.ApplyFilter<TEntity, TViewModel>(this.SearchHandlerFactory);
+			Expression<Func<TEntity, bool>> filterExpression = this.OnGetFilterExpression(request);
 
 			//
 			// Get the search expression.
 			//
-			Expression<Func<TEntity, bool>> searchExpression = request.ApplySearch<TEntity, TViewModel>(this.SearchHandlerFactory);
+			Expression<Func<TEntity, bool>> searchExpression = this.OnGetSearchExpression(request);
 
 			//
-			// Initialize a query
+			// Execute a query
 			//
-			IEnumerable<TEntity> items = repository.GetQueryable()
-												   .ApplyOrdering(request)
-												   .Where((preFilterExpression).And(filterExpression).And(searchExpression))
-												   .FinalizeQuery(request);
+			IEnumerable<TEntity> items = this.OnExecuteQuery(request, preFilterExpression, filterExpression, searchExpression, repository);
 
 			//
 			// Set the grid properties.
@@ -68,11 +81,31 @@ namespace Diamond.Core.AspNetCore.DataTables
 			return this.OnRequestCompleted(request, returnValue);
 		}
 
-		public virtual void OnRequestStarted(TRequest request)
+		protected virtual Expression<Func<TEntity, bool>> OnGetFilterExpression(TRequest request)
+		{
+			return request.ApplyFilter<TEntity, TViewModel>(this.SearchHandlerFactory);
+		}
+
+		protected virtual Expression<Func<TEntity, bool>> OnGetSearchExpression(TRequest request)
+		{
+			return request.ApplySearch<TEntity, TViewModel>(this.SearchHandlerFactory);
+		}
+
+		protected virtual IEnumerable<TEntity> OnExecuteQuery(TRequest request, Expression<Func<TEntity, bool>> preFilterExpression, Expression<Func<TEntity, bool>> filterExpression, Expression<Func<TEntity, bool>> searchExpression, IQueryableRepository<TEntity> repository)
+		{
+			return repository.GetQueryable()
+							 .ApplyOrdering(request)
+							 .Where(preFilterExpression).AsQueryable()
+							 .Where(filterExpression).AsQueryable()
+							 .Where(searchExpression)
+							 .FinalizeQuery(request);
+		}
+
+		protected virtual void OnRequestStarted(TRequest request)
 		{
 		}
 
-		public virtual ControllerActionResult<DataTableResult<TViewModel>> OnRequestCompleted(TRequest request, ControllerActionResult<DataTableResult<TViewModel>> result)
+		protected virtual ControllerActionResult<DataTableResult<TViewModel>> OnRequestCompleted(TRequest request, ControllerActionResult<DataTableResult<TViewModel>> result)
 		{
 			return result;
 		}
