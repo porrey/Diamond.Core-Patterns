@@ -30,18 +30,20 @@ namespace Diamond.Core.AspNetCore.DataTables
 		{
 		}
 
+		protected string KeyPrefix { get; set; } = null;
+
 		[HttpPost("form")]
 		[Consumes("application/x-www-form-urlencoded")]
 		public virtual Task<ActionResult<DataTableResult<TViewModel>>> DataTableAsync([FromForm] IFormCollection request)
 		{
-			return this.Do<IFormCollection, DataTableResult<TViewModel>>(request);
+			return this.Do<IFormCollection, DataTableResult<TViewModel>>(request, $"{this.KeyPrefix}{nameof(DataTableAsync)}");
 		}
 
 		[HttpPost("data")]
 		[Consumes("application/json")]
 		public virtual Task<ActionResult<DataTableResult<TViewModel>>> DataTableAsync([FromBody] TRequest request)
 		{
-			return this.Do<TRequest, DataTableResult<TViewModel>>(request);
+			return this.Do<TRequest, DataTableResult<TViewModel>>(request, $"{this.KeyPrefix}{nameof(DataTableAsync)}");
 		}
 	}
 }

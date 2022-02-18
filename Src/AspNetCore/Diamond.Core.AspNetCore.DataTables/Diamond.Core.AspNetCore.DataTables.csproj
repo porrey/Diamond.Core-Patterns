@@ -7,7 +7,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>6.0.1-alpha4</Version>
+		<Version>6.0.1</Version>
 		<AssemblyVersion>6.0.1</AssemblyVersion>
 		<FileVersion>6.0.1</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
