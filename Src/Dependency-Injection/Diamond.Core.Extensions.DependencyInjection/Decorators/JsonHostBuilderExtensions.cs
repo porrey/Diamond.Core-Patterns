@@ -74,7 +74,15 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				IList<ServiceDescriptorConfiguration> items = new List<ServiceDescriptorConfiguration>();
 				configuration.Bind("services", items);
-				logger.LogDebug("There were {count} services found in JSON configuration file(s).", items.Count());
+
+				if (items.Count() == 1)
+				{
+					logger.LogDebug("There was {count} service found in JSON configuration file(s).", items.Count());
+				}
+				else
+				{
+					logger.LogDebug("There were {count} services found in JSON configuration file(s).", items.Count());
+				}
 
 				//
 				// Create a service descriptor for each defined service and add it to the services.
@@ -128,7 +136,16 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				IList<Alias> aliases = new List<Alias>();
 				configuration.Bind("aliases", aliases);
-				logger.LogDebug("There were {count} aliases found in JSON configuration file(s).", aliases.Count());
+
+				if (aliases.Count() == 1)
+				{
+					logger.LogDebug("There was {count} alias found in JSON configuration file(s).", aliases.Count());
+				}
+				else
+				{
+					logger.LogDebug("There were {count} aliases found in JSON configuration file(s).", aliases.Count());
+				}
+
 				aliases.Set();
 			});
 		}
