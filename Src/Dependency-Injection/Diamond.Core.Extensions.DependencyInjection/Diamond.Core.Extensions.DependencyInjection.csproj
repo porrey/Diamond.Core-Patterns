@@ -4,7 +4,7 @@
     <Product>Diamond.Core Patterns Library</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>6.0.4</Version>
+    <Version>6.0.5</Version>
     <Authors>Daniel M Porrey</Authors>
     <Description>This library provides the Diamond dependency injection extensions.</Description>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
@@ -12,8 +12,8 @@
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <FileVersion>6.0.4</FileVersion>
-    <AssemblyVersion>6.0.4</AssemblyVersion>
+    <FileVersion>6.0.5</FileVersion>
+    <AssemblyVersion>6.0.5</AssemblyVersion>
     <PackageIcon>Diamond.Core.128x128.png</PackageIcon>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageIconUrl>
@@ -40,7 +40,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
