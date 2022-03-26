@@ -14,42 +14,43 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-namespace Diamond.Core.Extensions.DependencyInjection
+using Diamond.Core.CommandLine.Model;
+using Microsoft.Extensions.Logging;
+
+namespace Diamond.Core.Example
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class DatabaseDescriptorConfiguration : ServiceDescriptorConfiguration
+	public class DbCommand : ModelCommand<CommandOptions>
 	{
 		/// <summary>
-		/// Get/sets the DbContext object.
+		/// 
 		/// </summary>
-		public string Context
+		/// <param name="logger"></param>
+		public DbCommand(ILogger<DbCommand> logger, ErpContext context)
+			: base(logger, "db", "Executes actions on the database.")
 		{
-			get
-			{
-				return this.ImplementationType;
-			}
-			set
-			{
-				this.ImplementationType = value;
-				this.ServiceType = value;
-			}
+			this.Context = context;
 		}
 
-		/// <summary>
-		/// Gets/sets the connection string for the database.
-		/// </summary>
-		public string ConnectionString { get; set; }
+		protected ErpContext Context { get; set; }
 
-		/// <summary>
-		/// Gets/sets the timeout in seconds for a command.
-		/// </summary>
-		public int? CommandTimeout { get; set; }
+		protected override Task<int> OnHandleCommand(CommandOptions options)
+		{
+			int returnValue = 0;
 
-		/// <summary>
-		/// Gets/sets the factory used to configured the DbContext.
-		/// </summary>
-		public string Factory { get; set; }
+			switch (options.Action)
+			{
+				case Action.Create:
+					this.Context.Database.EnsureCreated();
+					break;
+				case Action.Drop:
+					this.Context.Database.EnsureDeleted();
+					break;
+			}
+
+			return Task.FromResult(returnValue);
+		}
 	}
 }

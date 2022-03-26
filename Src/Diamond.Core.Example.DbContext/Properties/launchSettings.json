@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Diamond.Core.Example.DbContext": {
+      "commandName": "Project",
+      "commandLineArgs": "db --action create"
+    }
+  }
+}

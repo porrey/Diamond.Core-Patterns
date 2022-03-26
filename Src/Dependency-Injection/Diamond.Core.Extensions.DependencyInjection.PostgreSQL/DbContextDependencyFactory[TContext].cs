@@ -43,7 +43,22 @@ namespace Diamond.Core.Extensions.DependencyInjection.PostgreSQL
 		/// <param name="parameters"></param>
 		protected override void OnDbContextOptionsBuilder(DbContextOptionsBuilder<TContext> builder, object[] parameters)
 		{
-			builder.UseNpgsql((string)parameters[0]);
+			//
+			// Parameters:
+			// 1. Connection String
+			// 2. Timeout in seconds
+			//
+			if (parameters.Length == 1)
+			{
+				builder.UseNpgsql((string)parameters[0]);
+			}
+			else
+			{
+				builder.UseNpgsql((string)parameters[0], options =>
+				{
+					options.CommandTimeout((int)parameters[1]);
+				});
+			}
 		}
 	}
 }

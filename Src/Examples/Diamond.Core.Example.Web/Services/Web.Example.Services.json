@@ -1,14 +1,5 @@
 {
 	//
-	// Aliases are global and can be used anywhere.
-	//
-	"aliases": [
-		{
-			"Key": "IDoAction",
-			"TypeDefinition": "Diamond.Core.AspNetCore.DoAction.IDoAction, Diamond.Core.AspNetCore.DoAction.Abstractions"
-		}
-	],
-	//
 	// If Lifetime is not specified, the default is Scoped.
 	//
 	"services": [

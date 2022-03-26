@@ -1,0 +1,38 @@
+{
+	//
+	// Aliases are global and can be used anywhere.
+	//
+	"aliases": [
+		{
+			"Key": "ErpContext",
+			"TypeDefinition": "Diamond.Core.Example.ErpContext, Diamond.Core.Example.DbContext"
+		}
+	],
+	//
+	// Change the active database by setting the DatabaseOptions:ActiveDatabase property in appsettings.json.
+	//
+	"databases": [
+		{
+			"Context": "<ErpContext>",
+			"ConnectionString": "ConnectionStrings:SqlServer",
+			"CommandTimeout": 360,
+			"Lifetime": "Transient",
+			"Factory": "Diamond.Core.Extensions.DependencyInjection.SqlServer.DbContextDependencyFactory`1[[<ErpContext>]], Diamond.Core.Extensions.DependencyInjection.SqlServer",
+			//
+			// Note: Properties are applied to the DbContextDependencyFactory and not the DbContext.
+			//
+			"Properties": {
+				"EnableSensitiveDataLogging": true,
+				"EnableDetailedErrors": true,
+				"UseLoggerFactory": true
+			}
+		}
+	],
+	"services": [
+		{
+			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ImplementationType": "Diamond.Core.Example.DbCommand, Diamond.Core.Example.DbContext",
+			"Lifetime": "Transient"
+		}
+	]
+}

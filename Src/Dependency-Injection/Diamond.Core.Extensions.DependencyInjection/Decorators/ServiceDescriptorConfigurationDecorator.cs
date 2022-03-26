@@ -275,7 +275,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				Type serviceType = null;
 				Type implementationType = null;
-				IEnumerable<DependencyInfo> dependenctProperties = new DependencyInfo[0];
+				IEnumerable<DependencyInfo> dependenctProperties = Array.Empty<DependencyInfo>();
 
 				try
 				{
@@ -314,15 +314,30 @@ namespace Diamond.Core.Extensions.DependencyInjection
 					string connectionString = configuration[item.ConnectionString];
 
 					//
+					// Get the command timeout
+					//
+					int? commandTimeout = item.CommandTimeout;
+
+					//
 					// Get the dependency factory and assign the properties.
 					//
 					IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
 					DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
-					
+
 					//
 					// Create the context and set the dependencies.
 					//
-					object instance = dependencyFactory.GetInstance(sp, connectionString);
+					object instance = null;
+
+					if (commandTimeout.HasValue)
+					{
+						instance = dependencyFactory.GetInstance(sp, connectionString, commandTimeout.Value);
+					}
+					else
+					{
+						instance = dependencyFactory.GetInstance(sp, connectionString);
+					}
+
 					DependencyAttribute.SetDependencyProperties(sp, dependenctProperties, instance);
 
 					//

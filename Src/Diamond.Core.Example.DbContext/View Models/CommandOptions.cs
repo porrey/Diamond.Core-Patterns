@@ -14,42 +14,37 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-namespace Diamond.Core.Extensions.DependencyInjection
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace Diamond.Core.Example
 {
 	/// <summary>
-	/// 
+	/// Database actions.
 	/// </summary>
-	public class DatabaseDescriptorConfiguration : ServiceDescriptorConfiguration
+	public enum Action
 	{
 		/// <summary>
-		/// Get/sets the DbContext object.
+		/// Create the database.
 		/// </summary>
-		public string Context
-		{
-			get
-			{
-				return this.ImplementationType;
-			}
-			set
-			{
-				this.ImplementationType = value;
-				this.ServiceType = value;
-			}
-		}
-
+		Create,
 		/// <summary>
-		/// Gets/sets the connection string for the database.
+		/// Drop the database.
 		/// </summary>
-		public string ConnectionString { get; set; }
+		Drop
+	}
 
+	/// <summary>
+	/// Contains the details of an invoice.
+	/// </summary>
+	public class CommandOptions
+	{
 		/// <summary>
-		/// Gets/sets the timeout in seconds for a command.
+		/// A description of invoice.
 		/// </summary>
-		public int? CommandTimeout { get; set; }
-
-		/// <summary>
-		/// Gets/sets the factory used to configured the DbContext.
-		/// </summary>
-		public string Factory { get; set; }
+		[Required]
+		[Display(Order = 1, Name = "action", ShortName = "a", Description = "Specifies the action on the database.")]
+		[JsonPropertyName("action")]
+		public Action Action { get; set; }
 	}
 }
