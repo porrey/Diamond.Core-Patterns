@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Specification
@@ -6,7 +7,7 @@ namespace Diamond.Core.Specification
 	/// <summary>
 	/// Provides the template for an <see cref="ISpecification"/> object.
 	/// </summary>
-	public abstract class SpecificationTemplate : ISpecification
+	public abstract class SpecificationTemplate : DisposableObject, ISpecification
 	{
 		/// <summary>
 		/// Creates an instance of <see cref="SpecificationTemplate"/> with the specified logger.

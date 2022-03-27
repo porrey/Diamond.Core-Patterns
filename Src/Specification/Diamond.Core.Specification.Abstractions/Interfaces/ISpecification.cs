@@ -14,12 +14,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
+using System;
+
 namespace Diamond.Core.Specification
 {
 	/// <summary>
 	/// Defines a generic specification.
 	/// </summary>
-	public interface ISpecification
+	public interface ISpecification : IDisposable
 	{
 		/// <summary>
 		/// Gets a unique name to distinguish this specification from others. The factory can
