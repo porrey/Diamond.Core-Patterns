@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.UnitOfWork
@@ -6,7 +7,7 @@ namespace Diamond.Core.UnitOfWork
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class UnitOfWorkTemplate : IUnitOfWork
+	public abstract class UnitOfWorkTemplate : DisposableObject, IUnitOfWork
 	{
 		/// <summary>
 		/// Creates an instance of <see cref="UnitOfWorkTemplate"/> with the specified logger.
