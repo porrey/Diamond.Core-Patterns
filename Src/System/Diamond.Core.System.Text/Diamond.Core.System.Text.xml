@@ -4,21 +4,12 @@
         <name>Diamond.Core.System.Text</name>
     </assembly>
     <members>
-        <member name="T:System.StringExtensions">
+        <member name="T:System.SecureData">
             <summary>
             Extensions for the <see cref="T:System.String"/> type.
             </summary>
         </member>
-        <member name="M:System.StringExtensions.Limit(System.String,System.Int32)">
-            <summary>
-            Limits a string to the given length by truncating characters. If
-            the string is less than the given length, the string is unmodified.
-            </summary>
-            <param name="text">The string to be truncated.</param>
-            <param name="maxLength">The maximum length in characters of the string.</param>
-            <returns>A new string that is no longer than maxLength in characters.</returns>
-        </member>
-        <member name="M:System.StringExtensions.Signature(System.String,System.Boolean)">
+        <member name="M:System.SecureData.Signature(System.String,System.Boolean)">
             <summary>
             Computes the signature of a string using MD5 hash and
             returns it in string format.
@@ -27,19 +18,19 @@
             <param name="includeDashes">Specifies whether or not the return string should included dashes.</param>
             <returns>The computed signature of the input string.</returns>
         </member>
-        <member name="M:System.StringExtensions.ComputeHash(System.String,System.Boolean)">
+        <member name="M:System.SecureData.ComputeHash(System.String,System.Boolean)">
             <summary>
             Computes the SHA512 hash of a string and returns it in string format.
             </summary>
-            <param name="data">The string data from which the signature is computed.</param>
+            <param name="data">The string data from which the hash is computed.</param>
             <param name="includeDashes">Specifies whether or not the return string should included dashes.</param>
-            <returns>The computed signature of the input string.</returns>
+            <returns>The computed hash of the input string.</returns>
         </member>
-        <member name="M:System.StringExtensions.ComputeHash(System.String,System.String,System.Boolean)">
+        <member name="M:System.SecureData.ComputeHash(System.String,System.String,System.Boolean)">
             <summary>
             Computes the hash of a string and returns it in string format.
             </summary>
-            <param name="data">The string data from which the signature is computed.</param>
+            <param name="data">The string data from which the hash is computed.</param>
             <param name="hashName">
             <list type="table">
             	<listheader>
@@ -73,7 +64,62 @@
             </list>
             </param>
             <param name="includeDashes">Specifies whether or not the return string should included dashes.</param>
-            <returns>The computed signature of the input string.</returns>
+            <returns>The computed hash of the input string.</returns>
+        </member>
+        <member name="M:System.SecureData.ComputeHash``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Boolean)">
+            <summary>
+            Computes a has for a list of items.
+            </summary>
+            <typeparam name="TItem">The list from which the hash is computed.</typeparam>
+            <param name="items"></param>
+            <param name="hashName">
+            <list type="table">
+            	<listheader>
+            		<term>Possible Values</term>
+            		<description>The hash algorithm implementation to use. This table shows the list of possible values</description>
+            	</listheader>
+            	<item>
+            		<term>SHA</term>
+            		<description><see cref="T:System.Security.Cryptography.SHA1"/></description>
+            	</item>
+            	<item>
+            		<term>SHA1</term>
+            		<description><see cref="T:System.Security.Cryptography.SHA1"/></description>
+            	</item>
+            	<item>
+            		<term>MD5</term>
+            		<description><see cref="T:System.Security.Cryptography.MD5"/></description>
+            	</item>
+            	<item>
+            		<term>SHA256 or SHA-256</term>
+            		<description><see cref="T:System.Security.Cryptography.SHA256"/></description>
+            	</item>
+            	<item>
+            		<term>SHA384 or SHA-384</term>
+            		<description><see cref="T:System.Security.Cryptography.SHA384"/></description>
+            	</item>
+            	<item>
+            		<term>SHA512 or SHA-512</term>
+            		<description><see cref="T:System.Security.Cryptography.SHA512"/></description>
+            	</item>
+            </list>
+            </param>
+            <param name="includeDashes">Specifies whether or not the return string should included dashes.</param>
+            <returns>The computed hash of the input string.</returns>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Extensions for the <see cref="T:System.String"/> type.
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.Limit(System.String,System.Int32)">
+            <summary>
+            Limits a string to the given length by truncating characters. If
+            the string is less than the given length, the string is unmodified.
+            </summary>
+            <param name="text">The string to be truncated.</param>
+            <param name="maxLength">The maximum length in characters of the string.</param>
+            <returns>A new string that is no longer than maxLength in characters.</returns>
         </member>
     </members>
 </doc>
