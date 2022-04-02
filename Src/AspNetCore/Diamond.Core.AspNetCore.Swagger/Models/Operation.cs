@@ -29,19 +29,19 @@ namespace Diamond.Core.AspNetCore.Swagger
 		/// to operate on.
 		/// </summary>
 		[JsonProperty("path")]
-		public string Path { get; set; }
+		public virtual string Path { get; set; }
 
 		/// <summary>
 		/// Get/sets the value applied in the operation.
 		/// </summary>
 		[JsonProperty("value")]
-		public object Value { get; set; }
+		public virtual object Value { get; set; }
 
 		/// <summary>
 		/// Gets  or sets the operation to perform. The value can be one of the following: Add, Remove, Replace, Copy,
 		/// Move or Test.
 		/// </summary>
 		[JsonProperty("op")]
-		public string Op { get; set; }
+		public virtual string Op { get; set; }
 	}
 }

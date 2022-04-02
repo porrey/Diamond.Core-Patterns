@@ -94,7 +94,7 @@
             <param name="logger"></param>
             <param name="namingFormat"></param>
         </member>
-        <member name="F:Diamond.Core.System.TemporaryFolder.TemporaryFolder.Logger">
+        <member name="P:Diamond.Core.System.TemporaryFolder.TemporaryFolder.Logger">
             <summary>
             The <see cref="T:Microsoft.Extensions.Logging.ILogger"/> instance used for logging.
             </summary>
@@ -137,7 +137,7 @@
             Prevents instances of this class from being created externally.
             </summary>
         </member>
-        <member name="F:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory.Logger">
+        <member name="P:Diamond.Core.System.TemporaryFolder.TemporaryFolderFactory.Logger">
             <summary>
             
             </summary>

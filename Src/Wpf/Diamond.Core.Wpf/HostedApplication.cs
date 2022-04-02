@@ -26,12 +26,12 @@ namespace Diamond.Core.Wpf
 		/// <summary>
 		/// Gets/sets the <see cref="Host"/> instance.
 		/// </summary>
-		protected IHost ApplicationHost { get; set; }
+		protected virtual IHost ApplicationHost { get; set; }
 
 		/// <summary>
 		/// Signals to a <see cref="CancellationToken"/> that it should be canceled.
 		/// </summary>
-		protected CancellationTokenSource CancellationToken { get; } = new CancellationTokenSource();
+		protected virtual CancellationTokenSource CancellationToken { get; } = new CancellationTokenSource();
 
 		/// <summary>
 		/// The application startup event.

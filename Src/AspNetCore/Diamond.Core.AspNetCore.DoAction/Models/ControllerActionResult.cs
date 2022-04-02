@@ -28,11 +28,11 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// The instance of <see cref="ProblemDetails"/> that is returned to the caller
 		/// if the result is not a 200.
 		/// </summary>
-		public ProblemDetails ResultDetails { get; set; }
+		public virtual ProblemDetails ResultDetails { get; set; }
 
 		/// <summary>
 		/// The resulting object instance if the action was successful.
 		/// </summary>
-		public TResult Result { get; set; }
+		public virtual TResult Result { get; set; }
 	}
 }

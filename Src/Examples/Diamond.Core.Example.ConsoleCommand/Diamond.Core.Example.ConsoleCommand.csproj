@@ -3,9 +3,9 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>CommandConsoleExample</AssemblyName>
-    <Version>6.0.5</Version>
-    <FileVersion>6.0.5</FileVersion>
-    <AssemblyVersion>6.0.5</AssemblyVersion>
+    <Version>6.0.7</Version>
+    <FileVersion>6.0.7</FileVersion>
+    <AssemblyVersion>6.0.7</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="appsettings.json" />

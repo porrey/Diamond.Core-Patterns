@@ -47,7 +47,7 @@ namespace Diamond.Core.Extensions.Hosting
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IHostApplicationLifetime HostApplicationLifetime { get; set; }
+		protected virtual IHostApplicationLifetime HostApplicationLifetime { get; set; }
 
 		/// <summary>
 		/// 

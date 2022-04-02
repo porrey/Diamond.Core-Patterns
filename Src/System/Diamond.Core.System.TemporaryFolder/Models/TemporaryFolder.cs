@@ -75,7 +75,7 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <summary>
 		/// The <see cref="ILogger"/> instance used for logging.
 		/// </summary>
-		protected ILogger<TemporaryFolder> Logger = new NullLogger<TemporaryFolder>();
+		protected virtual ILogger<TemporaryFolder> Logger { get; set; } = new NullLogger<TemporaryFolder>();
 
 		/// <summary>
 		/// Creates the temporary folder.
@@ -121,7 +121,7 @@ namespace Diamond.Core.System.TemporaryFolder
 					this.Logger.LogDebug("The temporary folder {path}' and it's contents ' were successfully deleted.", this.FullPath);
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				//
 				// Not a big deal if this fails...

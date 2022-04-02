@@ -35,6 +35,6 @@ namespace Diamond.Core.UnitOfWork
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Name { get; set; }
+		public virtual string Name { get; set; }
 	}
 }

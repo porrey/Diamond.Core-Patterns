@@ -21,7 +21,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
-	public class CreateAppointmentUnitOfWork : IUnitOfWork<(bool, IAppointment), (IPerson Person, DateTime AppointmentTime)>
+	public class CreateAppointmentUnitOfWork : DisposableObject, IUnitOfWork<(bool, IAppointment), (IPerson Person, DateTime AppointmentTime)>
 	{
 		public CreateAppointmentUnitOfWork(ILogger<CreateAppointmentUnitOfWork> logger)
 		{

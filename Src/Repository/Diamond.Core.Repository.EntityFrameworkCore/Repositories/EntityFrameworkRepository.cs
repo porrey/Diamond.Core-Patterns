@@ -66,7 +66,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <summary>
 		/// 
 		/// </summary>
-		protected TContext Context { get; set; }
+		protected virtual TContext Context { get; set; }
 
 		/// <summary>
 		/// 
@@ -83,12 +83,12 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<EntityFrameworkRepository<TInterface, TEntity, TContext>> Logger { get; set; } = new NullLogger<EntityFrameworkRepository<TInterface, TEntity, TContext>>();
+		public virtual ILogger<EntityFrameworkRepository<TInterface, TEntity, TContext>> Logger { get; set; } = new NullLogger<EntityFrameworkRepository<TInterface, TEntity, TContext>>();
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public string Name { get; set; }
+		public virtual string Name { get; set; }
 
 		/// <summary>
 		/// 

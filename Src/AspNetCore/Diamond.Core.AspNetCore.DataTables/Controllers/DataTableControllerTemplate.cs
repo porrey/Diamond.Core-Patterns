@@ -30,7 +30,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 		{
 		}
 
-		protected string KeyPrefix { get; set; } = null;
+		protected virtual string KeyPrefix { get; set; } = null;
 
 		[HttpPost("form")]
 		[Consumes("application/x-www-form-urlencoded")]

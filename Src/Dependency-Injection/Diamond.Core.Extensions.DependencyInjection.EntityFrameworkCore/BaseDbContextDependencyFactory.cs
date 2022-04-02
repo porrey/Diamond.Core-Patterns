@@ -50,17 +50,17 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool EnableDetailedErrors { get; set; }
+		public virtual bool EnableDetailedErrors { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool EnableSensitiveDataLogging { get; set; }
+		public virtual bool EnableSensitiveDataLogging { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool UseLoggerFactory { get; set; }
+		public virtual bool UseLoggerFactory { get; set; }
 
 		/// <summary>
 		/// 

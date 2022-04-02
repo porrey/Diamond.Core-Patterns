@@ -76,7 +76,7 @@ namespace Diamond.Core.Rules
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<RuleTemplate<TItem>> Logger { get; set; }
+		protected virtual  ILogger<RuleTemplate<TItem>> Logger { get; set; } = new NullLogger<RuleTemplate<TItem>>();
 
 		/// <summary>
 		/// 

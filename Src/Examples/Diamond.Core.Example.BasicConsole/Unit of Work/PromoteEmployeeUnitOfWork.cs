@@ -6,7 +6,7 @@ using Diamond.Core.UnitOfWork;
 
 namespace Diamond.Core.Example.BasicConsole
 {
-	public class PromoteEmployeeUnitOfWork : IUnitOfWork<(bool, IEmployeeEntity), (int EmployeeId, string JobTitle, decimal PercentRaise)>
+	public class PromoteEmployeeUnitOfWork : DisposableObject, IUnitOfWork<(bool, IEmployeeEntity), (int EmployeeId, string JobTitle, decimal PercentRaise)>
 	{
 		public PromoteEmployeeUnitOfWork(IRepositoryFactory repositoryFactory)
 		{

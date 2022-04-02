@@ -86,7 +86,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ITemporaryFolderFactory TemporaryFolderFactory { get; set; }
+		protected virtual ITemporaryFolderFactory TemporaryFolderFactory { get; set; }
 
 		/// <summary>
 		/// 

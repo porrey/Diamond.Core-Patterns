@@ -51,7 +51,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IServiceProvider BaseServiceProvider
+		protected virtual IServiceProvider BaseServiceProvider
 		{
 			get
 			{
@@ -69,7 +69,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// </summary>
 		/// <param name="serviceType"></param>
 		/// <returns></returns>
-		public object GetService(Type serviceType)
+		public virtual object GetService(Type serviceType)
 		{
 			object result = this.BaseServiceProvider.GetRequiredService(serviceType);
 

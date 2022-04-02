@@ -17,6 +17,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Repository.EntityFrameworkCore
 {
@@ -68,7 +69,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<RepositoryContext<TContext>> Logger { get; set; }
+		protected virtual ILogger<RepositoryContext<TContext>> Logger { get; set; } = new NullLogger<RepositoryContext<TContext>>();
 
 		/// <summary>
 		/// 

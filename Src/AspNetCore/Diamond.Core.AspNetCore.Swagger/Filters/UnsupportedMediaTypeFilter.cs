@@ -34,7 +34,7 @@ namespace Diamond.Core.AspNetCore.Swagger
 		/// </summary>
 		/// <param name="operation">A reference to the <see cref="OpenApiOperation"/>.</param>
 		/// <param name="context">A reference to the <see cref="OperationFilterContext"/>.</param>
-		public void Apply(OpenApiOperation operation, OperationFilterContext context)
+		public virtual void Apply(OpenApiOperation operation, OperationFilterContext context)
 		{
 			//
 			// Get all custom attributes that are POST or PUT.

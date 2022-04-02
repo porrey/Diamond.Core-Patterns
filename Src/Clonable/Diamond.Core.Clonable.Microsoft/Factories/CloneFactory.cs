@@ -13,7 +13,7 @@ namespace Diamond.Core.Clonable.NetCore
 		/// </summary>
 		/// <param name="instance">The object to clone.</param>
 		/// <returns>The new object that s a deep clone of instance.</returns>
-		public object CloneInstance(ICloneable instance)
+		public virtual object CloneInstance(ICloneable instance)
 		{
 			object returnValue = null;
 
@@ -43,7 +43,7 @@ namespace Diamond.Core.Clonable.NetCore
 		/// <typeparam name="T">The type of the instance to clone.</typeparam>
 		/// <param name="instance">The object to clone.</param>
 		/// <returns>The new object that s a deep clone of instance.</returns>
-		public  T CloneInstance<T>(T instance)
+		public virtual T CloneInstance<T>(T instance)
 			where T : ICloneable
 		{
 			T returnValue = default;

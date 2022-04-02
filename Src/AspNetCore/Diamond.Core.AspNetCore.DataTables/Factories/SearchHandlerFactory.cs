@@ -16,6 +16,7 @@
 //
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.AspNetCore.DataTables
 {
@@ -27,7 +28,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 			this.ServiceProvider = serviceProvider;
 		}
 
-		protected virtual ILogger<SearchHandlerFactory<TEntity>> Logger { get; set; }
+		protected virtual ILogger<SearchHandlerFactory<TEntity>> Logger { get; set; } = new NullLogger<SearchHandlerFactory<TEntity>>();
 		protected virtual IServiceProvider ServiceProvider { get; set; }
 
 		public virtual Task<ISearchHandler<TEntity>> GetAsync(string propertyName)

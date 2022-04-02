@@ -42,13 +42,13 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<TemporaryFolderFactory> Logger = new NullLogger<TemporaryFolderFactory>();
+		protected virtual ILogger<TemporaryFolderFactory> Logger { get; set; } = new NullLogger<TemporaryFolderFactory>();
 
 		/// <summary>
 		/// Creates a default instance of ITemporaryFolder.
 		/// </summary>
 		/// <returns>An instance of ITemporaryFolder.</returns>
-		public ITemporaryFolder Create()
+		public virtual ITemporaryFolder Create()
 		{
 			ITemporaryFolder returnValue = null;
 
@@ -66,7 +66,7 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <param name="namingFormat">Specifies the naming format to
 		/// use with this new instance</param>
 		/// <returns>An instance of ITemporaryFolder.</returns>
-		public ITemporaryFolder Create(string namingFormat)
+		public virtual ITemporaryFolder Create(string namingFormat)
 		{
 			ITemporaryFolder returnValue = null;
 

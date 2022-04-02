@@ -16,6 +16,7 @@
 //
 using System.Linq.Expressions;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.AspNetCore.DataTables
 {
@@ -26,7 +27,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 			this.Logger = logger;
 		}
 
-		protected ILogger<SearchHandlerTemplate<TModel>> Logger { get; set; }
+		protected virtual ILogger<SearchHandlerTemplate<TModel>> Logger { get; set; } = new NullLogger<SearchHandlerTemplate<TModel>>();
 		public virtual string PropertyName { get; }
 
 		public Task<Expression<Func<TModel, bool>>> ApplySearchFilterAsync(SearchType searchType, string searchTerm)

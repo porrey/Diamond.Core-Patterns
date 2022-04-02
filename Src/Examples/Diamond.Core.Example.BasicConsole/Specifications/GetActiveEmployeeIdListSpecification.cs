@@ -7,7 +7,7 @@ using Diamond.Core.Specification;
 
 namespace Diamond.Core.Example.BasicConsole
 {
-	public class GetActiveEmployeeIdListSpecification : ISpecification<IEnumerable<int>>
+	public class GetActiveEmployeeIdListSpecification : DisposableObject, ISpecification<IEnumerable<int>>
 	{
 		public GetActiveEmployeeIdListSpecification(IRepositoryFactory repositoryFactory)
 		{

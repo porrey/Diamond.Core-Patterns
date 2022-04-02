@@ -22,13 +22,13 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// Throw an exception if the property type is not in the container.
 		/// </summary>
-		public bool Required { get; set; } = false;
+		public virtual bool Required { get; set; } = false;
 
 		/// <summary>
 		/// If the property is already set, override the
 		/// value with the container value.
 		/// </summary>
-		public bool OverrideValue { get; set; } = false;
+		public virtual bool OverrideValue { get; set; } = false;
 
 		/// <summary>
 		/// 

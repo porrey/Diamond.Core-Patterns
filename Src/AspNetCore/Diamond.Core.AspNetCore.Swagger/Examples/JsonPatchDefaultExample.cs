@@ -36,7 +36,7 @@ namespace Diamond.Core.AspNetCore.Swagger
 		/// Provides a default implementation that can be overridden.
 		/// </summary>
 		/// <returns>An array of <see cref="Operation"/> objects to be used as examples.</returns>
-		protected Operation[] OnGetExamples()
+		protected virtual Operation[] OnGetExamples()
 		{
 			return (Operation[])new[]
 			{

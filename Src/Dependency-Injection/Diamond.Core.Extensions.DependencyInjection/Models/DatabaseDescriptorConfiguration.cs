@@ -24,7 +24,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// Get/sets the DbContext object.
 		/// </summary>
-		public string Context
+		public virtual string Context
 		{
 			get
 			{
@@ -40,16 +40,16 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// Gets/sets the connection string for the database.
 		/// </summary>
-		public string ConnectionString { get; set; }
+		public virtual string ConnectionString { get; set; }
 
 		/// <summary>
 		/// Gets/sets the timeout in seconds for a command.
 		/// </summary>
-		public int? CommandTimeout { get; set; }
+		public virtual int? CommandTimeout { get; set; }
 
 		/// <summary>
 		/// Gets/sets the factory used to configured the DbContext.
 		/// </summary>
-		public string Factory { get; set; }
+		public virtual string Factory { get; set; }
 	}
 }

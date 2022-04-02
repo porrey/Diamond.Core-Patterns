@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example
 {
-	public class WidgetQualificationSpecification : ISpecification<IEnumerable<Widget>, IEnumerable<Widget>>
+	public class WidgetQualificationSpecification : DisposableObject, ISpecification<IEnumerable<Widget>, IEnumerable<Widget>>
 	{
 		public WidgetQualificationSpecification(ILogger<WidgetQualificationSpecification> logger)
 		{

@@ -34,11 +34,11 @@ namespace Diamond.Core.Rules
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool Passed { get; set; }
+		public virtual bool Passed { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public string ErrorMessage { get; set; }
+		public virtual string ErrorMessage { get; set; }
 	}
 }

@@ -4,9 +4,9 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Broadcast.ico</ApplicationIcon>
-    <Version>6.0.5</Version>
-    <FileVersion>6.0.5</FileVersion>
-    <AssemblyVersion>6.0.5</AssemblyVersion>
+    <Version>6.0.7</Version>
+    <FileVersion>6.0.7</FileVersion>
+    <AssemblyVersion>6.0.7</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\broadcast.png" />

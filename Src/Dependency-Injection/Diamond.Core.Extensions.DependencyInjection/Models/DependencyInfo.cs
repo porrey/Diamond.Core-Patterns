@@ -10,11 +10,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
-		public PropertyInfo PropertyInfo { get; set; }
+		public virtual PropertyInfo PropertyInfo { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public DependencyAttribute DependencyAttribute { get; set; }
+		public virtual DependencyAttribute DependencyAttribute { get; set; }
 	}
 }

@@ -44,23 +44,23 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
-		public Type ImplementationType { get; set; }
+		public virtual Type ImplementationType { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public ServiceDescriptorConfiguration Configuration { get; set; }
+		public virtual ServiceDescriptorConfiguration Configuration { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public IEnumerable<DependencyInfo> DependencyProperties { get; set; }
+		public virtual IEnumerable<DependencyInfo> DependencyProperties { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public object GetInstance(IServiceProvider sp, params object[] parameters)
+		public virtual object GetInstance(IServiceProvider sp, params object[] parameters)
 		{
 			object instance = ActivatorUtilities.CreateInstance(sp, this.ImplementationType, parameters);
 			this.AssignProperties(instance);

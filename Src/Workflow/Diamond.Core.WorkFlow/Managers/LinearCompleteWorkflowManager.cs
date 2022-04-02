@@ -53,7 +53,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public IWorkflowItemFactory WorkflowItemFactory { get; set; }
+		public virtual IWorkflowItemFactory WorkflowItemFactory { get; set; }
 
 		/// <summary>
 		/// 
@@ -63,7 +63,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public IWorkflowItem[] Steps
+		public virtual IWorkflowItem[] Steps
 		{
 			get
 			{
@@ -100,7 +100,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public ILogger<LinearCompleteWorkflowManager> Logger { get; set; } = new NullLogger<LinearCompleteWorkflowManager>();
+		public virtual ILogger<LinearCompleteWorkflowManager> Logger { get; set; } = new NullLogger<LinearCompleteWorkflowManager>();
 
 		/// <summary>
 		/// 

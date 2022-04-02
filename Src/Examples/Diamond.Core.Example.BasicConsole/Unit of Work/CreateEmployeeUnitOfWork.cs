@@ -5,7 +5,7 @@ using Diamond.Core.UnitOfWork;
 
 namespace Diamond.Core.Example.BasicConsole
 {
-	public class CreateEmployeeUnitOfWork : IUnitOfWork<(bool, int?), IEmployeeEntity>
+	public class CreateEmployeeUnitOfWork : DisposableObject, IUnitOfWork<(bool, int?), IEmployeeEntity>
 	{
 		public CreateEmployeeUnitOfWork(IRepositoryFactory repositoryFactory)
 		{

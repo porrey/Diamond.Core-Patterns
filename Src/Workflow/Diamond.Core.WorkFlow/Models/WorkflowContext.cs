@@ -40,13 +40,13 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		public IStateDictionary Properties { get; } = new StateDictionary();
+		public virtual IStateDictionary Properties { get; } = new StateDictionary();
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public Task ResetAsync()
+		public virtual Task ResetAsync()
 		{
 			throw new NotImplementedException();
 		}

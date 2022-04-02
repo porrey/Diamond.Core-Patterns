@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.CommandLine
 {
@@ -53,22 +54,22 @@ namespace Diamond.Core.CommandLine
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ILogger<RootCommandService> Logger { get; set; }
+		protected virtual ILogger<RootCommandService> Logger { get; set; } = new NullLogger<RootCommandService>();
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IHostApplicationLifetime HostApplicationLifetime { get; set; }
+		protected virtual IHostApplicationLifetime HostApplicationLifetime { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IRootCommand RootCommand { get; set; }
+		protected virtual IRootCommand RootCommand { get; set; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IServiceScopeFactory ServiceScopeFactory { get; set; }
+		protected virtual IServiceScopeFactory ServiceScopeFactory { get; set; }
 
 		private IServiceScope Scope { get; set; }
 
@@ -77,7 +78,7 @@ namespace Diamond.Core.CommandLine
 		/// </summary>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public Task StartAsync(CancellationToken cancellationToken)
+		public virtual Task StartAsync(CancellationToken cancellationToken)
 		{
 			//
 			// Since this hosted service runs as a singleton we need
@@ -128,7 +129,7 @@ namespace Diamond.Core.CommandLine
 		/// </summary>
 		/// <param name="cancellationToken"></param>
 		/// <returns></returns>
-		public Task StopAsync(CancellationToken cancellationToken)
+		public virtual Task StopAsync(CancellationToken cancellationToken)
 		{
 			return Task.CompletedTask;
 		}
