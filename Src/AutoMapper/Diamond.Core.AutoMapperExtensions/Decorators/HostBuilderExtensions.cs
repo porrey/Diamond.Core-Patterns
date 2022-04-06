@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Diamond.Core.AutoMapperExtensions
@@ -18,16 +20,68 @@ namespace Diamond.Core.AutoMapperExtensions
 				services.AddAutoMapper(typeof(NullProfile));
 
 				//
+				// Get the service provider.
+				//
+				ServiceProvider sp = services.BuildServiceProvider();
+
+				//
+				// Get a logger.
+				//
+				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
+
+				//
+				// Get the configuration.
+				//
+				IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
+
+				//
+				// Get configured aliases.
+				//
+				IList<AutoMapperDefinition> definitions = new List<AutoMapperDefinition>();
+				configuration.Bind("autoMapper", definitions);
+
+				if (definitions.Count() == 1)
+				{
+					logger.LogDebug("There was {count} Auto Mapper definition found in JSON configuration file(s).", definitions.Count());
+				}
+				else
+				{
+					logger.LogDebug("There were {count} Auto Mapper definitions found in JSON configuration file(s).", definitions.Count());
+				}
+
+				//
 				// Replace the configuration for IConfigurationProvider
 				//
-				services.AddSingleton<IConfigurationProvider>(sp =>
+				services.AddSingleton<AutoMapper.IConfigurationProvider>(sp =>
 				{
 					IOptions<MapperConfigurationExpression> options = sp.GetRequiredService<IOptions<MapperConfigurationExpression>>();
-					IEnumerable<IProfileExpression> profiles = sp.GetRequiredService<IEnumerable<IProfileExpression>>();
 
-					foreach (var profile in profiles)
+					//
+					// Get a logger.
+					//
+					ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
+
+					//
+					// Load profiles by type.
+					//
+					foreach (AutoMapperDefinition definition in definitions.Where(t => t.Key.ToLower() == "profile"))
 					{
-						options.Value.AddProfile(profile.GetType());
+						Type type = Type.GetType(definition.TypeDefinition, true);
+						logger.LogDebug("Adding Auto Mapper profile '{type}'.", type.AssemblyQualifiedName);
+						options.Value.AddProfile(type);
+					}
+
+					//
+					// Load profiles by instance.
+					//
+					IEnumerable<IProfileExpression> profileExpressions = sp.GetService<IEnumerable<IProfileExpression>>();
+					foreach (IProfileExpression profileExpression in profileExpressions)
+					{
+						if (profileExpression is Profile profile)
+						{
+							logger.LogDebug("Adding Auto Mapper profile '{type}'.", profile.GetType().AssemblyQualifiedName);
+							options.Value.AddProfile(profile);
+						}
 					}
 
 					return new MapperConfiguration(options.Value);

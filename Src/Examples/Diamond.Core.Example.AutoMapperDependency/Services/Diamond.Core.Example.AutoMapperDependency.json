@@ -1,4 +1,9 @@
 {
 	"services": [
+		{
+			"ServiceType": "Microsoft.Extensions.Hosting.IHostedService, Microsoft.Extensions.Hosting.Abstractions",
+			"ImplementationType": "Diamond.Core.Example.AutoMapperDependency.AutoMapperExampleHostedService, AutoMapperCmd",
+			"Lifetime": "Singleton"
+		}
 	]
 }

@@ -45,7 +45,6 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 				//
 				// Get a logger.
 				//
-				//
 				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
 
 				//
