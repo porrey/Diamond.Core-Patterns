@@ -37,11 +37,11 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\Command Line\Diamond.Core.CommandLine.Model\Diamond.Core.CommandLine.Model.csproj" />
-		<ProjectReference Include="..\Command Line\Diamond.Core.CommandLine\Diamond.Core.CommandLine.csproj" />
-		<ProjectReference Include="..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.SqlServer\Diamond.Core.Extensions.DependencyInjection.SqlServer.csproj" />
-		<ProjectReference Include="..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
-		<ProjectReference Include="..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
-		<ProjectReference Include="..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine.Model\Diamond.Core.CommandLine.Model.csproj" />
+		<ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine\Diamond.Core.CommandLine.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection.SqlServer\Diamond.Core.Extensions.DependencyInjection.SqlServer.csproj" />
+		<ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />
+		<ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
+		<ProjectReference Include="..\..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
 	</ItemGroup>
 </Project>

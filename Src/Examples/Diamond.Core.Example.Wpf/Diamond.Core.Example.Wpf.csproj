@@ -8,6 +8,9 @@
     <FileVersion>6.0.7</FileVersion>
     <AssemblyVersion>6.0.7</AssemblyVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>1701;1702;MC3074</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\broadcast.png" />
     <None Remove="broadcast.png" />

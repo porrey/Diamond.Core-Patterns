@@ -1,0 +1,20 @@
+{
+	"aliases": [
+		{
+			"Key": "IProfileExpression",
+			"TypeDefinition": "AutoMapper.IProfileExpression, AutoMapper"
+		}
+	],
+	"services": [
+		{
+			"ServiceType": "<IProfileExpression>",
+			"ImplementationType": "Diamond.Core.Example.AutoMapperDependency.Profiles.SampleProfileA, Diamond.Core.Example.AutoMapperDependency.Profiles",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "<IProfileExpression>",
+			"ImplementationType": "Diamond.Core.Example.AutoMapperDependency.Profiles.SampleProfileB, Diamond.Core.Example.AutoMapperDependency.Profiles",
+			"Lifetime": "Transient"
+		}
+	]
+}
