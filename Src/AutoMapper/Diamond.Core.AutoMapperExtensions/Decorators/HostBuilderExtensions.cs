@@ -37,10 +37,10 @@ namespace Diamond.Core.AutoMapperExtensions
 				//
 				// Get configured aliases.
 				//
-				IList<AutoMapperDefinition> definitions = new List<AutoMapperDefinition>();
+				IList<AutoMapperTypeDefinition> definitions = new List<AutoMapperTypeDefinition>();
 				configuration.Bind("autoMapper", definitions);
 
-				if (definitions.Count() == 1)
+				if (definitions.Count == 1)
 				{
 					logger.LogDebug("There was {count} Auto Mapper definition found in JSON configuration file(s).", definitions.Count());
 				}
@@ -64,7 +64,7 @@ namespace Diamond.Core.AutoMapperExtensions
 					//
 					// Load profiles by type.
 					//
-					foreach (AutoMapperDefinition definition in definitions.Where(t => t.Key.ToLower() == "profile"))
+					foreach (AutoMapperTypeDefinition definition in definitions.Where(t => t.Key.ToLower() == AutoMapperKeys.Profile))
 					{
 						Type type = Type.GetType(definition.TypeDefinition, true);
 						logger.LogDebug("Adding Auto Mapper profile '{type}'.", type.AssemblyQualifiedName);

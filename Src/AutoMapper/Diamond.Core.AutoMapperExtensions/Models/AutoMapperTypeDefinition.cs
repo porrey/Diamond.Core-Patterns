@@ -19,7 +19,7 @@ namespace Diamond.Core.AutoMapperExtensions
 	/// <summary>
 	/// 
 	/// </summary>
-	public class AutoMapperDefinition
+	public class AutoMapperTypeDefinition
 	{
 		/// <summary>
 		/// 
