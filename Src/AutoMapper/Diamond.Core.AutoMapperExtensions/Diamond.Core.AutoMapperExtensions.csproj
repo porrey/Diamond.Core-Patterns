@@ -7,7 +7,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>6.0.7-prerelease1</Version>
+		<Version>6.0.7</Version>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides the Diamond dependency injection extensions for AutoMapper.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>

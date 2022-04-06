@@ -1,4 +1,20 @@
-﻿using AutoMapper;
+﻿//
+// Copyright(C) 2019-2022, Daniel M. Porrey. All rights reserved.
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License
+// along with this program. If not, see http://www.gnu.org/licenses/.
+// 
+using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,36 +42,6 @@ namespace Diamond.Core.AutoMapperExtensions
 			services.AddAutoMapper(typeof(NullProfile));
 
 			//
-			// Get the service provider.
-			//
-			ServiceProvider sp = services.BuildServiceProvider();
-
-			//
-			// Get a logger.
-			//
-			ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
-
-			//
-			// Get the configuration.
-			//
-			IConfiguration configuration = sp.GetRequiredService<IConfiguration>();
-
-			//
-			// Get configured aliases.
-			//
-			IList<AutoMapperTypeDefinition> definitions = new List<AutoMapperTypeDefinition>();
-			configuration.Bind("autoMapper", definitions);
-
-			if (definitions.Count == 1)
-			{
-				logger.LogDebug("There was {count} Auto Mapper definition found in JSON configuration file(s).", definitions.Count());
-			}
-			else
-			{
-				logger.LogDebug("There were {count} Auto Mapper definitions found in JSON configuration file(s).", definitions.Count());
-			}
-
-			//
 			// Replace the configuration for IConfigurationProvider
 			//
 			services.AddSingleton<AutoMapper.IConfigurationProvider>(sp =>
@@ -66,16 +52,6 @@ namespace Diamond.Core.AutoMapperExtensions
 				// Get a logger.
 				//
 				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
-
-				//
-				// Load profiles by type.
-				//
-				foreach (AutoMapperTypeDefinition definition in definitions.Where(t => t.Key.ToLower() == AutoMapperKeys.Profile))
-				{
-					Type type = Type.GetType(definition.TypeDefinition, true);
-					logger.LogDebug("Adding Auto Mapper profile '{type}'.", type.AssemblyQualifiedName);
-					options.Value.AddProfile(type);
-				}
 
 				//
 				// Load profiles by instance.

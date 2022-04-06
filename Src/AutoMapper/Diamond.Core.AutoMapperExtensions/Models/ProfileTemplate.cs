@@ -14,21 +14,19 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using AutoMapper;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+
 namespace Diamond.Core.AutoMapperExtensions
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	public class AutoMapperTypeDefinition
+	public abstract class ProfileTemplate : Profile
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual string Key { get; set; }
+		public ProfileTemplate(ILogger<ProfileTemplate> logger)
+		{
+			this.Logger = logger;
+		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual string TypeDefinition { get; set; }
+		public ILogger<ProfileTemplate> Logger { get; set; } = new NullLogger<ProfileTemplate>();
 	}
 }
