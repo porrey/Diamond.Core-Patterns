@@ -14,38 +14,34 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Diamond.Core.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using Serilog;
 
-namespace Diamond.Core.Clonable
+namespace Diamond.Core.Example.AutoMapperDependency
 {
 	/// <summary>
-	/// Holds the current factory for cloning objects. 
+	/// 
 	/// </summary>
-public static class ClonableFactory
+	public class ConsoleStartup : IStartupAppConfiguration
 	{
-		private static IObjectCloneFactory Factory { get; set; }
-
 		/// <summary>
-		/// Gets the current factory for cloning objects.
+		/// Called to configure additional settings.
 		/// </summary>
-		/// <returns></returns>
-		public static IObjectCloneFactory GetFactory()
+		/// <param name="builder"></param>
+		public void ConfigureAppConfiguration(IConfigurationBuilder builder)
 		{
-			if (ClonableFactory.Factory == null)
-			{
-				throw new NoClonableFactorySetException();
-			}
+			//
+			// Build the configuration so Serilog can read from it.
+			//
+			IConfigurationRoot configuration = builder.Build();
 
-			return ClonableFactory.Factory;
-		}
-
-		/// <summary>
-		/// Sets the current factory for cloning objects. This value can be set directly
-		/// or by referencing a NuGet package that implements the IObjectCloneFactory interface.
-		/// </summary>
-		/// <param name="factory"></param>
-		public static void SetFactory(IObjectCloneFactory factory)
-		{
-			ClonableFactory.Factory = factory;
+			//
+			// Create a logger from the configuration.
+			//
+			Log.Logger = new LoggerConfiguration()
+					  .ReadFrom.Configuration(configuration)
+					  .CreateLogger();
 		}
 	}
 }

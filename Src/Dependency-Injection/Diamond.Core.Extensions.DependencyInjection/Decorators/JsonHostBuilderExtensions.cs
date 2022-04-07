@@ -60,7 +60,6 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				// Get a logger.
 				//
-				//
 				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
 
 				//
@@ -122,7 +121,6 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				// Get a logger.
 				//
-				//
 				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
 
 				//
@@ -166,7 +164,6 @@ namespace Diamond.Core.Extensions.DependencyInjection
 
 				//
 				// Get a logger.
-				//
 				//
 				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
 
