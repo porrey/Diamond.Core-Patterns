@@ -1,0 +1,12 @@
+{
+	"aliases": [
+		{
+			"Key": "IWorkflowItem",
+			"TypeDefinition": "Diamond.Core.UnitOfWork.IUnitOfWork, Diamond.Core.UnitOfWork.Abstractions"
+		},
+		{
+			"Key": "IWorkflowItem",
+			"TypeDefinition": "Diamond.Core.UnitOfWork.IUnitOfWorkFactory, Diamond.Core.UnitOfWork.Abstractions"
+		}
+	]
+}

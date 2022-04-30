@@ -1,0 +1,16 @@
+{
+	"aliases": [
+		{
+			"Key": "IRule",
+			"TypeDefinition": "Diamond.Core.Rules.IRule, Diamond.Core.Rules.Abstractions"
+		},
+		{
+			"Key": "IRuleResult",
+			"TypeDefinition": "Diamond.Core.Rules.IRuleResult, Diamond.Core.Rules.Abstractions"
+		},
+		{
+			"Key": "IRulesFactory",
+			"TypeDefinition": "Diamond.Core.Rules.IRulesFactory, Diamond.Core.Rules.Abstractions"
+		}
+	]
+}

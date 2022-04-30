@@ -1,0 +1,9 @@
+{
+	"services": [
+		{
+			"ServiceType": "<IDecoratorFactory>",
+			"ImplementationType": "Diamond.Core.Decorator.DecoratorFactory, Diamond.Core.Decorator",
+			"Lifetime": "Transient"
+		}
+	]
+}

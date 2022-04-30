@@ -1,0 +1,12 @@
+{
+	"aliases": [
+		{
+			"Key": "IDoAction",
+			"TypeDefinition": "Diamond.Core.AspNetCore.DoAction.IDoAction, Diamond.Core.AspNetCore.DoAction.Abstractions"
+		},
+		{
+			"Key": "IDoActionFactory",
+			"TypeDefinition": "Diamond.Core.AspNetCore.DoAction.IDoActionFactory, Diamond.Core.AspNetCore.DoAction.Abstractions"
+		}
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"services": [
+		{
+			"ServiceType": "<IUnitOfWorkFactory>",
+			"ImplementationType": "Diamond.Core.UnitOfWork.UnitOfWorkFactory, Diamond.Core.UnitOfWork",
+			"Lifetime": "Transient"
+		}
+	]
+}

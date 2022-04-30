@@ -1,0 +1,8 @@
+{
+	"aliases": [
+		{
+			"Key": "IRootCommand",
+			"TypeDefinition": "Diamond.Core.CommandLine.IRootCommand, Diamond.Core.CommandLine.Abstractions"
+		}
+	]
+}

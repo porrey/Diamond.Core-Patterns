@@ -1,0 +1,8 @@
+{
+	"aliases": [
+		{
+			"Key": "ISpecificationFactory",
+			"TypeDefinition": "Diamond.Core.Specification.ISpecificationFactory, Diamond.Core.Specification.Abstractions"
+		}
+	]
+}

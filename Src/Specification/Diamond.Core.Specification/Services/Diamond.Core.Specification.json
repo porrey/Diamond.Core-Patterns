@@ -1,0 +1,9 @@
+{
+	"services": [
+		{
+			"ServiceType": "<ISpecificationFactory>",
+			"ImplementationType": "Diamond.Core.Specification.SpecificationFactory, Diamond.Core.Specification",
+			"Lifetime": "Transient"
+		}
+	]
+}

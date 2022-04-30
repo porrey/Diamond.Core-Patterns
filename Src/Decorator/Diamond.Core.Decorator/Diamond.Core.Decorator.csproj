@@ -8,9 +8,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
     <Description>This library provides a basic implementation of the decorator factory.</Description>
-    <Version>6.0.7</Version>
-    <FileVersion>6.0.7</FileVersion>
-    <AssemblyVersion>6.0.7</AssemblyVersion>
+    <Version>6.0.9</Version>
+    <FileVersion>6.0.9</FileVersion>
+    <AssemblyVersion>6.0.9</AssemblyVersion>
     <Authors>Daniel M. Porrey</Authors>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -33,6 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Diamond.Core.Decorator.xml" />
+    <None Remove="Services\Diamond.Core.Decorator.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Services\Diamond.Core.Decorator.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />

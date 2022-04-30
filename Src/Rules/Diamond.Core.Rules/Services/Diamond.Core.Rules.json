@@ -1,0 +1,9 @@
+{
+	"services": [
+		{
+			"ServiceType": "<IRulesFactory>",
+			"ImplementationType": "Diamond.Core.Rules.RulesFactory, Diamond.Core.Rules",
+			"Lifetime": "Transient"
+		}
+	]
+}

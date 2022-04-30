@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
-    <Version>6.0.7</Version>
-    <FileVersion>6.0.7</FileVersion>
-    <AssemblyVersion>6.0.7</AssemblyVersion>
+    <Version>6.0.9</Version>
+    <FileVersion>6.0.9</FileVersion>
+    <AssemblyVersion>6.0.9</AssemblyVersion>
     <Authors>Daniel M. Porrey, Harshit Gindra</Authors>
     <Product>Diamond Pattern Library - Rules Pattern</Product>
     <Description>This library provides abstractions for the Rules pattern.</Description>
@@ -32,6 +32,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Diamond.Core.Rules.Abstractions.xml" />
+    <None Remove="Services\Diamond.Core.Rules.Abstractions.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Services\Diamond.Core.Rules.Abstractions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Images\Diamond.Core.128x128.png">

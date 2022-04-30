@@ -4,9 +4,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>6.0.7</Version>
-    <FileVersion>6.0.7</FileVersion>
-    <AssemblyVersion>6.0.7</AssemblyVersion>
+    <Version>6.0.9</Version>
+    <FileVersion>6.0.9</FileVersion>
+    <AssemblyVersion>6.0.9</AssemblyVersion>
     <Authors>Daniel M Porrey</Authors>
     <Description>Provides abstractions for Do pattern execution for ASP.NET Core MVC core projects.</Description>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
@@ -30,6 +30,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Diamond.Core.AspNetCore.DoAction.Abstractions.xml" />
+    <None Remove="Services\Diamond.Core.AspNetCore.DoAction.Abstractions.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Services\Diamond.Core.AspNetCore.DoAction.Abstractions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Images\Diamond.Core.128x128.png">

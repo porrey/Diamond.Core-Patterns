@@ -8,9 +8,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
     <Description>This library provides abstractions for the workflow pattern.</Description>
-    <Version>6.0.7</Version>
-    <FileVersion>6.0.7</FileVersion>
-    <AssemblyVersion>6.0.7</AssemblyVersion>
+    <Version>6.0.9</Version>
+    <FileVersion>6.0.9</FileVersion>
+    <AssemblyVersion>6.0.9</AssemblyVersion>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <Authors>Daniel M. Porrey</Authors>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -33,6 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Diamond.Core.WorkFlow.Abstractions.xml" />
+    <None Remove="Services\Diamond.Core.Workflow.Abstractions.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Services\Diamond.Core.Workflow.Abstractions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Core.Workflow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />

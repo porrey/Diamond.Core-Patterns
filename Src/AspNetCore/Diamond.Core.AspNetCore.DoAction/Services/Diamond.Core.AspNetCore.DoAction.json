@@ -1,0 +1,9 @@
+{
+	"services": [
+		{
+			"ServiceType": "<IDoActionFactory>",
+			"ImplementationType": "Diamond.Core.AspNetCore.DoAction.DoActionFactory, Diamond.Core.AspNetCore.DoAction",
+			"Lifetime": "Transient"
+		}
+	]
+}

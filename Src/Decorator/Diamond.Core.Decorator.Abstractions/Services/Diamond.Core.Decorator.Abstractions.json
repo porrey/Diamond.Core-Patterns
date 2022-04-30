@@ -1,0 +1,8 @@
+{
+	"aliases": [
+		{
+			"Key": "IDecoratorFactory",
+			"TypeDefinition": "Diamond.Core.Decorator.IDecoratorFactory, Diamond.Core.Decorator.Abstractions"
+		}
+	]
+}
