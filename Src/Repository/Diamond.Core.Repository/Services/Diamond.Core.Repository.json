@@ -1,0 +1,9 @@
+{
+	"services": [
+		{
+			"ServiceType": "<IRepositoryFactory>",
+			"ImplementationType": "Diamond.Core.Repository.RepositoryFactory, Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		}
+	]
+}
