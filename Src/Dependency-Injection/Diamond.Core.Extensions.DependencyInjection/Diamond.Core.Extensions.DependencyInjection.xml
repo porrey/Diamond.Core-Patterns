@@ -318,6 +318,12 @@
             
             </summary>
         </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.Alias.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration">
             <summary>
             
