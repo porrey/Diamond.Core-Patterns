@@ -30,5 +30,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// 
 		/// </summary>
 		public virtual string TypeDefinition { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString() => $"{this.Key} => {this.TypeDefinition}";
 	}
 }
