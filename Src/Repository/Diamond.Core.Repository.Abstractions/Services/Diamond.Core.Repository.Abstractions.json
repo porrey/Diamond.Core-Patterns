@@ -1,0 +1,12 @@
+{
+	"aliases": [
+		{
+			"Key": "IRepository",
+			"TypeDefinition": "Diamond.Core.Repository.IRepository, Diamond.Core.Repository.Abstractions"
+		},
+		{
+			"Key": "IRepositoryFactory",
+			"TypeDefinition": "Diamond.Core.Repository.IRepositoryFactory, Diamond.Core.Repository.Abstractions"
+		}
+	]
+}
