@@ -82,26 +82,43 @@ namespace Diamond.Core.UnitOfWork
 			// type IDecorator<TItem>.
 			//
 			IEnumerable<IUnitOfWork> items = this.ServiceProvider.GetService<IEnumerable<IUnitOfWork>>();
-			IEnumerable<IUnitOfWork> keyItems = items.Where(t => t.Name == name);
-			this.Logger.LogDebug("{count} match items of the target type were found.", keyItems.Count());
+			IEnumerable<IUnitOfWork> matchingItems = items.Where(t => t.Name == name);
+			IEnumerable<IUnitOfWork> nonMatchingItems = items.Except(matchingItems);
+			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
 
 			//
-			// Within the list, find the target decorator.
+			// Within the list, find the target unit of work.
 			//
-			foreach (IUnitOfWork item in keyItems)
+			foreach (IUnitOfWork item in matchingItems)
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (IUnitOfWork<TResult, TSourceItem>)item;
 					this.Logger.LogDebug("The Unit of Work key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
-					break;
 				}
+				else
+				{
+					//
+					// Dispose the item (if it supports it).
+					//
+					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					item.TryDispose();
+				}
+			}
+
+			//
+			// Attempt to dispose the unused items.
+			//
+			foreach (IUnitOfWork nonMatchingItem in nonMatchingItems)
+			{
+				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
+				nonMatchingItem.TryDispose();
 			}
 
 			//
 			// Check the result.
 			//
-			if (returnValue == null)
+				if (returnValue == null)
 			{
 				this.Logger.LogDebug("The Unit of Work key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
 				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(name);
