@@ -16,6 +16,7 @@
 //
 using System.Linq;
 using System.Threading.Tasks;
+using Diamond.Core.Performance;
 using Diamond.Core.Repository;
 using Microsoft.Extensions.Logging;
 
@@ -31,16 +32,23 @@ namespace Diamond.Core.Example
 		/// </summary>
 		/// <param name="logger"></param>
 		/// <param name="repositoryFactory"></param>
-		public GetCommandDirect(ILogger<GetCommandDirect> logger, IRepositoryFactory repositoryFactory)
+		public GetCommandDirect(ILogger<GetCommandDirect> logger, IRepositoryFactory repositoryFactory, IMeasureAction measureAction)
 			: base(logger)
 		{
 			this.RepositoryFactory = repositoryFactory;
+			this.Action = measureAction;
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		protected IRepositoryFactory RepositoryFactory { get; set; }
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected IMeasureAction Action { get; set; }
 
 		/// <summary>
 		/// 
@@ -60,8 +68,8 @@ namespace Diamond.Core.Example
 			//
 			// Attempt to create the item.
 			//
-			IInvoice item = (await repository.GetAsync(t => t.Number == invoice.Number)).SingleOrDefault();
-
+			IInvoice item = await this.Action.Measure(async () => (await repository.GetAsync(t => t.Number == invoice.Number)).SingleOrDefault(), "Get Invoice");
+			
 			if (item != null)
 			{
 				returnValue = 0;

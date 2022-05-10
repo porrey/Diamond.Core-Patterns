@@ -1,0 +1,9 @@
+{
+	"services": [
+		{
+			"ServiceType": "Diamond.Core.Performance.IMeasureAction, Diamond.Core.Performance",
+			"ImplementationType": "Diamond.Core.Performance.MeasureAction, Diamond.Core.Performance",
+			"Lifetime": "Transient"
+		}
+	]
+}

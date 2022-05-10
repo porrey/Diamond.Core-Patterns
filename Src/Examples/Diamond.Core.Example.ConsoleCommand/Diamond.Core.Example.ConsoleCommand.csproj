@@ -49,6 +49,7 @@
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting.Abstractions\Diamond.Core.Extensions.Hosting.Abstractions.csproj" />
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
     <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
+    <ProjectReference Include="..\..\System\Diamond.Core.Performance\Diamond.Core.Performance.csproj" />
     <ProjectReference Include="..\..\System\Diamond.Core.System.TemporaryFolder\Diamond.Core.System.TemporaryFolder.csproj" />
     <ProjectReference Include="..\Diamond.Core.Example.Shared\Diamond.Core.Example.Shared.csproj" />
   </ItemGroup>
