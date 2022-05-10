@@ -1,8 +1,36 @@
 {
   "profiles": {
-    "Diamond.Core.Example.Command.Console": {
+    "create": {
+      "commandName": "Project",
+      "commandLineArgs": "create --number INV12345 --description \"This is the first invoice.\" --total 1450.65",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "list": {
       "commandName": "Project",
       "commandLineArgs": "list",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "delete": {
+      "commandName": "Project",
+      "commandLineArgs": "delete --number INV12345",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "get": {
+      "commandName": "Project",
+      "commandLineArgs": "get --number INV12345",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "update": {
+      "commandName": "Project",
+      "commandLineArgs": "update --number INV12345 --description \"This is the first invoice updated.\" --total 1550.55",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

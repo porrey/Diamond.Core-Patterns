@@ -77,34 +77,52 @@ namespace Diamond.Core.Specification
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(ISpecification<TResult>);
-			this.Logger.LogDebug("Finding a Specification with container registration name '{name}' and Target Type '{targetType}'.", name, targetType.Name);
+			this.Logger.LogDebug("Finding a Specification with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
 
 			//
 			// Get all decorators from the container of
-			// type IDecorator<TItem>.
+			// type ISpecification<TParameter, TResult>.
 			//
 			IEnumerable<ISpecification> items = this.ServiceProvider.GetService<IEnumerable<ISpecification>>();
-			ISpecification item = items.Where(t => t.Name == name).SingleOrDefault();
+			IEnumerable<ISpecification> matchingItems = items.Where(t => t.Name == name);
+			IEnumerable<ISpecification> nonMatchingItems = items.Except(matchingItems);
+			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
 
 			//
-			// Within the list, find the target decorator.
+			// Within the list, find the target Specification.
 			//
-			if (item != null)
+			foreach (ISpecification item in matchingItems)
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogDebug("The Specification '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 					returnValue = (ISpecification<TResult>)item;
+					this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 				}
 				else
 				{
-					this.Logger.LogError("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
-					throw new SpecificationNotFoundException<TResult>(name);
+					//
+					// Dispose the item (if it supports it).
+					//
+					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					item.TryDispose();
 				}
 			}
-			else
+
+			//
+			// Attempt to dispose the unused items.
+			//
+			foreach (ISpecification nonMatchingItem in nonMatchingItems)
 			{
-				this.Logger.LogError("The Specification key '{name}' was NOT found. Throwing exception...", name);
+				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
+				nonMatchingItem.TryDispose();
+			}
+
+			//
+			// Check the result.
+			//
+			if (returnValue == null)
+			{
+				this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
 				throw new SpecificationNotFoundException<TResult>(name);
 			}
 
@@ -126,34 +144,52 @@ namespace Diamond.Core.Specification
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(ISpecification<TParameter, TResult>);
-			this.Logger.LogDebug("Finding a Specification with container registration name '{name}' and Target Type '{targetType}'.", name, targetType.Name);
+			this.Logger.LogDebug("Finding a Specification with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
 
 			//
 			// Get all decorators from the container of
-			// type IDecorator<TItem>.
+			// type ISpecification<TParameter, TResult>.
 			//
 			IEnumerable<ISpecification> items = this.ServiceProvider.GetService<IEnumerable<ISpecification>>();
-			ISpecification item = items.Where(t => t.Name == name).SingleOrDefault();
+			IEnumerable<ISpecification> matchingItems = items.Where(t => t.Name == name);
+			IEnumerable<ISpecification> nonMatchingItems = items.Except(matchingItems);
+			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
 
 			//
-			// Within the list, find the target decorator.
+			// Within the list, find the target Specification.
 			//
-			if (item != null)
+			foreach (ISpecification item in matchingItems)
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogDebug("The Specification '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 					returnValue = (ISpecification<TParameter, TResult>)item;
+					this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 				}
 				else
 				{
-					this.Logger.LogError("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
-					throw new SpecificationNotFoundException<TParameter, TResult>(name);
+					//
+					// Dispose the item (if it supports it).
+					//
+					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					item.TryDispose();
 				}
 			}
-			else
+
+			//
+			// Attempt to dispose the unused items.
+			//
+			foreach (ISpecification nonMatchingItem in nonMatchingItems)
 			{
-				this.Logger.LogError("The Specification key '{name}' was NOT found. Throwing exception...", name);
+				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
+				nonMatchingItem.TryDispose();
+			}
+
+			//
+			// Check the result.
+			//
+			if (returnValue == null)
+			{
+				this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
 				throw new SpecificationNotFoundException<TParameter, TResult>(name);
 			}
 

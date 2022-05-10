@@ -71,17 +71,17 @@ namespace Diamond.Core.Example
 
 				if (result)
 				{
-					this.Logger.LogInformation($"Successfully delete invoice '{invoice.Number}' [ID = {exisingItem.Id}]");
+					this.Logger.LogInformation("Successfully delete invoice '{invoice}' [ID = {id}]", invoice.Number, exisingItem.Id);
 					returnValue = 0;
 				}
 				else
 				{
-					this.Logger.LogError($"The invoice with invoice number '{invoice.Number}' could not be deleted [ID = {exisingItem.Id}].");
+					this.Logger.LogError("The invoice with invoice number '{invoice}' could not be deleted [ID = {id}].", invoice.Number, exisingItem.Id);
 				}
 			}
 			else
 			{
-				this.Logger.LogError($"An invoice with invoice number '{invoice.Number}' could not be found.");
+				this.Logger.LogError("An invoice with invoice number '{invoice}' could not be found.", invoice.Number);
 			}
 
 			return returnValue;

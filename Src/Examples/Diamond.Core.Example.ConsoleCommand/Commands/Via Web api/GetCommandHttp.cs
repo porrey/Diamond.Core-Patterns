@@ -62,18 +62,18 @@ namespace Diamond.Core.Example
 				if (response.IsSuccessStatusCode)
 				{
 					Invoice retievedInvoice = JsonSerializer.Deserialize<Invoice>(json);
-					this.Logger.LogInformation(retievedInvoice.ToString());
+					this.Logger.LogInformation("{retievedInvoice}", retievedInvoice);
 				}
 				else
 				{
 					if (response.StatusCode == HttpStatusCode.NotFound)
 					{
-						this.Logger.LogWarning($"The invoice '{invoice.Number}' was not found.");
+						this.Logger.LogWarning("The invoice '{invoice}' was not found.", invoice.Number);
 					}
 					else
 					{
 						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(json);
-						this.Logger.LogError($"Error while retrieving invoice list: '{details.Detail}'.");
+						this.Logger.LogError("Error while retrieving invoice list: '{detail}'.", details.Detail);
 					}
 					returnValue = 1;
 				}

@@ -91,18 +91,41 @@ namespace Diamond.Core.Rules
 			//
 			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
+			IEnumerable<IRule> groupItems = Array.Empty<IRule>();
 			if (!string.IsNullOrEmpty(group))
 			{
-				items = items.Where(t => t.Group == group);
+				groupItems = items.Where(t => t.Group == group);
 			}
 
-			if (items.Count() > 0)
+			//
+			// Get the non matching items.
+			//
+			IEnumerable<IRule> nonMatchingItems = items.Except(groupItems);
+
+			//
+			// Attempt to dispose the unused items.
+			//
+			foreach (IRule nonMatchingItem in nonMatchingItems)
 			{
-				foreach (IRule item in items)
+				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
+				nonMatchingItem.TryDispose();
+			}
+
+			if (groupItems.Any())
+			{
+				foreach (IRule item in groupItems)
 				{
 					if (targetType.IsInstanceOfType(item))
 					{
 						returnValue.Add((IRule<TItem>)item);
+					}
+					else
+					{
+						//
+						// Dispose the item (if it supports it).
+						//
+						this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+						item.TryDispose();
 					}
 				}
 			}
@@ -154,12 +177,27 @@ namespace Diamond.Core.Rules
 			//
 			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
 
+			IEnumerable<IRule> groupItems = Array.Empty<IRule>();
 			if (!string.IsNullOrEmpty(group))
 			{
-				items = items.Where(t => t.Group == group);
+				groupItems = items.Where(t => t.Group == group);
 			}
 
-			if (items.Count() > 0)
+			//
+			// Get the non matching items.
+			//
+			IEnumerable<IRule> nonMatchingItems = items.Except(groupItems);
+
+			//
+			// Attempt to dispose the unused items.
+			//
+			foreach (IRule nonMatchingItem in nonMatchingItems)
+			{
+				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
+				nonMatchingItem.TryDispose();
+			}
+
+			if (items.Any())
 			{
 				this.Logger.LogDebug("{count} Rules with group '{group}' and Target Type '{targetType}' were found.", items.Count(), group, targetType.Name);
 
@@ -168,6 +206,10 @@ namespace Diamond.Core.Rules
 					if (targetType.IsInstanceOfType(item))
 					{
 						returnValue.Add((IRule<TItem, TResult>)item);
+					}
+					else
+					{
+						item.TryDispose();
 					}
 				}
 			}

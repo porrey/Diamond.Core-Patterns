@@ -67,12 +67,12 @@ namespace Diamond.Core.Example
 					if (response.IsSuccessStatusCode)
 					{
 						Invoice newInvoice = JsonSerializer.Deserialize<Invoice>(responseJson);
-						this.Logger.LogInformation($"Successfully created invoice: '{newInvoice}'.");
+						this.Logger.LogInformation("Successfully created invoice: '{newInvoice}'.", newInvoice);
 					}
 					else
 					{
 						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(responseJson);
-						this.Logger.LogError($"Error while creating invoice '{invoice.Number}': '{details.Detail}'.");
+						this.Logger.LogError("Error while creating invoice '{number}': '{details}'.", invoice.Number, details.Detail);
 						returnValue = 1;
 					}
 				}

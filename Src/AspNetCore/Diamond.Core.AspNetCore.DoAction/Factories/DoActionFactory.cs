@@ -65,7 +65,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IDoAction<TInputs, TResult>);
-			this.Logger.LogDebug($"Finding an IDoAction of type '{targetType.Name}' and action key of '{actionKey}'.");
+			this.Logger.LogDebug("Finding an IDoAction of type '{targetType}' and action key of '{actionKey}'.", targetType.Name, actionKey);
 
 			//
 			// Get all decorators from the container of
@@ -73,6 +73,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 			//
 			IEnumerable<IDoAction> items = this.ServiceProvider.GetRequiredService<IEnumerable<IDoAction>>();
 			IDoAction doAction = items.Where(t => t.ActionKey == actionKey).FirstOrDefault();
+			IEnumerable<IDoAction> unusedItems = items.Except(new IDoAction[] { doAction });
 
 			//
 			// Within the list, find the target decorator.
@@ -81,18 +82,33 @@ namespace Diamond.Core.AspNetCore.DoAction
 			{
 				if (targetType.IsInstanceOfType(doAction))
 				{
-					this.Logger.LogDebug($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was found.");
+					this.Logger.LogDebug("IDecorator of type '{targetType}' and action key of '{actionKey}' was found.", targetType.Name, actionKey);
 					returnValue = (IDoAction<TInputs, TResult>)doAction;
+
+					//
+					// Attempt to dispose the unused items.
+					//
+					foreach (IDoAction unusedItem in unusedItems)
+					{
+						this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", unusedItem.GetType().Name);
+						unusedItem.TryDispose();
+					}
 				}
 				else
 				{
-					this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
+					//
+					// Dispose the item (if it supports it).
+					//
+					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", doAction.GetType().Name);
+					doAction.TryDispose();
+
+					this.Logger.LogError("IDecorator of type '{targetType}' and action key of '{actionKey}' was NOT found. Throwing exception...", targetType.Name, actionKey);
 					throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
 				}
 			}
 			else
 			{
-				this.Logger.LogError($"IDecorator of type '{targetType.Name}' and action key of '{actionKey}' was NOT found. Throwing exception...");
+				this.Logger.LogError("IDecorator of type '{targetType}' and action key of '{actionKey}' was NOT found. Throwing exception...", targetType.Name, actionKey);
 				throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
 			}
 

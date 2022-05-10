@@ -60,7 +60,7 @@ namespace Diamond.Core.Example
 			JsonPatchDocument<Invoice> patchDocument = new JsonPatchDocument<Invoice>();
 			string requestJson = JsonSerializer.Serialize(patchDocument);
 
-			using (StringContent content = new StringContent(requestJson, Encoding.UTF8, "application/json-patch+json"))
+			using (StringContent content = new(requestJson, Encoding.UTF8, "application/json-patch+json"))
 			{
 				using (HttpResponseMessage response = await client.PatchAsync(invoice.Number, content))
 				{
@@ -69,12 +69,12 @@ namespace Diamond.Core.Example
 					if (response.IsSuccessStatusCode)
 					{
 						Invoice newInvoice = JsonSerializer.Deserialize<Invoice>(responseJson);
-						this.Logger.LogInformation($"Successfully updated invoice: '{newInvoice}'.");
+						this.Logger.LogInformation("Successfully updated invoice: '{newInvoice}'.", newInvoice);
 					}
 					else
 					{
 						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(responseJson);
-						this.Logger.LogError($"Error while updating invoice '{invoice.Number}': '{details.Detail}'.");
+						this.Logger.LogError("Error while updating invoice '{invoice}': '{details}'.", invoice.Number, details.Detail);
 						returnValue = 1;
 					}
 				}

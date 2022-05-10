@@ -78,23 +78,39 @@ namespace Diamond.Core.Workflow
 			//
 			IEnumerable<IWorkflowItem> items = this.ServiceProvider.GetService<IEnumerable<IWorkflowItem>>();
 			IEnumerable<IWorkflowItem> groupItems = items.Where(t => t.Group == groupName);
-			this.Logger.LogDebug($"Found {groupItems.Count()} workflow items for group '{groupName}'.");
+			IEnumerable<IWorkflowItem> unusedItems = items.Except(groupItems);
+			this.Logger.LogDebug("Found {count} workflow items for group '{groupName}'.", groupItems.Count(), groupName);
 
-			if (groupItems.Count() > 0)
+			if (groupItems.Any())
 			{
-				this.Logger.LogDebug($"Loading workflow items for group '{groupName}'.");
+				this.Logger.LogDebug("Loading workflow items for group '{groupName}'.", groupName);
 
 				foreach (IWorkflowItem groupItem in groupItems)
 				{
 					if (targetType.IsInstanceOfType(groupItem))
 					{
 						returnValue.Add((IWorkflowItem)groupItem);
-						this.Logger.LogDebug($"Added workflow item '{groupItem.Name}'.");
+						this.Logger.LogDebug("Added workflow item '{groupName}'.", groupItem.Name);
 					}
 					else
 					{
-						this.Logger.LogDebug($"Skipping workflow item '{groupItem.Name}' because it does not have the correct Type.");
+						this.Logger.LogDebug("Skipping workflow item '{groupName}' because it does not have the correct Type.", groupItem.Name);
+
+						//
+						// Dispose the item (if it supports it).
+						//
+						this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", groupItem.GetType().Name);
+						groupItem.TryDispose();
 					}
+				}
+
+				//
+				// Attempt to dispose the unused items.
+				//
+				foreach (IWorkflowItem unusedItem in unusedItems)
+				{
+					this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", unusedItem.GetType().Name);
+					unusedItem.TryDispose();
 				}
 			}
 			else
@@ -102,7 +118,7 @@ namespace Diamond.Core.Workflow
 				//
 				// No items
 				//
-				this.Logger.LogError($"Work flow items for group '{groupName}' have not been configured.");
+				this.Logger.LogError("Work flow items for group '{groupName}' have not been configured.", groupName);
 				throw new Exception($"Work flow items for group '{groupName}' have not been configured.");
 			}
 

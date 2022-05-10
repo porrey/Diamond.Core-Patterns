@@ -67,9 +67,12 @@ namespace Diamond.Core.Example
 			this.Logger.LogDebug("Retrieving a writable repository for IInvoice.");
 			IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
 
-			//var context = await repository.GetContextAsync();
-			//await context.EnsureDeleted();
-			//await context.EnsureCreated();
+			//
+			// Ensure the database exists.
+			//
+			IRepositoryContext context = await repository.AsQueryable().GetContextAsync();
+			await context.EnsureDeletedAsync();
+			await context.EnsureCreatedAsync();
 
 			//
 			// Create a new entity.
@@ -90,7 +93,7 @@ namespace Diamond.Core.Example
 
 				if (result)
 				{
-					this.Logger.LogInformation($"An invoice with ID = {newItem.Id} has been created.");
+					this.Logger.LogInformation("An invoice with ID = {id} has been created.", newItem.Id);
 					returnValue = 0;
 				}
 				else
@@ -103,7 +106,7 @@ namespace Diamond.Core.Example
 			{
 				if (dbex.InnerException != null && dbex.InnerException.Message.Contains("duplicate"))
 				{
-					this.Logger.LogError($"An invoice with number '{item.Number}' already exists.");
+					this.Logger.LogError("An invoice with number '{number}' already exists.", item.Number);
 				}
 				else
 				{

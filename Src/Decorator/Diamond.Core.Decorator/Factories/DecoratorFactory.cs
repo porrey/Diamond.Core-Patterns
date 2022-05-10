@@ -75,30 +75,53 @@ namespace Diamond.Core.Decorator
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IDecorator<TDecoratedItem, TResult>);
-			this.Logger.LogDebug("Finding an IDecorator of type '{targetType}' and container registration name of '{name}'.", targetType.Name, name);
+			this.Logger.LogDebug("Finding a Decorator with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
 
 			//
 			// Get all decorators from the container of
-			// type IDecorator<TItem>.
+			// type IDecorator<TParameter, TResult>.
 			//
 			IEnumerable<IDecorator> items = this.ServiceProvider.GetService<IEnumerable<IDecorator>>();
-			IDecorator decorator = items.Where(t => t.Name == name).FirstOrDefault();
+			IEnumerable<IDecorator> matchingItems = items.Where(t => t.Name == name);
+			IEnumerable<IDecorator> nonMatchingItems = items.Except(matchingItems);
+			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
 
 			//
-			// Within the list, find the target decorator.
+			// Within the list, find the target Decorator.
 			//
-			if (decorator != null)
+			foreach (IDecorator item in matchingItems)
 			{
-				if (targetType.IsInstanceOfType(decorator))
+				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogDebug("IDecorator of type '{targetType}' and container registration name of '{name}' was found.", targetType.Name, name);
-					returnValue = (IDecorator<TDecoratedItem, TResult>)decorator;
+					returnValue = (IDecorator<TDecoratedItem, TResult>)item;
+					this.Logger.LogDebug("The Decorator key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
 				}
 				else
 				{
-					this.Logger.LogError("IDecorator of type '{targetType}' and container registration name of '{name}' was NOT found. Throwing exception...", targetType.Name, name);
-					throw new DecoratorNotFoundException<TDecoratedItem, TResult>(name);
+					//
+					// Dispose the item (if it supports it).
+					//
+					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					item.TryDispose();
 				}
+			}
+
+			//
+			// Attempt to dispose the unused items.
+			//
+			foreach (IDecorator nonMatchingItem in nonMatchingItems)
+			{
+				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
+				nonMatchingItem.TryDispose();
+			}
+
+			//
+			// Check the result.
+			//
+			if (returnValue == null)
+			{
+				this.Logger.LogDebug("The Decorator key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
+				throw new DecoratorNotFoundException<TDecoratedItem, TResult>(name);
 			}
 
 			return Task.FromResult(returnValue);

@@ -73,7 +73,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
 		protected virtual Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string actionKey = null)
 		{
-			this.Logger.LogDebug($"Do method called with action key '{actionKey}'.");
+			this.Logger.LogDebug("Do method called with action key '{actionKey}'.", actionKey);
 			return this.Do<object, TResult>(null, actionKey);
 		}
 
@@ -103,16 +103,16 @@ namespace Diamond.Core.AspNetCore.DoAction
 
 				try
 				{
-					this.Logger.LogDebug($"Retrieving controller method action '{actionKey}'.");
+					this.Logger.LogDebug("Retrieving controller method action '{actionKey}'.", actionKey);
 					action = await this.DoActionFactory.GetAsync<TInputs, TResult>(actionKey);
-					this.Logger.LogDebug($"Controller method action '{actionKey}' was successfully retrieved.");
+					this.Logger.LogDebug("Controller method action '{actionKey}' was successfully retrieved.", actionKey);
 				}
 				catch (DoActionNotFoundException)
 				{
 					//
 					// An implementation of this method was not found.
 					//
-					this.Logger.LogWarning($"Controller method action '{actionKey}' was not found in the container.");
+					this.Logger.LogWarning("Controller method action '{actionKey}' was not found in the container.", actionKey);
 					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented, this.OnCreateProblemDetail(DoActionResult.NotImplemented($"The method has not been implemented. This could be a configuration error or the service is still under development.")));
 					action = null;
 				}
@@ -121,7 +121,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 					//
 					// An implementation of this method was not found.
 					//
-					this.Logger.LogError(ex, $"Exception while retrieving do action.");
+					this.Logger.LogError(ex, "Exception while retrieving do action.");
 					returnValue = this.StatusCode(StatusCodes.Status500InternalServerError, this.OnCreateProblemDetail(DoActionResult.InternalServerError("An unknown internal server error occurred.")));
 					action = null;
 				}
@@ -140,18 +140,18 @@ namespace Diamond.Core.AspNetCore.DoAction
 							//
 							// Execute the action.
 							//
-							this.Logger.LogDebug($"Executing controller method action '{actionKey}.TakeActionAsync()'.");
+							this.Logger.LogDebug("Executing controller method action '{actionKey}.TakeActionAsync()'.", actionKey);
 							IControllerActionResult<TResult> result = await action.ExecuteActionAsync(inputs);
 
 							if (result.ResultDetails.Status == StatusCodes.Status200OK)
 							{
-								this.Logger.LogDebug($"Controller method action '{actionKey}.TakeActionAsync()' completed successfully.");
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", actionKey);
 								returnValue = this.Ok(result.Result);
 							}
 							else
 							{
-								this.Logger.LogDebug($"Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {result.ResultDetails.Status}.");
-								this.Logger.LogDebug($"The action returned: '{result.ResultDetails.Detail}'.");
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {status}.", actionKey, result.ResultDetails.Status);
+								this.Logger.LogDebug("The action returned: '{detail}'.", result.ResultDetails.Detail);
 
 								//
 								// Check if the instance is null.
@@ -161,7 +161,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 									//
 									// Add the request path.
 									//
-									result.ResultDetails.Instance = HttpContext.Request.Path;
+									result.ResultDetails.Instance = this.HttpContext.Request.Path;
 								}
 
 								returnValue = this.StatusCode(result.ResultDetails.Status.Value, this.OnCreateProblemDetail(result.ResultDetails));
@@ -196,7 +196,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <param name="name"></param>
 		protected virtual void LogMethodCall([CallerMemberName] string name = null)
 		{
-			this.Logger.LogDebug($"Controller method '{name}' was called.");
+			this.Logger.LogDebug("Controller method '{name}' was called.", name);
 		}
 
 		/// <summary>

@@ -43,7 +43,7 @@ namespace Diamond.Core.Example.BasicConsole
 
 		public async Task StartAsync(CancellationToken cancellationToken)
 		{
-			this.Logger.LogInformation($"Starting {nameof(BasicExampleHostedService)} service.");
+			this.Logger.LogInformation("Starting {type} service.", nameof(BasicExampleHostedService));
 
 			try
 			{
@@ -51,10 +51,10 @@ namespace Diamond.Core.Example.BasicConsole
 				{
 					IWorkflowManagerFactory factory = scope.ServiceProvider.GetService<IWorkflowManagerFactory>();
 
-					this.Logger.LogInformation($"Retrieving work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
+					this.Logger.LogInformation("Retrieving work flow manager '{name}'.", WellKnown.Workflow.SampleWorkflow);
 					IWorkflowManager workflowManager = await factory.GetAsync(WellKnown.Workflow.SampleWorkflow);
 
-					this.Logger.LogInformation($"Executing work flow manager '{WellKnown.Workflow.SampleWorkflow}'.");
+					this.Logger.LogInformation("Executing work flow manager '{name}'.", WellKnown.Workflow.SampleWorkflow);
 					if (await workflowManager.ExecuteWorkflowAsync(new WorkflowContext()))
 					{
 						this.Logger.LogInformation("Work flow execution was successful.");
@@ -69,7 +69,7 @@ namespace Diamond.Core.Example.BasicConsole
 			}
 			catch (Exception ex)
 			{
-				this.Logger.LogError(ex, $"Exception while executing work flow '{WellKnown.Workflow.SampleWorkflow}'.");
+				this.Logger.LogError(ex, "Exception while executing work flow '{name}'.", WellKnown.Workflow.SampleWorkflow);
 				this.ExitCode = 2;
 			}
 			finally
@@ -80,7 +80,7 @@ namespace Diamond.Core.Example.BasicConsole
 
 		public Task StopAsync(CancellationToken cancellationToken)
 		{
-			this.Logger.LogDebug($"Exiting service {nameof(BasicExampleHostedService)} with return code: {this.ExitCode}");
+			this.Logger.LogDebug("Exiting service {name} with return code: {code}", nameof(BasicExampleHostedService), this.ExitCode);
 
 			//
 			// Exit code.

@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>6.0.9</Version>
-    <FileVersion>6.0.9</FileVersion>
-    <AssemblyVersion>6.0.9</AssemblyVersion>
+    <Version>6.0.12</Version>
+    <FileVersion>6.0.12</FileVersion>
+    <AssemblyVersion>6.0.12</AssemblyVersion>
     <AssemblyName>WebExample</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
