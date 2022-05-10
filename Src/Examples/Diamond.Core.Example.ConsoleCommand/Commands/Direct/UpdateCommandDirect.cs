@@ -87,12 +87,12 @@ namespace Diamond.Core.Example
 
 					if (result)
 					{
-						this.Logger.LogInformation($"Successfully update invoice {item.Number} [ID = {exisingItem.Id}].");
+						this.Logger.LogInformation("Successfully update invoice {number} [ID = {id}].", item.Number, exisingItem.Id);
 						returnValue = 0;
 					}
 					else
 					{
-						this.Logger.LogError($"The invoice with invoice number '{item.Number}' could not be updated.");
+						this.Logger.LogError("The invoice with invoice number '{number}' could not be updated.", item.Number);
 					}
 				}
 				catch (Exception ex)
@@ -102,7 +102,7 @@ namespace Diamond.Core.Example
 			}
 			else
 			{
-				this.Logger.LogInformation($"An invoice with invoice number '{item.Number}' could not be found.");
+				this.Logger.LogInformation("An invoice with invoice number '{number}' could not be found.", item.Number);
 			}
 
 			return returnValue;

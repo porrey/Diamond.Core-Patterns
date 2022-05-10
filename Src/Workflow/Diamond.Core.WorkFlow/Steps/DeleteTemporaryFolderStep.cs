@@ -104,7 +104,7 @@ namespace Diamond.Core.Workflow
 				// Cache the name since the object is being disposed.
 				//
 				string tempPath = temporaryFolder.FullPath;
-				this.Logger.LogDebug($"Deleting temporary folder '{tempPath}'.");
+				this.Logger.LogDebug("Deleting temporary folder '{tempPath}'.", tempPath);
 
 				TryDisposable<ITemporaryFolder>.Dispose(temporaryFolder);
 				context.Properties.Remove(DiamondWorkflow.WellKnown.Context.TemporaryFolder);

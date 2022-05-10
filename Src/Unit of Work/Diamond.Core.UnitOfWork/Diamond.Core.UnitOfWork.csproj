@@ -8,9 +8,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
     <Description>This library provides a basic implementation of the Unit of Work factory.</Description>
-    <Version>6.0.10</Version>
-    <FileVersion>6.0.10</FileVersion>
-    <AssemblyVersion>6.0.10</AssemblyVersion>
+    <Version>6.0.12</Version>
+    <FileVersion>6.0.12</FileVersion>
+    <AssemblyVersion>6.0.12</AssemblyVersion>
     <Authors>Daniel M. Porrey</Authors>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>

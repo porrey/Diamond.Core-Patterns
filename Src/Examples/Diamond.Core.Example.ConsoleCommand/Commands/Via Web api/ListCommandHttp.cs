@@ -80,7 +80,7 @@ namespace Diamond.Core.Example
 					else
 					{
 						ProblemDetails details = JsonSerializer.Deserialize<ProblemDetails>(json);
-						this.Logger.LogError($"Error while retrieving invoice list: '{details.Detail}'.");
+						this.Logger.LogError("Error while retrieving invoice list: '{detail}'.", details.Detail);
 					}
 					returnValue = 1;
 				}

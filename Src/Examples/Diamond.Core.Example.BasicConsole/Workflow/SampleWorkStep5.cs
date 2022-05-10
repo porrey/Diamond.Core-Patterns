@@ -57,9 +57,9 @@ namespace Diamond.Core.Example.BasicConsole
 			// Display the employee.
 			//
 			this.Logger.LogInformation("These employees have been promoted:");
-			foreach (var employee in promotedEmployees)
+			foreach (IEmployeeEntity employee in promotedEmployees)
 			{
-				this.Logger.LogInformation($"{employee}");
+				this.Logger.LogInformation("{employee}", employee);
 			}
 
 			//

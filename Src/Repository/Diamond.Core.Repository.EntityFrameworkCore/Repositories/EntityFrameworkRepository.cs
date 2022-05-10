@@ -327,7 +327,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		protected override void OnDisposeManagedObjects()
 		{
-			this.Logger.LogDebug($"Disposed {nameof(EntityFrameworkRepository<TInterface, TEntity, TContext>)}");
+			this.Logger.LogDebug("Disposed {name}", nameof(EntityFrameworkRepository<TInterface, TEntity, TContext>));
 
 			if (this.Context != null)
 			{

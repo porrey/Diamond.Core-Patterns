@@ -62,7 +62,7 @@ namespace Diamond.Core.Example.BasicConsole
 				//
 				// Create the database
 				//
-				this.Logger.LogInformation($"Creating new empty database.");
+				this.Logger.LogInformation("Creating new empty database.");
 				if (await db.EnsureCreatedAsync())
 				{
 					returnValue = true;

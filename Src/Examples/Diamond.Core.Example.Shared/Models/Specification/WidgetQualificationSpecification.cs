@@ -38,9 +38,9 @@ namespace Diamond.Core.Example
 
 		public Task<IEnumerable<Widget>> ExecuteSelectionAsync(IEnumerable<Widget> inputs)
 		{
-			IEnumerable<Widget> returnValue = new Widget[0];
+			IEnumerable<Widget> returnValue = Array.Empty<Widget>();
 
-			this.Logger.LogInformation($"Qualifying all widgets less than or equal to {this.Threshold} lbs.");
+			this.Logger.LogInformation("Qualifying all widgets less than or equal to {threshold} lbs.", this.Threshold);
 			returnValue = inputs.Where(t => t.Weight <= this.Threshold).ToArray();
 
 			return Task.FromResult(returnValue);

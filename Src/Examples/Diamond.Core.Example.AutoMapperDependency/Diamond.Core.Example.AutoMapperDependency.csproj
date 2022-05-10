@@ -6,9 +6,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<AssemblyName>AutoMapperCmd</AssemblyName>
-		<Version>6.0.9</Version>
-		<FileVersion>6.0.9</FileVersion>
-		<AssemblyVersion>6.0.9</AssemblyVersion>
+		<Version>6.0.12</Version>
+		<FileVersion>6.0.12</FileVersion>
+		<AssemblyVersion>6.0.12</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

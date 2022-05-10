@@ -36,7 +36,7 @@ namespace Diamond.Core.Example.AutoMapperDependency
 
 		public override Task StartAsync(CancellationToken cancellationToken)
 		{
-			this.Logger.LogInformation($"Starting {nameof(AutoMapperExampleHostedService)} service.");
+			this.Logger.LogInformation("Starting {type} service.", nameof(AutoMapperExampleHostedService));
 
 			try
 			{
@@ -53,7 +53,7 @@ namespace Diamond.Core.Example.AutoMapperDependency
 			}
 			catch (Exception ex)
 			{
-				this.Logger.LogError(ex, $"Exception in hosted service.");
+				this.Logger.LogError(ex, "Exception in hosted service.");
 				this.ExitCode = 2;
 			}
 			finally
@@ -66,7 +66,7 @@ namespace Diamond.Core.Example.AutoMapperDependency
 
 		public override Task StopAsync(CancellationToken cancellationToken)
 		{
-			this.Logger.LogDebug($"Exiting service {nameof(AutoMapperExampleHostedService)} with return code: {this.ExitCode}");
+			this.Logger.LogDebug("Exiting service {name} with return code: {code}", nameof(AutoMapperExampleHostedService), this.ExitCode);
 
 			//
 			// Exit code.

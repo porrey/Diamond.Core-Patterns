@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
-    <Version>6.0.9</Version>
-    <FileVersion>6.0.9</FileVersion>
-    <AssemblyVersion>6.0.9</AssemblyVersion>
+    <Version>6.0.12</Version>
+    <FileVersion>6.0.12</FileVersion>
+    <AssemblyVersion>6.0.12</AssemblyVersion>
     <Authors>Daniel M. Porrey, Harshit Gindra</Authors>
     <Product>Diamond Pattern Library - Rules Pattern</Product>
     <Description>This library provides a basic implementation of the Rules pattern.</Description>
@@ -53,6 +53,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="TryDisposable" Version="1.5.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />

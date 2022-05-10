@@ -73,7 +73,7 @@ namespace Diamond.Core.Workflow
 			// Get the type being requested.
 			//
 			Type targetType = typeof(IWorkflowManager);
-			this.Logger.LogDebug($"Location workflow manager with group name '{groupName}'.");
+			this.Logger.LogDebug("Location workflow manager with group name '{groupName}'.", groupName);
 
 			//
 			// Find the repository that supports the given type.
@@ -83,12 +83,12 @@ namespace Diamond.Core.Workflow
 
 			if (item != null)
 			{
-				this.Logger.LogDebug($"Workflow manager with group '{groupName}' was found.");
+				this.Logger.LogDebug("Workflow manager with group '{groupName}' was found.", groupName);
 				returnValue = (IWorkflowManager)item;
 			}
 			else
 			{
-				this.Logger.LogWarning($"Workflow manager with group '{groupName}' was NOT found.");
+				this.Logger.LogWarning("Workflow manager with group '{groupName}' was NOT found.", groupName);
 				throw new WorkflowManagerNotFoundException(groupName);
 			}
 

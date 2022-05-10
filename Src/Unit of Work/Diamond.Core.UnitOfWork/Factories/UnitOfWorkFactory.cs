@@ -79,7 +79,7 @@ namespace Diamond.Core.UnitOfWork
 
 			//
 			// Get all decorators from the container of
-			// type IDecorator<TItem>.
+			// type IUnitOfWork<TResult, TSourceItem>.
 			//
 			IEnumerable<IUnitOfWork> items = this.ServiceProvider.GetService<IEnumerable<IUnitOfWork>>();
 			IEnumerable<IUnitOfWork> matchingItems = items.Where(t => t.Name == name);
@@ -118,7 +118,7 @@ namespace Diamond.Core.UnitOfWork
 			//
 			// Check the result.
 			//
-				if (returnValue == null)
+			if (returnValue == null)
 			{
 				this.Logger.LogDebug("The Unit of Work key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
 				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(name);

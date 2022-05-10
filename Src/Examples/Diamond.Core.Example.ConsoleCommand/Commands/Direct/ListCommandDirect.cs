@@ -69,7 +69,7 @@ namespace Diamond.Core.Example
 
 			if (items.Any())
 			{
-				this.Logger.LogDebug($"There were {items.Count()} Invoice items retrieved.");
+				this.Logger.LogDebug("There were {count} Invoice items retrieved.", items.Count());
 
 				foreach (IInvoice invoice in items)
 				{

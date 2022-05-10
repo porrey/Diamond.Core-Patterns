@@ -2,9 +2,9 @@
 	<PropertyGroup>
 		<TargetFrameworks>net6.0</TargetFrameworks>
 		<Product>Diamond.Core Patterns Library</Product>
-		<Version>6.0.9</Version>
-		<FileVersion>6.0.9</FileVersion>
-		<AssemblyVersion>6.0.9</AssemblyVersion>
+		<Version>6.0.12</Version>
+		<FileVersion>6.0.12</FileVersion>
+		<AssemblyVersion>6.0.12</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>

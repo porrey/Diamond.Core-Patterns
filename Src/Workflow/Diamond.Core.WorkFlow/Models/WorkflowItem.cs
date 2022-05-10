@@ -132,7 +132,7 @@ namespace Diamond.Core.Workflow
 		{
 			bool returnValue = false;
 
-			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(ExecuteStepAsync)}");
+			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(ExecuteStepAsync));
 
 			if (await this.OnPrepareForExecutionAsync(context))
 			{
@@ -149,7 +149,7 @@ namespace Diamond.Core.Workflow
 		/// <returns></returns>
 		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context)
 		{
-			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(OnPrepareForExecutionAsync)}");
+			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnPrepareForExecutionAsync));
 			return Task.FromResult(true);
 		}
 
@@ -160,7 +160,7 @@ namespace Diamond.Core.Workflow
 		/// <returns></returns>
 		protected virtual Task<bool> OnExecuteStepAsync(IContext context)
 		{
-			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(OnExecuteStepAsync)}");
+			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnExecuteStepAsync));
 			return Task.FromResult(true);
 		}
 
@@ -172,7 +172,7 @@ namespace Diamond.Core.Workflow
 		/// <returns></returns>
 		protected virtual Task StepFailedAsync(IContext context, string message)
 		{
-			this.Logger.LogDebug($"Work Flow Step '{this.Name}': {nameof(StepFailedAsync)}");
+			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(StepFailedAsync));
 			context.SetException(message);
 			return Task.FromResult(0);
 		}
