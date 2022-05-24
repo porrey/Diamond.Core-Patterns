@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0</TargetFrameworks>
-    <Version>6.0.12</Version>
-    <FileVersion>6.0.12</FileVersion>
-    <AssemblyVersion>6.0.12</AssemblyVersion>
+    <Version>6.0.13</Version>
+    <FileVersion>6.0.13</FileVersion>
+    <AssemblyVersion>6.0.13</AssemblyVersion>
     <Authors>Daniel M. Porrey, Harshit Gindra</Authors>
     <Product>Diamond Pattern Library - Rules Pattern</Product>
     <Description>This library provides abstractions for the Rules pattern.</Description>
