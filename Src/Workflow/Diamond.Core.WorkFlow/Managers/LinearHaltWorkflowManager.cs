@@ -20,6 +20,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Humanizer;
 
 namespace Diamond.Core.Workflow
 {
@@ -92,7 +93,7 @@ namespace Diamond.Core.Workflow
 				if (!isContiguous)
 				{
 					string itemOrdinals = String.Join(",", value.Select(t => t.Ordinal));
-					throw new ArgumentOutOfRangeException($"The {value.Count()} [{itemOrdinals}] state items for group {this.Group} are not numbered consecutively.");
+					throw new ArgumentOutOfRangeException($"The {value.Length} [{itemOrdinals}] state items for group {this.Group} are not numbered consecutively.");
 				}
 				else
 				{
@@ -169,8 +170,7 @@ namespace Diamond.Core.Workflow
 						//
 						if (result)
 						{
-							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							this.Logger.LogDebug("The workflow step '{name}' completed successfully [Execution time = {time} second(s)].", this.Steps[i].Name, time);
+							this.Logger.LogDebug("The workflow step '{name}' completed successfully [Execution time = {time}].", this.Steps[i].Name, stopWatch.Elapsed.Humanize(precision: 3));
 						}
 						else
 						{

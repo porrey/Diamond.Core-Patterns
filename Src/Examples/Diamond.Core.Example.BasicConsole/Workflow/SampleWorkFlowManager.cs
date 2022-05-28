@@ -27,7 +27,7 @@ namespace Diamond.Core.Example.BasicConsole
 	public class SampleWorkflowManager : LinearCompleteWorkflowManager
 	{
 		public SampleWorkflowManager(ILogger<SampleWorkflowManager> logger, IWorkflowItemFactory workFlowItemFactory)
-			: base(workFlowItemFactory)
+			: base(workFlowItemFactory, logger)
 		{
 			this.Group = WellKnown.Workflow.SampleWorkflow;
 			logger.LogDebug($"An instance of {nameof(SampleWorkflowManager)} with group name '{this.Group}' was created.");

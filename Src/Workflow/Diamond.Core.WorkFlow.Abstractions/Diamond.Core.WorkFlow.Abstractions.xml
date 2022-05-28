@@ -76,7 +76,7 @@
             Performs the work for the specified step.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.IWorkflowItem.ShouldExecute(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.IWorkflowItem.ShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             Indicates whether or not a step should be executed during a work flow.
             his is used by conditional work flow managers where every step in the

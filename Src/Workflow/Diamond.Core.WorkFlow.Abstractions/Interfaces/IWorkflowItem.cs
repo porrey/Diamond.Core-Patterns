@@ -73,6 +73,6 @@ namespace Diamond.Core.Workflow
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		bool ShouldExecute(IContext context);
+		Task<bool> ShouldExecuteAsync(IContext context);
 	}
 }

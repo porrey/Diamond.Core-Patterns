@@ -18,6 +18,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Humanizer;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -124,7 +125,7 @@ namespace Diamond.Core.Workflow
 			//
 			// Create a stop watch to time the workflow steps.
 			//
-			Stopwatch stopWatch = new Stopwatch();
+			Stopwatch stopWatch = new();
 
 			//
 			// Initialize this flag to True.
@@ -135,14 +136,14 @@ namespace Diamond.Core.Workflow
 			//
 			// Loop through each workflow step executing them one at a time.
 			//
-			for (int i = 0; i < this.Steps.Count(); i++)
+			for (int i = 0; i < this.Steps.Length; i++)
 			{
-				if (this.Steps[i].ShouldExecute(context))
+				if (await this.Steps[i].ShouldExecuteAsync(context))
 				{
 					//
 					// Publish a progress update.
 					//
-					this.Logger.LogDebug("Starting workflow step '{name}' [{i}].", this.Steps[i].Name, $"{i + 1} of {this.Steps.Count()}");
+					this.Logger.LogDebug("Starting workflow step '{name}' [{i}].", this.Steps[i].Name, $"{i + 1} of {this.Steps.Length}");
 
 					//
 					// Start the stop watch.
@@ -171,8 +172,7 @@ namespace Diamond.Core.Workflow
 						if (result)
 						{
 							context.Properties.Set(DiamondWorkflow.WellKnown.Context.LastStepSuccess, true);
-							string time = stopWatch.Elapsed.TotalSeconds < 1.0 ? "< 1 second" : $"{stopWatch.Elapsed.TotalSeconds:#,##0.0}";
-							this.Logger.LogDebug("The workflow step '{name}' completed successfully [Execution time = {time} second(s)].", this.Steps[i].Name, time);
+							this.Logger.LogDebug("The workflow step '{name}' completed successfully [Execution time = {time}].", this.Steps[i].Name, stopWatch.Elapsed.Humanize(precision: 3));
 							returnValue = true;
 						}
 						else
@@ -239,6 +239,7 @@ namespace Diamond.Core.Workflow
 			try
 			{
 				this.Logger.LogDebug("Executing workflow step '{name}'.", step.Name);
+
 				if (await step.ExecuteStepAsync(context))
 				{
 					this.Logger.LogDebug("The workflow step '{name}' completed successfully.", step.Name);

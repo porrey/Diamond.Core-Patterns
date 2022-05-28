@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -108,9 +109,9 @@ namespace Diamond.Core.Workflow
 		/// </summary>
 		/// <param name="context"></param>
 		/// <returns></returns>
-		public virtual bool ShouldExecute(IContext context)
+		public virtual Task<bool> ShouldExecuteAsync(IContext context)
 		{
-			return this.OnShouldExecuteAsync(context).Result;
+			return this.OnShouldExecuteAsync(context);
 		}
 
 		/// <summary>
@@ -132,11 +133,30 @@ namespace Diamond.Core.Workflow
 		{
 			bool returnValue = false;
 
-			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(ExecuteStepAsync));
-
-			if (await this.OnPrepareForExecutionAsync(context))
+			try
 			{
-				returnValue = await this.OnExecuteStepAsync(context);
+				this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnPrepareForExecutionAsync));
+				if (await this.OnPrepareForExecutionAsync(context))
+				{
+					this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(ExecuteStepAsync));
+					returnValue = await this.OnExecuteStepAsync(context);
+				}
+				else
+				{
+					this.Logger.LogDebug("Work Flow Step '{name}' was skipped because {method} returned false.", this.Name, nameof(OnPrepareForExecutionAsync));
+				}
+			}
+			finally
+			{
+				try
+				{
+					this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnPostExecutionAsync));
+					await this.OnPostExecutionAsync(context);
+				}
+				catch (Exception ex)
+				{
+					this.Logger.LogError(ex, "Exception in {name}.", nameof(this.OnPostExecutionAsync));
+				}
 			}
 
 			return returnValue;
@@ -149,8 +169,17 @@ namespace Diamond.Core.Workflow
 		/// <returns></returns>
 		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context)
 		{
-			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnPrepareForExecutionAsync));
 			return Task.FromResult(true);
+		}
+
+		/// <summary>
+		/// Called after a step has executed to perform any necessary cleanup.
+		/// </summary>
+		/// <param name="context"></param>
+		/// <returns></returns>
+		protected virtual Task OnPostExecutionAsync(IContext context)
+		{
+			return Task.CompletedTask;
 		}
 
 		/// <summary>
@@ -160,7 +189,6 @@ namespace Diamond.Core.Workflow
 		/// <returns></returns>
 		protected virtual Task<bool> OnExecuteStepAsync(IContext context)
 		{
-			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnExecuteStepAsync));
 			return Task.FromResult(true);
 		}
 
@@ -174,7 +202,7 @@ namespace Diamond.Core.Workflow
 		{
 			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(StepFailedAsync));
 			context.SetException(message);
-			return Task.FromResult(0);
+			return Task.CompletedTask;
 		}
 
 		/// <summary>

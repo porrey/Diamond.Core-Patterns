@@ -518,7 +518,7 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.ShouldExecute(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.ShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
@@ -542,6 +542,13 @@
         <member name="M:Diamond.Core.Workflow.WorkflowItem.OnPrepareForExecutionAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.OnPostExecutionAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Called after a step has executed to perform any necessary cleanup.
             </summary>
             <param name="context"></param>
             <returns></returns>
