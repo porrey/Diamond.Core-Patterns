@@ -4,9 +4,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>6.0.13</Version>
-    <FileVersion>6.0.13</FileVersion>
-    <AssemblyVersion>6.0.13</AssemblyVersion>
+    <Version>6.0.14</Version>
+    <FileVersion>6.0.14</FileVersion>
+    <AssemblyVersion>6.0.14</AssemblyVersion>
     <Authors>Daniel M Porrey</Authors>
     <Description>This library provides support for creating a command from a model.</Description>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
@@ -45,7 +45,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.21308.1" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+    <PackageReference Include="System.CommandLine.NamingConventionBinder" Version="2.0.0-beta4.22272.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Diamond.Core.CommandLine.Abstractions\Diamond.Core.CommandLine.Abstractions.csproj" />
   </ItemGroup>
 </Project>

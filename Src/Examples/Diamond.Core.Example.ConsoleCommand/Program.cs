@@ -15,14 +15,14 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System.Threading.Tasks;
+using Diamond.Core.Clonable.Newtonsoft;
 using Diamond.Core.CommandLine;
 using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore;
 using Diamond.Core.Extensions.Hosting;
+using Diamond.Core.System.TemporaryFolder;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Diamond.Core.Clonable.Newtonsoft;
-using Diamond.Core.System.TemporaryFolder;
 
 //
 // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-5.0

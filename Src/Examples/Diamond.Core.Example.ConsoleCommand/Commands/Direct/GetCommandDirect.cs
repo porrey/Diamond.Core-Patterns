@@ -44,7 +44,6 @@ namespace Diamond.Core.Example
 		/// </summary>
 		protected IRepositoryFactory RepositoryFactory { get; set; }
 
-
 		/// <summary>
 		/// 
 		/// </summary>

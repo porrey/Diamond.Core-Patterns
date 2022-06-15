@@ -2,7 +2,7 @@
 	"services": [
 		{
 			// Create Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.CreateCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -12,7 +12,7 @@
 		},
 		{
 			// Update Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.UpdateCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -22,7 +22,7 @@
 		},
 		{
 			// Delete Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.DeleteCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -32,7 +32,7 @@
 		},
 		{
 			// List Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.ListCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -42,7 +42,7 @@
 		},
 		{
 			// Direct Get Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.GetCommandDirect, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {

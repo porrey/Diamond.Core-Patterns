@@ -40,6 +40,11 @@
             <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
             about the source or destination.</param>
         </member>
+        <member name="T:Diamond.Core.CommandLine.ICommand">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Diamond.Core.CommandLine.IRootCommand">
             <summary>
             Distinguishes a root command from a regular command.

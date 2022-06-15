@@ -3,6 +3,10 @@
 		{
 			"Key": "IRootCommand",
 			"TypeDefinition": "Diamond.Core.CommandLine.IRootCommand, Diamond.Core.CommandLine.Abstractions"
+		},
+		{
+			"Key": "ICommand",
+			"TypeDefinition": "Diamond.Core.CommandLine.ICommand, Diamond.Core.CommandLine.Abstractions"
 		}
 	]
 }

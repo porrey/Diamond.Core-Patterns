@@ -10,9 +10,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
     <Description>This library provides abstractions for object cloning.</Description>
-    <Version>6.0.13</Version>
-    <FileVersion>6.0.13</FileVersion>
-    <AssemblyVersion>6.0.13</AssemblyVersion>
+    <Version>6.0.14</Version>
+    <FileVersion>6.0.14</FileVersion>
+    <AssemblyVersion>6.0.14</AssemblyVersion>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>

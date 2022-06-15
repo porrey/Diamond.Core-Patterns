@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.CommandLine.NamingConventionBinder;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
@@ -30,7 +31,7 @@ namespace Diamond.Core.CommandLine.Model
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ModelCommand<TModel> : Command
+	public class ModelCommand<TModel> : Command, ICommand
 	{
 		/// <summary>
 		/// 
@@ -44,7 +45,7 @@ namespace Diamond.Core.CommandLine.Model
 
 			this.Handler = CommandHandler.Create<TModel>(async (p) =>
 			{
-				return await this.OnHandleCommand(p);
+				await this.OnHandleCommand(p);
 			});
 		}
 
@@ -62,7 +63,7 @@ namespace Diamond.Core.CommandLine.Model
 
 			this.Handler = CommandHandler.Create<TModel>(async (p) =>
 			{
-				return await this.OnHandleCommand(p);
+				await this.OnHandleCommand(p);
 			});
 		}
 
@@ -122,7 +123,7 @@ namespace Diamond.Core.CommandLine.Model
 					Func<string, string> s2 = (string n) => { return n[..2] == "--" ? n : $"--{n}"; };
 					Func<string, string> s1 = (string n) => { return n[..1] == "-" ? n : $"-{n}"; };
 
-					OptionDescriptor optionDescriptor = new OptionDescriptor()
+					OptionDescriptor optionDescriptor = new()
 					{
 						Name = s2((display?.Name) ?? property.Name).ToLower(),
 						Alias = s1((display?.ShortName) ?? property.Name[..1].ToLower()),
@@ -161,5 +162,13 @@ namespace Diamond.Core.CommandLine.Model
 		{
 			return Task.FromResult(0);
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="action"></param>
+		/// <returns></returns>
+		protected ICommandHandler CreateCommandHandler<T>(Action<T> action) => HandlerDescriptor.FromDelegate(action).GetCommandHandler();
 	}
 }

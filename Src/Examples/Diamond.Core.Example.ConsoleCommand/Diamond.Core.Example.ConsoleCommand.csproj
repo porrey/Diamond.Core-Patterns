@@ -3,9 +3,9 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>CommandConsoleExample</AssemblyName>
-    <Version>6.0.13</Version>
-    <FileVersion>6.0.13</FileVersion>
-    <AssemblyVersion>6.0.13</AssemblyVersion>
+    <Version>6.0.14</Version>
+    <FileVersion>6.0.14</FileVersion>
+    <AssemblyVersion>6.0.14</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="appsettings.json" />
@@ -38,7 +38,7 @@
     <PackageReference Include="Serilog.Settings.AppSettings" Version="2.2.2" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
-    <PackageReference Include="System.CommandLine.Hosting" Version="0.3.0-alpha.21216.1" />
+    <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
     <PackageReference Include="System.Text.Json" Version="6.0.5" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 	"services": [
 		{
 			// Create Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.CreateCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -12,7 +12,7 @@
 		},
 		{
 			// Update Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.UpdateCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -22,7 +22,7 @@
 		},
 		{
 			// Delete Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.DeleteCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -32,7 +32,7 @@
 		},
 		{
 			// List Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.ListCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {
@@ -42,7 +42,7 @@
 		},
 		{
 			// Http Get Command
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.GetCommandHttp, CommandConsoleExample",
 			"Lifetime": "Scoped",
 			"Condition": {

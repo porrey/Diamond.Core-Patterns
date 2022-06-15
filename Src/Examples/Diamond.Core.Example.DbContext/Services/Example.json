@@ -30,7 +30,7 @@
 	],
 	"services": [
 		{
-			"ServiceType": "System.CommandLine.ICommand, System.CommandLine",
+			"ServiceType": "<ICommand>",
 			"ImplementationType": "Diamond.Core.Example.DbCommand, Diamond.Core.Example.DbContext",
 			"Lifetime": "Transient"
 		}
