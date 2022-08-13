@@ -3,6 +3,10 @@
 		{
 			"Key": "IDecoratorFactory",
 			"TypeDefinition": "Diamond.Core.Decorator.IDecoratorFactory, Diamond.Core.Decorator.Abstractions"
+		},
+		{
+			"Key": "IDecorator",
+			"TypeDefinition": "Diamond.Core.Decorator.IDecorator, Diamond.Core.Decorator.Abstractions"
 		}
 	]
 }
