@@ -84,5 +84,10 @@
             
             </summary>
         </member>
+        <member name="P:Diamond.Core.CommandLine.Model.OptionDescriptor.PropertyType">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

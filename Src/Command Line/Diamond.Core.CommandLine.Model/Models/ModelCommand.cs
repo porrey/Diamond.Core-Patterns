@@ -129,7 +129,8 @@ namespace Diamond.Core.CommandLine.Model
 						Alias = s1((display?.ShortName) ?? property.Name[..1].ToLower()),
 						Description = (display?.Description) ?? property.Name,
 						Order = (display?.Order) ?? 0,
-						IsRequired = isRequired
+						IsRequired = isRequired,
+						PropertyType = property.PropertyType
 					};
 
 					//
@@ -144,12 +145,13 @@ namespace Diamond.Core.CommandLine.Model
 			//
 			foreach (OptionDescriptor item in items.OrderBy(t => t.Order))
 			{
-				this.Logger.LogDebug("Adding {type} option '{optionName}' to the '{commandName}' command [Description ='{description}'].", item.IsRequired ? "required" : "optional", item.Name, this.Name, item.Description);
+				this.Logger.LogDebug("Adding {type} option '{optionName}' to the '{commandName}' command [Description ='{description}', Type = {namespace}.{type}].", item.IsRequired ? "required" : "optional", item.Name, this.Name, item.Description, item.PropertyType.Namespace, item.PropertyType.Name);
 
-				this.AddOption(new Option<string>(aliases: new string[] { $"{item.Name}", $"{item.Alias}" }, description: item.Description)
-				{
-					IsRequired = item.IsRequired
-				});
+				Type[] typeArgs = { item.PropertyType };
+				Type makeme = typeof(Option<>).MakeGenericType(typeArgs);
+				object option = Activator.CreateInstance(makeme, new string[] { $"{item.Name}", $"{item.Alias}" }, item.Description);
+
+				this.AddOption(option as Option);
 			}
 		}
 
