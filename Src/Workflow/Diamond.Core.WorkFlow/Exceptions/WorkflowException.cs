@@ -46,7 +46,7 @@ namespace Diamond.Core.Workflow
 		/// 
 		/// </summary>
 		/// <param name="info"></param>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		protected WorkflowException(SerializationInfo info, StreamingContext context)
 				: base(info, context)
 		{

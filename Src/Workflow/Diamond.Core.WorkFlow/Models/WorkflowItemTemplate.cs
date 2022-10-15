@@ -22,12 +22,12 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// 
+	/// This class is the template for a workflow step.
 	/// </summary>
 	public abstract class WorkflowItemTemplate : IWorkflowItem
 	{
 		/// <summary>
-		/// 
+		/// Creates a default instance of <see cref="WorkflowItemTemplate"/>.
 		/// </summary>
 		public WorkflowItemTemplate()
 		{
@@ -35,9 +35,9 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Creates an instance of <see cref="WorkflowItemTemplate"/> with the given logger.
 		/// </summary>
-		/// <param name="logger"></param>
+		/// <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
 		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger)
 			: this()
 		{
@@ -45,12 +45,12 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Creates an instance of <see cref="WorkflowItemTemplate"/> with the given logger, name, group and ordinal.
 		/// </summary>
-		/// <param name="logger"></param>
-		/// <param name="name"></param>
-		/// <param name="group"></param>
-		/// <param name="ordinal"></param>
+		/// <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
+		/// <param name="name">The name of the step.</param>
+		/// <param name="group">The group this step executes in.</param>
+		/// <param name="ordinal">The order in the group this step executes.</param>
 		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal)
 			: this(logger)
 		{
@@ -60,13 +60,14 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Creates an instance of <see cref="WorkflowItemTemplate"/> with the given logger, name, group ordinal and
+		/// value for the <see cref="AlwaysExecute"/> property.
 		/// </summary>
-		/// <param name="logger"></param>
-		/// <param name="name"></param>
-		/// <param name="group"></param>
-		/// <param name="ordinal"></param>
-		/// <param name="alwaysExecute"></param>
+		/// <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
+		/// <param name="name">The name of the step.</param>
+		/// <param name="group">The group this step executes in.</param>
+		/// <param name="ordinal">The order in the group this step executes.</param>
+		/// <param name="alwaysExecute">Sets the <see cref="AlwaysExecute"/></param> property.
 		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal, bool alwaysExecute)
 			: this(logger, name, group, ordinal)
 		{
@@ -90,44 +91,41 @@ namespace Diamond.Core.Workflow
 		public virtual int Ordinal { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets/sets avlue to indicate that this step should always execute. This does not
+		/// override <see cref="OnShouldExecuteAsync"/> and is used
+		/// by some workflow managers but not all.
 		/// </summary>
 		public virtual bool AlwaysExecute { get; set; } = false;
 
 		/// <summary>
-		/// 
+		/// Gets/sets a weigh used for determining prioirty of this step. This value is used
+		/// by some workflow managers but not all.
 		/// </summary>
 		public virtual double Weight { get; set; } = 1;
 
 		/// <summary>
-		/// 
+		/// Gets/sets the instance of the logger used by this 
+		/// step to create log entries during execution.
 		/// </summary>
 		public virtual ILogger<WorkflowItemTemplate> Logger { get; set; } = new NullLogger<WorkflowItemTemplate>();
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
+		[Obsolete("Please use OnShouldExecuteAsync().")]
 		public virtual Task<bool> ShouldExecuteAsync(IContext context)
 		{
-			return this.OnShouldExecuteAsync(context);
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
-		/// 
+		/// Performs all of the steps of this step's execution including calls
+		/// to <see cref="OnPrepareForExecutionAsync"/>, <see cref="OnShouldExecuteAsync"/>
+		/// and <see cref="OnPostExecutionAsync"/>. This is usully called by the worflow manager.
 		/// </summary>
-		/// <param name="context"></param>
-		/// <returns></returns>
-		public virtual Task<bool> OnShouldExecuteAsync(IContext context)
-		{
-			return Task.FromResult(true);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		public virtual async Task<bool> ExecuteStepAsync(IContext context)
 		{
@@ -135,34 +133,35 @@ namespace Diamond.Core.Workflow
 
 			try
 			{
-				this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnPrepareForExecutionAsync));
+				this.Logger.LogDebug("Preparing wokflow step '{name}'.", this.Name);
+				
 				if (await this.OnPrepareForExecutionAsync(context))
 				{
-					if (await this.ShouldExecuteAsync(context))
+					if (await this.OnShouldExecuteAsync(context))
 					{
-						this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(ExecuteStepAsync));
+						this.Logger.LogDebug("Executing workflow step '{name}'.", this.Name);
 						returnValue = await this.OnExecuteStepAsync(context);
 					}
 					else
 					{
-						this.Logger.LogDebug("Skipping workflow step '{name}'", this.Name);
+						this.Logger.LogDebug("Skipping workflow step '{name}' based on current context.", this.Name);
 					}
 				}
 				else
 				{
-					this.Logger.LogDebug("Work Flow Step '{name}' was skipped because {method} returned false.", this.Name, nameof(OnPrepareForExecutionAsync));
+					this.Logger.LogError("Failed to prepare workflow Step '{name}'.", this.Name);
 				}
 			}
 			finally
 			{
 				try
 				{
-					this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(OnPostExecutionAsync));
+					this.Logger.LogDebug("Running post execution for workflow step '{name}'.", this.Name);
 					await this.OnPostExecutionAsync(context);
 				}
 				catch (Exception ex)
 				{
-					this.Logger.LogError(ex, "Exception in {name}.", nameof(this.OnPostExecutionAsync));
+					this.Logger.LogError(ex, "Excetpion occurred while running post execution for step '{name}.", this.Name);
 				}
 			}
 
@@ -170,11 +169,23 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Called prior to <see cref="OnShouldExecuteAsync"/> and <see cref="OnExecuteStepAsync"/>
+		/// to prepare the step for execution.
 		/// </summary>
-		/// <param name="context"></param>
-		/// <returns></returns>
+		/// <param name="context">The current workflow context.</param>
+		/// <returns>Returns true if prepartion for the step eecution was
+		/// successful; false otherwise.</returns>
 		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context)
+		{
+			return Task.FromResult(true);
+		}
+
+		/// <summary>
+		/// Allows the step to dynamically defer execution based on the context.
+		/// </summary>
+		/// <param name="context">The current workflow context.</param>
+		/// <returns>Returns true if the step should execute, false otherwise.</returns>
+		public virtual Task<bool> OnShouldExecuteAsync(IContext context)
 		{
 			return Task.FromResult(true);
 		}
@@ -182,40 +193,40 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// Called after a step has executed to perform any necessary cleanup.
 		/// </summary>
-		/// <param name="context"></param>
-		/// <returns></returns>
+		/// <param name="context">The current workflow context.</param>
+		/// <returns>Retuns true is the post execution action swere successful; false otherwise.</returns>
 		protected virtual Task OnPostExecutionAsync(IContext context)
 		{
 			return Task.CompletedTask;
 		}
 
 		/// <summary>
-		/// 
+		/// Performs the actual work fot he step execution. This should be overwritten
+		/// in the concrete class to perform the necessary actions.
 		/// </summary>
-		/// <param name="context"></param>
-		/// <returns></returns>
+		/// <param name="context">The current workflow context.</param>
+		/// <returns>Returns true if the step executed successfully; false otherwise.</returns>
 		protected virtual Task<bool> OnExecuteStepAsync(IContext context)
 		{
 			return Task.FromResult(true);
 		}
 
 		/// <summary>
-		/// 
+		/// Marks a step as failed and provides an error message.
 		/// </summary>
-		/// <param name="context"></param>
-		/// <param name="message"></param>
-		/// <returns></returns>
+		/// <param name="context">The current workflow context.</param>
+		/// <param name="message">The mesage that will be logged to the logging system and the workflow context.</param>
 		protected virtual Task StepFailedAsync(IContext context, string message)
 		{
-			this.Logger.LogDebug("Work Flow Step '{name}': {type}", this.Name, nameof(StepFailedAsync));
+			this.Logger.LogDebug("Workflow Step '{name}' failed: '{message}", this.Name, message);
 			context.SetException(message);
 			return Task.CompletedTask;
 		}
 
 		/// <summary>
-		/// 
+		/// Returns a string representation of this step.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Returns a string representation of this step.</returns>
 		public override string ToString()
 		{
 			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";

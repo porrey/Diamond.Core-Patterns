@@ -113,7 +113,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		public virtual async Task<bool> ExecuteWorkflowAsync(IContext context)
 		{
@@ -222,7 +222,7 @@ namespace Diamond.Core.Workflow
 		/// 
 		/// </summary>
 		/// <param name="step"></param>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		protected virtual async Task<bool> ExecuteStepAsync(IWorkflowItem step, IContext context)
 		{

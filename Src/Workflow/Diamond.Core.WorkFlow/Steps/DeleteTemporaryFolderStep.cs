@@ -92,7 +92,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{

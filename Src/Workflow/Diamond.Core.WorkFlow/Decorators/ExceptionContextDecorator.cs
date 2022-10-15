@@ -48,7 +48,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		public static string FailureMessage(this IContext context)
 		{
@@ -76,7 +76,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		public static bool HasException(this IContext context)
 		{
@@ -86,7 +86,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		public static bool HasExitCode(this IContext context)
 		{
@@ -96,7 +96,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		public static Exception GetException(this IContext context)
 		{
@@ -117,7 +117,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
 		public static int GetExitCode(this IContext context)
 		{
@@ -138,7 +138,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <param name="ex"></param>
 		public static void SetException(this IContext context, Exception ex)
 		{
@@ -148,7 +148,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <param name="exitCode"></param>
 		/// <param name="ex"></param>
 		public static void SetException(this IContext context, int exitCode, Exception ex)
@@ -160,7 +160,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <param name="message"></param>
 		public static void SetException(this IContext context, string message)
 		{
@@ -170,7 +170,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <param name="exitCode"></param>
 		/// <param name="message"></param>
 		public static void SetException(this IContext context, int exitCode, string message)
@@ -182,7 +182,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <param name="format"></param>
 		/// <param name="args"></param>
 		public static void SetException(this IContext context, string format, params object[] args)
@@ -193,7 +193,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The current workflow context.</param>
 		/// <param name="exitCode"></param>
 		/// <param name="format"></param>
 		/// <param name="args"></param>

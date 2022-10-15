@@ -33,49 +33,49 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.HasException(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.HasExitCode(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.GetException(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.GetExitCode(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.SetException(Diamond.Core.Workflow.IContext,System.Exception)">
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <param name="ex"></param>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.SetException(Diamond.Core.Workflow.IContext,System.Int32,System.Exception)">
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <param name="exitCode"></param>
             <param name="ex"></param>
         </member>
@@ -83,14 +83,14 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <param name="message"></param>
         </member>
         <member name="M:Diamond.Core.Workflow.ExceptionContextDecorator.SetException(Diamond.Core.Workflow.IContext,System.Int32,System.String)">
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <param name="exitCode"></param>
             <param name="message"></param>
         </member>
@@ -98,7 +98,7 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <param name="format"></param>
             <param name="args"></param>
         </member>
@@ -106,7 +106,7 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <param name="exitCode"></param>
             <param name="format"></param>
             <param name="args"></param>
@@ -175,7 +175,7 @@
             
             </summary>
             <param name="info"></param>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowException.#ctor(System.String,System.Exception)">
             <summary>
@@ -328,7 +328,7 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.LinearCompleteWorkflowManager.LoadAsync">
@@ -342,7 +342,7 @@
             
             </summary>
             <param name="step"></param>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Workflow.LinearHaltWorkflowManager">
@@ -392,7 +392,7 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.LinearHaltWorkflowManager.ExecuteStepAsync(Diamond.Core.Workflow.IWorkflowItem,Diamond.Core.Workflow.IContext)">
@@ -400,7 +400,7 @@
             
             </summary>
             <param name="step"></param>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.LinearHaltWorkflowManager.LoadAsync">
@@ -457,23 +457,18 @@
             This should not be used. Use <see cref="T:Diamond.Core.Workflow.WorkflowItemTemplate"/> instead.
             </summary>
         </member>
-        <member name="T:Diamond.Core.Workflow.WorkflowItemTemplate">
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
             <summary>
             
             </summary>
             <param name="logger"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32)">
             <summary>
             
             </summary>
@@ -482,7 +477,7 @@
             <param name="group"></param>
             <param name="ordinal"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
@@ -491,6 +486,42 @@
             <param name="group"></param>
             <param name="ordinal"></param>
             <param name="alwaysExecute"></param>
+        </member>
+        <member name="T:Diamond.Core.Workflow.WorkflowItemTemplate">
+            <summary>
+            This class is the template for a workflow step.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor">
+            <summary>
+            Creates a default instance of <see cref="T:Diamond.Core.Workflow.WorkflowItemTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Workflow.WorkflowItemTemplate"/> with the given logger.
+            </summary>
+            <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Workflow.WorkflowItemTemplate"/> with the given logger, name, group and ordinal.
+            </summary>
+            <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
+            <param name="name">The name of the step.</param>
+            <param name="group">The group this step executes in.</param>
+            <param name="ordinal">The order in the group this step executes.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Workflow.WorkflowItemTemplate"/> with the given logger, name, group ordinal and
+            value for the <see cref="P:Diamond.Core.Workflow.WorkflowItemTemplate.AlwaysExecute"/> property.
+            </summary>
+            <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
+            <param name="name">The name of the step.</param>
+            <param name="group">The group this step executes in.</param>
+            <param name="ordinal">The order in the group this step executes.</param>
+            <param name="alwaysExecute">Sets the <see cref="P:Diamond.Core.Workflow.WorkflowItemTemplate.AlwaysExecute"/></param> property.
         </member>
         <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Name">
             <summary>
@@ -510,74 +541,82 @@
         </member>
         <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.AlwaysExecute">
             <summary>
-            
+            Gets/sets avlue to indicate that this step should always execute. This does not
+            override <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)"/> and is used
+            by some workflow managers but not all.
             </summary>
         </member>
         <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Weight">
             <summary>
-            
+            Gets/sets a weigh used for determining prioirty of this step. This value is used
+            by some workflow managers but not all.
             </summary>
         </member>
         <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Logger">
             <summary>
-            
+            Gets/sets the instance of the logger used by this 
+            step to create log entries during execution.
             </summary>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
-            <summary>
-            
-            </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ExecuteStepAsync(Diamond.Core.Workflow.IContext)">
             <summary>
-            
+            Performs all of the steps of this step's execution including calls
+            to <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPrepareForExecutionAsync(Diamond.Core.Workflow.IContext)"/>, <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)"/>
+            and <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPostExecutionAsync(Diamond.Core.Workflow.IContext)"/>. This is usully called by the worflow manager.
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPrepareForExecutionAsync(Diamond.Core.Workflow.IContext)">
             <summary>
-            
+            Called prior to <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)"/> and <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)"/>
+            to prepare the step for execution.
             </summary>
-            <param name="context"></param>
-            <returns></returns>
+            <param name="context">The current workflow context.</param>
+            <returns>Returns true if prepartion for the step eecution was
+            successful; false otherwise.</returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Allows the step to dynamically defer execution based on the context.
+            </summary>
+            <param name="context">The current workflow context.</param>
+            <returns>Returns true if the step should execute, false otherwise.</returns>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPostExecutionAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             Called after a step has executed to perform any necessary cleanup.
             </summary>
-            <param name="context"></param>
-            <returns></returns>
+            <param name="context">The current workflow context.</param>
+            <returns>Retuns true is the post execution action swere successful; false otherwise.</returns>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)">
             <summary>
-            
+            Performs the actual work fot he step execution. This should be overwritten
+            in the concrete class to perform the necessary actions.
             </summary>
-            <param name="context"></param>
-            <returns></returns>
+            <param name="context">The current workflow context.</param>
+            <returns>Returns true if the step executed successfully; false otherwise.</returns>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.StepFailedAsync(Diamond.Core.Workflow.IContext,System.String)">
             <summary>
-            
+            Marks a step as failed and provides an error message.
             </summary>
-            <param name="context"></param>
-            <param name="message"></param>
-            <returns></returns>
+            <param name="context">The current workflow context.</param>
+            <param name="message">The mesage that will be logged to the logging system and the workflow context.</param>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ToString">
             <summary>
-            
+            Returns a string representation of this step.
             </summary>
-            <returns></returns>
+            <returns>Returns a string representation of this step.</returns>
         </member>
         <member name="T:Diamond.Core.Workflow.CreateTemporaryFolderStep">
             <summary>
@@ -632,7 +671,7 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Workflow.DeleteTemporaryFolderStep">
@@ -688,7 +727,7 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Workflow.IsErrorStep">
@@ -705,7 +744,7 @@
             <summary>
             
             </summary>
-            <param name="context"></param>
+            <param name="context">The current workflow context.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Workflow.DiamondWorkflow">
