@@ -28,7 +28,7 @@ namespace Diamond.Core.Example.BasicConsole
 	/// <summary>
 	/// This step will populate the database with random employees.
 	/// </summary>
-	public class SampleWorkStep3 : WorkflowItem
+	public class SampleWorkStep3 : WorkflowItemTemplate
 	{
 		public SampleWorkStep3(ILogger<SampleWorkStep3> logger, IRepositoryFactory repositoryFactory, IUnitOfWorkFactory unitOfWorkFactory)
 			: base(logger)

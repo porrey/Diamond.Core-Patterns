@@ -25,7 +25,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Diamond.Core.Example.BasicConsole
 {
-	public class SampleWorkStep4 : WorkflowItem
+	public class SampleWorkStep4 : WorkflowItemTemplate
 	{
 		public SampleWorkStep4(ILogger<SampleWorkStep4> logger, ISpecificationFactory specificationFactory, IDecoratorFactory decoratorFactory)
 			: base(logger)

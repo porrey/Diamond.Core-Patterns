@@ -138,60 +138,53 @@ namespace Diamond.Core.Workflow
 			//
 			for (int i = 0; i < this.Steps.Length; i++)
 			{
-				if (await this.Steps[i].ShouldExecuteAsync(context))
+				//
+				// Publish a progress update.
+				//
+				this.Logger.LogDebug("Starting workflow step '{name}' [{i}].", this.Steps[i].Name, $"{i + 1} of {this.Steps.Length}");
+
+				//
+				// Start the stop watch.
+				//
+				stopWatch.Start();
+
+				//
+				//
+				//
+				bool result = false;
+
+				try
 				{
-					//
-					// Publish a progress update.
-					//
-					this.Logger.LogDebug("Starting workflow step '{name}' [{i}].", this.Steps[i].Name, $"{i + 1} of {this.Steps.Length}");
-
-					//
-					// Start the stop watch.
-					//
-					stopWatch.Start();
-
-					//
-					//
-					//
-					bool result = false;
-
-					try
-					{
-						result = await this.ExecuteStepAsync(this.Steps[i], context);
-					}
-					finally
-					{
-						//
-						// Stop the stop watch.
-						//
-						stopWatch.Stop();
-
-						//
-						// Check the result.
-						//
-						if (result)
-						{
-							context.Properties.Set(DiamondWorkflow.WellKnown.Context.LastStepSuccess, true);
-							this.Logger.LogDebug("The workflow step '{name}' completed successfully [Execution time = {time}].", this.Steps[i].Name, stopWatch.Elapsed.Humanize(precision: 3));
-							returnValue = true;
-						}
-						else
-						{
-							context.Properties.Set(DiamondWorkflow.WellKnown.Context.WorkflowFailed, true);
-							context.Properties.Set(DiamondWorkflow.WellKnown.Context.LastStepSuccess, false);
-							this.Logger.LogDebug("The workflow step '{name}' failed.", this.Steps[i].Name);
-							returnValue = false;
-						}
-
-						//
-						// Reset the stop watch.
-						//
-						stopWatch.Reset();
-					}
+					result = await this.ExecuteStepAsync(this.Steps[i], context);
 				}
-				else
+				finally
 				{
-					this.Logger.LogDebug("Skipping workflow step '{name}' [{i}].", this.Steps[i].Name, $"{i + 1} of {this.Steps.Count()}");
+					//
+					// Stop the stop watch.
+					//
+					stopWatch.Stop();
+
+					//
+					// Check the result.
+					//
+					if (result)
+					{
+						context.Properties.Set(DiamondWorkflow.WellKnown.Context.LastStepSuccess, true);
+						this.Logger.LogDebug("The workflow step '{name}' completed successfully [Execution time = {time}].", this.Steps[i].Name, stopWatch.Elapsed.Humanize(precision: 3));
+						returnValue = true;
+					}
+					else
+					{
+						context.Properties.Set(DiamondWorkflow.WellKnown.Context.WorkflowFailed, true);
+						context.Properties.Set(DiamondWorkflow.WellKnown.Context.LastStepSuccess, false);
+						this.Logger.LogDebug("The workflow step '{name}' failed.", this.Steps[i].Name);
+						returnValue = false;
+					}
+
+					//
+					// Reset the stop watch.
+					//
+					stopWatch.Reset();
 				}
 			}
 

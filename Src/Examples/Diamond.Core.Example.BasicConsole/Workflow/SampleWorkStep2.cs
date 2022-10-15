@@ -27,7 +27,7 @@ namespace Diamond.Core.Example.BasicConsole
 	/// <summary>
 	/// This step will create random employee data.
 	/// </summary>
-	public class SampleWorkStep2 : WorkflowItem
+	public class SampleWorkStep2 : WorkflowItemTemplate
 	{
 		public SampleWorkStep2(ILogger<SampleWorkStep2> logger)
 			: base(logger)

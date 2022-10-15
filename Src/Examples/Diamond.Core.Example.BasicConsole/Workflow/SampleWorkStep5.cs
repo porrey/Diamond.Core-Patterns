@@ -26,7 +26,7 @@ namespace Diamond.Core.Example.BasicConsole
 	/// <summary>
 	/// Display all promoted employees.
 	/// </summary>
-	public class SampleWorkStep5 : WorkflowItem
+	public class SampleWorkStep5 : WorkflowItemTemplate
 	{
 		public SampleWorkStep5(ILogger<SampleWorkStep5> logger, IRepositoryFactory repositoryFactory)
 			: base(logger)

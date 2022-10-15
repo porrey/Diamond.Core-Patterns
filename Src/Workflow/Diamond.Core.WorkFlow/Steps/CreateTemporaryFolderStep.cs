@@ -24,7 +24,7 @@ namespace Diamond.Core.Workflow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class CreateTemporaryFolderStep : WorkflowItem
+	public class CreateTemporaryFolderStep : WorkflowItemTemplate
 	{
 		/// <summary>
 		/// 
@@ -41,7 +41,7 @@ namespace Diamond.Core.Workflow
 		/// </summary>
 		/// <param name="temporaryFolderFactory"></param>
 		/// <param name="logger"></param>
-		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger)
+		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger)
 			: this(temporaryFolderFactory)
 		{
 			this.Logger = logger;
@@ -55,7 +55,7 @@ namespace Diamond.Core.Workflow
 		/// <param name="name"></param>
 		/// <param name="group"></param>
 		/// <param name="ordinal"></param>
-		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger, string name, string group, int ordinal)
+		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal)
 			: this(temporaryFolderFactory, logger)
 		{
 			this.Name = name;
@@ -72,7 +72,7 @@ namespace Diamond.Core.Workflow
 		/// <param name="group"></param>
 		/// <param name="ordinal"></param>
 		/// <param name="alwaysExecute"></param>
-		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItem> logger, string name, string group, int ordinal, bool alwaysExecute)
+		public CreateTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal, bool alwaysExecute)
 			: this(temporaryFolderFactory, logger, name, group, ordinal)
 		{
 			this.AlwaysExecute = alwaysExecute;

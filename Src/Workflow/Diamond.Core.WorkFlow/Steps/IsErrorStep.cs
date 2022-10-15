@@ -21,7 +21,7 @@ namespace Diamond.Core.Workflow
 	/// <summary>
 	/// 
 	/// </summary>
-	public class IsErrorStep : WorkflowItem
+	public class IsErrorStep : WorkflowItemTemplate
 	{
 		/// <summary>
 		/// 

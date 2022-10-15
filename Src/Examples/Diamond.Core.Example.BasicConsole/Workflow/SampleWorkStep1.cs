@@ -25,7 +25,7 @@ namespace Diamond.Core.Example.BasicConsole
 	/// <summary>
 	/// This step will delete the current database and recreate it.
 	/// </summary>
-	public class SampleWorkStep1 : WorkflowItem
+	public class SampleWorkStep1 : WorkflowItemTemplate
 	{
 		public SampleWorkStep1(ILogger<SampleWorkStep1> logger, IRepositoryFactory repositoryFactory)
 			: base(logger)

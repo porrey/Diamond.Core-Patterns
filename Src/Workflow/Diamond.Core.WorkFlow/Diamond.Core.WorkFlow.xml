@@ -454,21 +454,26 @@
         </member>
         <member name="T:Diamond.Core.Workflow.WorkflowItem">
             <summary>
-            
+            This should not be used. Use <see cref="T:Diamond.Core.Workflow.WorkflowItemTemplate"/> instead.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor">
+        <member name="T:Diamond.Core.Workflow.WorkflowItemTemplate">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem})">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
             <summary>
             
             </summary>
             <param name="logger"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32)">
             <summary>
             
             </summary>
@@ -477,7 +482,7 @@
             <param name="group"></param>
             <param name="ordinal"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
@@ -487,80 +492,80 @@
             <param name="ordinal"></param>
             <param name="alwaysExecute"></param>
         </member>
-        <member name="P:Diamond.Core.Workflow.WorkflowItem.Name">
+        <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Name">
             <summary>
             Gets/sets the name of this workflow item for logging purposes.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.WorkflowItem.Group">
+        <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Group">
             <summary>
             Gets/sets the group this item belongs to. Items are grouped together
             so that the WorkflowManager can gather the steps into a workable series.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.WorkflowItem.Ordinal">
+        <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Ordinal">
             <summary>
             The order this item appears in the execution steps.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.WorkflowItem.AlwaysExecute">
+        <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.AlwaysExecute">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.WorkflowItem.Weight">
+        <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Weight">
             <summary>
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.WorkflowItem.Logger">
+        <member name="P:Diamond.Core.Workflow.WorkflowItemTemplate.Logger">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.ShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
-            <summary>
-            
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.ExecuteStepAsync(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.OnPrepareForExecutionAsync(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ExecuteStepAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.OnPostExecutionAsync(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPrepareForExecutionAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPostExecutionAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             Called after a step has executed to perform any necessary cleanup.
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.StepFailedAsync(Diamond.Core.Workflow.IContext,System.String)">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.StepFailedAsync(Diamond.Core.Workflow.IContext,System.String)">
             <summary>
             
             </summary>
@@ -568,7 +573,7 @@
             <param name="message"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.ToString">
+        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ToString">
             <summary>
             
             </summary>
@@ -585,14 +590,14 @@
             </summary>
             <param name="temporaryFolderFactory"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem})">
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
             <summary>
             
             </summary>
             <param name="temporaryFolderFactory"></param>
             <param name="logger"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32)">
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32)">
             <summary>
             
             </summary>
@@ -602,7 +607,7 @@
             <param name="group"></param>
             <param name="ordinal"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
@@ -641,14 +646,14 @@
             </summary>
             <param name="temporaryFolderFactory"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem})">
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
             <summary>
             
             </summary>
             <param name="temporaryFolderFactory"></param>
             <param name="logger"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32)">
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32)">
             <summary>
             
             </summary>
@@ -658,7 +663,7 @@
             <param name="group"></param>
             <param name="ordinal"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItem},System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32,System.Boolean)">
             <summary>
             
             </summary>
