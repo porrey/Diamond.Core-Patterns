@@ -49,7 +49,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 
 			try
 			{
-				DbContextOptionsBuilder<TContext> builder = new DbContextOptionsBuilder<TContext>();
+				DbContextOptionsBuilder<TContext> builder = new();
 				this.OnDbContextOptionsBuilder(builder, parameters);
 				builder.UseApplicationServiceProvider(sp);
 

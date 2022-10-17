@@ -74,7 +74,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 
 			try
 			{
-				DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
+				DbContextOptionsBuilder builder = new();
 				this.OnDbContextOptionsBuilder(builder, parameters);
 				builder.UseApplicationServiceProvider(sp);
 
