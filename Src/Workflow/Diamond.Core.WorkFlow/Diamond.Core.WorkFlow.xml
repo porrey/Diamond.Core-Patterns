@@ -569,7 +569,7 @@
             <summary>
             Performs all of the steps of this step's execution including calls
             to <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPrepareForExecutionAsync(Diamond.Core.Workflow.IContext)"/>, <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)"/>
-            and <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPostExecutionAsync(Diamond.Core.Workflow.IContext)"/>. This is usully called by the worflow manager.
+            and <see cref="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnPostExecutionAsync(Diamond.Core.Workflow.IContext)"/>. This is usually called by the worflow manager.
             </summary>
             <param name="context">The current workflow context.</param>
             <returns></returns>
@@ -580,7 +580,7 @@
             to prepare the step for execution.
             </summary>
             <param name="context">The current workflow context.</param>
-            <returns>Returns true if prepartion for the step eecution was
+            <returns>Returns true if prepartion for the step execution was
             successful; false otherwise.</returns>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
@@ -595,7 +595,7 @@
             Called after a step has executed to perform any necessary cleanup.
             </summary>
             <param name="context">The current workflow context.</param>
-            <returns>Retuns true is the post execution action swere successful; false otherwise.</returns>
+            <returns>Returns true is the post execution actions were successful; false otherwise.</returns>
         </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)">
             <summary>

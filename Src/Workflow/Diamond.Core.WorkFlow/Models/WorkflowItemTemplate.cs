@@ -145,6 +145,7 @@ namespace Diamond.Core.Workflow
 					else
 					{
 						this.Logger.LogDebug("Skipping workflow step '{name}' based on current context.", this.Name);
+						returnValue = true;
 					}
 				}
 				else
