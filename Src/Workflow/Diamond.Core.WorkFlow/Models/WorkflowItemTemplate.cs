@@ -123,7 +123,7 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// Performs all of the steps of this step's execution including calls
 		/// to <see cref="OnPrepareForExecutionAsync"/>, <see cref="OnShouldExecuteAsync"/>
-		/// and <see cref="OnPostExecutionAsync"/>. This is usully called by the worflow manager.
+		/// and <see cref="OnPostExecutionAsync"/>. This is usually called by the worflow manager.
 		/// </summary>
 		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
@@ -161,7 +161,7 @@ namespace Diamond.Core.Workflow
 				}
 				catch (Exception ex)
 				{
-					this.Logger.LogError(ex, "Excetpion occurred while running post execution for step '{name}.", this.Name);
+					this.Logger.LogError(ex, "Exception occurred while running post execution for step '{name}.", this.Name);
 				}
 			}
 
@@ -173,7 +173,7 @@ namespace Diamond.Core.Workflow
 		/// to prepare the step for execution.
 		/// </summary>
 		/// <param name="context">The current workflow context.</param>
-		/// <returns>Returns true if prepartion for the step eecution was
+		/// <returns>Returns true if prepartion for the step execution was
 		/// successful; false otherwise.</returns>
 		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context)
 		{
@@ -194,7 +194,7 @@ namespace Diamond.Core.Workflow
 		/// Called after a step has executed to perform any necessary cleanup.
 		/// </summary>
 		/// <param name="context">The current workflow context.</param>
-		/// <returns>Retuns true is the post execution action swere successful; false otherwise.</returns>
+		/// <returns>Returns true is the post execution actions were successful; false otherwise.</returns>
 		protected virtual Task OnPostExecutionAsync(IContext context)
 		{
 			return Task.CompletedTask;
