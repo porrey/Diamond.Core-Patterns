@@ -4,9 +4,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>6.0.14</Version>
-    <FileVersion>6.0.14</FileVersion>
-    <AssemblyVersion>6.0.14</AssemblyVersion>
+    <Version>6.0.17</Version>
+    <FileVersion>6.0.17</FileVersion>
+    <AssemblyVersion>6.0.17</AssemblyVersion>
     <Authors>Daniel M Porrey</Authors>
     <Description>This library provides the Diamond hosting extensions.</Description>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
@@ -35,8 +35,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
