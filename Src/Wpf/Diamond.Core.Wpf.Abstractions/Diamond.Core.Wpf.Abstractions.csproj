@@ -5,9 +5,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>6.0.17</Version>
-		<AssemblyVersion>6.0.17</AssemblyVersion>
-		<FileVersion>6.0.17</FileVersion>
+		<Version>7.0.0</Version>
+		<AssemblyVersion>7.0.0</AssemblyVersion>
+		<FileVersion>7.0.0</FileVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
 		<Authors>Daniel M. Porrey</Authors>

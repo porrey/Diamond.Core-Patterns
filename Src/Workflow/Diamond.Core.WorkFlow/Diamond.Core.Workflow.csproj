@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFramework>net7.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>
@@ -8,9 +8,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
     <Description>This library provides workflow interfaces and abstract or default implementations for common patterns.</Description>
-    <Version>6.0.17</Version>
-    <FileVersion>6.0.17</FileVersion>
-    <AssemblyVersion>6.0.17</AssemblyVersion>
+    <Version>7.0.0</Version>
+    <FileVersion>7.0.0</FileVersion>
+    <AssemblyVersion>7.0.0</AssemblyVersion>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <Authors>Daniel M. Porrey</Authors>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Humanizer.Core" Version="2.14.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

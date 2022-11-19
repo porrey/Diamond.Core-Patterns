@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFramework>net7.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>
@@ -10,9 +10,9 @@
     <Product>Diamond.Core Patterns Library</Product>
     <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
     <Description>This library provides object cloning.</Description>
-    <Version>6.0.17</Version>
-    <FileVersion>6.0.17</FileVersion>
-    <AssemblyVersion>6.0.17</AssemblyVersion>
+    <Version>7.0.0</Version>
+    <FileVersion>7.0.0</FileVersion>
+    <AssemblyVersion>7.0.0</AssemblyVersion>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>

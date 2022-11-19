@@ -16,6 +16,7 @@
 // 
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -37,16 +38,13 @@ namespace System
 		{
 			string returnValue = string.Empty;
 
-			using (MD5 hashAlgorithm = MD5.Create())
-			{
-				byte[] inputBytes = Encoding.UTF8.GetBytes(data);
-				byte[] hashBytes = hashAlgorithm.ComputeHash(inputBytes);
-				returnValue = BitConverter.ToString(hashBytes);
+			byte[] inputBytes = Encoding.UTF8.GetBytes(data);
+			byte[] hashBytes = MD5.HashData(inputBytes);
+			returnValue = BitConverter.ToString(hashBytes);
 
-				if (!includeDashes)
-				{
-					returnValue = returnValue.Replace("-", "");
-				}
+			if (!includeDashes)
+			{
+				returnValue = returnValue.Replace("-", "");
 			}
 
 			return returnValue;
@@ -62,16 +60,13 @@ namespace System
 		{
 			string returnValue = string.Empty;
 
-			using (SHA512 hashAlgorithm = SHA512.Create())
-			{
-				byte[] inputBytes = Encoding.UTF8.GetBytes(data);
-				byte[] hashBytes = hashAlgorithm.ComputeHash(inputBytes);
-				returnValue = BitConverter.ToString(hashBytes);
+			byte[] inputBytes = Encoding.UTF8.GetBytes(data);
+			byte[] hashBytes = SHA512.HashData(inputBytes);
+			returnValue = BitConverter.ToString(hashBytes);
 
-				if (!includeDashes)
-				{
-					returnValue = returnValue.Replace("-", "");
-				}
+			if (!includeDashes)
+			{
+				returnValue = returnValue.Replace("-", "");
 			}
 
 			return returnValue;
@@ -118,17 +113,47 @@ namespace System
 		public static string ComputeHash(this string data, string hashName, bool includeDashes = false)
 		{
 			string returnValue = string.Empty;
+			HashAlgorithm hashAlgorithm = null;
 
-			using (HashAlgorithm hashAlgorithm = HashAlgorithm.Create(hashName))
+			try
 			{
-				byte[] inputBytes = Encoding.UTF8.GetBytes(data);
-				byte[] hashBytes = hashAlgorithm.ComputeHash(inputBytes);
-				returnValue = BitConverter.ToString(hashBytes);
-
-				if (!includeDashes)
+				switch (hashName)
 				{
-					returnValue = returnValue.Replace("-", "");
+					case "SHA":
+					case "SHA1":
+						hashAlgorithm = SHA1.Create();
+						break;
+					case "MD5":
+						hashAlgorithm = MD5.Create();
+						break;
+					case "SHA256":
+						hashAlgorithm = SHA256.Create();
+						break;
+					case "SHA384":
+						hashAlgorithm = SHA384.Create();
+						break;
+					case "SHA512":
+						hashAlgorithm = SHA512.Create();
+						break;
+					default:
+						throw new ArgumentException($"Invalid hash name '{hashName}'.");
 				}
+
+				if (hashAlgorithm != null)
+				{
+					byte[] inputBytes = Encoding.UTF8.GetBytes(data);
+					byte[] hashBytes = hashAlgorithm.ComputeHash(inputBytes);
+					returnValue = BitConverter.ToString(hashBytes);
+
+					if (!includeDashes)
+					{
+						returnValue = returnValue.Replace("-", "");
+					}
+				}
+			}
+			finally
+			{
+				hashAlgorithm?.Dispose();
 			}
 
 			return returnValue;
@@ -176,33 +201,63 @@ namespace System
 		public static string ComputeHash<TItem>(this IEnumerable<TItem> items, string hashName = "SHA512", bool includeDashes = false)
 		{
 			string returnValue = string.Empty;
+			HashAlgorithm hashAlgorithm = null;
 
-			using (HashAlgorithm hashAlgorithm = HashAlgorithm.Create(hashName))
+			try
 			{
-				//
-				// Concatenate the items with a '.'
-				//
-				string itemsString = String.Join(".", items.Select(t => Convert.ToString(t)));
-
-				//
-				// Convert the string to a byte array.
-				//
-				byte[] data = Encoding.UTF8.GetBytes(itemsString);
-
-				//
-				// Compute the hash.
-				//
-				byte[] hashBytes = hashAlgorithm.ComputeHash(data);
-
-				//
-				// Format the hash to a string.
-				//
-				returnValue = BitConverter.ToString(hashBytes);
-
-				if (!includeDashes)
+				switch (hashName)
 				{
-					returnValue = returnValue.Replace("-", "");
+					case "SHA":
+					case "SHA1":
+						hashAlgorithm = SHA1.Create();
+						break;
+					case "MD5":
+						hashAlgorithm = MD5.Create();
+						break;
+					case "SHA256":
+						hashAlgorithm = SHA256.Create();
+						break;
+					case "SHA384":
+						hashAlgorithm = SHA384.Create();
+						break;
+					case "SHA512":
+						hashAlgorithm = SHA512.Create();
+						break;
+					default:
+						throw new ArgumentException($"Invalid hash name '{hashName}'.");
 				}
+
+				if (hashAlgorithm != null)
+				{
+					//
+					// Concatenate the items with a '.'
+					//
+					string itemsString = String.Join(".", items.Select(t => Convert.ToString(t)));
+
+					//
+					// Convert the string to a byte array.
+					//
+					byte[] data = Encoding.UTF8.GetBytes(itemsString);
+
+					//
+					// Compute the hash.
+					//
+					byte[] hashBytes = hashAlgorithm.ComputeHash(data);
+
+					//
+					// Format the hash to a string.
+					//
+					returnValue = BitConverter.ToString(hashBytes);
+
+					if (!includeDashes)
+					{
+						returnValue = returnValue.Replace("-", "");
+					}
+				}
+			}
+			finally
+			{
+				hashAlgorithm?.Dispose();
 			}
 
 			return returnValue;
