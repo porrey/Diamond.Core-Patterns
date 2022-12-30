@@ -35,21 +35,21 @@ namespace Diamond.Core.Repository
 		/// <param name="entity">An instance of a new entity.</param>
 		/// <returns>Returns true along with an updated entity (if the data store changed
 		/// or added data); false otherwise.</returns>
-		Task<(bool, TInterface)> AddAsync(TInterface entity);
+		Task<(int, TInterface)> AddAsync(TInterface entity);
 
 		/// <summary>
 		/// Deletes the specified entity from the data store.
 		/// </summary>
 		/// <param name="entity">An instance of an existing entity.</param>
 		/// <returns></returns>
-		Task<bool> DeleteAsync(TInterface entity);
+		Task<int> DeleteAsync(TInterface entity);
 
 		/// <summary>
 		/// Updates an existing entity in the data store.
 		/// </summary>
 		/// <param name="entity">An instance of an existing entity.</param>
 		/// <returns></returns>
-		Task<bool> UpdateAsync(TInterface entity);
+		Task<int> UpdateAsync(TInterface entity);
 
 		/// <summary>
 		/// Adds a new entity to the data store using the specified repository
@@ -60,7 +60,7 @@ namespace Diamond.Core.Repository
 		/// <param name="commit">Specifies if the item should be saved to the database or not.</param>
 		/// <returns>Returns the updated entity (if the data store changed
 		/// or added data)</returns>
-		Task<(bool, TInterface)> AddAsync(IRepositoryContext repositoryContext, TInterface entity, bool commit = true);
+		Task<(int, TInterface)> AddAsync(IRepositoryContext repositoryContext, TInterface entity, bool commit = true);
 
 		/// <summary>
 		/// Deletes the specified entity from the data store using the
@@ -70,7 +70,7 @@ namespace Diamond.Core.Repository
 		/// <param name="entity">An instance of an existing entity.</param>
 		/// <param name="commit">Specifies if the item should be saved to the database or not.</param>
 		/// <returns>Returns true if successful; false otherwise.</returns>
-		Task<bool> DeleteAsync(IRepositoryContext repositoryContext, TInterface entity, bool commit = true);
+		Task<int> DeleteAsync(IRepositoryContext repositoryContext, TInterface entity, bool commit = true);
 
 		/// <summary>
 		/// Updates an existing entity in the data store using the specified
@@ -80,6 +80,6 @@ namespace Diamond.Core.Repository
 		/// <param name="entity">An instance of an existing entity.</param>
 		/// <param name="commit">Specifies if the item should be saved to the database or not.</param>
 		/// <returns>Returns true if successful; false otherwise.</returns>
-		Task<bool> UpdateAsync(IRepositoryContext repositoryContext, TInterface entity, bool commit = true);
+		Task<int> UpdateAsync(IRepositoryContext repositoryContext, TInterface entity, bool commit = true);
 	}
 }

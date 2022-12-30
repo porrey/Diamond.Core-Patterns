@@ -202,7 +202,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual Task<bool> UpdateAsync(TInterface item)
+		public virtual Task<int> UpdateAsync(TInterface item)
 		{
 			return this.UpdateAsync(this.Context, item, true);
 		}
@@ -212,7 +212,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual Task<(bool, TInterface)> AddAsync(TInterface item)
+		public virtual Task<(int, TInterface)> AddAsync(TInterface item)
 		{
 			return this.AddAsync(this.Context, item, true);
 		}
@@ -222,7 +222,7 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual Task<bool> DeleteAsync(TInterface item)
+		public virtual Task<int> DeleteAsync(TInterface item)
 		{
 			return this.DeleteAsync(this.Context, item, true);
 		}
@@ -234,23 +234,23 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="item"></param>
 		/// <param name="commit"></param>
 		/// <returns></returns>
-		public virtual async Task<(bool, TInterface)> AddAsync(IRepositoryContext context, TInterface item, bool commit = true)
+		public virtual async Task<(int, TInterface)> AddAsync(IRepositoryContext context, TInterface item, bool commit = true)
 		{
-			(bool result, TInterface entity) = (false, default);
+			(int result, TInterface entity) = (0, default);
 
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(AddAsync), typeof(TInterface).Name);
 			entity = this.MyDbSet(((TContext)context)).Add((TEntity)item).Entity;
 
 			if (commit)
 			{
-				result = (await ((TContext)context).SaveChangesAsync(true) == 1);
+				result = await ((TContext)context).SaveChangesAsync(true) ;
 				((TContext)context).ChangeTracker.Clear();
 				this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(AddAsync), result);
 			}
 			else
 			{
 				entity = item;
-				result = true;
+				result = 1;
 				this.Logger.LogDebug("{method}: Record marked for addition.", nameof(UpdateAsync));
 			}
 
@@ -264,9 +264,9 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="item"></param>
 		/// <param name="commit"></param>
 		/// <returns></returns>
-		public virtual async Task<bool> UpdateAsync(IRepositoryContext context, TInterface item, bool commit = true)
+		public virtual async Task<int> UpdateAsync(IRepositoryContext context, TInterface item, bool commit = true)
 		{
-			bool returnValue = false;
+			int returnValue = 0;
 
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(UpdateAsync), typeof(TInterface).Name);
 
@@ -275,17 +275,15 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 
 			if (commit)
 			{
-				result = await ((TContext)context).SaveChangesAsync(false);
+				returnValue = await ((TContext)context).SaveChangesAsync(false);
 				((TContext)context).ChangeTracker.Clear();
 				this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(UpdateAsync), result);
 			}
 			else
 			{
-				result = 1;
+				returnValue = 1;
 				this.Logger.LogDebug("{method}: Record marked for update.", nameof(UpdateAsync));
 			}
-
-			returnValue = (result == 1);
 
 			return returnValue;
 		}
@@ -297,9 +295,9 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 		/// <param name="item"></param>
 		/// <param name="commit"></param>
 		/// <returns></returns>
-		public virtual async Task<bool> DeleteAsync(IRepositoryContext context, TInterface item, bool commit = true)
+		public virtual async Task<int> DeleteAsync(IRepositoryContext context, TInterface item, bool commit = true)
 		{
-			bool returnValue = false;
+			int returnValue = 0;
 
 			this.Logger.LogDebug("{method} called for type '{name}'.", nameof(DeleteAsync), typeof(TInterface).Name);
 			((TContext)context).Entry((TEntity)item).State = EntityState.Deleted;
@@ -307,17 +305,15 @@ namespace Diamond.Core.Repository.EntityFrameworkCore
 
 			if (commit)
 			{
-				result = await ((TContext)context).SaveChangesAsync(true);
+				returnValue = await ((TContext)context).SaveChangesAsync(true);
 				((TContext)context).ChangeTracker.Clear();
 				this.Logger.LogDebug("{method}: Records updated = {result}.", nameof(DeleteAsync), result);
 			}
 			else
 			{
-				result = 1;
+				returnValue = 1;
 				this.Logger.LogDebug("{method}: Records marked for deletion.", nameof(UpdateAsync));
 			}
-
-			returnValue = (result == 1);
 
 			return returnValue;
 		}
