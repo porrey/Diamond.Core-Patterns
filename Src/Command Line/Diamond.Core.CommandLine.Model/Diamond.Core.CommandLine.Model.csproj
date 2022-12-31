@@ -9,7 +9,7 @@
     <AssemblyVersion>7.0.0</AssemblyVersion>
     <Authors>Daniel M Porrey</Authors>
     <Description>This library provides support for creating a command from a model.</Description>
-    <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
+    <Copyright>Copyright © Daniel Porrey 2019-2023</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>

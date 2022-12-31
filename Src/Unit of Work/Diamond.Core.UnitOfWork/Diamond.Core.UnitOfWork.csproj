@@ -6,7 +6,7 @@
     <PackageLicenseUrl>
     </PackageLicenseUrl>
     <Product>Diamond.Core Patterns Library</Product>
-    <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
+    <Copyright>Copyright © Daniel Porrey 2019-2023</Copyright>
     <Description>This library provides a basic implementation of the Unit of Work factory.</Description>
     <Version>7.0.0</Version>
     <FileVersion>7.0.0</FileVersion>

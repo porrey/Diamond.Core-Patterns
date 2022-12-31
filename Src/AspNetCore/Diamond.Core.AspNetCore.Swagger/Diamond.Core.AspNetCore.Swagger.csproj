@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Description>Provides the extensions for Swagger documentation in ASP.NET Core applications.</Description>
-    <Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
+    <Copyright>Copyright © Daniel Porrey 2019-2023</Copyright>
     <Authors>Daniel M Porrey</Authors>
     <Company>Daniel M Porrey</Company>
     <PackageIcon>Diamond.Core.128x128.png</PackageIcon>

@@ -9,7 +9,7 @@
 		<AssemblyVersion>7.0.0</AssemblyVersion>
 		<FileVersion>7.0.0</FileVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-		<Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2023</Copyright>
 		<Authors>Daniel M. Porrey</Authors>
 		<Company>Daniel M. Porrey</Company>
 		<Description>This library provides hosting and dependency injection support for WPF applications.</Description>

@@ -9,7 +9,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
-		<Copyright>Copyright © Daniel Porrey 2019-2022</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2023</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
