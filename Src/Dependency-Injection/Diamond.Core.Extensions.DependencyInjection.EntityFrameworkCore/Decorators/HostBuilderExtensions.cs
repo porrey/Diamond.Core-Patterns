@@ -58,7 +58,7 @@ namespace Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore
 				IList<DatabaseDescriptorConfiguration> items = new List<DatabaseDescriptorConfiguration>();
 				configuration.Bind("databases", items);
 
-				foreach (var item in items)
+				foreach (DatabaseDescriptorConfiguration item in items)
 				{
 					logger.LogDebug("Add database context service '{databaseItem}'.", item.Context);
 					ServiceDescriptor sd = item.CreateDatabaseDescriptor();
