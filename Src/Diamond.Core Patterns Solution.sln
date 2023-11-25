@@ -141,7 +141,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Example.AutoMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AutoMapperExtensions", "AutoMapper\Diamond.Core.AutoMapperExtensions\Diamond.Core.AutoMapperExtensions.csproj", "{63AB2DB5-1BB7-4F51-9B05-1C9354CEB57E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Performance", "System\Diamond.Core.Performance\Diamond.Core.Performance.csproj", "{4CACE1BC-0A8C-4680-88C8-627F30383A02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Performance", "System\Diamond.Core.Performance\Diamond.Core.Performance.csproj", "{4CACE1BC-0A8C-4680-88C8-627F30383A02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

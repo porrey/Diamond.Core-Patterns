@@ -67,9 +67,9 @@ namespace Diamond.Core.Example
 				//
 				// Delete the data.
 				//
-				bool result = await repository.DeleteAsync(exisingItem);
+				int affected = await repository.DeleteAsync(exisingItem);
 
-				if (result)
+				if (affected > 0)
 				{
 					this.Logger.LogInformation("Successfully delete invoice '{invoice}' [ID = {id}]", invoice.Number, exisingItem.Id);
 					returnValue = 0;

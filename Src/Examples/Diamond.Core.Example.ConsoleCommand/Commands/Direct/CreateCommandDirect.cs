@@ -89,9 +89,9 @@ namespace Diamond.Core.Example
 				//
 				// Attempt to create the item.
 				//
-				(bool result, IInvoice newItem) = await repository.AddAsync(model);
+				(int affected, IInvoice newItem) = await repository.AddAsync(model);
 
-				if (result)
+				if (affected > 0)
 				{
 					this.Logger.LogInformation("An invoice with ID = {id} has been created.", newItem.Id);
 					returnValue = 0;

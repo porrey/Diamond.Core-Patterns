@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Diamond.Core.AspNetCore.DoAction
 {
@@ -79,7 +79,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
 		public static ProblemDetails BadRequest(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
-			ProblemDetails returnValue = new ProblemDetails
+			ProblemDetails returnValue = new()
 			{
 				Status = StatusCodes.Status400BadRequest,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
@@ -115,7 +115,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
 		public static ProblemDetails NotFound(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
-			ProblemDetails returnValue = new ProblemDetails
+			ProblemDetails returnValue = new()
 			{
 				Status = StatusCodes.Status404NotFound,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
@@ -151,7 +151,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
 		public static ProblemDetails NotImplemented(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
-			ProblemDetails returnValue = new ProblemDetails
+			ProblemDetails returnValue = new()
 			{
 				Status = StatusCodes.Status501NotImplemented,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.6.2",
@@ -187,7 +187,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
 		public static ProblemDetails PayloadTooLarge(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
-			ProblemDetails returnValue = new ProblemDetails
+			ProblemDetails returnValue = new()
 			{
 				Status = StatusCodes.Status413PayloadTooLarge,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.5.11",
@@ -223,7 +223,7 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// <returns>Returns the newly created <see cref="ProblemDetails"/> instance with the provided details.</returns>
 		public static ProblemDetails InternalServerError(string detail, string instance = null, string title = null, IDictionary<string, object> extensions = null)
 		{
-			ProblemDetails returnValue = new ProblemDetails
+			ProblemDetails returnValue = new()
 			{
 				Status = StatusCodes.Status500InternalServerError,
 				Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",

@@ -14,15 +14,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading.Tasks;
+using Asp.Versioning;
 using Diamond.Core.AspNetCore.DoAction;
 using Diamond.Core.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Filters;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Diamond.Core.Example
 {

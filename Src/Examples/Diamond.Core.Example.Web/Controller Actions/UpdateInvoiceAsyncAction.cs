@@ -118,9 +118,9 @@ namespace Diamond.Core.Example
 				//
 				// Update the data.
 				//
-				bool result = await repository.UpdateAsync(exisingItem);
+				int affected = await repository.UpdateAsync(exisingItem);
 
-				if (result)
+				if (affected > 0)
 				{
 					returnValue.ResultDetails = DoActionResult.Ok();
 					returnValue.Result = this.Mapper.Map<Invoice>(exisingItem);

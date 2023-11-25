@@ -52,24 +52,14 @@ namespace Diamond.Core.AspNetCore.Rfc7807
 															.Select(t => t.ErrorMessage));
 
 					//
-					// Get the result created by the framework.
-					//
-					BadRequestObjectResult result = context.Result as BadRequestObjectResult;
-
-					//
 					// Check that the result is valid.
 					//
-					if (result != null)
+					if (context.Result is BadRequestObjectResult result)
 					{
 						//
-						// Get the problem detail object.
+						// Check that it is a valid ProblemDetails.
 						//
-						ProblemDetails problemDetails = result.Value as ProblemDetails;
-
-						//
-						// Check that it is valid.
-						//
-						if (problemDetails != null)
+						if (result.Value is ProblemDetails problemDetails)
 						{
 							//
 							// Set the detail error.

@@ -76,9 +76,9 @@ namespace Diamond.Core.Example
 				//
 				// Update the data.
 				//
-				bool result = await repository.DeleteAsync(exisingItem);
+				int affected = await repository.DeleteAsync(exisingItem);
 
-				if (result)
+				if (affected > 0)
 				{
 					returnValue.ResultDetails = DoActionResult.Ok();
 					returnValue.Result = this.Mapper.Map<Invoice>(exisingItem);

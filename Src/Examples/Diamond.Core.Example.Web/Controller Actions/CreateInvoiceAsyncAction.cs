@@ -62,9 +62,9 @@ namespace Diamond.Core.Example
 			//
 			// Attempt to create the item.
 			//
-			(bool result, IInvoice newItem) = await repository.AddAsync(model);
+			(int affected, IInvoice newItem) = await repository.AddAsync(model);
 
-			if (result)
+			if (affected > 0)
 			{
 				returnValue.ResultDetails = DoActionResult.Created();
 				returnValue.Result = this.Mapper.Map<Invoice>(newItem);

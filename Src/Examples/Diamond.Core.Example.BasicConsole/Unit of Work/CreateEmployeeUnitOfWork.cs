@@ -27,12 +27,12 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Add the item to the database.
 			//
-			(bool addResult, IEmployeeEntity newEntity) = await repository.AddAsync(item);
+			(int affected, IEmployeeEntity newEntity) = await repository.AddAsync(item);
 
 			//
 			// Check the result.
 			//
-			if (addResult)
+			if (affected > 0)
 			{
 				//
 				// The entity was successfully added to the database.

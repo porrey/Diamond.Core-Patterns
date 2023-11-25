@@ -83,9 +83,9 @@ namespace Diamond.Core.Example
 					//
 					// Update the data.
 					//
-					bool result = await repository.UpdateAsync(exisingItem);
+					int affected = await repository.UpdateAsync(exisingItem);
 
-					if (result)
+					if (affected > 0)
 					{
 						this.Logger.LogInformation("Successfully update invoice {number} [ID = {id}].", item.Number, exisingItem.Id);
 						returnValue = 0;

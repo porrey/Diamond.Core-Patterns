@@ -44,7 +44,9 @@ namespace Diamond.Core.Example.BasicConsole
 				//
 				// Update the database.
 				//
-				if (await repository.UpdateAsync(employee))
+				int affected = await repository.UpdateAsync(employee);
+
+				if (affected > 0)
 				{
 					updatedEmployee = employee;
 					returnValue = true;
