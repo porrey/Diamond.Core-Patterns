@@ -15,7 +15,6 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 using System;
-using System.Runtime.Serialization;
 using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.Workflow
@@ -39,16 +38,6 @@ namespace Diamond.Core.Workflow
 		/// <param name="message"></param>
 		public WorkflowException(string message)
 				: base(message)
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="info"></param>
-		/// <param name="context">The current workflow context.</param>
-		protected WorkflowException(SerializationInfo info, StreamingContext context)
-				: base(info, context)
 		{
 		}
 

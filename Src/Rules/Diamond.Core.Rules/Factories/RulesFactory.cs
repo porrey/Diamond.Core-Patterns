@@ -215,7 +215,7 @@ namespace Diamond.Core.Rules
 			}
 			else
 			{
-				this.Logger.LogDebug("No Rules were found with group '{group}' and Target Type '{targetType.Name}'. Throwing exception...", group);
+				this.Logger.LogDebug("No Rules were found with group '{group}' and Target Type '{name}'. Throwing exception...", group, targetType.Name);
 
 				if (!string.IsNullOrWhiteSpace(group))
 				{

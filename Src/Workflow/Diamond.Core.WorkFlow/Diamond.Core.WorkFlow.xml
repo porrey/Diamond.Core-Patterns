@@ -170,13 +170,6 @@
             </summary>
             <param name="message"></param>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            
-            </summary>
-            <param name="info"></param>
-            <param name="context">The current workflow context.</param>
-        </member>
         <member name="M:Diamond.Core.Workflow.WorkflowException.#ctor(System.String,System.Exception)">
             <summary>
             

@@ -15,7 +15,6 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 using System;
-using System.Runtime.Serialization;
 using Diamond.Core.Abstractions;
 
 namespace Diamond.Core.Repository
@@ -53,18 +52,6 @@ namespace Diamond.Core.Repository
 		/// if no inner exception is specified.</param>
 		public DiamondRepositoryException(string message, Exception innerException) :
 				base(message, innerException)
-		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="DiamondRepositoryException"/> class with serialized data.
-		/// </summary>
-		/// <param name="info">The System.Runtime.Serialization.SerializationInfo that holds the serialized
-		/// object data about the exception being thrown.</param>
-		/// <param name="context">The System.Runtime.Serialization.StreamingContext that contains contextual information
-		/// about the source or destination.</param>
-		protected DiamondRepositoryException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
 		{
 		}
 	}
