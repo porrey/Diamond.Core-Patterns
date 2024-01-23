@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2023, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2024, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -18,6 +18,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -147,6 +148,16 @@ namespace Diamond.Core.AspNetCore.DoAction
 							{
 								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", actionKey);
 								returnValue = this.Ok(result.Result);
+							}
+							else if (result.ResultDetails.Status == StatusCodes.Status201Created)
+							{
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", actionKey);
+								returnValue = this.CreatedAtAction(this.Request.Path, result.Result);
+							}
+							else if (result.ResultDetails.Status == StatusCodes.Status204NoContent)
+							{
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", actionKey);
+								returnValue = this.NoContent();
 							}
 							else
 							{

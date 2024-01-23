@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2023, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2024, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,6 +61,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 			}
 			catch (ArgumentException ex)
 			{
+				string duplicateKeys = string.Join("; ", AliasList.Keys.GroupBy(t => t).Where(t => t.Count() > 1).Select(t => t.Key).ToList());
 				string message = ex.Message.Replace("An item with the same key has already been added. Key: ", "");
 				throw new DuplicateAliasException(message);
 			}

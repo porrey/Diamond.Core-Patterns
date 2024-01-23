@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2023, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2024, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published

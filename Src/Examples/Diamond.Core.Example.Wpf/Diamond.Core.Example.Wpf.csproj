@@ -4,9 +4,9 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Broadcast.ico</ApplicationIcon>
-    <Version>8.0.0</Version>
-    <FileVersion>8.0.0</FileVersion>
-    <AssemblyVersion>8.0.0</AssemblyVersion>
+    <Version>8.0.1</Version>
+    <FileVersion>8.0.1</FileVersion>
+    <AssemblyVersion>8.0.1</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>1701;1702;MC3074</NoWarn>
@@ -22,7 +22,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.DisposableObject" Version="1.5.1" />
+    <PackageReference Include="System.DisposableObject" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Dependency-Injection\Diamond.Core.Extensions.DependencyInjection\Diamond.Core.Extensions.DependencyInjection.csproj" />

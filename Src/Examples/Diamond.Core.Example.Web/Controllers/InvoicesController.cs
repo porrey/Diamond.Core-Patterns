@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2023, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2024, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -139,7 +139,7 @@ namespace Diamond.Core.Example
 		/// <response code="404">The invoice specified was not found.</response>
 		/// <returns>The details of the invoice that was deleted.</returns>
 		[HttpDelete("{invoiceNumber}")]
-		[ProducesResponseType(typeof(Invoice), StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
 		[Consumes("application/json", "application/xml")]
 		public Task<ActionResult<Invoice>> DeleteInvoiceAsync(string invoiceNumber)
