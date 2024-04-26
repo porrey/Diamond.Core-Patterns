@@ -1,22 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>disable</Nullable>
 		<Product>Diamond.Core Patterns Library</Product>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>8.0.2.0</Version>
-		<Authors>Daniel M Porrey</Authors>
-		<Description>This library provides the Diamond dependency injection extensions for AutoMapper.</Description>
-		<Copyright>Copyright © Daniel Porrey 2019-2024</Copyright>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<Authors>Daniel M Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
+		<Version>8.0.2.0</Version>
 		<FileVersion>8.0.2.0</FileVersion>
 		<AssemblyVersion>8.0.2.0</AssemblyVersion>
+		<Copyright>Copyright © Daniel Porrey 2019-2024</Copyright>
+		<Description>This library provides basic implementations of the repository pattern.</Description>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>
@@ -28,26 +25,33 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-		<PackageId>$(AssemblyName)</PackageId>
 	</PropertyGroup>
-
+	<PropertyGroup>
+		<DocumentationFile>Diamond.Core.Repository.DateTimeModel.xml</DocumentationFile>
+	    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
 	<ItemGroup>
-	  <None Include="..\..\..\Images\Diamond.Core.128x128.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
+		<None Remove="Diamond.Core.Repository.DateTimeModel.xml" />
 	</ItemGroup>
-
 	<ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
+			<Pack>True</Pack>
+			<PackagePath>
+			</PackagePath>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable\Diamond.Core.Clonable.csproj" />
+		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
+	  </ItemGroup>
 </Project>

@@ -143,6 +143,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.AutoMapperExte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Performance", "System\Diamond.Core.Performance\Diamond.Core.Performance.csproj", "{4CACE1BC-0A8C-4680-88C8-627F30383A02}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository.DateTimeModel", "Repository\Diamond.Core.Repository.DateTimeModel\Diamond.Core.Repository.DateTimeModel.csproj", "{24455A36-4E64-42BD-BBD1-FE5882C21953}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -369,6 +371,10 @@ Global
 		{4CACE1BC-0A8C-4680-88C8-627F30383A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CACE1BC-0A8C-4680-88C8-627F30383A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CACE1BC-0A8C-4680-88C8-627F30383A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24455A36-4E64-42BD-BBD1-FE5882C21953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24455A36-4E64-42BD-BBD1-FE5882C21953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24455A36-4E64-42BD-BBD1-FE5882C21953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24455A36-4E64-42BD-BBD1-FE5882C21953}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -428,6 +434,7 @@ Global
 		{E25F54AC-016E-40B5-89D7-7314ED0E65E4} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{63AB2DB5-1BB7-4F51-9B05-1C9354CEB57E} = {4F176109-171D-4D31-876E-B19245D0EF42}
 		{4CACE1BC-0A8C-4680-88C8-627F30383A02} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
+		{24455A36-4E64-42BD-BBD1-FE5882C21953} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

@@ -1,0 +1,8 @@
+{
+	"aliases": [
+		{
+			"Key": "IDateTimeEntity",
+			"TypeDefinition": "Diamond.Core.Repository.DateTimeModel.IDateTimeEntity, Diamond.Core.Repository.DateTimeModel"
+		}
+	]
+}
