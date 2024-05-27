@@ -7,9 +7,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>8.0.2.0</Version>
-		<AssemblyVersion>8.0.2.0</AssemblyVersion>
-		<FileVersion>8.0.2.0</FileVersion>
+		<Version>8.0.2</Version>
+		<AssemblyVersion>8.0.2</AssemblyVersion>
+		<FileVersion>8.0.2</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>

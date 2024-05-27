@@ -9,9 +9,9 @@
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>8.0.2.0</Version>
-    <FileVersion>8.0.2.0</FileVersion>
-    <AssemblyVersion>8.0.2.0</AssemblyVersion>
+    <Version>8.0.2</Version>
+    <FileVersion>8.0.2</FileVersion>
+    <AssemblyVersion>8.0.2</AssemblyVersion>
     <Copyright>Copyright © Daniel Porrey 2019-2024</Copyright>
     <Description>This library provides basic implementations of the repository pattern.</Description>
     <PackageIcon>Diamond.Core.128x128.png</PackageIcon>
