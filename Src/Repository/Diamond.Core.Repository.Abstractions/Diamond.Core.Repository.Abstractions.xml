@@ -62,6 +62,12 @@
             </summary>
             <returns>The newly created entity.</returns>
         </member>
+        <member name="T:Diamond.Core.Repository.IEntityTracked">
+            <summary>
+            Base entity class allowing generic classes for any
+            interface defined as an "Entity".
+            </summary>
+        </member>
         <member name="T:Diamond.Core.Repository.IQueryableRepository`1">
             <summary>
             Defines a repository that supports a queryable interface. The connection remains open until specifically

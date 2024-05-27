@@ -61,62 +61,65 @@ namespace Diamond.Core.Example
 		{
 			int returnValue = 0;
 
-			//
-			// Get a writable repository for IInvoice.
-			//
-			this.Logger.LogDebug("Retrieving a writable repository for IInvoice.");
-			IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
-
-			//
-			// Ensure the database exists.
-			//
-			IRepositoryContext context = await repository.AsQueryable().GetContextAsync();
-			await context.EnsureDeletedAsync();
-			await context.EnsureCreatedAsync();
-
-			//
-			// Create a new entity.
-			//
-			IInvoice model = await repository.ModelFactory.CreateAsync();
-
-			//
-			// Set the properties.
-			//
-			this.Mapper.Map(item, model);
-
-			try
+			await Task.Factory.StartNew(async () =>
 			{
 				//
-				// Attempt to create the item.
+				// Get a writable repository for IInvoice.
 				//
-				(int affected, IInvoice newItem) = await repository.AddAsync(model);
+				this.Logger.LogDebug("Retrieving a writable repository for IInvoice.");
+				IWritableRepository<IInvoice> repository = await this.RepositoryFactory.GetWritableAsync<IInvoice>();
 
-				if (affected > 0)
+				//
+				// Ensure the database exists.
+				//
+				IRepositoryContext context = await repository.AsQueryable().GetContextAsync();
+				await context.EnsureDeletedAsync();
+				await context.EnsureCreatedAsync();
+
+				//
+				// Create a new entity.
+				//
+				IInvoice model = await repository.ModelFactory.CreateAsync();
+
+				//
+				// Set the properties.
+				//
+				this.Mapper.Map(item, model);
+
+				try
 				{
-					this.Logger.LogInformation("An invoice with ID = {id} has been created.", newItem.Id);
-					returnValue = 0;
+					//
+					// Attempt to create the item.
+					//
+					(int affected, IInvoice newItem) = await repository.AddAsync(model);
+
+					if (affected > 0)
+					{
+						this.Logger.LogInformation("An invoice with ID = {id} has been created.", newItem.Id);
+						returnValue = 0;
+					}
+					else
+					{
+						this.Logger.LogError("The invoice could not be created.");
+						returnValue = 1;
+					}
 				}
-				else
+				catch (DbUpdateException dbex)
 				{
-					this.Logger.LogError("The invoice could not be created.");
-					returnValue = 1;
+					if (dbex.InnerException != null && dbex.InnerException.Message.Contains("duplicate"))
+					{
+						this.Logger.LogError("An invoice with number '{number}' already exists.", item.Number);
+					}
+					else
+					{
+						this.Logger.LogError(dbex, "Exception while creating invoice.");
+					}
 				}
-			}
-			catch (DbUpdateException dbex)
-			{
-				if (dbex.InnerException != null && dbex.InnerException.Message.Contains("duplicate"))
+				catch (Exception ex)
 				{
-					this.Logger.LogError("An invoice with number '{number}' already exists.", item.Number);
+					this.Logger.LogError(ex, "Exception while creating invoice.");
 				}
-				else
-				{
-					this.Logger.LogError(dbex, "Exception while creating invoice.");
-				}
-			}
-			catch (Exception ex)
-			{
-				this.Logger.LogError(ex, "Exception while creating invoice.");
-			}
+			});
 
 			return returnValue;
 		}
