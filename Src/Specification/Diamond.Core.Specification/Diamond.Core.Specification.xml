@@ -4,6 +4,17 @@
         <name>Diamond.Core.Specification</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Specification.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Specification.ServiceCollectionDecorator.UseSpecificationFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necesarys registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="T:Diamond.Core.Specification.SpecificationNotFoundException`2">
             <summary>
             An exception indicating that an <see cref="T:Diamond.Core.Specification.SpecificationNotFoundException`2" /> was not found.

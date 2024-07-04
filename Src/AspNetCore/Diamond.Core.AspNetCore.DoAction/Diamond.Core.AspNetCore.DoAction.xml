@@ -141,6 +141,17 @@
             <param name="problemDetails">The instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/> that will be returned to the client.</param>
             <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ProblemDetails"/>.</returns>
         </member>
+        <member name="T:Diamond.Core.AspNetCore.DoAction.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DoAction.ServiceCollectionDecorator.UseDofactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necesarys registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionNotFoundException">
             <summary>
             An exception indicating that a specified DoAction was not configured. This

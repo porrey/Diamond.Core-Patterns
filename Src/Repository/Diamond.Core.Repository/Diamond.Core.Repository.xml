@@ -153,6 +153,17 @@
             <param name="item"></param>
             <returns></returns>
         </member>
+        <member name="T:Diamond.Core.Repository.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.ServiceCollectionDecorator.UseRepositoryFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necesarys registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="T:Diamond.Core.Repository.RepositoryNotDefinedException">
             <summary>
             

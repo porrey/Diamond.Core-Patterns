@@ -4,6 +4,17 @@
         <name>Diamond.Core.UnitOfWork</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.UnitOfWork.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.UnitOfWork.ServiceCollectionDecorator.UseUnitOfWorkFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necesarys registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkNotFoundException`2">
             <summary>
             

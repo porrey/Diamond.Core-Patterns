@@ -4,6 +4,17 @@
         <name>Diamond.Core.Rules</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.Rules.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.ServiceCollectionDecorator.UseRulesFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necesarys registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="T:Diamond.Core.Rules.RulesNotFoundException`1">
             <summary>
             Exception thrown when rules have not been configured in the application container.

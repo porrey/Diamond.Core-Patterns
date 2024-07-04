@@ -111,6 +111,17 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
+        <member name="T:Diamond.Core.Workflow.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.ServiceCollectionDecorator.UseWorkflowFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necesarys registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="T:Diamond.Core.Workflow.MissingStepsException">
             <summary>
             Generic error for a missing context property.

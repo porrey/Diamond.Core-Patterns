@@ -64,6 +64,17 @@
             
             </summary>
         </member>
+        <member name="T:Diamond.Core.Decorator.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Decorator.ServiceCollectionDecorator.UseDecoratorFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necesarys registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
         <member name="T:Diamond.Core.Decorator.DecoratedItemInstanceAlreadySetException">
             <summary>
             

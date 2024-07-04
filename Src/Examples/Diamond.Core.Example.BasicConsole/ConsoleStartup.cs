@@ -71,32 +71,32 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Add database items.
 			//
-			services.AddScoped<IRepositoryFactory, RepositoryFactory>();
+			services.UseRepositoryFactory();
 			services.AddScoped<IEntityFactory<IEmployeeEntity>, EmployeeEntityFactory>();
 			services.AddTransient<IRepository<IEmployeeEntity>, EmployeeRepository>();
 
-			services.AddScoped<ISpecificationFactory, SpecificationFactory>();
+			services.UseSpecificationFactory();
 			services.AddTransient<ISpecification, GetActiveEmployeeIdListSpecification>();
 			services.AddTransient<ISpecification, GetEmployeeDetailsSpecification>();
 
-			services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
+			services.UseUnitOfWorkFactory();
 			services.AddTransient<IUnitOfWork, CreateEmployeeUnitOfWork>();
 			services.AddTransient<IUnitOfWork, PromoteEmployeeUnitOfWork>();
 
-			services.AddScoped<IRulesFactory, RulesFactory>();
+			services.UseRulesFactory();
 			services.AddTransient<IRule, MnimumEmploymentRule>();
 			services.AddTransient<IRule, GoodStandingRule>();
 			services.AddTransient<IRule, PreviousPromotionRule>();
 
-			services.AddScoped<IDecoratorFactory, DecoratorFactory>();
+			services.UseDecoratorFactory();
 			services.AddTransient<IDecorator, EmployeePromotionDecorator>();
 
 			//
 			// Add the sample work flow manager and work flow steps.
 			//
-			services.AddScoped<IWorkflowManagerFactory, WorkflowManagerFactory>()
-					.AddScoped<IWorkflowItemFactory, WorkflowItemFactory>()
-					.AddTransient<IWorkflowManager, SampleWorkflowManager>()
+			services.UseWorkflowFactory();
+
+			services.AddTransient<IWorkflowManager, SampleWorkflowManager>()
 					.AddTransient<IWorkflowItem, SampleWorkStep1>()
 					.AddTransient<IWorkflowItem, SampleWorkStep2>()
 					.AddTransient<IWorkflowItem, SampleWorkStep3>()
