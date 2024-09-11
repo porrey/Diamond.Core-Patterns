@@ -6,9 +6,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<AssemblyName>AutoMapperCmd</AssemblyName>
-		<Version>8.0.4</Version>
-		<FileVersion>8.0.4</FileVersion>
-		<AssemblyVersion>8.0.4</AssemblyVersion>
+		<Version>8.0.5</Version>
+		<FileVersion>8.0.5</FileVersion>
+		<AssemblyVersion>8.0.5</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,7 +34,7 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
 		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
 		<PackageReference Include="Serilog.Settings.AppSettings" Version="3.0.0" />
-		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.2" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
 	</ItemGroup>
 

@@ -4,9 +4,9 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Broadcast.ico</ApplicationIcon>
-    <Version>8.0.4</Version>
-    <FileVersion>8.0.4</FileVersion>
-    <AssemblyVersion>8.0.4</AssemblyVersion>
+    <Version>8.0.5</Version>
+    <FileVersion>8.0.5</FileVersion>
+    <AssemblyVersion>8.0.5</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>1701;1702;MC3074</NoWarn>

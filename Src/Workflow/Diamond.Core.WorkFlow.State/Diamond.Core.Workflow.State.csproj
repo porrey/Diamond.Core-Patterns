@@ -4,8 +4,8 @@
     <Product>Diamond.Core Patterns Library</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>8.0.4</Version>
-    <AssemblyVersion>8.0.4</AssemblyVersion>
+    <Version>8.0.5</Version>
+    <AssemblyVersion>8.0.5</AssemblyVersion>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <Copyright>Copyright © Daniel Porrey 2019-2024</Copyright>
     <Authors>Daniel M. Porrey</Authors>
@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <FileVersion>8.0.4</FileVersion>
+    <FileVersion>8.0.5</FileVersion>
     <PackageIcon>Diamond.Core.128x128.png</PackageIcon>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageIconUrl>https://raw.githubusercontent.com/porrey/Diamond.Core/master/Images/Diamond.Core.128x128.png</PackageIconUrl>
@@ -37,7 +37,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="TryDisposable" Version="8.0.0" />
+    <PackageReference Include="TryDisposable" Version="8.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
