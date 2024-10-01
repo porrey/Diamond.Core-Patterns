@@ -1,13 +1,12 @@
 ﻿using System;
-using Diamond.Core.Repository;
 
 namespace Diamond.Core.Repository.DateTimeModel
 {
-	/// <summary>
-	/// Defines an interface for all entity models to inherit
-	/// from.
-	/// </summary>
-	public interface IDateTimeEntity : IEntity
+    /// <summary>
+    /// Defines an interface for all entity models to inherit
+    /// from.
+    /// </summary>
+    public interface IDateTimeEntity : IEntity
 	{
 		/// <summary>
 		/// Get/sets the data and time this entity model was created and first stored
