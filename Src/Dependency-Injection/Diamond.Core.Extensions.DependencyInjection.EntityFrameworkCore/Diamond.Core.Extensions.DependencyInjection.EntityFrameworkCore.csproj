@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Product>Diamond.Core Patterns Library</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>8.0.5</Version>
+    <Version>9.0.0</Version>
     <Authors>Daniel M Porrey</Authors>
     <Description>This library provides JSON file based dependency injection for Entity Framework Core DbContext.</Description>
-    <Copyright>Copyright © Daniel Porrey 2019-2024</Copyright>
+    <Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <FileVersion>8.0.5</FileVersion>
-    <AssemblyVersion>8.0.5</AssemblyVersion>
+    <FileVersion>9.0.0</FileVersion>
+    <AssemblyVersion>9.0.0</AssemblyVersion>
     <PackageIcon>Diamond.Core.128x128.png</PackageIcon>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageIconUrl>
@@ -33,11 +33,11 @@
     <None Remove="Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Images\Diamond.Core.128x128.png">

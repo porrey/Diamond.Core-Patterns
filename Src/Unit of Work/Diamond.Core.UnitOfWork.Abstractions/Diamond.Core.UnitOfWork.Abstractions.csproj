@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>
     </PackageLicenseUrl>
     <Product>Diamond.Core Patterns Library</Product>
-    <Copyright>Copyright © Daniel Porrey 2019-2024</Copyright>
+    <Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
     <Description>This library provides abstractions for the Unit of Work factory.</Description>
-    <Version>8.0.5</Version>
-    <FileVersion>8.0.5</FileVersion>
-    <AssemblyVersion>8.0.5</AssemblyVersion>
+    <Version>9.0.0</Version>
+    <FileVersion>9.0.0</FileVersion>
+    <AssemblyVersion>9.0.0</AssemblyVersion>
     <Authors>Daniel M. Porrey</Authors>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -46,11 +46,5 @@
       <PackagePath>
       </PackagePath>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 </Project>
