@@ -44,6 +44,11 @@ namespace Diamond.Core.Workflow
 				/// <summary>
 				/// 
 				/// </summary>
+				public const string Exception = "Exception";
+
+				/// <summary>
+				/// 
+				/// </summary>
 				public const string WorkflowErrorMessage = "WorkflowErrorMessage";
 
 				/// <summary>
