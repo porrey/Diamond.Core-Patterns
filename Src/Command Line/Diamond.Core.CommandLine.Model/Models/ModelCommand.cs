@@ -45,7 +45,7 @@ namespace Diamond.Core.CommandLine.Model
 
 			this.Handler = CommandHandler.Create<TModel>(async (p) =>
 			{
-				await this.OnHandleCommand(p);
+				return await this.OnHandleCommand(p);
 			});
 		}
 
@@ -63,7 +63,7 @@ namespace Diamond.Core.CommandLine.Model
 
 			this.Handler = CommandHandler.Create<TModel>(async (p) =>
 			{
-				await this.OnHandleCommand(p);
+				return await this.OnHandleCommand(p);
 			});
 		}
 
