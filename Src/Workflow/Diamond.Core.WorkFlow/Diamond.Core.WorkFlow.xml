@@ -776,6 +776,11 @@
             
             </summary>
         </member>
+        <member name="F:Diamond.Core.Workflow.DiamondWorkflow.WellKnown.Context.Exception">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Diamond.Core.Workflow.DiamondWorkflow.WellKnown.Context.WorkflowErrorMessage">
             <summary>
             
