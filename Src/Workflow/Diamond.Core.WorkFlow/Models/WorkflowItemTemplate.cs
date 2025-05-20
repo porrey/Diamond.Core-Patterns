@@ -133,7 +133,7 @@ namespace Diamond.Core.Workflow
 
 			try
 			{
-				this.Logger.LogDebug("Preparing wokflow step '{name}'.", this.Name);
+				this.Logger.LogDebug("Preparing workflow step '{name}'.", this.Name);
 				
 				if (await this.OnPrepareForExecutionAsync(context))
 				{
