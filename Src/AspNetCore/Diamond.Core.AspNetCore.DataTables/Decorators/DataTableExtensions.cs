@@ -1,16 +1,16 @@
 ﻿//
 // Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
 // by the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
@@ -38,7 +38,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 									  {
 										  ColumnName = tbl1.Data,
 										  Direction = tbl2.Dir
-									  }).ToArray();
+									  });
 
 				foreach (var orderedColumn in orderedColumns)
 				{
@@ -49,9 +49,9 @@ namespace Diamond.Core.AspNetCore.DataTables
 			return returnValue;
 		}
 
-		public static TEntity[] FinalizeQuery<TEntity>(this IQueryable<TEntity> query, IDataTableRequest request)
+		public static IEnumerable<TEntity> FinalizeQuery<TEntity>(this IQueryable<TEntity> query, IDataTableRequest request)
 		{
-			TEntity[] returnValue = Array.Empty<TEntity>();
+			IEnumerable<TEntity> returnValue = [];
 
 			if (request != null)
 			{
@@ -59,17 +59,17 @@ namespace Diamond.Core.AspNetCore.DataTables
 				{
 					if (request.Length > 0)
 					{
-						returnValue = query.Skip(request.Start).Take(request.Length).ToArray();
+						returnValue = query.Skip(request.Start).Take(request.Length);
 					}
 					else
 					{
-						returnValue = query.Skip(request.Start).ToArray();
+						returnValue = query.Skip(request.Start);
 					}
 				}
 			}
 			else
 			{
-				returnValue = query.ToArray();
+				returnValue = query;
 			}
 
 			return returnValue;
@@ -79,7 +79,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 		{
 			int index = 0;
 
-			foreach (var item in source)
+			foreach (TEntity item in source)
 			{
 				if (predicate.Invoke(item))
 				{
@@ -100,9 +100,9 @@ namespace Diamond.Core.AspNetCore.DataTables
 
 			Type ts = typeof(TEntity);
 
-			var names = (from tbl in ts.GetProperties()
-						 where tbl.Name.ToLower() == columnName.ToLower()
-						 select tbl).ToArray();
+			IEnumerable<PropertyInfo> names = from tbl in ts.GetProperties()
+											   where tbl.Name.ToLower() == columnName.ToLower()
+											   select tbl;
 
 			if (direction.ToLower() == "asc")
 			{
