@@ -45,7 +45,7 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Get a repository for IEmployeeEntity.
 			//
-			IQueryableRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetQueryableAsync<IEmployeeEntity>();
+			using IQueryableRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetQueryableAsync<IEmployeeEntity>();
 
 			//
 			// Get the context. This can be disposed because it is defined as transient

@@ -50,7 +50,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 			// Get the repository.
 			//
 			this.Logger.LogDebug("Retrieving repository for '{type}'.", typeof(TEntity).Name);
-			IQueryableRepository <TEntity> repository = await this.RepositoryFactory.GetQueryableAsync<TEntity>();
+			using IQueryableRepository <TEntity> repository = await this.RepositoryFactory.GetQueryableAsync<TEntity>();
 
 			//
 			// Get the filter expression.

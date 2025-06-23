@@ -65,7 +65,7 @@ namespace Diamond.Core.Example
 			// Get a read-only repository for IInvoice.
 			//
 			this.Logger.LogDebug("Retrieving a read-only repository for IInvoice.");
-			IReadOnlyRepository<IInvoice> repository = await this.RepositoryFactory.GetReadOnlyAsync<IInvoice>();
+			using IReadOnlyRepository<IInvoice> repository = await this.RepositoryFactory.GetReadOnlyAsync<IInvoice>();
 
 			//
 			// Attempt to create the item.

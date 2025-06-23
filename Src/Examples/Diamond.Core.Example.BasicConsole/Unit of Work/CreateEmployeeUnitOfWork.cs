@@ -22,7 +22,7 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Get a repository for IEmployeeEntity.
 			//
-			IWritableRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetWritableAsync<IEmployeeEntity>();
+			using IWritableRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetWritableAsync<IEmployeeEntity>();
 
 			//
 			// Add the item to the database.

@@ -46,7 +46,7 @@ namespace Diamond.Core.Example.BasicConsole
 			//
 			// Get a repository for IEmployeeEntity.
 			//(
-			IReadOnlyRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetReadOnlyAsync<IEmployeeEntity>();
+			using IReadOnlyRepository<IEmployeeEntity> repository = await this.RepositoryFactory.GetReadOnlyAsync<IEmployeeEntity>();
 
 			//
 			// Get the promoted employees.

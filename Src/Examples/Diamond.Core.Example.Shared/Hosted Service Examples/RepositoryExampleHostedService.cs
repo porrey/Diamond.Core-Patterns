@@ -62,7 +62,7 @@ namespace Diamond.Core.Example
 				//
 				// Get a writable repository for IInvoice.
 				//
-				IWritableRepository<IInvoice> repository = await repositoryFactory.GetWritableAsync<IInvoice>();
+				using IWritableRepository<IInvoice> repository = await repositoryFactory.GetWritableAsync<IInvoice>();
 
 				//
 				// Ensure the database is created.

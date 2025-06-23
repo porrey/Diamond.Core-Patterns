@@ -4,9 +4,9 @@
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Broadcast.ico</ApplicationIcon>
-    <Version>9.0.1</Version>
-    <FileVersion>9.0.1</FileVersion>
-    <AssemblyVersion>9.0.1</AssemblyVersion>
+    <Version>9.0.2</Version>
+    <FileVersion>9.0.2</FileVersion>
+    <AssemblyVersion>9.0.2</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>1701;1702;MC3074</NoWarn>

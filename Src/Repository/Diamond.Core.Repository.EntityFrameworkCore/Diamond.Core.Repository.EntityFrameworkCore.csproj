@@ -8,9 +8,9 @@
     </PackageLicenseUrl>
     <Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
     <Description>This library provides an implementation of the repository that can be used with Entity Framework Core.</Description>
-    <Version>9.0.1</Version>
-    <FileVersion>9.0.1</FileVersion>
-    <AssemblyVersion>9.0.1</AssemblyVersion>
+    <Version>9.0.2</Version>
+    <FileVersion>9.0.2</FileVersion>
+    <AssemblyVersion>9.0.2</AssemblyVersion>
     <Authors>Daniel M. Porrey</Authors>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -35,10 +35,10 @@
     <None Remove="Diamond.Core.Repository.EntityFrameworkCore.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
     <PackageReference Include="System.DisposableObject" Version="9.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Images\Diamond.Core.128x128.png">

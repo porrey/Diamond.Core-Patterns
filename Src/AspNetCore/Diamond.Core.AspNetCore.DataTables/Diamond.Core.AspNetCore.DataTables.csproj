@@ -7,9 +7,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>9.0.1</Version>
-		<AssemblyVersion>9.0.1</AssemblyVersion>
-		<FileVersion>9.0.1</FileVersion>
+		<Version>9.0.2</Version>
+		<AssemblyVersion>9.0.2</AssemblyVersion>
+		<FileVersion>9.0.2</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -45,8 +45,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="14.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.8" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="TryDisposable" Version="9.0.0" />
