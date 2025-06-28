@@ -77,14 +77,24 @@ namespace Diamond.Core.AspNetCore.DataTables
 			IEnumerable<TEntity> items = this.OnExecuteQuery(request, finalExpression, repository);
 
 			//
-			// Total count.
+			// Total record count.
 			//
-			int totalCount = repository.GetQueryable().Where(initialExpression.And(filterExpression).And(searchExpression)).Count();
+			int totalCount = repository.GetQueryable().Count();
+
+			//
+			// Filtered record count.
+			//
+			int filteredCount = repository.GetQueryable().Where(initialExpression.And(filterExpression).And(searchExpression)).Count();
 
 			//
 			// Return count.
 			//
 			int returnCount = items.Count();
+
+			//
+			// Check if the data is being filtered.
+			//
+			bool isFiltered = filteredCount != totalCount;
 
 			//
 			// Set the grid properties.
@@ -94,8 +104,8 @@ namespace Diamond.Core.AspNetCore.DataTables
 			{
 				Data = [.. this.Mapper.Map<IEnumerable<TEntity>, IEnumerable<TViewModel>>(items)],
 				Draw = request != null ? request.Draw : 1,
-				RecordsFiltered = request.Length == returnCount && totalCount > returnCount ? totalCount : returnCount,
-				RecordsTotal = totalCount
+				RecordsFiltered = isFiltered ? filteredCount : totalCount,
+				RecordsTotal = filteredCount
 			};
 
 			return this.OnRequestCompleted(request, returnValue);
