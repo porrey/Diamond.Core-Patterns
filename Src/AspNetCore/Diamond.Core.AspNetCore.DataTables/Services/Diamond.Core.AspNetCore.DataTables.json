@@ -1,0 +1,13 @@
+{
+	"aliases": [
+		{
+			"Key": "IDataTableRequest",
+			"TypeDefinition": "Diamond.Core.AspNetCore.DataTables.IDataTableRequest, Diamond.Core.AspNetCore.DataTables"
+		},
+
+		{
+			"Key": "DataTableRequest",
+			"TypeDefinition": "Diamond.Core.AspNetCore.DataTables.DataTableRequest, Diamond.Core.AspNetCore.DataTables"
+		}
+	]
+}

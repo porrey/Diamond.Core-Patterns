@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
@@ -7,9 +7,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>9.0.4</Version>
-		<AssemblyVersion>9.0.4</AssemblyVersion>
-		<FileVersion>9.0.4</FileVersion>
+		<Version>9.0.5</Version>
+		<AssemblyVersion>9.0.5</AssemblyVersion>
+		<FileVersion>9.0.5</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -30,7 +30,19 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+		<EnableDefaultContentItems>false</EnableDefaultContentItems>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Services\Diamond.Core.AspNetCore.DataTables.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Services\Diamond.Core.AspNetCore.DataTables.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 
 	<ItemGroup>
 	  <None Include="..\..\..\Images\Diamond.Core.128x128.png">
@@ -55,7 +67,7 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
 	  <ProjectReference Include="..\Diamond.Core.AspNetCore.DoAction\Diamond.Core.AspNetCore.DoAction.csproj" />
 	</ItemGroup>
 </Project>

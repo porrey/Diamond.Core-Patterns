@@ -77,17 +77,17 @@ namespace Diamond.Core.AspNetCore.DataTables
 			IEnumerable<TEntity> items = this.OnExecuteQuery(request, finalExpression, repository);
 
 			//
-			// Total record count.
+			// Get the total record count.
 			//
 			int totalCount = repository.GetQueryable().Count();
 
 			//
-			// Filtered record count.
+			// Get the total number of filtered records.
 			//
-			int filteredCount = repository.GetQueryable().Where(initialExpression.And(filterExpression).And(searchExpression)).Count();
+			int filteredCount = repository.GetQueryable().Where(finalExpression).Count();
 
 			//
-			// Return count.
+			// Get the count of records being returned (this may be less due to paging).
 			//
 			int returnCount = items.Count();
 
@@ -105,7 +105,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 				Data = [.. this.Mapper.Map<IEnumerable<TEntity>, IEnumerable<TViewModel>>(items)],
 				Draw = request != null ? request.Draw : 1,
 				RecordsFiltered = isFiltered ? filteredCount : totalCount,
-				RecordsTotal = filteredCount
+				RecordsTotal = totalCount
 			};
 
 			return this.OnRequestCompleted(request, returnValue);
@@ -134,9 +134,9 @@ namespace Diamond.Core.AspNetCore.DataTables
 		protected virtual IEnumerable<TEntity> OnExecuteQuery(TRequest request, Expression<Func<TEntity, bool>> expression, IQueryableRepository<TEntity> repository)
 		{
 			return repository.GetQueryable()
-							 .ApplyOrdering(request)
+							 .ApplyOrdering(request, this.SearchHandlerFactory)
 							 .Where(expression)
-							 .FinalizeQuery(request);
+							 .ApplyPaging(request);
 		}
 
 		protected virtual ControllerActionResult<DataTableResult<TViewModel>> OnRequestCompleted(TRequest request, ControllerActionResult<DataTableResult<TViewModel>> result)

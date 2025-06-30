@@ -23,7 +23,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 {
 	public static class DataTableExtensions
 	{
-		public static IQueryable<TEntity> ApplyOrdering<TEntity>(this IQueryable<TEntity> query, IDataTableRequest request)
+		public static IQueryable<TEntity> ApplyOrdering<TEntity>(this IQueryable<TEntity> query, IDataTableRequest request, ISearchHandlerFactory<TEntity> searchHandlerFactory)
 		{
 			IQueryable<TEntity> returnValue = query;
 
@@ -38,18 +38,53 @@ namespace Diamond.Core.AspNetCore.DataTables
 									  {
 										  ColumnName = tbl1.Data,
 										  Direction = tbl2.Dir
-									  });
+									  }).ToArray();
+
+				//
+				// Build an ordered queryable.
+				//
+				IOrderedQueryable<TEntity> q = null;
 
 				foreach (var orderedColumn in orderedColumns)
 				{
-					returnValue = returnValue.AddSort<TEntity>(orderedColumn.ColumnName, orderedColumn.Direction);
+					if (orderedColumn == orderedColumns.First())
+					{
+						ISearchHandler<TEntity> handler = searchHandlerFactory.GetAsync(orderedColumn.ColumnName).Result;
+
+						if (handler != null)
+						{
+							q = handler.AddOrderBySort(query, orderedColumn.ColumnName, orderedColumn.Direction);
+						}
+						else
+						{
+							q = query.AddOrderBySort(orderedColumn.ColumnName, orderedColumn.Direction);
+						}
+					}
+					else
+					{
+						ISearchHandler<TEntity> handler = searchHandlerFactory.GetAsync(orderedColumn.ColumnName).Result;
+
+						if (handler != null)
+						{
+							q = handler.AddThenBySort(q, orderedColumn.ColumnName, orderedColumn.Direction);
+						}
+						else
+						{
+							q = q.AddThenBySort(orderedColumn.ColumnName, orderedColumn.Direction);
+						}
+					}
 				}
+
+				//
+				// We have an ordered queryable, set the return value.
+				//
+				returnValue = q;
 			}
 
 			return returnValue;
 		}
 
-		public static IEnumerable<TEntity> FinalizeQuery<TEntity>(this IQueryable<TEntity> query, IDataTableRequest request)
+		public static IEnumerable<TEntity> ApplyPaging<TEntity>(this IQueryable<TEntity> query, IDataTableRequest request)
 		{
 			IEnumerable<TEntity> returnValue = [];
 
@@ -73,66 +108,6 @@ namespace Diamond.Core.AspNetCore.DataTables
 			}
 
 			return returnValue;
-		}
-
-		public static int IndexOf<TEntity>(this IEnumerable<TEntity> source, Func<TEntity, bool> predicate)
-		{
-			int index = 0;
-
-			foreach (TEntity item in source)
-			{
-				if (predicate.Invoke(item))
-				{
-					break;
-				}
-				else
-				{
-					index++;
-				}
-			}
-
-			return index;
-		}
-
-		public static IOrderedQueryable<TEntity> AddSort<TEntity>(this IQueryable<TEntity> source, string columnName, string direction)
-		{
-			IOrderedQueryable<TEntity> returnValue = null;
-
-			Type ts = typeof(TEntity);
-
-			IEnumerable<PropertyInfo> names = from tbl in ts.GetProperties()
-											   where tbl.Name.ToLower() == columnName.ToLower()
-											   select tbl;
-
-			if (direction.ToLower() == "asc")
-			{
-				returnValue = source.OrderBy(columnName);
-			}
-			else
-			{
-				returnValue = source.OrderByDescending(columnName);
-			}
-
-			return returnValue;
-		}
-
-		public static Expression<Func<TEntity, object>> GetExpression<TEntity>(string propertyName)
-		{
-			PropertyInfo property = typeof(TEntity).GetProperties().Where(t => t.Name.ToLower() == propertyName.ToLower()).SingleOrDefault();
-			ParameterExpression param = Expression.Parameter(typeof(TEntity), "t");
-			Expression conversion = Expression.Convert(Expression.Property(param, property), typeof(object));
-
-			return Expression.Lambda<Func<TEntity, object>>(conversion, param);
-		}
-
-		public static IOrderedQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> source, string propertyName)
-		{
-			return source.OrderBy(GetExpression<TEntity>(propertyName));
-		}
-
-		public static IOrderedQueryable<TEntity> OrderByDescending<TEntity>(this IQueryable<TEntity> source, string propertyName)
-		{
-			return source.OrderByDescending(GetExpression<TEntity>(propertyName));
 		}
 
 		public static Expression<Func<TEntity, bool>> ApplySearch<TEntity, TViewModel>(this IDataTableRequest request, ISearchHandlerFactory<TEntity> searchHandlerFactory)
@@ -210,5 +185,86 @@ namespace Diamond.Core.AspNetCore.DataTables
 
 			return returnValue;
 		}
+
+		public static int IndexOf<TEntity>(this IEnumerable<TEntity> source, Func<TEntity, bool> predicate)
+		{
+			int index = 0;
+
+			foreach (TEntity item in source)
+			{
+				if (predicate.Invoke(item))
+				{
+					break;
+				}
+				else
+				{
+					index++;
+				}
+			}
+
+			return index;
+		}
+
+		public static IOrderedQueryable<TEntity> AddOrderBySort<TEntity>(this IQueryable<TEntity> source, string columnName, string direction)
+		{
+			IOrderedQueryable<TEntity> returnValue = null;
+
+			if (direction.ToLower() == "asc")
+			{
+				returnValue = source.OrderBy(columnName);
+			}
+			else
+			{
+				returnValue = source.OrderByDescending(columnName);
+			}
+
+			return returnValue;
+		}
+
+		public static IOrderedQueryable<TEntity> AddThenBySort<TEntity>(this IOrderedQueryable<TEntity> source, string columnName, string direction)
+		{
+			IOrderedQueryable<TEntity> returnValue = null;
+
+			if (direction.ToLower() == "asc")
+			{
+				returnValue = source.ThenBy(columnName);
+			}
+			else
+			{
+				returnValue = source.ThenByDescending(columnName);
+			}
+
+			return returnValue;
+		}
+
+		public static Expression<Func<TEntity, object>> GetExpression<TEntity>(string propertyName)
+		{
+			PropertyInfo property = typeof(TEntity).GetProperties().Where(t => t.Name.ToLower() == propertyName.ToLower()).SingleOrDefault();
+			ParameterExpression param = Expression.Parameter(typeof(TEntity), "t");
+			Expression conversion = Expression.Convert(Expression.Property(param, property), typeof(object));
+
+			return Expression.Lambda<Func<TEntity, object>>(conversion, param);
+		}
+
+		public static IOrderedQueryable<TEntity> OrderBy<TEntity>(this IQueryable<TEntity> source, string propertyName)
+		{
+			return source.OrderBy(GetExpression<TEntity>(propertyName));
+		}
+
+		public static IOrderedQueryable<TEntity> OrderByDescending<TEntity>(this IQueryable<TEntity> source, string propertyName)
+		{
+			return source.OrderByDescending(GetExpression<TEntity>(propertyName));
+		}
+
+		public static IOrderedQueryable<TEntity> ThenBy<TEntity>(this IOrderedQueryable<TEntity> source, string propertyName)
+		{
+			return source.ThenBy(GetExpression<TEntity>(propertyName));
+		}
+
+		public static IOrderedQueryable<TEntity> ThenByDescending<TEntity>(this IOrderedQueryable<TEntity> source, string propertyName)
+		{
+			return source.ThenByDescending(GetExpression<TEntity>(propertyName));
+		}
+
 	}
 }
