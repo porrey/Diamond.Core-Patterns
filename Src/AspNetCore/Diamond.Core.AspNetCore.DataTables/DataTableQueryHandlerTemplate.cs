@@ -79,7 +79,7 @@ namespace Diamond.Core.AspNetCore.DataTables
 			//
 			// Get the total record count.
 			//
-			int totalCount = repository.GetQueryable().Count();
+			int totalCount = repository.GetQueryable().Where(initialExpression).Count();
 
 			//
 			// Get the total number of filtered records.
