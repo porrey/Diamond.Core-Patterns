@@ -57,6 +57,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="14.0.0" />
+		<PackageReference Include="Diamond.Core.AspNetCore.DoAction" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.AspNetCore.DoAction.Abstractions" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.Repository" Version="9.0.2" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.8" />
@@ -65,9 +68,5 @@
 	</ItemGroup>
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
-	  <ProjectReference Include="..\Diamond.Core.AspNetCore.DoAction\Diamond.Core.AspNetCore.DoAction.csproj" />
 	</ItemGroup>
 </Project>

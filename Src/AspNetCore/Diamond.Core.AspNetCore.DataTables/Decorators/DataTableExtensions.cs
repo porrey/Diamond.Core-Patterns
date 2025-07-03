@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using Diamond.Core.AspNetCore.DataTables;
@@ -28,24 +29,21 @@ namespace Diamond.Core.AspNetCore.DataTables
 			IQueryable<TEntity> returnValue = query;
 
 			//
+			// Get the ordered columns.
+			//
+			IEnumerable<OrderedColumn> orderedColumns = request.OrderedColumns<TEntity>();
+
+			//
 			// Apply ordering
 			//
-			if (request != null && request.Order != null && request.Order.Length > 0)
+			if (orderedColumns.Any())
 			{
-				var orderedColumns = (from tbl1 in request.Columns
-									  join tbl2 in request.Order on request.Columns.IndexOf(t => t.Data == tbl1.Data) equals tbl2.Column
-									  select new
-									  {
-										  ColumnName = tbl1.Data,
-										  Direction = tbl2.Dir
-									  }).ToArray();
-
 				//
 				// Build an ordered queryable.
 				//
 				IOrderedQueryable<TEntity> q = null;
 
-				foreach (var orderedColumn in orderedColumns)
+				foreach (OrderedColumn orderedColumn in orderedColumns.Where(t => !string.IsNullOrWhiteSpace(t.ColumnName)))
 				{
 					if (orderedColumn == orderedColumns.First())
 					{
@@ -266,5 +264,26 @@ namespace Diamond.Core.AspNetCore.DataTables
 			return source.ThenByDescending(GetExpression<TEntity>(propertyName));
 		}
 
+		public static IEnumerable<OrderedColumn> OrderedColumns<TEntity>(this IDataTableRequest request)
+		{
+			IEnumerable<OrderedColumn> returnValue = [];
+
+			//
+			// Apply ordering
+			//
+			if (request != null && request.Order != null && request.Order.Length > 0)
+			{
+				returnValue = (from tbl1 in request.Columns
+							   join tbl2 in request.Order on request.Columns.IndexOf(t => t.Data == tbl1.Data) equals tbl2.Column
+							   where !string.IsNullOrWhiteSpace(tbl1.Data)
+							   select new OrderedColumn()
+							   {
+								   ColumnName = tbl1.Data,
+								   Direction = tbl2.Dir
+							   }).ToArray();
+			}
+
+			return returnValue;
+		}
 	}
 }

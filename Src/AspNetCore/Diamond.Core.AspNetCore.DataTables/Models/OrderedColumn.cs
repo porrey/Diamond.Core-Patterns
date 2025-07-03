@@ -14,35 +14,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
-using Newtonsoft.Json;
-
 namespace Diamond.Core.AspNetCore.DataTables
 {
-	public class Column
+	public class OrderedColumn
 	{
-		[JsonProperty("title")]
-		public virtual string Title { get; set; } = String.Empty;
-
-		[JsonProperty("data")]
-		public virtual string Data { get; set; } = String.Empty;
-
-		[JsonProperty("name")]
-		public virtual string Name { get; set; } = String.Empty;
-
-		[JsonProperty("searchable")]
-		public virtual bool Searchable { get; set; } = true;
-
-		[JsonProperty("orderable")]
-		public virtual bool Orderable { get; set; } = true;
-
-		[JsonProperty("search")]
-		public virtual Search Search { get; set; } = null;
-
-		[JsonProperty("type")]
-		public virtual string Type { get; set; } = "string";
-
-		[JsonProperty("filterable")]
-		public virtual bool Filterable { get; set; } = true;
+		public string ColumnName { get; set; }
+		public string Direction { get; set; }
 	}
 }

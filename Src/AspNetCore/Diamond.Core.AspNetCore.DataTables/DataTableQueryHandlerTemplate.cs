@@ -133,10 +133,19 @@ namespace Diamond.Core.AspNetCore.DataTables
 
 		protected virtual IEnumerable<TEntity> OnExecuteQuery(TRequest request, Expression<Func<TEntity, bool>> expression, IQueryableRepository<TEntity> repository)
 		{
-			return repository.GetQueryable()
-							 .ApplyOrdering(request, this.SearchHandlerFactory)
-							 .Where(expression)
-							 .ApplyPaging(request);
+			if (request.OrderedColumns<TEntity>().Any())
+			{
+				return repository.GetQueryable()
+								 .ApplyOrdering(request, this.SearchHandlerFactory)
+								 .Where(expression)
+								 .ApplyPaging(request);
+			}
+			else
+			{
+				return repository.GetQueryable()
+								 .Where(expression)
+								 .ApplyPaging(request);
+			}
 		}
 
 		protected virtual ControllerActionResult<DataTableResult<TViewModel>> OnRequestCompleted(TRequest request, ControllerActionResult<DataTableResult<TViewModel>> result)
