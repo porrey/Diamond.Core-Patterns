@@ -6,13 +6,13 @@ using System.Reflection;
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Represents an attribute that can be applied to properties or fields to indicate that they are dependencies
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 	public class DependencyAttribute : Attribute
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the <see cref="DependencyAttribute"/> class.
 		/// </summary>
 		public DependencyAttribute()
 			: base()
@@ -31,7 +31,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		public virtual bool OverrideValue { get; set; } = false;
 
 		/// <summary>
-		/// 
+		/// Gets or sets the name of the dependency.
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
@@ -52,7 +52,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// 
+		/// Set the dependency properties on the instance using the service provider.
 		/// </summary>
 		/// <param name="serviceProvider"></param>
 		/// <param name="dependencyProperties"></param>

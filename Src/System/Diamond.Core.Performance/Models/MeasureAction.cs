@@ -47,7 +47,7 @@ namespace Diamond.Core.Performance
 		/// <summary>
 		/// Gets/sets the logger for this instance.
 		/// </summary>
-		protected ILogger<MeasureAction> Logger { get; set; }
+		protected ILogger<MeasureAction> Logger { get; }
 
 		/// <summary>
 		/// Measure the method or block of code.
@@ -80,7 +80,7 @@ namespace Diamond.Core.Performance
 		/// </summary>
 		/// <param name="action">The method or block of code to run.</param>
 		/// <param name="actionName">The name of the action used in the log.</param>
-		public void Measure<T>(Action action, string actionName = "measured")
+		public void Measure(Action action, string actionName = "measured")
 		{
 			Stopwatch sw = new();
 
@@ -88,6 +88,53 @@ namespace Diamond.Core.Performance
 			{
 				sw.Start();
 				action.Invoke();
+			}
+			finally
+			{
+				sw.Stop();
+				this.Logger.LogInformation("The '{actionName}' action completed in {time}.", actionName, sw.Elapsed.Humanize());
+			}
+		}
+
+		/// <summary>
+		/// Measure an asynchronous method or block of code.
+		/// </summary>
+		/// <typeparam name="T">The return type.</typeparam>
+		/// <param name="action">The async method or block of code to run.</param>
+		/// <param name="actionName">The name of the action used in the log.</param>
+		/// <returns>Returns an instance of T.</returns>
+		public async Task<T> MeasureAsync<T>(Func<Task<T>> action, string actionName = "measured")
+		{
+			Stopwatch sw = new();
+			T returnValue = default;
+
+			try
+			{
+				sw.Start();
+				returnValue = await action();
+			}
+			finally
+			{
+				sw.Stop();
+				this.Logger.LogInformation("The '{actionName}' action completed in {time}.", actionName, sw.Elapsed.Humanize());
+			}
+
+			return returnValue;
+		}
+
+		/// <summary>
+		/// Measure an asynchronous method or block of code with no return value.
+		/// </summary>
+		/// <param name="action">The async method or block of code to run.</param>
+		/// <param name="actionName">The name of the action used in the log.</param>
+		public async Task MeasureAsync(Func<Task> action, string actionName = "measured")
+		{
+			Stopwatch sw = new();
+
+			try
+			{
+				sw.Start();
+				await action();
 			}
 			finally
 			{

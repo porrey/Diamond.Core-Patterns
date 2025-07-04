@@ -29,7 +29,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	public class DependencyFactory : IDependencyFactory
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the <see cref="DependencyFactory"/> class.
 		/// </summary>
 		/// <param name="implementationType"></param>
 		/// <param name="configuration"></param>
@@ -42,22 +42,22 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// 
+		/// Gets or sets the type of the implementation.
 		/// </summary>
 		public virtual Type ImplementationType { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets the service descriptor configuration.
 		/// </summary>
 		public virtual ServiceDescriptorConfiguration Configuration { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets the dependency properties that are required for the implementation type.
 		/// </summary>
 		public virtual IEnumerable<DependencyInfo> DependencyProperties { get; set; }
 
 		/// <summary>
-		/// 
+		///	 Creates an instance of the implementation type using the provided service provider and parameters.
 		/// </summary>
 		/// <returns></returns>
 		public virtual object GetInstance(IServiceProvider sp, params object[] parameters)
@@ -69,7 +69,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// 
+		/// Assigns the properties from the configuration to the instance of the implementation type.
 		/// </summary>
 		/// <param name="instance"></param>
 		protected virtual void AssignProperties(object instance)
@@ -78,7 +78,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// 
+		/// Assigns the properties from the configuration to the instance of the implementation type.
 		/// </summary>
 		/// <param name="properties"></param>
 		/// <param name="implementationType"></param>

@@ -22,17 +22,17 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	public class Alias
 	{
 		/// <summary>
-		/// 
+		/// Gets or sets the key for the alias.
 		/// </summary>
 		public virtual string Key { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets the type definition for the alias.
 		/// </summary>
 		public virtual string TypeDefinition { get; set; }
 
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the <see cref="Alias"/> class.
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString() => $"{this.Key} => {this.TypeDefinition}";
