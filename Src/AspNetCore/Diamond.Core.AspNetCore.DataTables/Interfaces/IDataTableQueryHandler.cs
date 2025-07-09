@@ -19,8 +19,22 @@ using Diamond.Core.AspNetCore.DoAction;
 
 namespace Diamond.Core.AspNetCore.DataTables
 {
+	/// <summary>
+	/// Defines a handler for executing data table queries and returning results in a specified view model format.	
+	/// </summary>
+	/// <typeparam name="TEntity">The type of the entity being queried.</typeparam>
+	/// <typeparam name="TViewModel">The type of the view model to which the query results are mapped.</typeparam>
+	/// <typeparam name="TRequest">The type of the request object containing query parameters.</typeparam>
 	public interface IDataTableQueryHandler<TEntity, TViewModel, TRequest>
 	{
+		/// <summary>
+		/// Executes an asynchronous query based on the specified request and pre-filter expression.
+		/// </summary>
+		/// <param name="request">The request object containing query parameters and options.</param>
+		/// <param name="preFilterExpression">An expression used to pre-filter the entities before executing the query. Cannot be null.</param>
+		/// <returns>A task representing the asynchronous operation. The task result contains an <see
+		/// cref="IControllerActionResult{T}"/> with a <see cref="DataTableResult{TViewModel}"/> representing the query
+		/// results.</returns>
 		Task<IControllerActionResult<DataTableResult<TViewModel>>> ExecuteQueryAsync(TRequest request, Expression<Func<TEntity, bool>> preFilterExpression);
 	}
 }

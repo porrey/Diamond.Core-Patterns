@@ -11,9 +11,10 @@ namespace Diamond.Core.Performance
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseMeasureAction(this IServiceCollection services)
+		public static IServiceCollection UseMeasureAction(this IServiceCollection services)
 		{
 			services.AddTransient<IMeasureAction, MeasureAction>();
+			return services;
 		}
 	}
 }

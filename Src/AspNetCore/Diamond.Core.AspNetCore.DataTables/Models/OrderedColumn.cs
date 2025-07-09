@@ -16,9 +16,22 @@
 //
 namespace Diamond.Core.AspNetCore.DataTables
 {
+	/// <summary>
+	/// Represents a column with an associated sort direction for ordering operations.
+	/// </summary>
+	/// <remarks>The <see cref="OrderedColumn"/> class is used to specify the order in which data should be sorted.
+	/// The <see cref="ColumnName"/> property indicates the name of the column to sort by, and the <see cref="Direction"/>
+	/// property specifies the sort direction, typically "ASC" for ascending or "DESC" for descending.</remarks>
 	public class OrderedColumn
 	{
+		/// <summary>
+		/// Gets or sets the name of the column to be ordered.
+		/// </summary>
 		public string ColumnName { get; set; }
+
+		/// <summary>
+		/// Gets or sets the direction of the sort operation.
+		/// </summary>
 		public string Direction { get; set; }
 	}
 }

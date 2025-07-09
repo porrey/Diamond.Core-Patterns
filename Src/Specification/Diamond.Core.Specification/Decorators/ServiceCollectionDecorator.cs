@@ -11,9 +11,10 @@ namespace Diamond.Core.Specification
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseSpecificationFactory(this IServiceCollection services)
+		public static IServiceCollection UseSpecificationFactory(this IServiceCollection services)
 		{
 			services.AddTransient<ISpecificationFactory, SpecificationFactory>();
+			return services;
 		}
 	}
 }

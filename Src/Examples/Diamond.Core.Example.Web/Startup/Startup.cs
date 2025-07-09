@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
-using Diamond.Core.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +30,14 @@ namespace Diamond.Core.Example
 		/// <summary>
 		/// 
 		/// </summary>
-		public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; set; }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Startup"/> class.
+		/// </summary>
+		public Startup()
+		{
+		}
 
 		/// <summary>
 		/// 

@@ -11,9 +11,10 @@ namespace Diamond.Core.Repository
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseRepositoryFactory(this IServiceCollection services)
+		public static IServiceCollection UseRepositoryFactory(this IServiceCollection services)
 		{
 			services.AddTransient<IRepositoryFactory, RepositoryFactory>();
+			return services;
 		}
 	}
 }

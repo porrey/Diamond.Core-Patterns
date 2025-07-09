@@ -35,10 +35,27 @@ namespace Diamond.Core.Repository
 		Task<IEnumerable<TInterface>> GetAllAsync();
 
 		/// <summary>
+		/// Asynchronously retrieves all entities from the repository.
+		/// </summary>
+		/// <param name="context">The repository context used to access the data source. Cannot be null.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains an enumerable collection of entities
+		/// of type <typeparamref name="TInterface"/>.</returns>
+		Task<IEnumerable<TInterface>> GetAllAsync(IRepositoryContext context);
+
+		/// <summary>
 		/// Returns a filtered list of items from the data store.
 		/// </summary>
 		/// <param name="predicate">Defines the query to be applied before returning the results.</param>
 		/// <returns>Returns an IEnumberable of TInterface</returns>
 		Task<IEnumerable<TInterface>> GetAsync(Expression<Func<TInterface, bool>> predicate);
+
+		/// <summary>
+		/// Asynchronously retrieves a collection of entities that match the specified predicate.
+		/// </summary>
+		/// <param name="context">The repository context used to access the data source. Cannot be null.</param>
+		/// <param name="predicate">An expression that defines the conditions of the entities to retrieve. Cannot be null.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains an enumerable collection of entities
+		/// that satisfy the specified predicate.</returns>
+		Task<IEnumerable<TInterface>> GetAsync(IRepositoryContext context, Expression<Func<TInterface, bool>> predicate);
 	}
 }

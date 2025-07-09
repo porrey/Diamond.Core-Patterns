@@ -14,20 +14,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace Diamond.Core.AspNetCore.DataTables
 {
 	/// <summary>
-	/// Defines a factory for creating search handlers for a specified entity type.
+	/// Represents an abstract base class for objects that can hold additional data fields not explicitly defined in the
+	/// class structure.
 	/// </summary>
-	/// <typeparam name="TEntity">The type of entity for which the search handler is created.</typeparam>
-	public interface ISearchHandlerFactory<TEntity>
+	/// <remarks>This class uses JSON extension data to store extra data fields in a dictionary. The <see
+	/// cref="ExtraData"/> property allows for dynamic storage of additional key-value pairs, where the key is a string and
+	/// the value is a <see cref="JToken"/>.</remarks>
+	public abstract class DataTablesObject : IDataTablesObject
 	{
 		/// <summary>
-		/// Asynchronously retrieves a search handler for the specified property of the entity.
+		/// Gets or sets a dictionary that holds additional data fields not explicitly defined in the class structure.
 		/// </summary>
-		/// <param name="propertyName">The name of the property for which to retrieve the search handler. Cannot be null or empty.</param>
-		/// <returns>A task representing the asynchronous operation. The task result contains an <see cref="ISearchHandler{TEntity}"/>
-		/// for the specified property.</returns>
-		Task<ISearchHandler<TEntity>> GetAsync(string propertyName);
+		[JsonExtensionData]
+		public IDictionary<string, JToken> ExtraData { get; set; } = new Dictionary<string, JToken>();
 	}
 }

@@ -269,14 +269,23 @@
         </member>
         <member name="T:Diamond.Core.Example.Program">
             <summary>
-            
+            The entry point of the application.
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Example.Program._startUp">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Example.Startup"/> class.
             </summary>
         </member>
         <member name="M:Diamond.Core.Example.Program.Main(System.String[])">
             <summary>
-            
+            Configures and runs the web application.
             </summary>
-            <param name="args"></param>
+            <remarks>This method sets up the web application by configuring logging with Serilog, loading services
+            from the "Services" folder, and setting up the web host defaults. It uses the <see cref="T:Diamond.Core.Example.Startup"/> class for
+            further configuration and initializes the application with configured services and database settings before
+            running it.</remarks>
+            <param name="args">The command-line arguments used to configure the web application.</param>
         </member>
         <member name="T:Diamond.Core.Example.AutoMapperStartup">
             <summary>
@@ -323,6 +332,11 @@
         <member name="P:Diamond.Core.Example.Startup.Configuration">
             <summary>
             
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Example.Startup.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Example.Startup"/> class.
             </summary>
         </member>
         <member name="M:Diamond.Core.Example.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">

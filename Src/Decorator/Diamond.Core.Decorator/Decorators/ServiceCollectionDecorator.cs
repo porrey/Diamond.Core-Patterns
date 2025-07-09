@@ -11,9 +11,10 @@ namespace Diamond.Core.Decorator
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseDecoratorFactory(this IServiceCollection services)
+		public static IServiceCollection UseDecoratorFactory(this IServiceCollection services)
 		{
 			services.AddTransient<IDecoratorFactory, DecoratorFactory>();
+			return services;
 		}
 	}
 }

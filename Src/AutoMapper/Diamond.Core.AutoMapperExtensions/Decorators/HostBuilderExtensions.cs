@@ -32,13 +32,16 @@ namespace Diamond.Core.AutoMapperExtensions
 			});
 		}
 
-		public static void UseAutoMapper(this IServiceCollection services)
+		public static IServiceCollection UseAutoMapper(this IServiceCollection services)
 		{
 			//
 			// Use the default initialization built
 			// into the AutoMapper library.
 			//
-			services.AddAutoMapper(typeof(NullProfile));
+			services.AddAutoMapper(c =>
+			{
+				c.AddProfile(typeof(NullProfile));
+			});
 
 			//
 			// Replace the configuration for IConfigurationProvider
@@ -52,21 +55,22 @@ namespace Diamond.Core.AutoMapperExtensions
 				//
 				ILogger<IHostBuilder> logger = sp.GetRequiredService<ILogger<IHostBuilder>>();
 
-				//
-				// Load profiles by instance.
-				//
-				IEnumerable<IProfileExpression> profileExpressions = sp.GetService<IEnumerable<IProfileExpression>>();
-				foreach (IProfileExpression profileExpression in profileExpressions)
+				return new MapperConfiguration(cfg =>
 				{
-					if (profileExpression is Profile profile)
-					{
-						logger.LogDebug("Adding Auto Mapper profile '{type}'.", profile.GetType().AssemblyQualifiedName);
-						options.Value.AddProfile(profile);
-					}
-				}
+					IEnumerable<IProfileExpression> profileExpressions = sp.GetService<IEnumerable<IProfileExpression>>();
 
-				return new MapperConfiguration(options.Value);
+					foreach (IProfileExpression profileExpression in profileExpressions)
+					{
+						if (profileExpression is Profile profile)
+						{
+							logger.LogDebug("Adding Auto Mapper profile '{type}'.", profile.GetType().AssemblyQualifiedName);
+							cfg.AddProfile(profile);
+						}
+					}
+				}, sp.GetService<ILoggerFactory>());
 			});
+
+			return services;
 		}
 	}
 }

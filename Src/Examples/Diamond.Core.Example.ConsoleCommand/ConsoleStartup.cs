@@ -71,7 +71,10 @@ namespace Diamond.Core.Example
 			//
 			// Add required services.
 			//
-			services.AddAutoMapper(typeof(MappingProfile));
+			services.AddAutoMapper(c =>
+			{
+				c.AddProfile(typeof(MappingProfile));
+			});
 
 			services.AddHttpClient(typeof(Invoice).Name, (s, c) =>
 			{

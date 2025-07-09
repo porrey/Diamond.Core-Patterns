@@ -128,12 +128,29 @@
             </summary>
             <returns>Returns an IEnumberable of TInterface</returns>
         </member>
+        <member name="M:Diamond.Core.Repository.IReadOnlyRepository`1.GetAllAsync(Diamond.Core.Repository.IRepositoryContext)">
+            <summary>
+            Asynchronously retrieves all entities from the repository.
+            </summary>
+            <param name="context">The repository context used to access the data source. Cannot be null.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains an enumerable collection of entities
+            of type <typeparamref name="TInterface"/>.</returns>
+        </member>
         <member name="M:Diamond.Core.Repository.IReadOnlyRepository`1.GetAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             Returns a filtered list of items from the data store.
             </summary>
             <param name="predicate">Defines the query to be applied before returning the results.</param>
             <returns>Returns an IEnumberable of TInterface</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.IReadOnlyRepository`1.GetAsync(Diamond.Core.Repository.IRepositoryContext,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Asynchronously retrieves a collection of entities that match the specified predicate.
+            </summary>
+            <param name="context">The repository context used to access the data source. Cannot be null.</param>
+            <param name="predicate">An expression that defines the conditions of the entities to retrieve. Cannot be null.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains an enumerable collection of entities
+            that satisfy the specified predicate.</returns>
         </member>
         <member name="T:Diamond.Core.Repository.IRepository">
             <summary>

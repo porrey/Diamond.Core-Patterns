@@ -19,26 +19,54 @@ using Newtonsoft.Json;
 
 namespace Diamond.Core.AspNetCore.DataTables
 {
-	public class DataTableRequest : IDataTableRequest
+	/// <summary>
+	/// Represents a request for data in a DataTable format, including pagination, sorting, and search criteria.
+	/// </summary>
+	/// <remarks>This class is used to encapsulate the parameters sent from a client-side DataTable to a server-side
+	/// processing endpoint. It includes properties for pagination (such as <see cref="Start"/> and <see cref="Length"/>),
+	/// sorting (via <see cref="Order"/>), and search criteria (via <see cref="Search"/> and <see
+	/// cref="SearchBuilder"/>).</remarks>
+	public class DataTableRequest : DataTablesObject, IDataTableRequest
 	{
+		/// <summary>
+		/// Gets or sets the draw count for the current operation.
+		/// </summary>
 		[JsonProperty("draw")]
 		public virtual int Draw { get; set; }
 
+		/// <summary>
+		/// Gets or sets the starting index for the operation.
+		/// </summary>
 		[JsonProperty("start")]
 		public virtual int Start { get; set; }
 
+		/// <summary>
+		/// Gets or sets the length of the item.
+		/// </summary>
 		[JsonProperty("length")]
 		public virtual int Length { get; set; }
 
+		/// <summary>
+		/// Gets or sets the search configuration for the current context.
+		/// </summary>
 		[JsonProperty("search")]
 		public virtual Search Search { get; set; }
 
+		/// <summary>
+		/// Gets or sets the collection of orders associated with the current context.
+		/// </summary>
 		[JsonProperty("order")]
 		public virtual Order[] Order { get; set; }
 
+		/// <summary>
+		/// Gets or sets the collection of columns associated with the entity.
+		/// </summary>
 		[JsonProperty("columns")]
 		public virtual Column[] Columns { get; set; }
 
+		/// <summary>
+		/// Gets or sets the search builder configuration for the form.
+		/// </summary>
 		[JsonProperty("searchBuilder")]
 		public virtual FormCollection SearchBuilder { get; set; }
 	}

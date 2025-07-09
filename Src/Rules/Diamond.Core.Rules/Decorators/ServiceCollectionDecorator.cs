@@ -11,10 +11,11 @@ namespace Diamond.Core.Rules
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseRulesFactory(this IServiceCollection services)
+		public static IServiceCollection UseRulesFactory(this IServiceCollection services)
 		{
 			services.AddTransient<IRulesFactory, RulesFactory>();
 			services.AddSingleton<IServiceCollection>(services);
+			return services;
 		}
 	}
 }

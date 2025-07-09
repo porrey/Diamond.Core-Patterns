@@ -310,17 +310,17 @@
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.Key">
             <summary>
-            
+            Gets or sets the key for the alias.
             </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.TypeDefinition">
             <summary>
-            
+            Gets or sets the type definition for the alias.
             </summary>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.Alias.ToString">
             <summary>
-            
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.Alias"/> class.
             </summary>
             <returns></returns>
         </member>
@@ -351,12 +351,12 @@
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute">
             <summary>
-            
+            Represents an attribute that can be applied to properties or fields to indicate that they are dependencies
             </summary>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.#ctor">
             <summary>
-            
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute"/> class.
             </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.Required">
@@ -372,14 +372,14 @@
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.GetDependencyProperties(System.Type)">
             <summary>
-            
+            Gets or sets the name of the dependency.
             </summary>
             <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute.SetDependencyProperties(System.IServiceProvider,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo},System.Object)">
             <summary>
-            
+            Set the dependency properties on the instance using the service provider.
             </summary>
             <param name="serviceProvider"></param>
             <param name="dependencyProperties"></param>
@@ -392,7 +392,7 @@
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo})">
             <summary>
-            
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.DependencyFactory"/> class.
             </summary>
             <param name="implementationType"></param>
             <param name="configuration"></param>
@@ -400,34 +400,34 @@
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ImplementationType">
             <summary>
-            
+            Gets or sets the type of the implementation.
             </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.Configuration">
             <summary>
-            
+            Gets or sets the service descriptor configuration.
             </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.DependencyProperties">
             <summary>
-            
+            Gets or sets the dependency properties that are required for the implementation type.
             </summary>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.GetInstance(System.IServiceProvider,System.Object[])">
             <summary>
-            
+             Creates an instance of the implementation type using the provided service provider and parameters.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Object)">
             <summary>
-            
+            Assigns the properties from the configuration to the instance of the implementation type.
             </summary>
             <param name="instance"></param>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type,System.Object)">
             <summary>
-            
+            Assigns the properties from the configuration to the instance of the implementation type.
             </summary>
             <param name="properties"></param>
             <param name="implementationType"></param>

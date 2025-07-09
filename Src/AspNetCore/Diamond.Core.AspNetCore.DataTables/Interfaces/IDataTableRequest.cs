@@ -18,14 +18,44 @@ using Microsoft.AspNetCore.Http;
 
 namespace Diamond.Core.AspNetCore.DataTables
 {
-	public interface IDataTableRequest
+	/// <summary>
+	/// Defines the contract for a DataTable request, including pagination, sorting, and search criteria.
+	/// </summary>
+	public interface IDataTableRequest : IDataTablesObject
 	{
+		/// <summary>
+		/// Gets or sets the collection of columns associated with the request.
+		/// </summary>
 		Column[] Columns { get; set; }
+
+		/// <summary>
+		/// Gets or sets the draw count for the current operation.
+		/// </summary>
 		int Draw { get; set; }
+
+		/// <summary>
+		/// Gets or sets the length of the items to return.
+		/// </summary>
 		int Length { get; set; }
+
+		/// <summary>
+		/// Gets or sets the collection of order instructions for sorting.
+		/// </summary>
 		Order[] Order { get; set; }
+
+		/// <summary>
+		/// Gets or sets the search configuration for the request.
+		/// </summary>
 		Search Search { get; set; }
+
+		/// <summary>
+		/// Gets or sets the search builder configuration for the form.
+		/// </summary>
 		FormCollection SearchBuilder { get; set; }
+
+		/// <summary>
+		/// Gets or sets the starting index for the operation.
+		/// </summary>
 		int Start { get; set; }
 	}
 }

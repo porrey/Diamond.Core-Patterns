@@ -18,12 +18,21 @@ using Newtonsoft.Json;
 
 namespace Diamond.Core.AspNetCore.DataTables
 {
-	public class Search
-	{
-		[JsonProperty("value")]
-		public virtual string Value { get; set; } = String.Empty;
+    /// <summary>
+    /// Represents search criteria for a data table, including the search value and whether to use regular expressions.
+    /// </summary>
+    public class Search : DataTablesObject
+    {
+        /// <summary>
+        /// Gets or sets the search value to apply to the data table.
+        /// </summary>
+        [JsonProperty("value")]
+        public virtual string Value { get; set; } = string.Empty;
 
-		[JsonProperty("regex")]
-		public virtual bool RegEx { get; set; } = false;
-	}
+        /// <summary>
+        /// Gets or sets a value indicating whether the search value should be treated as a regular expression.
+        /// </summary>
+        [JsonProperty("regex")]
+        public virtual bool RegEx { get; set; }
+    }
 }

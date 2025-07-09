@@ -18,12 +18,21 @@ using Newtonsoft.Json;
 
 namespace Diamond.Core.AspNetCore.DataTables
 {
-	public class Order
-	{
-		[JsonProperty("column")]
-		public virtual int Column { get; set; }
+    /// <summary>
+    /// Represents sorting information for a column in a data table.
+    /// </summary>
+    public class Order : DataTablesObject
+    {
+        /// <summary>
+        /// Gets or sets the index of the column to which the sorting should be applied.
+        /// </summary>
+        [JsonProperty("column")]
+        public virtual int Column { get; set; }
 
-		[JsonProperty("dir")]
-		public virtual string Dir { get; set; }
-	}
+        /// <summary>
+        /// Gets or sets the direction of the sort ("asc" or "desc").
+        /// </summary>
+        [JsonProperty("dir")]
+        public virtual string Dir { get; set; }
+    }
 }

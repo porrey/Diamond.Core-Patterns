@@ -11,10 +11,11 @@ namespace Diamond.Core.Workflow
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseWorkflowFactory(this IServiceCollection services)
+		public static IServiceCollection UseWorkflowFactory(this IServiceCollection services)
 		{
 			services.AddTransient<IWorkflowManagerFactory, WorkflowManagerFactory>();
 			services.AddTransient<IWorkflowItemFactory, WorkflowItemFactory>();
+			return services;
 		}
 	}
 }

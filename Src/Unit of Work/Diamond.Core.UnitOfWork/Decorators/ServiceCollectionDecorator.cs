@@ -11,9 +11,10 @@ namespace Diamond.Core.UnitOfWork
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseUnitOfWorkFactory(this IServiceCollection services)
+		public static IServiceCollection UseUnitOfWorkFactory(this IServiceCollection services)
 		{
 			services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
+			return services;
 		}
 	}
 }

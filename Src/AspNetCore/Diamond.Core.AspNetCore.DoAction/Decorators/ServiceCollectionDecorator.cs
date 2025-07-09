@@ -11,9 +11,10 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// Adds the necesarys registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
-		public static void UseDofactory(this IServiceCollection services)
+		public static IServiceCollection UseDofactory(this IServiceCollection services)
 		{
 			services.AddTransient<IDoActionFactory, DoActionFactory>();
+			return services;
 		}
 	}
 }
