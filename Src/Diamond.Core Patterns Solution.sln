@@ -147,6 +147,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Repository.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.AspNetCore.Hosting", "AspNetCore\Diamond.Core.AspNetCore.Hosting\Diamond.Core.AspNetCore.Hosting.csproj", "{B5C7CA92-06AE-4EAE-A639-1BC4E85D9FF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.System.Base36", "System\Diamond.Core.System.Base36\Diamond.Core.System.Base36.csproj", "{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -381,6 +383,10 @@ Global
 		{B5C7CA92-06AE-4EAE-A639-1BC4E85D9FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5C7CA92-06AE-4EAE-A639-1BC4E85D9FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5C7CA92-06AE-4EAE-A639-1BC4E85D9FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -442,6 +448,7 @@ Global
 		{4CACE1BC-0A8C-4680-88C8-627F30383A02} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
 		{24455A36-4E64-42BD-BBD1-FE5882C21953} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
 		{B5C7CA92-06AE-4EAE-A639-1BC4E85D9FF0} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
+		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}
