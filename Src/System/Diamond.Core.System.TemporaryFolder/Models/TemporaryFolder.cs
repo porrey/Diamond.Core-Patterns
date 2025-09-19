@@ -41,7 +41,6 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// Creates a default instance with the given <see cref="ILogger"/>.
 		/// </summary>
 		public TemporaryFolder(ILogger<TemporaryFolder> logger)
-			: this()
 		{
 			this.Logger = logger;
 			this.AssertWhenNotDisposed = false;
@@ -55,9 +54,10 @@ namespace Diamond.Core.System.TemporaryFolder
 		/// <param name="namingFormat">Specifies the naming format to
 		/// use with this new instance</param>
 		public TemporaryFolder(string namingFormat)
-			: this()
 		{
 			this.NamingFormat = namingFormat;
+			this.AssertWhenNotDisposed = false;
+			this.Create();
 		}
 
 		/// <summary>

@@ -4,7 +4,7 @@
     <Product>Diamond.Core Patterns Library</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>9.1.0.0</Version>
+    <Version>9.1.0</Version>
     <Authors>Daniel M Porrey</Authors>
     <Description>This library provides JSON file based dependency injection for In Memory DbContext.</Description>
     <Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
@@ -12,8 +12,8 @@
     <PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
     <RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <FileVersion>9.1.0.0</FileVersion>
-    <AssemblyVersion>9.1.0.0</AssemblyVersion>
+    <FileVersion>9.1.0</FileVersion>
+    <AssemblyVersion>9.1.0</AssemblyVersion>
     <PackageIcon>Diamond.Core.128x128.png</PackageIcon>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageIconUrl>

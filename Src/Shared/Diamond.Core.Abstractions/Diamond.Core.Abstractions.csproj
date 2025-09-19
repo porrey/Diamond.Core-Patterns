@@ -2,9 +2,9 @@
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
 		<Product>Diamond.Core Patterns Library</Product>
-		<Version>9.1.0.0</Version>
-		<FileVersion>9.1.0.0</FileVersion>
-		<AssemblyVersion>9.1.0.0</AssemblyVersion>
+		<Version>9.1.0</Version>
+		<FileVersion>9.1.0</FileVersion>
+		<AssemblyVersion>9.1.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
