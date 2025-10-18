@@ -106,7 +106,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 					//
 					// Check if this property exists on the instance.
 					//
-					PropertyInfo propertyInfo = propertyInfos.Where(t => t.Name.ToLower() == property.Key.ToLower()).SingleOrDefault();
+					PropertyInfo propertyInfo = propertyInfos.Where(t => t.Name.Equals(property.Key, StringComparison.CurrentCultureIgnoreCase)).SingleOrDefault();
 
 					if (propertyInfo != null)
 					{

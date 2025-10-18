@@ -14,9 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -26,15 +23,21 @@ using Microsoft.Extensions.Logging;
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Provides extension methods for configuring an <see cref="IHostBuilder"/> using JSON-based configuration.
 	/// </summary>
+	/// <remarks>This class includes methods to configure services, aliases, and hosted services for an <see
+	/// cref="IHostBuilder"/> instance based on settings defined in JSON configuration files. These methods enable chaining
+	/// and fluent configuration of the host builder.</remarks>
 	public static class JsonHostBuilderExtensions
 	{
 		/// <summary>
-		/// 
+		/// Configures the specified <see cref="IHostBuilder"/> with predefined services, aliases, and hosted services.
 		/// </summary>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
+		/// <remarks>This method applies a series of configurations to the provided <see cref="IHostBuilder"/>,
+		/// including adding service aliases, registering services, and setting up hosted services. It is intended to
+		/// streamline the setup process for applications using a standardized configuration approach.</remarks>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> instance to configure.</param>
+		/// <returns>The configured <see cref="IHostBuilder"/> instance.</returns>
 		public static IHostBuilder UseConfiguredServices(this IHostBuilder hostBuilder)
 		{
 			hostBuilder.AddAliases();
@@ -44,10 +47,14 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// 
+		/// Configures the host builder to add services defined in the application's configuration.
 		/// </summary>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
+		/// <remarks>This method reads service definitions from the application's configuration (e.g., JSON
+		/// configuration files), creates service descriptors for each defined service, and adds them to the service
+		/// collection. It also logs the number of services found and added, providing detailed information about each service
+		/// descriptor.</remarks>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+		/// <returns>The configured <see cref="IHostBuilder"/> instance.</returns>
 		public static IHostBuilder AddServices(this IHostBuilder hostBuilder)
 		{
 			return hostBuilder.ConfigureServices(services =>
@@ -105,10 +112,13 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// 
+		/// Configures the host builder to include alias mappings from the application's configuration.
 		/// </summary>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
+		/// <remarks>This method retrieves alias mappings from the application's configuration (e.g., JSON
+		/// configuration files) and applies them to the application. The aliases are bound to the "aliases" section of the
+		/// configuration. A debug log entry is created to indicate the number of aliases found.</remarks>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> instance to configure.</param>
+		/// <returns>The <see cref="IHostBuilder"/> instance with alias mappings configured.</returns>
 		public static IHostBuilder AddAliases(this IHostBuilder hostBuilder)
 		{
 			return hostBuilder.ConfigureServices(services =>
@@ -149,10 +159,13 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
-		/// 
+		/// Configures the <see cref="IHostBuilder"/> to add hosted services defined in the application's configuration.
 		/// </summary>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
+		/// <remarks>This method reads the "hostedServices" section from the application's configuration and registers
+		/// each defined service as a singleton implementation of <see cref="IHostedService"/>. The configuration must specify
+		/// the fully qualified type name of each hosted service to be added.</remarks>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+		/// <returns>The configured <see cref="IHostBuilder"/> instance.</returns>
 		public static IHostBuilder AddHostedServices(this IHostBuilder hostBuilder)
 		{
 			return hostBuilder.ConfigureServices(services =>

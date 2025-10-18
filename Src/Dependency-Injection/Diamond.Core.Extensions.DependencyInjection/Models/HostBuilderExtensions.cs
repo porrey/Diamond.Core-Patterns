@@ -22,20 +22,29 @@ using Microsoft.Extensions.Hosting;
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Provides extension methods for configuring an <see cref="IHostBuilder"/> to use the Diamond dependency injection
+	/// framework.
 	/// </summary>
+	/// <remarks>These extensions allow the <see cref="IHostBuilder"/> to be configured with the <see
+	/// cref="DiamondServiceProviderFactory"/>, enabling advanced dependency injection capabilities such as interface-based
+	/// injection and service replacement.</remarks>
 	public static class HostBuilderExtensions
 	{
 		/// <summary>
-		/// 
+		/// A static, read-only instance of the <see cref="DiamondServiceProviderFactory"/> class.
 		/// </summary>
+		/// <remarks>This instance is used to provide a shared, thread-safe factory for creating service
+		/// providers.</remarks>
 		static readonly DiamondServiceProviderFactory _factory = new DiamondServiceProviderFactory();
 
 		/// <summary>
-		/// 
+		/// Configures the specified <see cref="IHostBuilder"/> to use the Diamond dependency injection model.
 		/// </summary>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
+		/// <remarks>This method replaces the default service provider factory with a custom implementation that uses
+		/// the Diamond dependency injection model. It also configures the container to replace the default service provider
+		/// factory registrations with the custom factory.</remarks>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> to configure.</param>
+		/// <returns>The configured <see cref="IHostBuilder"/> instance.</returns>
 		public static IHostBuilder UseDiamondDependencyInterfaceInjection(this IHostBuilder hostBuilder)
 		{
 			return hostBuilder.UseServiceProviderFactory<IServiceProvider>(new DiamondServiceProviderFactory())

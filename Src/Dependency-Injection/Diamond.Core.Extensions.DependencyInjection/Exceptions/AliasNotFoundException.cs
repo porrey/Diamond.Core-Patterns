@@ -17,14 +17,14 @@
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Represents an exception that is thrown when a type alias with the specified key cannot be found.
 	/// </summary>
-public class AliasNotFoundException : DependencyInjectionException
+	public class AliasNotFoundException : DependencyInjectionException
 	{
 		/// <summary>
-		/// 
+		/// Represents an exception that is thrown when a type alias with the specified key is not found.
 		/// </summary>
-		/// <param name="key"></param>
+		/// <param name="key">The key of the type alias that could not be found. This value cannot be <see langword="null"/> or empty.</param>
 		public AliasNotFoundException(string key)
 			: base($"A definition for type alias with the key '{key}' was not found.")
 		{

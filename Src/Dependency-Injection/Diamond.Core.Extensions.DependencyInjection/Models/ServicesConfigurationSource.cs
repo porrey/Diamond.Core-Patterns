@@ -19,8 +19,11 @@ using Microsoft.Extensions.Configuration;
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Represents a configuration source that provides configuration data from registered services.
 	/// </summary>
+	/// <remarks>This class extends <see cref="FileConfigurationSource"/> to enable configuration data to be sourced
+	/// from services. It is typically used in scenarios where configuration settings are dynamically provided by service
+	/// dependencies.</remarks>
 	public class ServicesConfigurationSource : FileConfigurationSource
 	{
 		/// <summary>

@@ -14,19 +14,20 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System;
-
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Represents an exception that is thrown when a required DbContext dependency factory cannot be found.
 	/// </summary>
+	/// <remarks>This exception is typically thrown when the specified factory type is not registered in the
+	/// dependency injection container. Ensure that the factory type is correctly registered before attempting to resolve
+	/// it.</remarks>
 	public class DbContextDependencyFactoryNotFoundException : DependencyInjectionException
 	{
 		/// <summary>
-		/// 
+		/// Represents an exception that is thrown when a specified DbContext dependency factory cannot be found.
 		/// </summary>
-		/// <param name="factoryType"></param>
+		/// <param name="factoryType">The name of the factory type that could not be found.</param>
 		public DbContextDependencyFactoryNotFoundException(string factoryType)
 			: base($"The DbContextDependencyFactory '{factoryType}' was not found.")
 		{

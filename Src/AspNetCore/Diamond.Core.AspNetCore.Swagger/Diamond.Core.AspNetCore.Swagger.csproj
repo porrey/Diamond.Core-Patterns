@@ -4,9 +4,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>9.1.0</Version>
-		<AssemblyVersion>9.1.0</AssemblyVersion>
-		<FileVersion>9.1.0</FileVersion>
+		<Version>9.2.0</Version>
+		<AssemblyVersion>9.2.0</AssemblyVersion>
+		<FileVersion>9.2.0</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -34,9 +34,9 @@
 		<None Remove="Diamond.Core.AspNetCore.Swagger.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="9.0.7" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="9.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="9.0.10" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="9.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\Images\Diamond.Core.128x128.png">

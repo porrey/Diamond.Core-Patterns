@@ -19,14 +19,18 @@ using System;
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Represents an exception that is thrown when a specified DbContext cannot be found in the dependency injection
+	/// container.
 	/// </summary>
+	/// <remarks>This exception is typically thrown when attempting to resolve a DbContext that has not been
+	/// registered in the dependency injection container. Ensure that the DbContext is properly registered in the service
+	/// collection before attempting to resolve it.</remarks>
 	public class DbContextNotFoundException : DependencyInjectionException
 	{
 		/// <summary>
-		/// 
+		/// Represents an exception that is thrown when a specified DbContext cannot be found.
 		/// </summary>
-		/// <param name="context"></param>
+		/// <param name="context">The name of the DbContext that could not be found.</param>
 		public DbContextNotFoundException(string context)
 			: base($"The DbContext '{context}' was not found.")
 		{

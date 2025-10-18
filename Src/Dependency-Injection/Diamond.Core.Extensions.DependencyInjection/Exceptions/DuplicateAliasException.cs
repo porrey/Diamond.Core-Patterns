@@ -17,14 +17,17 @@
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Represents an exception that is thrown when a duplicate type alias is encountered in a dependency injection
+	/// configuration.
 	/// </summary>
+	/// <remarks>This exception is typically thrown when attempting to register a type alias with a key that has
+	/// already been used.</remarks>
 	public class DuplicateAliasException : DependencyInjectionException
 	{
 		/// <summary>
-		/// 
+		/// Represents an exception that is thrown when a duplicate type alias definition is encountered.
 		/// </summary>
-		/// <param name="key"></param>
+		/// <param name="key">The key of the duplicate type alias that caused the exception.</param>
 		public DuplicateAliasException(string key)
 			: base($"A duplicate definition for type alias with the key '{key}' has been encountered.")
 		{

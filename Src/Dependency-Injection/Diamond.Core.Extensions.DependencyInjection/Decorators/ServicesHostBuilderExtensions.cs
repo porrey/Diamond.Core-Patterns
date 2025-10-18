@@ -19,16 +19,22 @@ using Microsoft.Extensions.Hosting;
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Configures the application to load configuration settings from a specified folder.
 	/// </summary>
+	/// <remarks>This method adds the specified folder as a source of configuration settings for the application.
+	/// The configuration files in the folder are loaded with the default settings: they are optional and do not reload on
+	/// change.</remarks>
 	public static class ServicesHostBuilderExtensions
 	{
 		/// <summary>
-		/// 
+		/// Configures the application to load configuration settings from a specified folder.
 		/// </summary>
-		/// <param name="hostBuilder">The <see cref="IHostBuilder" /> to configure.</param>
-		/// /// <param name="folderPath"></param>
-		/// <returns>The same instance of the <see cref="IHostBuilder" /> for chaining</returns>
+		/// <remarks>This method adds configuration settings from the specified folder to the application's
+		/// configuration. The configuration files in the folder are treated as optional and are not reloaded automatically
+		/// when changed.</remarks>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> instance to configure.</param>
+		/// <param name="folderPath">The path to the folder containing configuration files. The folder path can be relative or absolute.</param>
+		/// <returns>The <see cref="IHostBuilder"/> instance with the configuration applied.</returns>
 		public static IHostBuilder ConfigureServicesFolder(this IHostBuilder hostBuilder, string folderPath)
 		{
 			return hostBuilder.ConfigureAppConfiguration(config =>

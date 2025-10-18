@@ -21,13 +21,20 @@ using System.Text.Json;
 namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// 
+	/// Provides functionality to parse a JSON configuration file into a dictionary of key-value pairs, where keys
+	/// represent hierarchical paths in the JSON structure.
 	/// </summary>
+	/// <remarks>This class is designed to process JSON configuration files and convert their structure into a flat
+	/// dictionary format. Keys in the dictionary represent the hierarchical paths of the JSON properties, separated by
+	/// colons (e.g., "Parent:Child:Property").</remarks>
 	public class ServicesConfigurationFileParser
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the <see cref="ServicesConfigurationFileParser"/> class.
 		/// </summary>
+		/// <remarks>This constructor creates a default instance of the <see cref="ServicesConfigurationFileParser"/> 
+		/// for parsing service configuration files. Use this class to load and interpret configuration data  for
+		/// services.</remarks>
 		public ServicesConfigurationFileParser()
 		{
 		}
@@ -37,11 +44,12 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		private int _baseIndex = 0;
 
 		/// <summary>
-		/// 
+		/// Parses the specified JSON string and returns a dictionary of key-value pairs.
 		/// </summary>
-		/// <param name="baseIndex"></param>
-		/// <param name="json"></param>
-		/// <returns></returns>
+		/// <param name="baseIndex">The base index used to adjust the parsing logic. Must be a non-negative integer.</param>
+		/// <param name="json">The JSON string to parse. Cannot be <see langword="null"/> or empty.</param>
+		/// <returns>A dictionary containing the parsed key-value pairs from the JSON string.  The dictionary will be empty if the JSON
+		/// string does not contain any valid key-value pairs.</returns>
 		public static IDictionary<string, string> Parse(int baseIndex, string json) => new ServicesConfigurationFileParser().ParseStream(baseIndex, json);
 
 		private IDictionary<string, string> ParseStream(int baseIndex, string json)
@@ -81,7 +89,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 
 		private void VisitElement(JsonElement element)
 		{
-			var isEmpty = true;
+			bool isEmpty = true;
 
 			foreach (JsonProperty property in element.EnumerateObject())
 			{
