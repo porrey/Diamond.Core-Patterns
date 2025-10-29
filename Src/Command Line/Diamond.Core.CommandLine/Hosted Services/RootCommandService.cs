@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Parsing;
-using System.CommandLine.Hosting;
 using System.CommandLine.Rendering;
 using System.Linq;
 using System.Threading;

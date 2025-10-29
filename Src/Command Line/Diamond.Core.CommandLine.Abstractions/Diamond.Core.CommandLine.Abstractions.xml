@@ -33,8 +33,11 @@
         </member>
         <member name="T:Diamond.Core.CommandLine.ICommand">
             <summary>
-            
+            Defines a contract for a command that can be executed.
             </summary>
+            <remarks>This interface is commonly used in the Command design pattern to encapsulate an action and its
+            associated logic. Implementations of this interface typically define the specific behavior of the
+            command.</remarks>
         </member>
         <member name="T:Diamond.Core.CommandLine.IRootCommand">
             <summary>
