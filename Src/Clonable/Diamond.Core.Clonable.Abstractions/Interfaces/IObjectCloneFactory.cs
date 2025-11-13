@@ -19,7 +19,7 @@ namespace Diamond.Core.Clonable
 		/// </summary>
 		/// <typeparam name="T">The type of the instance to clone.</typeparam>
 		/// <param name="instance">The object to clone.</param>
-		/// <returns>The new object that s a deep clone of instance.</returns>
+		/// <returns>The new object that is a deep clone of instance.</returns>
 		T CloneInstance<T>(T instance) where T : ICloneable;
 	}
 }
