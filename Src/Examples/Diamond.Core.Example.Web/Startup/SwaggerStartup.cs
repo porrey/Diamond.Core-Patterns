@@ -20,7 +20,7 @@ using Diamond.Core.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Diamond.Core.Example
@@ -70,7 +70,6 @@ namespace Diamond.Core.Example
 				config.DescribeAllParametersInCamelCase();
 				config.OperationFilter<StandardOperationFilter>();
 				config.OperationFilter<UnsupportedMediaTypeFilter>();
-				config.DocumentFilter<JsonPatchDocumentFilter>();
 			});
 
 			services.AddSwaggerExamplesFromAssemblyOf<JsonPatchDefaultExample>();

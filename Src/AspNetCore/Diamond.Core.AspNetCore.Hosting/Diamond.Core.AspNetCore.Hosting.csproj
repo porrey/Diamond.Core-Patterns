@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>9.2.0</Version>
-		<AssemblyVersion>9.2.0</AssemblyVersion>
-		<FileVersion>9.2.0</FileVersion>
+		<Version>10.0.0</Version>
+		<AssemblyVersion>10.0.0</AssemblyVersion>
+		<FileVersion>10.0.0</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -32,6 +32,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>

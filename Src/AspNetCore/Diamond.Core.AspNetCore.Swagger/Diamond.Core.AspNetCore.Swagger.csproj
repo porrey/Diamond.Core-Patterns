@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>9.2.0</Version>
-		<AssemblyVersion>9.2.0</AssemblyVersion>
-		<FileVersion>9.2.0</FileVersion>
+		<Version>10.0.0</Version>
+		<AssemblyVersion>10.0.0</AssemblyVersion>
+		<FileVersion>10.0.0</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -26,6 +26,7 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<DocumentationFile>Diamond.Core.AspNetCore.Swagger.xml</DocumentationFile>
@@ -34,11 +35,15 @@
 		<None Remove="Diamond.Core.AspNetCore.Swagger.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="9.0.10" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="9.0.1" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="10.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="10.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Include="..\..\..\..\HERE.com\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
 			<Pack>True</Pack>
 			<PackagePath>

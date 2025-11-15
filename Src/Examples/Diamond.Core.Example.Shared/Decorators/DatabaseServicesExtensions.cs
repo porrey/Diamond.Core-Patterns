@@ -51,9 +51,9 @@ namespace Diamond.Core.Example
 					case ActiveDatabase.SqlServer:
 						options.UseSqlServer(databaseOptions.SqlServer);
 						break;
-					case ActiveDatabase.PostgreSQL:
-						options.UseNpgsql(databaseOptions.PostgreSQL);
-						break;
+					//case ActiveDatabase.PostgreSQL:
+					//	options.UseNpgsql(databaseOptions.PostgreSQL);
+					//	break;
 					case ActiveDatabase.SQLite:
 						options.UseSqlite(databaseOptions.SQLite);
 						break;

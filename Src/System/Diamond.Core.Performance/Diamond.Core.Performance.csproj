@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -34,9 +34,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
 		<Description>This library provides code performance tools.</Description>
-		<Version>9.2.0</Version>
-		<FileVersion>9.2.0</FileVersion>
-		<AssemblyVersion>9.2.0</AssemblyVersion>
+		<Version>10.0.0</Version>
+		<FileVersion>10.0.0</FileVersion>
+		<AssemblyVersion>10.0.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -51,6 +51,7 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -64,6 +65,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="..\..\..\..\HERE.com\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 		<None Include="..\..\..\Images\Diamond.Core.128x128.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
@@ -72,8 +77,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
 	</ItemGroup>
 
 </Project>

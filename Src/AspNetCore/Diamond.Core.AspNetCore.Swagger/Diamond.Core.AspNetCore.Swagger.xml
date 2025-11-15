@@ -39,21 +39,21 @@
             Fixes up the Swagger documentation for patch methods.
             </summary>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.Apply(Microsoft.OpenApi.Models.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.Apply(Microsoft.OpenApi.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
             <summary>
             Applies the filter.
             </summary>
             <param name="swaggerDoc">A reference to the Swagger document.</param>
             <param name="context">A reference to the Swagger document context.</param>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.RemoveSchema(Microsoft.OpenApi.Models.OpenApiDocument,System.String)">
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.RemoveSchema(Microsoft.OpenApi.OpenApiDocument,System.String)">
             <summary>
             Removes items where the key passed matches any part of the schema key.
             </summary>
             <param name="swaggerDoc">A reference to the Swagger document.</param>
             <param name="key">The key or partial key to match.</param>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.AddJsonPatchTypes(Microsoft.OpenApi.Models.OpenApiDocument)">
+        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.AddJsonPatchTypes(Microsoft.OpenApi.OpenApiDocument)">
             <summary>
             Adds the JSON patch definitions.
             </summary>
@@ -65,11 +65,11 @@
             HTTP status codes such as 406, 500 and 50q to all methods.
             </summary>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.StandardOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+        <member name="M:Diamond.Core.AspNetCore.Swagger.StandardOperationFilter.Apply(Microsoft.OpenApi.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
             <summary>
             Applies the response description to a given method.
             </summary>
-            <param name="operation">A reference to the <see cref="T:Microsoft.OpenApi.Models.OpenApiOperation"/>.</param>
+            <param name="operation">A reference to the <see cref="T:Microsoft.OpenApi.OpenApiOperation"/>.</param>
             <param name="context">A reference to the <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext"/>.</param>
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.UnsupportedMediaTypeFilter">
@@ -77,11 +77,11 @@
             
             </summary>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.UnsupportedMediaTypeFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+        <member name="M:Diamond.Core.AspNetCore.Swagger.UnsupportedMediaTypeFilter.Apply(Microsoft.OpenApi.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
             <summary>
             Adds a Swagger documentation description for HTTP status 415 to all POST and PUT methods.
             </summary>
-            <param name="operation">A reference to the <see cref="T:Microsoft.OpenApi.Models.OpenApiOperation"/>.</param>
+            <param name="operation">A reference to the <see cref="T:Microsoft.OpenApi.OpenApiOperation"/>.</param>
             <param name="context">A reference to the <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext"/>.</param>
         </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.Operation">
