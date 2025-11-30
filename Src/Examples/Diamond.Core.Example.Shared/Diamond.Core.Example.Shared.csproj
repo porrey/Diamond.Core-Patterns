@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Version>10.0.0</Version>
-    <FileVersion>10.0.0</FileVersion>
-    <AssemblyVersion>10.0.0</AssemblyVersion>
+    <Version>10.0.1</Version>
+    <FileVersion>10.0.1</FileVersion>
+    <AssemblyVersion>10.0.1</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Services\Diamond.Core.Example.Shared.Databases.json" />

@@ -4,9 +4,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.0.0</Version>
-		<FileVersion>10.0.0</FileVersion>
-		<AssemblyVersion>10.0.0</AssemblyVersion>
+		<Version>10.0.1</Version>
+		<FileVersion>10.0.1</FileVersion>
+		<AssemblyVersion>10.0.1</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides support for creating a command from a model.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>

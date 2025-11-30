@@ -4,7 +4,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.0.0</Version>
+		<Version>10.0.1</Version>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides JSON file based dependency injection for Entity Framework Core DbContext.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
@@ -12,8 +12,8 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>10.0.0</FileVersion>
-		<AssemblyVersion>10.0.0</AssemblyVersion>
+		<FileVersion>10.0.1</FileVersion>
+		<AssemblyVersion>10.0.1</AssemblyVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>
@@ -41,7 +41,7 @@
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\..\..\..\HERE.com\README.md">
+		<None Include="..\..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

@@ -4,9 +4,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.0.0</Version>
-		<AssemblyVersion>10.0.0</AssemblyVersion>
-		<FileVersion>10.0.0</FileVersion>
+		<Version>10.0.1</Version>
+		<AssemblyVersion>10.0.1</AssemblyVersion>
+		<FileVersion>10.0.1</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -54,7 +54,7 @@
 		<ProjectReference Include="..\Diamond.Core.AspNetCore.DoAction.Abstractions\Diamond.Core.AspNetCore.DoAction.Abstractions.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\..\..\..\HERE.com\README.md">
+		<None Include="..\..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

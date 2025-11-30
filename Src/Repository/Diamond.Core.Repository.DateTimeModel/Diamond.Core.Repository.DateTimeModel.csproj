@@ -9,9 +9,9 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>10.0.0</Version>
-		<FileVersion>10.0.0</FileVersion>
-		<AssemblyVersion>10.0.0</AssemblyVersion>
+		<Version>10.0.1</Version>
+		<FileVersion>10.0.1</FileVersion>
+		<AssemblyVersion>10.0.1</AssemblyVersion>
 		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
 		<Description>This library provides basic implementations of the repository pattern.</Description>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
@@ -36,7 +36,7 @@
 		<None Remove="Diamond.Core.Repository.DateTimeModel.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\..\..\..\HERE.com\README.md">
+		<None Include="..\..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
