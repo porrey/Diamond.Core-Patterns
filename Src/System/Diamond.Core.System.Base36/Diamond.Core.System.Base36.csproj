@@ -33,9 +33,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
 		<Description>This library provides Base36 data type.</Description>
-		<Version>10.0.1</Version>
-		<FileVersion>10.0.1</FileVersion>
-		<AssemblyVersion>10.0.1</AssemblyVersion>
+		<Version>10.0.2.0</Version>
+		<FileVersion>10.0.2.0</FileVersion>
+		<AssemblyVersion>10.0.2.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>

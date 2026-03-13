@@ -7,9 +7,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.0.1</Version>
-		<AssemblyVersion>10.0.1</AssemblyVersion>
-		<FileVersion>10.0.1</FileVersion>
+		<Version>10.0.2.0</Version>
+		<AssemblyVersion>10.0.2.0</AssemblyVersion>
+		<FileVersion>10.0.2.0</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -60,8 +60,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="15.1.0" />
-		<PackageReference Include="LinqKit.Core" Version="1.2.9" />
+		<PackageReference Include="AutoMapper" Version="16.1.1" />
+		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="TryDisposable" Version="10.0.0" />
 	</ItemGroup>

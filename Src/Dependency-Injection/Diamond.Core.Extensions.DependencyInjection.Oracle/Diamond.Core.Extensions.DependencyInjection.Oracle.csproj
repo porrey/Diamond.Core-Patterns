@@ -4,7 +4,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.0.1</Version>
+		<Version>10.0.2.0</Version>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides JSON file based dependency injection for Azure Cosmo DB DbContext.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
@@ -12,8 +12,8 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>10.0.1</FileVersion>
-		<AssemblyVersion>10.0.1</AssemblyVersion>
+		<FileVersion>10.0.2.0</FileVersion>
+		<AssemblyVersion>10.0.2.0</AssemblyVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>
@@ -34,8 +34,8 @@
 		<None Remove="Diamond.Core.Extensions.DependencyInjection.Oracle.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Oracle.EntityFrameworkCore" Version="10.23.26000" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+		<PackageReference Include="Oracle.EntityFrameworkCore" Version="10.23.26100" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\README.md">
