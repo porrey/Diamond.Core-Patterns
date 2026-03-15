@@ -24,7 +24,7 @@ namespace Diamond.Core.Performance
 	public static class ServiceCollectionDecorator
 	{
 		/// <summary>
-		/// Adds the necesarys registrations to the service collection.
+		/// Adds the necessary registrations to the service collection.
 		/// </summary>
 		/// <param name="services"></param>
 		public static IServiceCollection UseMeasureAction(this IServiceCollection services)

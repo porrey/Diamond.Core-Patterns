@@ -118,7 +118,7 @@
         </member>
         <member name="M:Diamond.Core.Workflow.ServiceCollectionDecorator.UseWorkflowFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
