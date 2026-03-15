@@ -11,7 +11,7 @@
         </member>
         <member name="M:Diamond.Core.UnitOfWork.ServiceCollectionDecorator.UseUnitOfWorkFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
@@ -63,7 +63,7 @@
             </summary>
             <typeparam name="TResult"></typeparam>
             <typeparam name="TSourceItem"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate">

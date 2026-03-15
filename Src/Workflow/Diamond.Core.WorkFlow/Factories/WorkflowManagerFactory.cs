@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -15,8 +15,6 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -63,33 +61,27 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="groupName"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<IWorkflowManager> GetAsync(string groupName)
+		public virtual Task<IWorkflowManager> GetAsync(string serviceKey)
 		{
 			IWorkflowManager returnValue = null;
 
 			//
-			// Get the type being requested.
-			//
-			Type targetType = typeof(IWorkflowManager);
-			this.Logger.LogDebug("Location workflow manager with group name '{groupName}'.", groupName);
-
-			//
 			// Find the repository that supports the given type.
 			//
-			IEnumerable<IWorkflowManager> items = this.ServiceProvider.GetService<IEnumerable<IWorkflowManager>>();
-			IWorkflowManager item = items.Where(t => t.Group == groupName).SingleOrDefault();
+			this.Logger.LogDebug("Finding workflow manager with Service Key '{serviceKey}''.", serviceKey);
+			IWorkflowManager item = this.ServiceProvider.GetKeyedService<IWorkflowManager>(serviceKey);
 
 			if (item != null)
 			{
-				this.Logger.LogDebug("Workflow manager with group '{groupName}' was found.", groupName);
-				returnValue = (IWorkflowManager)item;
+				this.Logger.LogDebug("Workflow manager with Service key '{servicekey}' was found.", serviceKey);
+				returnValue = item;
 			}
 			else
 			{
-				this.Logger.LogWarning("Workflow manager with group '{groupName}' was NOT found.", groupName);
-				throw new WorkflowManagerNotFoundException(groupName);
+				this.Logger.LogWarning("Workflow manager with Service key '{servicekey}' was NOT found.", serviceKey);
+				throw new WorkflowManagerNotFoundException(serviceKey);
 			}
 
 			return Task.FromResult(returnValue);

@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -24,6 +24,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	/// </summary>
 	public class ServiceDescriptorConfiguration
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		public string ServiceKey { get; set; }
+
 		/// <summary>
 		/// 
 		/// </summary>

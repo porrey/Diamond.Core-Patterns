@@ -244,7 +244,7 @@
             <summary>
             
             </summary>
-            <param name="groupName"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Workflow.WorkflowManagerFactory">
@@ -280,7 +280,7 @@
             <summary>
             
             </summary>
-            <param name="groupName"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Workflow.LinearCompleteWorkflowManager">

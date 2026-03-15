@@ -91,6 +91,11 @@
             
             </summary>
         </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.ServiceKey">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.ImplementationType">
             <summary>
             

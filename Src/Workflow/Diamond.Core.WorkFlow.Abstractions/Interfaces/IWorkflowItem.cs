@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -34,12 +34,6 @@ namespace Diamond.Core.Workflow
 		/// purposes.
 		/// </summary>
 		string Name { get; set; }
-
-		/// <summary>
-		/// A unique name that groups one or more steps together for a given
-		/// work flow.
-		/// </summary>
-		string Group { get; set; }
 
 		/// <summary>
 		/// Defines the weight applied to this step when showing progress. The default

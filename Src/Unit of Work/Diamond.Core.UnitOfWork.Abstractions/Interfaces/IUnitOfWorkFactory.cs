@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -29,8 +29,8 @@ namespace Diamond.Core.UnitOfWork
 		/// <typeparam name="TResult">The type of the result returned by the unit of work execution.</typeparam>
 		/// <typeparam name="TSourceItem">The type of the input or parameter passed to the execution
 		/// of the unit of work.</typeparam>
-		/// <param name="name">A unique name to distinguish this unit of work from other similar definitions.</param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns>The result of the execution as type TResult.</returns>
-		Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name);
+		Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string serviceKey);
 	}
 }

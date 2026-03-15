@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -65,63 +66,53 @@ namespace Diamond.Core.UnitOfWork
 		/// </summary>
 		/// <typeparam name="TResult"></typeparam>
 		/// <typeparam name="TSourceItem"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string name)
+		public virtual Task<IUnitOfWork<TResult, TSourceItem>> GetAsync<TResult, TSourceItem>(string serviceKey)
 		{
 			IUnitOfWork<TResult, TSourceItem> returnValue = null;
 
 			//
-			// Get the decorator type being requested.
+			// Validate the service key.
 			//
-			Type targetType = typeof(IUnitOfWork<TResult, TSourceItem>);
-			this.Logger.LogDebug("Finding a Unit of Work with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
+			if (string.IsNullOrWhiteSpace(serviceKey))
+			{
+				this.Logger.LogDebug("The service key is null or whitespace.");
+				throw new ArgumentException("The service key cannot be null or whitespace.", nameof(serviceKey));
+			}
 
 			//
 			// Get all decorators from the container of
 			// type IUnitOfWork<TResult, TSourceItem>.
 			//
-			IEnumerable<IUnitOfWork> items = this.ServiceProvider.GetService<IEnumerable<IUnitOfWork>>();
-			IEnumerable<IUnitOfWork> matchingItems = items.Where(t => t.Name == name);
-			IEnumerable<IUnitOfWork> nonMatchingItems = items.Except(matchingItems);
-			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
+			this.Logger.LogDebug("Finding a Unit of Work with Service Key '{serviceKey}'.", serviceKey);
+			IUnitOfWork item = this.ServiceProvider.GetKeyedService<IUnitOfWork>(serviceKey);
 
-			//
-			// Within the list, find the target unit of work.
-			//
-			foreach (IUnitOfWork item in matchingItems)
+			if (item != null)
 			{
+				//
+				// Get the decorator type being requested.
+				//
+				Type targetType = typeof(IUnitOfWork<TResult, TSourceItem>);
+
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (IUnitOfWork<TResult, TSourceItem>)item;
-					this.Logger.LogDebug("The Unit of Work key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
+					this.Logger.LogDebug("The Unit of Work with Service Key '{serviceKey}' and Target Type '{targetType}' was found.", serviceKey, targetType.Name);
 				}
 				else
 				{
 					//
 					// Dispose the item (if it supports it).
 					//
-					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					this.Logger.LogError("The Unit of Work with Service Key '{serviceKey}' was found, but it does not implement the Target Type '{targetType}'.", serviceKey, targetType.Name);
 					item.TryDispose();
 				}
 			}
-
-			//
-			// Attempt to dispose the unused items.
-			//
-			foreach (IUnitOfWork nonMatchingItem in nonMatchingItems)
+			else
 			{
-				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
-				nonMatchingItem.TryDispose();
-			}
-
-			//
-			// Check the result.
-			//
-			if (returnValue == null)
-			{
-				this.Logger.LogDebug("The Unit of Work key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
-				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(name);
+				this.Logger.LogDebug("The Unit of Work with Service Key '{serviceKey}' was NOT found.", serviceKey);
+				throw new UnitOfWorkNotFoundException<TResult, TSourceItem>(serviceKey);
 			}
 
 			return Task.FromResult(returnValue);

@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -62,55 +62,44 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="groupName"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<IEnumerable<IWorkflowItem>> GetItemsAsync(string groupName)
+		public virtual Task<IEnumerable<IWorkflowItem>> GetItemsAsync(string serviceKey)
 		{
-			IList<IWorkflowItem> returnValue = new List<IWorkflowItem>();
-
-			//
-			// Get the type being requested.
-			//
-			Type targetType = typeof(IWorkflowItem);
+			IList<IWorkflowItem> returnValue = [];
 
 			//
 			// Find the repository that supports the given type.
 			//
-			IEnumerable<IWorkflowItem> items = this.ServiceProvider.GetService<IEnumerable<IWorkflowItem>>();
-			IEnumerable<IWorkflowItem> groupItems = items.Where(t => t.Group == groupName);
-			IEnumerable<IWorkflowItem> unusedItems = items.Except(groupItems);
-			this.Logger.LogDebug("Found {count} workflow items for group '{groupName}'.", groupItems.Count(), groupName);
+			IEnumerable<IWorkflowItem> items = this.ServiceProvider.GetKeyedService<IEnumerable<IWorkflowItem>>(serviceKey);
+			this.Logger.LogDebug("Found {count} workflow items for Service Key '{serviceKey}'.", items.Count(), serviceKey);
 
-			if (groupItems.Any())
+			if (items.Any())
 			{
-				this.Logger.LogDebug("Loading workflow items for group '{groupName}'.", groupName);
+				this.Logger.LogDebug("Loading workflow items for Service Key '{serviceKey}'.", serviceKey);
 
-				foreach (IWorkflowItem groupItem in groupItems)
+				//
+				// Get the type being requested.
+				//
+				Type targetType = typeof(IWorkflowItem);
+
+				foreach (IWorkflowItem item in items)
 				{
-					if (targetType.IsInstanceOfType(groupItem))
+					if (targetType.IsInstanceOfType(item))
 					{
-						returnValue.Add((IWorkflowItem)groupItem);
-						this.Logger.LogDebug("Added workflow item '{groupName}'.", groupItem.Name);
+						returnValue.Add((IWorkflowItem)item);
+						this.Logger.LogDebug("Added workflow item '{name}'.", item.Name);
 					}
 					else
 					{
-						this.Logger.LogDebug("Skipping workflow item '{groupName}' because it does not have the correct Type.", groupItem.Name);
+						this.Logger.LogDebug("Skipping workflow item '{name}' because it does not have the correct Type.", item.Name);
 
 						//
 						// Dispose the item (if it supports it).
 						//
-						this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", groupItem.GetType().Name);
-						groupItem.TryDispose();
+						this.Logger.LogDebug("Attempting to dispose unused item '{name}'.", item.Name);
+						item.TryDispose();
 					}
-				}
-
-				//
-				// Attempt to dispose the unused items.
-				//
-				foreach (IWorkflowItem unusedItem in unusedItems)
-				{
-					this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", unusedItem.GetType().Name);
-					unusedItem.TryDispose();
 				}
 			}
 			else
@@ -118,8 +107,8 @@ namespace Diamond.Core.Workflow
 				//
 				// No items
 				//
-				this.Logger.LogError("Work flow items for group '{groupName}' have not been configured.", groupName);
-				throw new Exception($"Work flow items for group '{groupName}' have not been configured.");
+				this.Logger.LogError("Work flow items for Service Key '{serviceKey}' have not been configured.", serviceKey);
+				throw new Exception($"Work flow items for Service Key '{serviceKey}' have not been configured.");
 			}
 
 			return Task.FromResult<IEnumerable<IWorkflowItem>>(returnValue);

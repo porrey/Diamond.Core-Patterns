@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -27,8 +27,8 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// gets all work flow items instances with the given key.
 		/// </summary>
-		/// <param name="key">The key that groups two or more work flow items into a single sequence.</param>
+		/// <param name="serviceKey">The key that groups two or more work flow items into a single sequence.</param>
 		/// <returns>A list of work flow items.</returns>
-		Task<IEnumerable<IWorkflowItem>> GetItemsAsync(string key);
+		Task<IEnumerable<IWorkflowItem>> GetItemsAsync(string serviceKey);
 	}
 }

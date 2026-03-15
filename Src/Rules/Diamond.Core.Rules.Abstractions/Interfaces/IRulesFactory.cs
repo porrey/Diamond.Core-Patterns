@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -35,7 +35,7 @@ namespace Diamond.Core.Rules
 		/// Get all model rule instances registered based on TInterface and group name.
 		/// </summary>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
-		Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>(string group);
+		Task<IEnumerable<IRule<TInterface>>> GetAllAsync<TInterface>(string serviceKey);
 
 		/// <summary>
 		/// Get all model rule instances registered based on TInterface and group name.
@@ -47,23 +47,15 @@ namespace Diamond.Core.Rules
 		/// Get all model rule instances registered based on TInterface and group name.
 		/// </summary>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
-		Task<IEnumerable<IRule<TInterface, TResult>>> GetAllAsync<TInterface, TResult>(string group);
+		Task<IEnumerable<IRule<TInterface, TResult>>> GetAllAsync<TInterface, TResult>(string serviceKey);
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <typeparam name="TItem"></typeparam>
-		/// <param name="group"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		Task<string> EvaluateAsync<TItem>(string group, TItem item);
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <typeparam name="TItem"></typeparam>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		Task<string> EvaluateAsync<TItem>(TItem item);
+		Task<string> EvaluateAsync<TItem>(string serviceKey, TItem item);
 	}
 }

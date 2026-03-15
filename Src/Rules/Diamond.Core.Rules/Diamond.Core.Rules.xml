@@ -11,7 +11,7 @@
         </member>
         <member name="M:Diamond.Core.Rules.ServiceCollectionDecorator.UseRulesFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
@@ -98,15 +98,7 @@
             
             </summary>
             <typeparam name="TItem"></typeparam>
-            <param name="group"></param>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Rules.RulesFactory.EvaluateAsync``1(``0)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
+            <param name="serviceKey">The container service key.</param>
             <param name="item"></param>
             <returns></returns>
         </member>

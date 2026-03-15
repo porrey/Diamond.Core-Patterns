@@ -9,11 +9,6 @@
             Defines a generic decorator.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Decorator.IDecorator.Name">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Decorator.IDecorator`2">
             <summary>
             Defines a decorator that can has wraps TItem and

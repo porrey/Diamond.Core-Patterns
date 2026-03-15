@@ -70,7 +70,7 @@
         </member>
         <member name="M:Diamond.Core.Repository.EntityFrameworkCore.ServiceCollectionDecorator.UseEntityRepository``3(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>

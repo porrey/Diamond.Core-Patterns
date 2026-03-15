@@ -1,5 +1,5 @@
 //
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -73,35 +73,35 @@ namespace Diamond.Core.Repository
 		/// 
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<IRepository<TInterface>> GetAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual Task<IRepository<TInterface>> GetAsync<TInterface>(string serviceKey) where TInterface : IEntity
 		{
 			IRepository<TInterface> returnValue = null;
 
 			//
 			// Find the repository that supports the given type.
 			//
-			if (name == null)
+			if (serviceKey == null)
 			{
 				this.Logger.LogDebug("Retrieving IRepository for type '{typeName}'.", typeof(TInterface).Name);
 				returnValue = this.ServiceProvider.GetService<IRepository<TInterface>>();
 
 				if (returnValue == null)
 				{
+					this.Logger.LogError("No IRepository for type '{typeName}' was found.", typeof(TInterface).Name);
 					throw new RepositoryNotDefinedException(typeof(TInterface));
 				}
 			}
 			else
 			{
-				this.Logger.LogDebug("Retrieving IRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface).Name, name);
-				IEnumerable<IRepository<TInterface>> repositories = this.ServiceProvider.GetRequiredService<IEnumerable<IRepository<TInterface>>>();
-				returnValue = repositories.Where(t => t.Name == name).SingleOrDefault();
+				this.Logger.LogDebug("Retrieving IRepository for type '{typeName}' and service key '{name}'.", typeof(TInterface).Name, serviceKey);
+				returnValue = this.ServiceProvider.GetRequiredKeyedService<IRepository<TInterface>>(serviceKey);
 
 				if (returnValue == null)
 				{
-					this.Logger.LogWarning("A IRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface).Name, name);
-					throw new RepositoryNotDefinedException(typeof(TInterface), name);
+					this.Logger.LogError("No IRepository for type '{typeName}' and container service key '{key}' was found.", typeof(TInterface).Name, serviceKey);
+					throw new RepositoryNotDefinedException(typeof(TInterface), serviceKey);
 				}
 			}
 
@@ -122,22 +122,22 @@ namespace Diamond.Core.Repository
 		/// 
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual async Task<IReadOnlyRepository<TInterface>> GetReadOnlyAsync<TInterface>(string serviceKey) where TInterface : IEntity
 		{
 			IReadOnlyRepository<TInterface> returnValue = null;
 
-			this.Logger.LogDebug("Retrieving IReadOnlyRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface).Name, name);
+			this.Logger.LogDebug("Retrieving IReadOnlyRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface).Name, serviceKey);
 
 			//
 			// Find the repository that supports the given type.
 			//
-			IRepository repository = await this.GetAsync<TInterface>(name);
+			IRepository repository = await this.GetAsync<TInterface>(serviceKey);
 
 			if (repository is IReadOnlyRepository<TInterface> castedRepository)
 			{
-				this.Logger.LogDebug("IRepository for type '{typeName}' and container registration name '{name}' was found.", typeof(TInterface).Name, name);
+				this.Logger.LogDebug("IRepository for type '{typeName}' and container registration name '{name}' was found.", typeof(TInterface).Name, serviceKey);
 
 				//
 				// Cast the repository to IRepositry<T> and return it.
@@ -147,7 +147,7 @@ namespace Diamond.Core.Repository
 			}
 			else
 			{
-				this.Logger.LogError("The repository '{name}' does NOT implement IReadOnlyRepository. Throwing exception...", repository.GetType().Name);
+				this.Logger.LogError("The repository '{name}' does NOT implement IReadOnlyRepository.", repository.GetType().Name);
 				throw new RepositoryNotReadableException(typeof(TInterface));
 			}
 
@@ -168,22 +168,22 @@ namespace Diamond.Core.Repository
 		/// 
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual async Task<IWritableRepository<TInterface>> GetWritableAsync<TInterface>(string serviceKey) where TInterface : IEntity
 		{
 			IWritableRepository<TInterface> returnValue = null;
 
-			this.Logger.LogDebug("Retrieving IWritableRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface).Name, name);
+			this.Logger.LogDebug("Retrieving IWritableRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface).Name, serviceKey);
 
 			//
 			// Find the repository that supports the given type.
 			//
-			IRepository repository = await this.GetAsync<TInterface>(name);
+			IRepository repository = await this.GetAsync<TInterface>(serviceKey);
 
 			if (repository is IWritableRepository<TInterface> castedRepository)
 			{
-				this.Logger.LogDebug("IRepository for type '{typeName}' and container registration name '{name}' was found.", typeof(TInterface).Name, name);
+				this.Logger.LogDebug("IRepository for type '{typeName}' and container registration name '{name}' was found.", typeof(TInterface).Name, serviceKey);
 
 				//
 				// Cast the repository to IRepositry<T> and return it.
@@ -193,7 +193,7 @@ namespace Diamond.Core.Repository
 			}
 			else
 			{
-				this.Logger.LogError("The repository '{name}' does NOT implement IWritableRepository. Throwing exception...", repository.GetType().Name);
+				this.Logger.LogError("The repository '{name}' does NOT implement IWritableRepository.", repository.GetType().Name);
 				throw new RepositoryNotWritableException(typeof(TInterface));
 			}
 
@@ -214,18 +214,18 @@ namespace Diamond.Core.Repository
 		/// 
 		/// </summary>
 		/// <typeparam name="TInterface"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string name) where TInterface : IEntity
+		public virtual async Task<IQueryableRepository<TInterface>> GetQueryableAsync<TInterface>(string serviceKey) where TInterface : IEntity
 		{
 			IQueryableRepository<TInterface> returnValue = null;
 
-			this.Logger.LogDebug("Retrieving IQueryableRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface), name);
+			this.Logger.LogDebug("Retrieving IQueryableRepository for type '{typeName}' and container registration name '{name}'.", typeof(TInterface), serviceKey);
 
 			//
 			// Find the repository that supports the given type.
 			//
-			IRepository repository = await this.GetAsync<TInterface>(name);
+			IRepository repository = await this.GetAsync<TInterface>(serviceKey);
 
 			if (repository is IQueryableRepository<TInterface> castedRepository)
 			{
@@ -237,7 +237,7 @@ namespace Diamond.Core.Repository
 			}
 			else
 			{
-				this.Logger.LogError("The repository '{typeName}' does NOT implement IQueryableRepository. Throwing exception...", repository.GetType().Name);
+				this.Logger.LogError("The repository '{typeName}' does NOT implement IQueryableRepository.", repository.GetType().Name);
 				throw new RepositoryNotQueryableException(typeof(TInterface));
 			}
 

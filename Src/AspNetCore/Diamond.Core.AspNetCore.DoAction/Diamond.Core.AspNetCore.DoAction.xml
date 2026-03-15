@@ -148,7 +148,7 @@
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.ServiceCollectionDecorator.UseDofactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
@@ -196,7 +196,7 @@
             </summary>
             <typeparam name="TInputs">The type of input defined by the action.</typeparam>
             <typeparam name="TResult">The result type defined by the action.</typeparam>
-            <param name="actionKey">A unique key used to identify a specific action.</param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.ControllerActionResult`1">

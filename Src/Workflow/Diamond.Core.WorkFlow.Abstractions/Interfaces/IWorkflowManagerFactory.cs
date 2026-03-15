@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -26,8 +26,8 @@ namespace Diamond.Core.Workflow
 		/// <summary>
 		/// Gets the work flow items for a given work flow identified by groupName;
 		/// </summary>
-		/// <param name="groupName">a name that groups work flow items together.</param>
+		/// <param name="serviceKey">a name that groups work flow items together.</param>
 		/// <returns>Returns the work flow manager for the specified work flow.</returns>
-		Task<IWorkflowManager> GetAsync(string groupName);
+		Task<IWorkflowManager> GetAsync(string serviceKey);
 	}
 }

@@ -46,12 +46,6 @@
             purposes.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Workflow.IWorkflowItem.Group">
-            <summary>
-            A unique name that groups one or more steps together for a given
-            work flow.
-            </summary>
-        </member>
         <member name="P:Diamond.Core.Workflow.IWorkflowItem.Weight">
             <summary>
             Defines the weight applied to this step when showing progress. The default
@@ -95,18 +89,12 @@
             <summary>
             gets all work flow items instances with the given key.
             </summary>
-            <param name="key">The key that groups two or more work flow items into a single sequence.</param>
+            <param name="serviceKey">The key that groups two or more work flow items into a single sequence.</param>
             <returns>A list of work flow items.</returns>
         </member>
         <member name="T:Diamond.Core.Workflow.IWorkflowManager">
             <summary>
             Defines a generic work flow manager.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Workflow.IWorkflowManager.Group">
-            <summary>
-            The group name used to determine the work flow
-            items that are part of this work flow.
             </summary>
         </member>
         <member name="P:Diamond.Core.Workflow.IWorkflowManager.WorkflowItemFactory">
@@ -135,7 +123,7 @@
             <summary>
             Gets the work flow items for a given work flow identified by groupName;
             </summary>
-            <param name="groupName">a name that groups work flow items together.</param>
+            <param name="serviceKey">a name that groups work flow items together.</param>
             <returns>Returns the work flow manager for the specified work flow.</returns>
         </member>
     </members>

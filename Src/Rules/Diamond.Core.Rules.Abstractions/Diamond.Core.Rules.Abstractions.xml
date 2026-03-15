@@ -9,11 +9,6 @@
             Interface defining a generic rule.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Rules.IRule.Group">
-            <summary>
-            Group name to distinguish between different rule sets.
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Rules.IRule`2">
             <summary>
             Interface defining a generic rule.
@@ -85,15 +80,7 @@
             
             </summary>
             <typeparam name="TItem"></typeparam>
-            <param name="group"></param>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Rules.IRulesFactory.EvaluateAsync``1(``0)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
+            <param name="serviceKey">The container service key.</param>
             <param name="item"></param>
             <returns></returns>
         </member>

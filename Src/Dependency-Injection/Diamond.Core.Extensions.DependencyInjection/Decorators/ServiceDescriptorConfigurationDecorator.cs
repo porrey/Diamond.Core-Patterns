@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -288,10 +288,20 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				if (item.Properties == null && !dependencyProperties.Any())
 				{
-					//
-					// Standard definition.
-					//
-					returnValue = ServiceDescriptor.Describe(serviceType, implementationType, lifetime);
+					if (!string.IsNullOrWhiteSpace(item.ServiceKey))
+					{
+						//
+						// This is a standard definition with service key; create a standard descriptor.
+						//
+						returnValue = ServiceDescriptor.DescribeKeyed(serviceType, item.ServiceKey, implementationType, lifetime);
+					}
+					else
+					{
+						//
+						// This is a standard definition with no service key; create a standard descriptor.
+						//
+						returnValue = ServiceDescriptor.Describe(serviceType, implementationType, lifetime);
+					}
 				}
 				else
 				{
@@ -329,7 +339,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				Type serviceType = null;
 				Type implementationType = null;
-				IEnumerable<DependencyInfo> dependenctProperties = Array.Empty<DependencyInfo>();
+				IEnumerable<DependencyInfo> dependenctProperties = [];
 
 				try
 				{
