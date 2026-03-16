@@ -28,7 +28,7 @@ namespace Diamond.Core.Example.BasicConsole
 				.AddRootCommand("Sample Application", args)
 				.UseStartup<ConsoleStartup>()
 				.UseConsoleLifetime()
-				.ConfigureServicesFolder("Services")
+				.ConfigureServicesFolder("Services", reloadOnChange: true, optional: false)
 				.UseConfiguredServices()
 				.Build()
 				.RunWithExitCodeAsync();

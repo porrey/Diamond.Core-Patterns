@@ -360,7 +360,7 @@
             The configuration files in the folder are loaded with the default settings: they are optional and do not reload on
             change.</remarks>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFolder(Microsoft.Extensions.Hosting.IHostBuilder,System.String,System.Boolean)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFolder(Microsoft.Extensions.Hosting.IHostBuilder,System.String,Microsoft.Extensions.FileProviders.IFileProvider,System.Boolean,System.Boolean)">
             <summary>
             Configures the application to load configuration settings from a specified folder.
             </summary>
@@ -369,10 +369,14 @@
             when changed.</remarks>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance to configure.</param>
             <param name="folderPath">The path to the folder containing configuration files. The folder path can be relative or absolute.</param>
-            <param name="reloadOnChange"><see langword="true"/> to enable automatic reloading of configuration when files in the folder change; otherwise, <see langword="false"/>. The default value is <see langword="false"/>.</param>
+            <param name="provider">An optional <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> to use for accessing the configuration files. If not provided, the default file provider will be used.</param>
+            <param name="optional"><see langword="true"/> to treat the folder as optional, meaning that if the folder does not exist, no error will 
+            be thrown; otherwise, <see langword="false"/>. The default value is <see langword="true"/>.</param>
+            <param name="reloadOnChange"><see langword="true"/> to enable automatic reloading of configuration when files in the folder change; 
+            otherwise, <see langword="false"/>. The default value is <see langword="false"/>.</param>
             <returns>The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance with the configuration applied.</returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFile(Microsoft.Extensions.Hosting.IHostBuilder,System.String,System.Boolean)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFile(Microsoft.Extensions.Hosting.IHostBuilder,System.String,Microsoft.Extensions.FileProviders.IFileProvider,System.Boolean,System.Boolean)">
             <summary>
             Configures the host builder to load application services from a configuration file.
             </summary>
@@ -382,6 +386,9 @@
             <param name="hostBuilder">The host builder to configure with the services configuration file.</param>
             <param name="filePath">The path to the configuration file containing service definitions. The file is optional; if not found, no error is
             thrown.</param>
+            <param name="provider">An optional <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> to use for accessing the configuration files. If not provided, the default file provider will be used.</param>
+            <param name="optional"><see langword="true"/> to treat the folder as optional, meaning that if the folder does not exist, no error will 
+            be thrown; otherwise, <see langword="false"/>. The default value is <see langword="true"/>.</param>
             <param name="reloadOnChange">A value indicating whether the configuration should be reloaded if the file changes. Defaults to <see
             langword="false"/>.</param>
             <returns>The host builder instance configured to use the specified services configuration file.</returns>

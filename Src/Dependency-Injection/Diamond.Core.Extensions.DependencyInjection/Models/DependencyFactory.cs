@@ -14,10 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -120,11 +117,21 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							try
 							{
-								//
-								// Attempt to convert and assign the value.
-								//
-								TypeConverter typeConverter = TypeDescriptor.GetConverter(propertyInfo.PropertyType);
-								propertyInfo.SetValue(instance, typeConverter.ConvertFrom(property.Value));
+								//JToken token = (JToken)property.Value;
+
+								//if (token is JArray || token is JObject)
+								//{
+								//	object convertedValue = token.ToObject(propertyInfo.PropertyType);
+								//	propertyInfo.SetValue(instance, convertedValue);
+								//}
+								//else
+								//{
+									//
+									// Attempt to convert and assign the value.
+									//
+									TypeConverter typeConverter = TypeDescriptor.GetConverter(propertyInfo.PropertyType);
+									propertyInfo.SetValue(instance, typeConverter.ConvertFrom(property.Value));
+								//}
 							}
 							catch (Exception ex)
 							{

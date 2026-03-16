@@ -48,16 +48,21 @@ namespace Diamond.Core.Example.LoadServicesDelayed
 		{
 			int returnValue = 0;
 
-			IHost builder = (new HostBuilder())
-								.ConfigureServices((c, s) => { })
-								.UseServiceProviderFactory(c => new MyFactory(this.ServiceProvider))
-								.ConfigureServicesFile("Services/Example1.json")
-								.ConfigureServicesFile("Configuration/Example2.json")
-								.UseConfiguredServices()
-								.Build();
+			//IHost builder = (new HostBuilder())
+			//					.ConfigureServices((c, s) => { })
+			//					.UseServiceProviderFactory(c => new MyFactory(this.ServiceProvider))
+			//					.ConfigureServicesFile("Services/Example1.json")
+			//					.ConfigureServicesFile("Configuration/Example2.json")
+			//					.UseConfiguredServices()
+			//					.Build();
 
-			ISample sample2 = builder.Services.GetKeyedService<ISample>("Sample2");
-			Console.WriteLine(sample2.Name);
+			//ISample sample2 = builder.Services.GetKeyedService<ISample>("Sample2");
+			//Console.WriteLine(sample2.Name);
+			//Console.WriteLine($"There are {sample2.Items.Length} items");
+
+			ISample sample1 = this.ServiceProvider.GetService<ISample>();
+			Console.WriteLine(sample1.Name);
+			Console.WriteLine($"There are {sample1.Items.Length} items");
 
 			return Task.FromResult(returnValue);
 		}

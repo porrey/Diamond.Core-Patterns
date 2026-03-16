@@ -3,5 +3,6 @@
 	internal interface ISample
 	{
 		string Name { get; }
+		string[] Items { get; }
 	}
 }

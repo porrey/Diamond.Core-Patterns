@@ -3,5 +3,6 @@
 	internal class Sample1 : ISample
 	{
 		public string Name => "Hello World One!";
+		public string[] Items { get; set; } = [];
 	}
 }

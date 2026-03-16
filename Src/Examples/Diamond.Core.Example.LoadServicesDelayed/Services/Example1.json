@@ -14,7 +14,10 @@
 		{
 			"ServiceType": "<ISample>",
 			"ImplementationType": "Diamond.Core.Example.LoadServicesDelayed.Sample1, LoadServicesDelayed",
-			"Lifetime": "Transient"
+			"Lifetime": "Transient",
+			"Properties": {
+				"Items": [ "Item1", "Item2", "Item3" ]
+			}
 		}
 	]
 }
