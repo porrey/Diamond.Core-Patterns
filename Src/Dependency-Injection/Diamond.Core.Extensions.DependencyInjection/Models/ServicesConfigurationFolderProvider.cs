@@ -27,18 +27,18 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	/// their contents into a single configuration dictionary. Keys from multiple files are merged, and array indices are
 	/// adjusted to ensure continuity across files. If the directory does not exist and the source is marked as
 	/// non-optional, an exception is thrown.</remarks>
-	public class ServicesConfigurationProvider : FileConfigurationProvider
+	public class ServicesConfigurationFolderProvider : FileConfigurationProvider
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ServicesConfigurationProvider"/> class using the specified <see
-		/// cref="ServicesConfigurationSource"/>.
+		/// Initializes a new instance of the <see cref="ServicesConfigurationFolderProvider"/> class using the specified <see
+		/// cref="ServicesConfigurationFolderSource"/>.
 		/// </summary>
-		/// <remarks>The <see cref="ServicesConfigurationProvider"/> retrieves configuration data from the specified
-		/// <see cref="ServicesConfigurationSource"/> and makes it available to the application. Ensure that the <paramref
+		/// <remarks>The <see cref="ServicesConfigurationFolderProvider"/> retrieves configuration data from the specified
+		/// <see cref="ServicesConfigurationFolderSource"/> and makes it available to the application. Ensure that the <paramref
 		/// name="source"/> is properly initialized before passing it to this constructor.</remarks>
 		/// <param name="source">The configuration source that provides the service-based configuration data. This parameter cannot be <see
 		/// langword="null"/>.</param>
-		public ServicesConfigurationProvider(ServicesConfigurationSource source)
+		public ServicesConfigurationFolderProvider(ServicesConfigurationFolderSource source)
 			: base(source)
 		{
 		}
@@ -98,7 +98,10 @@ namespace Diamond.Core.Extensions.DependencyInjection
 					//
 					foreach (KeyValuePair<string, string> item in result)
 					{
-						this.Data.Add(item);
+						if (item.Value != null)
+						{
+							this.Data.Add(item);
+						}
 					}
 
 					//

@@ -71,6 +71,27 @@
             
             </summary>
         </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration.Key">
+            <summary>
+            Gets or sets the key for the alias.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration.TypeDefinition">
+            <summary>
+            Gets or sets the type definition for the alias.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration.ToString">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration"/> class.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.Condition">
             <summary>
             
@@ -84,6 +105,31 @@
         <member name="P:Diamond.Core.Extensions.DependencyInjection.Condition.Value">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.Context">
+            <summary>
+            Get/sets the DbContext object.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.ConnectionString">
+            <summary>
+            Gets/sets the connection string for the database.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.CommandTimeout">
+            <summary>
+            Gets/sets the timeout in seconds for a command.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.Factory">
+            <summary>
+            Gets/sets the factory used to configured the DbContext.
             </summary>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration">
@@ -119,6 +165,27 @@
         <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.Properties">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationFile">
+            <summary>
+            Represents the configuration for service descriptors, including aliases, services, 
+            and databases, as defined in a configuration file.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationFile.Aliases">
+            <summary>
+            Gets or sets the collection of alias configurations associated with this object.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationFile.Services">
+            <summary>
+            Gets or sets the collection of service descriptor configurations associated with this object.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationFile.Databases">
+            <summary>
+            Gets or sets the collection of database configurations used by the application.
             </summary>
         </member>
     </members>

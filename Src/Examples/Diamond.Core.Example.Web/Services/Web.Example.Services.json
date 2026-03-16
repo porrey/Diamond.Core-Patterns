@@ -4,37 +4,37 @@
 	//
 	"services": [
 		{
-			"ServiceKey": "CreateInvoice",
+			"ServiceKey": "CreateInvoiceAsync",
 			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.CreateInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceKey": "DeleteInvoice",
+			"ServiceKey": "DeleteInvoiceAsync",
 			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.DeleteInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceKey": "GetInvoice",
+			"ServiceKey": "GetInvoiceAsync",
 			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.GetInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceKey": "GetAllInvoices",
+			"ServiceKey": "GetAllInvoicesAsync",
 			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.GetAllInvoicesAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceKey": "UpdateInvoice",
+			"ServiceKey": "UpdateInvoiceAsync",
 			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.UpdateInvoiceAsyncAction, WebExample",
 			"Lifetime": "Scoped"
 		},
 		{
-			"ServiceKey": "MarkInvoicePaid",
+			"ServiceKey": "MarkInvoicePaidAsync",
 			"ServiceType": "<IDoAction>",
 			"ImplementationType": "Diamond.Core.Example.MarkInvoicePaidAsyncAction, WebExample",
 			"Lifetime": "Scoped"

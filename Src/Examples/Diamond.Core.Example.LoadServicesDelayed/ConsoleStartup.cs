@@ -14,27 +14,40 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Serilog;
 
-namespace Diamond.Core.Extensions.DependencyInjection
+namespace Diamond.Core.Example
 {
 	/// <summary>
-	/// Represents a configuration source that provides configuration data from registered services.
+	/// This startup class is called by the host builder. The host build checks which
+	/// interfaces are implemented and then calls the interfaces methods.
 	/// </summary>
-	/// <remarks>This class extends <see cref="FileConfigurationSource"/> to enable configuration data to be sourced
-	/// from services. It is typically used in scenarios where configuration settings are dynamically provided by service
-	/// dependencies.</remarks>
-	public class ServicesConfigurationSource : FileConfigurationSource
+	public class ConsoleStartup : IStartupConfiguration, IStartupAppConfiguration
 	{
 		/// <summary>
-		/// Builds the <see cref="ServicesConfigurationProvider"/> for this source.
+		/// 
 		/// </summary>
-		/// <param name="builder">The <see cref="IConfigurationBuilder"/>.</param>
-		/// <returns>A <see cref="ServicesConfigurationSource"/></returns>
-		public override IConfigurationProvider Build(IConfigurationBuilder builder)
+		public IConfiguration Configuration { get; set; }
+
+		/// <summary>
+		/// Called to configure additional settings.
+		/// </summary>
+		/// <param name="builder"></param>
+		public void ConfigureAppConfiguration(IConfigurationBuilder builder)
 		{
-			this.EnsureDefaults(builder);
-			return new ServicesConfigurationProvider(this);
+			//
+			// Build the configuration so Serilog can read from it.
+			//
+			IConfigurationRoot configuration = builder.Build();
+
+			//
+			// Create a logger from the configuration.
+			//
+			Log.Logger = new LoggerConfiguration()
+					  .ReadFrom.Configuration(configuration)
+					  .CreateLogger();
 		}
 	}
 }

@@ -14,27 +14,27 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.Threading.Tasks;
-using Diamond.Core.Clonable.Newtonsoft;
-using Diamond.Core.Extensions.Hosting;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-
-//
-// See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-5.0
-// for details on host based applications.
-//
-
-namespace Diamond.Core.Example.BasicConsole
+namespace Diamond.Core.Extensions.DependencyInjection
 {
-	class Program
+	/// <summary>
+	/// 
+	/// </summary>
+	public class AliasDescriptorConfiguration
 	{
-		static Task Main(string[] args) => Host.CreateDefaultBuilder(args)
-				.UseStartup<ConsoleStartup>()
-				.UseSerilog()
-				.UseObjectCloning()
-				.UseConsoleLifetime()
-				.Build()
-				.RunWithExitCodeAsync();
+		/// <summary>
+		/// Gets or sets the key for the alias.
+		/// </summary>
+		public virtual string Key { get; set; }
+
+		/// <summary>
+		/// Gets or sets the type definition for the alias.
+		/// </summary>
+		public virtual string TypeDefinition { get; set; }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AliasDescriptorConfiguration"/> class.
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString() => $"{this.Key} => {this.TypeDefinition}";
 	}
 }

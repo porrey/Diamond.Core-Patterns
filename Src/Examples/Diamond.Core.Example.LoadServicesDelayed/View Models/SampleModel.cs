@@ -14,27 +14,10 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.Threading.Tasks;
-using Diamond.Core.Clonable.Newtonsoft;
-using Diamond.Core.Extensions.Hosting;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-
-//
-// See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-5.0
-// for details on host based applications.
-//
-
-namespace Diamond.Core.Example.BasicConsole
+namespace Diamond.Core.Example.LoadServicesDelayed
 {
-	class Program
+	public class SampleModel
 	{
-		static Task Main(string[] args) => Host.CreateDefaultBuilder(args)
-				.UseStartup<ConsoleStartup>()
-				.UseSerilog()
-				.UseObjectCloning()
-				.UseConsoleLifetime()
-				.Build()
-				.RunWithExitCodeAsync();
+		
 	}
 }

@@ -34,12 +34,33 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// when changed.</remarks>
 		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> instance to configure.</param>
 		/// <param name="folderPath">The path to the folder containing configuration files. The folder path can be relative or absolute.</param>
+		/// <param name="reloadOnChange"><see langword="true"/> to enable automatic reloading of configuration when files in the folder change; otherwise, <see langword="false"/>. The default value is <see langword="false"/>.</param>
 		/// <returns>The <see cref="IHostBuilder"/> instance with the configuration applied.</returns>
-		public static IHostBuilder ConfigureServicesFolder(this IHostBuilder hostBuilder, string folderPath)
+		public static IHostBuilder ConfigureServicesFolder(this IHostBuilder hostBuilder, string folderPath, bool reloadOnChange = false)
 		{
 			return hostBuilder.ConfigureAppConfiguration(config =>
 			{
-				config.AddServicesConfigurationFolder(path: folderPath, optional: true, reloadOnChange: false);
+				config.AddServicesConfigurationFolder(folderPath: folderPath, optional: true, reloadOnChange: reloadOnChange);
+			});
+		}
+
+		/// <summary>
+		/// Configures the host builder to load application services from a configuration file.
+		/// </summary>
+		/// <remarks>Use this method to add service configuration from an external file to the application's
+		/// configuration pipeline. This enables dynamic service registration based on file contents and supports optional
+		/// file presence.</remarks>
+		/// <param name="hostBuilder">The host builder to configure with the services configuration file.</param>
+		/// <param name="filePath">The path to the configuration file containing service definitions. The file is optional; if not found, no error is
+		/// thrown.</param>
+		/// <param name="reloadOnChange">A value indicating whether the configuration should be reloaded if the file changes. Defaults to <see
+		/// langword="false"/>.</param>
+		/// <returns>The host builder instance configured to use the specified services configuration file.</returns>
+		public static IHostBuilder ConfigureServicesFile(this IHostBuilder hostBuilder, string filePath, bool reloadOnChange = false)
+		{
+			return hostBuilder.ConfigureAppConfiguration(config =>
+			{
+				config.AddServicesConfigurationFile(filePath: filePath, optional: true, reloadOnChange: reloadOnChange);
 			});
 		}
 	}

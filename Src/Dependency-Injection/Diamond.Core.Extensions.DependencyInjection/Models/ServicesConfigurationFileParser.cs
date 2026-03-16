@@ -40,7 +40,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		private readonly SortedDictionary<string, string> _data = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-		private readonly Stack<string> _paths = new Stack<string>();
+		private readonly Stack<string> _paths = new();
 		private int _baseIndex = 0;
 
 		/// <summary>

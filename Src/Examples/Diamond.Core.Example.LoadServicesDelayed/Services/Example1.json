@@ -1,0 +1,20 @@
+{
+	"aliases": [
+		{
+			"Key": "ISample",
+			"TypeDefinition": "Diamond.Core.Example.LoadServicesDelayed.ISample, LoadServicesDelayed"
+		}
+	],
+	"services": [
+		{
+			"ServiceType": "<ICommand>",
+			"ImplementationType": "Diamond.Core.Example.LoadServicesDelayed.SampleCommandBase, LoadServicesDelayed",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceType": "<ISample>",
+			"ImplementationType": "Diamond.Core.Example.LoadServicesDelayed.Sample1, LoadServicesDelayed",
+			"Lifetime": "Transient"
+		}
+	]
+}

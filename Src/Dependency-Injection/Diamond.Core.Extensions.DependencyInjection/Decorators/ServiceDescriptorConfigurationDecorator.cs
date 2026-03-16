@@ -54,9 +54,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// Represents a collection of aliases mapped by their unique string identifiers.
 		/// </summary>
-		/// <remarks>This dictionary is used to store and retrieve <see cref="Alias"/> objects based on their
+		/// <remarks>This dictionary is used to store and retrieve <see cref="AliasDescriptorConfiguration"/> objects based on their
 		/// associated string keys. It is initialized as an empty dictionary and is intended for internal use only.</remarks>
-		private static IDictionary<string, Alias> AliasList = new Dictionary<string, Alias>();
+		private static IDictionary<string, AliasDescriptorConfiguration> AliasList = new Dictionary<string, AliasDescriptorConfiguration>();
 
 		/// <summary>
 		/// Updates the internal alias dictionary with the specified collection of aliases.
@@ -64,10 +64,10 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <remarks>This method converts the provided collection of aliases into a dictionary, using each alias's key
 		/// as the dictionary key. If duplicate keys are detected, a <see cref="DuplicateAliasException"/> is thrown,
 		/// providing details about the conflicting keys.</remarks>
-		/// <param name="aliasList">A collection of <see cref="Alias"/> objects to be added to the alias dictionary. Each alias must have a unique
+		/// <param name="aliasList">A collection of <see cref="AliasDescriptorConfiguration"/> objects to be added to the alias dictionary. Each alias must have a unique
 		/// key.</param>
 		/// <exception cref="DuplicateAliasException">Thrown when the collection contains duplicate keys, indicating that multiple aliases share the same key.</exception>
-		public static void Set(this IEnumerable<Alias> aliasList)
+		public static void Set(this IEnumerable<AliasDescriptorConfiguration> aliasList)
 		{
 			try
 			{
