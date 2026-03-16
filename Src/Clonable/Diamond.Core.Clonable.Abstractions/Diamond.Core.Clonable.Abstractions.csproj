@@ -37,9 +37,6 @@
 		<None Remove="Diamond.Core.Clonable.Abstractions.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-	</ItemGroup>
-	<ItemGroup>
 		<None Include="..\..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>

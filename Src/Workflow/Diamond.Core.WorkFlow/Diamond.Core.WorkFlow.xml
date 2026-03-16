@@ -456,41 +456,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Workflow.WorkflowItem">
-            <summary>
-            This should not be used. Use <see cref="T:Diamond.Core.Workflow.WorkflowItemTemplate"/> instead.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
-            <summary>
-            
-            </summary>
-            <param name="logger"></param>
-        </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="logger"></param>
-            <param name="name"></param>
-            <param name="group"></param>
-            <param name="ordinal"></param>
-        </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItem.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.String,System.Int32,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="logger"></param>
-            <param name="name"></param>
-            <param name="group"></param>
-            <param name="ordinal"></param>
-            <param name="alwaysExecute"></param>
-        </member>
         <member name="T:Diamond.Core.Workflow.WorkflowItemTemplate">
             <summary>
             This class is the template for a workflow step.

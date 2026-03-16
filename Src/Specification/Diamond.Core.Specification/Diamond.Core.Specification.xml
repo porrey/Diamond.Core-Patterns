@@ -110,13 +110,6 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Specification.SpecificationTemplate.Name">
-            <summary>
-            Gets the name used to uniquely identify this specification in a container. The name can be used by
-            the factory when two or more specification shave the name signature/pattern. The default value is the
-            name of the class with the term 'Specification' removed.
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Specification.SpecificationTemplate`2">
             <summary>
             Provides the template for an object that implements <see cref="T:Diamond.Core.Specification.ISpecification`2"/>.

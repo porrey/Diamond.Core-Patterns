@@ -27,8 +27,6 @@ namespace Diamond.Core.Example
 		{
 		}
 
-		public override string Name => WellKnown.Decorator.BookTransaction;
-
 		protected override Task<bool> OnTakeActionAsync(IBook item)
 		{
 			bool returnValue = false;

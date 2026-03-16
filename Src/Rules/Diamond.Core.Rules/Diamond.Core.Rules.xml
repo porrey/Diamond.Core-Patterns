@@ -102,11 +102,6 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="T:Diamond.Core.Rules.RuleResult">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Rules.RuleResultTemplate">
             <summary>
             

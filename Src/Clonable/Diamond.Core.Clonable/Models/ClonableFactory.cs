@@ -20,7 +20,7 @@ namespace Diamond.Core.Clonable
 	/// <summary>
 	/// Holds the current factory for cloning objects. 
 	/// </summary>
-public static class ClonableFactory
+	public static class ClonableFactory
 	{
 		private static IObjectCloneFactory Factory { get; set; }
 

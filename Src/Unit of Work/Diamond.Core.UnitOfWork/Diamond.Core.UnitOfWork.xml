@@ -87,11 +87,6 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.UnitOfWork.UnitOfWorkTemplate.Name">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:Diamond.Core.UnitOfWork.UnitOfWorkTemplate`2">
             <summary>
             

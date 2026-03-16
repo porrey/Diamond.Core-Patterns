@@ -24,19 +24,11 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		public SpecificationTemplate()
 		{
-			this.Name = this.GetType().Name.Replace("Specification", "");
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		protected virtual ILogger<SpecificationTemplate> Logger { get; set; } = new NullLogger<SpecificationTemplate>();
-
-		/// <summary>
-		/// Gets the name used to uniquely identify this specification in a container. The name can be used by
-		/// the factory when two or more specification shave the name signature/pattern. The default value is the
-		/// name of the class with the term 'Specification' removed.
-		/// </summary>
-		public virtual string Name { get; set; }
 	}
 }

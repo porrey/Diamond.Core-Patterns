@@ -21,7 +21,6 @@ namespace Diamond.Core.Decorator
 		/// </summary>
 		public DecoratorTemplate()
 		{
-			this.Name = this.GetType().Name.Replace("Decorator", "");
 		}
 
 		/// <summary>
@@ -67,11 +66,6 @@ namespace Diamond.Core.Decorator
 				}
 			}
 		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual string Name { get; set; }
 
 		/// <summary>
 		/// 

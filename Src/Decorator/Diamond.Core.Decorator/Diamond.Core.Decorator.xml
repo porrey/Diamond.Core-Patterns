@@ -34,11 +34,6 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Decorator.DecoratorTemplate`2.Name">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.TakeActionAsync">
             <summary>
             
@@ -157,7 +152,7 @@
             </summary>
             <typeparam name="TDecoratedItem"></typeparam>
             <typeparam name="TResult"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey"></param>
             <param name="item"></param>
             <returns></returns>
         </member>

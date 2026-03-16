@@ -41,6 +41,7 @@
     <ProjectReference Include="..\..\Hosting\Diamond.Core.Extensions.Hosting\Diamond.Core.Extensions.Hosting.csproj" />
     <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.EntityFrameworkCore\Diamond.Core.Repository.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
+    <ProjectReference Include="..\..\Rules\Diamond.Core.Rules.Abstractions\Diamond.Core.Rules.Abstractions.csproj" />
     <ProjectReference Include="..\..\Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj" />
     <ProjectReference Include="..\..\Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj" />
     <ProjectReference Include="..\..\Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj" />

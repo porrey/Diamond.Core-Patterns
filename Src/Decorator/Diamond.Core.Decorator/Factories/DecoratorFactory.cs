@@ -113,10 +113,10 @@ namespace Diamond.Core.Decorator
 		/// </summary>
 		/// <typeparam name="TDecoratedItem"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey"></param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item)
+		public virtual async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string serviceKey, TDecoratedItem item)
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
 
@@ -131,7 +131,7 @@ namespace Diamond.Core.Decorator
 			//
 			// Get the decorator.
 			//
-			returnValue = await this.GetAsync<TDecoratedItem, TResult>(name);
+			returnValue = await this.GetAsync<TDecoratedItem, TResult>(serviceKey);
 
 			//
 			// Set the instance.

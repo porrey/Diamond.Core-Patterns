@@ -2,8 +2,6 @@ using Diamond.Core.AspNetCore.Hosting;
 using Diamond.Core.Extensions.DependencyInjection;
 using Diamond.Core.Extensions.DependencyInjection.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 
 namespace Diamond.Core.Example
@@ -49,11 +47,11 @@ namespace Diamond.Core.Example
 				.Run();
 
 		//
-		// The code above is the equivalent of the code above. The model below should be ued
-		// when more startup controll is needed. The model above should be used when the startup
-		// is simple. Long story short, when using a Starup class, use the code below. When you
-		// are not using the Startup class, use the code above omtting the calls to
-		// ConfigureServices() and Configure() methods.
+		// The model below should be used when more startup controll is needed. The
+		// model above should be used when the startup is simple. Long story short,
+		// when using a Starup class, use the code below. When you are not using the
+		// Startup class, use the code above omtting the calls to ConfigureServices()
+		// and Configure() methods.
 		//
 		/*
 			static void Main(string[] args) =>

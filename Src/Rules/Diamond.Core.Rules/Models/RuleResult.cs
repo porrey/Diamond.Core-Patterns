@@ -14,18 +14,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
-using System;
-
 namespace Diamond.Core.Rules
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	[Obsolete("Use RuleResultTemplate instead.")]
-	public class RuleResult : RuleResultTemplate
-	{
-	}
-
 	/// <summary>
 	/// 
 	/// </summary>
