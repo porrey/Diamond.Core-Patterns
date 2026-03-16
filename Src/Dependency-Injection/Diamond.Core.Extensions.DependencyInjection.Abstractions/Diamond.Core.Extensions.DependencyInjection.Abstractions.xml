@@ -167,6 +167,11 @@
             
             </summary>
         </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration.ArrayProperties">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationFile">
             <summary>
             Represents the configuration for service descriptors, including aliases, services, 

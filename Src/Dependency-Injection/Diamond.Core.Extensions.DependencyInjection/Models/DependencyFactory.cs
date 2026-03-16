@@ -71,7 +71,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <param name="instance"></param>
 		protected virtual void AssignProperties(object instance)
 		{
-			DependencyFactory.AssignProperties(this.Configuration.Properties, this.ImplementationType, instance);
+			DependencyFactory.AssignProperties(this.Configuration.Properties, this.Configuration.ArrayProperties, this.ImplementationType, instance);
 		}
 
 		/// <summary>
@@ -80,7 +80,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <param name="properties"></param>
 		/// <param name="implementationType"></param>
 		/// <param name="instance"></param>
-		public static void AssignProperties(IDictionary<string, object> properties, Type implementationType, object instance)
+		public static void AssignProperties(IDictionary<string, object> properties, IDictionary<string, object[]> arrayProperties, Type implementationType, object instance)
 		{
 			if (properties != null && properties.Any())
 			{
@@ -117,21 +117,14 @@ namespace Diamond.Core.Extensions.DependencyInjection
 							//
 							try
 							{
-								//JToken token = (JToken)property.Value;
-
-								//if (token is JArray || token is JObject)
-								//{
-								//	object convertedValue = token.ToObject(propertyInfo.PropertyType);
-								//	propertyInfo.SetValue(instance, convertedValue);
-								//}
-								//else
-								//{
+								if (property.Value != null)
+								{
 									//
 									// Attempt to convert and assign the value.
 									//
 									TypeConverter typeConverter = TypeDescriptor.GetConverter(propertyInfo.PropertyType);
 									propertyInfo.SetValue(instance, typeConverter.ConvertFrom(property.Value));
-								//}
+								}
 							}
 							catch (Exception ex)
 							{
@@ -155,6 +148,63 @@ namespace Diamond.Core.Extensions.DependencyInjection
 						// The instance type did not have the current property. Throw an exception.
 						//
 						throw new PropertyNotFoundException(implementationType, property.Key);
+					}
+				}
+
+				//
+				// Loop through each property in the configuration and attempt to assign
+				// it to the matching property on the instance.
+				//
+				foreach (KeyValuePair<string, object[]> arrayProperty in arrayProperties)
+				{
+					//
+					// Check if this property exists on the instance.
+					//
+					PropertyInfo propertyInfo = propertyInfos.Where(t => t.Name.Equals(arrayProperty.Key, StringComparison.CurrentCultureIgnoreCase)).SingleOrDefault();
+
+					if (propertyInfo != null)
+					{
+						//
+						// Check if the property can be set.
+						//
+						if (propertyInfo.CanWrite)
+						{
+							//
+							// The property was found.
+							//
+							try
+							{
+								if (arrayProperty.Value != null)
+								{
+									//
+									// Attempt to convert and assign the value.
+									//
+									Array array = arrayProperty.Value.ConvertArray(instance, propertyInfo);
+									propertyInfo.SetValue(instance, array);
+								}
+							}
+							catch (Exception ex)
+							{
+								//
+								// The property value assignment failed. Throw an exception.
+								//
+								throw new PropertyConversionException(implementationType, arrayProperty.Key, arrayProperty.Value, ex);
+							}
+						}
+						else
+						{
+							//
+							// The property is read-only. Throw an exception.
+							//
+							throw new PropertyIsReadOnlyException(implementationType, arrayProperty.Key, arrayProperty.Value);
+						}
+					}
+					else
+					{
+						//
+						// The instance type did not have the current property. Throw an exception.
+						//
+						throw new PropertyNotFoundException(implementationType, arrayProperty.Key);
 					}
 				}
 			}

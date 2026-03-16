@@ -2,7 +2,7 @@
 {
 	internal class Sample1 : ISample
 	{
-		public string Name => "Hello World One!";
+		public string Name { get; set; }
 		public string[] Items { get; set; } = [];
 	}
 }

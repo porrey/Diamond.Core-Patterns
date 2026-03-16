@@ -53,5 +53,10 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// 
 		/// </summary>
 		public virtual Dictionary<string, object> Properties { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual Dictionary<string, object[]> ArrayProperties { get; set; }
 	}
 }

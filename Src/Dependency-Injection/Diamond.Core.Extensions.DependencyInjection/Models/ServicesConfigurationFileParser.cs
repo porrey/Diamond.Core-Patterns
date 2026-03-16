@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
-using System.Collections.Generic;
 using System.Text.Json;
 
 namespace Diamond.Core.Extensions.DependencyInjection
@@ -59,7 +57,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 			//
 			// Set up JSON options.
 			//
-			JsonDocumentOptions jsonDocumentOptions = new JsonDocumentOptions
+			JsonDocumentOptions jsonDocumentOptions = new()
 			{
 				CommentHandling = JsonCommentHandling.Skip,
 				AllowTrailingCommas = true,

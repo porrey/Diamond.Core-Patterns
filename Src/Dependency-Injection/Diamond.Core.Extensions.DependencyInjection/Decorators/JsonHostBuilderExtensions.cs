@@ -188,7 +188,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				// Get all of the services defined in the configuration.
 				//
-				IList<ServiceDescriptorConfiguration> hostedItems = new List<ServiceDescriptorConfiguration>();
+				IList<ServiceDescriptorConfiguration> hostedItems = [];
 				configuration.Bind("hostedServices", hostedItems);
 
 				foreach (ServiceDescriptorConfiguration hostedItem in hostedItems)

@@ -386,7 +386,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 					// Get the dependency factory and assign the properties.
 					//
 					IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
-					DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
+					DependencyFactory.AssignProperties(item.Properties, item.ArrayProperties, implementationType, dependencyFactory);
 
 					//
 					// Create the context and set the dependencies.

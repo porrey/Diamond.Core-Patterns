@@ -53,6 +53,58 @@
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> to configure.</param>
             <returns>The configured <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance.</returns>
         </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions">
+            <summary>
+            Provides extension methods for converting arrays of objects to strongly typed arrays.
+            </summary>
+            <remarks>The methods in this class are intended to simplify conversion scenarios where an array of objects
+            needs to be cast or converted to a specific type. Null values and database nulls are handled according to .NET
+            conventions for default values and type compatibility. Use these extensions when working with data sources that
+            return object arrays, such as database query results.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions.ToArrayOf``1(System.Object[])">
+            <summary>
+            Converts an array of objects to an array of the specified type, handling null and database null values
+            appropriately.
+            </summary>
+            <remarks>If a value in the input array is null or DBNull.Value, it is converted to the default value of T
+            when T is a reference or nullable type. Otherwise, an exception is thrown. Values that are not already of type T
+            are converted using Convert.ChangeType with invariant culture.</remarks>
+            <typeparam name="T">The target element type for the resulting array. Must be compatible with the values in the input array.</typeparam>
+            <param name="values">The array of objects to convert. Cannot be null.</param>
+            <returns>An array of type T containing the converted values from the input array. Null and DBNull values are converted to
+            the default value of T if T is a reference or nullable type.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the values parameter is null.</exception>
+            <exception cref="T:System.InvalidCastException">Thrown if a null or DBNull value is encountered and T is a non-nullable value type, or if a value cannot be
+            converted to type T.</exception>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions.ConvertArray(System.Object[],System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Converts an array of objects to a strongly typed array based on the element type of the specified property
+            descriptor.
+            </summary>
+            <remarks>All values are converted to the element type of the property descriptor using standard conversion
+            logic. The method requires that the property descriptor represents an array property; otherwise, an exception is
+            thrown.</remarks>
+            <param name="values">The array of values to convert. Each element will be converted to the target element type of the property
+            descriptor.</param>
+            <param name="propertyDescriptor">The property descriptor that defines the target array type and element type for conversion. Must represent an
+            array property.</param>
+            <returns>An array containing the converted values, with each element of the target type defined by the property descriptor.
+            The array will have the same length as the input values.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the specified property is not an array type or if the element type cannot be determined.</exception>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions.ConvertArray(System.Object[],System.Object,System.Reflection.PropertyInfo)">
+            <summary>
+            Converts the specified array of values to the element type of the given array property and assigns the resulting
+            array to the property on the provided instance.
+            </summary>
+            <param name="values">The array of values to convert and assign to the property. Each value will be converted to the property's element
+            type.</param>
+            <param name="instance">The object instance whose property will be set. Cannot be null.</param>
+            <param name="propertyInfo">The reflection information for the array property to assign. Must represent an array property and cannot be null.</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if the specified property is not an array type or if the element type of the property cannot be determined.</exception>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator">
             <summary>
             Provides extension methods and utilities for configuring and creating service descriptors in dependency injection
@@ -606,7 +658,7 @@
             </summary>
             <param name="instance"></param>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type,System.Object)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object[]},System.Type,System.Object)">
             <summary>
             Assigns the properties from the configuration to the instance of the implementation type.
             </summary>

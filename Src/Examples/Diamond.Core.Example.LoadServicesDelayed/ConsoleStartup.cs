@@ -14,40 +14,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
+using Diamond.Core.Example.LoadServicesDelayed;
 using Diamond.Core.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using Serilog;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Example
 {
-	/// <summary>
-	/// This startup class is called by the host builder. The host build checks which
-	/// interfaces are implemented and then calls the interfaces methods.
-	/// </summary>
-	public class ConsoleStartup : IStartupConfiguration, IStartupAppConfiguration
+	public class ConsoleStartup : IStartupConfigureServices
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		public IConfiguration Configuration { get; set; }
-
-		/// <summary>
-		/// Called to configure additional settings.
-		/// </summary>
-		/// <param name="builder"></param>
-		public void ConfigureAppConfiguration(IConfigurationBuilder builder)
+		public void ConfigureServices(IServiceCollection services)
 		{
-			//
-			// Build the configuration so Serilog can read from it.
-			//
-			IConfigurationRoot configuration = builder.Build();
-
-			//
-			// Create a logger from the configuration.
-			//
-			Log.Logger = new LoggerConfiguration()
-					  .ReadFrom.Configuration(configuration)
-					  .CreateLogger();
+			services.AddOptions<TestOptions>().BindConfiguration(TestOptions.Key);
 		}
 	}
 }

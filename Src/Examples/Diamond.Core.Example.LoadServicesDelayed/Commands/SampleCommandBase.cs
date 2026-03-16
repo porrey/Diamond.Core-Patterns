@@ -17,10 +17,9 @@
 using System;
 using System.Threading.Tasks;
 using Diamond.Core.CommandLine.Model;
-using Diamond.Core.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Diamond.Core.Example.LoadServicesDelayed
 {
@@ -36,13 +35,15 @@ namespace Diamond.Core.Example.LoadServicesDelayed
 		/// Initializes a new instance of the SampleCommandBase class with the specified logger.
 		/// </summary>
 		/// <param name="logger">The logger used to record diagnostic and operational messages for the command.</param>
-		public SampleCommandBase(ILogger<SampleCommandBase> logger, IServiceProvider serviceProvider)
+		public SampleCommandBase(ILogger<SampleCommandBase> logger, IServiceProvider serviceProvider, IOptions<TestOptions> options)
 			: base(logger, "test", "Run a test command.")
 		{
 			this.ServiceProvider = serviceProvider;
+			this.TestOptions = options.Value;
 		}
 
 		protected IServiceProvider ServiceProvider { get; }
+		protected TestOptions TestOptions { get; }
 
 		protected override Task<int> OnHandleCommand(SampleModel item)
 		{
