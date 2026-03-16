@@ -527,13 +527,6 @@
             step to create log entries during execution.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
-            <summary>
-            
-            </summary>
-            <param name="context">The current workflow context.</param>
-            <returns></returns>
-        </member>
         <member name="M:Diamond.Core.Workflow.WorkflowItemTemplate.ExecuteStepAsync(Diamond.Core.Workflow.IContext)">
             <summary>
             Performs all of the steps of this step's execution including calls

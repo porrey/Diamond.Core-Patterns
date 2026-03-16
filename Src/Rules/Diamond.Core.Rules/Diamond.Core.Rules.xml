@@ -117,13 +117,6 @@
             
             </summary>
         </member>
-        <member name="T:Diamond.Core.Rules.Rule`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
-            <typeparam name="TResult"></typeparam>
-        </member>
         <member name="T:Diamond.Core.Rules.RuleTemplate`2">
             <summary>
             
@@ -177,12 +170,6 @@
             </summary>
             <param name="item"></param>
             <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Rules.Rule`1">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
         </member>
         <member name="T:Diamond.Core.Rules.RuleTemplate`1">
             <summary>

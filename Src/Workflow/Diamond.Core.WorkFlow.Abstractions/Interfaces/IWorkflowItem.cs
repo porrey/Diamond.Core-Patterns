@@ -58,15 +58,5 @@ namespace Diamond.Core.Workflow
 		/// Performs the work for the specified step.
 		/// </summary>
 		Task<bool> ExecuteStepAsync(IContext context);
-
-		/// <summary>
-		/// Indicates whether or not a step should be executed during a work flow.
-		/// his is used by conditional work flow managers where every step in the
-		/// work flow is executed from start to finish unless tis property returns
-		/// false. This property may be ignored by certain work flow managers.
-		/// </summary>
-		/// <param name="context"></param>
-		/// <returns></returns>
-		Task<bool> ShouldExecuteAsync(IContext context);
 	}
 }

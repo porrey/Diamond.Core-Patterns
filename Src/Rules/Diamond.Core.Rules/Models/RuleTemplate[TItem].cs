@@ -25,15 +25,6 @@ namespace Diamond.Core.Rules
 	/// 
 	/// </summary>
 	/// <typeparam name="TItem"></typeparam>
-	[Obsolete("Use RuleTemplate instead.")]
-	public abstract class Rule<TItem> : RuleTemplate<TItem>
-	{
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <typeparam name="TItem"></typeparam>
 	public abstract class RuleTemplate<TItem> : IRule<TItem>
 	{
 		/// <summary>

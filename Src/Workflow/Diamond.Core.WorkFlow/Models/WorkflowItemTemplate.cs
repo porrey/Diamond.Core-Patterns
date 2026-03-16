@@ -110,17 +110,6 @@ namespace Diamond.Core.Workflow
 		public virtual ILogger<WorkflowItemTemplate> Logger { get; set; } = new NullLogger<WorkflowItemTemplate>();
 
 		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
-		[Obsolete("Please use OnShouldExecuteAsync().")]
-		public virtual Task<bool> ShouldExecuteAsync(IContext context)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <summary>
 		/// Performs all of the steps of this step's execution including calls
 		/// to <see cref="OnPrepareForExecutionAsync"/>, <see cref="OnShouldExecuteAsync"/>
 		/// and <see cref="OnPostExecutionAsync"/>. This is usually called by the worflow manager.

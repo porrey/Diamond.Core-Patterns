@@ -47,6 +47,9 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	</ItemGroup>
+	<ItemGroup>
 		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable\Diamond.Core.Clonable.csproj" />
 		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />

@@ -70,16 +70,6 @@
             Performs the work for the specified step.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Workflow.IWorkflowItem.ShouldExecuteAsync(Diamond.Core.Workflow.IContext)">
-            <summary>
-            Indicates whether or not a step should be executed during a work flow.
-            his is used by conditional work flow managers where every step in the
-            work flow is executed from start to finish unless tis property returns
-            false. This property may be ignored by certain work flow managers.
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
         <member name="T:Diamond.Core.Workflow.IWorkflowItemFactory">
             <summary>
             Defines a factory to create/retrieve work flow items.
