@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -21,16 +21,6 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Diamond.Core.Rules
 {
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <typeparam name="TItem"></typeparam>
-	/// <typeparam name="TResult"></typeparam>
-	[Obsolete("Use RuleTemplate instead.")]
-	public abstract class Rule<TItem, TResult> : RuleTemplate<TItem, TResult>
-	{
-	}
-
 	/// <summary>
 	/// 
 	/// </summary>

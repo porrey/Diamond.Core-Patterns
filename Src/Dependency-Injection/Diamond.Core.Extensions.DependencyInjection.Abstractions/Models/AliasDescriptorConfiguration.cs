@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -14,26 +14,27 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
-using Microsoft.Extensions.Logging;
-
-namespace Diamond.Core.AspNetCore.DoAction
+namespace Diamond.Core.Extensions.DependencyInjection
 {
 	/// <summary>
-	/// This class has been deprecated and should not be used. The <see cref="DoActionTemplate{TInputs, TResult}"/>
-	/// class should be used instead.
+	/// 
 	/// </summary>
-	[Obsolete("Use DoActionTemplate instead.")]
-	public class DoAction<TInputs, TResult> : DoActionTemplate<TInputs, TResult>
+	public class AliasDescriptorConfiguration
 	{
 		/// <summary>
-		/// Creates an instance of <see cref="DoAction{TInputs, TResult}"/> with the specified logger instance.
+		/// Gets or sets the key for the alias.
 		/// </summary>
-		/// <param name="logger">An instance of a logger.</param>
-		public DoAction(ILogger<DoAction<TInputs, TResult>> logger)
-			: base(logger)
-		{
-			this.Logger = logger;
-		}
+		public virtual string Key { get; set; }
+
+		/// <summary>
+		/// Gets or sets the type definition for the alias.
+		/// </summary>
+		public virtual string TypeDefinition { get; set; }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AliasDescriptorConfiguration"/> class.
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString() => $"{this.Key} => {this.TypeDefinition}";
 	}
 }

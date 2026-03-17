@@ -36,12 +36,6 @@
             Defines a generic specification.
             </summary>
         </member>
-        <member name="P:Diamond.Core.Specification.ISpecification.Name">
-            <summary>
-            Gets a unique name to distinguish this specification from others. The factory can
-            use this name when retrieving a specification.
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Specification.ISpecificationFactory">
             <summary>
             Defines a factory that can be used to retrieve a specific instance of
@@ -54,7 +48,7 @@
             Gets a specification with the given name return type TResult.
             </summary>
             <typeparam name="TResult">The return type of the specification result.</typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns>An instance of the requested specification.</returns>
         </member>
         <member name="M:Diamond.Core.Specification.ISpecificationFactory.GetAsync``2(System.String)">
@@ -64,7 +58,7 @@
             </summary>
             <typeparam name="TParameter">The type of the filter used in the specification.</typeparam>
             <typeparam name="TResult">The return type of the specification result.</typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns>An instance of the requested specification.</returns>
         </member>
         <member name="T:Diamond.Core.Specification.ISpecification`2">

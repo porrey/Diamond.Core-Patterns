@@ -160,7 +160,7 @@
         </member>
         <member name="M:Diamond.Core.Repository.ServiceCollectionDecorator.UseRepositoryFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
@@ -284,7 +284,7 @@
             
             </summary>
             <typeparam name="TInterface"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Repository.RepositoryFactory.GetReadOnlyAsync``1">
@@ -299,7 +299,7 @@
             
             </summary>
             <typeparam name="TInterface"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Repository.RepositoryFactory.GetWritableAsync``1">
@@ -314,7 +314,7 @@
             
             </summary>
             <typeparam name="TInterface"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Repository.RepositoryFactory.GetQueryableAsync``1">
@@ -329,7 +329,7 @@
             
             </summary>
             <typeparam name="TInterface"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.Repository.Entity">

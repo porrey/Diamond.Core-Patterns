@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31912.275
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11605.240
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Decorator", "Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj", "{33C88E6C-2FBA-4999-A989-061804C71BEC}"
 EndProject
@@ -148,6 +148,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.AspNetCore.Hosting", "AspNetCore\Diamond.Core.AspNetCore.Hosting\Diamond.Core.AspNetCore.Hosting.csproj", "{B5C7CA92-06AE-4EAE-A639-1BC4E85D9FF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.System.Base36", "System\Diamond.Core.System.Base36\Diamond.Core.System.Base36.csproj", "{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.LoadServices", "Examples\Diamond.Core.Example.LoadServices\Diamond.Core.Example.LoadServices.csproj", "{C18D870E-4881-B959-31E8-841DC28C8924}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.WorkFlow.Steps", "Workflow\Diamond.Core.WorkFlow.Steps\Diamond.Core.WorkFlow.Steps.csproj", "{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.KeyedServices", "Examples\Diamond.Core.Example.KeyedServices\Diamond.Core.Example.KeyedServices.csproj", "{AA24249F-D553-E30D-4F2B-ADAB557E81B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -387,6 +393,18 @@ Global
 		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C18D870E-4881-B959-31E8-841DC28C8924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C18D870E-4881-B959-31E8-841DC28C8924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C18D870E-4881-B959-31E8-841DC28C8924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C18D870E-4881-B959-31E8-841DC28C8924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA24249F-D553-E30D-4F2B-ADAB557E81B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA24249F-D553-E30D-4F2B-ADAB557E81B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA24249F-D553-E30D-4F2B-ADAB557E81B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA24249F-D553-E30D-4F2B-ADAB557E81B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -449,6 +467,9 @@ Global
 		{24455A36-4E64-42BD-BBD1-FE5882C21953} = {4949C8F2-68C0-4881-BB72-6DAFA4E07FED}
 		{B5C7CA92-06AE-4EAE-A639-1BC4E85D9FF0} = {1C7989E4-B881-476E-ACE9-0421C9726FE1}
 		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
+		{C18D870E-4881-B959-31E8-841DC28C8924} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
+		{AA24249F-D553-E30D-4F2B-ADAB557E81B5} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

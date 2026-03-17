@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -24,17 +24,17 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	/// <remarks>This class extends <see cref="FileConfigurationSource"/> to enable configuration data to be sourced
 	/// from services. It is typically used in scenarios where configuration settings are dynamically provided by service
 	/// dependencies.</remarks>
-	public class ServicesConfigurationSource : FileConfigurationSource
+	public class ServicesConfigurationFileSource : FileConfigurationSource
 	{
 		/// <summary>
-		/// Builds the <see cref="ServicesConfigurationProvider"/> for this source.
+		/// Builds the <see cref="ServicesConfigurationFolderProvider"/> for this source.
 		/// </summary>
 		/// <param name="builder">The <see cref="IConfigurationBuilder"/>.</param>
-		/// <returns>A <see cref="ServicesConfigurationSource"/></returns>
+		/// <returns>A <see cref="ServicesConfigurationFileSource"/></returns>
 		public override IConfigurationProvider Build(IConfigurationBuilder builder)
 		{
 			this.EnsureDefaults(builder);
-			return new ServicesConfigurationProvider(this);
+			return new ServicesConfigurationFileProvider(this);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -15,8 +15,6 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 // 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -55,9 +53,9 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// </summary>
 		/// <typeparam name="TInputs">The type of input defined by the action.</typeparam>
 		/// <typeparam name="TResult">The result type defined by the action.</typeparam>
-		/// <param name="actionKey">A unique key used to identify a specific action.</param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string actionKey)
+		public virtual Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string serviceKey)
 		{
 			IDoAction<TInputs, TResult> returnValue = null;
 
@@ -65,51 +63,40 @@ namespace Diamond.Core.AspNetCore.DoAction
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IDoAction<TInputs, TResult>);
-			this.Logger.LogDebug("Finding an IDoAction of type '{targetType}' and action key of '{actionKey}'.", targetType.Name, actionKey);
+			this.Logger.LogDebug("Finding an IDoAction of type '{targetType}' and Service Key of '{serviceKey}'.", targetType.Name, serviceKey);
 
 			//
 			// Get all decorators from the container of
 			// type IDecorator<TItem>.
 			//
-			IEnumerable<IDoAction> items = this.ServiceProvider.GetRequiredService<IEnumerable<IDoAction>>();
-			IDoAction doAction = items.Where(t => t.ActionKey == actionKey).FirstOrDefault();
-			IEnumerable<IDoAction> unusedItems = items.Except(new IDoAction[] { doAction });
+			IDoAction item = this.ServiceProvider.GetRequiredKeyedService<IDoAction>(serviceKey);
 
 			//
-			// Within the list, find the target decorator.
+			// Check if a service was found.
 			//
-			if (doAction != null)
+			if (item != null)
 			{
-				if (targetType.IsInstanceOfType(doAction))
+				if (targetType.IsInstanceOfType(item))
 				{
-					this.Logger.LogDebug("IDecorator of type '{targetType}' and action key of '{actionKey}' was found.", targetType.Name, actionKey);
-					returnValue = (IDoAction<TInputs, TResult>)doAction;
-
-					//
-					// Attempt to dispose the unused items.
-					//
-					foreach (IDoAction unusedItem in unusedItems)
-					{
-						this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", unusedItem.GetType().Name);
-						unusedItem.TryDispose();
-					}
+					this.Logger.LogDebug("IDecorator of type '{targetType}' and Service Key of '{serviceKey}' was found.", targetType.Name, serviceKey);
+					returnValue = (IDoAction<TInputs, TResult>)item;
 				}
 				else
 				{
 					//
 					// Dispose the item (if it supports it).
 					//
-					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", doAction.GetType().Name);
-					doAction.TryDispose();
+					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					item.TryDispose();
 
-					this.Logger.LogError("IDecorator of type '{targetType}' and action key of '{actionKey}' was NOT found. Throwing exception...", targetType.Name, actionKey);
-					throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
+					this.Logger.LogError("IDecorator of type '{targetType}' and Service Key of '{serviceKey}' was NOT found.", targetType.Name, serviceKey);
+					throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), serviceKey);
 				}
 			}
 			else
 			{
-				this.Logger.LogError("IDecorator of type '{targetType}' and action key of '{actionKey}' was NOT found. Throwing exception...", targetType.Name, actionKey);
-				throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), actionKey);
+				this.Logger.LogError("IDecorator of type '{targetType}' and Service Key of '{serviceKey}' was NOT found.", targetType.Name, serviceKey);
+				throw new DoActionNotFoundException(typeof(TInputs), typeof(TResult), serviceKey);
 			}
 
 			return Task.FromResult(returnValue);

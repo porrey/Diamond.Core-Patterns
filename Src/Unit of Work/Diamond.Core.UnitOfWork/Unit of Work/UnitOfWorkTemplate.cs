@@ -24,17 +24,11 @@ namespace Diamond.Core.UnitOfWork
 		/// </summary>
 		public UnitOfWorkTemplate()
 		{
-			this.Name = this.GetType().Name.Replace("UnitOfWork", "");
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		protected virtual ILogger<UnitOfWorkTemplate> Logger { get; set; } = new NullLogger<UnitOfWorkTemplate>();
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual string Name { get; set; }
 	}
 }

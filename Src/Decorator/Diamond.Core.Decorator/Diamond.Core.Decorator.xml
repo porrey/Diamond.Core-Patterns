@@ -34,11 +34,6 @@
             
             </summary>
         </member>
-        <member name="P:Diamond.Core.Decorator.DecoratorTemplate`2.Name">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:Diamond.Core.Decorator.DecoratorTemplate`2.TakeActionAsync">
             <summary>
             
@@ -71,7 +66,7 @@
         </member>
         <member name="M:Diamond.Core.Decorator.ServiceCollectionDecorator.UseDecoratorFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
@@ -148,7 +143,7 @@
             </summary>
             <typeparam name="TDecoratedItem"></typeparam>
             <typeparam name="TResult"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="M:Diamond.Core.Decorator.DecoratorFactory.GetAsync``2(System.String,``0)">
@@ -157,7 +152,7 @@
             </summary>
             <typeparam name="TDecoratedItem"></typeparam>
             <typeparam name="TResult"></typeparam>
-            <param name="name"></param>
+            <param name="serviceKey"></param>
             <param name="item"></param>
             <returns></returns>
         </member>

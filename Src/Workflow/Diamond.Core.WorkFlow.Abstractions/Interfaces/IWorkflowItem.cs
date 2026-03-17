@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -36,12 +36,6 @@ namespace Diamond.Core.Workflow
 		string Name { get; set; }
 
 		/// <summary>
-		/// A unique name that groups one or more steps together for a given
-		/// work flow.
-		/// </summary>
-		string Group { get; set; }
-
-		/// <summary>
 		/// Defines the weight applied to this step when showing progress. The default
 		/// is 1 which makes it "evenly" weighted. A smaller value indicates this
 		/// step should have less of an impact on the progress *takes less time to complete)
@@ -64,15 +58,5 @@ namespace Diamond.Core.Workflow
 		/// Performs the work for the specified step.
 		/// </summary>
 		Task<bool> ExecuteStepAsync(IContext context);
-
-		/// <summary>
-		/// Indicates whether or not a step should be executed during a work flow.
-		/// his is used by conditional work flow managers where every step in the
-		/// work flow is executed from start to finish unless tis property returns
-		/// false. This property may be ignored by certain work flow managers.
-		/// </summary>
-		/// <param name="context"></param>
-		/// <returns></returns>
-		Task<bool> ShouldExecuteAsync(IContext context);
 	}
 }

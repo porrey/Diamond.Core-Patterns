@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -54,9 +54,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// Represents a collection of aliases mapped by their unique string identifiers.
 		/// </summary>
-		/// <remarks>This dictionary is used to store and retrieve <see cref="Alias"/> objects based on their
+		/// <remarks>This dictionary is used to store and retrieve <see cref="AliasDescriptorConfiguration"/> objects based on their
 		/// associated string keys. It is initialized as an empty dictionary and is intended for internal use only.</remarks>
-		private static IDictionary<string, Alias> AliasList = new Dictionary<string, Alias>();
+		private static IDictionary<string, AliasDescriptorConfiguration> AliasList = new Dictionary<string, AliasDescriptorConfiguration>();
 
 		/// <summary>
 		/// Updates the internal alias dictionary with the specified collection of aliases.
@@ -64,10 +64,10 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <remarks>This method converts the provided collection of aliases into a dictionary, using each alias's key
 		/// as the dictionary key. If duplicate keys are detected, a <see cref="DuplicateAliasException"/> is thrown,
 		/// providing details about the conflicting keys.</remarks>
-		/// <param name="aliasList">A collection of <see cref="Alias"/> objects to be added to the alias dictionary. Each alias must have a unique
+		/// <param name="aliasList">A collection of <see cref="AliasDescriptorConfiguration"/> objects to be added to the alias dictionary. Each alias must have a unique
 		/// key.</param>
 		/// <exception cref="DuplicateAliasException">Thrown when the collection contains duplicate keys, indicating that multiple aliases share the same key.</exception>
-		public static void Set(this IEnumerable<Alias> aliasList)
+		public static void Set(this IEnumerable<AliasDescriptorConfiguration> aliasList)
 		{
 			try
 			{
@@ -288,17 +288,37 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				if (item.Properties == null && !dependencyProperties.Any())
 				{
-					//
-					// Standard definition.
-					//
-					returnValue = ServiceDescriptor.Describe(serviceType, implementationType, lifetime);
+					if (!string.IsNullOrWhiteSpace(item.ServiceKey))
+					{
+						//
+						// This is a standard definition with service key; create a standard descriptor.
+						//
+						returnValue = ServiceDescriptor.DescribeKeyed(serviceType, item.ServiceKey, implementationType, lifetime);
+					}
+					else
+					{
+						//
+						// This is a standard definition with no service key; create a standard descriptor.
+						//
+						returnValue = ServiceDescriptor.Describe(serviceType, implementationType, lifetime);
+					}
 				}
 				else
 				{
-					//
-					// Factory based definition.
-					//
-					returnValue = ServiceDescriptor.Describe(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp), lifetime);
+					if (!string.IsNullOrWhiteSpace(item.ServiceKey))
+					{
+						//
+						// Factory based keyed definition.
+						//
+						returnValue = ServiceDescriptor.DescribeKeyed(serviceType, item.ServiceKey, (sp, k) => (new DependencyFactory(k, implementationType, item, dependencyProperties)).GetInstance(sp), lifetime);
+					}
+					else
+					{
+						//
+						// Factory based definition.
+						//
+						returnValue = ServiceDescriptor.Describe(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp), lifetime);
+					}
 				}
 			}
 
@@ -329,7 +349,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				Type serviceType = null;
 				Type implementationType = null;
-				IEnumerable<DependencyInfo> dependenctProperties = Array.Empty<DependencyInfo>();
+				IEnumerable<DependencyInfo> dependenctProperties = [];
 
 				try
 				{
@@ -376,7 +396,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 					// Get the dependency factory and assign the properties.
 					//
 					IDependencyFactory dependencyFactory = (IDependencyFactory)ActivatorUtilities.CreateInstance(sp, factoryType, implementationType, item);
-					DependencyFactory.AssignProperties(item.Properties, implementationType, dependencyFactory);
+					DependencyFactory.AssignProperties(item.Properties, item.ArrayProperties, implementationType, dependencyFactory);
 
 					//
 					// Create the context and set the dependencies.

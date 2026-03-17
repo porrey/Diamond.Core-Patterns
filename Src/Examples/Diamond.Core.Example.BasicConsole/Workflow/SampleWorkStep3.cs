@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -38,7 +38,6 @@ namespace Diamond.Core.Example.BasicConsole
 		}
 
 		public override string Name => $"Sample Step {this.Ordinal}";
-		public override string Group => WellKnown.Workflow.SampleWorkflow;
 		public override int Ordinal => 3;
 		protected IRepositoryFactory RepositoryFactory { get; set; }
 		protected IUnitOfWorkFactory UnitOfWorkFactory { get; set; }

@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -24,10 +24,9 @@ namespace Diamond.Core.Workflow
 	public interface IWorkflowManager
 	{
 		/// <summary>
-		/// The group name used to determine the work flow
-		/// items that are part of this work flow.
+		/// Gets or sets the unique key used to identify the service instance.
 		/// </summary>
-		string Group { get; set; }
+		string ServiceKey { get; set; }
 
 		/// <summary>
 		/// 

@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -89,31 +89,11 @@ namespace Diamond.Core.Rules
 			// Get all decorators from the container of
 			// type IDecorator<TItem>.
 			//
-			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
+			IEnumerable<IRule> items = this.ServiceProvider.GetKeyedService<IEnumerable<IRule>>(group);
 
-			IEnumerable<IRule> groupItems = Array.Empty<IRule>();
-			if (!string.IsNullOrEmpty(group))
+			if (items.Any())
 			{
-				groupItems = items.Where(t => t.Group == group);
-			}
-
-			//
-			// Get the non matching items.
-			//
-			IEnumerable<IRule> nonMatchingItems = items.Except(groupItems);
-
-			//
-			// Attempt to dispose the unused items.
-			//
-			foreach (IRule nonMatchingItem in nonMatchingItems)
-			{
-				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
-				nonMatchingItem.TryDispose();
-			}
-
-			if (groupItems.Any())
-			{
-				foreach (IRule item in groupItems)
+				foreach (IRule item in items)
 				{
 					if (targetType.IsInstanceOfType(item))
 					{
@@ -122,7 +102,8 @@ namespace Diamond.Core.Rules
 					else
 					{
 						//
-						// Dispose the item (if it supports it).
+						// Dispose the item (if it supports it). This should be rare but will
+						// happen if the developer mis-configures the app.
 						//
 						this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
 						item.TryDispose();
@@ -161,45 +142,33 @@ namespace Diamond.Core.Rules
 		/// <typeparam name="TItem">The type of the model being validated.</typeparam>
 		/// <typeparam name="TResult">The type of the model being validated.</typeparam>
 		/// <returns>A list of <see cref="IRule"/> instances.</returns>
-		public virtual Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>(string group)
+		public virtual Task<IEnumerable<IRule<TItem, TResult>>> GetAllAsync<TItem, TResult>(string serviceKey)
 		{
-			IList<IRule<TItem, TResult>> returnValue = new List<IRule<TItem, TResult>>();
+			IList<IRule<TItem, TResult>> returnValue = [];
 
 			//
-			// Get the decorator type being requested.
+			// Validate the service key.
 			//
-			Type targetType = typeof(IRule<TItem, TResult>);
-			this.Logger.LogDebug("Finding Rules with group '{group}' and Target Type '{name}'.", group, targetType.Name);
-
-			//
-			// Get all decorators from the container of
-			// type IDecorator<TItem>.
-			//
-			IEnumerable<IRule> items = this.ServiceProvider.GetService<IEnumerable<IRule>>();
-
-			IEnumerable<IRule> groupItems = Array.Empty<IRule>();
-			if (!string.IsNullOrEmpty(group))
+			if (string.IsNullOrWhiteSpace(serviceKey))
 			{
-				groupItems = items.Where(t => t.Group == group);
+				this.Logger.LogDebug("The service key is null or whitespace.");
+				throw new ArgumentException("The service key cannot be null or whitespace.", nameof(serviceKey));
 			}
 
 			//
-			// Get the non matching items.
+			// Get all rules from the container of type IRule with the specified service key.
 			//
-			IEnumerable<IRule> nonMatchingItems = items.Except(groupItems);
-
-			//
-			// Attempt to dispose the unused items.
-			//
-			foreach (IRule nonMatchingItem in nonMatchingItems)
-			{
-				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
-				nonMatchingItem.TryDispose();
-			}
+			IEnumerable<IRule> items = this.ServiceProvider.GetKeyedService<IEnumerable<IRule>>(serviceKey);
 
 			if (items.Any())
 			{
-				this.Logger.LogDebug("{count} Rules with group '{group}' and Target Type '{targetType}' were found.", items.Count(), group, targetType.Name);
+				this.Logger.LogDebug("{count} Rules with Service Key '{serviceKey}' were found.", items.Count(), serviceKey);
+
+				//
+				// Get the decorator type being requested.
+				//
+				Type targetType = typeof(IRule<TItem, TResult>);
+				this.Logger.LogDebug("Filtering Rules with Target Type '{name}'.", targetType.Name);
 
 				foreach (IRule item in items)
 				{
@@ -209,22 +178,19 @@ namespace Diamond.Core.Rules
 					}
 					else
 					{
+						//
+						// Dispose the item (if it supports it). This should be rare but will
+						// happen if the developer mis-configures the app.
+						//
+						this.Logger.LogError("Item '{item}' is not of the expected type '{name}'. Attempting to dispose.", item.GetType().Name, targetType.Name);
 						item.TryDispose();
 					}
 				}
 			}
 			else
 			{
-				this.Logger.LogDebug("No Rules were found with group '{group}' and Target Type '{name}'. Throwing exception...", group, targetType.Name);
-
-				if (!string.IsNullOrWhiteSpace(group))
-				{
-					throw new RulesNotFoundException<TItem>(group);
-				}
-				else
-				{
-					throw new RulesNotFoundException<TItem>();
-				}
+				this.Logger.LogDebug("No Rules were found with Service Key '{serviceKey}'.", serviceKey);
+				throw new RulesNotFoundException<TItem>(serviceKey);
 			}
 
 			return Task.FromResult<IEnumerable<IRule<TItem, TResult>>>(returnValue);
@@ -234,26 +200,24 @@ namespace Diamond.Core.Rules
 		/// 
 		/// </summary>
 		/// <typeparam name="TItem"></typeparam>
-		/// <param name="group"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual async Task<string> EvaluateAsync<TItem>(string group, TItem item)
+		public virtual async Task<string> EvaluateAsync<TItem>(string serviceKey, TItem item)
 		{
 			string returnValue = string.Empty;
 
-			this.Logger.LogDebug("Retrieving rules to validate shipment.");
-			IEnumerable<IRule<TItem, IRuleResult>> rules = await this.GetAllAsync<TItem, IRuleResult>(group);
+			IEnumerable<IRule<TItem, IRuleResult>> rules = await this.GetAllAsync<TItem, IRuleResult>(serviceKey);
 
 			//
 			// Execute the specification to get the list of qualified widgets.
 			//
-			this.Logger.LogDebug("Executing rules on shipment.");
-			IEnumerable<IRuleResult> results = rules.Select(t => t.ValidateAsync(item).Result).ToArray();
+			IEnumerable<IRuleResult> results = [.. rules.Select(t => t.ValidateAsync(item).Result)];
 
 			//
 			// Compile a list of messages.
 			//
-			IEnumerable<IRuleResult> messages = results.Where(t => !t.Passed).ToArray();
+			IEnumerable<IRuleResult> messages = [.. results.Where(t => !t.Passed)];
 
 			//
 			// Join the errors into a single string.
@@ -261,17 +225,6 @@ namespace Diamond.Core.Rules
 			returnValue = string.Join(" ", messages.Select(t => t.ErrorMessage));
 
 			return returnValue;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <typeparam name="TItem"></typeparam>
-		/// <param name="item"></param>
-		/// <returns></returns>
-		public virtual Task<string> EvaluateAsync<TItem>(TItem item)
-		{
-			return this.EvaluateAsync(null, item);
 		}
 	}
 }

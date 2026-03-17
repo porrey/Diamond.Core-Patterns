@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -65,9 +65,9 @@ namespace Diamond.Core.Decorator
 		/// </summary>
 		/// <typeparam name="TDecoratedItem"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name)
+		public virtual Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string serviceKey)
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
 
@@ -75,26 +75,20 @@ namespace Diamond.Core.Decorator
 			// Get the decorator type being requested.
 			//
 			Type targetType = typeof(IDecorator<TDecoratedItem, TResult>);
-			this.Logger.LogDebug("Finding a Decorator with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
+			this.Logger.LogDebug("Finding a Service Key '{serviceKey}' and Target Type '{targetType}'.", serviceKey, targetType.Name);
 
 			//
 			// Get all decorators from the container of
 			// type IDecorator<TParameter, TResult>.
 			//
-			IEnumerable<IDecorator> items = this.ServiceProvider.GetService<IEnumerable<IDecorator>>();
-			IEnumerable<IDecorator> matchingItems = items.Where(t => t.Name == name);
-			IEnumerable<IDecorator> nonMatchingItems = items.Except(matchingItems);
-			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
+			IDecorator item = this.ServiceProvider.GetKeyedService<IDecorator>(serviceKey);
 
-			//
-			// Within the list, find the target Decorator.
-			//
-			foreach (IDecorator item in matchingItems)
+			if (item != null)
 			{
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (IDecorator<TDecoratedItem, TResult>)item;
-					this.Logger.LogDebug("The Decorator key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
+					this.Logger.LogDebug("The Decorator key '{name}' and Target Type '{targetType}' was found.", serviceKey, targetType.Name);
 				}
 				else
 				{
@@ -105,23 +99,10 @@ namespace Diamond.Core.Decorator
 					item.TryDispose();
 				}
 			}
-
-			//
-			// Attempt to dispose the unused items.
-			//
-			foreach (IDecorator nonMatchingItem in nonMatchingItems)
+			else
 			{
-				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
-				nonMatchingItem.TryDispose();
-			}
-
-			//
-			// Check the result.
-			//
-			if (returnValue == null)
-			{
-				this.Logger.LogDebug("The Decorator key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
-				throw new DecoratorNotFoundException<TDecoratedItem, TResult>(name);
+				this.Logger.LogDebug("The Decorator key '{name}' and Target Type '{targetType}' was NOT found.", serviceKey, targetType.Name);
+				throw new DecoratorNotFoundException<TDecoratedItem, TResult>(serviceKey);
 			}
 
 			return Task.FromResult(returnValue);
@@ -132,10 +113,10 @@ namespace Diamond.Core.Decorator
 		/// </summary>
 		/// <typeparam name="TDecoratedItem"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey"></param>
 		/// <param name="item"></param>
 		/// <returns></returns>
-		public virtual async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item)
+		public virtual async Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string serviceKey, TDecoratedItem item)
 		{
 			IDecorator<TDecoratedItem, TResult> returnValue = null;
 
@@ -150,7 +131,7 @@ namespace Diamond.Core.Decorator
 			//
 			// Get the decorator.
 			//
-			returnValue = await this.GetAsync<TDecoratedItem, TResult>(name);
+			returnValue = await this.GetAsync<TDecoratedItem, TResult>(serviceKey);
 
 			//
 			// Set the instance.

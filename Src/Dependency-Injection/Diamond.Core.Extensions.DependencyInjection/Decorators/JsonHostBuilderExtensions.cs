@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -78,10 +78,10 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				// Get all of the services defined in the configuration.
 				//
-				IList<ServiceDescriptorConfiguration> items = new List<ServiceDescriptorConfiguration>();
+				IList<ServiceDescriptorConfiguration> items = [];
 				configuration.Bind("services", items);
 
-				if (items.Count() == 1)
+				if (items.Count == 1)
 				{
 					logger.LogDebug("There was {count} service found in JSON configuration file(s).", items.Count());
 				}
@@ -99,9 +99,9 @@ namespace Diamond.Core.Extensions.DependencyInjection
 
 					if (sd != null)
 					{
+						services.Add(sd);
 						string implementationType = sd.ImplementationType != null ? sd.ImplementationType.FullName : $"{nameof(DependencyFactory)}<{item.ImplementationType}>";
 						logger.LogDebug("Adding service descriptor from JSON configuration for '{serviceType}' implemented by '{implementationType}' of type '{lifetime}'.", sd.ServiceType.FullName, implementationType, item.Lifetime);
-						services.Add(sd);
 					}
 					else
 					{
@@ -142,10 +142,10 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				// Get configured aliases.
 				//
-				IList<Alias> aliases = new List<Alias>();
+				IList<AliasDescriptorConfiguration> aliases = [];
 				configuration.Bind("aliases", aliases);
 
-				if (aliases.Count() == 1)
+				if (aliases.Count == 1)
 				{
 					logger.LogDebug("There was {count} alias found in JSON configuration file(s).", aliases.Count());
 				}
@@ -188,7 +188,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				//
 				// Get all of the services defined in the configuration.
 				//
-				IList<ServiceDescriptorConfiguration> hostedItems = new List<ServiceDescriptorConfiguration>();
+				IList<ServiceDescriptorConfiguration> hostedItems = [];
 				configuration.Bind("hostedServices", hostedItems);
 
 				foreach (ServiceDescriptorConfiguration hostedItem in hostedItems)

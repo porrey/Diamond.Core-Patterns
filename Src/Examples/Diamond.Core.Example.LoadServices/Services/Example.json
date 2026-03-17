@@ -1,0 +1,21 @@
+{
+	"aliases": [
+		{
+			"Key": "ISample",
+			"TypeDefinition": "Diamond.Core.Example.LoadServices.ISample, LoadServices"
+		}
+	],
+	"services": [
+		{
+			"ServiceType": "<ISample>",
+			"ImplementationType": "Diamond.Core.Example.LoadServices.Sample1, LoadServices",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceKey": "Sample2",
+			"ServiceType": "<ISample>",
+			"ImplementationType": "Diamond.Core.Example.LoadServices.Sample2, LoadServices",
+			"Lifetime": "Transient"
+		}
+	]
+}

@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -28,8 +28,8 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// </summary>
 		/// <typeparam name="TInputs">The inputs required for the action handler.</typeparam>
 		/// <typeparam name="TResult">The type of the result returned by the action.</typeparam>
-		/// <param name="actionKey">The unique name of the action.</param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns>The result of the action.</returns>
-		Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string actionKey);
+		Task<IDoAction<TInputs, TResult>> GetAsync<TInputs, TResult>(string serviceKey);
 	}
 }

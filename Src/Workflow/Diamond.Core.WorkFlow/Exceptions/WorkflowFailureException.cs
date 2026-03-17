@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -19,16 +19,22 @@ using System;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// Generic error for a missing context property.
+	/// Represents an exception that is thrown when a workflow fails at a specific step.
 	/// </summary>
+	/// <remarks>This exception provides information about the workflow step where the failure occurred, including
+	/// the step name and number. The underlying cause of the failure is available in the inner exception.</remarks>
 	public class WorkflowFailureException : WorkflowException
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the WorkflowFailureException class with a specified inner exception, step name, and
+		/// step number indicating where the workflow failed.
 		/// </summary>
-		/// <param name="innerException"></param>
-		/// <param name="stepName"></param>
-		/// <param name="stepNumber"></param>
+		/// <remarks>Use this constructor to provide detailed context about workflow failures, including the specific
+		/// step and underlying exception. The step information can help diagnose and resolve issues in complex
+		/// workflows.</remarks>
+		/// <param name="innerException">The exception that caused the workflow to fail. Cannot be null.</param>
+		/// <param name="stepName">The name of the workflow step where the failure occurred.</param>
+		/// <param name="stepNumber">The zero-based index of the workflow step where the failure occurred.</param>
 		public WorkflowFailureException(Exception innerException, string stepName, int stepNumber)
 			: base($"The work flow failed at step '{stepName}' [{stepNumber}]. See the inner exception for details.", innerException)
 		{

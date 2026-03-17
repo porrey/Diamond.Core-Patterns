@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -22,22 +22,29 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// This class is the template for a workflow step.
+	/// Represents an abstract template for a workflow item, providing base functionality for execution, logging, grouping,
+	/// and ordering within a workflow. Derived classes implement specific step behavior by overriding execution methods.
 	/// </summary>
+	/// <remarks>This class defines the structure and lifecycle for workflow steps, including preparation,
+	/// conditional execution, post-execution actions, and error handling. It is intended to be inherited by concrete
+	/// workflow item implementations. The workflow manager typically orchestrates the execution of these items. Thread
+	/// safety depends on the implementation of derived classes and the logger provided.</remarks>
 	public abstract class WorkflowItemTemplate : IWorkflowItem
 	{
 		/// <summary>
-		/// Creates a default instance of <see cref="WorkflowItemTemplate"/>.
+		/// Initializes a new instance of the WorkflowItemTemplate class.
 		/// </summary>
+		/// <remarks>The Name property is set to the class name with the 'Step' suffix removed during initialization.
+		/// This can be useful for identifying workflow items by their template type.</remarks>
 		public WorkflowItemTemplate()
 		{
 			this.Name = this.GetType().Name.Replace("Step", "");
 		}
 
 		/// <summary>
-		/// Creates an instance of <see cref="WorkflowItemTemplate"/> with the given logger.
+		/// Initializes a new instance of the WorkflowItemTemplate class using the specified logger for diagnostic output.
 		/// </summary>
-		/// <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
+		/// <param name="logger">The logger instance used to record diagnostic information and operational events for the WorkflowItemTemplate.</param>
 		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger)
 			: this()
 		{
@@ -45,17 +52,17 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// Creates an instance of <see cref="WorkflowItemTemplate"/> with the given logger, name, group and ordinal.
+		/// Initializes a new instance of the WorkflowItemTemplate class with the specified name, group, and ordinal value.
 		/// </summary>
-		/// <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
-		/// <param name="name">The name of the step.</param>
-		/// <param name="group">The group this step executes in.</param>
-		/// <param name="ordinal">The order in the group this step executes.</param>
-		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal)
+		/// <param name="logger">The logger used for logging diagnostic and operational information within the WorkflowItemTemplate instance.
+		/// Cannot be null.</param>
+		/// <param name="name">The name assigned to the workflow item template. Cannot be null or empty.</param>
+		/// <param name="ordinal">The ordinal value that determines the order of the workflow item template within its group. Must be a non-negative
+		/// integer.</param>
+		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger, string name, int ordinal)
 			: this(logger)
 		{
 			this.Name = name;
-			this.Group = group;
 			this.Ordinal = ordinal;
 		}
 
@@ -65,11 +72,10 @@ namespace Diamond.Core.Workflow
 		/// </summary>
 		/// <param name="logger">An instance of the logger used by this step to create log entries during execution.</param>
 		/// <param name="name">The name of the step.</param>
-		/// <param name="group">The group this step executes in.</param>
 		/// <param name="ordinal">The order in the group this step executes.</param>
 		/// <param name="alwaysExecute">Sets the <see cref="AlwaysExecute"/></param> property.
-		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal, bool alwaysExecute)
-			: this(logger, name, group, ordinal)
+		public WorkflowItemTemplate(ILogger<WorkflowItemTemplate> logger, string name, int ordinal, bool alwaysExecute)
+			: this(logger, name, ordinal)
 		{
 			this.AlwaysExecute = alwaysExecute;
 		}
@@ -80,25 +86,19 @@ namespace Diamond.Core.Workflow
 		public virtual string Name { get; set; }
 
 		/// <summary>
-		/// Gets/sets the group this item belongs to. Items are grouped together
-		/// so that the WorkflowManager can gather the steps into a workable series.
-		/// </summary>
-		public virtual string Group { get; set; }
-
-		/// <summary>
 		/// The order this item appears in the execution steps.
 		/// </summary>
 		public virtual int Ordinal { get; set; }
 
 		/// <summary>
-		/// Gets/sets avlue to indicate that this step should always execute. This does not
+		/// Gets/sets value to indicate that this step should always execute. This does not
 		/// override <see cref="OnShouldExecuteAsync"/> and is used
 		/// by some workflow managers but not all.
 		/// </summary>
 		public virtual bool AlwaysExecute { get; set; } = false;
 
 		/// <summary>
-		/// Gets/sets a weigh used for determining prioirty of this step. This value is used
+		/// Gets/sets a weigh used for determining priority of this step. This value is used
 		/// by some workflow managers but not all.
 		/// </summary>
 		public virtual double Weight { get; set; } = 1;
@@ -110,20 +110,9 @@ namespace Diamond.Core.Workflow
 		public virtual ILogger<WorkflowItemTemplate> Logger { get; set; } = new NullLogger<WorkflowItemTemplate>();
 
 		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
-		[Obsolete("Please use OnShouldExecuteAsync().")]
-		public virtual Task<bool> ShouldExecuteAsync(IContext context)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <summary>
 		/// Performs all of the steps of this step's execution including calls
 		/// to <see cref="OnPrepareForExecutionAsync"/>, <see cref="OnShouldExecuteAsync"/>
-		/// and <see cref="OnPostExecutionAsync"/>. This is usually called by the worflow manager.
+		/// and <see cref="OnPostExecutionAsync"/>. This is usually called by the workflow manager.
 		/// </summary>
 		/// <param name="context">The current workflow context.</param>
 		/// <returns></returns>
@@ -174,7 +163,7 @@ namespace Diamond.Core.Workflow
 		/// to prepare the step for execution.
 		/// </summary>
 		/// <param name="context">The current workflow context.</param>
-		/// <returns>Returns true if prepartion for the step execution was
+		/// <returns>Returns true if preparation for the step execution was
 		/// successful; false otherwise.</returns>
 		protected virtual Task<bool> OnPrepareForExecutionAsync(IContext context)
 		{
@@ -202,7 +191,7 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// Performs the actual work fot he step execution. This should be overwritten
+		/// Performs the actual work of the step execution. This should be overwritten
 		/// in the concrete class to perform the necessary actions.
 		/// </summary>
 		/// <param name="context">The current workflow context.</param>
@@ -216,7 +205,7 @@ namespace Diamond.Core.Workflow
 		/// Marks a step as failed and provides an error message.
 		/// </summary>
 		/// <param name="context">The current workflow context.</param>
-		/// <param name="message">The mesage that will be logged to the logging system and the workflow context.</param>
+		/// <param name="message">The message that will be logged to the logging system and the workflow context.</param>
 		protected virtual Task StepFailedAsync(IContext context, string message)
 		{
 			this.Logger.LogDebug("Workflow Step '{name}' failed: '{message}", this.Name, message);
@@ -230,7 +219,7 @@ namespace Diamond.Core.Workflow
 		/// <returns>Returns a string representation of this step.</returns>
 		public override string ToString()
 		{
-			return $"[{this.Ordinal}] {this.Name} | Group: {this.Group}";
+			return $"[{this.Ordinal}] {this.Name}";
 		}
 	}
 }

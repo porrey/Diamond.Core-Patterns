@@ -64,18 +64,6 @@
             <returns>Returns true if the model was validated successfully, and false otherwise. The string type will
             contain one or more error messages concatenated in a single string.</returns>
         </member>
-        <member name="T:Diamond.Core.AspNetCore.DoAction.DoAction`2">
-            <summary>
-            This class has been deprecated and should not be used. The <see cref="T:Diamond.Core.AspNetCore.DoAction.DoActionTemplate`2"/>
-            class should be used instead.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.AspNetCore.DoAction.DoAction`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DoAction.DoAction{`0,`1}})">
-            <summary>
-            Creates an instance of <see cref="T:Diamond.Core.AspNetCore.DoAction.DoAction`2"/> with the specified logger instance.
-            </summary>
-            <param name="logger">An instance of a logger.</param>
-        </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.DoActionController">
             <summary>
             Provides a base class for a "Do Action" controller where the action
@@ -148,7 +136,7 @@
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.ServiceCollectionDecorator.UseDofactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
@@ -196,7 +184,7 @@
             </summary>
             <typeparam name="TInputs">The type of input defined by the action.</typeparam>
             <typeparam name="TResult">The result type defined by the action.</typeparam>
-            <param name="actionKey">A unique key used to identify a specific action.</param>
+            <param name="serviceKey">The container service key.</param>
             <returns></returns>
         </member>
         <member name="T:Diamond.Core.AspNetCore.DoAction.ControllerActionResult`1">

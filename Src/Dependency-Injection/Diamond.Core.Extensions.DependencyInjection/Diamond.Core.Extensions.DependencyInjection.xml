@@ -53,6 +53,58 @@
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> to configure.</param>
             <returns>The configured <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance.</returns>
         </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions">
+            <summary>
+            Provides extension methods for converting arrays of objects to strongly typed arrays.
+            </summary>
+            <remarks>The methods in this class are intended to simplify conversion scenarios where an array of objects
+            needs to be cast or converted to a specific type. Null values and database nulls are handled according to .NET
+            conventions for default values and type compatibility. Use these extensions when working with data sources that
+            return object arrays, such as database query results.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions.ToArrayOf``1(System.Object[])">
+            <summary>
+            Converts an array of objects to an array of the specified type, handling null and database null values
+            appropriately.
+            </summary>
+            <remarks>If a value in the input array is null or DBNull.Value, it is converted to the default value of T
+            when T is a reference or nullable type. Otherwise, an exception is thrown. Values that are not already of type T
+            are converted using Convert.ChangeType with invariant culture.</remarks>
+            <typeparam name="T">The target element type for the resulting array. Must be compatible with the values in the input array.</typeparam>
+            <param name="values">The array of objects to convert. Cannot be null.</param>
+            <returns>An array of type T containing the converted values from the input array. Null and DBNull values are converted to
+            the default value of T if T is a reference or nullable type.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if the values parameter is null.</exception>
+            <exception cref="T:System.InvalidCastException">Thrown if a null or DBNull value is encountered and T is a non-nullable value type, or if a value cannot be
+            converted to type T.</exception>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions.ConvertArray(System.Object[],System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Converts an array of objects to a strongly typed array based on the element type of the specified property
+            descriptor.
+            </summary>
+            <remarks>All values are converted to the element type of the property descriptor using standard conversion
+            logic. The method requires that the property descriptor represents an array property; otherwise, an exception is
+            thrown.</remarks>
+            <param name="values">The array of values to convert. Each element will be converted to the target element type of the property
+            descriptor.</param>
+            <param name="propertyDescriptor">The property descriptor that defines the target array type and element type for conversion. Must represent an
+            array property.</param>
+            <returns>An array containing the converted values, with each element of the target type defined by the property descriptor.
+            The array will have the same length as the input values.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the specified property is not an array type or if the element type cannot be determined.</exception>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ObjectArrayExtensions.ConvertArray(System.Object[],System.Object,System.Reflection.PropertyInfo)">
+            <summary>
+            Converts the specified array of values to the element type of the given array property and assigns the resulting
+            array to the property on the provided instance.
+            </summary>
+            <param name="values">The array of values to convert and assign to the property. Each value will be converted to the property's element
+            type.</param>
+            <param name="instance">The object instance whose property will be set. Cannot be null.</param>
+            <param name="propertyInfo">The reflection information for the array property to assign. Must represent an array property and cannot be null.</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if the specified property is not an array type or if the element type of the property cannot be determined.</exception>
+        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator">
             <summary>
             Provides extension methods and utilities for configuring and creating service descriptors in dependency injection
@@ -88,17 +140,17 @@
             <summary>
             Represents a collection of aliases mapped by their unique string identifiers.
             </summary>
-            <remarks>This dictionary is used to store and retrieve <see cref="T:Diamond.Core.Extensions.DependencyInjection.Alias"/> objects based on their
+            <remarks>This dictionary is used to store and retrieve <see cref="T:Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration"/> objects based on their
             associated string keys. It is initialized as an empty dictionary and is intended for internal use only.</remarks>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.Set(System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.Alias})">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfigurationDecorator.Set(System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration})">
             <summary>
             Updates the internal alias dictionary with the specified collection of aliases.
             </summary>
             <remarks>This method converts the provided collection of aliases into a dictionary, using each alias's key
             as the dictionary key. If duplicate keys are detected, a <see cref="T:Diamond.Core.Extensions.DependencyInjection.DuplicateAliasException"/> is thrown,
             providing details about the conflicting keys.</remarks>
-            <param name="aliasList">A collection of <see cref="T:Diamond.Core.Extensions.DependencyInjection.Alias"/> objects to be added to the alias dictionary. Each alias must have a unique
+            <param name="aliasList">A collection of <see cref="T:Diamond.Core.Extensions.DependencyInjection.AliasDescriptorConfiguration"/> objects to be added to the alias dictionary. Each alias must have a unique
             key.</param>
             <exception cref="T:Diamond.Core.Extensions.DependencyInjection.DuplicateAliasException">Thrown when the collection contains duplicate keys, indicating that multiple aliases share the same key.</exception>
         </member>
@@ -204,12 +256,12 @@
             <exception cref="T:Diamond.Core.Extensions.DependencyInjection.DbContextNotFoundException">Thrown if the service type or implementation type cannot be resolved from the configuration.</exception>
             <exception cref="T:Diamond.Core.Extensions.DependencyInjection.DbContextDependencyFactoryNotFoundException">Thrown if the factory type specified in the configuration cannot be resolved.</exception>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions">
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileExtensions">
             <summary>
             Extension methods for adding the services configuration provider.
             </summary>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileExtensions.AddServicesConfigurationFile(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String)">
             <summary>
             Adds a configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> for loading service-specific
             configuration files.
@@ -218,10 +270,10 @@
             configuration building process. The configuration files in the specified folder will be loaded and merged
             into the application's configuration.</remarks>
             <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration folder will be added.</param>
-            <param name="path">The relative or absolute path to the configuration folder.</param>
+            <param name="filePath">The relative or absolute path to the configuration folder.</param>
             <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration folder.</returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileExtensions.AddServicesConfigurationFile(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean)">
             <summary>
             Adds a folder containing service configuration files to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.
             </summary>
@@ -229,12 +281,12 @@
             configuration pipeline.  Use this overload if you do not need to specify a service provider or enable file change
             reloading.</remarks>
             <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration folder will be added.</param>
-            <param name="path">The path to the folder containing the configuration files. This path can be relative or absolute.</param>
+            <param name="filePath">The path to the folder containing the configuration files. This path can be relative or absolute.</param>
             <param name="optional">A value indicating whether the configuration folder is optional.  If <see langword="true"/>, the method will not
             throw an exception if the folder does not exist.</param>
             <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration folder.</returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileExtensions.AddServicesConfigurationFile(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean,System.Boolean)">
             <summary>
             Adds a configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> for loading service-specific configuration
             files.
@@ -243,14 +295,14 @@
             structured configuration management for services. It supports optional inclusion and automatic reloading of
             configuration on file changes.</remarks>
             <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration folder will be added.</param>
-            <param name="path">The relative or absolute path to the configuration folder.</param>
+            <param name="filePath">The relative or absolute path to the configuration folder.</param>
             <param name="optional"><see langword="true"/> if the configuration folder is optional; otherwise, <see langword="false"/>. If <see
             langword="true"/>, the method will not throw an exception if the folder is missing.</param>
             <param name="reloadOnChange"><see langword="true"/> to reload the configuration if files in the folder change; otherwise, <see
             langword="false"/>.</param>
             <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration folder.</returns>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.FileProviders.IFileProvider,System.String,System.Boolean,System.Boolean)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileExtensions.AddServicesConfigurationFile(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.FileProviders.IFileProvider,System.String,System.Boolean,System.Boolean)">
             <summary>
             Adds a configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> for loading service-specific configuration
             files.
@@ -259,15 +311,15 @@
             langword="null"/>.</param>
             <param name="provider">The <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> used to access the configuration files. Can be <see langword="null"/> to use the
             default file provider.</param>
-            <param name="path">The relative path to the configuration folder. Cannot be <see langword="null"/> or whitespace.</param>
+            <param name="filePath">The relative path to the configuration folder. Cannot be <see langword="null"/> or whitespace.</param>
             <param name="optional">A value indicating whether the configuration folder is optional.  If <see langword="true"/>, the configuration
             folder is not required to exist.</param>
             <param name="reloadOnChange">A value indicating whether the configuration should automatically reload if the files in the folder change.</param>
             <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> instance with the configuration folder added.</returns>
-            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="builder"/> is <see langword="null"/> or if <paramref name="path"/> is <see
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="builder"/> is <see langword="null"/> or if <paramref name="filePath"/> is <see
             langword="null"/> or whitespace.</exception>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.Action{Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource})">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileExtensions.AddServicesConfigurationFile(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.Action{Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileSource})">
             <summary>
             Adds a configuration source for a services configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.
             </summary>
@@ -275,7 +327,81 @@
             settings. Use the <paramref name="configureSource"/> parameter to specify how the configuration source should be
             set up.</remarks>
             <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration source will be added.</param>
-            <param name="configureSource">An <see cref="T:System.Action`1"/> delegate used to configure the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource"/>.</param>
+            <param name="configureSource">An <see cref="T:System.Action`1"/> delegate used to configure the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileSource"/>.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration source.</returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderExtensions">
+            <summary>
+            Extension methods for adding the services configuration provider.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String)">
+            <summary>
+            Adds a configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> for loading service-specific
+            configuration files.
+            </summary>
+            <remarks>This method allows you to include a folder containing configuration files in the
+            configuration building process. The configuration files in the specified folder will be loaded and merged
+            into the application's configuration.</remarks>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration folder will be added.</param>
+            <param name="folderPath">The relative or absolute path to the configuration folder.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration folder.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean)">
+            <summary>
+            Adds a folder containing service configuration files to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.
+            </summary>
+            <remarks>This method allows you to include a folder of configuration files in the application's
+            configuration pipeline.  Use this overload if you do not need to specify a service provider or enable file change
+            reloading.</remarks>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration folder will be added.</param>
+            <param name="folderPath">The path to the folder containing the configuration files. This path can be relative or absolute.</param>
+            <param name="optional">A value indicating whether the configuration folder is optional.  If <see langword="true"/>, the method will not
+            throw an exception if the folder does not exist.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration folder.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Adds a configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> for loading service-specific configuration
+            files.
+            </summary>
+            <remarks>This method allows adding a folder containing configuration files to the builder, enabling
+            structured configuration management for services. It supports optional inclusion and automatic reloading of
+            configuration on file changes.</remarks>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration folder will be added.</param>
+            <param name="folderPath">The relative or absolute path to the configuration folder.</param>
+            <param name="optional"><see langword="true"/> if the configuration folder is optional; otherwise, <see langword="false"/>. If <see
+            langword="true"/>, the method will not throw an exception if the folder is missing.</param>
+            <param name="reloadOnChange"><see langword="true"/> to reload the configuration if files in the folder change; otherwise, <see
+            langword="false"/>.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration folder.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,Microsoft.Extensions.FileProviders.IFileProvider,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Adds a configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> for loading service-specific configuration
+            files.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration folder will be added. Cannot be <see
+            langword="null"/>.</param>
+            <param name="provider">The <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> used to access the configuration files. Can be <see langword="null"/> to use the
+            default file provider.</param>
+            <param name="folderPath">The relative path to the configuration folder. Cannot be <see langword="null"/> or whitespace.</param>
+            <param name="optional">A value indicating whether the configuration folder is optional.  If <see langword="true"/>, the configuration
+            folder is not required to exist.</param>
+            <param name="reloadOnChange">A value indicating whether the configuration should automatically reload if the files in the folder change.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> instance with the configuration folder added.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="builder"/> is <see langword="null"/> or if <paramref name="folderPath"/> is <see
+            langword="null"/> or whitespace.</exception>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderExtensions.AddServicesConfigurationFolder(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.Action{Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource})">
+            <summary>
+            Adds a configuration source for a services configuration folder to the <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.
+            </summary>
+            <remarks>This method allows you to add a custom configuration source for managing service-specific
+            settings. Use the <paramref name="configureSource"/> parameter to specify how the configuration source should be
+            set up.</remarks>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> to which the configuration source will be added.</param>
+            <param name="configureSource">An <see cref="T:System.Action`1"/> delegate used to configure the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource"/>.</param>
             <returns>The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/> with the added configuration source.</returns>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions">
@@ -286,7 +412,7 @@
             The configuration files in the folder are loaded with the default settings: they are optional and do not reload on
             change.</remarks>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFolder(Microsoft.Extensions.Hosting.IHostBuilder,System.String)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFolder(Microsoft.Extensions.Hosting.IHostBuilder,System.String,Microsoft.Extensions.FileProviders.IFileProvider,System.Boolean,System.Boolean)">
             <summary>
             Configures the application to load configuration settings from a specified folder.
             </summary>
@@ -295,7 +421,29 @@
             when changed.</remarks>
             <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance to configure.</param>
             <param name="folderPath">The path to the folder containing configuration files. The folder path can be relative or absolute.</param>
+            <param name="provider">An optional <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> to use for accessing the configuration files. If not provided, the default file provider will be used.</param>
+            <param name="optional"><see langword="true"/> to treat the folder as optional, meaning that if the folder does not exist, no error will 
+            be thrown; otherwise, <see langword="false"/>. The default value is <see langword="true"/>.</param>
+            <param name="reloadOnChange"><see langword="true"/> to enable automatic reloading of configuration when files in the folder change; 
+            otherwise, <see langword="false"/>. The default value is <see langword="false"/>.</param>
             <returns>The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> instance with the configuration applied.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesHostBuilderExtensions.ConfigureServicesFile(Microsoft.Extensions.Hosting.IHostBuilder,System.String,Microsoft.Extensions.FileProviders.IFileProvider,System.Boolean,System.Boolean)">
+            <summary>
+            Configures the host builder to load application services from a configuration file.
+            </summary>
+            <remarks>Use this method to add service configuration from an external file to the application's
+            configuration pipeline. This enables dynamic service registration based on file contents and supports optional
+            file presence.</remarks>
+            <param name="hostBuilder">The host builder to configure with the services configuration file.</param>
+            <param name="filePath">The path to the configuration file containing service definitions. The file is optional; if not found, no error is
+            thrown.</param>
+            <param name="provider">An optional <see cref="T:Microsoft.Extensions.FileProviders.IFileProvider"/> to use for accessing the configuration files. If not provided, the default file provider will be used.</param>
+            <param name="optional"><see langword="true"/> to treat the folder as optional, meaning that if the folder does not exist, no error will 
+            be thrown; otherwise, <see langword="false"/>. The default value is <see langword="true"/>.</param>
+            <param name="reloadOnChange">A value indicating whether the configuration should be reloaded if the file changes. Defaults to <see
+            langword="false"/>.</param>
+            <returns>The host builder instance configured to use the specified services configuration file.</returns>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.AliasNotFoundException">
             <summary>
@@ -434,52 +582,6 @@
             <param name="implementationType">The type on which the property was expected to be found.</param>
             <param name="propertyName">The name of the property that could not be found.</param>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.Alias">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.Key">
-            <summary>
-            Gets or sets the key for the alias.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.Alias.TypeDefinition">
-            <summary>
-            Gets or sets the type definition for the alias.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.Alias.ToString">
-            <summary>
-            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.Alias"/> class.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.Context">
-            <summary>
-            Get/sets the DbContext object.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.ConnectionString">
-            <summary>
-            Gets/sets the connection string for the database.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.CommandTimeout">
-            <summary>
-            Gets/sets the timeout in seconds for a command.
-            </summary>
-        </member>
-        <member name="P:Diamond.Core.Extensions.DependencyInjection.DatabaseDescriptorConfiguration.Factory">
-            <summary>
-            Gets/sets the factory used to configured the DbContext.
-            </summary>
-        </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyAttribute">
             <summary>
             Represents an attribute that can be applied to properties or fields to indicate that they are dependencies
@@ -518,8 +620,13 @@
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyFactory">
             <summary>
-            
+            Provides functionality for creating and configuring instances of a specified implementation type, including
+            assignment of dependency properties and configuration values.
             </summary>
+            <remarks>The class supports dependency injection scenarios by allowing property assignment and configuration
+            of implementation types at runtime. It is typically used to instantiate services with custom property values and
+            dependencies resolved from a service provider. Thread safety is not guaranteed; concurrent access should be managed
+            externally if required.</remarks>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo})">
             <summary>
@@ -528,6 +635,22 @@
             <param name="implementationType"></param>
             <param name="configuration"></param>
             <param name="dependencyProperties"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Object,System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo})">
+            <summary>
+            Initializes a new instance of the DependencyFactory class with the specified service key, implementation type,
+            configuration, and dependency properties.
+            </summary>
+            <param name="serviceKey">The unique key identifying the service for which dependencies are being managed. Cannot be null or empty.</param>
+            <param name="implementationType">The type that implements the service. Used to resolve dependencies for the specified service.</param>
+            <param name="configuration">The configuration settings that control how the service descriptor is constructed and managed.</param>
+            <param name="dependencyProperties">A collection of dependency information objects representing the properties required by the implementation type.
+            Cannot be null.</param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ServiceKey">
+            <summary>
+            Gets or sets the unique key used to identify the service instance.
+            </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ImplementationType">
             <summary>
@@ -556,13 +679,22 @@
             </summary>
             <param name="instance"></param>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type,System.Object)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object[]},System.Type,System.Object)">
             <summary>
-            Assigns the properties from the configuration to the instance of the implementation type.
+            Assigns values to the properties of the specified instance using the provided property dictionaries.
             </summary>
-            <param name="properties"></param>
-            <param name="implementationType"></param>
-            <param name="instance"></param>
+            <remarks>Only properties that are writable and exist on the instance type will be assigned. Property names
+            are matched using a case-insensitive comparison. Array values are converted as needed before assignment.
+            Exceptions provide detailed context about the property and value causing the error.</remarks>
+            <param name="properties">A dictionary containing property names and their corresponding values to assign to the instance. Property names
+            are matched case-insensitively.</param>
+            <param name="arrayProperties">A dictionary containing property names and their corresponding array values to assign to the instance. Property
+            names are matched case-insensitively.</param>
+            <param name="implementationType">The type representing the implementation for which properties are being assigned. Used for exception context.</param>
+            <param name="instance">The object instance whose properties will be assigned values from the provided dictionaries.</param>
+            <exception cref="T:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException">Thrown if a property value cannot be converted to the target property type during assignment.</exception>
+            <exception cref="T:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException">Thrown if an attempt is made to assign a value to a read-only property.</exception>
+            <exception cref="T:Diamond.Core.Extensions.DependencyInjection.PropertyNotFoundException">Thrown if a property specified in the dictionaries does not exist on the instance type.</exception>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyInfo">
             <summary>
@@ -717,7 +849,7 @@
             <returns>A dictionary containing the parsed key-value pairs from the JSON string.  The dictionary will be empty if the JSON
             string does not contain any valid key-value pairs.</returns>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider">
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileProvider">
             <summary>
             Provides a configuration provider that loads configuration key-value pairs from JSON files located in a specified
             directory. Supports loading multiple files and merging their contents into a single configuration source.
@@ -727,18 +859,18 @@
             adjusted to ensure continuity across files. If the directory does not exist and the source is marked as
             non-optional, an exception is thrown.</remarks>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.#ctor(Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileProvider.#ctor(Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileSource)">
             <summary>
-            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/> class using the specified <see
-            cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource"/>.
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileProvider"/> class using the specified <see
+            cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileSource"/>.
             </summary>
-            <remarks>The <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/> retrieves configuration data from the specified
-            <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource"/> and makes it available to the application. Ensure that the <paramref
+            <remarks>The <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider"/> retrieves configuration data from the specified
+            <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource"/> and makes it available to the application. Ensure that the <paramref
             name="source"/> is properly initialized before passing it to this constructor.</remarks>
             <param name="source">The configuration source that provides the service-based configuration data. This parameter cannot be <see
             langword="null"/>.</param>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileProvider.Load">
             <summary>
             Loads configuration data from JSON files located in the specified directory and its subdirectories.
             </summary>
@@ -750,14 +882,14 @@
             <exception cref="T:System.IO.DirectoryNotFoundException">Thrown if the directory specified by <see cref="P:Microsoft.Extensions.Configuration.FileConfigurationSource.Path"/> does not exist and <see cref="P:Microsoft.Extensions.Configuration.FileConfigurationSource.Optional"/> is
             <see langword="false"/>.</exception>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider.Load(System.IO.Stream)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileProvider.Load(System.IO.Stream)">
             <summary>
             Loads data from the specified stream into the current instance.
             </summary>
             <param name="stream">The input stream containing the data to load. Must be readable and not null.</param>
             <exception cref="T:System.NotImplementedException">Thrown if the method is not implemented.</exception>
         </member>
-        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource">
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileSource">
             <summary>
             Represents a configuration source that provides configuration data from registered services.
             </summary>
@@ -765,12 +897,67 @@
             from services. It is typically used in scenarios where configuration settings are dynamically provided by service
             dependencies.</remarks>
         </member>
-        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
             <summary>
-            Builds the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationProvider"/> for this source.
+            Builds the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider"/> for this source.
             </summary>
             <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</param>
-            <returns>A <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationSource"/></returns>
+            <returns>A <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFileSource"/></returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider">
+            <summary>
+            Provides a configuration provider that loads configuration key-value pairs from JSON files located in a specified
+            directory. Supports loading multiple files and merging their contents into a single configuration source.
+            </summary>
+            <remarks>This provider reads all JSON files in the specified directory and its subdirectories, combining
+            their contents into a single configuration dictionary. Keys from multiple files are merged, and array indices are
+            adjusted to ensure continuity across files. If the directory does not exist and the source is marked as
+            non-optional, an exception is thrown.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider.#ctor(Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider"/> class using the specified <see
+            cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource"/>.
+            </summary>
+            <remarks>The <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider"/> retrieves configuration data from the specified
+            <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource"/> and makes it available to the application. Ensure that the <paramref
+            name="source"/> is properly initialized before passing it to this constructor.</remarks>
+            <param name="source">The configuration source that provides the service-based configuration data. This parameter cannot be <see
+            langword="null"/>.</param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider.Load">
+            <summary>
+            Loads configuration data from JSON files located in the specified directory and its subdirectories.
+            </summary>
+            <remarks>This method reads all JSON files in the directory specified by the <see cref="P:Microsoft.Extensions.Configuration.FileConfigurationSource.Path"/>
+            property, parses their contents into key-value pairs, and adds them to the services collection. If the
+            directory does not exist and the <see cref="P:Microsoft.Extensions.Configuration.FileConfigurationSource.Optional"/> property is set to <see langword="false"/>, a <see
+            cref="T:System.IO.DirectoryNotFoundException"/> is thrown. The method ensures that indices across multiple files are
+            contiguous when parsing arrays.</remarks>
+            <exception cref="T:System.IO.DirectoryNotFoundException">Thrown if the directory specified by <see cref="P:Microsoft.Extensions.Configuration.FileConfigurationSource.Path"/> does not exist and <see cref="P:Microsoft.Extensions.Configuration.FileConfigurationSource.Optional"/> is
+            <see langword="false"/>.</exception>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider.Load(System.IO.Stream)">
+            <summary>
+            Loads data from the specified stream into the current instance.
+            </summary>
+            <param name="stream">The input stream containing the data to load. Must be readable and not null.</param>
+            <exception cref="T:System.NotImplementedException">Thrown if the method is not implemented.</exception>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource">
+            <summary>
+            Represents a configuration source that provides configuration data from registered services.
+            </summary>
+            <remarks>This class extends <see cref="T:Microsoft.Extensions.Configuration.FileConfigurationSource"/> to enable configuration data to be sourced
+            from services. It is typically used in scenarios where configuration settings are dynamically provided by service
+            dependencies.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource.Build(Microsoft.Extensions.Configuration.IConfigurationBuilder)">
+            <summary>
+            Builds the <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderProvider"/> for this source.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Configuration.IConfigurationBuilder"/>.</param>
+            <returns>A <see cref="T:Diamond.Core.Extensions.DependencyInjection.ServicesConfigurationFolderSource"/></returns>
         </member>
     </members>
 </doc>

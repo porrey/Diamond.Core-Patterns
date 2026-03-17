@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -67,63 +67,52 @@ namespace Diamond.Core.Specification
 		/// 
 		/// </summary>
 		/// <typeparam name="TResult"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<ISpecification<TResult>> GetAsync<TResult>(string name)
+		public virtual Task<ISpecification<TResult>> GetAsync<TResult>(string serviceKey)
 		{
 			ISpecification<TResult> returnValue = null;
 
 			//
-			// Get the decorator type being requested.
+			// Validate the service key.
 			//
-			Type targetType = typeof(ISpecification<TResult>);
-			this.Logger.LogDebug("Finding a Specification with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
-
-			//
-			// Get all decorators from the container of
-			// type ISpecification<TParameter, TResult>.
-			//
-			IEnumerable<ISpecification> items = this.ServiceProvider.GetService<IEnumerable<ISpecification>>();
-			IEnumerable<ISpecification> matchingItems = items.Where(t => t.Name == name);
-			IEnumerable<ISpecification> nonMatchingItems = items.Except(matchingItems);
-			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
-
-			//
-			// Within the list, find the target Specification.
-			//
-			foreach (ISpecification item in matchingItems)
+			if (string.IsNullOrWhiteSpace(serviceKey))
 			{
+				this.Logger.LogDebug("The service key is null or whitespace.");
+				throw new ArgumentException("The service key cannot be null or whitespace.", nameof(serviceKey));
+			}
+
+			//
+			// Get the specification.
+			//
+			this.Logger.LogDebug("Finding a Specification with key '{name}'.", serviceKey);
+			ISpecification item = this.ServiceProvider.GetKeyedService<ISpecification>(serviceKey);
+
+			if ((item != null))
+			{
+				//
+				// Get the specification type being requested.
+				//
+				Type targetType = typeof(ISpecification<TResult>);
+
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (ISpecification<TResult>)item;
-					this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
+					this.Logger.LogDebug("The Specification with Service Key '{serviceKey}' and Target Type '{targetType}' was found.", serviceKey, targetType.Name);
 				}
 				else
 				{
 					//
 					// Dispose the item (if it supports it).
 					//
-					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					this.Logger.LogError("The Specification with Service Key '{serviceKey}' was found but is NOT of the expected type '{targetType}'. Attempting to dispose the item.", serviceKey, targetType.Name);
 					item.TryDispose();
 				}
 			}
-
-			//
-			// Attempt to dispose the unused items.
-			//
-			foreach (ISpecification nonMatchingItem in nonMatchingItems)
+			else
 			{
-				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
-				nonMatchingItem.TryDispose();
-			}
-
-			//
-			// Check the result.
-			//
-			if (returnValue == null)
-			{
-				this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
-				throw new SpecificationNotFoundException<TResult>(name);
+				this.Logger.LogDebug("The Specification with Service Key '{serviceKey}' was NOT found.", serviceKey);
+				throw new SpecificationNotFoundException<TResult>(serviceKey);
 			}
 
 			return Task.FromResult(returnValue);
@@ -134,63 +123,53 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <typeparam name="TParameter"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns></returns>
-		public virtual Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string name)
+		public virtual Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string serviceKey)
 		{
 			ISpecification<TParameter, TResult> returnValue = null;
 
 			//
-			// Get the decorator type being requested.
+			// Validate the service key.
 			//
-			Type targetType = typeof(ISpecification<TParameter, TResult>);
-			this.Logger.LogDebug("Finding a Specification with key '{name}' and Target Type '{targetType}'.", name, targetType.Name);
-
-			//
-			// Get all decorators from the container of
-			// type ISpecification<TParameter, TResult>.
-			//
-			IEnumerable<ISpecification> items = this.ServiceProvider.GetService<IEnumerable<ISpecification>>();
-			IEnumerable<ISpecification> matchingItems = items.Where(t => t.Name == name);
-			IEnumerable<ISpecification> nonMatchingItems = items.Except(matchingItems);
-			this.Logger.LogDebug("{count} matching items of the target type were found.", matchingItems.Count());
-
-			//
-			// Within the list, find the target Specification.
-			//
-			foreach (ISpecification item in matchingItems)
+			if (string.IsNullOrWhiteSpace(serviceKey))
 			{
+				this.Logger.LogDebug("The service key is null or whitespace.");
+				throw new ArgumentException("The service key cannot be null or whitespace.", nameof(serviceKey));
+			}
+
+			//
+			// Get the specification type being requested.
+			//
+			this.Logger.LogDebug("Finding a Specification with key '{key}'.", serviceKey);
+			ISpecification item = this.ServiceProvider.GetKeyedService<ISpecification>(serviceKey);
+
+			if ((item != null))
+			{
+				//
+				// Get the specification type being requested.
+				//
+				Type targetType = typeof(ISpecification<TParameter, TResult>);
+
 				if (targetType.IsInstanceOfType(item))
 				{
 					returnValue = (ISpecification<TParameter, TResult>)item;
-					this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was found.", name, targetType.Name);
+					this.Logger.LogDebug("The Specification with Service Key '{serviceKey}' and Target Type '{targetType}' was found.", serviceKey, targetType.Name);
 				}
 				else
 				{
 					//
 					// Dispose the item (if it supports it).
 					//
-					this.Logger.LogDebug("Attempting to dispose unused item '{item}'.", item.GetType().Name);
+					this.Logger.LogError("The Specification with Service Key '{serviceKey}' was found but is NOT of the expected type '{targetType}'. Attempting to dispose the item.", serviceKey, targetType.Name);
 					item.TryDispose();
 				}
 			}
-
-			//
-			// Attempt to dispose the unused items.
-			//
-			foreach (ISpecification nonMatchingItem in nonMatchingItems)
+			else
 			{
-				this.Logger.LogDebug("Attempting to dispose non-matching item '{item}'.", nonMatchingItem.GetType().Name);
-				nonMatchingItem.TryDispose();
-			}
+				this.Logger.LogDebug("The Specification with Service Key '{serviceKey}' was NOT found.", serviceKey);
+				throw new SpecificationNotFoundException<TParameter, TResult>(serviceKey);
 
-			//
-			// Check the result.
-			//
-			if (returnValue == null)
-			{
-				this.Logger.LogDebug("The Specification key '{name}' and Target Type '{targetType}' was NOT found. Throwing exception...", name, targetType.Name);
-				throw new SpecificationNotFoundException<TParameter, TResult>(name);
 			}
 
 			return Task.FromResult(returnValue);

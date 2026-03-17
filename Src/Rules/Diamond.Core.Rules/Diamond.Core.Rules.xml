@@ -11,7 +11,7 @@
         </member>
         <member name="M:Diamond.Core.Rules.ServiceCollectionDecorator.UseRulesFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            Adds the necesarys registrations to the service collection.
+            Adds the necessary registrations to the service collection.
             </summary>
             <param name="services"></param>
         </member>
@@ -98,22 +98,9 @@
             
             </summary>
             <typeparam name="TItem"></typeparam>
-            <param name="group"></param>
+            <param name="serviceKey">The container service key.</param>
             <param name="item"></param>
             <returns></returns>
-        </member>
-        <member name="M:Diamond.Core.Rules.RulesFactory.EvaluateAsync``1(``0)">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
-            <param name="item"></param>
-            <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Rules.RuleResult">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:Diamond.Core.Rules.RuleResultTemplate">
             <summary>
@@ -129,13 +116,6 @@
             <summary>
             
             </summary>
-        </member>
-        <member name="T:Diamond.Core.Rules.Rule`2">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
-            <typeparam name="TResult"></typeparam>
         </member>
         <member name="T:Diamond.Core.Rules.RuleTemplate`2">
             <summary>
@@ -190,12 +170,6 @@
             </summary>
             <param name="item"></param>
             <returns></returns>
-        </member>
-        <member name="T:Diamond.Core.Rules.Rule`1">
-            <summary>
-            
-            </summary>
-            <typeparam name="TItem"></typeparam>
         </member>
         <member name="T:Diamond.Core.Rules.RuleTemplate`1">
             <summary>

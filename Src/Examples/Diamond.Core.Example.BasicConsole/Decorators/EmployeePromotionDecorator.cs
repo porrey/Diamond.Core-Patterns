@@ -16,7 +16,6 @@ namespace Diamond.Core.Example.BasicConsole
 			this.RulesFactory = rulesFactory;
 		}
 
-		public override string Name => "EmployeePromotion";
 		protected IUnitOfWorkFactory UnitOfWorkFactory { get; set; }
 		protected IRulesFactory RulesFactory { get; set; }
 

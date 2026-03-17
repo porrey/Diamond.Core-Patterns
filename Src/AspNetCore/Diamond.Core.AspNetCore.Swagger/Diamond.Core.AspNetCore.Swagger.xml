@@ -34,31 +34,6 @@
             </summary>
             <returns>An array of <see cref="T:Diamond.Core.AspNetCore.Swagger.Operation"/> objects to be used as examples.</returns>
         </member>
-        <member name="T:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter">
-            <summary>
-            Fixes up the Swagger documentation for patch methods.
-            </summary>
-        </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.Apply(Microsoft.OpenApi.OpenApiDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
-            <summary>
-            Applies the filter.
-            </summary>
-            <param name="swaggerDoc">A reference to the Swagger document.</param>
-            <param name="context">A reference to the Swagger document context.</param>
-        </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.RemoveSchema(Microsoft.OpenApi.OpenApiDocument,System.String)">
-            <summary>
-            Removes items where the key passed matches any part of the schema key.
-            </summary>
-            <param name="swaggerDoc">A reference to the Swagger document.</param>
-            <param name="key">The key or partial key to match.</param>
-        </member>
-        <member name="M:Diamond.Core.AspNetCore.Swagger.JsonPatchDocumentFilter.AddJsonPatchTypes(Microsoft.OpenApi.OpenApiDocument)">
-            <summary>
-            Adds the JSON patch definitions.
-            </summary>
-            <param name="swaggerDoc">A reference to the Swagger document.</param>
-        </member>
         <member name="T:Diamond.Core.AspNetCore.Swagger.StandardOperationFilter">
             <summary>
             Adds Swagger documentation response descriptions for standard 

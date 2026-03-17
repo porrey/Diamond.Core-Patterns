@@ -6,11 +6,11 @@
 		<PackageLicenseUrl>
 		</PackageLicenseUrl>
 		<Product>Diamond.Core Patterns Library</Product>
-		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Description>This library provides workflow interfaces and abstract or default implementations for common patterns.</Description>
-		<Version>10.0.2.0</Version>
-		<FileVersion>10.0.2.0</FileVersion>
-		<AssemblyVersion>10.0.2.0</AssemblyVersion>
+		<Version>10.1.0.0</Version>
+		<FileVersion>10.1.0.0</FileVersion>
+		<AssemblyVersion>10.1.0.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -32,19 +32,20 @@
 		<DocumentationFile>Diamond.Core.Workflow.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="Diamond.Core.WorkFlow.xml" />
 		<None Remove="Diamond.Patterns.WorkFlow.xml" />
 		<None Remove="Services\Diamond.Core.Workflow.json" />
 	</ItemGroup>
 	<ItemGroup>
+		<Content Include="Diamond.Core.WorkFlow.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Services\Diamond.Core.Workflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Humanizer.Core" Version="3.0.10" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.5" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5" />
-		<PackageReference Include="TryDisposable" Version="10.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />

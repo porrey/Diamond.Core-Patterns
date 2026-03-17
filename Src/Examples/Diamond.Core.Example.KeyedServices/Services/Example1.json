@@ -1,0 +1,39 @@
+{
+	"aliases": [
+		{
+			"Key": "ISample",
+			"TypeDefinition": "Diamond.Core.Example.KeyedServices.ISample, KeyedServices"
+		}
+	],
+	"services": [
+		{
+			"ServiceType": "<ICommand>",
+			"ImplementationType": "Diamond.Core.Example.KeyedServices.SampleCommandBase, KeyedServices",
+			"Lifetime": "Scoped"
+		},
+		{
+			"ServiceKey": "Sample1",
+			"ServiceType": "<ISample>",
+			"ImplementationType": "Diamond.Core.Example.KeyedServices.Sample, KeyedServices",
+			"Lifetime": "Transient",
+			"Properties": {
+				"Name": "Sample 1"
+			},
+			"ArrayProperties": {
+				"Items": [ 1, 2, 3, 4, 5 ]
+			}
+		},
+		{
+			"ServiceKey": "Sample2",
+			"ServiceType": "<ISample>",
+			"ImplementationType": "Diamond.Core.Example.KeyedServices.Sample, KeyedServices",
+			"Lifetime": "Transient",
+			"Properties": {
+				"Name": "Sample 2"
+			},
+			"ArrayProperties": {
+				"Items": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+			}
+		}
+	]
+}

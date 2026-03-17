@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -23,10 +23,5 @@ namespace Diamond.Core.Specification
 	/// </summary>
 	public interface ISpecification : IDisposable
 	{
-		/// <summary>
-		/// Gets a unique name to distinguish this specification from others. The factory can
-		/// use this name when retrieving a specification.
-		/// </summary>
-		string Name { get; }
 	}
 }

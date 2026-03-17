@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -27,6 +27,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <summary>
 		/// 
 		/// </summary>
+		public string ServiceKey { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		public virtual string ImplementationType { get; set; }
 
 		/// <summary>
@@ -48,5 +53,10 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// 
 		/// </summary>
 		public virtual Dictionary<string, object> Properties { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public virtual Dictionary<string, object[]> ArrayProperties { get; set; }
 	}
 }

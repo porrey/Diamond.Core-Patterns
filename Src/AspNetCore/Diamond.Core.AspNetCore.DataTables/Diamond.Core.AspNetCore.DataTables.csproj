@@ -7,15 +7,15 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.0.2.0</Version>
-		<AssemblyVersion>10.0.2.0</AssemblyVersion>
-		<FileVersion>10.0.2.0</FileVersion>
+		<Version>10.1.0.0</Version>
+		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<FileVersion>10.1.0.0</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Description>Provides the DataTables support in ASP.NET Core MVC core projects.</Description>
-		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Authors>Daniel M Porrey</Authors>
 		<Company>Daniel M Porrey</Company>
 		<NeutralLanguage>en-US</NeutralLanguage>
@@ -63,11 +63,10 @@
 		<PackageReference Include="AutoMapper" Version="16.1.1" />
 		<PackageReference Include="LinqKit.Core" Version="1.2.11" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-		<PackageReference Include="TryDisposable" Version="10.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Repository\Diamond.Core.Repository\Diamond.Core.Repository.csproj" />
+	  <ProjectReference Include="..\..\Repository\Diamond.Core.Repository.Abstractions\Diamond.Core.Repository.Abstractions.csproj" />
 	  <ProjectReference Include="..\Diamond.Core.AspNetCore.DoAction.Abstractions\Diamond.Core.AspNetCore.DoAction.Abstractions.csproj" />
 	  <ProjectReference Include="..\Diamond.Core.AspNetCore.DoAction\Diamond.Core.AspNetCore.DoAction.csproj" />
 	</ItemGroup>

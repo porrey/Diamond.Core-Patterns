@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -19,7 +19,6 @@ using Diamond.Core.Extensions.Hosting;
 using Diamond.Core.Repository;
 using Diamond.Core.Rules;
 using Diamond.Core.Specification;
-using Diamond.Core.System.TemporaryFolder;
 using Diamond.Core.UnitOfWork;
 using Diamond.Core.Workflow;
 using Microsoft.EntityFrameworkCore;
@@ -77,32 +76,32 @@ namespace Diamond.Core.Example.BasicConsole
 			services.AddTransient<IRepository<IEmployeeEntity>, EmployeeRepository>();
 
 			services.UseSpecificationFactory();
-			services.AddTransient<ISpecification, GetActiveEmployeeIdListSpecification>();
-			services.AddTransient<ISpecification, GetEmployeeDetailsSpecification>();
+			services.AddKeyedTransient<ISpecification, GetActiveEmployeeIdListSpecification>(WellKnown.Specifcation.GetActiveEmployeeIdList);
+			services.AddKeyedTransient<ISpecification, GetEmployeeDetailsSpecification>(WellKnown.Specifcation.GetEmployeeDetails);
 
 			services.UseUnitOfWorkFactory();
-			services.AddTransient<IUnitOfWork, CreateEmployeeUnitOfWork>();
-			services.AddTransient<IUnitOfWork, PromoteEmployeeUnitOfWork>();
+			services.AddKeyedTransient<IUnitOfWork, CreateEmployeeUnitOfWork>(WellKnown.UnitOfWork.CreateEmployee);
+			services.AddKeyedTransient<IUnitOfWork, PromoteEmployeeUnitOfWork>(WellKnown.UnitOfWork.PromoteEmployee);
 
 			services.UseRulesFactory();
-			services.AddTransient<IRule, MnimumEmploymentRule>();
-			services.AddTransient<IRule, GoodStandingRule>();
-			services.AddTransient<IRule, PreviousPromotionRule>();
+			services.AddKeyedTransient<IRule, MnimumEmploymentRule>(WellKnown.Rules.EmployeePromotion);
+			services.AddKeyedTransient<IRule, GoodStandingRule>(WellKnown.Rules.EmployeePromotion);
+			services.AddKeyedTransient<IRule, PreviousPromotionRule>(WellKnown.Rules.EmployeePromotion);
 
 			services.UseDecoratorFactory();
-			services.AddTransient<IDecorator, EmployeePromotionDecorator>();
+			services.AddKeyedTransient<IDecorator, EmployeePromotionDecorator>(WellKnown.Decorator.EmployeePromotion);
 
 			//
 			// Add the sample work flow manager and work flow steps.
 			//
 			services.UseWorkflowFactory();
 
-			services.AddTransient<IWorkflowManager, SampleWorkflowManager>()
-					.AddTransient<IWorkflowItem, SampleWorkStep1>()
-					.AddTransient<IWorkflowItem, SampleWorkStep2>()
-					.AddTransient<IWorkflowItem, SampleWorkStep3>()
-					.AddTransient<IWorkflowItem, SampleWorkStep4>()
-					.AddTransient<IWorkflowItem, SampleWorkStep5>();
+			services.AddKeyedTransient<IWorkflowManager, SampleWorkflowManager>(WellKnown.Workflow.SampleWorkflow)
+					.AddKeyedTransient<IWorkflowItem, SampleWorkStep1>(WellKnown.Workflow.SampleWorkflow)
+					.AddKeyedTransient<IWorkflowItem, SampleWorkStep2>(WellKnown.Workflow.SampleWorkflow)
+					.AddKeyedTransient<IWorkflowItem, SampleWorkStep3>(WellKnown.Workflow.SampleWorkflow)
+					.AddKeyedTransient<IWorkflowItem, SampleWorkStep4>(WellKnown.Workflow.SampleWorkflow)
+					.AddKeyedTransient<IWorkflowItem, SampleWorkStep5>(WellKnown.Workflow.SampleWorkflow);
 
 			//
 			// Add the hosted service.

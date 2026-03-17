@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -22,7 +22,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	/// <summary>
 	/// Extension methods for adding the services configuration provider.
 	/// </summary>
-	public static class ServicesConfigurationExtensions
+	public static class ServicesConfigurationFolderExtensions
 	{
 		/// <summary>
 		/// Adds a configuration folder to the <see cref="IConfigurationBuilder"/> for loading service-specific
@@ -32,11 +32,11 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// configuration building process. The configuration files in the specified folder will be loaded and merged
 		/// into the application's configuration.</remarks>
 		/// <param name="builder">The <see cref="IConfigurationBuilder"/> to which the configuration folder will be added.</param>
-		/// <param name="path">The relative or absolute path to the configuration folder.</param>
+		/// <param name="folderPath">The relative or absolute path to the configuration folder.</param>
 		/// <returns>The <see cref="IConfigurationBuilder"/> with the added configuration folder.</returns>
-		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, string path)
+		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, string folderPath)
 		{
-			return AddServicesConfigurationFolder(builder, provider: null, path: path, optional: false, reloadOnChange: false);
+			return AddServicesConfigurationFolder(builder, provider: null, folderPath: folderPath, optional: false, reloadOnChange: false);
 		}
 
 		/// <summary>
@@ -46,13 +46,13 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// configuration pipeline.  Use this overload if you do not need to specify a service provider or enable file change
 		/// reloading.</remarks>
 		/// <param name="builder">The <see cref="IConfigurationBuilder"/> to which the configuration folder will be added.</param>
-		/// <param name="path">The path to the folder containing the configuration files. This path can be relative or absolute.</param>
+		/// <param name="folderPath">The path to the folder containing the configuration files. This path can be relative or absolute.</param>
 		/// <param name="optional">A value indicating whether the configuration folder is optional.  If <see langword="true"/>, the method will not
 		/// throw an exception if the folder does not exist.</param>
 		/// <returns>The <see cref="IConfigurationBuilder"/> with the added configuration folder.</returns>
-		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, string path, bool optional)
+		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, string folderPath, bool optional)
 		{
-			return AddServicesConfigurationFolder(builder, provider: null, path: path, optional: optional, reloadOnChange: false);
+			return AddServicesConfigurationFolder(builder, provider: null, folderPath: folderPath, optional: optional, reloadOnChange: false);
 		}
 
 		/// <summary>
@@ -63,15 +63,15 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// structured configuration management for services. It supports optional inclusion and automatic reloading of
 		/// configuration on file changes.</remarks>
 		/// <param name="builder">The <see cref="IConfigurationBuilder"/> to which the configuration folder will be added.</param>
-		/// <param name="path">The relative or absolute path to the configuration folder.</param>
+		/// <param name="folderPath">The relative or absolute path to the configuration folder.</param>
 		/// <param name="optional"><see langword="true"/> if the configuration folder is optional; otherwise, <see langword="false"/>. If <see
 		/// langword="true"/>, the method will not throw an exception if the folder is missing.</param>
 		/// <param name="reloadOnChange"><see langword="true"/> to reload the configuration if files in the folder change; otherwise, <see
 		/// langword="false"/>.</param>
 		/// <returns>The <see cref="IConfigurationBuilder"/> with the added configuration folder.</returns>
-		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, string path, bool optional, bool reloadOnChange)
+		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, string folderPath, bool optional, bool reloadOnChange)
 		{
-			return AddServicesConfigurationFolder(builder, provider: null, path: path, optional: optional, reloadOnChange: reloadOnChange);
+			return AddServicesConfigurationFolder(builder, provider: null, folderPath: folderPath, optional: optional, reloadOnChange: reloadOnChange);
 		}
 
 		/// <summary>
@@ -82,26 +82,26 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// langword="null"/>.</param>
 		/// <param name="provider">The <see cref="IFileProvider"/> used to access the configuration files. Can be <see langword="null"/> to use the
 		/// default file provider.</param>
-		/// <param name="path">The relative path to the configuration folder. Cannot be <see langword="null"/> or whitespace.</param>
+		/// <param name="folderPath">The relative path to the configuration folder. Cannot be <see langword="null"/> or whitespace.</param>
 		/// <param name="optional">A value indicating whether the configuration folder is optional.  If <see langword="true"/>, the configuration
 		/// folder is not required to exist.</param>
 		/// <param name="reloadOnChange">A value indicating whether the configuration should automatically reload if the files in the folder change.</param>
 		/// <returns>The <see cref="IConfigurationBuilder"/> instance with the configuration folder added.</returns>
-		/// <exception cref="ArgumentNullException">Thrown if <paramref name="builder"/> is <see langword="null"/> or if <paramref name="path"/> is <see
+		/// <exception cref="ArgumentNullException">Thrown if <paramref name="builder"/> is <see langword="null"/> or if <paramref name="folderPath"/> is <see
 		/// langword="null"/> or whitespace.</exception>
-		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, IFileProvider provider, string path, bool optional, bool reloadOnChange)
+		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, IFileProvider provider, string folderPath, bool optional, bool reloadOnChange)
 		{
 			ArgumentNullException.ThrowIfNull(builder);
 
-			if (string.IsNullOrWhiteSpace(path))
+			if (string.IsNullOrWhiteSpace(folderPath))
 			{
-				throw new ArgumentNullException(nameof(path));
+				throw new ArgumentNullException(nameof(folderPath));
 			}
 
 			return builder.AddServicesConfigurationFolder(s =>
 			{
 				s.FileProvider = provider;
-				s.Path = path;
+				s.Path = folderPath;
 				s.Optional = optional;
 				s.ReloadOnChange = reloadOnChange;
 				s.ResolveFileProvider();
@@ -115,8 +115,8 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// settings. Use the <paramref name="configureSource"/> parameter to specify how the configuration source should be
 		/// set up.</remarks>
 		/// <param name="builder">The <see cref="IConfigurationBuilder"/> to which the configuration source will be added.</param>
-		/// <param name="configureSource">An <see cref="Action{T}"/> delegate used to configure the <see cref="ServicesConfigurationSource"/>.</param>
+		/// <param name="configureSource">An <see cref="Action{T}"/> delegate used to configure the <see cref="ServicesConfigurationFolderSource"/>.</param>
 		/// <returns>The <see cref="IConfigurationBuilder"/> with the added configuration source.</returns>
-		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, Action<ServicesConfigurationSource> configureSource) => builder.Add(configureSource);
+		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, Action<ServicesConfigurationFolderSource> configureSource) => builder.Add(configureSource);
 	}
 }

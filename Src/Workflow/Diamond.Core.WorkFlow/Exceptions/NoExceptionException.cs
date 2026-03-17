@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -19,12 +19,16 @@ using Diamond.Core.Abstractions;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// 
+	/// Represents an error that occurs when an expected exception object is not found in the context properties.
 	/// </summary>
-	public class NoExceptionException : DiamondCoreException
+	/// <remarks>This exception is typically thrown when an operation requires an exception object to be present in
+	/// the context, but none is available. Use this exception to signal missing exception information in custom error
+	/// handling scenarios.</remarks>
+	public class NoExceptionException : WorkflowException
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the NoExceptionException class, indicating that an exception object was not found in
+		/// the context properties.
 		/// </summary>
 		public NoExceptionException()
 			: base($"An exception object was not found in the context properties.")

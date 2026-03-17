@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -29,9 +29,9 @@ namespace Diamond.Core.Specification
 		/// Gets a specification with the given name return type TResult.
 		/// </summary>
 		/// <typeparam name="TResult">The return type of the specification result.</typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns>An instance of the requested specification.</returns>
-		Task<ISpecification<TResult>> GetAsync<TResult>(string name);
+		Task<ISpecification<TResult>> GetAsync<TResult>(string serviceKey);
 
 		/// <summary>
 		/// Gets a specification with the given name that takes TParameter as inputs and returns
@@ -39,8 +39,8 @@ namespace Diamond.Core.Specification
 		/// </summary>
 		/// <typeparam name="TParameter">The type of the filter used in the specification.</typeparam>
 		/// <typeparam name="TResult">The return type of the specification result.</typeparam>
-		/// <param name="name"></param>
+		/// <param name="serviceKey">The container service key.</param>
 		/// <returns>An instance of the requested specification.</returns>
-		Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string name);
+		Task<ISpecification<TParameter, TResult>> GetAsync<TParameter, TResult>(string serviceKey);
 	}
 }

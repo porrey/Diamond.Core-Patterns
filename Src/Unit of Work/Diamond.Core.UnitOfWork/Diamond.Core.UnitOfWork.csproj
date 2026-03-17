@@ -6,11 +6,11 @@
 		<PackageLicenseUrl>
 		</PackageLicenseUrl>
 		<Product>Diamond.Core Patterns Library</Product>
-		<Copyright>Copyright © Daniel Porrey 2019-2025</Copyright>
+		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Description>This library provides a basic implementation of the Unit of Work factory.</Description>
-		<Version>10.0.2.0</Version>
-		<FileVersion>10.0.2.0</FileVersion>
-		<AssemblyVersion>10.0.2.0</AssemblyVersion>
+		<Version>10.1.0.0</Version>
+		<FileVersion>10.1.0.0</FileVersion>
+		<AssemblyVersion>10.1.0.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -37,6 +37,9 @@
 		<None Remove="Services\Diamond.Core.UnitOfWork.json" />
 	</ItemGroup>
 	<ItemGroup>
+		<Content Include="Diamond.Core.UnitOfWork.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Services\Diamond.Core.UnitOfWork.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -54,7 +57,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.5" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5" />
 		<PackageReference Include="System.DisposableObject" Version="10.0.0" />
 		<PackageReference Include="TryDisposable" Version="10.0.0" />
 	</ItemGroup>

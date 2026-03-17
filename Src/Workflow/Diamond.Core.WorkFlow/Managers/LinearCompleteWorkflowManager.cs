@@ -1,5 +1,5 @@
 ﻿//
-// Copyright(C) 2019-2025, Daniel M. Porrey. All rights reserved.
+// Copyright(C) 2019-2026, Daniel M. Porrey. All rights reserved.
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published
@@ -32,38 +32,44 @@ namespace Diamond.Core.Workflow
 	public class LinearCompleteWorkflowManager : IWorkflowManager
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the LinearCompleteWorkflowManager class with the specified logger and workflow item
+		/// factory.
 		/// </summary>
-		/// <param name="workFlowItemFactory"></param>
-		/// <param name="logger"></param>
-		public LinearCompleteWorkflowManager(IWorkflowItemFactory workFlowItemFactory, ILogger<LinearCompleteWorkflowManager> logger)
+		/// <param name="logger">The logger used to record diagnostic and operational information for the workflow manager.</param>
+		/// <param name="workFlowItemFactory">The factory used to create workflow items managed by this instance.</param>
+		public LinearCompleteWorkflowManager(ILogger<LinearCompleteWorkflowManager> logger, IWorkflowItemFactory workFlowItemFactory)
 			: this(workFlowItemFactory)
 		{
 			this.Logger = logger;
 		}
 
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the LinearCompleteWorkflowManager class using the specified workflow item factory.
 		/// </summary>
-		/// <param name="workFlowItemFactory"></param>
+		/// <param name="workFlowItemFactory">The factory used to create workflow items for the manager. Cannot be null.</param>
 		public LinearCompleteWorkflowManager(IWorkflowItemFactory workFlowItemFactory)
 		{
 			this.WorkflowItemFactory = workFlowItemFactory;
 		}
 
 		/// <summary>
-		/// 
+		/// Gets or sets the factory used to create workflow items.
 		/// </summary>
+		/// <remarks>Assigning a custom factory allows for customization of workflow item creation. This property is
+		/// typically used to inject specialized behavior or dependencies into workflow items.</remarks>
 		public virtual IWorkflowItemFactory WorkflowItemFactory { get; set; }
 
 		/// <summary>
-		/// 
+		/// Backing field for the <see cref="Steps"/> property. This field holds the collection of workflow steps for the current instance.
 		/// </summary>
 		private IWorkflowItem[] _steps = null;
 
 		/// <summary>
-		/// 
+		/// Gets or sets the collection of workflow steps for the current instance.
 		/// </summary>
+		/// <remarks>The steps must be numbered contiguously, starting with 1. Setting this property with steps that
+		/// do not meet these requirements will result in an exception. The steps are stored in order based on their ordinal
+		/// values.</remarks>
 		public virtual IWorkflowItem[] Steps
 		{
 			get
@@ -88,32 +94,39 @@ namespace Diamond.Core.Workflow
 					}
 					else
 					{
-						throw new ArgumentOutOfRangeException("The state items for group {group} are not numbered consecutively.", this.Group);
+						throw new ArgumentOutOfRangeException("The state items for Service Key '{serviceKey}' are not numbered consecutively.", this.ServiceKey);
 					}
 				}
 				else
 				{
-					throw new ArgumentOutOfRangeException("The state items for group {group} must be numbered starting with 1.", this.Group);
+					throw new ArgumentOutOfRangeException("The state items for Service Key '{serviceKey}' must be numbered starting with 1.", this.ServiceKey);
 				}
 			}
 		}
 
 		/// <summary>
-		/// 
+		/// Gets or sets the logger used to record diagnostic and operational information for the workflow manager.
 		/// </summary>
+		/// <remarks>Assigning a custom logger allows integration with different logging frameworks or configuration
+		/// of log output. By default, logging is disabled unless a logger is explicitly provided.</remarks>
 		public virtual ILogger<LinearCompleteWorkflowManager> Logger { get; set; } = new NullLogger<LinearCompleteWorkflowManager>();
+		
+		/// <summary>
+		/// Gets or sets the unique key used to identify the service instance.
+		/// </summary>
+		public virtual string ServiceKey { get; set; }
 
 		/// <summary>
-		/// 
+		/// Executes the workflow asynchronously, processing each step in sequence and updating the workflow state in the
+		/// provided context.
 		/// </summary>
-		public string Group { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
-		public async Task<bool> ExecuteWorkflowAsync(IContext context)
+		/// <remarks>The method updates context properties to reflect the outcome of each step and the overall
+		/// workflow. Logging is performed for progress and step results. The workflow is executed step-by-step, and failure
+		/// in any step will mark the workflow as failed.</remarks>
+		/// <param name="context">The context object used to track workflow state and properties throughout execution. Cannot be null.</param>
+		/// <returns>A value indicating whether the workflow completed successfully. Returns <see langword="true"/> if all steps
+		/// succeeded; otherwise, <see langword="false"/>.</returns>
+		public virtual async Task<bool> ExecuteWorkflowAsync(IContext context)
 		{
 			bool returnValue = true;
 
@@ -149,7 +162,7 @@ namespace Diamond.Core.Workflow
 				stopWatch.Start();
 
 				//
-				//
+				// Create a flag for the result.
 				//
 				bool result = false;
 
@@ -200,32 +213,38 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Asynchronously loads workflow steps if they have not already been loaded.
 		/// </summary>
-		/// <returns></returns>
-		protected async Task LoadAsync()
+		/// <remarks>This method should be called before accessing workflow steps to ensure they are loaded. If steps
+		/// are already loaded, the method completes without reloading.</remarks>
+		/// <returns>A task that represents the asynchronous load operation.</returns>
+		/// <exception cref="MissingStepsException">Thrown if no steps are found for the workflow associated with the current service key.</exception>
+		protected virtual async Task LoadAsync()
 		{
-			if (this.Steps == null || this.Steps.Count() == 0)
+			if (this.Steps == null || this.Steps.Length == 0)
 			{
 				this.Logger.LogDebug("Loading workflow steps.");
-				this.Steps = (await this.WorkflowItemFactory.GetItemsAsync(this.Group)).ToArray();
-				this.Logger.LogDebug("{count} steps were loaded.", this.Steps.Count());
+				this.Steps = [.. (await this.WorkflowItemFactory.GetItemsAsync(this.ServiceKey))];
+				this.Logger.LogDebug("{count} steps were loaded.", this.Steps.Length);
 
-				if (this.Steps.Count() == 0)
+				if (this.Steps.Length == 0)
 				{
-					this.Logger.LogDebug("Throwing exception because no steps were found for the workflow with group name '{group}'.", this.Group);
-					throw new MissingStepsException(this.Group);
+					this.Logger.LogDebug("Throwing exception because no steps were found for the workflow with Service Key '{serviceKey}'.", this.ServiceKey);
+					throw new MissingStepsException(this.ServiceKey);
 				}
 			}
 		}
 
 		/// <summary>
-		/// 
+		/// Executes the specified workflow step asynchronously within the given context.
 		/// </summary>
-		/// <param name="step"></param>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
-		protected async Task<bool> ExecuteStepAsync(IWorkflowItem step, IContext context)
+		/// <remarks>If the step fails, the method sets an appropriate exception in the context to indicate the
+		/// failure reason. Logging is performed for both successful and failed executions.</remarks>
+		/// <param name="step">The workflow item to execute. Represents a single step in the workflow.</param>
+		/// <param name="context">The execution context for the workflow step. Provides state and exception handling for the step.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the step completed
+		/// successfully; otherwise, <see langword="false"/>.</returns>
+		protected virtual async Task<bool> ExecuteStepAsync(IWorkflowItem step, IContext context)
 		{
 			bool returnValue = false;
 
