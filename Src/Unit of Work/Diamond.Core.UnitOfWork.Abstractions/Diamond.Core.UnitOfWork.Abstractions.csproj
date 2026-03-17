@@ -37,6 +37,9 @@
 		<None Remove="Services\Diamond.Core.UnitOfWork.Abstractions.json" />
 	</ItemGroup>
 	<ItemGroup>
+		<Content Include="Diamond.Core.UnitOfWork.Abstractions.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Services\Diamond.Core.UnitOfWork.Abstractions.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>

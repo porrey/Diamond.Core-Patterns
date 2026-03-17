@@ -32,10 +32,14 @@
 		<DocumentationFile>Diamond.Core.Workflow.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="Diamond.Core.WorkFlow.xml" />
 		<None Remove="Diamond.Patterns.WorkFlow.xml" />
 		<None Remove="Services\Diamond.Core.Workflow.json" />
 	</ItemGroup>
 	<ItemGroup>
+		<Content Include="Diamond.Core.WorkFlow.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Services\Diamond.Core.Workflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>

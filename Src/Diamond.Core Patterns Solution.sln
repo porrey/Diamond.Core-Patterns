@@ -153,6 +153,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.LoadSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.KeyedServices", "Examples\Diamond.Core.Example.LoadServicesDelayed\Diamond.Core.Example.KeyedServices.csproj", "{AB295CC3-D12A-5DF7-0BBA-C76D4666CBFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.WorkFlow.Steps", "Workflow\Diamond.Core.WorkFlow.Steps\Diamond.Core.WorkFlow.Steps.csproj", "{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -399,6 +401,10 @@ Global
 		{AB295CC3-D12A-5DF7-0BBA-C76D4666CBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB295CC3-D12A-5DF7-0BBA-C76D4666CBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB295CC3-D12A-5DF7-0BBA-C76D4666CBFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -463,6 +469,7 @@ Global
 		{AC7C417D-8FF2-8ABC-9E26-B04F9690C8FB} = {A0DFAB69-CDA7-44ED-BAF0-C5D90FD95072}
 		{C18D870E-4881-B959-31E8-841DC28C8924} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{AB295CC3-D12A-5DF7-0BBA-C76D4666CBFF} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
+		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}
