@@ -19,14 +19,18 @@ using Diamond.Core.Abstractions;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// 
+	/// Represents an exception that is thrown when a workflow manager for a specified group name has not been configured.
 	/// </summary>
+	/// <remarks>This exception is typically thrown when attempting to access a workflow manager instance that does
+	/// not exist for the given group name. Use this exception to identify configuration issues related to workflow manager
+	/// registration.</remarks>
 	public class WorkflowManagerNotFoundException : DiamondCoreException
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the WorkflowManagerNotFoundException class with the specified workflow manager group
+		/// name.
 		/// </summary>
-		/// <param name="groupName"></param>
+		/// <param name="groupName">The name of the workflow manager group that was not found. Cannot be null or empty.</param>
 		public WorkflowManagerNotFoundException(string groupName)
 			: base($"A work flow manager of type 'IWorkflowManager<{typeof(IContext).Name}>' with group name '{groupName}' has not been configured.")
 		{

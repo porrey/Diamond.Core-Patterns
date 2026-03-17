@@ -620,8 +620,13 @@
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyFactory">
             <summary>
-            
+            Provides functionality for creating and configuring instances of a specified implementation type, including
+            assignment of dependency properties and configuration values.
             </summary>
+            <remarks>The class supports dependency injection scenarios by allowing property assignment and configuration
+            of implementation types at runtime. It is typically used to instantiate services with custom property values and
+            dependencies resolved from a service provider. Thread safety is not guaranteed; concurrent access should be managed
+            externally if required.</remarks>
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo})">
             <summary>
@@ -630,6 +635,22 @@
             <param name="implementationType"></param>
             <param name="configuration"></param>
             <param name="dependencyProperties"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.#ctor(System.Object,System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration,System.Collections.Generic.IEnumerable{Diamond.Core.Extensions.DependencyInjection.DependencyInfo})">
+            <summary>
+            Initializes a new instance of the DependencyFactory class with the specified service key, implementation type,
+            configuration, and dependency properties.
+            </summary>
+            <param name="serviceKey">The unique key identifying the service for which dependencies are being managed. Cannot be null or empty.</param>
+            <param name="implementationType">The type that implements the service. Used to resolve dependencies for the specified service.</param>
+            <param name="configuration">The configuration settings that control how the service descriptor is constructed and managed.</param>
+            <param name="dependencyProperties">A collection of dependency information objects representing the properties required by the implementation type.
+            Cannot be null.</param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ServiceKey">
+            <summary>
+            Gets or sets the unique key used to identify the service instance.
+            </summary>
         </member>
         <member name="P:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.ImplementationType">
             <summary>
@@ -660,11 +681,20 @@
         </member>
         <member name="M:Diamond.Core.Extensions.DependencyInjection.DependencyFactory.AssignProperties(System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object[]},System.Type,System.Object)">
             <summary>
-            Assigns the properties from the configuration to the instance of the implementation type.
+            Assigns values to the properties of the specified instance using the provided property dictionaries.
             </summary>
-            <param name="properties"></param>
-            <param name="implementationType"></param>
-            <param name="instance"></param>
+            <remarks>Only properties that are writable and exist on the instance type will be assigned. Property names
+            are matched using a case-insensitive comparison. Array values are converted as needed before assignment.
+            Exceptions provide detailed context about the property and value causing the error.</remarks>
+            <param name="properties">A dictionary containing property names and their corresponding values to assign to the instance. Property names
+            are matched case-insensitively.</param>
+            <param name="arrayProperties">A dictionary containing property names and their corresponding array values to assign to the instance. Property
+            names are matched case-insensitively.</param>
+            <param name="implementationType">The type representing the implementation for which properties are being assigned. Used for exception context.</param>
+            <param name="instance">The object instance whose properties will be assigned values from the provided dictionaries.</param>
+            <exception cref="T:Diamond.Core.Extensions.DependencyInjection.PropertyConversionException">Thrown if a property value cannot be converted to the target property type during assignment.</exception>
+            <exception cref="T:Diamond.Core.Extensions.DependencyInjection.PropertyIsReadOnlyException">Thrown if an attempt is made to assign a value to a read-only property.</exception>
+            <exception cref="T:Diamond.Core.Extensions.DependencyInjection.PropertyNotFoundException">Thrown if a property specified in the dictionaries does not exist on the instance type.</exception>
         </member>
         <member name="T:Diamond.Core.Extensions.DependencyInjection.DependencyInfo">
             <summary>

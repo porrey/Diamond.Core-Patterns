@@ -25,15 +25,22 @@ using Humanizer;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// 
+	/// Provides workflow management for executing a sequence of workflow steps in a linear fashion, halting execution upon
+	/// the first failure. Supports customization of workflow item creation and logging.
 	/// </summary>
+	/// <remarks>Use this class to manage workflows where steps must be executed in order and the workflow should
+	/// stop if any step fails. The manager ensures steps are numbered contiguously and allows for integration with custom
+	/// logging and workflow item factories. The final step can be configured to always execute, regardless of previous
+	/// failures. Thread safety is not guaranteed; external synchronization may be required for concurrent
+	/// access.</remarks>
 	public class LinearHaltWorkflowManager : IWorkflowManager
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the LinearHaltWorkflowManager class with the specified workflow item factory and
+		/// logger.
 		/// </summary>
-		/// <param name="workFlowItemFactory"></param>
-		/// <param name="logger"></param>
+		/// <param name="workFlowItemFactory">The factory used to create workflow items for the manager. Cannot be null.</param>
+		/// <param name="logger">The logger used to record diagnostic and operational information for the manager. Cannot be null.</param>
 		public LinearHaltWorkflowManager(IWorkflowItemFactory workFlowItemFactory, ILogger<LinearHaltWorkflowManager> logger)
 			: this(workFlowItemFactory)
 		{
@@ -41,43 +48,50 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the LinearHaltWorkflowManager class using the specified workflow item factory.
 		/// </summary>
-		/// <param name="workFlowItemFactory"></param>
+		/// <param name="workFlowItemFactory">The factory used to create workflow items for the manager. Cannot be null.</param>
 		public LinearHaltWorkflowManager(IWorkflowItemFactory workFlowItemFactory)
 		{
 			this.WorkflowItemFactory = workFlowItemFactory;
 		}
 
 		/// <summary>
-		/// 
+		/// Gets or sets the factory used to create workflow items.
+		/// </summary>
+		/// <remarks>Assigning a custom factory allows for customization of workflow item creation. This property is
+		/// typically used to inject specialized behavior or dependencies into workflow items.</remarks>
+		public virtual IWorkflowItemFactory WorkflowItemFactory { get; set; }
+
+		/// <summary>
+		/// Gets or sets the logger used to record diagnostic and operational information for the workflow manager.
+		/// </summary>
+		/// <remarks>Assigning a custom logger allows integration with different logging frameworks or configuration
+		/// of log output. By default, logging is disabled unless a logger is explicitly provided.</remarks>
+		public virtual ILogger<LinearHaltWorkflowManager> Logger { get; set; } = new NullLogger<LinearHaltWorkflowManager>();
+
+		/// <summary>
+		/// Backing field for the <see cref="Steps"/> property. This field holds the collection of workflow steps for the current instance.
 		/// </summary>
 		private IWorkflowItem[] _steps = null;
 
 		/// <summary>
-		/// 
+		/// Gets or sets the collection of workflow steps for the current instance.
 		/// </summary>
-		public virtual IWorkflowItemFactory WorkflowItemFactory { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public virtual ILogger<LinearHaltWorkflowManager> Logger { get; set; } = new NullLogger<LinearHaltWorkflowManager>();
-
-		/// <summary>
-		/// 
-		/// </summary>
+		/// <remarks>The steps must be numbered contiguously, starting with 1. Setting this property with steps that
+		/// do not meet these requirements will result in an exception. The steps are stored in order based on their ordinal
+		/// values.</remarks>
 		public virtual IWorkflowItem[] Steps
 		{
 			get
 			{
 				if (_steps == null)
 				{
-					_steps = this.WorkflowItemFactory.GetItemsAsync(this.Group).Result.ToArray();
+					_steps = this.WorkflowItemFactory.GetItemsAsync(this.ServiceKey).Result.ToArray();
 
 					if (_steps.Count() == 0)
 					{
-						throw new ArgumentOutOfRangeException($"No work flow items with group '{this.Group}' were found.");
+						throw new ArgumentOutOfRangeException($"No work flow items with Service Key '{this.ServiceKey}' were found.");
 					}
 				}
 
@@ -93,7 +107,7 @@ namespace Diamond.Core.Workflow
 				if (!isContiguous)
 				{
 					string itemOrdinals = String.Join(",", value.Select(t => t.Ordinal));
-					throw new ArgumentOutOfRangeException($"The {value.Length} [{itemOrdinals}] state items for group {this.Group} are not numbered consecutively.");
+					throw new ArgumentOutOfRangeException($"The {value.Length} [{itemOrdinals}] state items for Service Key {this.ServiceKey} are not numbered consecutively.");
 				}
 				else
 				{
@@ -106,15 +120,20 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Gets or sets the unique key used to identify the service instance.
 		/// </summary>
-		public virtual string Group { get; set; }
+		public virtual string ServiceKey { get; set; }
 
 		/// <summary>
-		/// 
+		/// Executes the workflow asynchronously, processing each step in sequence and updating the workflow state based on
+		/// step outcomes.
 		/// </summary>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
+		/// <remarks>If a step fails, subsequent steps are not executed except for any step marked to always execute
+		/// as the final step. The workflow context properties are updated to reflect the outcome of the execution.</remarks>
+		/// <param name="context">The workflow execution context containing properties and state information used during workflow processing. Cannot
+		/// be null.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if all workflow steps
+		/// completed successfully; otherwise, <see langword="false"/>.</returns>
 		public virtual async Task<bool> ExecuteWorkflowAsync(IContext context)
 		{
 			bool returnValue = true;
@@ -135,7 +154,7 @@ namespace Diamond.Core.Workflow
 				//
 				// Create a stop watch to time the workflow steps.
 				//
-				Stopwatch stopWatch = new Stopwatch();
+				Stopwatch stopWatch = new();
 
 				//
 				// Loop through each workflow step executing them one at a time.
@@ -219,11 +238,16 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Executes the specified workflow step asynchronously within the given context and determines whether the step
+		/// completed successfully.
 		/// </summary>
-		/// <param name="step"></param>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
+		/// <remarks>If the step fails or an exception occurs during execution, the context is updated with the
+		/// relevant exception information. Override this method to customize step execution behavior in derived
+		/// classes.</remarks>
+		/// <param name="step">The workflow item to execute. Represents a single step in the workflow process.</param>
+		/// <param name="context">The execution context for the workflow step. Provides state and exception handling for the step execution.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the step executed
+		/// successfully; otherwise, <see langword="false"/>.</returns>
 		protected virtual async Task<bool> ExecuteStepAsync(IWorkflowItem step, IContext context)
 		{
 			bool returnValue = false;
@@ -257,34 +281,39 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Asynchronously loads workflow steps for the current group if they have not already been loaded.
 		/// </summary>
-		/// <returns></returns>
+		/// <remarks>Override this method to customize how workflow steps are loaded for a group. Steps are only
+		/// loaded if they have not been previously set.</remarks>
+		/// <returns>A task that represents the asynchronous load operation.</returns>
+		/// <exception cref="MissingStepsException">Thrown if no steps are found for the specified group.</exception>
 		protected virtual async Task LoadAsync()
 		{
-			if (this.Steps == null || this.Steps.Count() == 0)
+			if (this.Steps == null || this.Steps.Length == 0)
 			{
-				this.Steps = (await this.WorkflowItemFactory.GetItemsAsync(this.Group)).ToArray();
+				this.Steps = [.. (await this.WorkflowItemFactory.GetItemsAsync(this.ServiceKey))];
 
-				if (this.Steps.Count() == 0)
+				if (this.Steps.Length == 0)
 				{
-					throw new MissingStepsException(this.Group);
+					throw new MissingStepsException(this.ServiceKey);
 				}
 			}
 		}
 
 		/// <summary>
-		/// 
+		/// Gets the index of the step that is always executed, if present, in the sequence of steps.
 		/// </summary>
+		/// <remarks>Returns the index of the last step if it is marked to always execute; otherwise, returns -1. This
+		/// property is useful for identifying special steps that must run regardless of other conditions.</remarks>
 		protected virtual int AlwaysExecuteStepIndex
 		{
 			get
 			{
 				int returnValue = -1;
 
-				if (this.Steps[this.Steps.Count() - 1].AlwaysExecute)
+				if (this.Steps[this.Steps.Length - 1].AlwaysExecute)
 				{
-					returnValue = this.Steps.Count() - 1;
+					returnValue = this.Steps.Length - 1;
 				}
 
 				return returnValue;
@@ -292,19 +321,24 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Gets a value indicating whether the last step in the sequence is configured to always execute.
 		/// </summary>
+		/// <remarks>Use this property to determine if the final step will run regardless of previous outcomes. This
+		/// can be useful for ensuring cleanup or finalization actions are performed.</remarks>
 		protected virtual bool HasAlwaysExecuteStep
 		{
 			get
 			{
-				return this.Steps[this.Steps.Count() - 1].AlwaysExecute;
+				return this.Steps[this.Steps.Length - 1].AlwaysExecute;
 			}
 		}
 
 		/// <summary>
-		/// 
+		/// Gets the index of the final step in the workflow sequence.
 		/// </summary>
+		/// <remarks>If the workflow contains an always-execute step marked as final, the index returned corresponds
+		/// to the step immediately preceding it. This property is intended for scenarios where the workflow's completion
+		/// logic depends on identifying the last actionable step.</remarks>
 		protected virtual int FinalStepOfWorkflow
 		{
 			get
@@ -314,7 +348,7 @@ namespace Diamond.Core.Workflow
 				// unless it is marked final. Then it is the step
 				// before it.
 				//
-				int returnValue = this.Steps.Count() - 1;
+				int returnValue = this.Steps.Length - 1;
 
 				if (this.HasAlwaysExecuteStep)
 				{
@@ -323,6 +357,6 @@ namespace Diamond.Core.Workflow
 
 				return returnValue;
 			}
-		}
+		}		
 	}
 }

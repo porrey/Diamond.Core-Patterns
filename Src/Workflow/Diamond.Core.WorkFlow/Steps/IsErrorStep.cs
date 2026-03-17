@@ -19,20 +19,27 @@ using System.Threading.Tasks;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// 
+	/// Represents a workflow step that checks whether the workflow is in an error state.
 	/// </summary>
+	/// <remarks>This class is used within a workflow to determine if an error has occurred and to handle error
+	/// conditions appropriately. If an error is detected, the workflow step will fail and provide an error message if
+	/// available. Otherwise, the workflow continues as normal.</remarks>
 	public class IsErrorStep : WorkflowItemTemplate
 	{
 		/// <summary>
-		/// 
+		/// Gets the display name for the error state of the workflow.
 		/// </summary>
 		public override string Name => "Workflow Is In Error";
 
 		/// <summary>
-		/// 
+		/// Executes the workflow step asynchronously and determines whether the workflow should continue based on the error
+		/// state in the context.
 		/// </summary>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
+		/// <remarks>If the context contains a workflow error, the step is marked as failed and the workflow will not
+		/// continue. If no error is present, the workflow proceeds to the next step.</remarks>
+		/// <param name="context">The workflow execution context containing properties that influence step execution, including error information.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the workflow
+		/// should continue; otherwise, <see langword="false"/>.</returns>
 		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{
 			bool returnValue = false;

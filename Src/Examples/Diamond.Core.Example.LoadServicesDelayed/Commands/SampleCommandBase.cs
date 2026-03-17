@@ -21,7 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Diamond.Core.Example.LoadServicesDelayed
+namespace Diamond.Core.Example.KeyedServices
 {
 	/// <summary>
 	/// Represents a base command for executing operations on a sample model.	
@@ -35,57 +35,30 @@ namespace Diamond.Core.Example.LoadServicesDelayed
 		/// Initializes a new instance of the SampleCommandBase class with the specified logger.
 		/// </summary>
 		/// <param name="logger">The logger used to record diagnostic and operational messages for the command.</param>
-		public SampleCommandBase(ILogger<SampleCommandBase> logger, IServiceProvider serviceProvider, IOptions<TestOptions> options)
+		public SampleCommandBase(ILogger<SampleCommandBase> logger, IServiceProvider serviceProvider, IOptions<SampleOptions> options)
 			: base(logger, "test", "Run a test command.")
 		{
 			this.ServiceProvider = serviceProvider;
-			this.TestOptions = options.Value;
+			this.SampleOptions = options.Value;
 		}
 
 		protected IServiceProvider ServiceProvider { get; }
-		protected TestOptions TestOptions { get; }
+		protected SampleOptions SampleOptions { get; }
 
 		protected override Task<int> OnHandleCommand(SampleModel item)
 		{
 			int returnValue = 0;
 
-			//IHost builder = (new HostBuilder())
-			//					.ConfigureServices((c, s) => { })
-			//					.UseServiceProviderFactory(c => new MyFactory(this.ServiceProvider))
-			//					.ConfigureServicesFile("Services/Example1.json")
-			//					.ConfigureServicesFile("Configuration/Example2.json")
-			//					.UseConfiguredServices()
-			//					.Build();
-
-			//ISample sample2 = builder.Services.GetKeyedService<ISample>("Sample2");
-			//Console.WriteLine(sample2.Name);
-			//Console.WriteLine($"There are {sample2.Items.Length} items");
-
-			ISample sample1 = this.ServiceProvider.GetService<ISample>();
-			Console.WriteLine(sample1.Name);
-			Console.WriteLine($"There are {sample1.Items.Length} items");
+			//
+			// Use the options to determine which service to load. In this example, we will load a
+			// service based on the name specified in the options.
+			//
+			Console.WriteLine($"Loading service for {this.SampleOptions.Name}...");
+			ISample sample = this.ServiceProvider.GetKeyedService<ISample>(this.SampleOptions.Name);
+			Console.WriteLine(sample.Name);
+			Console.WriteLine($"There are {sample.Items.Length} items");
 
 			return Task.FromResult(returnValue);
-		}
-	}
-
-	public class MyFactory : IServiceProviderFactory<IServiceCollection>
-	{
-		public MyFactory(IServiceProvider serviceProvider)
-		{
-			this.ServiceProvider = serviceProvider;
-		}
-
-		protected IServiceProvider ServiceProvider { get; }
-
-		public IServiceCollection CreateBuilder(IServiceCollection services)
-		{
-			return services;
-		}
-
-		public IServiceProvider CreateServiceProvider(IServiceCollection containerBuilder)
-		{
-			return containerBuilder.BuildServiceProvider();
 		}
 	}
 }

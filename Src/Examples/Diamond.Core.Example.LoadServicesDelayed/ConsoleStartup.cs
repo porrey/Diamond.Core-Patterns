@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using Diamond.Core.Example.LoadServicesDelayed;
+using Diamond.Core.Example.KeyedServices;
 using Diamond.Core.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,7 +24,7 @@ namespace Diamond.Core.Example
 	{
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddOptions<TestOptions>().BindConfiguration(TestOptions.Key);
+			services.AddOptions<SampleOptions>().BindConfiguration(SampleOptions.Key);
 		}
 	}
 }

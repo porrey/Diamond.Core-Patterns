@@ -24,6 +24,11 @@ namespace Diamond.Core.Workflow
 	public interface IWorkflowManager
 	{
 		/// <summary>
+		/// Gets or sets the unique key used to identify the service instance.
+		/// </summary>
+		string ServiceKey { get; set; }
+
+		/// <summary>
 		/// 
 		/// </summary>
 		IWorkflowItemFactory WorkflowItemFactory { get; set; }

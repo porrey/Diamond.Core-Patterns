@@ -28,24 +28,27 @@ namespace Diamond.Core.Workflow
 	public class WorkflowContext : DisposableObject, IContext
 	{
 		/// <summary>
-		/// Gets the name of the context. The name is used for logging purposes.
+		/// Gets or sets the name associated with this instance. The name is used for logging.
 		/// </summary>
 		public virtual string Name { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets the collection of command-line arguments associated with the current operation.
 		/// </summary>
 		public virtual string[] Arguments { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets the collection of state properties associated with the current context.
 		/// </summary>
+		/// <remarks>Use this property to store and retrieve custom data relevant to the context. The collection
+		/// persists for the lifetime of the context and can be used to share information between components.</remarks>
 		public virtual IStateDictionary Properties { get; } = new StateDictionary();
 
 		/// <summary>
-		/// 
+		/// Resets the current instance asynchronously to its initial state.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A task that represents the asynchronous reset operation.</returns>
+		/// <exception cref="NotImplementedException">Thrown if the method is not implemented in a derived class.</exception>
 		public virtual Task ResetAsync()
 		{
 			throw new NotImplementedException();

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11605.240 stable
+VisualStudioVersion = 18.4.11605.240
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Decorator", "Decorator\Diamond.Core.Decorator\Diamond.Core.Decorator.csproj", "{33C88E6C-2FBA-4999-A989-061804C71BEC}"
 EndProject
@@ -151,7 +151,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.System.Base36"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.LoadServices", "Examples\Diamond.Core.Example.LoadServices\Diamond.Core.Example.LoadServices.csproj", "{C18D870E-4881-B959-31E8-841DC28C8924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.LoadServicesDelayed", "Examples\Diamond.Core.Example.LoadServicesDelayed\Diamond.Core.Example.LoadServicesDelayed.csproj", "{AB295CC3-D12A-5DF7-0BBA-C76D4666CBFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.KeyedServices", "Examples\Diamond.Core.Example.LoadServicesDelayed\Diamond.Core.Example.KeyedServices.csproj", "{AB295CC3-D12A-5DF7-0BBA-C76D4666CBFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

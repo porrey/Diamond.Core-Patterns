@@ -17,14 +17,20 @@
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// Generic error for a missing context property.
+	/// Represents an exception that is thrown when no workflow steps are found for the specified group.
 	/// </summary>
+	/// <remarks>This exception is typically used to indicate a configuration or runtime error in workflow
+	/// processing when a required group of steps is missing. It derives from WorkflowException and provides a message
+	/// identifying the missing group.</remarks>
 	public class MissingStepsException : WorkflowException
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the MissingStepsException class with a specified workflow group name.
 		/// </summary>
-		/// <param name="group"></param>
+		/// <remarks>This exception is typically thrown when a workflow operation expects steps to be defined for a
+		/// given group, but none are present. Use this exception to signal missing configuration or incomplete workflow
+		/// definitions.</remarks>
+		/// <param name="group">The name of the workflow group for which no steps were found. Cannot be null or empty.</param>
 		public MissingStepsException(string group)
 			: base($"No workflow steps with group '{group}' were found.")
 		{

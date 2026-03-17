@@ -38,7 +38,6 @@ namespace Diamond.Core.Example.BasicConsole
 		}
 
 		public override string Name => $"Sample Step {this.Ordinal}";
-		public override string Group => WellKnown.Workflow.SampleWorkflow;
 		public override int Ordinal => 3;
 		protected IRepositoryFactory RepositoryFactory { get; set; }
 		protected IUnitOfWorkFactory UnitOfWorkFactory { get; set; }

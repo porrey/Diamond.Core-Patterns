@@ -23,14 +23,19 @@ using Microsoft.Extensions.Logging;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// 
+	/// Represents a workflow step that deletes a temporary folder created during the workflow execution.
 	/// </summary>
+	/// <remarks>This step is typically used to clean up temporary resources at the end of a workflow. It relies on
+	/// an implementation of ITemporaryFolderFactory to manage folder creation and deletion. The step logs the deletion
+	/// process and ensures the temporary folder is removed from the workflow context. If the folder cannot be deleted, a
+	/// warning is logged. This class can be customized with additional parameters such as name, group, ordinal, and
+	/// alwaysExecute to fit specific workflow requirements.</remarks>
 	public class DeleteTemporaryFolderStep : WorkflowItemTemplate
 	{
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the DeleteTemporaryFolderStep class using the specified temporary folder factory.
 		/// </summary>
-		/// <param name="temporaryFolderFactory"></param>
+		/// <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for this step. Cannot be null.</param>
 		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory)
 		{
 			this.TemporaryFolderFactory = temporaryFolderFactory;
@@ -38,10 +43,11 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the DeleteTemporaryFolderStep class with the specified temporary folder factory and
+		/// logger.
 		/// </summary>
-		/// <param name="temporaryFolderFactory"></param>
-		/// <param name="logger"></param>
+		/// <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for workflow operations. Cannot be null.</param>
+		/// <param name="logger">The logger used to record diagnostic information and workflow events. Cannot be null.</param>
 		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger)
 			: this(temporaryFolderFactory)
 		{
@@ -49,51 +55,58 @@ namespace Diamond.Core.Workflow
 		}
 
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the DeleteTemporaryFolderStep class with the specified folder factory, logger, name,
+		/// group, and ordinal position.
 		/// </summary>
-		/// <param name="temporaryFolderFactory"></param>
-		/// <param name="logger"></param>
-		/// <param name="name"></param>
-		/// <param name="group"></param>
-		/// <param name="ordinal"></param>
-		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal)
+		/// <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for the workflow step.</param>
+		/// <param name="logger">The logger instance used to record diagnostic and operational information for the workflow item template.</param>
+		/// <param name="name">The name assigned to this workflow step. Cannot be null or empty.</param>
+		/// <param name="ordinal">The ordinal position of this step within the workflow sequence. Must be a non-negative integer.</param>
+		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger, string name, int ordinal)
 			: this(temporaryFolderFactory, logger)
 		{
 			this.Name = name;
-			this.Group = group;
 			this.Ordinal = ordinal;
 		}
 
 		/// <summary>
-		/// 
+		/// Initializes a new instance of the DeleteTemporaryFolderStep class with the specified configuration and execution
+		/// behavior.
 		/// </summary>
-		/// <param name="temporaryFolderFactory"></param>
-		/// <param name="logger"></param>
-		/// <param name="name"></param>
-		/// <param name="group"></param>
-		/// <param name="ordinal"></param>
-		/// <param name="alwaysExecute"></param>
-		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger, string name, string group, int ordinal, bool alwaysExecute)
-			: this(temporaryFolderFactory, logger, name, group, ordinal)
+		/// <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for workflow operations.</param>
+		/// <param name="logger">The logger instance used to record diagnostic and workflow-related messages.</param>
+		/// <param name="name">The name assigned to this workflow step. Used for identification within the workflow.</param>
+		/// <param name="ordinal">The ordinal position of this step in the workflow sequence. Determines execution order.</param>
+		/// <param name="alwaysExecute">A value indicating whether this step should execute regardless of workflow conditions. Set to <see
+		/// langword="true"/> to force execution.</param>
+		public DeleteTemporaryFolderStep(ITemporaryFolderFactory temporaryFolderFactory, ILogger<WorkflowItemTemplate> logger, string name, int ordinal, bool alwaysExecute)
+			: this(temporaryFolderFactory, logger, name, ordinal)
 		{
 			this.AlwaysExecute = alwaysExecute;
 		}
 
 		/// <summary>
-		/// 
+		/// Gets or sets the display name for the operation.
 		/// </summary>
 		public override string Name { get; set; } = "Delete Temporary Folder";
 
 		/// <summary>
-		/// 
+		/// Gets or sets the factory used to create temporary folders for file operations.
 		/// </summary>
+		/// <remarks>Override this property to customize how temporary folders are created or managed. The factory
+		/// should implement strategies for creating, cleaning up, and managing temporary storage as needed by the
+		/// application.</remarks>
 		protected virtual ITemporaryFolderFactory TemporaryFolderFactory { get; set; }
 
 		/// <summary>
-		/// 
+		/// Executes the step to delete the temporary folder associated with the current workflow context.
 		/// </summary>
-		/// <param name="context">The current workflow context.</param>
-		/// <returns></returns>
+		/// <remarks>If a temporary folder is present in the context, it is disposed and removed. Logging is performed
+		/// to indicate whether the folder was successfully deleted. The method always returns <see
+		/// langword="true"/>.</remarks>
+		/// <param name="context">The workflow context containing properties and state for the current execution step. Must not be null.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> when the step
+		/// completes.</returns>
 		protected override Task<bool> OnExecuteStepAsync(IContext context)
 		{
 			if (context.Properties.ContainsKey(DiamondWorkflow.WellKnown.Context.TemporaryFolder))

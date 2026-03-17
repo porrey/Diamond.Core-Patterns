@@ -20,17 +20,22 @@ using Diamond.Core.Workflow.State;
 namespace Diamond.Core.Workflow
 {
 	/// <summary>
-	/// Defines a generic context.
+	/// Defines a contract for accessing contextual information, properties, and arguments within an application
+	/// environment.
 	/// </summary>
+	/// <remarks>Implementations of this interface provide access to context-specific data, such as named properties
+	/// and application arguments. The interface supports resetting the context asynchronously, which may be useful for
+	/// scenarios requiring state re-initialization. Members are thread-safe only if implemented as such by the concrete
+	/// type.</remarks>
 	public interface IContext
 	{
 		/// <summary>
-		/// Gets the name of the context.
+		/// Gets the name associated with the current instance.
 		/// </summary>
 		string Name { get; }
 
 		/// <summary>
-		/// Gets/sets properties to be contained  within the context.
+		/// Gets/sets properties to be contained within the context.
 		/// </summary>
 		IStateDictionary Properties { get; }
 

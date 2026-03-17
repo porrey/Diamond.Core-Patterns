@@ -305,10 +305,20 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				}
 				else
 				{
-					//
-					// Factory based definition.
-					//
-					returnValue = ServiceDescriptor.Describe(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp), lifetime);
+					if (!string.IsNullOrWhiteSpace(item.ServiceKey))
+					{
+						//
+						// Factory based keyed definition.
+						//
+						returnValue = ServiceDescriptor.DescribeKeyed(serviceType, item.ServiceKey, (sp, k) => (new DependencyFactory(k, implementationType, item, dependencyProperties)).GetInstance(sp), lifetime);
+					}
+					else
+					{
+						//
+						// Factory based definition.
+						//
+						returnValue = ServiceDescriptor.Describe(serviceType, sp => (new DependencyFactory(implementationType, item, dependencyProperties)).GetInstance(sp), lifetime);
+					}
 				}
 			}
 

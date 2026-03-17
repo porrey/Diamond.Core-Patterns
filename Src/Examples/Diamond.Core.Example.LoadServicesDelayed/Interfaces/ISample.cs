@@ -1,4 +1,4 @@
-﻿namespace Diamond.Core.Example.LoadServicesDelayed
+﻿namespace Diamond.Core.Example.KeyedServices
 {
 	internal interface ISample
 	{
