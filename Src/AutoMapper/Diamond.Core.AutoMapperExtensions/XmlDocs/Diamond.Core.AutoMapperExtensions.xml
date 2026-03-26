@@ -4,5 +4,62 @@
         <name>Diamond.Core.AutoMapperExtensions</name>
     </assembly>
     <members>
+        <member name="T:Diamond.Core.AutoMapperExtensions.HostBuilderExtensions">
+            <summary>
+            Provides extension methods for configuring AutoMapper in .NET host and service collection builders.
+            </summary>
+            <remarks>These extension methods simplify the integration of AutoMapper into applications using dependency
+            injection. They allow for automatic registration of mapping profiles and configuration of AutoMapper services
+            within the application's dependency injection container.</remarks>
+        </member>
+        <member name="M:Diamond.Core.AutoMapperExtensions.HostBuilderExtensions.UseAutoMapper(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            Adds AutoMapper configuration and services to the application's dependency injection container using the specified
+            host builder.
+            </summary>
+            <remarks>This method enables AutoMapper support for the application by registering required services
+            during host building. Call this method before building the host to ensure AutoMapper is available throughout the
+            application's lifetime.</remarks>
+            <param name="hostBuilder">The host builder to which AutoMapper services will be added. Cannot be null.</param>
+            <returns>The same instance of the host builder for chaining additional configuration.</returns>
+        </member>
+        <member name="M:Diamond.Core.AutoMapperExtensions.HostBuilderExtensions.UseAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds and configures AutoMapper services using the default initialization and profiles for the application.
+            </summary>
+            <remarks>This method registers AutoMapper with the dependency injection container and adds all available
+            AutoMapper profiles. It should be called during application startup before resolving AutoMapper
+            services.</remarks>
+            <param name="services">The service collection to which AutoMapper services will be added.</param>
+            <returns>The same service collection instance, enabling method chaining.</returns>
+        </member>
+        <member name="T:Diamond.Core.AutoMapperExtensions.NullProfile">
+            <summary>
+            Represents a profile that performs no operations and contains no data.
+            </summary>
+            <remarks>Use this class as a placeholder or default implementation when a non-null profile is required but
+            no actual behavior is needed. This can be useful in scenarios where a profile is optional or when implementing the
+            Null Object pattern.</remarks>
+        </member>
+        <member name="T:Diamond.Core.AutoMapperExtensions.ProfileTemplate">
+            <summary>
+            Provides a base class for profile implementations that require logging functionality.
+            </summary>
+            <remarks>Inherit from this class to create custom profiles with integrated logging support. The logger can
+            be used to record diagnostic or operational information relevant to the profile's behavior.</remarks>
+        </member>
+        <member name="M:Diamond.Core.AutoMapperExtensions.ProfileTemplate.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AutoMapperExtensions.ProfileTemplate})">
+            <summary>
+            Initializes a new instance of the ProfileTemplate class with the specified logger.
+            </summary>
+            <param name="logger">The logger instance used to record diagnostic and operational messages for the ProfileTemplate.</param>
+        </member>
+        <member name="P:Diamond.Core.AutoMapperExtensions.ProfileTemplate.Logger">
+            <summary>
+            Gets or sets the logger used to record diagnostic and operational messages for the profile template.
+            </summary>
+            <remarks>Assign a custom logger to integrate with application-wide logging infrastructure. By default, a
+            no-op logger is used, and no log output is produced unless a different logger is provided.</remarks>
+        </member>
     </members>
 </doc>

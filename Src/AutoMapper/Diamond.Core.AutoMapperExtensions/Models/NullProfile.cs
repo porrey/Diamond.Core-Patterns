@@ -18,6 +18,12 @@ using AutoMapper;
 
 namespace Diamond.Core.AutoMapperExtensions
 {
+	/// <summary>
+	/// Represents a profile that performs no operations and contains no data.
+	/// </summary>
+	/// <remarks>Use this class as a placeholder or default implementation when a non-null profile is required but
+	/// no actual behavior is needed. This can be useful in scenarios where a profile is optional or when implementing the
+	/// Null Object pattern.</remarks>
 	public class NullProfile : Profile
 	{
 	}
