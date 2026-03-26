@@ -155,6 +155,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Workflow.Steps
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.KeyedServices", "Examples\Diamond.Core.Example.KeyedServices\Diamond.Core.Example.KeyedServices.csproj", "{AA24249F-D553-E30D-4F2B-ADAB557E81B5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.System.Tests", "Tests\Diamond.Core.System.Tests\Diamond.Core.System.Tests.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567801}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Specification.Tests", "Tests\Diamond.Core.Specification.Tests\Diamond.Core.Specification.Tests.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567802}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Rules.Tests", "Tests\Diamond.Core.Rules.Tests\Diamond.Core.Rules.Tests.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567803}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Decorator.Tests", "Tests\Diamond.Core.Decorator.Tests\Diamond.Core.Decorator.Tests.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567804}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Clonable.Tests", "Tests\Diamond.Core.Clonable.Tests\Diamond.Core.Clonable.Tests.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567806}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -405,6 +417,26 @@ Global
 		{AA24249F-D553-E30D-4F2B-ADAB557E81B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA24249F-D553-E30D-4F2B-ADAB557E81B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA24249F-D553-E30D-4F2B-ADAB557E81B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567801}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567801}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -470,6 +502,11 @@ Global
 		{C18D870E-4881-B959-31E8-841DC28C8924} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
 		{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F} = {D2924B42-A572-4D29-AA82-EB69ADC9BBFF}
 		{AA24249F-D553-E30D-4F2B-ADAB557E81B5} = {B27AF0DE-B54B-4F22-A25D-3E02107FAC58}
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567801} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567802} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567803} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567804} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
+		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}
