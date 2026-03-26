@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.DependencyInjection.Oracle</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.Oracle.DbContextDependencyFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.Oracle.DbContextDependencyFactory.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.Oracle.DbContextDependencyFactory.OnDbContextOptionsBuilder(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="T:Diamond.Core.Extensions.DependencyInjection.Oracle.DbContextDependencyFactory`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.Oracle.DbContextDependencyFactory`1.#ctor(System.Type,Diamond.Core.Extensions.DependencyInjection.ServiceDescriptorConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="implementationType"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.DependencyInjection.Oracle.DbContextDependencyFactory`1.OnDbContextOptionsBuilder(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{`0},System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <param name="parameters"></param>
+        </member>
+    </members>
+</doc>

@@ -9,9 +9,9 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>10.1.0.0</Version>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Description>This library provides abstractions for the repository pattern.</Description>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
@@ -30,14 +30,18 @@
 	<ItemGroup>
 		<None Remove="Diamond.Core.Repository.Abstractions.xml" />
 		<None Remove="Services\Diamond.Core.Repository.Abstractions.json" />
+		<None Remove="XmlDocs\Diamond.Core.Repository.Abstractions.xml" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="Services\Diamond.Core.Repository.Abstractions.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="XmlDocs\Diamond.Core.Repository.Abstractions.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.Repository.Abstractions.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.Repository.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="..\..\..\README.md">

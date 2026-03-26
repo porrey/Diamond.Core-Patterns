@@ -7,9 +7,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0.0</Version>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
-		<FileVersion>10.1.0.0</FileVersion>
+		<Version>10.1.0</Version>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
+		<FileVersion>10.1.0</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
@@ -32,6 +32,8 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 		<EnableDefaultContentItems>false</EnableDefaultContentItems>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.AspNetCore.DataTables.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -51,10 +53,14 @@
 	
 	<ItemGroup>
 	  <None Remove="Services\Diamond.Core.AspNetCore.DataTables.json" />
+	  <None Remove="XmlDocs\Diamond.Core.AspNetCore.DataTables.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="Services\Diamond.Core.AspNetCore.DataTables.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="XmlDocs\Diamond.Core.AspNetCore.DataTables.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

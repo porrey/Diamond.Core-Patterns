@@ -2,9 +2,9 @@
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
 		<Product>Diamond.Core Patterns Library</Product>
-		<Version>10.1.0.0</Version>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey, Harshit Gindra</Authors>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -26,9 +26,17 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-		<DocumentationFile>Diamond.Core.Abstractions.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.Abstractions.xml</DocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="XmlDocs\Diamond.Core.Abstractions.xml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="XmlDocs\Diamond.Core.Abstractions.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 	<ItemGroup>
 	  <None Include="..\..\..\README.md">
 	    <Pack>True</Pack>

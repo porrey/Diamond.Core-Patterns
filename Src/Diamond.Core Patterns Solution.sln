@@ -151,7 +151,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.System.Base36"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.LoadServices", "Examples\Diamond.Core.Example.LoadServices\Diamond.Core.Example.LoadServices.csproj", "{C18D870E-4881-B959-31E8-841DC28C8924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.WorkFlow.Steps", "Workflow\Diamond.Core.WorkFlow.Steps\Diamond.Core.WorkFlow.Steps.csproj", "{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Workflow.Steps", "Workflow\Diamond.Core.WorkFlow.Steps\Diamond.Core.Workflow.Steps.csproj", "{EDA0F2E9-48CE-8683-EA51-ADF22BAEF34F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.Example.KeyedServices", "Examples\Diamond.Core.Example.KeyedServices\Diamond.Core.Example.KeyedServices.csproj", "{AA24249F-D553-E30D-4F2B-ADAB557E81B5}"
 EndProject

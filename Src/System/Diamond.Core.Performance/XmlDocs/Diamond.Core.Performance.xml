@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Performance</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Performance.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Performance.ServiceCollectionDecorator.UseMeasureAction(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necessary registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:Diamond.Core.Performance.MeasurableActionDelegate`1">
+            <summary>
+            Public delegate that defines an action with a return type.
+            </summary>
+            <typeparam name="T">Specifies the return type.</typeparam>
+            <returns>Returns an instance of T.</returns>
+        </member>
+        <member name="T:Diamond.Core.Performance.MeasureAction">
+            <summary>
+            Allows any method or block of code to be measured for performance.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Performance.MeasureAction.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Performance.MeasureAction})">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Performance.MeasureAction"/> with the specified logger./>
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.Performance.MeasureAction.Logger">
+            <summary>
+            Gets/sets the logger for this instance.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Performance.MeasureAction.Measure``1(Diamond.Core.Performance.MeasurableActionDelegate{``0},System.String)">
+            <summary>
+            Measure the method or block of code.
+            </summary>
+            <typeparam name="T">The return type.</typeparam>
+            <param name="action">The method or block of code to run.</param>
+            <param name="actionName">The name of the action used in the log.</param>
+            <returns>Returns an instance of T.</returns>
+        </member>
+        <member name="M:Diamond.Core.Performance.MeasureAction.Measure(System.Action,System.String)">
+            <summary>
+            Measure the method or block of code.
+            </summary>
+            <param name="action">The method or block of code to run.</param>
+            <param name="actionName">The name of the action used in the log.</param>
+        </member>
+        <member name="M:Diamond.Core.Performance.MeasureAction.MeasureAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.String)">
+            <summary>
+            Measure an asynchronous method or block of code.
+            </summary>
+            <typeparam name="T">The return type.</typeparam>
+            <param name="action">The async method or block of code to run.</param>
+            <param name="actionName">The name of the action used in the log.</param>
+            <returns>Returns an instance of T.</returns>
+        </member>
+        <member name="M:Diamond.Core.Performance.MeasureAction.MeasureAsync(System.Func{System.Threading.Tasks.Task},System.String)">
+            <summary>
+            Measure an asynchronous method or block of code with no return value.
+            </summary>
+            <param name="action">The async method or block of code to run.</param>
+            <param name="actionName">The name of the action used in the log.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.AspNetCore.Rfc7807</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.AspNetCore.Rfc7807.Rfc7807ModelValidationConversionAttribute">
+            <summary>
+            Updates the default problem details object returned from the model validation to
+            conform with RFC 7807.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.Rfc7807.Rfc7807ModelValidationConversionAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)">
+            <summary>
+            Called by the ASP.NET MVC framework after the action result executes.
+            </summary>
+            <param name="context">Provides the context for the OnResultExecuted(ResultExecutedContext)
+            method of an <see cref="T:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute"/> class.</param>
+        </member>
+    </members>
+</doc>
