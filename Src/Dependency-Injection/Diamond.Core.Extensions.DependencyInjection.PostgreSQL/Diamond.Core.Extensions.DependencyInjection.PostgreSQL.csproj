@@ -43,7 +43,7 @@
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="..\..\..\..\HERE.com\README.md">
+		<None Include="..\..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
