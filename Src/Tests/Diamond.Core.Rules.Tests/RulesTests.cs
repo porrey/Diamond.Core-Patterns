@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Diamond.Core.Rules;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Diamond.Core.Rules.Tests

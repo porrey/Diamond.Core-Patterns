@@ -444,8 +444,8 @@ namespace System
 		/// <summary>
 		/// Returns a string representation of the current object.
 		/// </summary>
-		/// <remarks>This method uses the invariant culture for formatting. To customize the formatting, use the  <see
-		/// cref="ToString(IFormatProvider)"/> overload.</remarks>
+		/// <remarks>This method uses the invariant culture for formatting. To customize the formatting, use the ToString(<see
+		/// cref="IFormatProvider"/>) overload.</remarks>
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString()
 		{

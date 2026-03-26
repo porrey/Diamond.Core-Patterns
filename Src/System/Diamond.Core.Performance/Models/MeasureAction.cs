@@ -18,9 +18,6 @@ using System.Diagnostics;
 using Humanizer;
 using Microsoft.Extensions.Logging;
 
-/// <summary>
-/// 
-/// </summary>
 namespace Diamond.Core.Performance
 {
 	/// <summary>

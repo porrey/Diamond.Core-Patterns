@@ -22,8 +22,23 @@ using Microsoft.Extensions.Options;
 
 namespace Diamond.Core.AutoMapperExtensions
 {
+	/// <summary>
+	/// Provides extension methods for configuring AutoMapper in .NET host and service collection builders.
+	/// </summary>
+	/// <remarks>These extension methods simplify the integration of AutoMapper into applications using dependency
+	/// injection. They allow for automatic registration of mapping profiles and configuration of AutoMapper services
+	/// within the application's dependency injection container.</remarks>
 	public static class HostBuilderExtensions
 	{
+		/// <summary>
+		/// Adds AutoMapper configuration and services to the application's dependency injection container using the specified
+		/// host builder.
+		/// </summary>
+		/// <remarks>This method enables AutoMapper support for the application by registering required services
+		/// during host building. Call this method before building the host to ensure AutoMapper is available throughout the
+		/// application's lifetime.</remarks>
+		/// <param name="hostBuilder">The host builder to which AutoMapper services will be added. Cannot be null.</param>
+		/// <returns>The same instance of the host builder for chaining additional configuration.</returns>
 		public static IHostBuilder UseAutoMapper(this IHostBuilder hostBuilder)
 		{
 			return hostBuilder.ConfigureServices((context, services) =>
@@ -32,6 +47,14 @@ namespace Diamond.Core.AutoMapperExtensions
 			});
 		}
 
+		/// <summary>
+		/// Adds and configures AutoMapper services using the default initialization and profiles for the application.
+		/// </summary>
+		/// <remarks>This method registers AutoMapper with the dependency injection container and adds all available
+		/// AutoMapper profiles. It should be called during application startup before resolving AutoMapper
+		/// services.</remarks>
+		/// <param name="services">The service collection to which AutoMapper services will be added.</param>
+		/// <returns>The same service collection instance, enabling method chaining.</returns>
 		public static IServiceCollection UseAutoMapper(this IServiceCollection services)
 		{
 			//
@@ -40,7 +63,7 @@ namespace Diamond.Core.AutoMapperExtensions
 			//
 			services.AddAutoMapper(c =>
 			{
-				c.AddProfile(typeof(NullProfile));
+				c.AddProfile<NullProfile>();
 			});
 
 			//
