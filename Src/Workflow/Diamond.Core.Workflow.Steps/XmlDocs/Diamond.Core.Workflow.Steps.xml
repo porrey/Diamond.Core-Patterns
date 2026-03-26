@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Diamond.Core.Workflow.Steps</name>
+        <name>Diamond.Core.WorkFlow.Steps</name>
     </assembly>
     <members>
         <member name="T:Diamond.Core.Workflow.CreateTemporaryFolderStep">

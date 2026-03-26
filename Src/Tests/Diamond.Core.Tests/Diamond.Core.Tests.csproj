@@ -30,8 +30,8 @@
 		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable\Diamond.Core.Clonable.csproj" />
 		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable.Microsoft\Diamond.Core.Clonable.Microsoft.csproj" />
 		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable.Newtonsoft\Diamond.Core.Clonable.Newtonsoft.csproj" />
-		<ProjectReference Include="..\..\Workflow\Diamond.Core.WorkFlow\Diamond.Core.Workflow.csproj" />
-		<ProjectReference Include="..\..\Workflow\Diamond.Core.WorkFlow.State\Diamond.Core.Workflow.State.csproj" />
+		<ProjectReference Include="..\..\Workflow\Diamond.Core.Workflow\Diamond.Core.Workflow.csproj" />
+		<ProjectReference Include="..\..\Workflow\Diamond.Core.Workflow.State\Diamond.Core.Workflow.State.csproj" />
 		<ProjectReference Include="..\..\Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj" />
 		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
 	</ItemGroup>

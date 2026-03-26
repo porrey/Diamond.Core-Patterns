@@ -1,0 +1,14 @@
+{
+	"services": [
+		{
+			"ServiceType": "<IWorkflowItemFactory>",
+			"ImplementationType": "Diamond.Core.Workflow.WorkflowItemFactory, Diamond.Core.Workflow",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "<IWorkflowManagerFactory>",
+			"ImplementationType": "Diamond.Core.Workflow.WorkflowManagerFactory, Diamond.Core.Workflow",
+			"Lifetime": "Transient"
+		}
+	]
+}
