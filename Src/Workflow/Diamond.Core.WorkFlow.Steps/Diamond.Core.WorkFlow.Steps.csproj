@@ -42,10 +42,10 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
 		<ProjectReference Include="..\..\System\Diamond.Core.System.TemporaryFolder\Diamond.Core.System.TemporaryFolder.csproj" />
-		<ProjectReference Include="..\Diamond.Core.Workflow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />
-		<ProjectReference Include="..\Diamond.Core.Workflow.State\Diamond.Core.Workflow.State.csproj" />
-		<ProjectReference Include="..\Diamond.Core.Workflow.Abstractions\Diamond.Core.Workflow.Abstractions.csproj" />
-		<ProjectReference Include="..\Diamond.Core.Workflow\Diamond.Core.Workflow.csproj" />
+		<ProjectReference Include="..\Diamond.Core.WorkFlow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Core.WorkFlow.State\Diamond.Core.Workflow.State.csproj" />
+		<ProjectReference Include="..\Diamond.Core.WorkFlow.Abstractions\Diamond.Core.Workflow.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Core.WorkFlow\Diamond.Core.Workflow.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\README.md">

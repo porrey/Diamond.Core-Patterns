@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.WorkFlow.Steps</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Workflow.CreateTemporaryFolderStep">
+            <summary>
+            Represents a workflow step that creates a temporary folder and stores it in the workflow context.
+            </summary>
+            <remarks>This step is typically used in automated workflows that require a dedicated temporary storage
+            location. The created folder is accessible to subsequent workflow steps via the context properties. Thread safety
+            depends on the implementation of the underlying temporary folder factory.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory)">
+            <summary>
+            Initializes a new instance of the CreateTemporaryFolderStep class using the specified temporary folder factory.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create temporary folders for this step. Cannot be null.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
+            <summary>
+            Initializes a new instance of the CreateTemporaryFolderStep class with the specified temporary folder factory and
+            logger.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create temporary folders for workflow operations. Cannot be null.</param>
+            <param name="logger">The logger used to record diagnostic information and workflow events. Cannot be null.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the CreateTemporaryFolderStep class with the specified folder factory, logger, name,
+            group, and ordinal.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create temporary folders for this workflow step. Cannot be null.</param>
+            <param name="logger">The logger instance used for logging workflow item template operations. Cannot be null.</param>
+            <param name="name">The name assigned to this workflow step. Cannot be null or empty.</param>
+            <param name="ordinal">The ordinal position of this step within the workflow. Must be a non-negative integer.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the CreateTemporaryFolderStep class with the specified configuration and execution
+            behavior.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create temporary folders for the workflow step. Cannot be null.</param>
+            <param name="logger">The logger instance used for logging workflow item template events. Cannot be null.</param>
+            <param name="name">The name assigned to the workflow step. Used for identification within the workflow.</param>
+            <param name="ordinal">The ordinal position of the step within the workflow sequence. Must be a non-negative integer.</param>
+            <param name="alwaysExecute">A value indicating whether the step should always execute, regardless of workflow conditions. Set to <see
+            langword="true"/> to force execution.</param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.CreateTemporaryFolderStep.Name">
+            <summary>
+            Gets or sets the display name for the operation.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.CreateTemporaryFolderStep.TemporaryFolderFactory">
+            <summary>
+            Gets or sets the factory used to create temporary folders for file operations.
+            </summary>
+            <remarks>Override this property to customize how temporary folders are created or managed. The factory
+            should implement strategies appropriate for the application's environment and requirements.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Workflow.CreateTemporaryFolderStep.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Executes the step by creating a temporary folder and updating the context with its reference.
+            </summary>
+            <remarks>If the temporary folder cannot be created, the step is marked as failed and the context is not
+            updated. The method logs the creation of the folder for diagnostic purposes.</remarks>
+            <param name="context">The workflow context used to store properties and track execution state.</param>
+            <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the temporary
+            folder was successfully created and set in the context; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.DeleteTemporaryFolderStep">
+            <summary>
+            Represents a workflow step that deletes a temporary folder created during the workflow execution.
+            </summary>
+            <remarks>This step is typically used to clean up temporary resources at the end of a workflow. It relies on
+            an implementation of ITemporaryFolderFactory to manage folder creation and deletion. The step logs the deletion
+            process and ensures the temporary folder is removed from the workflow context. If the folder cannot be deleted, a
+            warning is logged. This class can be customized with additional parameters such as name, group, ordinal, and
+            alwaysExecute to fit specific workflow requirements.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory)">
+            <summary>
+            Initializes a new instance of the DeleteTemporaryFolderStep class using the specified temporary folder factory.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for this step. Cannot be null.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate})">
+            <summary>
+            Initializes a new instance of the DeleteTemporaryFolderStep class with the specified temporary folder factory and
+            logger.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for workflow operations. Cannot be null.</param>
+            <param name="logger">The logger used to record diagnostic information and workflow events. Cannot be null.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the DeleteTemporaryFolderStep class with the specified folder factory, logger, name,
+            group, and ordinal position.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for the workflow step.</param>
+            <param name="logger">The logger instance used to record diagnostic and operational information for the workflow item template.</param>
+            <param name="name">The name assigned to this workflow step. Cannot be null or empty.</param>
+            <param name="ordinal">The ordinal position of this step within the workflow sequence. Must be a non-negative integer.</param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.#ctor(Diamond.Core.System.TemporaryFolder.ITemporaryFolderFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Workflow.WorkflowItemTemplate},System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the DeleteTemporaryFolderStep class with the specified configuration and execution
+            behavior.
+            </summary>
+            <param name="temporaryFolderFactory">The factory used to create and manage temporary folders for workflow operations.</param>
+            <param name="logger">The logger instance used to record diagnostic and workflow-related messages.</param>
+            <param name="name">The name assigned to this workflow step. Used for identification within the workflow.</param>
+            <param name="ordinal">The ordinal position of this step in the workflow sequence. Determines execution order.</param>
+            <param name="alwaysExecute">A value indicating whether this step should execute regardless of workflow conditions. Set to <see
+            langword="true"/> to force execution.</param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.DeleteTemporaryFolderStep.Name">
+            <summary>
+            Gets or sets the display name for the operation.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.DeleteTemporaryFolderStep.TemporaryFolderFactory">
+            <summary>
+            Gets or sets the factory used to create temporary folders for file operations.
+            </summary>
+            <remarks>Override this property to customize how temporary folders are created or managed. The factory
+            should implement strategies for creating, cleaning up, and managing temporary storage as needed by the
+            application.</remarks>
+        </member>
+        <member name="M:Diamond.Core.Workflow.DeleteTemporaryFolderStep.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Executes the step to delete the temporary folder associated with the current workflow context.
+            </summary>
+            <remarks>If a temporary folder is present in the context, it is disposed and removed. Logging is performed
+            to indicate whether the folder was successfully deleted. The method always returns <see
+            langword="true"/>.</remarks>
+            <param name="context">The workflow context containing properties and state for the current execution step. Must not be null.</param>
+            <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> when the step
+            completes.</returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.IsErrorStep">
+            <summary>
+            Represents a workflow step that checks whether the workflow is in an error state.
+            </summary>
+            <remarks>This class is used within a workflow to determine if an error has occurred and to handle error
+            conditions appropriately. If an error is detected, the workflow step will fail and provide an error message if
+            available. Otherwise, the workflow continues as normal.</remarks>
+        </member>
+        <member name="P:Diamond.Core.Workflow.IsErrorStep.Name">
+            <summary>
+            Gets the display name for the error state of the workflow.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.IsErrorStep.OnExecuteStepAsync(Diamond.Core.Workflow.IContext)">
+            <summary>
+            Executes the workflow step asynchronously and determines whether the workflow should continue based on the error
+            state in the context.
+            </summary>
+            <remarks>If the context contains a workflow error, the step is marked as failed and the workflow will not
+            continue. If no error is present, the workflow proceeds to the next step.</remarks>
+            <param name="context">The workflow execution context containing properties that influence step execution, including error information.</param>
+            <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the workflow
+            should continue; otherwise, <see langword="false"/>.</returns>
+        </member>
+    </members>
+</doc>
