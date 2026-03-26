@@ -1,0 +1,414 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.System.Base36</name>
+    </assembly>
+    <members>
+        <member name="T:System.Base36">
+            <summary>
+            Represents a base-36 numeric value, which uses the digits 0–9 and the letters A–Z to encode integers.
+            </summary>
+            <remarks>The <see cref="T:System.Base36"/> struct provides functionality for working with base-36 encoded numbers, 
+            including parsing, formatting, and arithmetic operations. It supports implicit and explicit conversions  to and
+            from integers and strings, and implements various interfaces for comparison, formatting, and parsing. <para>
+            Base-36 encoding is case-insensitive, but this implementation always uses uppercase letters for formatting. </para>
+            <para> The range of values supported by <see cref="T:System.Base36"/> corresponds to the range of a 32-bit signed integer 
+            (<see cref="F:System.Int32.MinValue"/> to <see cref="F:System.Int32.MaxValue"/>). </para></remarks>
+        </member>
+        <member name="F:System.Base36.Digits">
+            <summary>
+            The characters used in base-36 representation, where '0' = 0, '1' = 1, ..., '9' = 9, 'A' = 10, ..., 'Z' = 35.
+            </summary>
+        </member>
+        <member name="F:System.Base36.Zero">
+            <summary>
+            Represents the number zero (0) in base-36.
+            </summary>
+        </member>
+        <member name="F:System.Base36.One">
+            <summary>
+            Represents the number one (1) in base-36.
+            </summary>
+        </member>
+        <member name="F:System.Base36.MinValue">
+            <summary>
+            Represents the smallest possible value of <see cref="T:System.Base36"/>, which is equivalent to <see cref="F:System.Int32.MinValue"/>.
+            </summary>
+        </member>
+        <member name="F:System.Base36.MaxValue">
+            <summary>
+            Represents the largest possible value of <see cref="T:System.Base36"/>, which is equivalent to <see cref="F:System.Int32.MaxValue"/>.
+            </summary>
+        </member>
+        <member name="P:System.Base36.Value">
+            <summary>
+            The underlying integer value.
+            </summary>
+        </member>
+        <member name="M:System.Base36.#ctor(System.Int32)">
+            <summary>
+            Creates a Base36 from an integer value.
+            </summary>
+            <param name="value">The integer value.</param>
+        </member>
+        <member name="M:System.Base36.op_Implicit(System.Int32)~System.Base36">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+        </member>
+        <member name="M:System.Base36.op_Explicit(System.Base36)~System.Int32">
+            <summary>
+            Converts the specified <see cref="T:System.Base36"/> instance to its equivalent integer representation.
+            </summary>
+            <param name="value">The <see cref="T:System.Base36"/> instance to convert.</param>
+        </member>
+        <member name="M:System.Base36.op_Implicit(System.String)~System.Base36">
+            <summary>
+            Implicitly converts a base-36 string (e.g., "9IX", "ZZ") to Base36.
+            Throws FormatException on invalid text and ArgumentNullException on null.
+            </summary>
+        </member>
+        <member name="M:System.Base36.op_Implicit(System.Base36)~System.String">
+            <summary>
+            Implicitly formats Base36 to its base-36 string (uppercase A–Z).
+            </summary>
+        </member>
+        <member name="M:System.Base36.CompareTo(System.Base36)">
+            <summary>
+            Compares the current instance with another <see cref="T:System.Base36"/> object and returns an integer  that indicates
+            whether the current instance precedes, follows, or occurs in the same position  in the sort order as the other
+            object.
+            </summary>
+            <param name="other">The <see cref="T:System.Base36"/> object to compare to the current instance.</param>
+            <returns>A signed integer that indicates the relative order of the objects being compared: <list type="bullet"> <item>
+            <description>Less than zero: The current instance precedes <paramref name="other"/> in the sort
+            order.</description> </item> <item> <description>Zero: The current instance occurs in the same position in the
+            sort order as <paramref name="other"/>.</description> </item> <item> <description>Greater than zero: The current
+            instance follows <paramref name="other"/> in the sort order.</description> </item> </list></returns>
+        </member>
+        <member name="M:System.Base36.System#IComparable#CompareTo(System.Object)">
+            <summary>
+            Compares the current instance with another object and returns an integer that indicates whether the current
+            instance  precedes, follows, or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="obj">The object to compare with the current instance. Must be of type <see cref="T:System.Base36"/>.</param>
+            <returns>A signed integer that indicates the relative order of the objects being compared: <list type="bullet"> <item>
+            <description>Less than zero: The current instance precedes <paramref name="obj"/> in the sort order.</description>
+            </item> <item> <description>Zero: The current instance occurs in the same position in the sort order as <paramref
+            name="obj"/>.</description> </item> <item> <description>Greater than zero: The current instance follows <paramref
+            name="obj"/> in the sort order.</description> </item> </list></returns>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="obj"/> is not of type <see cref="T:System.Base36"/>.</exception>
+        </member>
+        <member name="M:System.Base36.Equals(System.Base36)">
+            <summary>
+            Determines whether the current instance is equal to the specified <see cref="T:System.Base36"/> instance.
+            </summary>
+            <param name="other">The <see cref="T:System.Base36"/> instance to compare with the current instance.</param>
+            <returns><see langword="true"/> if the current instance and the specified <see cref="T:System.Base36"/> instance have the same
+            value; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current instance.
+            </summary>
+            <param name="obj">The object to compare with the current instance.</param>
+            <returns><see langword="true"/> if the specified object is a <see cref="T:System.Base36"/> instance  and is equal to the current
+            instance; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.GetHashCode">
+            <summary>
+            Returns the hash code for the current object.
+            </summary>
+            <remarks>The hash code is derived from the <see cref="P:System.Base36.Value"/> property.  This method is suitable for use
+            in hashing algorithms and data structures such as a hash table.</remarks>
+            <returns>A 32-bit signed integer that serves as the hash code for the current object.</returns>
+        </member>
+        <member name="M:System.Base36.op_Equality(System.Base36,System.Base36)">
+            <summary>
+            Determines whether two <see cref="T:System.Base36"/> instances are equal.
+            </summary>
+            <param name="left">The first <see cref="T:System.Base36"/> instance to compare.</param>
+            <param name="right">The second <see cref="T:System.Base36"/> instance to compare.</param>
+            <returns><see langword="true"/> if the values of <paramref name="left"/> and <paramref name="right"/> are equal; 
+            otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_Inequality(System.Base36,System.Base36)">
+            <summary>
+            Determines whether two <see cref="T:System.Base36"/> instances are not equal.
+            </summary>
+            <param name="left">The first <see cref="T:System.Base36"/> instance to compare.</param>
+            <param name="right">The second <see cref="T:System.Base36"/> instance to compare.</param>
+            <returns><see langword="true"/> if the values of <paramref name="left"/> and <paramref name="right"/> are not equal; 
+            otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_LessThan(System.Base36,System.Base36)">
+            <summary>
+            Determines whether one <see cref="T:System.Base36"/> instance is less than another.
+            </summary>
+            <param name="left">The first <see cref="T:System.Base36"/> instance to compare.</param>
+            <param name="right">The second <see cref="T:System.Base36"/> instance to compare.</param>
+            <returns><see langword="true"/> if the value of <paramref name="left"/> is less than the value of  <paramref
+            name="right"/>; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_GreaterThan(System.Base36,System.Base36)">
+            <summary>
+            Determines whether the value of the left <see cref="T:System.Base36"/> operand is greater than the value of the right <see
+            cref="T:System.Base36"/> operand.
+            </summary>
+            <param name="left">The first <see cref="T:System.Base36"/> operand to compare.</param>
+            <param name="right">The second <see cref="T:System.Base36"/> operand to compare.</param>
+            <returns><see langword="true"/> if the value of <paramref name="left"/> is greater than the value of <paramref
+            name="right"/>; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_LessThanOrEqual(System.Base36,System.Base36)">
+            <summary>
+            Determines whether the value of the left <see cref="T:System.Base36"/> instance is less than or equal to the value of the
+            right <see cref="T:System.Base36"/> instance.
+            </summary>
+            <param name="left">The first <see cref="T:System.Base36"/> instance to compare.</param>
+            <param name="right">The second <see cref="T:System.Base36"/> instance to compare.</param>
+            <returns><see langword="true"/> if the value of <paramref name="left"/> is less than or equal to the value of <paramref
+            name="right"/>; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_GreaterThanOrEqual(System.Base36,System.Base36)">
+            <summary>
+            Determines whether the value of the left <see cref="T:System.Base36"/> operand is greater than or equal to the value of the
+            right <see cref="T:System.Base36"/> operand.
+            </summary>
+            <param name="left">The first <see cref="T:System.Base36"/> operand to compare.</param>
+            <param name="right">The second <see cref="T:System.Base36"/> operand to compare.</param>
+            <returns><see langword="true"/> if the value of <paramref name="left"/> is greater than or equal to the value of <paramref
+            name="right"/>; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_Addition(System.Base36,System.Base36)">
+            <summary>
+            Adds two <see cref="T:System.Base36"/> values and returns the result.
+            </summary>
+            <param name="a">The first <see cref="T:System.Base36"/> value to add.</param>
+            <param name="b">The second <see cref="T:System.Base36"/> value to add.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the sum of <paramref name="a"/> and <paramref name="b"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_Subtraction(System.Base36,System.Base36)">
+            <summary>
+            Subtracts one <see cref="T:System.Base36"/> value from another and returns the result.
+            </summary>
+            <param name="a">The minuend, represented as a <see cref="T:System.Base36"/> value.</param>
+            <param name="b">The subtrahend, represented as a <see cref="T:System.Base36"/> value.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the result of the subtraction.</returns>
+        </member>
+        <member name="M:System.Base36.op_Multiply(System.Base36,System.Base36)">
+            <summary>
+            Multiplies two <see cref="T:System.Base36"/> values and returns the result.
+            </summary>
+            <param name="a">The first <see cref="T:System.Base36"/> value to multiply.</param>
+            <param name="b">The second <see cref="T:System.Base36"/> value to multiply.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the product of <paramref name="a"/> and <paramref name="b"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_Division(System.Base36,System.Base36)">
+            <summary>
+            Divides one <see cref="T:System.Base36"/> value by another and returns the result as a new <see cref="T:System.Base36"/> instance.
+            </summary>
+            <remarks>The division is performed on the underlying numeric values of the <see cref="T:System.Base36"/>
+            instances.</remarks>
+            <param name="a">The dividend, represented as a <see cref="T:System.Base36"/> instance.</param>
+            <param name="b">The divisor, represented as a <see cref="T:System.Base36"/> instance.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the result of the division.</returns>
+        </member>
+        <member name="M:System.Base36.op_Modulus(System.Base36,System.Base36)">
+            <summary>
+            Computes the remainder of the division of one <see cref="T:System.Base36"/> value by another.
+            </summary>
+            <param name="a">The dividend, represented as a <see cref="T:System.Base36"/> value.</param>
+            <param name="b">The divisor, represented as a <see cref="T:System.Base36"/> value.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the remainder of the division of <paramref name="a"/> by
+            <paramref name="b"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_UnaryPlus(System.Base36)">
+            <summary>
+            Returns the specified <see cref="T:System.Base36"/> instance unchanged.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance to return.</param>
+            <returns>The same <see cref="T:System.Base36"/> instance as the input parameter <paramref name="a"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_UnaryNegation(System.Base36)">
+            <summary>
+            Negates the value of the specified <see cref="T:System.Base36"/> instance.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance to negate.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the negated value of <paramref name="a"/>.</returns>
+        </member>
+        <member name="M:System.Base36.op_Increment(System.Base36)">
+            <summary>
+            Increments the value of the specified <see cref="T:System.Base36"/> instance by one.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance to increment.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the incremented value.</returns>
+        </member>
+        <member name="M:System.Base36.op_Decrement(System.Base36)">
+            <summary>
+            Decrements the value of the specified <see cref="T:System.Base36"/> instance by one.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance to decrement.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the decremented value.</returns>
+        </member>
+        <member name="M:System.Base36.op_Addition(System.Base36,System.Int32)">
+            <summary>
+            Adds an integer value to a <see cref="T:System.Base36"/> instance and returns the resulting <see cref="T:System.Base36"/> value.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance to add to.</param>
+            <param name="b">The integer value to add to the <see cref="T:System.Base36"/> instance.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the sum of the original value and the integer.</returns>
+        </member>
+        <member name="M:System.Base36.op_Subtraction(System.Base36,System.Int32)">
+            <summary>
+            Subtracts an integer value from a <see cref="T:System.Base36"/> instance and returns the resulting <see cref="T:System.Base36"/>
+            value.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance to subtract from.</param>
+            <param name="b">The integer value to subtract.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the result of the subtraction.</returns>
+        </member>
+        <member name="M:System.Base36.op_Multiply(System.Base36,System.Int32)">
+            <summary>
+            Multiplies the numeric value of a <see cref="T:System.Base36"/> instance by an integer.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance to be multiplied.</param>
+            <param name="b">The integer by which to multiply the value of <paramref name="a"/>.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the product of the multiplication.</returns>
+        </member>
+        <member name="M:System.Base36.op_Division(System.Base36,System.Int32)">
+            <summary>
+            Divides the value of the specified <see cref="T:System.Base36"/> instance by an integer and returns the result as a new
+            <see cref="T:System.Base36"/> instance.
+            </summary>
+            <remarks>This operator performs integer division, truncating any fractional part of the result.</remarks>
+            <param name="a">The <see cref="T:System.Base36"/> instance to be divided.</param>
+            <param name="b">The integer divisor. Must not be zero.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the result of the division.</returns>
+        </member>
+        <member name="M:System.Base36.op_Modulus(System.Base36,System.Int32)">
+            <summary>
+            Computes the remainder of the division of the value of the specified <see cref="T:System.Base36"/> instance by an integer.
+            </summary>
+            <param name="a">The <see cref="T:System.Base36"/> instance whose value is to be divided.</param>
+            <param name="b">The integer divisor. Must be a non-zero value.</param>
+            <returns>A new <see cref="T:System.Base36"/> instance representing the remainder of the division.</returns>
+        </member>
+        <member name="M:System.Base36.ToString">
+            <summary>
+            Returns a string representation of the current object.
+            </summary>
+            <remarks>This method uses the invariant culture for formatting. To customize the formatting, use the  <see
+            cref="!:ToString(IFormatProvider)"/> overload.</remarks>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:System.Base36.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            Formats as base-36 by default. If format == "D" or "d", formats decimal (base-10).
+            Any other format is treated as base-36.
+            </summary>
+        </member>
+        <member name="M:System.Base36.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+            Attempts to format the current value into the provided character span.
+            </summary>
+            <remarks>If the specified format is 'D' or 'd', the value is formatted as a decimal number. For other
+            formats, the method may use an alternative representation, such as Base36. Ensure that the <paramref
+            name="destination"/> span is large enough to accommodate the formatted value; otherwise, the method will return
+            <see langword="false"/>.</remarks>
+            <param name="destination">The span of characters to which the formatted value will be written.</param>
+            <param name="charsWritten">When this method returns, contains the number of characters written to <paramref name="destination"/>.</param>
+            <param name="format">A read-only span of characters that specifies the format to use. Use 'D' or 'd' for decimal formatting; other
+            formats may be used for alternative representations.</param>
+            <param name="provider">An object that provides culture-specific formatting information.</param>
+            <returns><see langword="true"/> if the value was successfully formatted and written to <paramref name="destination"/>;
+            otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.FormatBase36(System.Int32)">
+            <summary>
+            Converts the specified integer value to its equivalent string representation in base 36.
+            </summary>
+            <remarks>Base 36 is a numeral system that uses 36 distinct characters: the digits '0'-'9' and the letters
+            'A'-'Z'. This method handles both positive and negative integers, as well as zero.</remarks>
+            <param name="value">The integer value to convert. Can be positive, negative, or zero.</param>
+            <returns>A string representing the base 36 equivalent of the specified integer.  The string will use characters '0'-'9' and
+            'A'-'Z' for the digits, and a leading '-' for negative values.</returns>
+        </member>
+        <member name="M:System.Base36.TryFormatBase36(System.Int32,System.Span{System.Char},System.Int32@)">
+            <summary>
+            Attempts to format the specified integer value as a Base-36 string and write it to the provided destination
+            buffer.
+            </summary>
+            <remarks>Base-36 encoding uses the characters '0'-'9' and 'A'-'Z' to represent values. Negative numbers
+            are prefixed with a '-' character. If the <paramref name="destination"/> buffer is too small to contain the
+            formatted result, the method returns <see langword="false"/> and does not modify the buffer.</remarks>
+            <param name="value">The integer value to format. Can be positive, negative, or zero.</param>
+            <param name="destination">The buffer to which the formatted Base-36 string will be written. The buffer must be large enough to hold the
+            result.</param>
+            <param name="charsWritten">When this method returns, contains the number of characters written to the <paramref name="destination"/> buffer,
+            if the operation succeeds; otherwise, 0.</param>
+            <returns><see langword="true"/> if the value was successfully formatted and written to the <paramref name="destination"/>
+            buffer; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.Parse(System.String,System.IFormatProvider)">
+            <summary>
+            Converts the specified string representation of a base-36 number to its <see cref="T:System.Base36"/> equivalent.
+            </summary>
+            <param name="s">The string representation of a base-36 number to convert.</param>
+            <param name="provider">An object that provides culture-specific formatting information. This parameter is currently not used.</param>
+            <returns>A <see cref="T:System.Base36"/> instance that represents the number specified by <paramref name="s"/>.</returns>
+            <exception cref="T:System.FormatException">Thrown if <paramref name="s"/> is not a valid base-36 number or if the value is outside the range of a 32-bit
+            signed integer.</exception>
+        </member>
+        <member name="M:System.Base36.TryParse(System.String,System.IFormatProvider,System.Base36@)">
+            <summary>
+            Attempts to parse the specified string representation of a Base36 number into its equivalent <see cref="T:System.Base36"/>
+            value.
+            </summary>
+            <remarks>This method does not throw an exception if the conversion fails. Instead, it returns <see
+            langword="false"/> and sets <paramref name="result"/> to <see cref="F:System.Base36.Zero"/>.</remarks>
+            <param name="s">The string representation of the Base36 number to parse. Cannot be <see langword="null"/>.</param>
+            <param name="provider">An <see cref="T:System.IFormatProvider"/> that supplies culture-specific formatting information, or <see langword="null"/>
+            to use the current culture.</param>
+            <param name="result">When this method returns, contains the <see cref="T:System.Base36"/> value equivalent to the number contained in <paramref
+            name="s"/>,  if the conversion succeeded; otherwise, <see cref="F:System.Base36.Zero"/>. This parameter is passed
+            uninitialized.</param>
+            <returns><see langword="true"/> if <paramref name="s"/> was successfully parsed; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <summary>
+            Converts the specified read-only span of characters representing a base-36 number  into its <see cref="T:System.Base36"/>
+            equivalent.
+            </summary>
+            <param name="s">The span of characters containing the base-36 number to convert.</param>
+            <param name="provider">An object that provides culture-specific formatting information. This parameter is currently ignored.</param>
+            <returns>A <see cref="T:System.Base36"/> instance that represents the number specified by <paramref name="s"/>.</returns>
+            <exception cref="T:System.FormatException">Thrown if <paramref name="s"/> does not represent a valid base-36 number  or if the value is outside the range of
+            a 32-bit signed integer.</exception>
+        </member>
+        <member name="M:System.Base36.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,System.Base36@)">
+            <summary>
+            Attempts to parse the specified span of characters as a Base36 number.
+            </summary>
+            <remarks>The method supports optional leading '+' or '-' signs to indicate the number's sign.  If the span
+            contains invalid characters or the resulting value exceeds the range of a Base36 number,  the method returns <see
+            langword="false"/> and sets <paramref name="result"/> to <see cref="F:System.Base36.Zero"/>.</remarks>
+            <param name="s">The span of characters to parse.</param>
+            <param name="provider">An object that provides culture-specific formatting information. This parameter is currently ignored.</param>
+            <param name="result">When this method returns, contains the parsed <see cref="T:System.Base36"/> value if the conversion succeeded,  or <see
+            cref="F:System.Base36.Zero"/> if the conversion failed. This parameter is passed uninitialized.</param>
+            <returns><see langword="true"/> if the span was successfully parsed as a Base36 number; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:System.Base36.CharToDigit(System.Char)">
+            <summary>
+            Converts a character to its corresponding numeric value.
+            </summary>
+            <remarks>The conversion is case-insensitive. Non-alphanumeric characters will result in a return value of
+            -1.</remarks>
+            <param name="c">The character to convert. Can be a digit ('0'-'9') or an uppercase or lowercase letter ('A'-'Z' or 'a'-'z').</param>
+            <returns>The numeric value of the character: 0-9 for digits, 10-35 for letters ('A' or 'a' = 10, 'B' or 'b' = 11, ..., 'Z'
+            or 'z' = 35). Returns -1 if the character is not a valid digit or letter.</returns>
+        </member>
+    </members>
+</doc>

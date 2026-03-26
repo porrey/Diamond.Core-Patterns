@@ -1,0 +1,835 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.AspNetCore.DataTables</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.DataTableControllerTemplate`2">
+            <summary>
+            Provides a base class for controllers that handle data table operations with support for both form and JSON
+            requests.
+            </summary>
+            <remarks>This abstract class is designed to facilitate the creation of controllers that manage data table
+            operations. It provides two endpoints for handling data table requests: one for form submissions and another for
+            JSON payloads.</remarks>
+            <typeparam name="TViewModel">The type of the view model used in the data table results.</typeparam>
+            <typeparam name="TRequest">The type of the request object used for JSON requests.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableControllerTemplate`2.#ctor(Diamond.Core.AspNetCore.DoAction.IDoActionFactory,Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DataTables.DataTableControllerTemplate{`0,`1}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableControllerTemplate`2"/> class.
+            </summary>
+            <param name="doActionFactory">The factory used to create actions for data operations.</param>
+            <param name="logger">The logger instance used for logging operations within the controller.</param>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableControllerTemplate`2.KeyPrefix">
+            <summary>
+            Gets or sets the prefix used for keys in the services collection.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableControllerTemplate`2.DataTableAsync(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            Processes a DataTable request asynchronously using form data.
+            </summary>
+            <remarks>This method expects the request to be in the form of
+            "application/x-www-form-urlencoded".</remarks>
+            <param name="request">The form data collection containing parameters for the DataTable request.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains an <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/> of
+            type <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableResult`1"/> representing the processed DataTable result.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableControllerTemplate`2.DataTableAsync(`1)">
+            <summary>
+            Processes a data table request asynchronously and returns the result.
+            </summary>
+            <remarks>This method is designed to handle HTTP POST requests with a JSON payload. It consumes the
+            request, processes it  according to the specified <typeparamref name="TRequest"/> type, and returns a data table
+            result encapsulated  in an <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/>. Ensure that the request object is correctly formatted
+            and contains all  necessary parameters for successful processing.</remarks>
+            <param name="request">The request object containing parameters for the data table operation.  This must be a valid JSON object that
+            conforms to the expected structure for <typeparamref name="TRequest"/>.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains an <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult`1"/>  with
+            a <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableResult`1"/> representing the processed data table.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandler`2">
+            <summary>
+            Handles data table queries by processing requests and transforming entities into view models.
+            </summary>
+            <remarks>This class extends <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3"/> to provide specific functionality for handling data table requests. It utilizes a logger for
+            logging operations, a repository factory for data access, a search handler factory for processing search queries,
+            and a mapper for transforming entities into view models.</remarks>
+            <typeparam name="TEntity">The type of the entity being queried, which must implement <see cref="T:Diamond.Core.Repository.IEntity"/>.</typeparam>
+            <typeparam name="TViewModel">The type of the view model to which entities are mapped.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandler`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DataTables.DataTableQueryHandler{`0,`1}},Diamond.Core.Repository.IRepositoryFactory,Diamond.Core.AspNetCore.DataTables.ISearchHandlerFactory{`0},AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandler`2"/> class.
+            </summary>
+            <param name="logger">The logger instance used for logging operations within the handler.</param>
+            <param name="repositoryFactory">The factory used to create repository instances for data access.</param>
+            <param name="searchHandlerFactory">The factory used to create search handlers for processing search queries.</param>
+            <param name="mapper">The mapper used for transforming entities to view models.</param>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3">
+            <summary>
+            Provides a template for handling data table queries with support for filtering, searching, and paging.
+            </summary>
+            <remarks>This abstract class serves as a base for implementing data table query handlers. It provides a
+            structured approach to executing queries with filtering, searching, and paging capabilities. Derived classes can
+            override the provided virtual methods to customize the query execution process.</remarks>
+            <typeparam name="TEntity">The type of the entity being queried.</typeparam>
+            <typeparam name="TViewModel">The type of the view model used to represent the entity in the result.</typeparam>
+            <typeparam name="TRequest">The type of the request containing query parameters.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate{`0,`1,`2}},Diamond.Core.Repository.IRepositoryFactory,Diamond.Core.AspNetCore.DataTables.ISearchHandlerFactory{`0},AutoMapper.IMapper)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3"/>
+            class.
+            </summary>
+            <param name="logger">The logger instance used for logging operations within the query handler.</param>
+            <param name="repositoryFactory">The factory used to create repository instances for data access.</param>
+            <param name="searchHandlerFactory">The factory used to create search handlers for processing search queries on <typeparamref name="TEntity"/>.</param>
+            <param name="mapper">The mapper used to map between <typeparamref name="TEntity"/> and <typeparamref name="TViewModel"/>.</param>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.Logger">
+            <summary>
+            Gets or sets the logger used for logging operations within the query handler.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.RepositoryFactory">
+            <summary>
+            Gets or sets the repository factory used to create repository instances for data access.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.SearchHandlerFactory">
+            <summary>
+            Gets or sets the search handler factory used to create search handlers for processing search queries on <typeparamref name="TEntity"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.Mapper">
+            <summary>
+            Gets or sets the mapper used to map between <typeparamref name="TEntity"/> and <typeparamref name="TViewModel"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.ExecuteQueryAsync(`2,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Executes an asynchronous query based on the specified request and initial expression, returning a result set of
+            view models.
+            </summary>
+            <remarks>This method retrieves a repository for the specified entity type and constructs a query using the
+            provided initial expression, along with additional filter and search expressions. It executes the query and maps
+            the resulting entities to view models. The result includes the total number of records, the number of filtered
+            records, and the data set.</remarks>
+            <param name="request">The request object containing query parameters and options. Cannot be null.</param>
+            <param name="initialExpression">An initial filter expression to apply to the query. This expression is combined with additional filters and search
+            criteria.</param>
+            <returns>A task representing the asynchronous operation. The task result contains a <see
+            cref="T:Diamond.Core.AspNetCore.DoAction.IControllerActionResult`1"/> with a <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableResult`1"/> that includes the queried
+            data, draw count, and record counts.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.OnRequestStarted(`2)">
+            <summary>
+            Invoked when a request is initiated, allowing for customization or logging.
+            </summary>
+            <remarks>This method can be overridden in a derived class to perform additional actions when a request
+            starts, such as logging or modifying the request. The default implementation returns the request
+            unchanged.</remarks>
+            <param name="request">The request object that is being started. This parameter cannot be null.</param>
+            <returns>The original or modified request object to be processed.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.OnGetFilterExpression(`2)">
+            <summary>
+            Constructs a filter expression based on the specified request.
+            </summary>
+            <remarks>This method uses the provided request to generate a filter expression that can be used to query
+            entities. Override this method to customize the filter expression logic.</remarks>
+            <param name="request">The request containing filter criteria to apply.</param>
+            <returns>An expression that represents the filter to be applied to entities of type <typeparamref name="TEntity"/>.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.OnGetSearchExpression(`2)">
+            <summary>
+            Constructs a search expression based on the specified request.
+            </summary>
+            <remarks>This method uses the <see cref="P:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.SearchHandlerFactory"/> to apply the search logic defined in the
+            request. Override this method to customize the search expression generation for specific request types.</remarks>
+            <param name="request">The request containing search criteria and parameters.</param>
+            <returns>An expression that represents the search criteria to be applied to entities of type <typeparamref
+            name="TEntity"/>.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.OnBuildExpression(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Builds a combined expression by logically AND-ing the provided expressions.
+            </summary>
+            <param name="initialExpression">The initial expression to start the combination process.</param>
+            <param name="filterExpression">An expression used to filter the entities.</param>
+            <param name="searchExpression">An expression used to search within the entities.</param>
+            <returns>An expression that represents the logical AND combination of the initial, filter, and search expressions.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.OnExecuteQuery(`2,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Diamond.Core.Repository.IQueryableRepository{`0})">
+            <summary>
+            Executes a query on the specified repository using the provided request and filter expression.
+            </summary>
+            <remarks>This method applies ordering and paging to the query based on the parameters specified in the
+            <paramref name="request"/>. If the request contains ordered columns, the query will be ordered accordingly before
+            applying the filter and paging.</remarks>
+            <param name="request">The request object containing parameters for ordering and paging the query results.</param>
+            <param name="expression">An expression used to filter the entities in the repository.</param>
+            <param name="repository">The repository from which the entities are queried.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the entities that match the specified filter and query
+            parameters.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableQueryHandlerTemplate`3.OnRequestCompleted(`2,Diamond.Core.AspNetCore.DoAction.ControllerActionResult{Diamond.Core.AspNetCore.DataTables.DataTableResult{`1}})">
+            <summary>
+            Invoked when a request processing is completed, allowing for additional handling or modification of the result.
+            </summary>
+            <param name="request">The original request that was processed.</param>
+            <param name="result">The result of the request processing, which can be modified before being returned.</param>
+            <returns>The potentially modified result of the request processing.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.DataTableExtensions">
+            <summary>
+            Provides extension methods for working with <see cref="T:Diamond.Core.AspNetCore.DataTables.IDataTableRequest"/> and <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.ApplyOrdering``1(System.Linq.IQueryable{``0},Diamond.Core.AspNetCore.DataTables.IDataTableRequest,Diamond.Core.AspNetCore.DataTables.ISearchHandlerFactory{``0})">
+            <summary>
+            Applies ordering to the specified query based on the order criteria provided in the request.
+            </summary>
+            <remarks>This method processes the ordering criteria specified in the <paramref name="request"/> and
+            applies them to the <paramref name="query"/>. If a custom search handler is available for a column, it will be
+            used to apply the ordering. Otherwise, a default ordering is applied. The method returns a new query with the
+            specified ordering applied.</remarks>
+            <typeparam name="TEntity">The type of the entities in the query.</typeparam>
+            <param name="query">The query to which ordering will be applied.</param>
+            <param name="request">The data table request containing the ordering criteria.</param>
+            <param name="searchHandlerFactory">The factory used to obtain search handlers for custom ordering logic.</param>
+            <returns>An <see cref="T:System.Linq.IQueryable`1"/> with the applied ordering.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.ApplyPaging``1(System.Linq.IQueryable{``0},Diamond.Core.AspNetCore.DataTables.IDataTableRequest)">
+            <summary>
+            Applies paging to the specified query based on the provided data table request.
+            </summary>
+            <remarks>The method uses the <see cref="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Start"/> and <see
+            cref="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Length"/> properties to determine the starting point and the number of elements to return.
+            If <see cref="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Length"/> is less than or equal to zero, all elements from the starting point are
+            returned.</remarks>
+            <typeparam name="TEntity">The type of the elements in the query.</typeparam>
+            <param name="query">The query to which paging will be applied.</param>
+            <param name="request">The data table request containing paging parameters. If <paramref name="request"/> is null, the query is returned
+            without paging.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> that contains the elements of the query after applying the specified paging
+            parameters. If <paramref name="request"/> is null, the original query is returned.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.ApplySearch``2(Diamond.Core.AspNetCore.DataTables.IDataTableRequest,Diamond.Core.AspNetCore.DataTables.ISearchHandlerFactory{``0})">
+            <summary>
+            Constructs a search expression for filtering entities based on the search criteria specified in the request.
+            </summary>
+            <remarks>This method generates a dynamic search expression by iterating over the properties of the
+            specified view model type. For each property, it uses a search handler to create a filter expression, which is
+            combined into a single expression using logical OR operations. If no search criteria are provided, the method
+            returns an expression that evaluates to <see langword="true"/>.</remarks>
+            <typeparam name="TEntity">The type of the entity to be filtered.</typeparam>
+            <typeparam name="TViewModel">The type of the view model containing properties to be searched.</typeparam>
+            <param name="request">The data table request containing search parameters. Must not be null.</param>
+            <param name="searchHandlerFactory">The factory used to obtain search handlers for each property. Must not be null.</param>
+            <returns>An expression that evaluates to <see langword="true"/> for entities matching the search criteria, or <see
+            langword="false"/> if no criteria are specified.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.ApplyFilter``2(Diamond.Core.AspNetCore.DataTables.IDataTableRequest,Diamond.Core.AspNetCore.DataTables.ISearchHandlerFactory{``0})">
+            <summary>
+            Constructs a filter expression for the specified entity type based on the search criteria provided in the data
+            table request.
+            </summary>
+            <remarks>This method constructs a filter expression by examining the search criteria specified in the
+            <paramref name="request"/>. It uses the <paramref name="searchHandlerFactory"/> to obtain handlers that apply the
+            search filters to the corresponding entity properties. The resulting expression can be used to filter a collection
+            of entities based on the specified search criteria.</remarks>
+            <typeparam name="TEntity">The type of the entity to which the filter will be applied.</typeparam>
+            <typeparam name="TViewModel">The type of the view model that contains properties corresponding to the entity's columns.</typeparam>
+            <param name="request">The data table request containing the search criteria for filtering.</param>
+            <param name="searchHandlerFactory">The factory used to obtain search handlers for applying search filters to entity properties.</param>
+            <returns>An expression that represents the combined filter criteria for the entity type. Returns a default expression that
+            evaluates to <see langword="true"/> if no search criteria are provided.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.IndexOf``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Returns the zero-based index of the first element in the sequence that satisfies the specified predicate.
+            </summary>
+            <typeparam name="TEntity">The type of the elements in the sequence.</typeparam>
+            <param name="source">The sequence to search.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>The zero-based index of the first element that satisfies the predicate; otherwise, the number of elements in the
+            sequence if no such element is found.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.AddOrderBySort``1(System.Linq.IQueryable{``0},System.String,System.String)">
+            <summary>
+            Sorts the elements of a sequence in ascending or descending order based on a specified column name.
+            </summary>
+            <typeparam name="TEntity">The type of the elements of <paramref name="source"/>.</typeparam>
+            <param name="source">The sequence of elements to sort.</param>
+            <param name="columnName">The name of the column to sort by. This must be a valid property name of <typeparamref name="TEntity"/>.</param>
+            <param name="direction">The direction of the sort. Use "asc" for ascending order or any other value for descending order.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> whose elements are sorted according to the specified column and
+            direction.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.AddThenBySort``1(System.Linq.IOrderedQueryable{``0},System.String,System.String)">
+            <summary>
+            Adds a secondary sorting criterion to the existing ordered query based on the specified column name and direction.
+            </summary>
+            <typeparam name="TEntity">The type of the elements in the source query.</typeparam>
+            <param name="source">The existing ordered query to which the secondary sort will be applied.</param>
+            <param name="columnName">The name of the column to sort by. This must be a valid property name of <typeparamref name="TEntity"/>.</param>
+            <param name="direction">The direction of the sort. Use "asc" for ascending order or "desc" for descending order.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> that represents the query with the additional sorting applied.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.GetExpression``1(System.String)">
+            <summary>
+            Creates a lambda expression that accesses a specified property of a given entity type.
+            </summary>
+            <typeparam name="TEntity">The type of the entity containing the property.</typeparam>
+            <param name="propertyName">The name of the property to access. This parameter is case-insensitive.</param>
+            <returns>An <see cref="T:System.Linq.Expressions.Expression`1"/> representing a lambda expression that accesses the specified property of
+            the entity type <typeparamref name="TEntity"/> and returns its value as an <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.OrderBy``1(System.Linq.IQueryable{``0},System.String)">
+            <summary>
+            Sorts the elements of a sequence in ascending order according to a specified property name.
+            </summary>
+            <typeparam name="TEntity">The type of the elements in the source sequence.</typeparam>
+            <param name="source">The sequence of elements to order.</param>
+            <param name="propertyName">The name of the property to sort the elements by. This property must exist on <typeparamref name="TEntity"/>.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> whose elements are sorted according to the specified property.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.OrderByDescending``1(System.Linq.IQueryable{``0},System.String)">
+            <summary>
+            Sorts the elements of a sequence in descending order according to a specified property name.
+            </summary>
+            <typeparam name="TEntity">The type of the elements of <paramref name="source"/>.</typeparam>
+            <param name="source">The sequence of elements to order.</param>
+            <param name="propertyName">The name of the property to sort by. This property must exist on <typeparamref name="TEntity"/>.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> whose elements are sorted in descending order according to the
+            specified property.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.ThenBy``1(System.Linq.IOrderedQueryable{``0},System.String)">
+            <summary>
+            Performs a subsequent ordering of the elements in a sequence in ascending order according to a specified property
+            name.
+            </summary>
+            <typeparam name="TEntity">The type of the elements in the source sequence.</typeparam>
+            <param name="source">An <see cref="T:System.Linq.IOrderedQueryable`1"/> that contains elements to be sorted.</param>
+            <param name="propertyName">The name of the property to sort by. This must be a valid property name of <typeparamref name="TEntity"/>.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> whose elements are sorted according to the specified property.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.ThenByDescending``1(System.Linq.IOrderedQueryable{``0},System.String)">
+            <summary>
+            Performs a subsequent ordering of the elements in a sequence in descending order, according to a specified
+            property name.
+            </summary>
+            <typeparam name="TEntity">The type of the elements of <paramref name="source"/>.</typeparam>
+            <param name="source">An <see cref="T:System.Linq.IOrderedQueryable`1"/> that contains elements to sort.</param>
+            <param name="propertyName">The name of the property to sort by. This must be a valid property name of <typeparamref name="TEntity"/>.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> whose elements are sorted in descending order according to the
+            specified property.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.DataTableExtensions.OrderedColumns``1(Diamond.Core.AspNetCore.DataTables.IDataTableRequest)">
+            <summary>
+            Retrieves an ordered collection of columns based on the specified order criteria in the request.
+            </summary>
+            <remarks>This method processes the columns specified in the <paramref name="request"/> and applies the
+            ordering criteria defined in the request's order property. Each <see cref="T:Diamond.Core.AspNetCore.DataTables.OrderedColumn"/> in the result contains
+            the column name and the direction of sorting.</remarks>
+            <typeparam name="TEntity">The type of the entity associated with the data table request.</typeparam>
+            <param name="request">The data table request containing column and order information. Cannot be null.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> representing the columns ordered according to the request. Returns an
+            empty collection if no ordering is specified or if the request is null.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1">
+            <summary>
+            Provides a factory for creating search handlers for a specified entity type.
+            </summary>
+            <remarks>This factory utilizes dependency injection to retrieve available search handlers and selects the
+            appropriate handler based on the specified property name.</remarks>
+            <typeparam name="TEntity">The type of entity for which the search handlers are created.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory{`0}},System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1"/> class.
+            </summary>
+            <param name="logger">The logger instance used for logging operations within the factory.</param>
+            <param name="serviceProvider">The service provider used to resolve dependencies for search handlers.</param>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1.Logger">
+            <summary>
+            Gets or sets the logger used for logging messages related to the <see cref="T:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1"/>
+            operations.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1.ServiceProvider">
+            <summary>
+            Gets or sets the service provider used to resolve service dependencies.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1.GetAsync(System.String)">
+            <summary>
+            Asynchronously retrieves a search handler for the specified property of the entity.
+            </summary>
+            <param name="propertyName">The name of the property for which to retrieve the search handler. Cannot be null or empty.</param>
+            <returns>A task representing the asynchronous operation. The task result contains an <see cref="T:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1"/>
+            for the specified property.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerFactory`1.OnGetAsync(System.String)">
+            <summary>
+            Asynchronously retrieves a search handler for the specified property name.
+            </summary>
+            <param name="propertyName">The name of the property for which to retrieve the search handler. This parameter is case-insensitive.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains the <see
+            cref="T:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1"/> associated with the specified property name, or <see langword="null"/> if no
+            handler is found.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.IDataTableQueryHandler`3">
+            <summary>
+            Defines a handler for executing data table queries and returning results in a specified view model format.	
+            </summary>
+            <typeparam name="TEntity">The type of the entity being queried.</typeparam>
+            <typeparam name="TViewModel">The type of the view model to which the query results are mapped.</typeparam>
+            <typeparam name="TRequest">The type of the request object containing query parameters.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.IDataTableQueryHandler`3.ExecuteQueryAsync(`2,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Executes an asynchronous query based on the specified request and pre-filter expression.
+            </summary>
+            <param name="request">The request object containing query parameters and options.</param>
+            <param name="preFilterExpression">An expression used to pre-filter the entities before executing the query. Cannot be null.</param>
+            <returns>A task representing the asynchronous operation. The task result contains an <see
+            cref="T:Diamond.Core.AspNetCore.DoAction.IControllerActionResult`1"/> with a <see cref="T:Diamond.Core.AspNetCore.DataTables.DataTableResult`1"/> representing the query
+            results.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.IDataTableRequest">
+            <summary>
+            Defines the contract for a DataTable request, including pagination, sorting, and search criteria.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Columns">
+            <summary>
+            Gets or sets the collection of columns associated with the request.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Draw">
+            <summary>
+            Gets or sets the draw count for the current operation.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Length">
+            <summary>
+            Gets or sets the length of the items to return.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Order">
+            <summary>
+            Gets or sets the collection of order instructions for sorting.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Search">
+            <summary>
+            Gets or sets the search configuration for the request.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.SearchBuilder">
+            <summary>
+            Gets or sets the search builder configuration for the form.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTableRequest.Start">
+            <summary>
+            Gets or sets the starting index for the operation.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.IDataTablesObject">
+            <summary>
+            Represents an object that can hold additional data in a key-value pair format.
+            </summary>
+            <remarks>This interface is designed to be implemented by classes that require the ability to store extra
+            data dynamically. The data is stored as a dictionary where the key is a string and the value is a <see
+            cref="T:Newtonsoft.Json.Linq.JToken"/>, allowing for flexible data types.</remarks>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.IDataTablesObject.ExtraData">
+            <summary>
+            Gets or sets additional data associated with the object.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.SearchType">
+            <summary>
+            Specifies the type of search to be performed.
+            </summary>
+            <remarks>This enumeration is used to indicate whether a search operation should be conducted globally across
+            all available data or restricted to a specific column.</remarks>
+        </member>
+        <member name="F:Diamond.Core.AspNetCore.DataTables.SearchType.GlobalSearch">
+            <summary>
+            Represents a global search operation that can be performed across multiple data sources.
+            </summary>
+            <remarks>This class provides functionality to search for data across various sources, aggregating results
+            into a unified format. It is designed to handle large datasets efficiently and can be customized to include or
+            exclude specific data sources.</remarks>
+        </member>
+        <member name="F:Diamond.Core.AspNetCore.DataTables.SearchType.Column">
+            <summary>
+            Represents a column in a data table or database schema.
+            </summary>
+            <remarks>This class is typically used to define the structure of a table by specifying the properties of
+            each column, such as its name, data type, and constraints. It can be used in conjunction with other classes to
+            build and manipulate database schemas programmatically.</remarks>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1">
+            <summary>
+            Defines methods for applying search filters and sorting operations on a collection of entities.
+            </summary>
+            <typeparam name="TEntity">The type of the entity on which the search and sort operations are performed.</typeparam>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1.PropertyName">
+            <summary>
+            Gets the name of the property.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1.ApplySearchFilterAsync(Diamond.Core.AspNetCore.DataTables.SearchType,System.String)">
+            <summary>
+            Asynchronously constructs a search filter expression based on the specified search type and search term.
+            </summary>
+            <remarks>The returned expression can be used in LINQ queries to filter entities according to the specified
+            search type and term. Ensure that the <paramref name="searchTerm"/> is valid and appropriate for the chosen
+            <paramref name="searchType"/>.</remarks>
+            <param name="searchType">The type of search to perform, which determines the filtering logic applied.</param>
+            <param name="searchTerm">The term to search for within the entity data. Cannot be null or empty.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains an expression that can be used to
+            filter entities of type <typeparamref name="TEntity"/> based on the specified search criteria.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1.AddOrderBySort(System.Linq.IQueryable{`0},System.String,System.String)">
+            <summary>
+            Sorts the elements of a sequence in ascending or descending order based on a specified column name.
+            </summary>
+            <param name="source">The sequence of elements to sort.</param>
+            <param name="columnName">The name of the column to sort by. This must be a valid property name of the elements in the sequence.</param>
+            <param name="direction">The direction of the sort. Use "asc" for ascending order or "desc" for descending order.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> whose elements are sorted according to the specified column and
+            direction.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1.AddThenBySort(System.Linq.IOrderedQueryable{`0},System.String,System.String)">
+            <summary>
+            Adds an additional sorting criterion to the existing ordered query based on the specified column name and
+            direction.
+            </summary>
+            <param name="source">The existing ordered query to which the new sorting criterion will be added.</param>
+            <param name="columnName">The name of the column by which to sort the query. This must be a valid column name in the query's entity type.</param>
+            <param name="direction">The direction of the sort, either "asc" for ascending or "desc" for descending. The value is case-insensitive.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> that represents the query with the additional sorting applied.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.ISearchHandlerFactory`1">
+            <summary>
+            Defines a factory for creating search handlers for a specified entity type.
+            </summary>
+            <typeparam name="TEntity">The type of entity for which the search handler is created.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.ISearchHandlerFactory`1.GetAsync(System.String)">
+            <summary>
+            Asynchronously retrieves a search handler for the specified property of the entity.
+            </summary>
+            <param name="propertyName">The name of the property for which to retrieve the search handler. Cannot be null or empty.</param>
+            <returns>A task representing the asynchronous operation. The task result contains an <see cref="T:Diamond.Core.AspNetCore.DataTables.ISearchHandler`1"/>
+            for the specified property.</returns>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.Column">
+            <summary>
+            Represents a column in a data table, including properties for title, data source, 
+            searchability, orderability, and more.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Title">
+            <summary>
+            Gets or sets the title associated with the object.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Data">
+            <summary>
+            Gets or sets the data source for the column, which can be a property name or a field name.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Name">
+            <summary>
+            Gets or sets the name of the column, which is used for identification purposes.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Searchable">
+            <summary>
+            Gets or sets a value indicating whether the column is searchable.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Orderable">
+            <summary>
+            Gets or sets a value indicating whether the column is orderable.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Search">
+            <summary>
+            Gets or sets the search criteria for the column, which includes the search value and whether to use regular expressions.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Type">
+            <summary>
+            Gets or sets the type of data in the column, which can be used for formatting or validation purposes.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Column.Filterable">
+            <summary>
+            Gets or sets a value indicating whether the column is filterable.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.DataTableRequest">
+            <summary>
+            Represents a request for data in a DataTable format, including pagination, sorting, and search criteria.
+            </summary>
+            <remarks>This class is used to encapsulate the parameters sent from a client-side DataTable to a server-side
+            processing endpoint. It includes properties for pagination (such as <see cref="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Start"/> and <see cref="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Length"/>),
+            sorting (via <see cref="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Order"/>), and search criteria (via <see cref="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Search"/> and <see
+            cref="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.SearchBuilder"/>).</remarks>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Draw">
+            <summary>
+            Gets or sets the draw count for the current operation.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Start">
+            <summary>
+            Gets or sets the starting index for the operation.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Length">
+            <summary>
+            Gets or sets the length of the item.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Search">
+            <summary>
+            Gets or sets the search configuration for the current context.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Order">
+            <summary>
+            Gets or sets the collection of orders associated with the current context.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.Columns">
+            <summary>
+            Gets or sets the collection of columns associated with the entity.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableRequest.SearchBuilder">
+            <summary>
+            Gets or sets the search builder configuration for the form.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.DataTableResult`1">
+            <summary>
+            Represents the result of a data table operation, including the data items and metadata about the operation.
+            </summary>
+            <remarks>This class is typically used to encapsulate the results of a server-side data table query,
+            including the data items and additional information such as the draw count and record totals. It is designed to be
+            serialized to JSON for communication with client-side data table components.</remarks>
+            <typeparam name="TItem">The type of the data items contained in the result.</typeparam>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableResult`1.Data">
+            <summary>
+            Gets or sets the array of data items returned by the data table operation.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableResult`1.Draw">
+            <summary>
+            Gets or sets the draw count, which is used to ensure that the response corresponds 
+            to the request made by the client.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableResult`1.RecordsFiltered">
+            <summary>
+            Gets or sets the number of records after filtering has been applied.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableResult`1.RecordsTotal">
+            <summary>
+            Gets or sets the total number of records available in the data source, regardless of filtering.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTableResult`1.Error">
+            <summary>
+            Gets or sets an error message, if any occurred during the data table operation.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.DataTablesObject">
+            <summary>
+            Represents an abstract base class for objects that can hold additional data fields not explicitly defined in the
+            class structure.
+            </summary>
+            <remarks>This class uses JSON extension data to store extra data fields in a dictionary. The <see
+            cref="P:Diamond.Core.AspNetCore.DataTables.DataTablesObject.ExtraData"/> property allows for dynamic storage of additional key-value pairs, where the key is a string and
+            the value is a <see cref="T:Newtonsoft.Json.Linq.JToken"/>.</remarks>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.DataTablesObject.ExtraData">
+            <summary>
+            Gets or sets a dictionary that holds additional data fields not explicitly defined in the class structure.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.Order">
+            <summary>
+            Represents sorting information for a column in a data table.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Order.Column">
+            <summary>
+            Gets or sets the index of the column to which the sorting should be applied.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Order.Dir">
+            <summary>
+            Gets or sets the direction of the sort ("asc" or "desc").
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.OrderedColumn">
+            <summary>
+            Represents a column with an associated sort direction for ordering operations.
+            </summary>
+            <remarks>The <see cref="T:Diamond.Core.AspNetCore.DataTables.OrderedColumn"/> class is used to specify the order in which data should be sorted.
+            The <see cref="P:Diamond.Core.AspNetCore.DataTables.OrderedColumn.ColumnName"/> property indicates the name of the column to sort by, and the <see cref="P:Diamond.Core.AspNetCore.DataTables.OrderedColumn.Direction"/>
+            property specifies the sort direction, typically "ASC" for ascending or "DESC" for descending.</remarks>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.OrderedColumn.ColumnName">
+            <summary>
+            Gets or sets the name of the column to be ordered.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.OrderedColumn.Direction">
+            <summary>
+            Gets or sets the direction of the sort operation.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.Search">
+            <summary>
+            Represents search criteria for a data table, including the search value and whether to use regular expressions.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Search.Value">
+            <summary>
+            Gets or sets the search value to apply to the data table.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.Search.RegEx">
+            <summary>
+            Gets or sets a value indicating whether the search value should be treated as a regular expression.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1">
+            <summary>
+            Provides a base implementation for handling search and sorting operations on entities of type <typeparamref
+            name="TEntity"/>.
+            </summary>
+            <remarks>This abstract class serves as a template for implementing search and sorting functionality. It
+            provides default behavior for applying search filters, ordering queryable sources, and logging operations. Derived
+            classes can override the provided virtual methods to customize the behavior for specific use cases.</remarks>
+            <typeparam name="TEntity">The type of the entity that the search handler operates on.</typeparam>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate{`0}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1"/> class.
+            </summary>
+            <remarks>The logger is used to capture diagnostic and operational information during the execution of the
+            search handler. Ensure that a valid <see cref="T:Microsoft.Extensions.Logging.ILogger`1"/> implementation is provided to avoid
+            runtime issues.</remarks>
+            <param name="logger">The logger instance used to log messages for the <see cref="T:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1"/>.</param>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.Logger">
+            <summary>
+            Gets or sets the logger used for logging operations within the search handler.
+            </summary>
+            <remarks>Override this property to provide a custom logger implementation if logging is
+            required.</remarks>
+        </member>
+        <member name="P:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.PropertyName">
+            <summary>
+            Gets the name of the property.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.ApplySearchFilterAsync(Diamond.Core.AspNetCore.DataTables.SearchType,System.String)">
+            <summary>
+            Asynchronously applies a search or filter operation based on the specified search type and search term.
+            </summary>
+            <remarks>This method determines the appropriate search or filter logic based on the <paramref
+            name="searchType"/> and delegates the  operation to either the <c>OnSearch</c> or <c>OnFilter</c> method. If an
+            exception occurs during the operation, it is logged,  and a default expression is returned.</remarks>
+            <param name="searchType">The type of search to perform. Use <see cref="F:Diamond.Core.AspNetCore.DataTables.SearchType.GlobalSearch"/> for a global search or other values for
+            specific filtering.</param>
+            <param name="searchTerm">The term to search or filter by. This value is used to generate the search or filter expression.</param>
+            <returns>A task that represents the asynchronous operation. The task result contains an expression that evaluates to a
+            boolean value,  representing the search or filter criteria to be applied to the entity.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.AddOrderBySort(System.Linq.IQueryable{`0},System.String,System.String)">
+            <summary>
+            Applies an ordering to the specified queryable source based on the given column name and sort direction.
+            </summary>
+            <remarks>This method delegates the ordering logic to the <see cref="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.OnAddOrderBySort(System.Linq.IQueryable{`0},System.String,System.String)"/> method, which can
+            be overridden to customize behavior.</remarks>
+            <param name="source">The queryable source to which the ordering will be applied. Cannot be null.</param>
+            <param name="columnName">The name of the column to sort by. Must correspond to a valid property of <typeparamref name="TEntity"/>.</param>
+            <param name="direction">The direction of the sort. Use <see langword="asc"/> for ascending order or <see langword="desc"/> for descending
+            order.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> representing the source with the specified ordering applied.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.AddThenBySort(System.Linq.IOrderedQueryable{`0},System.String,System.String)">
+            <summary>
+            Adds an additional sorting condition to an already ordered queryable source.
+            </summary>
+            <param name="source">The ordered queryable source to which the additional sorting condition will be applied.</param>
+            <param name="columnName">The name of the column to sort by. Must match a valid property of the entity type.</param>
+            <param name="direction">The direction of the sort. Use <see langword="asc"/> for ascending or <see langword="desc"/> for descending.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> representing the source with the additional sorting condition applied.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.OnAddOrderBySort(System.Linq.IQueryable{`0},System.String,System.String)">
+            <summary>
+            Applies an ordering to the specified queryable source based on the given column name and sort direction.
+            </summary>
+            <remarks>This method is virtual and can be overridden to customize the ordering behavior.  Ensure that the
+            <paramref name="columnName"/> corresponds to a valid property of <typeparamref name="TEntity"/>.</remarks>
+            <param name="source">The queryable source to which the ordering will be applied.</param>
+            <param name="columnName">The name of the column to sort by. This parameter is case-insensitive.</param>
+            <param name="direction">The sort direction, specified as "asc" for ascending or "desc" for descending.  If the value is not "asc",
+            descending order is applied by default.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> representing the source with the specified ordering applied.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.OnAddThenBySort(System.Linq.IOrderedQueryable{`0},System.String,System.String)">
+            <summary>
+            Adds an additional sorting condition to an already ordered queryable source.
+            </summary>
+            <remarks>This method is intended to be overridden in derived classes to customize the behavior of adding
+            additional sorting conditions. The default implementation applies the sorting based on the specified column name
+            and direction.</remarks>
+            <param name="source">The <see cref="T:System.Linq.IOrderedQueryable`1"/> to which the additional sorting condition will be applied.</param>
+            <param name="columnName">The name of the column to sort by. This parameter is case-insensitive.</param>
+            <param name="direction">The direction of the sort. Use <see langword="asc"/> for ascending order or <see langword="desc"/> for descending
+            order.</param>
+            <returns>An <see cref="T:System.Linq.IOrderedQueryable`1"/> with the additional sorting condition applied.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.OnSearch(System.String)">
+            <summary>
+            Constructs a search expression based on the provided search term.
+            </summary>
+            <remarks>This method is intended to be overridden in derived classes to provide custom search logic. The
+            default implementation returns <see langword="null"/>, indicating no filtering.</remarks>
+            <param name="searchTerm">The term to be used for filtering entities. Can be null or empty, in which case no filtering is applied.</param>
+            <returns>An expression that represents the search filter to be applied to entities of type <typeparamref name="TEntity"/>.
+            Returns <see langword="null"/> if no filtering is required.</returns>
+        </member>
+        <member name="M:Diamond.Core.AspNetCore.DataTables.SearchHandlerTemplate`1.OnFilter(System.String)">
+            <summary>
+            Provides a filter expression to be applied to a query based on the specified search term.
+            </summary>
+            <param name="searchTerm">The search term used to generate the filter expression. Can be null or empty.</param>
+            <returns>An expression that represents the filter to apply to the query.  Returns <see langword="null"/> if no filter is
+            applied.</returns>
+        </member>
+    </members>
+</doc>

@@ -4,7 +4,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0.0</Version>
+		<Version>10.1.0</Version>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides abstractions for the command line and command pattern.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
@@ -12,8 +12,8 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>
@@ -27,16 +27,20 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.CommandLine.Abstractions.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.CommandLine.Abstractions.xml</DocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="Diamond.Core.CommandLine.Abstractions.xml" />
 		<None Remove="Services\Diamond.Core.CommandLine.Abstractions.json" />
+		<None Remove="XmlDocs\Diamond.Core.CommandLine.Abstractions.xml" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="Services\Diamond.Core.CommandLine.Abstractions.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="XmlDocs\Diamond.Core.CommandLine.Abstractions.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 	<ItemGroup>

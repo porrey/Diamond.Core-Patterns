@@ -8,9 +8,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Description>This library provides common workflow steps.</Description>
-		<Version>10.1.0.0</Version>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -29,23 +29,23 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.WorkFlow.Steps.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.Workflow.Steps.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Diamond.Core.WorkFlow.Steps.xml" />
+	  <None Remove="XmlDocs\Diamond.Core.Workflow.Steps.xml" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Content Include="Diamond.Core.WorkFlow.Steps.xml">
+	  <Content Include="XmlDocs\Diamond.Core.Workflow.Steps.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
 		<ProjectReference Include="..\..\System\Diamond.Core.System.TemporaryFolder\Diamond.Core.System.TemporaryFolder.csproj" />
-		<ProjectReference Include="..\Diamond.Core.WorkFlow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Core.Workflow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Workflow.State\Diamond.Core.Workflow.State.csproj" />
 		<ProjectReference Include="..\Diamond.Core.Workflow.Abstractions\Diamond.Core.Workflow.Abstractions.csproj" />
-		<ProjectReference Include="..\Diamond.Core.WorkFlow\Diamond.Core.Workflow.csproj" />
+		<ProjectReference Include="..\Diamond.Core.Workflow\Diamond.Core.Workflow.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\README.md">

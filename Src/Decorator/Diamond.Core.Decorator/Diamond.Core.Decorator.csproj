@@ -8,9 +8,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Description>This library provides a basic implementation of the decorator factory.</Description>
-		<Version>10.1.0.0</Version>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -30,15 +30,19 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.Decorator.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.Decorator.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="Diamond.Core.Decorator.xml" />
 		<None Remove="Services\Diamond.Core.Decorator.json" />
+		<None Remove="XmlDocs\Diamond.Core.Decorator.xml" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="Services\Diamond.Core.Decorator.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="XmlDocs\Diamond.Core.Decorator.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 	<ItemGroup>

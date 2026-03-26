@@ -8,9 +8,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Description>This library provides workflow interfaces and abstract or default implementations for common patterns.</Description>
-		<Version>10.1.0.0</Version>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -29,19 +29,19 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.Workflow.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.Workflow.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Remove="Diamond.Core.WorkFlow.xml" />
-		<None Remove="Diamond.Patterns.WorkFlow.xml" />
+		<None Remove="Diamond.Patterns.Workflow.xml" />
 		<None Remove="Services\Diamond.Core.Workflow.json" />
+		<None Remove="XmlDocs\Diamond.Core.Workflow.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<Content Include="Diamond.Core.WorkFlow.xml">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<Content Include="Services\Diamond.Core.Workflow.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="XmlDocs\Diamond.Core.Workflow.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 	<ItemGroup>

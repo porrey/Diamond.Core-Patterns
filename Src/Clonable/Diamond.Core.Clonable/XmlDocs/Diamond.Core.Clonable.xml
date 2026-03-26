@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Clonable</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Clonable.NoClonableFactorySetException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.NoClonableFactorySetException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Clonable.ClonableFactory">
+            <summary>
+            Holds the current factory for cloning objects. 
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.ClonableFactory.GetFactory">
+            <summary>
+            Gets the current factory for cloning objects.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Clonable.ClonableFactory.SetFactory(Diamond.Core.Clonable.IObjectCloneFactory)">
+            <summary>
+            Sets the current factory for cloning objects. This value can be set directly
+            or by referencing a NuGet package that implements the IObjectCloneFactory interface.
+            </summary>
+            <param name="factory"></param>
+        </member>
+        <member name="T:Diamond.Core.Clonable.CloneableObject">
+            <summary>
+            Supports cloning, which creates a new instance of a class with the same value
+            as an existing instance.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Clonable.CloneableObject.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:Diamond.Core.Clonable.CloneableObject.OnClone">
+            <summary>
+            A class that inherits from Clonable can implement this
+            member to override the default cloning mechanism.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+    </members>
+</doc>

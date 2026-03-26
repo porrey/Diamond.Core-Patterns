@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Extensions.Hosting</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Extensions.Hosting.HostBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostBuilderExtensions.UseStartup``1(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TStartup"></typeparam>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostBuilderExtensions.UseStartup``2(Microsoft.Extensions.Hosting.IHostBuilder)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TStartup"></typeparam>
+            <typeparam name="TContainer"></typeparam>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <returns>The same instance of the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> for chaining</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostBuilderExtensions.BuildAndRunWithExitCodeAsync(Microsoft.Extensions.Hosting.IHostBuilder,System.Threading.CancellationToken)">
+            <summary>
+            Enables console support, builds and starts the host, and waits for Ctrl+C or SIGTERM to shut down.
+            </summary>
+            <param name="hostBuilder">The <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder" /> to configure.</param>
+            <param name="cancellationToken">The token to trigger shutdown.</param>
+            <returns>Returns the exit code set in the environment.</returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostBuilderExtensions.RunWithExitCodeAsync(Microsoft.Extensions.Hosting.IHost,System.Threading.CancellationToken)">
+            <summary>
+            Runs an application and returns a Task that only completes when the token is
+            triggered or shutdown is triggered.
+            </summary>
+            <param name="host">The Microsoft.Extensions.Hosting.IHost to run.</param>
+            <param name="cancellationToken">The token to trigger shutdown.</param>
+            <returns>Returns the exit code set in the environment.</returns>
+        </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.HostedServiceTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Extensions.Hosting.HostedServiceTemplate})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="hostApplicationLifetime"></param>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.#ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Extensions.Hosting.HostedServiceTemplate},Microsoft.Extensions.DependencyInjection.IServiceScopeFactory)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="hostApplicationLifetime"></param>
+            <param name="serviceScopeFactory"></param>
+        </member>
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.HostApplicationLifetime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.ServiceScopeFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.CancellationToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnBeginStartAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnCompletedStartAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnBeginStopAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnCompletedStopAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnStopped">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnStopping">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Extensions.Hosting.HostedServiceTemplate.OnStarted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Extensions.Hosting.NullStartup">
+            <summary>
+            Implements the Null Pattern for IStartup.
+            </summary>
+        </member>
+    </members>
+</doc>
