@@ -1,0 +1,20 @@
+{
+	"aliases": [
+		{
+			"Key": "IWorkflowItem",
+			"TypeDefinition": "Diamond.Core.Workflow.IWorkflowItem, Diamond.Core.Workflow.Abstractions"
+		},
+		{
+			"Key": "IWorkflowItemFactory",
+			"TypeDefinition": "Diamond.Core.Workflow.IWorkflowItemFactory, Diamond.Core.Workflow.Abstractions"
+		},
+		{
+			"Key": "IWorkflowManager",
+			"TypeDefinition": "Diamond.Core.Workflow.IWorkflowManager, Diamond.Core.Workflow.Abstractions"
+		},
+		{
+			"Key": "IWorkflowManagerFactory",
+			"TypeDefinition": "Diamond.Core.Workflow.IWorkflowManagerFactory, Diamond.Core.Workflow.Abstractions"
+		}
+	]
+}
