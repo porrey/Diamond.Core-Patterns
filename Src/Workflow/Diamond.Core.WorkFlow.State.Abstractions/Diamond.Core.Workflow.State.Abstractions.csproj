@@ -4,8 +4,8 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0.0</Version>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Authors>Daniel M. Porrey</Authors>
@@ -14,7 +14,7 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>10.1.0.0</FileVersion>
+		<FileVersion>10.1.0</FileVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>
@@ -29,13 +29,13 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.Workflow.State.Abstractions.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.Workflow.State.Abstractions.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Diamond.Core.WorkFlow.State.Abstractions.xml" />
+	  <None Remove="XmlDocs\Diamond.Core.Workflow.State.Abstractions.xml" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Content Include="Diamond.Core.WorkFlow.State.Abstractions.xml">
+	  <Content Include="XmlDocs\Diamond.Core.Workflow.State.Abstractions.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Rules</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Rules.ServiceCollectionDecorator">
+            <summary>
+            Extends the IServiceCollection object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.ServiceCollectionDecorator.UseRulesFactory(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the necessary registrations to the service collection.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:Diamond.Core.Rules.RulesNotFoundException`1">
+            <summary>
+            Exception thrown when rules have not been configured in the application container.
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesNotFoundException`1.#ctor">
+            <summary>
+            Exception thrown when no rules have been defined.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesNotFoundException`1.#ctor(System.String)">
+            <summary>
+            Exception thrown when no rules with the specified
+            group name have been defined.
+            </summary>
+            <param name="groupName">A group name that specifies a set of rules.</param>
+        </member>
+        <member name="T:Diamond.Core.Rules.RulesFactory">
+            <summary>
+            Defines a generic repository factory that can be used to retrieve
+            an object that implements <see cref="T:Diamond.Core.Rules.IRule"/> from the container.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates an instance of <see cref="T:Diamond.Core.Rules.IRule"/> with the
+            specified instance of <see cref="T:System.IServiceProvider"/>.
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RulesFactory})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="P:Diamond.Core.Rules.RulesFactory.ServiceProvider">
+            <summary>
+            Gets/sets the internal instance of <see cref="T:System.IServiceProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RulesFactory.Logger">
+            <summary>
+            Gets/sets a reference to the <see cref="T:Microsoft.Extensions.Logging.ILogger"/> for this object.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1">
+            <summary>
+            Get all model rule instances registered based on TInterface.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``1(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <typeparam name="TResult">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.GetAllAsync``2(System.String)">
+            <summary>
+            Get all model rule instances registered based on TInterface and group name.
+            </summary>
+            <typeparam name="TItem">The type of the model being validated.</typeparam>
+            <typeparam name="TResult">The type of the model being validated.</typeparam>
+            <returns>A list of <see cref="T:Diamond.Core.Rules.IRule"/> instances.</returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RulesFactory.EvaluateAsync``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="serviceKey">The container service key.</param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.RuleResultTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResultTemplate.Passed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleResultTemplate.ErrorMessage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Rules.RuleTemplate`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RuleTemplate{`0,`1}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="group"></param>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RuleTemplate{`0,`1}},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="group"></param>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleTemplate`2.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleTemplate`2.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.ValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`2.OnValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Rules.RuleTemplate`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TItem"></typeparam>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RuleTemplate{`0}})">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="group"></param>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.#ctor(Microsoft.Extensions.Logging.ILogger{Diamond.Core.Rules.RuleTemplate{`0}},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="group"></param>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleTemplate`1.Logger">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Rules.RuleTemplate`1.Group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.ValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Rules.RuleTemplate`1.OnValidateAsync(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

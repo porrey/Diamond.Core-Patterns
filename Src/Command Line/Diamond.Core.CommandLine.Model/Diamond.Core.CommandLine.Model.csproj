@@ -4,9 +4,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0.0</Version>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides support for creating a command from a model.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
@@ -27,11 +27,17 @@
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.CommandLine.Model.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.CommandLine.Model.xml</DocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="Diamond.Core.CommandLine.Model.xml" />
+		<None Remove="XmlDocs\Diamond.Core.CommandLine.Model.xml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="XmlDocs\Diamond.Core.CommandLine.Model.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\Images\Diamond.Core.128x128.png">

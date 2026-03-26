@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Repository.DateTimeModel</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Repository.DateTimeModel.DbEnvironment">
+            <summary>
+            Provides extension methods for the Platinum application.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.DbEnvironment.CurrentUser">
+            <summary>
+            Gets the current system user.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.DateTimeModel.EntityDecorator">
+            <summary>
+            Provides a set of methods that can be performed on any <see cref="T:Diamond.Core.Repository.DateTimeModel.IDateTimeEntity"/>
+            entity model.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Repository.DateTimeModel.EntityDecorator.Touch``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Sets the modified fields with the current date/time and the current user for the
+            specified list of entity models.
+            </summary>
+            <typeparam name="TEntity">Specifies the entity type being modified.</typeparam>
+            <param name="items">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> list of entity models to update.</param>
+            <param name="userName">Specifies the name of the user to write to the database.</param>
+            <returns>Returns a reference to the original list.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.DateTimeModel.EntityDecorator.TouchAsync``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Sets the modified fields with the current date/time and the current user for the
+            specified list of entity models.
+            </summary>
+            <typeparam name="TEntity">Specifies the entity type being modified.</typeparam>
+            <param name="items">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> list of entity models to update.</param>
+            <param name="userName">Specifies the name of the user to write to the database.</param>
+            <returns>Returns a reference to the original list.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.DateTimeModel.EntityDecorator.Touch``1(``0)">
+            <summary>
+            Sets the created and modified fields with the current date/time and the
+            current user.
+            </summary>
+            <typeparam name="TEntity">Specifies the entity type being modified.</typeparam>
+            <param name="item"></param>
+            <returns>Returns a reference to the original entity model.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.DateTimeModel.EntityDecorator.TouchAsync``1(``0)">
+            <summary>
+            Sets the created and modified fields with the current date/time and the
+            current user.
+            </summary>
+            <typeparam name="TEntity">Specifies the entity type being modified.</typeparam>
+            <param name="item"></param>
+            <returns>Returns a reference to the original entity model.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.DateTimeModel.EntityDecorator.Touch``1(``0,System.String)">
+            <summary>
+            Sets the created and modified fields with the current date/time and the
+            current user.
+            </summary>
+            <typeparam name="TEntity">Specifies the entity type being modified.</typeparam>
+            <param name="item"></param>
+            <param name="userName">Specifies the name of the user to write to the database.</param>
+            <returns>Returns a reference to the original entity model.</returns>
+        </member>
+        <member name="M:Diamond.Core.Repository.DateTimeModel.EntityDecorator.TouchAsync``1(``0,System.String)">
+            <summary>
+            Sets the created and modified fields with the current date/time and the
+            current user.
+            </summary>
+            <typeparam name="TEntity">Specifies the entity type being modified.</typeparam>
+            <param name="item"></param>
+            <param name="userName">Specifies the name of the user to write to the database.</param>
+            <returns>Returns a reference to the original entity model.</returns>
+        </member>
+        <member name="T:Diamond.Core.Repository.DateTimeModel.IDateTimeEntity">
+            <summary>
+            Defines an interface for all entity models to inherit
+            from.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.IDateTimeEntity.CreatedDateTime">
+            <summary>
+            Get/sets the data and time this entity model was created and first stored
+            in the database/repository. This date and time stamp should never
+            be changed after a value has been set.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.IDateTimeEntity.CreatedBy">
+            <summary>
+            Gets/sets the name of the user who created this entity model.This field  value
+            should never be changed after a value has been set.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.IDateTimeEntity.ModifiedDateTime">
+            <summary>
+            Gets/sets the date and time this entity model was last updated in the
+            database/repository.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.IDateTimeEntity.ModifiedBy">
+            <summary>
+            Gets/sets the name of the user who last modified this entity model in the
+            database/repository.
+            </summary>
+        </member>
+        <member name="T:Diamond.Core.Repository.DateTimeModel.DateTimeEntity">
+            <summary>
+            This is a base class for all OtmIntegration database models. Using this
+            base class will provide a consistency for all tables.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.DateTimeEntity.CreatedDateTime">
+            <summary>
+            Get/sets the data and time this entity model was created and first stored
+            in the database/repository. This date and time stamp should never
+            be changed after a value has been set.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.DateTimeEntity.CreatedBy">
+            <summary>
+            Gets/sets the name of the user who created this entity model.This field  value
+            should never be changed after a value has been set.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.DateTimeEntity.ModifiedDateTime">
+            <summary>
+            Gets/sets the date and time this entity model was last updated in the
+            database/repository.
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Repository.DateTimeModel.DateTimeEntity.ModifiedBy">
+            <summary>
+            Gets/sets the name of the user who last modified this entity model in the
+            database/repository.
+            </summary>
+        </member>
+    </members>
+</doc>

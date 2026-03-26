@@ -4,9 +4,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0.0</Version>
-		<FileVersion>10.1.0.0</FileVersion>
-		<AssemblyVersion>10.1.0.0</AssemblyVersion>
+		<Version>10.1.0</Version>
+		<FileVersion>10.1.0</FileVersion>
+		<AssemblyVersion>10.1.0</AssemblyVersion>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides support for command line parsing and the command pattern.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
@@ -28,10 +28,16 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DocumentationFile>Diamond.Core.ConsoleCommands.xml</DocumentationFile>
+		<DocumentationFile>XmlDocs\Diamond.Core.ConsoleCommands.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="Diamond.Core.ConsoleCommands.xml" />
+		<None Remove="XmlDocs\Diamond.Core.ConsoleCommands.xml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="XmlDocs\Diamond.Core.ConsoleCommands.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\README.md">
