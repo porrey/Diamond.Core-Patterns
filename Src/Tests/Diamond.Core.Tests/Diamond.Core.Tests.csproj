@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+		<PackageReference Include="xunit" Version="2.9.3" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="coverlet.collector" Version="6.0.4">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\System\Diamond.Core.System.Text\Diamond.Core.System.Text.csproj" />
+		<ProjectReference Include="..\..\System\Diamond.Core.System.Base36\Diamond.Core.System.Base36.csproj" />
+		<ProjectReference Include="..\..\Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj" />
+		<ProjectReference Include="..\..\Specification\Diamond.Core.Specification\Diamond.Core.Specification.csproj" />
+		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable\Diamond.Core.Clonable.csproj" />
+		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable.Microsoft\Diamond.Core.Clonable.Microsoft.csproj" />
+		<ProjectReference Include="..\..\Clonable\Diamond.Core.Clonable.Newtonsoft\Diamond.Core.Clonable.Newtonsoft.csproj" />
+		<ProjectReference Include="..\..\Workflow\Diamond.Core.WorkFlow\Diamond.Core.Workflow.csproj" />
+		<ProjectReference Include="..\..\Workflow\Diamond.Core.WorkFlow.State\Diamond.Core.Workflow.State.csproj" />
+		<ProjectReference Include="..\..\Unit of Work\Diamond.Core.UnitOfWork\Diamond.Core.UnitOfWork.csproj" />
+		<ProjectReference Include="..\..\Shared\Diamond.Core.Abstractions\Diamond.Core.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

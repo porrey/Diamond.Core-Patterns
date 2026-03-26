@@ -45,7 +45,7 @@
 		</Content>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Diamond.Core.Workflow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />
+		<ProjectReference Include="..\Diamond.Core.WorkFlow.State.Abstractions\Diamond.Core.Workflow.State.Abstractions.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\..\..\README.md">
