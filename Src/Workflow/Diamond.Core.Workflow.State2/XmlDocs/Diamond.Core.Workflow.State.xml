@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Diamond.Core.Workflow.State</name>
+    </assembly>
+    <members>
+        <member name="T:Diamond.Core.Workflow.State.StateDictionaryDecorator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionaryDecorator.Merge(Diamond.Core.Workflow.State.IStateDictionary,Diamond.Core.Workflow.State.IStateDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="target"></param>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionaryDecorator.Remove(Diamond.Core.Workflow.State.IStateDictionary,Diamond.Core.Workflow.State.IStateDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="target"></param>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.AddItemToStateException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.AddItemToStateException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.MissingContextPropertyException">
+            <summary>
+            Generic error for a missing context property.
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.MissingContextPropertyException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.StateDictionary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.#ctor(Diamond.Core.Workflow.State.IStateTypeConverter[])">
+            <summary>
+            
+            </summary>
+            <param name="converters"></param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.StateDictionary.Converters">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.Get``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.Get``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.TryGet``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="key"></param>
+            <param name="initializeValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.Set``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.ConvertParameter(System.String,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.ConvertParameter``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.ContainsKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StateDictionary.Add(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.StateDictionary.Item(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.BoolConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Diamond.Core.Workflow.State.BoolConverter.SupportedTrueValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.BoolConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.ConverterBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TTargetType"></typeparam>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.ConverterBase`1.TargetType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.ConverterBase`1.SourceStringValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.ConverterBase`1.SourceObjectValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.ConverterBase`1.SpecificTargetType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.ConverterBase`1.ConvertSource(System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="sourceValue"></param>
+            <param name="specificTargetType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.ConverterBase`1.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.ConverterBase`1.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.DateConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.DateConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.DoubleConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.DoubleConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.EnumConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.EnumConverter.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.EnumConverter.#ctor(System.Char[])">
+            <summary>
+            
+            </summary>
+            <param name="separator"></param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.EnumConverter.Separator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.EnumConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.IDictionaryConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.IDictionaryConverter.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.IDictionaryConverter.#ctor(System.Char[])">
+            <summary>
+            
+            </summary>
+            <param name="separator"></param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.IDictionaryConverter.Separator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.IDictionaryConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.IntConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.IntConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.NullableDateConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.NullableDateConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.NullableIntConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.NullableIntConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.SingleConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.SingleConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.StringArrayConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StringArrayConverter.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StringArrayConverter.#ctor(System.Char[])">
+            <summary>
+            
+            </summary>
+            <param name="separator"></param>
+        </member>
+        <member name="P:Diamond.Core.Workflow.State.StringArrayConverter.Separator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StringArrayConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.StringConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.StringConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.TimeSpanConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.TimeSpanConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Diamond.Core.Workflow.State.UintConverter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Diamond.Core.Workflow.State.UintConverter.OnConvertSource">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
