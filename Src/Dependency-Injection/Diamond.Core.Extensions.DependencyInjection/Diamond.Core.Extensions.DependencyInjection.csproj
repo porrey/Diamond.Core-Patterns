@@ -4,7 +4,7 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0</Version>
+		<Version>10.1.1</Version>
 		<Authors>Daniel M Porrey</Authors>
 		<Description>This library provides the Diamond dependency injection extensions.</Description>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
@@ -12,8 +12,8 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<FileVersion>10.1.0</FileVersion>
-		<AssemblyVersion>10.1.0</AssemblyVersion>
+		<FileVersion>10.1.1</FileVersion>
+		<AssemblyVersion>10.1.1</AssemblyVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>

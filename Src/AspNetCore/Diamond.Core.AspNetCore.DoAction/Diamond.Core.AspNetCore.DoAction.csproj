@@ -4,9 +4,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0</Version>
-		<AssemblyVersion>10.1.0</AssemblyVersion>
-		<FileVersion>10.1.0</FileVersion>
+		<Version>10.1.1</Version>
+		<AssemblyVersion>10.1.1</AssemblyVersion>
+		<FileVersion>10.1.1</FileVersion>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>

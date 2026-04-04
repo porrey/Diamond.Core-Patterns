@@ -5,9 +5,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>10.1.0</Version>
-		<AssemblyVersion>10.1.0</AssemblyVersion>
-		<FileVersion>10.1.0</FileVersion>
+		<Version>10.1.1</Version>
+		<AssemblyVersion>10.1.1</AssemblyVersion>
+		<FileVersion>10.1.1</FileVersion>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Authors>Daniel M. Porrey</Authors>
