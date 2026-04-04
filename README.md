@@ -2,9 +2,7 @@
 
 # Diamond.Core Patterns
 
-[![NuGet](https://img.shields.io/nuget/v/Diamond.Core.Abstractions.svg)](https://www.nuget.org/packages/Diamond.Core.Abstractions)
-[![License: LGPL-3.0-or-later](https://img.shields.io/badge/License-LGPL--3.0--or--later-blue.svg)](LICENSE)
-[![.NET](https://img.shields.io/badge/.NET-10.0-purple)](https://dotnet.microsoft.com/)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/porrey/Diamond.Core-Patterns/.github%2Fworkflows%2Fbuild-and-test.yml?style=for-the-badge&label=Build%20and%20Test) ![GitHub License](https://img.shields.io/github/license/porrey/Diamond.Core-Patterns?style=for-the-badge) ![.NET](https://img.shields.io/badge/.NET-10-purple?style=for-the-badge)
 
 **Diamond.Core Patterns** is a production-ready C# library that provides enterprise-grade implementations of common design patterns for .NET applications. Published as a suite of focused NuGet packages under the `Diamond.Core.*` namespace, it is authored by **Daniel M. Porrey** and targets **.NET 10.0**.
 
