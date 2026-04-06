@@ -70,12 +70,12 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// Executes the controller method without any parameters.
 		/// </summary>
 		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
-		/// <param name="actionKey">The name of the action retrieved from the container.</param>
+		/// <param name="serviceKey">The name of the action retrieved from the container.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected virtual Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string actionKey = null)
+		protected virtual Task<ActionResult<TResult>> Do<TResult>([CallerMemberName] string serviceKey = null)
 		{
-			this.Logger.LogDebug("Do method called with action key '{actionKey}'.", actionKey);
-			return this.Do<object, TResult>(null, actionKey);
+			this.Logger.LogDebug("Do method called with action key '{actionKey}'.", serviceKey);
+			return this.Do<object, TResult>(null, serviceKey);
 		}
 
 		/// <summary>
@@ -83,10 +83,10 @@ namespace Diamond.Core.AspNetCore.DoAction
 		/// </summary>
 		/// <typeparam name="TInputs"></typeparam>
 		/// <typeparam name="TResult">The type of object returned by the action.</typeparam>
-		/// <param name="actionKey">The name of the action retrieved from the container.</param>
+		/// <param name="serviceKey">The name of the action retrieved from the container.</param>
 		/// <param name="inputs">The input parameter for the action.</param>
 		/// <returns>An ActionResult encapsulating the expected return type.</returns>
-		protected virtual async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs inputs, [CallerMemberName] string actionKey = null)
+		protected virtual async Task<ActionResult<TResult>> Do<TInputs, TResult>(TInputs inputs, [CallerMemberName] string serviceKey = null)
 		{
 			ActionResult<TResult> returnValue = default;
 
@@ -104,16 +104,16 @@ namespace Diamond.Core.AspNetCore.DoAction
 
 				try
 				{
-					this.Logger.LogDebug("Retrieving controller method action '{actionKey}'.", actionKey);
-					action = await this.DoActionFactory.GetAsync<TInputs, TResult>(actionKey);
-					this.Logger.LogDebug("Controller method action '{actionKey}' was successfully retrieved.", actionKey);
+					this.Logger.LogDebug("Retrieving controller method action '{actionKey}'.", serviceKey);
+					action = await this.DoActionFactory.GetAsync<TInputs, TResult>(serviceKey);
+					this.Logger.LogDebug("Controller method action '{actionKey}' was successfully retrieved.", serviceKey);
 				}
 				catch (DoActionNotFoundException)
 				{
 					//
 					// An implementation of this method was not found.
 					//
-					this.Logger.LogWarning("Controller method action '{actionKey}' was not found in the container.", actionKey);
+					this.Logger.LogWarning("Controller method action '{actionKey}' was not found in the container.", serviceKey);
 					returnValue = this.StatusCode(StatusCodes.Status501NotImplemented, this.OnCreateProblemDetail(DoActionResult.NotImplemented($"The method has not been implemented. This could be a configuration error or the service is still under development.")));
 					action = null;
 				}
@@ -141,27 +141,27 @@ namespace Diamond.Core.AspNetCore.DoAction
 							//
 							// Execute the action.
 							//
-							this.Logger.LogDebug("Executing controller method action '{actionKey}.TakeActionAsync()'.", actionKey);
+							this.Logger.LogDebug("Executing controller method action '{actionKey}.TakeActionAsync()'.", serviceKey);
 							IControllerActionResult<TResult> result = await action.ExecuteActionAsync(inputs);
 
 							if (result.ResultDetails.Status == StatusCodes.Status200OK)
 							{
-								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", actionKey);
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", serviceKey);
 								returnValue = this.Ok(result.Result);
 							}
 							else if (result.ResultDetails.Status == StatusCodes.Status201Created)
 							{
-								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", actionKey);
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", serviceKey);
 								returnValue = this.CreatedAtAction(this.Request.Path, result.Result);
 							}
 							else if (result.ResultDetails.Status == StatusCodes.Status204NoContent)
 							{
-								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", actionKey);
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed successfully.", serviceKey);
 								returnValue = this.NoContent();
 							}
 							else
 							{
-								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {status}.", actionKey, result.ResultDetails.Status);
+								this.Logger.LogDebug("Controller method action '{actionKey}.TakeActionAsync()' completed with HTTP Status Code of {status}.", serviceKey, result.ResultDetails.Status);
 								this.Logger.LogDebug("The action returned: '{detail}'.", result.ResultDetails.Detail);
 
 								//

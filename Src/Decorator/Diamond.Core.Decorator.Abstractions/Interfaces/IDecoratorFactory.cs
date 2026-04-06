@@ -24,22 +24,22 @@ namespace Diamond.Core.Decorator
 	public interface IDecoratorFactory
 	{
 		/// <summary>
-		/// Gets the specific decorator by type and name.
+		/// Gets the specific decorator by type and service key.
 		/// </summary>
 		/// <typeparam name="TDecoratedItem">The type of object being decorated.</typeparam>
 		/// <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
-		/// <param name="name">The unique name of the decorator.</param>
+		/// <param name="serviceKey">The service key of the decorator.</param>
 		/// <returns>The result of the decorator action.</returns>
-		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name);
+		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string serviceKey);
 
 		/// <summary>
-		/// Gets the specific decorator by type and name.
+		/// Gets the specific decorator by type and service key.
 		/// </summary>
 		/// <typeparam name="TDecoratedItem">The type of object being decorated.</typeparam>
 		/// <typeparam name="TResult">The type of the result returned by the decorator action.</typeparam>
-		/// <param name="name">The unique name of the decorator.</param>
+		/// <param name="serviceKey">The service key of the decorator.</param>
 		/// <param name="item">The instance of the item being decorated.</param>
 		/// <returns>The result of the decorator action.</returns>
-		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string name, TDecoratedItem item);
+		Task<IDecorator<TDecoratedItem, TResult>> GetAsync<TDecoratedItem, TResult>(string serviceKey, TDecoratedItem item);
 	}
 }
