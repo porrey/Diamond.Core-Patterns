@@ -102,7 +102,7 @@
             Executes the controller method without any parameters.
             </summary>
             <typeparam name="TResult">The type of object returned by the action.</typeparam>
-            <param name="actionKey">The name of the action retrieved from the container.</param>
+            <param name="serviceKey">The name of the action retrieved from the container.</param>
             <returns>An ActionResult encapsulating the expected return type.</returns>
         </member>
         <member name="M:Diamond.Core.AspNetCore.DoAction.DoActionController.Do``2(``0,System.String)">
@@ -111,7 +111,7 @@
             </summary>
             <typeparam name="TInputs"></typeparam>
             <typeparam name="TResult">The type of object returned by the action.</typeparam>
-            <param name="actionKey">The name of the action retrieved from the container.</param>
+            <param name="serviceKey">The name of the action retrieved from the container.</param>
             <param name="inputs">The input parameter for the action.</param>
             <returns>An ActionResult encapsulating the expected return type.</returns>
         </member>
