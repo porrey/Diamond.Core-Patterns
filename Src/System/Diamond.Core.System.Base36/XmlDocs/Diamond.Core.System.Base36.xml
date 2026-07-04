@@ -415,6 +415,11 @@
             Represents a thread-safe wrapper for a Base36 value that can be incremented or added to atomically.
             </summary>
         </member>
+        <member name="F:System.InterlockedBase36._value">
+            <summary>
+            The underlying integer value representing the Base36 counter.
+            </summary>
+        </member>
         <member name="M:System.InterlockedBase36.#ctor(System.Base36)">
             <summary>
             Initializes a new instance of the <see cref="T:System.InterlockedBase36"/> class with the specified starting value.

@@ -11,10 +11,10 @@
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/porrey/Diamond.Core-Patterns</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>10.1.3</Version>
+		<Version>10.1.4</Version>
 		<Description>This library provides abstractions for the specification pattern.</Description>
-		<FileVersion>10.1.3</FileVersion>
-		<AssemblyVersion>10.1.3</AssemblyVersion>
+		<FileVersion>10.1.4</FileVersion>
+		<AssemblyVersion>10.1.4</AssemblyVersion>
 		<PackageIcon>Diamond.Core.128x128.png</PackageIcon>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageIconUrl>
