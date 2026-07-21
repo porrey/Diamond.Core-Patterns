@@ -20,7 +20,10 @@
   - [Specification](#specification-pattern)
   - [Rules Engine](#rules-engine)
   - [Workflow / State Machine](#workflow--state-machine)
+    - [State Dictionary](#state-dictionary)
+    - [Built-in Workflow Steps](#built-in-workflow-steps)
   - [Dependency Injection Extensions](#dependency-injection-extensions)
+    - [JSON-Based Service Loading](#json-based-service-loading)
   - [Hosting Extensions](#hosting-extensions)
   - [Command Line](#command-line)
   - [ASP.NET Core Utilities](#aspnet-core-utilities)
@@ -87,9 +90,10 @@ All packages are published to [NuGet.org](https://www.nuget.org/) and versioned 
 | Package | Description |
 |---------|-------------|
 | [`Diamond.Core.Workflow.Abstractions`](https://www.nuget.org/packages/Diamond.Core.Workflow.Abstractions) | `IWorkflowManager`, `IWorkflowItem`, `IContext` interfaces |
-| [`Diamond.Core.Workflow.State.Abstractions`](https://www.nuget.org/packages/Diamond.Core.Workflow.State.Abstractions) | State-based workflow interfaces |
+| [`Diamond.Core.Workflow.State.Abstractions`](https://www.nuget.org/packages/Diamond.Core.Workflow.State.Abstractions) | `IStateDictionary` and `IStateTypeConverter` interfaces |
+| [`Diamond.Core.Workflow.State`](https://www.nuget.org/packages/Diamond.Core.Workflow.State) | `StateDictionary` implementation with built-in type converters |
 | [`Diamond.Core.Workflow`](https://www.nuget.org/packages/Diamond.Core.Workflow) | Workflow engine implementation |
-| [`Diamond.Core.Workflow.Steps`](https://www.nuget.org/packages/Diamond.Core.Workflow.Steps) | Built-in workflow step base classes |
+| [`Diamond.Core.Workflow.Steps`](https://www.nuget.org/packages/Diamond.Core.Workflow.Steps) | Built-in reusable workflow steps |
 
 ### Decorator
 
@@ -488,6 +492,54 @@ IWorkflowManager workflow = await workflowFactory.GetAsync(WellKnown.Workflow.On
 bool success = await workflow.ExecuteWorkflowAsync(context);
 ```
 
+#### State Dictionary
+
+`IStateDictionary` (`Diamond.Core.Workflow.State`) is a strongly-typed, concurrent dictionary that acts as the shared property bag passed through every workflow step via `IContext.Properties`. It supports typed get/set operations and extensible type conversion.
+
+**Key interface** (`Diamond.Core.Workflow.State.Abstractions`):
+
+```csharp
+public interface IStateDictionary : IDictionary<string, object>
+{
+    // Retrieve and cast — throws if key is missing
+    TProperty Get<TProperty>(string key);
+
+    // Retrieve and cast — returns defaultValue if key is missing
+    TProperty Get<TProperty>(string key, TProperty defaultValue = default);
+
+    // Retrieve or create with an initial value
+    TProperty TryGet<TProperty>(string key, TProperty initializeValue);
+
+    // Set (create or update)
+    void Set<TProperty>(string key, TProperty value);
+
+    // Retrieve with explicit type conversion
+    (bool success, string errorMessage, TTarget value) ConvertParameter<TTarget>(string key);
+}
+```
+
+The default `StateDictionary` implementation ships with built-in converters for `int`, `bool`, `DateTime`, `TimeSpan`, `string`, `string[]`, `uint`, `float`, `double`, `enum`, and `IDictionary`. You can register additional `IStateTypeConverter` implementations to handle custom types.
+
+```csharp
+// Write to context in one step
+context.Properties.Set("invoiceId", 42);
+context.Properties.Set("processedAt", DateTime.UtcNow);
+
+// Read in a subsequent step
+int id = context.Properties.Get<int>("invoiceId");
+DateTime ts = context.Properties.Get<DateTime>("processedAt");
+```
+
+#### Built-in Workflow Steps
+
+`Diamond.Core.Workflow.Steps` provides reusable concrete steps that can be composed directly into any workflow:
+
+| Step | Description |
+|------|-------------|
+| `IsErrorStep` | Reads `WorkflowError` from context; halts the workflow and surfaces the error message if set |
+| `CreateTemporaryFolderStep` | Creates a temporary directory via `ITemporaryFolderFactory` and stores its path in context |
+| `DeleteTemporaryFolderStep` | Deletes the temporary folder stored by `CreateTemporaryFolderStep` and removes it from context |
+
 ---
 
 ### Dependency Injection Extensions
@@ -509,6 +561,57 @@ services.AddDiamondPostgreSQL<MyDbContext>(options =>
 
 // Supported providers: SqlServer, PostgreSQL, MySql, Sqlite, Oracle, Cosmos, InMemory
 ```
+
+#### JSON-Based Service Loading
+
+`Diamond.Core.Extensions.DependencyInjection` supports declaring services in JSON configuration files, decoupling registration from code. This enables per-environment or per-deployment service composition without recompilation.
+
+**Host builder integration:**
+
+```csharp
+IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServicesFolder("Services")   // load all *.json files from the folder
+    // or
+    .ConfigureServicesFile("Services/MyServices.json")
+    .Build();
+```
+
+**JSON format** — each file may contain `aliases`, `services`, and `databases` arrays:
+
+```jsonc
+{
+  "aliases": [
+    { "Key": "IInvoice", "TypeDefinition": "Acme.IInvoice, Acme.Domain" }
+  ],
+  "services": [
+    {
+      "ServiceType": "Diamond.Core.Repository.IRepositoryFactory, Diamond.Core.Repository.Abstractions",
+      "ImplementationType": "Diamond.Core.Repository.RepositoryFactory, Diamond.Core.Repository",
+      "Lifetime": "Scoped"
+    },
+    {
+      "ServiceKey": "Premium",
+      "ServiceType": "<IInvoice>",
+      "ImplementationType": "Acme.PremiumInvoice, Acme.Domain",
+      "Lifetime": "Transient",
+      "Properties": { "MaxLineItems": 500 }
+    }
+  ],
+  "databases": [
+    {
+      "Context": "<ErpContext>",
+      "ConnectionString": "DatabaseOptions:SqlServer",
+      "Lifetime": "Scoped",
+      "Factory": "Diamond.Core.Extensions.DependencyInjection.SqlServer.DbContextDependencyFactory`1[[<ErpContext>]], Diamond.Core.Extensions.DependencyInjection.SqlServer",
+      "Condition": { "Key": "DatabaseOptions:ActiveDatabase", "Value": "SqlServer" }
+    }
+  ]
+}
+```
+
+- **Aliases** — short names that stand in for fully-qualified type names (`<IInvoice>` expands to the registered type).
+- **Services** — map a service type to an implementation with a DI lifetime (`Singleton`, `Scoped`, `Transient`). Use `ServiceKey` for named/keyed registrations. `Properties` and `ArrayProperties` are injected into the implementation at resolution time.
+- **Databases** — register an EF Core `DbContext` for a specific provider. Use `Condition` to activate a database entry only when a configuration key matches a value, enabling clean multi-provider selection.
 
 ---
 
@@ -602,12 +705,29 @@ public async Task<IActionResult> GetEmployee(int id)
 
 ### AutoMapper Extensions
 
-Simplifies AutoMapper registration within the Diamond.Core DI container.
+Simplifies AutoMapper registration and profile discovery within the Diamond.Core DI container. Profiles are resolved through DI, enabling injected dependencies inside mapping profiles.
 
 ```csharp
-services.AddAutoMapper(typeof(MyMappingProfile).Assembly);
-// Diamond.Core wires AutoMapper profiles discovered via DI
+// Register via host builder extension
+IHost host = Host.CreateDefaultBuilder(args)
+    .UseAutoMapper()   // discovers all AutoMapper profiles registered in DI
+    .Build();
 ```
+
+Implement a mapping profile by inheriting `ProfileTemplate`:
+
+```csharp
+public class EmployeeProfile : ProfileTemplate
+{
+    public EmployeeProfile(ILogger<ProfileTemplate> logger)
+        : base(logger)
+    {
+        this.CreateMap<EmployeeEntity, EmployeeDto>();
+    }
+}
+```
+
+Register profiles in DI (or via JSON service configuration) and `UseAutoMapper()` will wire them all automatically.
 
 ---
 
