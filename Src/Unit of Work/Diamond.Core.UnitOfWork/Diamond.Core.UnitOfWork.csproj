@@ -8,9 +8,9 @@
 		<Product>Diamond.Core Patterns Library</Product>
 		<Copyright>Copyright © Daniel Porrey 2019-2026</Copyright>
 		<Description>This library provides a basic implementation of the Unit of Work factory.</Description>
-		<Version>10.1.3</Version>
-		<FileVersion>10.1.3</FileVersion>
-		<AssemblyVersion>10.1.3</AssemblyVersion>
+		<Version>10.1.4</Version>
+		<FileVersion>10.1.4</FileVersion>
+		<AssemblyVersion>10.1.4</AssemblyVersion>
 		<Authors>Daniel M. Porrey</Authors>
 		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/porrey/Diamond.Core-Patterns</PackageProjectUrl>
@@ -57,7 +57,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.10" />
 		<PackageReference Include="System.DisposableObject" Version="10.1.0" />
 		<PackageReference Include="TryDisposable" Version="10.1.0" />
 	</ItemGroup>

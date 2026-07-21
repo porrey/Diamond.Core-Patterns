@@ -410,5 +410,39 @@
             <returns>The numeric value of the character: 0-9 for digits, 10-35 for letters ('A' or 'a' = 10, 'B' or 'b' = 11, ..., 'Z'
             or 'z' = 35). Returns -1 if the character is not a valid digit or letter.</returns>
         </member>
+        <member name="T:System.InterlockedBase36">
+            <summary>
+            Represents a thread-safe wrapper for a Base36 value that can be incremented or added to atomically.
+            </summary>
+        </member>
+        <member name="F:System.InterlockedBase36._value">
+            <summary>
+            The underlying integer value representing the Base36 counter.
+            </summary>
+        </member>
+        <member name="M:System.InterlockedBase36.#ctor(System.Base36)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.InterlockedBase36"/> class with the specified starting value.
+            </summary>
+            <param name="startValue">The initial value of the Base36 counter.</param>
+        </member>
+        <member name="P:System.InterlockedBase36.Current">
+            <summary>
+            Gets the current value of the Base36 counter in a thread-safe manner.
+            </summary>
+        </member>
+        <member name="M:System.InterlockedBase36.Increment">
+            <summary>
+            Atomically increments the Base36 counter by one and returns the new value.
+            </summary>
+            <returns>The new value of the Base36 counter after the increment.</returns>
+        </member>
+        <member name="M:System.InterlockedBase36.Add(System.Int32)">
+            <summary>
+            Atomically adds the specified amount to the Base36 counter and returns the new value.
+            </summary>
+            <param name="amount">The amount to add to the Base36 counter.</param>
+            <returns>The new value of the Base36 counter after the addition.</returns>
+        </member>
     </members>
 </doc>
