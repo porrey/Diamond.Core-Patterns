@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
@@ -35,7 +34,7 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// </summary>
 		/// <remarks>This instance is used to provide a shared, thread-safe factory for creating service
 		/// providers.</remarks>
-		static readonly DiamondServiceProviderFactory _factory = new DiamondServiceProviderFactory();
+		static readonly DiamondServiceProviderFactory _factory = new();
 
 		/// <summary>
 		/// Configures the specified <see cref="IHostBuilder"/> to use the Diamond dependency injection model.
