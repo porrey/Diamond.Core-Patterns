@@ -17,9 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Builder;
 using System.CommandLine.Parsing;
-using System.CommandLine.Rendering;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -104,7 +102,7 @@ namespace Diamond.Core.CommandLine
 					if (cmd is Command c)
 					{
 						this.Logger.LogDebug("Adding '{name}' command to Root Command.", c.Name);
-						((RootCommand)this.RootCommand).AddCommand(c);
+						((RootCommand)this.RootCommand).Add(c);
 					}
 				}
 			}
@@ -146,11 +144,9 @@ namespace Diamond.Core.CommandLine
 					  this.Logger.LogDebug("OnStarted has been called on Root Command Service.");
 					  this.Logger.LogDebug("Executing InvokeAsync on Root Command.");
 
-					  int result = await new CommandLineBuilder((RootCommand)this.RootCommand)
-												   .UseDefaults()
-												   .UseAnsiTerminalWhenAvailable()
-												   .Build()
-												   .InvokeAsync(this.RootCommand.Args);
+					  int result = await CommandLineParser
+												   .Parse((RootCommand)this.RootCommand, this.RootCommand.Args)
+												   .InvokeAsync();
 
 					  this.Logger.LogDebug("Root Command returned integer value of {result}.", result);
 					  this.Logger.LogDebug("Setting Environment.ExitCode to {result}.", result);

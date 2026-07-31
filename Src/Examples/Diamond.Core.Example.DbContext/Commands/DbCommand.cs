@@ -42,10 +42,10 @@ namespace Diamond.Core.Example
 
 			switch (options.Action)
 			{
-				case Action.Create:
+				case Diamond.Core.Example.Action.Create:
 					this.Context.Database.EnsureCreated();
 					break;
-				case Action.Drop:
+				case Diamond.Core.Example.Action.Drop:
 					this.Context.Database.EnsureDeleted();
 					break;
 			}

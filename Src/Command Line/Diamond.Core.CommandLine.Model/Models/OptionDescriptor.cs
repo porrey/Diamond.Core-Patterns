@@ -15,6 +15,7 @@
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
 using System;
+using System.Reflection;
 
 namespace Diamond.Core.CommandLine.Model
 {
@@ -52,5 +53,10 @@ namespace Diamond.Core.CommandLine.Model
 		/// 
 		/// </summary>
 		public Type PropertyType { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public PropertyInfo ModelProperty { get; set; }
 	}
 }

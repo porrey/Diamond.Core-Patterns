@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program. If not, see http://www.gnu.org/licenses/.
 //
-using System.Reflection;
 using Microsoft.Extensions.Configuration;
 
 namespace Diamond.Core.Extensions.DependencyInjection
@@ -44,80 +43,95 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		}
 
 		/// <summary>
+		/// Gets the typed configuration source for this provider.
+		/// </summary>
+		protected new ServicesConfigurationFolderSource Source => (ServicesConfigurationFolderSource)base.Source;
+
+		/// <summary>
 		/// Loads configuration data from JSON files located in the specified directory and its subdirectories.
 		/// </summary>
-		/// <remarks>This method reads all JSON files in the directory specified by the <see cref="FileConfigurationSource.Path"/>
-		/// property, parses their contents into key-value pairs, and adds them to the services collection. If the
-		/// directory does not exist and the <see cref="FileConfigurationSource.Optional"/> property is set to <see langword="false"/>, a <see
-		/// cref="DirectoryNotFoundException"/> is thrown. The method ensures that indices across multiple files are
-		/// contiguous when parsing arrays.</remarks>
-		/// <exception cref="DirectoryNotFoundException">Thrown if the directory specified by <see cref="FileConfigurationSource.Path"/> does not exist and <see cref="FileConfigurationSource.Optional"/> is
+		/// <remarks>This method reads all JSON files in the directory (or directories) specified by the <see cref="FileConfigurationSource.Path"/>
+		/// and <see cref="ServicesConfigurationFolderSource.AdditionalPaths"/> properties, parses their contents into
+		/// key-value pairs, and adds them to the services collection. Array indices are kept contiguous across all
+		/// folders so that entries from different folders do not collide in the merged configuration. If a directory
+		/// does not exist and the <see cref="FileConfigurationSource.Optional"/> property is set to <see langword="false"/>, a <see
+		/// cref="DirectoryNotFoundException"/> is thrown.</remarks>
+		/// <exception cref="DirectoryNotFoundException">Thrown if any directory does not exist and <see cref="FileConfigurationSource.Optional"/> is
 		/// <see langword="false"/>.</exception>
 		public override void Load()
 		{
 			//
-			// Get a DirectoryInfo object to convert relative paths to full paths.
+			// Build the ordered list of folder paths to process: primary path first, then any additional paths.
 			//
-			string fullPath = $"{Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)}/{this.Source.Path}";
-			DirectoryInfo dir = new(fullPath);
+			IEnumerable<string> allPaths = new[] { this.Source.Path }
+				.Concat(this.Source.AdditionalPaths ?? [])
+				.Where(p => !string.IsNullOrWhiteSpace(p));
 
 			//
-			// Ensure the directory exists.
+			// When reading arrays from multiple files/folders the index needs to be
+			// contiguous across all of them to avoid key collisions in the merged
+			// configuration. This index tracks the running offset.
 			//
-			if (dir.Exists)
+			int baseIndex = 0;
+
+			foreach (string folderPath in allPaths)
 			{
 				//
-				// Get all of the files.
+				// Use AppContext.BaseDirectory so that relative paths resolve correctly
+				// in all deployment models (including single-file executables).
 				//
-				FileInfo[] files = dir.GetFiles("*.json", SearchOption.AllDirectories);
+				string fullPath = Path.Combine(AppContext.BaseDirectory, folderPath);
+				DirectoryInfo dir = new(fullPath);
 
-				//
-				// When reading the arrays from multiple files, the index needs to
-				// to be contiguous across the multiple files. This index will keep track.
-				//
-				int baseIndex = 0;
-
-				//
-				// Load each file.
-				//
-				foreach (FileInfo file in files)
+				if (dir.Exists)
 				{
 					//
-					// Read the JSON.
+					// Get all of the files.
 					//
-					string json = File.ReadAllText(file.FullName);
+					FileInfo[] files = dir.GetFiles("*.json", SearchOption.AllDirectories);
 
 					//
-					// Parse the data into a flattened dictionary.
+					// Load each file, keeping the base index contiguous across files and folders.
 					//
-					IDictionary<string, string> result = ServicesConfigurationFileParser.Parse(baseIndex, json);
-
-					//
-					// Add the results to the current list. This list collects all values
-					// across the multiple files.
-					//
-					foreach (KeyValuePair<string, string> item in result)
+					foreach (FileInfo file in files)
 					{
-						if (item.Value != null)
-						{
-							this.Data.Add(item);
-						}
-					}
+						//
+						// Read the JSON.
+						//
+						string json = File.ReadAllText(file.FullName);
 
-					//
-					// Update the base index for the next file.
-					//
-					baseIndex = this.Data.Count;
+						//
+						// Parse the data into a flattened dictionary.
+						//
+						IDictionary<string, string> result = ServicesConfigurationFileParser.Parse(baseIndex, json);
+
+						//
+						// Add the results to the current list. This list collects all values
+						// across the multiple files and folders.
+						//
+						foreach (KeyValuePair<string, string> item in result)
+						{
+							if (item.Value != null)
+							{
+								this.Data.Add(item);
+							}
+						}
+
+						//
+						// Update the base index for the next file.
+						//
+						baseIndex = this.Data.Count;
+					}
 				}
-			}
-			else
-			{
-				if (!this.Source.Optional)
+				else
 				{
-					//
-					// The folder was not optional so throw an exception.
-					//
-					throw new DirectoryNotFoundException($"The configuration services path '{dir.FullName}' was not found.");
+					if (!this.Source.Optional)
+					{
+						//
+						// The folder was not optional so throw an exception.
+						//
+						throw new DirectoryNotFoundException($"The configuration services path '{dir.FullName}' was not found.");
+					}
 				}
 			}
 		}

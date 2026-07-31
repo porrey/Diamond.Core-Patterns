@@ -27,6 +27,15 @@ namespace Diamond.Core.Extensions.DependencyInjection
 	public class ServicesConfigurationFolderSource : FileConfigurationSource
 	{
 		/// <summary>
+		/// Gets or sets additional folder paths to include when loading service configuration files.
+		/// </summary>
+		/// <remarks>When set, the provider will load JSON files from each path in this list (in order) in
+		/// addition to the primary <see cref="FileConfigurationSource.Path"/>. Array indices are kept
+		/// contiguous across all folders so that entries from different folders do not collide in the merged
+		/// configuration.</remarks>
+		public IList<string> AdditionalPaths { get; set; } = [];
+
+		/// <summary>
 		/// Builds the <see cref="ServicesConfigurationFolderProvider"/> for this source.
 		/// </summary>
 		/// <param name="builder">The <see cref="IConfigurationBuilder"/>.</param>

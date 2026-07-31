@@ -9,7 +9,7 @@ namespace Diamond.Core.AspNetCore.Hosting
 	/// </summary>
 	/// <remarks>This method allows additional configuration of the host builder within the web application builder,
 	/// enabling customization of the hosting environment.</remarks>
-	public static class WebbApplicationBuilderDecorator
+	public static class WebApplicationBuilderDecorator
 	{
 		/// <summary>
 		/// Configures the host builder for the specified <see cref="WebApplicationBuilder"/>.

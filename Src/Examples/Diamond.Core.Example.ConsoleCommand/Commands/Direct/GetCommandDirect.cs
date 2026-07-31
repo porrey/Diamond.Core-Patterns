@@ -47,7 +47,7 @@ namespace Diamond.Core.Example
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IMeasureAction Action { get; set; }
+		protected new IMeasureAction Action { get; set; }
 
 		/// <summary>
 		/// 

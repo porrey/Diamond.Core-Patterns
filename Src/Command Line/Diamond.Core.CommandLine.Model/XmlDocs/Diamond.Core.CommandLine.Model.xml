@@ -41,14 +41,6 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="M:Diamond.Core.CommandLine.Model.ModelCommand`1.CreateCommandHandler``1(System.Action{``0})">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
         <member name="T:Diamond.Core.CommandLine.Model.NullModel">
             <summary>
             
@@ -85,6 +77,11 @@
             </summary>
         </member>
         <member name="P:Diamond.Core.CommandLine.Model.OptionDescriptor.PropertyType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Diamond.Core.CommandLine.Model.OptionDescriptor.ModelProperty">
             <summary>
             
             </summary>

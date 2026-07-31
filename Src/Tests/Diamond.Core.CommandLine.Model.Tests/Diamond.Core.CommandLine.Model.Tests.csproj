@@ -6,9 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>
-    <Version>10.1.5</Version>
-    <FileVersion>10.1.5</FileVersion>
-    <AssemblyVersion>10.1.5</AssemblyVersion>
+    <Version>10.1.4</Version>
+    <FileVersion>10.1.4</FileVersion>
+    <AssemblyVersion>10.1.4</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.10" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
     <PackageReference Include="NUnit" Version="4.6.1" />
     <PackageReference Include="NUnit.Analyzers" Version="4.14.0">
@@ -31,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Rules\Diamond.Core.Rules\Diamond.Core.Rules.csproj" />
+    <ProjectReference Include="..\..\Command Line\Diamond.Core.CommandLine.Model\Diamond.Core.CommandLine.Model.csproj" />
   </ItemGroup>
 
 </Project>
