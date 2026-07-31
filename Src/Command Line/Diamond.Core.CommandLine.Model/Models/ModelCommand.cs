@@ -17,11 +17,11 @@
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
-using System.CommandLine.NamingConventionBinder;
+using System.CommandLine.Parsing;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -33,6 +33,16 @@ namespace Diamond.Core.CommandLine.Model
 	/// </summary>
 	public class ModelCommand<TModel> : Command, ICommand
 	{
+		private static readonly MethodInfo s_getValueByName =
+			typeof(ParseResult)
+				.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+				.First(m => m.Name == "GetValue"
+						 && m.IsGenericMethod
+						 && m.GetParameters().Length == 1
+						 && m.GetParameters()[0].ParameterType == typeof(string));
+
+		private readonly List<(PropertyInfo Property, Option Option)> _optionBindings = new();
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -42,11 +52,7 @@ namespace Diamond.Core.CommandLine.Model
 			: base(name, description)
 		{
 			this.BuildOptions();
-
-			this.Handler = CommandHandler.Create<TModel>(async (p) =>
-			{
-				return await this.OnHandleCommand(p);
-			});
+			this.RegisterAction();
 		}
 
 		/// <summary>
@@ -60,17 +66,31 @@ namespace Diamond.Core.CommandLine.Model
 		{
 			this.Logger = logger;
 			this.BuildOptions();
-
-			this.Handler = CommandHandler.Create<TModel>(async (p) =>
-			{
-				return await this.OnHandleCommand(p);
-			});
+			this.RegisterAction();
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		protected ILogger<ModelCommand<TModel>> Logger { get; set; } = new NullLogger<ModelCommand<TModel>>();
+
+		private void RegisterAction()
+		{
+			this.SetAction(async (ParseResult parseResult, CancellationToken cancellationToken) =>
+			{
+				TModel model = Activator.CreateInstance<TModel>();
+
+				foreach ((PropertyInfo property, Option option) in this._optionBindings)
+				{
+					object value = s_getValueByName
+						.MakeGenericMethod(property.PropertyType)
+						.Invoke(parseResult, new object[] { option.Name });
+					property.SetValue(model, value);
+				}
+
+				return await this.OnHandleCommand(model);
+			});
+		}
 
 		/// <summary>
 		/// 
@@ -130,7 +150,8 @@ namespace Diamond.Core.CommandLine.Model
 						Description = (display?.Description) ?? property.Name,
 						Order = (display?.Order) ?? 0,
 						IsRequired = isRequired,
-						PropertyType = property.PropertyType
+						PropertyType = property.PropertyType,
+						ModelProperty = property
 					};
 
 					//
@@ -149,9 +170,11 @@ namespace Diamond.Core.CommandLine.Model
 
 				Type[] typeArgs = { item.PropertyType };
 				Type makeme = typeof(Option<>).MakeGenericType(typeArgs);
-				object option = Activator.CreateInstance(makeme, new string[] { $"{item.Name}", $"{item.Alias}" }, item.Description);
+				Option option = (Option)Activator.CreateInstance(makeme, item.Name, new string[] { item.Alias });
+				option.Description = item.Description;
 
-				this.AddOption(option as Option);
+				this.Add(option);
+				this._optionBindings.Add((item.ModelProperty, option));
 			}
 		}
 
@@ -164,13 +187,5 @@ namespace Diamond.Core.CommandLine.Model
 		{
 			return Task.FromResult(0);
 		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="action"></param>
-		/// <returns></returns>
-		protected ICommandHandler CreateCommandHandler<T>(Action<T> action) => HandlerDescriptor.FromDelegate(action).GetCommandHandler();
 	}
 }
