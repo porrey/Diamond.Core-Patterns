@@ -118,5 +118,59 @@ namespace Diamond.Core.Extensions.DependencyInjection
 		/// <param name="configureSource">An <see cref="Action{T}"/> delegate used to configure the <see cref="ServicesConfigurationFolderSource"/>.</param>
 		/// <returns>The <see cref="IConfigurationBuilder"/> with the added configuration source.</returns>
 		public static IConfigurationBuilder AddServicesConfigurationFolder(this IConfigurationBuilder builder, Action<ServicesConfigurationFolderSource> configureSource) => builder.Add(configureSource);
+
+		/// <summary>
+		/// Adds multiple configuration folders to the <see cref="IConfigurationBuilder"/> as a single source,
+		/// ensuring array indices remain contiguous across all folders.
+		/// </summary>
+		/// <remarks>Use this overload instead of chaining multiple <see cref="AddServicesConfigurationFolder(IConfigurationBuilder, string)"/>
+		/// calls when you need services from more than one folder. Because all folders are loaded by a single
+		/// provider, array indices are kept contiguous and do not collide in the merged configuration.</remarks>
+		/// <param name="builder">The <see cref="IConfigurationBuilder"/> to which the configuration folders will be added.</param>
+		/// <param name="folderPaths">The relative or absolute paths to the configuration folders. At least one path must be supplied.</param>
+		/// <returns>The <see cref="IConfigurationBuilder"/> with the added configuration source.</returns>
+		/// <exception cref="ArgumentNullException">Thrown if <paramref name="builder"/> is <see langword="null"/> or if <paramref name="folderPaths"/> is
+		/// <see langword="null"/> or empty.</exception>
+		public static IConfigurationBuilder AddServicesConfigurationFolders(this IConfigurationBuilder builder, params string[] folderPaths)
+		{
+			return AddServicesConfigurationFolders(builder, provider: null, folderPaths: folderPaths, optional: true, reloadOnChange: false);
+		}
+
+		/// <summary>
+		/// Adds multiple configuration folders to the <see cref="IConfigurationBuilder"/> as a single source,
+		/// ensuring array indices remain contiguous across all folders.
+		/// </summary>
+		/// <param name="builder">The <see cref="IConfigurationBuilder"/> to which the configuration folders will be added. Cannot be <see
+		/// langword="null"/>.</param>
+		/// <param name="provider">The <see cref="IFileProvider"/> used to access the configuration files. Can be <see langword="null"/> to use the
+		/// default file provider.</param>
+		/// <param name="folderPaths">The relative or absolute paths to the configuration folders. At least one path must be supplied.</param>
+		/// <param name="optional">A value indicating whether the configuration folders are optional. If <see langword="true"/>, the method will not
+		/// throw an exception if a folder does not exist.</param>
+		/// <param name="reloadOnChange">A value indicating whether the configuration should automatically reload if the files in a folder change.</param>
+		/// <returns>The <see cref="IConfigurationBuilder"/> instance with the configuration folders added.</returns>
+		/// <exception cref="ArgumentNullException">Thrown if <paramref name="builder"/> is <see langword="null"/> or if <paramref name="folderPaths"/> is
+		/// <see langword="null"/> or empty.</exception>
+		public static IConfigurationBuilder AddServicesConfigurationFolders(this IConfigurationBuilder builder, IFileProvider provider, IEnumerable<string> folderPaths, bool optional, bool reloadOnChange)
+		{
+			ArgumentNullException.ThrowIfNull(builder);
+
+			string[] paths = folderPaths?.ToArray() ?? [];
+
+			if (paths.Length == 0)
+			{
+				throw new ArgumentNullException(nameof(folderPaths));
+			}
+
+			return builder.AddServicesConfigurationFolder(s =>
+			{
+				s.FileProvider = provider;
+				s.Path = paths[0];
+				s.AdditionalPaths = paths.Skip(1).ToList();
+				s.Optional = optional;
+				s.ReloadOnChange = reloadOnChange;
+				s.ResolveFileProvider();
+			});
+		}
 	}
 }

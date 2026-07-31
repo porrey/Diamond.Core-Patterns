@@ -72,5 +72,44 @@ namespace Diamond.Core.Extensions.DependencyInjection
 				config.AddServicesConfigurationFile(filePath: filePath, provider: provider, optional: optional, reloadOnChange: reloadOnChange);
 			});
 		}
+
+		/// <summary>
+		/// Configures the application to load configuration settings from multiple specified folders using a
+		/// single provider, ensuring array indices are contiguous across all folders.
+		/// </summary>
+		/// <remarks>Use this method instead of chaining multiple <see cref="ConfigureServicesFolder"/> calls when
+		/// loading from more than one folder. Because all folders are handled by a single provider, the array
+		/// indices used to store service descriptors remain contiguous and do not collide in the merged
+		/// configuration—preventing the "last folder wins" key-shadowing that would otherwise occur.</remarks>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> instance to configure.</param>
+		/// <param name="folderPaths">The paths to the folders containing configuration files. Paths can be relative or absolute.</param>
+		/// <returns>The <see cref="IHostBuilder"/> instance with the configuration applied.</returns>
+		public static IHostBuilder ConfigureServicesFolders(this IHostBuilder hostBuilder, params string[] folderPaths)
+		{
+			return hostBuilder.ConfigureAppConfiguration(config =>
+			{
+				config.AddServicesConfigurationFolders(folderPaths);
+			});
+		}
+
+		/// <summary>
+		/// Configures the application to load configuration settings from multiple specified folders using a
+		/// single provider, ensuring array indices are contiguous across all folders.
+		/// </summary>
+		/// <param name="hostBuilder">The <see cref="IHostBuilder"/> instance to configure.</param>
+		/// <param name="folderPaths">The paths to the folders containing configuration files. Paths can be relative or absolute.</param>
+		/// <param name="provider">An optional <see cref="IFileProvider"/> to use for accessing the configuration files. If not provided, the default file provider will be used.</param>
+		/// <param name="optional"><see langword="true"/> to treat the folders as optional, meaning that if a folder does not exist, no error will
+		/// be thrown; otherwise, <see langword="false"/>. The default value is <see langword="true"/>.</param>
+		/// <param name="reloadOnChange"><see langword="true"/> to enable automatic reloading of configuration when files in any folder change;
+		/// otherwise, <see langword="false"/>. The default value is <see langword="false"/>.</param>
+		/// <returns>The <see cref="IHostBuilder"/> instance with the configuration applied.</returns>
+		public static IHostBuilder ConfigureServicesFolders(this IHostBuilder hostBuilder, IEnumerable<string> folderPaths, IFileProvider provider = null, bool optional = true, bool reloadOnChange = false)
+		{
+			return hostBuilder.ConfigureAppConfiguration(config =>
+			{
+				config.AddServicesConfigurationFolders(provider: provider, folderPaths: folderPaths, optional: optional, reloadOnChange: reloadOnChange);
+			});
+		}
 	}
 }
