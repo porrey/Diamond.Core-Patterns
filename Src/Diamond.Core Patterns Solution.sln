@@ -167,6 +167,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diamond.Core.Clonable.Tests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567806}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diamond.Core.CommandLine.Tests", "Tests\Diamond.Core.CommandLine.Tests\Diamond.Core.CommandLine.Tests.csproj", "{E399A0A7-ADB6-B968-C259-F696547F4910}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -437,6 +439,10 @@ Global
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E399A0A7-ADB6-B968-C259-F696547F4910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E399A0A7-ADB6-B968-C259-F696547F4910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E399A0A7-ADB6-B968-C259-F696547F4910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E399A0A7-ADB6-B968-C259-F696547F4910}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -507,6 +513,7 @@ Global
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567803} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567804} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
 		{A1B2C3D4-E5F6-7890-ABCD-EF1234567805} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
+		{E399A0A7-ADB6-B968-C259-F696547F4910} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567806}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3E8A73B-316C-4089-B281-E5E2E4109A3C}

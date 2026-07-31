@@ -4,7 +4,7 @@
         <name>Diamond.Core.AspNetCore.Hosting</name>
     </assembly>
     <members>
-        <member name="T:Diamond.Core.AspNetCore.Hosting.WebbApplicationBuilderDecorator">
+        <member name="T:Diamond.Core.AspNetCore.Hosting.WebApplicationBuilderDecorator">
             <summary>
             Configures the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/> of the specified <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> using the provided
             configuration action.
@@ -12,7 +12,7 @@
             <remarks>This method allows additional configuration of the host builder within the web application builder,
             enabling customization of the hosting environment.</remarks>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.Hosting.WebbApplicationBuilderDecorator.WithHostBuilder(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.AspNetCore.Builder.WebApplicationBuilder})">
+        <member name="M:Diamond.Core.AspNetCore.Hosting.WebApplicationBuilderDecorator.WithHostBuilder(Microsoft.AspNetCore.Builder.WebApplicationBuilder,System.Action{Microsoft.Extensions.Hosting.IHostBuilder,Microsoft.AspNetCore.Builder.WebApplicationBuilder})">
             <summary>
             Configures the host builder for the specified <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/>.
             </summary>
@@ -23,7 +23,7 @@
             <param name="configuration">An <see cref="T:System.Action`1"/> that configures the <see cref="T:Microsoft.Extensions.Hosting.IHostBuilder"/>.</param>
             <returns>The configured <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/>.</returns>
         </member>
-        <member name="M:Diamond.Core.AspNetCore.Hosting.WebbApplicationBuilderDecorator.ConfigureApp(Microsoft.AspNetCore.Builder.WebApplication,System.Action{Microsoft.AspNetCore.Builder.WebApplication})">
+        <member name="M:Diamond.Core.AspNetCore.Hosting.WebApplicationBuilderDecorator.ConfigureApp(Microsoft.AspNetCore.Builder.WebApplication,System.Action{Microsoft.AspNetCore.Builder.WebApplication})">
             <summary>
             Configures the specified <see cref="T:Microsoft.AspNetCore.Builder.WebApplication"/> using the provided configuration action.
             </summary>
