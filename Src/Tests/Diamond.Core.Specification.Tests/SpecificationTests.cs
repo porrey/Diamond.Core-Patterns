@@ -40,24 +40,24 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public async Task ExecuteSelectionAsync_CallsOnExecuteSelectionAsync()
         {
-            var spec = new StringResultSpecification("hello");
+			StringResultSpecification spec = new StringResultSpecification("hello");
             string result = await spec.ExecuteSelectionAsync();
             Assert.That(result, Is.EqualTo("hello"));
         }
 
         [Test]
-        public void ExecuteSelectionAsync_BaseTemplate_ThrowsNotImplemented()
+        public async Task ExecuteSelectionAsync_BaseTemplate_ThrowsNotImplemented()
         {
             // The base SpecificationTemplate<TResult> throws NotImplementedException
             // if OnExecuteSelectionAsync is not overridden.
-            var spec = new ThrowingSpecification();
-            Assert.ThrowsAsync<NotImplementedException>(() => spec.ExecuteSelectionAsync());
+            ThrowingSpecification spec = new ThrowingSpecification();
+			await Assert.ThrowsAsync<NotImplementedException>(() => spec.ExecuteSelectionAsync());
         }
 
         [Test]
         public void Dispose_DoesNotThrow()
         {
-            var spec = new StringResultSpecification("test");
+            StringResultSpecification spec = new StringResultSpecification("test");
             Assert.DoesNotThrow(() => spec.Dispose());
         }
 
@@ -73,7 +73,7 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public async Task ExecuteSelectionAsync_WithParameter_ReturnsExpected()
         {
-            var spec = new IntStringSpecification();
+            IntStringSpecification spec = new IntStringSpecification();
             string result = await spec.ExecuteSelectionAsync(42);
             Assert.That(result, Is.EqualTo("Value=42"));
         }
@@ -86,7 +86,7 @@ namespace Diamond.Core.Specification.Tests
     {
         private ServiceProvider BuildProvider(Action<IServiceCollection> configure)
         {
-            var services = new ServiceCollection();
+            ServiceCollection services = new ServiceCollection();
             configure(services);
             return services.BuildServiceProvider();
         }
@@ -96,11 +96,11 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public async Task GetAsync_TResult_Found_ReturnsSpecification()
         {
-            var provider = BuildProvider(s =>
+			ServiceProvider provider = BuildProvider(s =>
                 s.AddKeyedTransient<ISpecification, StringResultSpecification>("my-spec",
                     (sp, key) => new StringResultSpecification("found")));
 
-            var factory = new SpecificationFactory(provider);
+            SpecificationFactory factory = new SpecificationFactory(provider);
 
             ISpecification<string> spec = await factory.GetAsync<string>("my-spec");
             Assert.That(spec, Is.Not.Null);
@@ -109,42 +109,39 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public async Task GetAsync_TResult_Executes_Correctly()
         {
-            var provider = BuildProvider(s =>
+            ServiceProvider provider = BuildProvider(s =>
                 s.AddKeyedTransient<ISpecification, StringResultSpecification>("greeting",
                     (sp, key) => new StringResultSpecification("Hello!")));
 
-            var factory = new SpecificationFactory(provider);
-            var spec = await factory.GetAsync<string>("greeting");
+            SpecificationFactory factory = new SpecificationFactory(provider);
+            ISpecification<string> spec = await factory.GetAsync<string>("greeting");
             string result = await spec.ExecuteSelectionAsync();
             Assert.That(result, Is.EqualTo("Hello!"));
         }
 
         [Test]
-        public void GetAsync_TResult_NotFound_Throws()
+        public async Task GetAsync_TResult_NotFound_Throws()
         {
-            var provider = BuildProvider(_ => { });
-            var factory = new SpecificationFactory(provider);
-
-            Assert.ThrowsAsync<SpecificationNotFoundException<string>>(
+            ServiceProvider provider = this.BuildProvider(_ => { });
+            SpecificationFactory factory = new SpecificationFactory(provider);
+			await Assert.ThrowsAsync<SpecificationNotFoundException<string>>(
                 () => factory.GetAsync<string>("missing"));
         }
 
         [Test]
-        public void GetAsync_TResult_NullKey_Throws()
+        public async Task GetAsync_TResult_NullKey_Throws()
         {
-            var provider = BuildProvider(_ => { });
-            var factory = new SpecificationFactory(provider);
-
-            Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<string>(null));
+            ServiceProvider provider = this.BuildProvider(_ => { });
+            SpecificationFactory factory = new SpecificationFactory(provider);
+			await Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<string>(null));
         }
 
         [Test]
-        public void GetAsync_TResult_WhitespaceKey_Throws()
+        public async Task GetAsync_TResult_WhitespaceKey_Throws()
         {
-            var provider = BuildProvider(_ => { });
-            var factory = new SpecificationFactory(provider);
-
-            Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<string>("  "));
+			ServiceProvider provider = this.BuildProvider(_ => { });
+			SpecificationFactory factory = new SpecificationFactory(provider);
+			await Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<string>("  "));
         }
 
         // ── GetAsync<TParameter, TResult> ─────────────────────────────────────────
@@ -152,10 +149,10 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public async Task GetAsync_TParameterTResult_Found_ReturnsSpecification()
         {
-            var provider = BuildProvider(s =>
+            ServiceProvider provider = this.BuildProvider(s =>
                 s.AddKeyedTransient<ISpecification, IntStringSpecification>("int-spec"));
 
-            var factory = new SpecificationFactory(provider);
+            SpecificationFactory factory = new SpecificationFactory(provider);
             ISpecification<int, string> spec = await factory.GetAsync<int, string>("int-spec");
             Assert.That(spec, Is.Not.Null);
         }
@@ -163,41 +160,41 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public async Task GetAsync_TParameterTResult_Executes_Correctly()
         {
-            var provider = BuildProvider(s =>
+            ServiceProvider provider = this.BuildProvider(s =>
                 s.AddKeyedTransient<ISpecification, IntStringSpecification>("int-spec"));
 
-            var factory = new SpecificationFactory(provider);
-            var spec = await factory.GetAsync<int, string>("int-spec");
+            SpecificationFactory factory = new SpecificationFactory(provider);
+            ISpecification<int, string> spec = await factory.GetAsync<int, string>("int-spec");
             string result = await spec.ExecuteSelectionAsync(99);
             Assert.That(result, Is.EqualTo("Value=99"));
         }
 
         [Test]
-        public void GetAsync_TParameterTResult_NotFound_Throws()
+        public async Task GetAsync_TParameterTResult_NotFound_Throws()
         {
-            var provider = BuildProvider(_ => { });
-            var factory = new SpecificationFactory(provider);
+            ServiceProvider provider = this.BuildProvider(_ => { });
+            SpecificationFactory factory = new SpecificationFactory(provider);
 
-            Assert.ThrowsAsync<SpecificationNotFoundException<int, string>>(
+            await Assert.ThrowsAsync<SpecificationNotFoundException<int, string>>(
                 () => factory.GetAsync<int, string>("missing"));
         }
 
         [Test]
-        public void GetAsync_TParameterTResult_NullKey_Throws()
+        public async Task GetAsync_TParameterTResult_NullKey_Throws()
         {
-            var provider = BuildProvider(_ => { });
-            var factory = new SpecificationFactory(provider);
+            ServiceProvider provider = this.BuildProvider(_ => { });
+            SpecificationFactory factory = new SpecificationFactory(provider);
 
-            Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<int, string>(null));
+            await Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<int, string>(null));
         }
 
         [Test]
-        public void GetAsync_TParameterTResult_EmptyKey_Throws()
+        public async Task GetAsync_TParameterTResult_EmptyKey_Throws()
         {
-            var provider = BuildProvider(_ => { });
-            var factory = new SpecificationFactory(provider);
+            ServiceProvider provider = this.BuildProvider(_ => { });
+            SpecificationFactory factory = new SpecificationFactory(provider);
 
-            Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<int, string>(""));
+            await Assert.ThrowsAsync<ArgumentException>(() => factory.GetAsync<int, string>(""));
         }
     }
 
@@ -209,7 +206,7 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public void SpecificationNotFoundException_TResult_HasMessage()
         {
-            var ex = new SpecificationNotFoundException<string>("my-key");
+			SpecificationNotFoundException<string> ex = new SpecificationNotFoundException<string>("my-key");
             Assert.That(ex.Message, Does.Contain("my-key"));
             Assert.That(ex.Message, Does.Contain("String"));
         }
@@ -217,7 +214,7 @@ namespace Diamond.Core.Specification.Tests
         [Test]
         public void SpecificationNotFoundException_TParameterTResult_HasMessage()
         {
-            var ex = new SpecificationNotFoundException<int, string>("my-key");
+			SpecificationNotFoundException<int, string> ex = new SpecificationNotFoundException<int, string>("my-key");
             Assert.That(ex.Message, Does.Contain("my-key"));
         }
 
@@ -225,7 +222,7 @@ namespace Diamond.Core.Specification.Tests
         public void SpecificationNotFoundException_IsDisposable()
         {
             // Verify exception hierarchy inherits from DiamondSpecificationException
-            var ex = new SpecificationNotFoundException<string>("x");
+			SpecificationNotFoundException<string> ex = new SpecificationNotFoundException<string>("x");
             Assert.That(ex, Is.InstanceOf<DiamondSpecificationException>());
         }
     }
