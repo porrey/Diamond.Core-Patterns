@@ -30,5 +30,3 @@ jobs:
 
       - name: Test
         run: dotnet test "Src/Diamond.Core Patterns Solution.sln" --no-build --configuration Release --verbosity normal
-        env:
-          DOTNET_TEST_RUNNER: Microsoft.Testing.Platform
