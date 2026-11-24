@@ -15,17 +15,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Setup .NET 5
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6.1.0
         with:
-          dotnet-version: "5.0.x"
+          dotnet-version: "11.0.x"
 
-      - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+      - name: Setup .NET 11
+        uses: actions/setup-dotnet@v6.1.0
         with:
-          dotnet-version: "10.0.x"
+          dotnet-version: "11.0.x"
 
       - name: Restore dependencies
         run: dotnet restore "Src/Diamond.Core Patterns Solution.sln"
@@ -35,3 +35,5 @@ jobs:
 
       - name: Test
         run: dotnet test "Src/Diamond.Core Patterns Solution.sln" --no-build --configuration Release --verbosity normal
+        env:
+          DOTNET_TEST_RUNNER: Microsoft.Testing.Platform
